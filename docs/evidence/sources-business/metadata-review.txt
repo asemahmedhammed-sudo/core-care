@@ -1,0 +1,219 @@
+Theme Metadata Review - Twilight Documentation | Salla Docs
+Review Process
+Copy Page
+Salla Platform Docs
+Theme Architecture
+Layouts
+Overview
+Global Variables
+CSS Variables
+Custom Fonts
+Master Layout
+Salla Icons
+Hooks
+Localizations
+Salla Component Hooks
+Hooks
+Overview
+Template Hooks
+Component Hooks
+Pages
+Home Page
+Overview
+Product Pages
+Products listing
+Single product
+Customer Pages
+Profile
+Orders list
+Order details
+Wishlist
+Notifications
+Blog Pages
+Blog listing
+Single blog
+Brand Pages
+Brands listing
+Single brand
+Common Pages
+Cart
+Loyalty
+Thank you
+Single page
+Landing Page
+Components
+Overview
+Home Components
+Youtube
+Fixed banner
+Testimonials
+Parallax background
+Photos slider
+Store features
+Square photos
+Fixed products
+Products slider
+Featured products - Style 1
+Featured Products - Style 2
+Featured Products - Style 3
+Brands
+Enhanced Square Banners
+Main Links
+Enhanced Slider
+Slider Products with Headers
+Latest Products
+Vertical Menu with Slider
+Product Components
+Essentials
+Options
+Common Components
+Header Components
+Footer Components
+Comments component
+Requirements & Review
+Overview
+Main Requirements
+Review Process
+UI / UX Review
+Technical Review
+Metadata Review
+Pre-Launch Review
+Getting Started
+Create a theme
+Setup a theme
+Develop a theme
+Publish a theme
+Files and Folders Structure
+Directory structure
+Twilight.json
+Twig Template Engine
+Basic syntax
+Twilight flavoured twig
+Change Log
+Merchant
+Merchant
+Merchant API
+Embedded SDK
+Salla OAuth 2.0
+Storefront
+Storefront
+Twilight Engine
+Twilight SDK
+Web Components
+Ecommerce Events
+Component Bundle
+Checkout APIs
+Change LogApp Functions
+Partner APIs
+Partner APIs
+App API
+Shipments & Fulfillment APIs
+Salla AWB
+Recurring Payments API
+Billing System Salla partners
+Communication Apps
+Dev Tools
+Dev Tools
+Partners Agent Kit
+Salla Apps Playbook
+Salla CLI
+Merchant
+Merchant
+Merchant API
+Embedded SDK
+Salla OAuth 2.0
+Storefront
+Storefront
+Twilight Engine
+Twilight SDK
+Web Components
+Ecommerce Events
+Component Bundle
+Checkout APIs
+Change LogApp Functions
+Partner APIs
+Partner APIs
+App API
+Shipments & Fulfillment APIs
+Salla AWB
+Recurring Payments API
+Billing System Salla partners
+Communication Apps
+Dev Tools
+Dev Tools
+Partners Agent Kit
+Salla Apps Playbook
+Salla CLI
+Blog
+Developer Portal
+Review Process
+Copy Page
+Metadata Review
+Reviewing metadata is looking through and rating the metadata related to websites, digital information, or certain parts of a website. Descriptive information or tags that give context and specifics about the material are referred to as metadata.This helps search engines and people alike better comprehend and access the content. In this step, Salla team will review the Theme Name, Support, Pricing, Screenshots, Description and ChangeLog.
+1.0. Theme Name#For Theme name Style name follow these guidelines:
+1.1. Theme and style names should stand apart from Salla Products, Events, or Branded content.
+1.2. They should also differ from Partner names.
+1.3. Avoid overlap with website, e-commerce, or SEO-related terms; for instance, steer clear of names like Performance, Mobile, or Sales for your Theme.
+1.4. Ensure unique names not resembling industry or collection names from the Theme Store, such as Fashion, Electronics, or Jewelry.
+1.5. Keep names under 14 characters and hint at the purpose of the Theme.
+1.6. Communicate what merchants can expect from the Theme, encompassing core concepts and the intended audience.
+1.7. Opt for noun-based or adjective-based names.
+1.8. Choose easily pronounceable names to aid in recall and searching for merchants.
+1.9. Consider different dialects and regional meanings; consult an idiom dictionary if needed.
+1.10. Avoid using the same name on other platforms.
+1.11. Use a single word without emojis, spaces, or special characters in the Theme or style name.
+Good Theme Name example:
+“Elegance” ✅(one word, less than 14 characters, adjective)
+Bad Theme Name examples:
+“The Majestic” ❌(Two words)
+“Day&Night” ❌(Two words and special character)
+2.0. Theme Support#Merchants using the Theme are advised to address any concerns they may have with the Theme developer.  It is not Salla's responsibility to manage Theme support, so you need to fill in all of the following fields:
+2.1.  Support Email: Active Email that is dedicated to getting inquiries and issues related to the themes.
+2.2. Support Website: Company, Personal website or social media where Merchants can get more information about you .
+2.3. Support Phone: Active Mobile / Office number for getting inquiries and issues related to the Theme.
+2.4. Live Chat:  Active live chat link could be Telegram , WhatsApp or any other chat services. The response timeframe expected is within few hours .
+2.5. Documentation Link: Each theme should have it's own blog or article that explains how Theme works. Example: https://help.salla.sa/article/1991456782
+2.6. Support Service: An optional field you can use  in case you would like to provide extra support services.Customer support inquiries must be answered in a timely manner within two business days. If you don't give your Theme enough support, it might get bad reviews, have a low buy rate, or be taken down from the Salla Marketplace.
+3.0. Theme Pricing#Salla allows you to charge Merchants a one-time payment for your Themes. You are free to set the Theme price as you see fit as long as it is a minimum 250 SAR for Public Themes and 1,000 SAR for Private Themes.Calculate the price of your theme based on a number of parameters:
+Design quality
+Size of the catalog it is intended for, and
+Production timeWhen figuring out how much to charge for your theme, don't forget to include in the expense of offering first-rate support. It will be required of you to address bugs and respond to inquiries regarding your theme. Merchants' evaluation of your theme may be influenced by the level of help and support you offer.
+4.0. Theme Screenshots#Providing Theme screenshots provide a detailed glims of how the Theme would look like once applied to the store. Follow the below rules when uploading Theme screenshots for publishing:
+4.1. Well-designed screenshots are required.
+4.2. Screenshots should be provided in images or YouTube video formats.
+4.3. Videos should be short and informative, 2 minutes maximum length is required.
+4.4. Each Screenshot should have a unique title and description.
+4.5. The title for each screenshot should reflect the Theme features for Merchants, for example, Smooth animations, Optimized performance, Easy setup with 20+ sections, etc.
+4.6. The screenshot's title and description should be in Arabic and English.
+4.7. A minimum of 4 screenshots of the Theme should be provided.
+4.8. Screenshots should reflect all Theme features.
+4.9. Screenshot images should not contain any texts or logos at all.
+4.10. Theme screenshots should be available in both desktop and mobile views.
+5.0. Theme ChangeLog#Your Theme should have a change log, a change log is a record that lists updates, fixes, and improvements made to the Theme. It includes version numbers, release dates, and brief descriptions of changes such as new features, bug fixes, security updates, and performance enhancements. It helps users understand what's changed in each version and assists developers in tracking modifications and progress. Salla advices to only share relevant information and abstain from sharing inappropriate information.
+6.0 Theme Preview#Prepare a demo preview store to showcase how your theme will enhance the appearance of a merchant's store once it's installed. You can create one or multiple preview stores, and they will be featured in the Salla Theme Marketplace. Please adhere to the following guidelines:
+6.1 All Themes must include at least one preview store.
+6.2 You can use up to 4 preview stores for each Theme.
+6.3 Avoid using the same preview store for multiple themes.
+6.4 Each Theme category can only have one preview store.
+6.5 Ensure that at least one preview store is set as the default store.
+6.6 Use authentic text content on all preview store pages. Avoid placeholder text like "Lorem Ipsum" or "test test," and refrain from using profanities.
+6.7 Preview stores should only showcase elements and functionalities that are built into the Theme.
+6.8 Do not embed text or buttons in images, except for text on physical products, infographics, badges, or Instagram images.
+6.9 Exclusively feature original images owned by the Theme developer in the preview store. Any usage of third-party images is the responsibility of the Theme developer.
+6.10 Obtain direct permission from brand owners before using any brand names, images, or content.
+6.11 Utilize built-in Salla features to demonstrate the power and capabilities of your Theme, such as enabling various special promotions e.g., countdown timer on product pages, loyalty programs, and blogs.
+6.12 Showcase the versatility and variability of your Theme by including examples such as a product on sale, a sold-out product or variant, and a product with multiple variants.
+6.13 Ensure that the preview store does not contain information about the Theme and simulates real stores.
+6.14 Thumbnails of preview stores should not contain text or logos.
+6.15 Thumbnails of preview stores should be desktop and mobile responsive.
+6.16 Preview stores should not contain the store icon.
+7.0 Active Store#Demonstrate how the Theme has successfully met the needs of several stores. This section is optional and should only be included for themes that are live and already installed by multiple stores. Please ensure to follow these image requirements for each item:
+7.1. Image size should not exceed 200KB.
+7.2. Image dimensions should not exceed 800x450 pixels.
+7.3. Images should be screenshot of the store in web view. No added texts or logos on the image.
+Modified at 2026-07-29 11:46:05
+Previous
+Technical Review
+Next
+Pre-Launch Review
+LLMs.txtExport

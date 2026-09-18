@@ -1,0 +1,56 @@
+{
+  "date_utc": "2026-09-18T14:16:10.668436+00:00",
+  "theme_base": "SallaApp/theme-raed 1.358.0 @ 4332880be63909cc4251ea8783d25c88efa8f468",
+  "environment": {
+    "node": "v24.19.0",
+    "pnpm": "11.19.0",
+    "os": "macOS local desktop"
+  },
+  "dependency_install": {
+    "command": "pnpm install --frozen-lockfile",
+    "result": "pass",
+    "note": "Final online restoration succeeded from verified lockfile. A preceding offline-only attempt failed because @babel/runtime tarball was unavailable; the final build ran after restoration."
+  },
+  "build": {
+    "command": "./node_modules/.bin/webpack --mode production --stats errors-warnings",
+    "exit_code": 0,
+    "log": "docs/evidence/technical/build.txt",
+    "warnings_reported": 8,
+    "warning_types": [
+      "Inherited Sass @import deprecations",
+      "Tailwind line-clamp plugin redundancy",
+      "Webpack app entrypoint performance recommendation"
+    ],
+    "no_compile_errors": true
+  },
+  "security_test": {
+    "command": "node --test scripts/*.test.mjs",
+    "log": "docs/evidence/technical/security-test.txt",
+    "passed": true
+  },
+  "static_audit": {
+    "report": "docs/evidence/technical/static-audit.json",
+    "result": "static-checks-passed-with-platform-tests-pending",
+    "checks_passed": 13,
+    "checks_total": 13,
+    "raw_items_open": 4,
+    "merchant_metadata_pending": true
+  },
+  "size": {
+    "report": "docs/evidence/technical/size-report.json",
+    "scopes": {
+      "built-public-all": 487851,
+      "built-public-js-css": 458344,
+      "source-runtime": 505510,
+      "runtime-manifest-views-locales-built": 772241,
+      "project-excluding-tooling-docs": 1296366
+    },
+    "official_acceptance": "clarification-required; no asserted pass"
+  },
+  "platform": {
+    "official_salla_preview": "not run; partner demo store and linked repository missing",
+    "lighthouse": "not run; no default preview URLs",
+    "screenshots": "not captured; no Salla preview"
+  },
+  "disposition": "not ready for submission"
+}

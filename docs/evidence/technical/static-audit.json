@@ -1,0 +1,1533 @@
+{
+  "kind": "static-repository-audit",
+  "generatedAt": "2026-09-18T14:15:35.178Z",
+  "environment": {
+    "node": "v24.19.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "root": "/Users/test/Documents/ChatGPT/core-care-sall-theam",
+  "upstream": {
+    "source": "https://github.com/SallaApp/theme-raed",
+    "commit": "4332880be63909cc4251ea8783d25c88efa8f468",
+    "version": "1.358.0"
+  },
+  "limitations": [
+    "No authenticated Salla preview was tested by this script.",
+    "Pattern searches cannot prove security, localization coverage, schema acceptance, or network efficiency.",
+    "Raw expressions remain review items even when inherited from official Raed."
+  ],
+  "checks": [
+    {
+      "id": "manifest-json",
+      "status": "pass",
+      "details": "JSON parsed; this is not Salla schema validation."
+    },
+    {
+      "id": "locale-key-parity",
+      "status": "pass",
+      "details": {
+        "ar.json": [],
+        "en.json": []
+      }
+    },
+    {
+      "id": "locale-values-string",
+      "status": "pass",
+      "details": {
+        "ar.json": [],
+        "en.json": []
+      }
+    },
+    {
+      "id": "custom-component-files",
+      "status": "pass",
+      "details": [
+        {
+          "path": "home.beauty-hero",
+          "file": "src/views/components/home/beauty-hero.twig",
+          "exists": true,
+          "fields": [
+            "eyebrow",
+            "title",
+            "description",
+            "image",
+            "image_alt",
+            "button_label",
+            "button_url",
+            "image_first",
+            "soft_background",
+            "rounded_image"
+          ]
+        },
+        {
+          "path": "home.beauty-collections",
+          "file": "src/views/components/home/beauty-collections.twig",
+          "exists": true,
+          "fields": [
+            "title",
+            "description",
+            "equal_tiles",
+            "rounded_images",
+            "banners"
+          ]
+        },
+        {
+          "path": "home.beauty-routine",
+          "file": "src/views/components/home/beauty-routine.twig",
+          "exists": true,
+          "fields": [
+            "title",
+            "description",
+            "soft_background",
+            "limit",
+            "routines"
+          ]
+        },
+        {
+          "path": "home.enhanced-slider",
+          "file": "src/views/components/home/enhanced-slider.twig",
+          "exists": true,
+          "fields": [
+            "slides"
+          ]
+        },
+        {
+          "path": "home.main-links",
+          "file": "src/views/components/home/main-links.twig",
+          "exists": true,
+          "fields": [
+            "title",
+            "show_cats",
+            "categories",
+            "links"
+          ]
+        },
+        {
+          "path": "home.slider-products-with-header",
+          "file": "src/views/components/home/slider-products-with-header.twig",
+          "exists": true,
+          "fields": [
+            "background",
+            "title",
+            "description",
+            "products",
+            "display_all_url"
+          ]
+        },
+        {
+          "path": "home.enhanced-square-banners",
+          "file": "src/views/components/home/enhanced-square-banners.twig",
+          "exists": true,
+          "fields": [
+            "banners"
+          ]
+        },
+        {
+          "path": "home.brands",
+          "file": "src/views/components/home/brands.twig",
+          "exists": true,
+          "fields": [
+            "title",
+            "brands"
+          ]
+        },
+        {
+          "path": "home.custom-testimonials",
+          "file": "src/views/components/home/custom-testimonials.twig",
+          "exists": true,
+          "fields": [
+            "items"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unique-component-paths",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "custom-field-template-references",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "no-merchant-html-input-field",
+      "status": "pass",
+      "details": {
+        "fields": [],
+        "limitation": "Plain textarea is not treated as HTML. Admin labelHTML metadata is not a merchant HTML entry field. Escaping remains a separate review."
+      }
+    },
+    {
+      "id": "preserve-upstream-master-blocks",
+      "status": "pass",
+      "details": {
+        "upstream": [
+          "head_scripts",
+          "styles",
+          "content",
+          "scripts"
+        ],
+        "current": [
+          "head_scripts",
+          "head",
+          "styles",
+          "content",
+          "scripts"
+        ]
+      }
+    },
+    {
+      "id": "preserve-upstream-master-hooks",
+      "status": "pass",
+      "details": {
+        "upstream": [
+          "head:start",
+          "head",
+          "head:end",
+          "body:classes",
+          "body:start",
+          "body:end"
+        ],
+        "current": [
+          "head:start",
+          "head",
+          "head:end",
+          "body:classes",
+          "body:start",
+          "body:end"
+        ]
+      }
+    },
+    {
+      "id": "documented-master-head-block",
+      "status": "pass",
+      "details": {
+        "note": "Master layout documentation lists head; current official Raed uses head_scripts. Additional head block preserves both extension points."
+      }
+    },
+    {
+      "id": "preserve-upstream-master-integrations",
+      "status": "pass",
+      "details": [
+        {
+          "kind": "component",
+          "value": "header.header",
+          "found": true
+        },
+        {
+          "kind": "component",
+          "value": "footer.footer",
+          "found": true
+        },
+        {
+          "kind": "element",
+          "value": "salla-add-product-toast",
+          "found": true
+        },
+        {
+          "kind": "element",
+          "value": "salla-offer-modal",
+          "found": true
+        },
+        {
+          "kind": "element",
+          "value": "salla-search",
+          "found": true
+        },
+        {
+          "kind": "element",
+          "value": "salla-login-modal",
+          "found": true
+        },
+        {
+          "kind": "element",
+          "value": "salla-scopes",
+          "found": true
+        },
+        {
+          "kind": "asset",
+          "value": "product-card.js",
+          "found": true
+        },
+        {
+          "kind": "asset",
+          "value": "main-menu.js",
+          "found": true
+        },
+        {
+          "kind": "asset",
+          "value": "add-product-toast.js",
+          "found": true
+        },
+        {
+          "kind": "asset",
+          "value": "app.css",
+          "found": true
+        },
+        {
+          "kind": "asset",
+          "value": "app.js",
+          "found": true
+        }
+      ]
+    },
+    {
+      "id": "no-reference-brand-or-fixed-coupon-in-changed-templates",
+      "status": "pass",
+      "details": {
+        "findings": [],
+        "limitation": "Pattern search for the reference brand and obvious fixed coupon literals. Manual review is still required for products, prices, and ratings."
+      }
+    },
+    {
+      "id": "no-raw-in-new-custom-templates",
+      "status": "pass",
+      "details": []
+    }
+  ],
+  "localization": {
+    "locales": [
+      "ar.json",
+      "en.json"
+    ],
+    "keyCount": 19,
+    "missing": {
+      "ar.json": [],
+      "en.json": []
+    },
+    "nonString": {
+      "ar.json": [],
+      "en.json": []
+    }
+  },
+  "components": [
+    {
+      "path": "home.beauty-hero",
+      "file": "src/views/components/home/beauty-hero.twig",
+      "exists": true,
+      "fields": [
+        "eyebrow",
+        "title",
+        "description",
+        "image",
+        "image_alt",
+        "button_label",
+        "button_url",
+        "image_first",
+        "soft_background",
+        "rounded_image"
+      ]
+    },
+    {
+      "path": "home.beauty-collections",
+      "file": "src/views/components/home/beauty-collections.twig",
+      "exists": true,
+      "fields": [
+        "title",
+        "description",
+        "equal_tiles",
+        "rounded_images",
+        "banners"
+      ]
+    },
+    {
+      "path": "home.beauty-routine",
+      "file": "src/views/components/home/beauty-routine.twig",
+      "exists": true,
+      "fields": [
+        "title",
+        "description",
+        "soft_background",
+        "limit",
+        "routines"
+      ]
+    },
+    {
+      "path": "home.enhanced-slider",
+      "file": "src/views/components/home/enhanced-slider.twig",
+      "exists": true,
+      "fields": [
+        "slides"
+      ]
+    },
+    {
+      "path": "home.main-links",
+      "file": "src/views/components/home/main-links.twig",
+      "exists": true,
+      "fields": [
+        "title",
+        "show_cats",
+        "categories",
+        "links"
+      ]
+    },
+    {
+      "path": "home.slider-products-with-header",
+      "file": "src/views/components/home/slider-products-with-header.twig",
+      "exists": true,
+      "fields": [
+        "background",
+        "title",
+        "description",
+        "products",
+        "display_all_url"
+      ]
+    },
+    {
+      "path": "home.enhanced-square-banners",
+      "file": "src/views/components/home/enhanced-square-banners.twig",
+      "exists": true,
+      "fields": [
+        "banners"
+      ]
+    },
+    {
+      "path": "home.brands",
+      "file": "src/views/components/home/brands.twig",
+      "exists": true,
+      "fields": [
+        "title",
+        "brands"
+      ]
+    },
+    {
+      "path": "home.custom-testimonials",
+      "file": "src/views/components/home/custom-testimonials.twig",
+      "exists": true,
+      "fields": [
+        "items"
+      ]
+    }
+  ],
+  "declaredFeatures": [
+    "mega-menu",
+    "fonts",
+    "color",
+    "breadcrumb",
+    "unite-cards-height",
+    "component-featured-products",
+    "component-fixed-banner",
+    "component-fixed-products",
+    "component-products-slider",
+    "component-photos-slider",
+    "component-parallax-background",
+    "component-testimonials",
+    "component-square-photos",
+    "component-store-features",
+    "component-youtube",
+    "menu-images",
+    "filters"
+  ],
+  "customFieldReferences": [
+    {
+      "component": "home.beauty-hero",
+      "field": "eyebrow",
+      "expectedReference": "component.eyebrow",
+      "found": true
+    },
+    {
+      "component": "home.beauty-hero",
+      "field": "title",
+      "expectedReference": "component.title",
+      "found": true
+    },
+    {
+      "component": "home.beauty-hero",
+      "field": "description",
+      "expectedReference": "component.description",
+      "found": true
+    },
+    {
+      "component": "home.beauty-hero",
+      "field": "image",
+      "expectedReference": "component.image",
+      "found": true
+    },
+    {
+      "component": "home.beauty-hero",
+      "field": "image_alt",
+      "expectedReference": "component.image_alt",
+      "found": true
+    },
+    {
+      "component": "home.beauty-hero",
+      "field": "button_label",
+      "expectedReference": "component.button_label",
+      "found": true
+    },
+    {
+      "component": "home.beauty-hero",
+      "field": "button_url",
+      "expectedReference": "component.button_url",
+      "found": true
+    },
+    {
+      "component": "home.beauty-hero",
+      "field": "image_first",
+      "expectedReference": "component.image_first",
+      "found": true
+    },
+    {
+      "component": "home.beauty-hero",
+      "field": "soft_background",
+      "expectedReference": "component.soft_background",
+      "found": true
+    },
+    {
+      "component": "home.beauty-hero",
+      "field": "rounded_image",
+      "expectedReference": "component.rounded_image",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "title",
+      "expectedReference": "component.title",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "description",
+      "expectedReference": "component.description",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "equal_tiles",
+      "expectedReference": "component.equal_tiles",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "rounded_images",
+      "expectedReference": "component.rounded_images",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "banners",
+      "expectedReference": "component.banners",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "banners.image",
+      "expectedReference": "banner.image",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "banners.image_alt",
+      "expectedReference": "banner.image_alt",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "banners.title",
+      "expectedReference": "banner.title",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "banners.description",
+      "expectedReference": "banner.description",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "banners.button_label",
+      "expectedReference": "banner.button_label",
+      "found": true
+    },
+    {
+      "component": "home.beauty-collections",
+      "field": "banners.url",
+      "expectedReference": "banner.url",
+      "found": true
+    },
+    {
+      "component": "home.beauty-routine",
+      "field": "title",
+      "expectedReference": "component.title",
+      "found": true
+    },
+    {
+      "component": "home.beauty-routine",
+      "field": "description",
+      "expectedReference": "component.description",
+      "found": true
+    },
+    {
+      "component": "home.beauty-routine",
+      "field": "soft_background",
+      "expectedReference": "component.soft_background",
+      "found": true
+    },
+    {
+      "component": "home.beauty-routine",
+      "field": "limit",
+      "expectedReference": "component.limit",
+      "found": true
+    },
+    {
+      "component": "home.beauty-routine",
+      "field": "routines",
+      "expectedReference": "component.routines",
+      "found": true
+    },
+    {
+      "component": "home.beauty-routine",
+      "field": "routines.title",
+      "expectedReference": "routine.title",
+      "found": true
+    },
+    {
+      "component": "home.beauty-routine",
+      "field": "routines.description",
+      "expectedReference": "routine.description",
+      "found": true
+    },
+    {
+      "component": "home.beauty-routine",
+      "field": "routines.products",
+      "expectedReference": "routine.products",
+      "found": true
+    },
+    {
+      "component": "home.main-links",
+      "field": "title",
+      "expectedReference": "component.title",
+      "found": true
+    },
+    {
+      "component": "home.main-links",
+      "field": "show_cats",
+      "expectedReference": "component.show_cats",
+      "found": true
+    },
+    {
+      "component": "home.main-links",
+      "field": "categories",
+      "expectedReference": "component.categories",
+      "found": true
+    },
+    {
+      "component": "home.main-links",
+      "field": "links",
+      "expectedReference": "component.links",
+      "found": true
+    },
+    {
+      "component": "home.main-links",
+      "field": "links.icon",
+      "expectedReference": "item.icon",
+      "found": true
+    },
+    {
+      "component": "home.main-links",
+      "field": "links.title",
+      "expectedReference": "item.title",
+      "found": true
+    },
+    {
+      "component": "home.main-links",
+      "field": "links.url",
+      "expectedReference": "item.url",
+      "found": true
+    }
+  ],
+  "merchantFields": [
+    {
+      "location": "settings[0]",
+      "id": "squar_photo_bg_image_size",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "settings[1]",
+      "id": "square_photos_equal_size",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[2]",
+      "id": "vertical_fixed_products",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[3]",
+      "id": "is_more_button_enabled",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[4]",
+      "id": "header_is_sticky",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[5]",
+      "id": "topnav_is_dark",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[6]",
+      "id": "important_links",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[7]",
+      "id": "enable_more_menu",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[8]",
+      "id": "footer_is_dark",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[9]",
+      "id": "product_show_breadcrumbs",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[10]",
+      "id": "product_index_show_breadcrumbs",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[11]",
+      "id": "enable_add_product_toast",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[12]",
+      "id": "notify_when_available_in_card",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[13]",
+      "id": "sticky_add_to_cart",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[14]",
+      "id": "show_tags",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[15]",
+      "id": "slider_background_size",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "settings[16]",
+      "id": "imageZoom",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[17]",
+      "id": "beauty_palette",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "settings[18]",
+      "id": "beauty_alternate_sections",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[0].fields[0]",
+      "id": "eyebrow",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[0].fields[1]",
+      "id": "title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[0].fields[2]",
+      "id": "description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[0].fields[3]",
+      "id": "image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[0].fields[4]",
+      "id": "image_alt",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[0].fields[5]",
+      "id": "button_label",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[0].fields[6]",
+      "id": "button_url",
+      "type": "items",
+      "format": "variable-list"
+    },
+    {
+      "location": "components[0].fields[7]",
+      "id": "image_first",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[0].fields[8]",
+      "id": "soft_background",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[0].fields[9]",
+      "id": "rounded_image",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[1].fields[0]",
+      "id": "title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[1].fields[1]",
+      "id": "description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[1].fields[2]",
+      "id": "equal_tiles",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[1].fields[3]",
+      "id": "rounded_images",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[1].fields[4]",
+      "id": "banners",
+      "type": "collection",
+      "format": "collection"
+    },
+    {
+      "location": "components[1].fields[4].fields[0]",
+      "id": "banners.image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[1].fields[4].fields[1]",
+      "id": "banners.image_alt",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[1].fields[4].fields[2]",
+      "id": "banners.title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[1].fields[4].fields[3]",
+      "id": "banners.description",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[1].fields[4].fields[4]",
+      "id": "banners.button_label",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[1].fields[4].fields[5]",
+      "id": "banners.url",
+      "type": "items",
+      "format": "variable-list"
+    },
+    {
+      "location": "components[2].fields[0]",
+      "id": "title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[2].fields[1]",
+      "id": "description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[2].fields[2]",
+      "id": "soft_background",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[2].fields[3]",
+      "id": "limit",
+      "type": "number",
+      "format": "integer"
+    },
+    {
+      "location": "components[2].fields[4]",
+      "id": "routines",
+      "type": "collection",
+      "format": "collection"
+    },
+    {
+      "location": "components[2].fields[4].fields[0]",
+      "id": "routines.title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[2].fields[4].fields[1]",
+      "id": "routines.description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[2].fields[4].fields[2]",
+      "id": "routines.products",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "components[3].fields[0]",
+      "id": "slides",
+      "type": "collection",
+      "format": "collection"
+    },
+    {
+      "location": "components[3].fields[0].fields[0]",
+      "id": "slides.image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[3].fields[0].fields[1]",
+      "id": "slides.title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[3].fields[0].fields[2]",
+      "id": "slides.description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[3].fields[0].fields[3]",
+      "id": "slides.without_overlay",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[4].fields[0]",
+      "id": "title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[4].fields[1]",
+      "id": "show_cats",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[4].fields[2]",
+      "id": "categories",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "components[4].fields[3]",
+      "id": "links",
+      "type": "collection",
+      "format": "collection"
+    },
+    {
+      "location": "components[4].fields[3].fields[0]",
+      "id": "links.icon",
+      "type": "string",
+      "format": "icon"
+    },
+    {
+      "location": "components[4].fields[3].fields[1]",
+      "id": "links.title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[4].fields[3].fields[2]",
+      "id": "links.url",
+      "type": "items",
+      "format": "variable-list"
+    },
+    {
+      "location": "components[5].fields[0]",
+      "id": "background",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[5].fields[1]",
+      "id": "title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[5].fields[2]",
+      "id": "description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[5].fields[3]",
+      "id": "products",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "components[5].fields[4]",
+      "id": "display_all_url",
+      "type": "items",
+      "format": "variable-list"
+    },
+    {
+      "location": "components[6].fields[0]",
+      "id": "banners",
+      "type": "collection",
+      "format": "collection"
+    },
+    {
+      "location": "components[6].fields[0].fields[0]",
+      "id": "banners.image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[6].fields[0].fields[1]",
+      "id": "banners.url",
+      "type": "items",
+      "format": "variable-list"
+    },
+    {
+      "location": "components[6].fields[0].fields[2]",
+      "id": "banners.title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[6].fields[0].fields[3]",
+      "id": "banners.description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[7].fields[0]",
+      "id": "title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[7].fields[1]",
+      "id": "brands",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "components[8].fields[0]",
+      "id": "items",
+      "type": "collection",
+      "format": "collection"
+    },
+    {
+      "location": "components[8].fields[0].fields[0]",
+      "id": "items.name",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[8].fields[0].fields[1]",
+      "id": "items.avatar",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[8].fields[0].fields[2]",
+      "id": "items.stars",
+      "type": "number",
+      "format": "integer"
+    },
+    {
+      "location": "components[8].fields[0].fields[3]",
+      "id": "items.text",
+      "type": "string",
+      "format": "textarea"
+    }
+  ],
+  "htmlInputFields": [],
+  "lengthInventory": [
+    {
+      "location": "$.components.0.fields.0.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.0.fields.0.maxLength",
+      "value": 80
+    },
+    {
+      "location": "$.components.0.fields.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.0.fields.1.maxLength",
+      "value": 180
+    },
+    {
+      "location": "$.components.0.fields.2.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.0.fields.2.maxLength",
+      "value": 500
+    },
+    {
+      "location": "$.components.0.fields.4.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.0.fields.4.maxLength",
+      "value": 180
+    },
+    {
+      "location": "$.components.0.fields.5.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.0.fields.5.maxLength",
+      "value": 80
+    },
+    {
+      "location": "$.components.1.fields.0.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.1.fields.0.maxLength",
+      "value": 200
+    },
+    {
+      "location": "$.components.1.fields.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.1.fields.1.maxLength",
+      "value": 300
+    },
+    {
+      "location": "$.components.1.fields.4.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.1.fields.4.maxLength",
+      "value": 6
+    },
+    {
+      "location": "$.components.1.fields.4.fields.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.1.fields.4.fields.1.maxLength",
+      "value": 180
+    },
+    {
+      "location": "$.components.1.fields.4.fields.2.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.1.fields.4.fields.2.maxLength",
+      "value": 120
+    },
+    {
+      "location": "$.components.1.fields.4.fields.3.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.1.fields.4.fields.3.maxLength",
+      "value": 200
+    },
+    {
+      "location": "$.components.1.fields.4.fields.4.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.1.fields.4.fields.4.maxLength",
+      "value": 80
+    },
+    {
+      "location": "$.components.2.fields.0.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.2.fields.0.maxLength",
+      "value": 200
+    },
+    {
+      "location": "$.components.2.fields.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.2.fields.1.maxLength",
+      "value": 500
+    },
+    {
+      "location": "$.components.2.fields.4.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.2.fields.4.maxLength",
+      "value": 6
+    },
+    {
+      "location": "$.components.2.fields.4.fields.0.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.2.fields.4.fields.0.maxLength",
+      "value": 100
+    },
+    {
+      "location": "$.components.2.fields.4.fields.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.2.fields.4.fields.1.maxLength",
+      "value": 400
+    },
+    {
+      "location": "$.components.2.fields.4.fields.2.maxLength",
+      "value": 8
+    },
+    {
+      "location": "$.components.2.fields.4.fields.2.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.3.fields.0.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.3.fields.0.maxLength",
+      "value": 10
+    },
+    {
+      "location": "$.components.3.fields.0.fields.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.3.fields.0.fields.1.maxLength",
+      "value": 100
+    },
+    {
+      "location": "$.components.3.fields.0.fields.2.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.3.fields.0.fields.2.maxLength",
+      "value": 255
+    },
+    {
+      "location": "$.components.4.fields.0.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.4.fields.0.maxLength",
+      "value": 100
+    },
+    {
+      "location": "$.components.4.fields.3.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.4.fields.3.maxLength",
+      "value": 100
+    },
+    {
+      "location": "$.components.4.fields.3.fields.1.minLength",
+      "value": 2
+    },
+    {
+      "location": "$.components.4.fields.3.fields.1.maxLength",
+      "value": 80
+    },
+    {
+      "location": "$.components.5.fields.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.5.fields.1.maxLength",
+      "value": "80"
+    },
+    {
+      "location": "$.components.5.fields.2.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.5.fields.2.maxLength",
+      "value": "256"
+    },
+    {
+      "location": "$.components.5.fields.3.maxLength",
+      "value": 8
+    },
+    {
+      "location": "$.components.5.fields.3.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.6.fields.0.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.6.fields.0.maxLength",
+      "value": 5
+    },
+    {
+      "location": "$.components.6.fields.0.fields.2.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.6.fields.0.fields.2.maxLength",
+      "value": 100
+    },
+    {
+      "location": "$.components.6.fields.0.fields.3.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.6.fields.0.fields.3.maxLength",
+      "value": 255
+    },
+    {
+      "location": "$.components.7.fields.0.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.7.fields.0.maxLength",
+      "value": 200
+    },
+    {
+      "location": "$.components.8.fields.0.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.8.fields.0.maxLength",
+      "value": 30
+    }
+  ],
+  "lengthRequirement": {
+    "status": "official-clarification-required",
+    "documentedMaximum": 1000,
+    "reason": "Technical review says Length in Twilight without identifying a property or the measured object. This inventory makes no binding interpretation."
+  },
+  "lengthValuesOver1000": [],
+  "master": {
+    "blocks": [
+      "head_scripts",
+      "head",
+      "styles",
+      "content",
+      "scripts"
+    ],
+    "hooks": [
+      "head:start",
+      "head",
+      "head:end",
+      "body:classes",
+      "body:start",
+      "body:end"
+    ]
+  },
+  "changedTemplates": [
+    {
+      "file": "src/views/components/footer/footer.twig",
+      "kind": "modified-upstream",
+      "sha256": "5eb9c2579a9150678b57539f8db9aa438f15a2832eaafece78fddcb32f424b32"
+    },
+    {
+      "file": "src/views/components/header/header.twig",
+      "kind": "modified-upstream",
+      "sha256": "c528e1062039b3c69c0e5528d67901edad11b87436dfce1bbac36fffa9f6f445"
+    },
+    {
+      "file": "src/views/components/home/beauty-collections.twig",
+      "kind": "new-template",
+      "sha256": "bb1c73885576511f473bd579273cbf08cca52fb2ec20de0f7507767f26978580"
+    },
+    {
+      "file": "src/views/components/home/beauty-hero.twig",
+      "kind": "new-template",
+      "sha256": "0bdecfa1aa221e44d0794105bbd52be1a3d6593d06faeb4b9d3853bbcedaa382"
+    },
+    {
+      "file": "src/views/components/home/beauty-routine.twig",
+      "kind": "new-template",
+      "sha256": "37e8cd47c1ca41229faef4978b0c861d0b0dfb2cfe87118006a474dc13d562e1"
+    },
+    {
+      "file": "src/views/components/home/main-links.twig",
+      "kind": "modified-upstream",
+      "sha256": "49934ada426e090ec140e4b90ead6b0c3bb10c48ac343c60e8531c4fda1cd4bf"
+    },
+    {
+      "file": "src/views/components/home/products-slider.twig",
+      "kind": "modified-upstream",
+      "sha256": "82d73e7ee21ccc237640470ee919e9250eb233f5e177f50bbaaa4e9665649285"
+    },
+    {
+      "file": "src/views/components/home/store-features.twig",
+      "kind": "modified-upstream",
+      "sha256": "3c72f4079fafbe76cef29c0ac868fa61cb6a266eda61afa813f99e0f1f5821ab"
+    },
+    {
+      "file": "src/views/layouts/master.twig",
+      "kind": "modified-upstream",
+      "sha256": "2206942fa647a2f793932cc1f4e672bfa241627610f73b82e79d2c29b24c92ac"
+    },
+    {
+      "file": "src/views/pages/brands/single.twig",
+      "kind": "modified-upstream",
+      "sha256": "faffcce2332f3b7ddbe1c764b8f5faa9cf16ad394fbb258478a19bccdc0d2450"
+    },
+    {
+      "file": "src/views/pages/cart.twig",
+      "kind": "modified-upstream",
+      "sha256": "40cbaad55f795e5d39bbcfd31c021522697dbc472bb64657588d3ba27344b1d3"
+    },
+    {
+      "file": "src/views/pages/customer/orders/single.twig",
+      "kind": "modified-upstream",
+      "sha256": "f5157a664f261ad2247c689853c233b4b8d6a0e70f45f2163bcbfe534b7c7fd9"
+    },
+    {
+      "file": "src/views/pages/product/index.twig",
+      "kind": "modified-upstream",
+      "sha256": "7846c79d0873fe060137eda63c78dc79e04281fb4fe9104ffe0a9bd519c81c38"
+    },
+    {
+      "file": "src/views/pages/product/single.twig",
+      "kind": "modified-upstream",
+      "sha256": "c4b239a2d21879b5adee3c33ab5efa884df30d654e69bd23fa3561aaf5508e5e"
+    },
+    {
+      "file": "src/views/pages/thank-you.twig",
+      "kind": "modified-upstream",
+      "sha256": "458242993717ea357cd9ac6b07f1ffd2d0f430ff8f00a318b5bc7f87cf7da9b6"
+    }
+  ],
+  "rawInventory": [
+    {
+      "file": "src/views/pages/blog/single.twig",
+      "line": 60,
+      "expression": "article.body|replace({'&nbsp;': ' '})|raw",
+      "outputContext": "element-content",
+      "upstreamFile": true,
+      "source": "Platform-managed page, article, or order rich content",
+      "risk": "Confirm documented sanitation before retaining raw.",
+      "review": "verify-platform-sanitization"
+    },
+    {
+      "file": "src/views/pages/page-single.twig",
+      "line": 31,
+      "expression": "page.content|raw",
+      "outputContext": "element-content",
+      "upstreamFile": true,
+      "source": "Platform-managed page, article, or order rich content",
+      "risk": "Confirm documented sanitation before retaining raw.",
+      "review": "verify-platform-sanitization"
+    },
+    {
+      "file": "src/views/pages/product/single.twig",
+      "line": 248,
+      "expression": "product_desc|raw",
+      "outputContext": "element-content",
+      "upstreamFile": true,
+      "source": "Salla product rich description (product_desc assignment must be checked)",
+      "risk": "Platform-managed rich content; upstream origin does not prove sanitation.",
+      "review": "verify-platform-sanitization"
+    },
+    {
+      "file": "src/views/pages/product/single.twig",
+      "line": 257,
+      "expression": "product_desc|raw",
+      "outputContext": "element-content",
+      "upstreamFile": true,
+      "source": "Salla product rich description (product_desc assignment must be checked)",
+      "risk": "Platform-managed rich content; upstream origin does not prove sanitation.",
+      "review": "verify-platform-sanitization"
+    }
+  ],
+  "hardcodedCommerce": [],
+  "literalTextCandidates": [
+    {
+      "file": "src/views/pages/customer/orders/single.twig",
+      "literal": "&nbsp;"
+    }
+  ],
+  "rawReview": {
+    "status": "review-required",
+    "count": 4,
+    "note": "No source is marked safe merely because it occurs in upstream Raed."
+  },
+  "networkSourceCandidates": [],
+  "ownerMetadata": {
+    "status": "pending-owner-data",
+    "fields": {
+      "name": {
+        "ar": "",
+        "en": ""
+      },
+      "repository": "",
+      "support": ""
+    },
+    "note": "Empty owner metadata is intentional pending real owner values; JSON parsing does not imply publication validity."
+  },
+  "result": "static-checks-passed-with-platform-tests-pending"
+}

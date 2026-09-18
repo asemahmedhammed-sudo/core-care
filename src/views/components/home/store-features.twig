@@ -1,0 +1,7 @@
+<section component-id="{{ componentId }}" data-testid="store-home-features" class="s-block s-block--features beauty-features">
+  <ul class="container beauty-features__list" role="list">
+    {% for item in items %}
+      <li><i class="{{ item.icon }}" aria-hidden="true"></i><div><h2>{{ item.title }}</h2>{% if item.text %}<p>{{ item.text }}</p>{% endif %}</div></li>
+    {% endfor %}
+  </ul>
+</section>

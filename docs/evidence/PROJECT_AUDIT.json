@@ -1,0 +1,8 @@
+{
+  "checked_at_utc": "2026-09-18T12:36:31Z",
+  "upstream_repository": "https://github.com/SallaApp/theme-raed",
+  "upstream_commit": "4332880be63909cc4251ea8783d25c88efa8f468",
+  "upstream_version": "1.358.0",
+  "initial_workspace": "Empty Git repository on main, no commits, no remotes, no tracked or untracked user theme files. Existing .git preserved.",
+  "registration": "Official template copied for independent local work; official create/import in Partners requires owner authentication and repository, NOT completed."
+}

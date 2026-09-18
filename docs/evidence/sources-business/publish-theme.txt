@@ -1,0 +1,201 @@
+Publish a Theme - Twilight Documentation | Salla Docs
+Getting Started
+Copy Page
+Salla Platform Docs
+Theme Architecture
+Layouts
+Overview
+Global Variables
+CSS Variables
+Custom Fonts
+Master Layout
+Salla Icons
+Hooks
+Localizations
+Salla Component Hooks
+Hooks
+Overview
+Template Hooks
+Component Hooks
+Pages
+Home Page
+Overview
+Product Pages
+Products listing
+Single product
+Customer Pages
+Profile
+Orders list
+Order details
+Wishlist
+Notifications
+Blog Pages
+Blog listing
+Single blog
+Brand Pages
+Brands listing
+Single brand
+Common Pages
+Cart
+Loyalty
+Thank you
+Single page
+Landing Page
+Components
+Overview
+Home Components
+Youtube
+Fixed banner
+Testimonials
+Parallax background
+Photos slider
+Store features
+Square photos
+Fixed products
+Products slider
+Featured products - Style 1
+Featured Products - Style 2
+Featured Products - Style 3
+Brands
+Enhanced Square Banners
+Main Links
+Enhanced Slider
+Slider Products with Headers
+Latest Products
+Vertical Menu with Slider
+Product Components
+Essentials
+Options
+Common Components
+Header Components
+Footer Components
+Comments component
+Requirements & Review
+Overview
+Main Requirements
+Review Process
+UI / UX Review
+Technical Review
+Metadata Review
+Pre-Launch Review
+Getting Started
+Create a theme
+Setup a theme
+Develop a theme
+Publish a theme
+Files and Folders Structure
+Directory structure
+Twilight.json
+Twig Template Engine
+Basic syntax
+Twilight flavoured twig
+Change Log
+Merchant
+Merchant
+Merchant API
+Embedded SDK
+Salla OAuth 2.0
+Storefront
+Storefront
+Twilight Engine
+Twilight SDK
+Web Components
+Ecommerce Events
+Component Bundle
+Checkout APIs
+Change LogApp Functions
+Partner APIs
+Partner APIs
+App API
+Shipments & Fulfillment APIs
+Salla AWB
+Recurring Payments API
+Billing System Salla partners
+Communication Apps
+Dev Tools
+Dev Tools
+Partners Agent Kit
+Salla Apps Playbook
+Salla CLI
+Merchant
+Merchant
+Merchant API
+Embedded SDK
+Salla OAuth 2.0
+Storefront
+Storefront
+Twilight Engine
+Twilight SDK
+Web Components
+Ecommerce Events
+Component Bundle
+Checkout APIs
+Change LogApp Functions
+Partner APIs
+Partner APIs
+App API
+Shipments & Fulfillment APIs
+Salla AWB
+Recurring Payments API
+Billing System Salla partners
+Communication Apps
+Dev Tools
+Dev Tools
+Partners Agent Kit
+Salla Apps Playbook
+Salla CLI
+Blog
+Developer Portal
+Getting Started
+Copy Page
+Publish a theme
+Show the world what you have built and publish it to the Theme Marketplace for Salla Merchants to start using it. As the Theme has been tested and previewed, it is time to submit the publication request for Salla Team to approve it.
+A thing to know!
+🖥️ Salla CLI, which is a command-line tool developed by Salla team, can be used to publish a theme.
+✅ The developer can decide whether a theme is installed in all stores or just some of them by setting the theme's availability during the theme setup.
+📙 What you'll learn#By the end of this article, you will have successfully requested to publish your theme via Salla Partners Portal. You will learn:
+Theme Publication
+Withdraw Theme Publication
+Theme Publication#Once all information has been provided, the developer can submit the request for publication by scrolling down to the Theme Publication section in the Partners Portal. Click on "Complete Theme publication" button.This will redirect you to the Listing Details page where details about the theme should be provided as shown below.
+Item
+Description
+Theme Screenshots
+Images of how the Theme would appear on the store
+Preview Stores
+Details about the demo store that will be used as preview store
+Theme Price
+The them price and discount details if applicable
+Support Details
+The contact details for Theme support
+Listing Information#This is the second part of Theme Setup, where the developer can prepare the Theme for publishing.
+1 Theme Screenshots#If not added previously, the developer can add high-quality screenshots, so as to make the theme more attractive and more user-friendly. There should be at least 3 images, with  the resolution of 1366x768.
+2 Preview Stores#To showcase Themes for Merchants in a live demonstration by using one of your Demo Stores.To add a Demo Store as a preview store follow these steps:a- Click "Add New Store"b- Fill in the detailsAnd the details are as follow:
+Item
+Description
+1-Preview Store
+Select the Demo Store from the List.
+2- Theme Category
+Select the Theme Category from the drop down list
+3- Color
+Choose the store Color
+4- Thumbnail
+Add a Thumbnail image for your Preview Store
+5- Default Store
+Tick here if you wish to have this Demo Store as the default preview store
+6- Save
+Click "Save" to save the changesOnce you finish these steps, you will find the Demo Store listed in the Preview Stores, and a notification will be displayed on the upper right of the page
+3 Theme Price#Set the one-time price of the Theme, which will be used to purchase the Theme from the Merchant. Perhaps add a discount to encourage more Merchants to install and use the Theme.
+Note
+Price your theme at a minimum of SAR250 to align with our platform's pricing policy and ensure fair compensation for your effort.
+4 Support Details#For the Merchants to continue using the Theme, having detailed support ways would help greatly.After completing the Listing Information details, click on the "Send publication request" button.A pop-up window will appear requesting Theme Category and Changelog details. Fill in the details and click "Send publication request" button to continue.
+Important
+To update your theme, you must submit a new publishing request which will go through the Salla team’s review process, even if the theme is private.
+Alert
+Always pay attention to any warnings received in the theme's Github repository's latest commit update text. Follow the directions given to fix any problems and keep enjoying the Twilight experience.
+Withdraw Theme Publication#The developer may need to withdraw the theme in order to make some modifications. The theme publication can be withdrawn by clicking on the "Withdraw" button at the top of the screen.
+Modified at 2026-07-29 11:46:05
+Previous
+Develop a theme
+Next
+Directory structure
+LLMs.txtExport

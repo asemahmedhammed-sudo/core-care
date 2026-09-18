@@ -1,0 +1,199 @@
+Theme Publish Main Requirements - Twilight Documentation | Salla Docs
+Requirements & Review
+Copy Page
+Salla Platform Docs
+Theme Architecture
+Layouts
+Overview
+Global Variables
+CSS Variables
+Custom Fonts
+Master Layout
+Salla Icons
+Hooks
+Localizations
+Salla Component Hooks
+Hooks
+Overview
+Template Hooks
+Component Hooks
+Pages
+Home Page
+Overview
+Product Pages
+Products listing
+Single product
+Customer Pages
+Profile
+Orders list
+Order details
+Wishlist
+Notifications
+Blog Pages
+Blog listing
+Single blog
+Brand Pages
+Brands listing
+Single brand
+Common Pages
+Cart
+Loyalty
+Thank you
+Single page
+Landing Page
+Components
+Overview
+Home Components
+Youtube
+Fixed banner
+Testimonials
+Parallax background
+Photos slider
+Store features
+Square photos
+Fixed products
+Products slider
+Featured products - Style 1
+Featured Products - Style 2
+Featured Products - Style 3
+Brands
+Enhanced Square Banners
+Main Links
+Enhanced Slider
+Slider Products with Headers
+Latest Products
+Vertical Menu with Slider
+Product Components
+Essentials
+Options
+Common Components
+Header Components
+Footer Components
+Comments component
+Requirements & Review
+Overview
+Main Requirements
+Review Process
+UI / UX Review
+Technical Review
+Metadata Review
+Pre-Launch Review
+Getting Started
+Create a theme
+Setup a theme
+Develop a theme
+Publish a theme
+Files and Folders Structure
+Directory structure
+Twilight.json
+Twig Template Engine
+Basic syntax
+Twilight flavoured twig
+Change Log
+Merchant
+Merchant
+Merchant API
+Embedded SDK
+Salla OAuth 2.0
+Storefront
+Storefront
+Twilight Engine
+Twilight SDK
+Web Components
+Ecommerce Events
+Component Bundle
+Checkout APIs
+Change LogApp Functions
+Partner APIs
+Partner APIs
+App API
+Shipments & Fulfillment APIs
+Salla AWB
+Recurring Payments API
+Billing System Salla partners
+Communication Apps
+Dev Tools
+Dev Tools
+Partners Agent Kit
+Salla Apps Playbook
+Salla CLI
+Merchant
+Merchant
+Merchant API
+Embedded SDK
+Salla OAuth 2.0
+Storefront
+Storefront
+Twilight Engine
+Twilight SDK
+Web Components
+Ecommerce Events
+Component Bundle
+Checkout APIs
+Change LogApp Functions
+Partner APIs
+Partner APIs
+App API
+Shipments & Fulfillment APIs
+Salla AWB
+Recurring Payments API
+Billing System Salla partners
+Communication Apps
+Dev Tools
+Dev Tools
+Partners Agent Kit
+Salla Apps Playbook
+Salla CLI
+Blog
+Developer Portal
+Requirements & Review
+Copy Page
+Main Requirements
+Salla team will review the Theme to check the eligibility of the Theme to be published in the Salla Themes Market. There are three Main Requirements the Theme developer should comply with which are:
+Main Requirements
+1.0 Theme business industry focus
+2.0 Theme custom components
+3.0 Theme uniqueness
+1.0 Theme Business Industry Focus#In the Theme development process, make sure that your Theme has a clear industry focus such are Restaurants, Fashion, Home Decor. Salla team will verify the availability of Key Features Themes equipped with a multitude of features cater to the diverse requirements of each Store, allowing each Store Merchant to utilize a Theme according to their unique business model.While Themes can be customized for most Merchants’ needs, select the types of businesses your Theme works best for with minimal customization.For example, if your Theme includes features that are usually required by stores in a particular industry, then select that industry. Themes are included in industry collections based on your selections, and recommendations are made based on matches between Theme industry and Merchant industry data.The following table is the list of industries that you can select from for this field.
+Industry
+Definition
+Fashion
+Clothing, Abayas
+Health & Beauty
+First aid, cosmetics, hair care supplies, shaving & grooming supplies, etc.
+Digital Products
+Game cards, discount coupons, gift cards
+Electronics
+Computers, computer accessories, printers, mobile phones, mobile phone accessories, cameras, etc.
+Food and drink
+Food, beverages, grocery, restaurants, meal kits, etc.
+Jewelry & Accessories
+Jewelry, accessories, watches, bags, shoes, etc.
+Books & Arts
+Books, arts & crafts supplies, collectibles, musical instruments, party supplies, etc.
+Home supplies
+Bathroom accessories, home decor items, household appliances, household supplies, kitchen & dining items, lawn & garden items, lighting, linens & bedding, etc.
+Cars and Hardware
+Cars, vehicle parts and building materials, plumbing fixtures, power & electrical supplies, tools, etc.
+Charities
+Domestic and International Charities
+Sports & Toys
+Sports equipment, exercise equipment, toys and games
+2.0 Theme Custom Components#Each customizable component included in the Theme should have many fields to make it easy to customize by the Merchant and style in different ways.
+3.0 Theme Uniqueness#If you're building a Theme based on our starter Theme Raed then your Theme needs to be substantively different.You must make meaningful changes and innovations to the Theme design and functionality to avoid Theme rejection because if similarity to Theme Raed. Below are some cues that we look for in Theme review processes:
+3.1. Your codebase must have meaningful differences when contrasted with code from other Themes.
+3.2. Your Theme should be distinguished from Theme Raed.
+Note
+How to compare your code with theme Raed ?#3.2.1.  cd Modules/Themes/Resources/views/themes/raed3.2.2.  Open and override files from the developer theme3.2.3.  Compare changes using a GUI tool (e.g., SourceTree)
+3.3. Your Theme should be significantly unique compared to other Themes..
+3.4. Your Theme should have an inventive art direction that distinguishes it from other Themes.
+3.5.  Your Theme should have a cohesive look and feel across all templates (for example, the index page, product and collection pages, blogs, search, and the cart).
+3.6. Your Theme should offer special customization options or functionality that distinguish it from other Themes.
+3.7. A Merchant shouldn't be able to purchase your Theme and another Theme that's listed in the Theme Store, and then customize the settings so that the Themes are almost identical to each other.
+3.8. The maximum allowed size for a public theme is 1MB, while private themes can be up to 2MB.
+Modified at 2026-07-29 11:46:05
+Previous
+Overview
+Next
+Review Process
+LLMs.txtExport

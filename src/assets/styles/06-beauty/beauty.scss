@@ -1,0 +1,158 @@
+// Project design decisions. Fast Checkout payment widget is intentionally scoped out.
+.theme-beauty {
+  --beauty-paper: #faf7f0;
+  --beauty-cream: #f2e9da;
+  --beauty-ink: #25271f;
+  --beauty-muted: #66695e;
+  --beauty-olive: #4b5d3c;
+  --beauty-gold: #c8a154;
+  --beauty-border: #d8d4c6;
+  --beauty-radius: 1.25rem;
+  --s-radius: .85rem;
+  color: var(--beauty-ink);
+  background: var(--beauty-paper);
+
+  &.beauty-palette-rose {
+    --beauty-cream: #f4e7e3;
+    --beauty-olive: #795354;
+    --beauty-gold: #c49d76;
+  }
+  &.beauty-palette-store { --beauty-olive: var(--color-primary); }
+
+  .container { max-width: 1280px; }
+  .s-block { margin-block: clamp(2.5rem, 5vw, 5rem); }
+  .s-block__title h2, .s-slider-block__title h2 { color: var(--beauty-olive); }
+  .s-block__display-all { color: var(--beauty-olive); }
+  .breadcrumbs { color: var(--beauty-muted); }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid var(--beauty-olive);
+    outline-offset: 4px;
+  }
+
+  .top-navbar { background: var(--beauty-paper); border-bottom: 1px solid var(--beauty-border); }
+  .main-nav-container { background: var(--beauty-paper); box-shadow: none; border-bottom: 1px solid var(--beauty-border); }
+  .main-nav-container .inner { padding-block: .35rem; }
+  .navbar-brand img { object-fit: contain; max-height: 4rem; }
+  .header-btn__icon, .main-menu > li > a { color: var(--beauty-olive); }
+  .main-menu > li > a { font-weight: 600; }
+  .main-menu .sub-menu { border-radius: var(--beauty-radius); }
+  .topnav-is-dark .top-navbar { background: var(--beauty-ink); color: var(--beauty-paper); }
+
+  .beauty-surface { background: var(--beauty-cream); padding-block: clamp(2.5rem, 6vw, 5.5rem); }
+  .beauty-rounded { border-radius: var(--beauty-radius); overflow: hidden; }
+  .beauty-section-heading { margin-block-end: 1.75rem; }
+  .beauty-section-heading h2 { color: var(--beauty-olive); font-size: clamp(1.35rem, 2.5vw, 2rem); font-weight: 700; line-height: 1.4; }
+  .beauty-section-heading p { color: var(--beauty-muted); line-height: 1.8; margin-block-start: .5rem; max-width: 42rem; }
+  .beauty-section-heading--center { text-align: center; }
+  .beauty-eyebrow { width: fit-content; border-radius: 2rem; background: var(--beauty-paper); padding: .45rem 1rem; color: var(--beauty-olive); font-size: .875rem; margin-block-end: 1.5rem; }
+  .beauty-button { display: inline-flex; align-items: center; gap: 1rem; min-height: 48px; padding: .8rem 1.6rem; border-radius: .6rem; font-weight: 700; transition: transform .2s; }
+  .beauty-button:hover { transform: translateY(-2px); }
+  .beauty-button--gold { background: var(--beauty-gold); color: #23251d; }
+  .beauty-directional { display: inline-block; }
+  &[dir='ltr'] .beauty-directional, html[dir='ltr'] & .beauty-directional { transform: scaleX(-1); }
+
+  .beauty-hero { margin-block-start: 0; }
+  .beauty-hero__grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: clamp(2rem, 7vw, 7rem); }
+  .beauty-hero__copy { padding-block: 2rem; }
+  .beauty-hero__copy h2 { font-size: clamp(2rem, 4.5vw, 4.6rem); line-height: 1.15; font-weight: 800; letter-spacing: -.025em; max-width: 12ch; overflow-wrap: anywhere; }
+  .beauty-hero__description { color: var(--beauty-muted); line-height: 1.9; margin-block: 1.5rem 2rem; max-width: 34rem; white-space: pre-line; }
+  .beauty-hero__media { background: var(--beauty-cream); box-shadow: 0 20px 45px #272b1912; }
+  .beauty-hero__media img { display: block; width: 100%; aspect-ratio: 8 / 9; object-fit: cover; }
+  .beauty-hero--image-first .beauty-hero__media { order: -1; }
+  .beauty-hero__grid:not(:has(.beauty-hero__media)) { grid-template-columns: 1fr; }
+  .beauty-hero__grid:not(:has(.beauty-hero__media)) h2 { max-width: 24ch; }
+
+  .beauty-features { background: var(--beauty-cream); padding-block: 1.5rem; }
+  .beauty-hero + .beauty-features { margin-block-start: -5rem; }
+  .beauty-features__list { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+  .beauty-features__list li { display: flex; align-items: center; gap: 1rem; flex: 1 1 180px; }
+  .beauty-features__list i { color: var(--beauty-olive); font-size: 1.8rem; }
+  .beauty-features__list h2 { font-size: .95rem; font-weight: 700; }
+  .beauty-features__list p { color: var(--beauty-muted); font-size: .8rem; margin-block-start: .25rem; }
+
+  .beauty-categories__list { display: flex; justify-content: center; overflow-x: auto; gap: clamp(1.25rem, 3vw, 3rem); padding: .5rem .5rem 1rem; }
+  .beauty-categories__list li { flex: 0 0 auto; max-width: 9rem; }
+  .beauty-category { display: flex; align-items: center; flex-direction: column; gap: 1rem; text-align: center; font-size: .95rem; }
+  .beauty-category__image { display: grid; place-items: center; border: 1px solid var(--beauty-border); border-radius: 50%; width: 88px; height: 88px; background: var(--beauty-paper); color: var(--beauty-olive); transition: background .2s; overflow: hidden; }
+  .beauty-category__image img { width: 100%; height: 100%; object-fit: cover; }
+  .beauty-category__image i { font-size: 1.9rem; }
+  .beauty-category:hover .beauty-category__image { background: var(--beauty-cream); }
+
+  .beauty-collections__grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem; }
+  .beauty-collection { position: relative; display: block; isolation: isolate; min-height: 220px; background: var(--beauty-olive); }
+  .beauty-collection:first-child { grid-row: span 2; min-height: 460px; }
+  .beauty-collection img { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; z-index: -2; }
+  .beauty-collection::before { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, #141b0ee0, #141b0e00 85%); z-index: -1; }
+  .beauty-collection__copy { position: absolute; inset-inline: clamp(1.25rem, 3vw, 2.5rem); bottom: 1.75rem; color: #fff; }
+  .beauty-collection__copy p { font-size: .9rem; line-height: 1.8; }
+  .beauty-collection__copy h3 { font-size: clamp(1.2rem, 2.5vw, 2rem); line-height: 1.4; font-weight: 700; }
+  .beauty-collection__action { display: inline-flex; align-items: center; gap: .75rem; padding: .6rem 1rem; background: var(--beauty-gold); color: #23251d; border-radius: .5rem; margin-top: 1rem; font-weight: 600; }
+  .beauty-collections--equal .beauty-collections__grid { grid-template-columns: repeat(3, 1fr); }
+  .beauty-collections--equal .beauty-collection { grid-row: auto; min-height: 340px; }
+  .beauty-collections__grid:has(> :only-child) { grid-template-columns: 1fr; }
+
+  beauty-routine { display: block; }
+  .beauty-routine__tabs { display: flex; gap: .75rem; overflow-x: auto; padding: .5rem .5rem 1rem; margin-block-end: 1.25rem; }
+  .beauty-routine__tabs button { display: inline-flex; align-items: center; gap: .75rem; flex-shrink: 0; padding: .75rem 1.25rem; min-height: 48px; border: 1px solid var(--beauty-border); border-radius: 2rem; color: var(--beauty-olive); background: var(--beauty-paper); font-weight: 600; }
+  .beauty-routine__tabs button[aria-selected='true'] { background: var(--beauty-olive); border-color: var(--beauty-olive); color: #fff; }
+  .beauty-routine__number { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; border: 1px solid currentColor; border-radius: 50%; font-size: .8rem; }
+  .beauty-routine [role='tabpanel'][hidden] { display: none; }
+  .beauty-routine__description { color: var(--beauty-muted); line-height: 1.9; margin-block-end: 1.5rem; white-space: pre-line; }
+  .beauty-empty { padding: 2rem; color: var(--beauty-muted); background: var(--beauty-paper); border-radius: var(--beauty-radius); }
+
+  .s-product-card-entry { border-radius: .85rem; border: 1px solid #e5dfd2; background: var(--beauty-paper); box-shadow: 0 2px 4px #25271f05; }
+  .s-product-card-vertical .s-product-card-image { flex: none; height: auto; max-height: none; aspect-ratio: 4 / 5; border-radius: .85rem .85rem 0 0; background: var(--beauty-cream); }
+  .s-product-card-vertical .s-product-card-content { flex: 1; padding: 1rem; }
+  .s-product-card-content-title a { display: block; -webkit-line-clamp: unset; -webkit-box-orient: initial; overflow: visible; white-space: normal; overflow-wrap: anywhere; color: var(--beauty-ink); font-size: .9rem; font-weight: 650; line-height: 1.7; }
+  .s-product-card-content-sub { margin-block: .5rem .75rem; }
+  .s-product-card-content-footer { margin-top: auto; }
+  .s-product-card-content-footer salla-add-product-button .s-button-element { background: var(--beauty-olive); color: #fff; border-color: var(--beauty-olive); border-radius: .5rem; min-height: 44px; }
+  .s-product-card-content-footer salla-add-product-button .s-button-element:disabled { opacity: .6; }
+  .s-product-card-promotion-title { background: var(--beauty-gold); color: #23251d; inset-inline-start: .65rem; inset-inline-end: auto; border-radius: .25rem; padding: .35rem .6rem; }
+  .s-product-card-rating { color: var(--beauty-olive); }
+  .s-product-card-content-subtitle { color: var(--beauty-muted); }
+  &.beauty-alternate-sections #main-content > .s-block:nth-of-type(even):not(.container):not(.beauty-hero):not(.beauty-routine):not(.beauty-features) { background-color: var(--beauty-cream); padding-block: 3rem; }
+  &.beauty-alternate-sections #main-content > .s-block.container:nth-of-type(even):not(.beauty-categories):not(.beauty-collections) { padding-block: 2rem; }
+
+  .product-single h1, #page-main-title { color: var(--beauty-olive); }
+  .product-slider { border-radius: var(--beauty-radius); overflow: hidden; background: var(--beauty-cream); }
+  .product__description { color: var(--beauty-muted); }
+  .beauty-category-banner { width: 100%; aspect-ratio: 4 / 1; object-fit: cover; border-radius: var(--beauty-radius); margin-block-end: 1.5rem; }
+  .content--single-page, .blog-entry, .cart-item { border-radius: var(--beauty-radius); }
+  .beauty-footer { margin-block-start: 4rem; background: #25271f; color: var(--beauty-paper); }
+  .beauty-footer .store-footer__inner { background: #303729; border-color: #ffffff20; }
+  .beauty-footer h3 { color: #dfc794; }
+  .beauty-footer .copyright-text p { color: var(--beauty-paper); }
+  &.footer-is-light .beauty-footer { background: var(--beauty-cream); color: var(--beauty-ink); }
+  &.footer-is-light .beauty-footer .store-footer__inner { background: var(--beauty-paper); border-color: var(--beauty-border); }
+  &.footer-is-light .beauty-footer h3 { color: var(--beauty-olive); }
+  &.footer-is-light .beauty-footer .copyright-text p { color: var(--beauty-ink); }
+
+  @media (max-width: 767px) {
+    .beauty-hero__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .beauty-hero__copy { padding-block: 0; }
+    .beauty-hero__copy h2 { max-width: 16ch; font-size: clamp(2.2rem, 9vw, 3.4rem); }
+    .beauty-hero__media { max-width: 420px; width: 100%; margin-inline: auto; }
+    .beauty-hero__media img { aspect-ratio: 5 / 4; }
+    .beauty-hero + .beauty-features { margin-block-start: -2.5rem; }
+    .beauty-features__list li { flex-basis: 40%; }
+    .beauty-categories__list { justify-content: flex-start; }
+    .beauty-category__image { width: 72px; height: 72px; }
+    .beauty-collections__grid, .beauty-collections--equal .beauty-collections__grid { grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .beauty-collection:first-child { grid-column: span 2; grid-row: auto; min-height: 320px; }
+    .beauty-collection { min-height: 230px; }
+    .beauty-collections--equal .beauty-collection { grid-column: auto; min-height: 260px; }
+    .beauty-collection__copy { inset-inline: 1rem; bottom: 1.25rem; }
+    .beauty-collection__copy h3 { font-size: 1.1rem; }
+    .beauty-collection__action { font-size: .8rem; padding: .5rem .6rem; }
+    .s-product-card-vertical .s-product-card-content { padding: .7rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .beauty-button, .beauty-category__image { transition: none; }
+    .beauty-button:hover { transform: none; }
+  }
+}
+
+.beauty-skip-link { position: fixed; z-index: 10000; inset-inline-start: 1rem; top: -100px; padding: .75rem 1.25rem; border-radius: .5rem; background: #4b5d3c; color: #fff; }
+.beauty-skip-link:focus { top: 1rem; }

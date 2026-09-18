@@ -1,0 +1,30 @@
+{% if component.routines|length %}
+<section component-id="{{ componentId }}" data-testid="beauty-routine" class="s-block beauty-routine {{ component.soft_background ? 'beauty-surface' : '' }}">
+  <div class="container">
+    <div class="beauty-section-heading">
+      {% if component.title %}<h2>{{ component.title }}</h2>{% endif %}
+      {% if component.description %}<p>{{ component.description }}</p>{% endif %}
+    </div>
+    <beauty-routine>
+      <div class="beauty-routine__tabs" role="tablist" aria-label="{{ component.title ?: trans('beauty.routine') }}">
+        {% for routine in component.routines %}
+          <button type="button" role="tab" id="routine-tab-{{ position }}-{{ loop.index }}" aria-controls="routine-panel-{{ position }}-{{ loop.index }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" tabindex="{{ loop.first ? '0' : '-1' }}">
+            <span class="beauty-routine__number" aria-hidden="true">{{ loop.index }}</span>{{ routine.title }}
+          </button>
+        {% endfor %}
+      </div>
+      {% for routine in component.routines %}
+        <div role="tabpanel" id="routine-panel-{{ position }}-{{ loop.index }}" aria-labelledby="routine-tab-{{ position }}-{{ loop.index }}" tabindex="0" {% if not loop.first %}hidden{% endif %}>
+          {% if routine.description %}<p class="beauty-routine__description">{{ routine.description }}</p>{% endif %}
+          {% if routine.products|length %}
+            <template data-routine-products>
+              <salla-products-slider source="selected" source-value="[{{ routine.products|map(product => product.id)|join(',') }}]" limit="{{ component.limit ?: 8 }}" slider-id="routine-products-{{ position }}-{{ loop.index }}" product-card-component="custom-salla-product-card"></salla-products-slider>
+            </template>
+            <div data-routine-mount></div>
+          {% else %}<p class="beauty-empty">{{ trans('beauty.routine_empty') }}</p>{% endif %}
+        </div>
+      {% endfor %}
+    </beauty-routine>
+  </div>
+</section>
+{% endif %}

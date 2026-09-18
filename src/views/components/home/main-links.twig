@@ -1,0 +1,18 @@
+<section component-id="{{ componentId }}" data-testid="store-home-main-links" class="s-block container beauty-categories">
+  {% if component.title %}<div class="beauty-section-heading beauty-section-heading--center"><h2>{{ component.title }}</h2></div>{% endif %}
+  <ul class="beauty-categories__list" role="list">
+    {% if component.show_cats %}
+      {% for cat in component.categories %}
+        <li><a href="{{ cat.url }}" class="beauty-category">
+          <span class="beauty-category__image">
+            {% if cat.image %}<img src="{{ cat.image }}" alt="" width="72" height="72" loading="lazy">{% else %}<i class="{{ cat.icon ?: 'sicon-store' }}" aria-hidden="true"></i>{% endif %}
+          </span><span>{{ cat.name }}</span>
+        </a></li>
+      {% endfor %}
+    {% else %}
+      {% for item in component.links %}
+        {% if item.title and item.url %}<li><a href="{{ item.url }}" class="beauty-category"><span class="beauty-category__image"><i class="{{ item.icon }}" aria-hidden="true"></i></span><span>{{ item.title }}</span></a></li>{% endif %}
+      {% endfor %}
+    {% endif %}
+  </ul>
+</section>

@@ -1,0 +1,62 @@
+{
+  "checked_on": "2026-09-18",
+  "method": "Official Salla pages opened and read via browser text retrieval; official Raed source inspected locally at the imported commit. No platform operation performed.",
+  "primary": {
+    "url": "https://docs.salla.dev/twilight-engine/uxui-review",
+    "displayed_modified_at": "2026-07-29 11:46:05",
+    "read_scope": "Entire document: introduction, sections 1.0–6.0, numbered and lettered nested items"
+  },
+  "linked_official_pages_read": [
+    "https://docs.salla.dev/849311f0",
+    "https://docs.salla.dev/849314f0",
+    "https://docs.salla.dev/849333f0",
+    "https://docs.salla.dev/twilight-engine/single-product",
+    "https://docs.salla.dev/twilight-engine/products-listing",
+    "https://docs.salla.dev/twilight-engine/profile",
+    "https://docs.salla.dev/twilight-engine/cart",
+    "https://docs.salla.dev/twilight-engine/store-features",
+    "https://docs.salla.dev/twilight-engine/fixed-products",
+    "https://docs.salla.dev/twilight-engine/products-slider",
+    "https://docs.salla.dev/twilight-engine/feat-product2",
+    "https://docs.salla.dev/twilight-engine/testimonials",
+    "https://docs.salla.dev/twilight-engine/brands",
+    "https://docs.salla.dev/twilight-engine/blog-listing",
+    "https://docs.salla.dev/twilight-engine/youtube",
+    "https://docs.salla.dev/twilight-engine/fixed-banner",
+    "https://docs.salla.dev/twilight-js-components/product-options",
+    "https://docs.salla.dev/twilight-js-components/user-settings",
+    "https://docs.salla.dev/twilight-js-components/search",
+    "https://docs.salla.dev/twilight-js-components/add-product",
+    "https://docs.salla.dev/twilight-js-components/quick-order",
+    "https://docs.salla.dev/twilight-sdk/product-offer-details",
+    "https://docs.salla.dev/doc-422644?nav=01HNFTDZPB31Y2E120R84YXKCX",
+    "https://docs.salla.dev/doc-422685?nav=01HNFTDZPB31Y2E120R84YXKCX"
+  ],
+  "index_used_for_official_link_discovery": "https://docs.salla.dev/llms.txt",
+  "retrieval_limitations": [
+    "Common Pages https://docs.salla.dev/849323f0 yielded no body; cart was opened through its canonical official URL.",
+    "Some nav doc-* aliases failed retrieval; canonical Twilight URLs were used where available.",
+    "Interactive Variables sections expose model names but not their complete schemas in retrieved text. No missing field was invented.",
+    "Quick Order introduction and property descriptions differ in purpose; no equivalence to review terminology was assumed.",
+    "User Settings Update Settings link resolved to Update profile; marketing-email API semantics remain unconfirmed."
+  ],
+  "raed": {
+    "repository": "https://github.com/SallaApp/theme-raed",
+    "commit": "4332880be63909cc4251ea8783d25c88efa8f468",
+    "version": "1.358.0",
+    "inspected_paths": [
+      "src/views/pages/product/single.twig",
+      "src/views/pages/product/index.twig",
+      "src/views/pages/partials/product/options.twig",
+      "src/views/pages/cart.twig",
+      "src/views/pages/customer/profile.twig",
+      "src/views/components/home/testimonials.twig",
+      "src/views/components/home/store-features.twig",
+      "src/views/components/home/fixed-banner.twig",
+      "src/views/components/home/youtube.twig",
+      "src/assets/js/product.js",
+      "src/assets/js/cart.js",
+      "src/assets/styles/03-elements/product-card.scss"
+    ]
+  }
+}

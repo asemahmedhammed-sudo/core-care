@@ -1,0 +1,20 @@
+{% if component.banners|length %}
+<section component-id="{{ componentId }}" data-testid="beauty-collections" class="s-block container beauty-collections {{ component.equal_tiles ? 'beauty-collections--equal' : '' }}">
+  {% if component.title %}<div class="beauty-section-heading"><h2>{{ component.title }}</h2>{% if component.description %}<p>{{ component.description }}</p>{% endif %}</div>{% endif %}
+  <div class="beauty-collections__grid">
+    {% for banner in component.banners %}
+      {% if banner.image %}
+        {% set tile_tag = banner.url ? 'a' : 'div' %}
+        <{{ tile_tag }} {% if banner.url %}href="{{ banner.url }}"{% endif %} class="beauty-collection {{ component.rounded_images ? 'beauty-rounded' : '' }}">
+          <img src="{{ banner.image }}" alt="{{ banner.image_alt }}" width="900" height="700" loading="lazy">
+          <div class="beauty-collection__copy">
+            {% if banner.description %}<p>{{ banner.description }}</p>{% endif %}
+            {% if banner.title %}<h3>{{ banner.title }}</h3>{% endif %}
+            {% if banner.url and banner.button_label %}<span class="beauty-collection__action">{{ banner.button_label }}<i class="sicon-arrow-left beauty-directional" aria-hidden="true"></i></span>{% endif %}
+          </div>
+        </{{ tile_tag }}>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

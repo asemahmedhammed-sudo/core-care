@@ -1,0 +1,163 @@
+Final Salla Theme review before launch - Twilight Documentation | Salla Docs
+Review Process
+Copy Page
+Salla Platform Docs
+Theme Architecture
+Layouts
+Overview
+Global Variables
+CSS Variables
+Custom Fonts
+Master Layout
+Salla Icons
+Hooks
+Localizations
+Salla Component Hooks
+Hooks
+Overview
+Template Hooks
+Component Hooks
+Pages
+Home Page
+Overview
+Product Pages
+Products listing
+Single product
+Customer Pages
+Profile
+Orders list
+Order details
+Wishlist
+Notifications
+Blog Pages
+Blog listing
+Single blog
+Brand Pages
+Brands listing
+Single brand
+Common Pages
+Cart
+Loyalty
+Thank you
+Single page
+Landing Page
+Components
+Overview
+Home Components
+Youtube
+Fixed banner
+Testimonials
+Parallax background
+Photos slider
+Store features
+Square photos
+Fixed products
+Products slider
+Featured products - Style 1
+Featured Products - Style 2
+Featured Products - Style 3
+Brands
+Enhanced Square Banners
+Main Links
+Enhanced Slider
+Slider Products with Headers
+Latest Products
+Vertical Menu with Slider
+Product Components
+Essentials
+Options
+Common Components
+Header Components
+Footer Components
+Comments component
+Requirements & Review
+Overview
+Main Requirements
+Review Process
+UI / UX Review
+Technical Review
+Metadata Review
+Pre-Launch Review
+Getting Started
+Create a theme
+Setup a theme
+Develop a theme
+Publish a theme
+Files and Folders Structure
+Directory structure
+Twilight.json
+Twig Template Engine
+Basic syntax
+Twilight flavoured twig
+Change Log
+Merchant
+Merchant
+Merchant API
+Embedded SDK
+Salla OAuth 2.0
+Storefront
+Storefront
+Twilight Engine
+Twilight SDK
+Web Components
+Ecommerce Events
+Component Bundle
+Checkout APIs
+Change LogApp Functions
+Partner APIs
+Partner APIs
+App API
+Shipments & Fulfillment APIs
+Salla AWB
+Recurring Payments API
+Billing System Salla partners
+Communication Apps
+Dev Tools
+Dev Tools
+Partners Agent Kit
+Salla Apps Playbook
+Salla CLI
+Merchant
+Merchant
+Merchant API
+Embedded SDK
+Salla OAuth 2.0
+Storefront
+Storefront
+Twilight Engine
+Twilight SDK
+Web Components
+Ecommerce Events
+Component Bundle
+Checkout APIs
+Change LogApp Functions
+Partner APIs
+Partner APIs
+App API
+Shipments & Fulfillment APIs
+Salla AWB
+Recurring Payments API
+Billing System Salla partners
+Communication Apps
+Dev Tools
+Dev Tools
+Partners Agent Kit
+Salla Apps Playbook
+Salla CLI
+Blog
+Developer Portal
+Review Process
+Copy Page
+Pre-Launch Review
+Upon reaching this stage, your Theme has successfully passed the approval process. The Salla team will now conduct a thorough review and assessment of the financial aspects and alignment associated with the Theme.
+Alert
+This evaluation may encompass various considerations, including:
+Pricing strategies
+Revenue sharing models
+Any financial agreements related to the Theme's distribution or sales on the Salla platform.Hurray!🥳 Your Theme is successfully published and ready to go live on the Salla Theme Marketplace. Congratulations you are on your way to making revenue from your amazing Theme!
+Modified at 2026-07-29 11:46:05
+Previous
+Metadata Review
+Next
+Create a theme
+LLMs.txtExport

@@ -1,0 +1,20 @@
+{# Fields use the official Twilight text/image/switch/variable-list formats. #}
+{% if component.title or component.image %}
+<section component-id="{{ componentId }}" data-testid="beauty-hero" class="s-block beauty-hero {{ component.image_first ? 'beauty-hero--image-first' : '' }} {{ component.soft_background ? 'beauty-surface' : '' }}">
+  <div class="container beauty-hero__grid">
+    <div class="beauty-hero__copy">
+      {% if component.eyebrow %}<p class="beauty-eyebrow">{{ component.eyebrow }}</p>{% endif %}
+      {% if component.title %}<h2>{{ component.title }}</h2>{% endif %}
+      {% if component.description %}<p class="beauty-hero__description">{{ component.description }}</p>{% endif %}
+      {% if component.button_url and component.button_label %}
+        <a class="beauty-button beauty-button--gold" href="{{ component.button_url }}">{{ component.button_label }}<i class="sicon-arrow-left beauty-directional" aria-hidden="true"></i></a>
+      {% endif %}
+    </div>
+    {% if component.image %}
+      <div class="beauty-hero__media {{ component.rounded_image ? 'beauty-rounded' : '' }}">
+        <img src="{{ component.image }}" alt="{{ component.image_alt }}" width="800" height="900" {% if position == 0 %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}

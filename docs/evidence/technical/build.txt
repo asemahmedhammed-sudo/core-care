@@ -1,0 +1,79 @@
+
+warn - As of Tailwind CSS v3.3, the `@tailwindcss/line-clamp` plugin is now included by default.
+warn - Remove it from the `plugins` array in your configuration to eliminate this warning.
+WARNING in ./src/assets/styles/app.scss (./src/assets/styles/app.scss.webpack[javascript/auto]!=!./node_modules/.pnpm/css-loader@7.1.4_webpack@5.108.4/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/.pnpm/postcss-loader@8.2.1_postcss@8.5.16_webpack@5.108.4/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js!./src/assets/styles/app.scss)
+Module Warning (from ./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js):
+Deprecation Warning on line 52, column 8 of file:///Users/test/Documents/ChatGPT/core-care-sall-theam/src/assets/styles/app.scss:52:8:
+Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+52 | @import './01-settings/tailwind';
+
+
+src/assets/styles/app.scss 53:9  root stylesheet
+
+WARNING in ./src/assets/styles/app.scss (./src/assets/styles/app.scss.webpack[javascript/auto]!=!./node_modules/.pnpm/css-loader@7.1.4_webpack@5.108.4/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/.pnpm/postcss-loader@8.2.1_postcss@8.5.16_webpack@5.108.4/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js!./src/assets/styles/app.scss)
+Module Warning (from ./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js):
+Deprecation Warning on line 53, column 8 of file:///Users/test/Documents/ChatGPT/core-care-sall-theam/src/assets/styles/app.scss:53:8:
+Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+53 | @import './01-settings/fonts';
+
+
+src/assets/styles/app.scss 54:9  root stylesheet
+
+WARNING in ./src/assets/styles/app.scss (./src/assets/styles/app.scss.webpack[javascript/auto]!=!./node_modules/.pnpm/css-loader@7.1.4_webpack@5.108.4/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/.pnpm/postcss-loader@8.2.1_postcss@8.5.16_webpack@5.108.4/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js!./src/assets/styles/app.scss)
+Module Warning (from ./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js):
+Deprecation Warning on line 54, column 8 of file:///Users/test/Documents/ChatGPT/core-care-sall-theam/src/assets/styles/app.scss:54:8:
+Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+54 | @import './01-settings/global';
+
+
+src/assets/styles/app.scss 55:9  root stylesheet
+
+WARNING in ./src/assets/styles/app.scss (./src/assets/styles/app.scss.webpack[javascript/auto]!=!./node_modules/.pnpm/css-loader@7.1.4_webpack@5.108.4/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/.pnpm/postcss-loader@8.2.1_postcss@8.5.16_webpack@5.108.4/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js!./src/assets/styles/app.scss)
+Module Warning (from ./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js):
+Deprecation Warning on line 55, column 8 of file:///Users/test/Documents/ChatGPT/core-care-sall-theam/src/assets/styles/app.scss:55:8:
+Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+55 | @import './01-settings/breakpoints';
+
+
+src/assets/styles/app.scss 56:9  root stylesheet
+
+WARNING in ./src/assets/styles/app.scss (./src/assets/styles/app.scss.webpack[javascript/auto]!=!./node_modules/.pnpm/css-loader@7.1.4_webpack@5.108.4/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/.pnpm/postcss-loader@8.2.1_postcss@8.5.16_webpack@5.108.4/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js!./src/assets/styles/app.scss)
+Module Warning (from ./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js):
+Deprecation Warning on line 57, column 8 of file:///Users/test/Documents/ChatGPT/core-care-sall-theam/src/assets/styles/app.scss:57:8:
+Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+57 | @import './02-generic/reset';
+
+
+src/assets/styles/app.scss 58:9  root stylesheet
+
+WARNING in ./src/assets/styles/app.scss (./src/assets/styles/app.scss.webpack[javascript/auto]!=!./node_modules/.pnpm/css-loader@7.1.4_webpack@5.108.4/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/.pnpm/postcss-loader@8.2.1_postcss@8.5.16_webpack@5.108.4/node_modules/postcss-loader/dist/cjs.js!./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js!./src/assets/styles/app.scss)
+Module Warning (from ./node_modules/.pnpm/sass-loader@17.0.0_sass@1.101.0_webpack@5.108.4/node_modules/sass-loader/dist/cjs/index.js):
+33 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  app (328 KiB)
+      app.css
+      app.js
+
+WARNING in webpack performance recommendations: 
+You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+For more info visit https://webpack.js.org/guides/code-splitting/
+
+webpack compiled with 8 warnings

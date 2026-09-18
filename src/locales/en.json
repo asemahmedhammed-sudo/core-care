@@ -1,0 +1,39 @@
+{
+  "blocks": {
+    "header": {
+      "cart": "Cart"
+    },
+    "appBanner": {
+      "download_now": "download now"
+    }
+  },
+  "pages": {
+    "cart": {
+      "cart_options": "Cart Options"
+    },
+    "products": {
+      "barcode": "Barcode"
+    },
+    "order": {
+      "can_edit_or_delete_your_review_within": "You can edit or delete your review within",
+      "edit_period_ended": "The period to edit the review has ended",
+      "delete_period_ended": "The period to delete the review has ended",
+      "days_since_added": "days since it was added",
+      "option_name": "Option name",
+      "option_content": "Content"
+    }
+  },
+  "common": {
+    "bank_offer_sub_title_multiple": "Pay for your purchases via one of the following bank cards and get the specified discount",
+    "bank_offer_sub_title_single": "Pay for your purchases via :bank_name bank card and get discount"
+  },
+  "beauty": {
+    "skip_content": "Skip to content",
+    "enable_javascript": "Please enable JavaScript to use the store features.",
+    "open_menu": "Open menu",
+    "wishlist_toggle": "Add to or remove from wishlist",
+    "routine": "Care routine",
+    "routine_empty": "There are no products in this routine yet.",
+    "tax_certificate": "VAT certificate"
+  }
+}
