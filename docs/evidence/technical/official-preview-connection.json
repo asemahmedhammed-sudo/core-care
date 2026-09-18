@@ -1,0 +1,26 @@
+{
+  "date_utc": "2026-09-18T18:18:46.171125+00:00",
+  "repository": "https://github.com/asemahmedhammed-sudo/core-care",
+  "branch": "main",
+  "uploaded_commit": "f8182fa69636de88b0671a81603eb6f9a3cf6d90",
+  "github_connection": "asemahmedhammed-sudo verified in Partners UI",
+  "github_access": "only core-care selected and saved",
+  "theme_id": 523702774,
+  "theme_status": "development",
+  "salla_import": "successful; 9 custom components displayed including 3 beauty components",
+  "demo_store": "Core Care; official default demo data displayed",
+  "draft_id": 1751970541,
+  "editor_url": "https://s.salla.sa/themes/editor/draft-1751970541",
+  "cli": "3.2.56",
+  "preview_result": "loaded official Salla editor and storefront iframe",
+  "local_assets_url": "http://localhost:8000",
+  "websocket_port": 8001,
+  "watch_session": 25603,
+  "render_observation": "header, latest products with platform prices and buttons, footer and custom component picker loaded",
+  "limits": [
+    "Custom beauty sections have not yet been configured in the demo draft.",
+    "No full functional tests, Lighthouse or submission screenshots completed.",
+    "Development watch build replaces public production assets while active; prior size report applies to recorded production build only."
+  ],
+  "credentials_saved_in_report": false
+}

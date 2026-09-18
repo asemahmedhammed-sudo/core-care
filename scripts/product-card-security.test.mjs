@@ -27,7 +27,14 @@ vm.runInNewContext(source, {
   customElements: { define: (_, value) => { ProductCard = value; } },
   window: { location: { href: 'https://preview.example/product' }, notify_when_available_in_card: false },
   URL,
+  document: { body: { dataset: { beautyWishlistLabel: 'Wishlist' } } },
   salla,
+});
+
+test('only the documented currency icon is restored as markup', () => {
+  const card = new ProductCard();
+  salla.money = () => '10 <i class=sicon-sar></i><script>alert(1)</script>';
+  assert.equal(card.getPriceFormat(10), '10 <i class="sicon-sar" aria-hidden="true"></i>&lt;script&gt;alert(1)&lt;/script&gt;');
 });
 
 test('product card escapes merchant text and rejects executable URLs', () => {

@@ -78,7 +78,8 @@ class ProductCard extends HTMLElement {
       return salla.config.get('store.settings.product.show_price_as_dash')?'-':'';
     }
 
-    return this.escapeHTML(salla.money(price));
+    // Salla's SAR formatter returns this specific icon; keep all other HTML escaped.
+    return this.escapeHTML(salla.money(price)).replace(/&lt;i class=(?:&quot;|&#39;)?sicon-sar(?:&quot;|&#39;)?&gt;&lt;\/i&gt;/g, '<i class="sicon-sar" aria-hidden="true"></i>');
   }
 
   getProductPrice() {
@@ -184,7 +185,7 @@ class ProductCard extends HTMLElement {
     const productUrl = this.safeUrl(this.product.url);
     const productName = this.escapeHTML(this.product.name);
     const productType = this.escapeHTML(this.product.type);
-    const wishlistLabel = this.escapeHTML(salla.lang.get('beauty.wishlist_toggle'));
+    const wishlistLabel = this.escapeHTML(document.body.dataset.beautyWishlistLabel || salla.lang.get('beauty.wishlist_toggle'));
     this.classList.add('s-product-card-entry'); 
     this.setAttribute('id', this.product.id);
     !this.horizontal && !this.fullImage && !this.minimal? this.classList.add('s-product-card-vertical') : '';

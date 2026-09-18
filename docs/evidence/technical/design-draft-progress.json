@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-18",
+  "reference": "user supplied beauty storefront PDF",
+  "draft_id": 977867246,
+  "saved_components": {
+    "hero": 1565646920,
+    "store_features": 2031824458,
+    "real_categories": 1040709457,
+    "bestsellers_four_products": 164939680,
+    "latest_four_products": "save success observed; id not yet recorded"
+  },
+  "verification": "Salla save-success messages observed for these components; earlier hero rendered in iframe",
+  "latest_preview": "Salla iframe returns 404 at salla.design/dev-bqivva6l3hp4ul7w; CLI file sync also reported an unexpected error",
+  "code_fixes": ["restore only exact platform SAR icon after price escaping", "pass server-translated wishlist label to product cards"],
+  "checks": {"node_security_tests": "2/2 passed", "repository_audit": "13/13 passed", "production_build": "passed"},
+  "remaining": ["reference photo usage question pending", "editorial photo section and final ordering", "beauty merchant data (demo currently contains fashion products)", "successful final preview and visual comparison", "platform functional tests and Lighthouse"],
+  "published": false
+}

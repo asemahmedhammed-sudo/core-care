@@ -1,0 +1,17 @@
+{
+  "date_utc": "2026-09-18T17:53:51.273047+00:00",
+  "theme_id": 891360956,
+  "theme_name": "core-care-main-theam",
+  "repository": "https://github.com/esam-almithali/core-care-main-theam",
+  "demo_store": "Core Care",
+  "cli": "3.2.56",
+  "authentication": "successful",
+  "local_repository_link": "verified by official CLI",
+  "local_commit": "f8182fa",
+  "preview_result": "failed",
+  "server_message": "Tag 1.0.5 already exists; Authorization Error",
+  "preview_url": null,
+  "github_access": "git HTTPS authentication unavailable; browser not signed in",
+  "local_code_uploaded": false,
+  "lighthouse_run": false
+}
