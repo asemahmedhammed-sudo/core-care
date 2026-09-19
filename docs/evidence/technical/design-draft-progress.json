@@ -7,13 +7,42 @@
     "store_features": 2031824458,
     "real_categories": 1040709457,
     "bestsellers_four_products": 164939680,
-    "latest_four_products": 125510819
+    "latest_four_products": 125510819,
+    "featured_collections": 526189161
   },
   "verification": "Salla save-success messages observed for these components; earlier hero rendered in iframe",
-  "latest_preview": "Salla iframe returns 404 at salla.design/dev-bqivva6l3hp4ul7w, including fresh CLI draft 169796349 and Partners-generated draft 834674943. Cause unresolved. Preview watch stopped after verification.",
+  "latest_preview": "On 2026-09-18, official CLI preview from a clean clone passed all checks and compiled. Draft 1484369752 opened in the Salla editor but its iframe returned 404. A manually corrected watch URL with assets_url=http://localhost:8002 and ws_port=8003 redirected to https://salla.design/dev-bqivva6l3hp4ul7w?preview=true and rendered the actual development theme. The visible storefront included the saved hero heading and the DOM showed body class theme-beauty, data-testid beauty-hero, and CSS/JS loaded from localhost:8002. The CLI watch server must remain running for these local assets to load.",
+  "preview_diagnosis": "The full CLI authentication URL includes assets_url and ws_port, and both values remain on the editor URL. The editor-generated salla.design watch iframe URL sets both values to empty strings, causing Salla's 404 page. Manually restoring those two values on the watch URL makes the storefront render. This confirms the theme itself can render; the remaining 404 is in the editor-to-watch URL parameter handoff. The ordinary signed demo-store link uses the store's different active theme and is not the development theme preview.",
+  "direct_install_link_diagnosis": "The Partners Portal for theme 523702774 labels https://s.salla.sa/marketplace/themes/direct/523702774 as the theme installation link. On 2026-09-18 the theme status was under development, publication history was 0, and opening that direct link returned a Salla 404. This installation link is distinct from the demo-store theme preview; publication or Salla enablement may be required before it resolves. The separate editor iframe preview 404 remains unresolved.",
+  "demo_store_observation": "The ordinary signed Core Care and app-test demo-store pages load assets from CDN theme 1247874246 version 1.376.0, not development theme 523702774. They show the demo store's active default theme and fashion products. The saved design components are visible in draft 704513394's editor sidebar, but its salla.design iframe still returns 404. Opening an ordinary demo-store link is therefore not a valid visual check of this development theme.",
   "ordering": "categories moved ahead of bestseller section using editor drag handle; save returned to disabled state",
-  "code_fixes": ["restore only exact platform SAR icon after price escaping", "pass server-translated wishlist label to product cards"],
-  "checks": {"node_security_tests": "2/2 passed", "repository_audit": "13/13 passed", "production_build": "passed"},
-  "remaining": ["reference photo usage question pending", "editorial photo section", "beauty merchant data (demo currently contains fashion products)", "successful final preview and visual comparison", "platform functional tests and Lighthouse"],
-  "published": false
+  "code_fixes": [
+    "restore only exact platform SAR icon after price escaping",
+    "pass server-translated wishlist label to product cards"
+  ],
+  "checks": {
+    "node_security_tests": "2/2 passed",
+    "repository_audit": "13/13 passed",
+    "production_build": "passed"
+  },
+  "remaining": [
+    "reference photo usage question pending",
+    "editorial photo section",
+    "beauty merchant data (demo currently contains fashion products)",
+    "successful final preview and visual comparison",
+    "platform functional tests and Lighthouse"
+  ],
+  "published": false,
+  "featured_collections": {
+    "date": "2026-09-19",
+    "title": "مجموعاتنا المميزة",
+    "cards": [
+      "روتين العناية الكامل",
+      "للبشرة الجافة",
+      "سيروم التفتيح"
+    ],
+    "verification": "Salla save-success observed; actual salla.design preview renders all three uploaded images and titles. Corrected grid min-width overlap; measured 571.5px main tile and 277.4px side tiles with 15px gap at 884px viewport. Production build passed with existing warnings.",
+    "images": "AI-prepared from user reference; saved in src/assets/images/collections and uploaded to Salla media gallery",
+    "published": false
+  }
 }
