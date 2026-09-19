@@ -11,7 +11,33 @@
     .reference-menu{display:flex;gap:2.6rem;align-items:center;font-size:21px}
     .reference-actions{display:flex;align-items:center;gap:1.25rem;font-size:28px;color:#252421;direction:ltr}
     .reference-actions span{display:inline-block;line-height:1}
+    .reference-section{padding:72px max(24px,4vw);background:#fffaf4}
+    .reference-section:nth-of-type(even){background:#fcf5ed}
+    .reference-section__inner{max-width:1280px;margin:auto}
+    .reference-section__heading{margin-bottom:30px}
+    .reference-section__heading h2{font-size:clamp(26px,2.5vw,38px);font-weight:800;color:#45583a;margin:0 0 8px}
+    .reference-section__heading p{color:#706d67;margin:0;font-size:16px}
+    .reference-categories{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .reference-category{display:flex;align-items:center;gap:15px;background:#fff;border:1px solid #e9e1d5;border-radius:18px;padding:18px;font-weight:700}
+    .reference-category__icon{display:grid;place-items:center;width:62px;height:62px;flex:none;border-radius:50%;background:#f4ead8;color:#45583a;font-size:29px}
+    .reference-products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .reference-product{background:#fff;border:1px solid #e9e1d5;border-radius:18px;overflow:hidden}
+    .reference-product__photo{display:grid;place-items:center;aspect-ratio:4/5;background:#f1e9da}
+    .reference-product__photo img{width:100%;height:100%;object-fit:cover}
+    .reference-product__info{padding:18px}
+    .reference-product__info h3{font-size:17px;margin:0 0 8px}
+    .reference-product__info p{color:#706d67;font-size:13px;margin:0 0 15px}
+    .reference-product__info button{background:#45583a;color:#fff;border:0;border-radius:8px;width:100%;padding:12px;font-weight:700}
+    .reference-footer{background:#252421;color:#fffaf4;padding:60px max(24px,4vw) 25px}
+    .reference-footer__inner{max-width:1280px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+    .reference-footer h2{color:#cba457;font-size:30px;margin:0 0 12px}
+    .reference-footer h3{color:#cba457;font-size:18px;margin:0 0 12px}
+    .reference-footer p,.reference-footer a{color:#e2ddd4;line-height:1.9}
+    .reference-footer a{display:block}
+    .reference-footer__note{max-width:1280px;margin:35px auto 0;padding-top:15px;border-top:1px solid #ffffff25;color:#c8c2b8;font-size:13px}
     @media(max-width:1023px){.reference-menu{display:none}.reference-promo{font-size:11px;padding:8px 18px;text-align:center}}
+    @media(max-width:900px){.reference-categories,.reference-products{grid-template-columns:repeat(2,1fr)}.reference-footer__inner{grid-template-columns:1fr 1fr}.reference-footer__inner>div:first-child{grid-column:1/-1}}
+    @media(max-width:520px){.reference-section{padding:45px 20px}.reference-categories,.reference-products{gap:10px}.reference-category{padding:10px;gap:7px;font-size:13px}.reference-category__icon{width:40px;height:40px;font-size:20px}.reference-product__info{padding:12px}.reference-product__info h3{font-size:14px}.reference-footer__inner{grid-template-columns:1fr}.reference-footer__inner>div:first-child{grid-column:auto}}
   </style>
 </head>
 <body class="theme-beauty beauty-reference-home">
@@ -46,7 +72,29 @@
           <div><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.7 3.3C13.5 3.2 7.5 5.4 5.6 10.6c-.8 2.3-.5 4.7.8 6.6 1.7-3 4.3-5 8.5-6.2-3.6 2-5.7 4.4-6.9 8.1a1 1 0 0 0 1.9.6c.4-1.3.9-2.5 1.6-3.6 5.4 1.1 9.4-2.2 9.5-8.7l-.1-4.1Z"/></svg><span>مكونات طبيعية 100٪</span></div>
         </div></div>
       </section>
+      <section class="reference-section" id="categories"><div class="reference-section__inner">
+        <div class="reference-section__heading"><h2>تسوقي حسب الفئة</h2><p>اكتشفي ما يناسب روتين العناية الخاص بك</p></div>
+        <div class="reference-categories"><div class="reference-category"><span class="reference-category__icon">✦</span>العناية بالبشرة</div><div class="reference-category"><span class="reference-category__icon">❀</span>العناية بالشعر</div><div class="reference-category"><span class="reference-category__icon">◒</span>العناية بالجسم</div><div class="reference-category"><span class="reference-category__icon">♡</span>المجموعات</div></div>
+      </div></section>
+      <section class="reference-section" id="products"><div class="reference-section__inner">
+        <div class="reference-section__heading"><h2>الأكثر مبيعًا</h2><p>شكل بطاقات المنتجات في القالب — بيانات العرض توضيحية</p></div>
+        <div class="reference-products">
+          <article class="reference-product"><div class="reference-product__photo"><img src="../public/images/collections/brightening-serum.png" alt="سيروم للعناية بالبشرة"></div><div class="reference-product__info"><h3>سيروم العناية بالبشرة</h3><p>منتج توضيحي للمعاينة</p><button type="button">أضيفي للسلة</button></div></article>
+          <article class="reference-product"><div class="reference-product__photo"><img src="../public/images/collections/dry-skin.png" alt="كريم مرطب"></div><div class="reference-product__info"><h3>كريم ترطيب البشرة</h3><p>منتج توضيحي للمعاينة</p><button type="button">أضيفي للسلة</button></div></article>
+          <article class="reference-product"><div class="reference-product__photo"><img src="../public/images/collections/complete-routine.png" alt="مجموعة العناية الكاملة"></div><div class="reference-product__info"><h3>مجموعة العناية الكاملة</h3><p>منتج توضيحي للمعاينة</p><button type="button">أضيفي للسلة</button></div></article>
+          <article class="reference-product"><div class="reference-product__photo"><img src="../public/images/beauty-hero-products.png" alt="منتجات عناية طبيعية"></div><div class="reference-product__info"><h3>منتجات العناية الطبيعية</h3><p>منتج توضيحي للمعاينة</p><button type="button">أضيفي للسلة</button></div></article>
+        </div>
+      </div></section>
+      <section class="reference-section" id="collections"><div class="reference-section__inner">
+        <div class="reference-section__heading"><h2>مجموعاتنا المميزة</h2><p>اختيارات للعناية اليومية</p></div>
+        <div class="beauty-collections__grid">
+          <div class="beauty-collection beauty-rounded"><img src="../public/images/collections/complete-routine.png" alt="روتين العناية الكامل"><div class="beauty-collection__copy"><h3>روتين العناية الكامل</h3><span class="beauty-collection__action">اكتشفي المجموعة</span></div></div>
+          <div class="beauty-collection beauty-rounded"><img src="../public/images/collections/dry-skin.png" alt="كريمات العناية بالبشرة الجافة"><div class="beauty-collection__copy"><h3>للبشرة الجافة</h3></div></div>
+          <div class="beauty-collection beauty-rounded"><img src="../public/images/collections/brightening-serum.png" alt="سيروم التفتيح"><div class="beauty-collection__copy"><h3>سيروم التفتيح</h3></div></div>
+        </div>
+      </div></section>
     </main>
+    <footer class="reference-footer"><div class="reference-footer__inner"><div><h2>Core Care</h2><p>عناية طبيعية بروح هادئة وتفاصيل تهتم بك.</p></div><div><h3>روابط مهمة</h3><a href="#categories">التصنيفات</a><a href="#products">المنتجات</a><a href="#collections">المجموعات</a></div><div><h3>خدمة العملاء</h3><p>تظهر بيانات التواصل الحقيقية من إعدادات المتجر في سلة.</p></div></div><div class="reference-footer__note">هذه معاينة تصميم محلية كاملة؛ المنتجات وبياناتها توضيحية، ولا تمثل المتجر المنشور.</div></footer>
   </div>
 </body>
 </html>
