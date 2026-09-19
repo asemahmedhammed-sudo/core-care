@@ -52,19 +52,184 @@
   .beauty-directional { display: inline-block; }
   &[dir='ltr'] .beauty-directional, html[dir='ltr'] & .beauty-directional { transform: scaleX(-1); }
 
-  .beauty-hero { margin-block-start: 0; }
-  .beauty-hero__grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: clamp(2rem, 7vw, 7rem); }
-  .beauty-hero__copy { padding-block: 2rem; }
-  .beauty-hero__copy h2 { font-size: clamp(2rem, 4.5vw, 4.6rem); line-height: 1.15; font-weight: 800; letter-spacing: -.025em; max-width: 12ch; overflow-wrap: anywhere; }
-  .beauty-hero__description { color: var(--beauty-muted); line-height: 1.9; margin-block: 1.5rem 2rem; max-width: 34rem; white-space: pre-line; }
-  .beauty-hero__media { background: var(--beauty-cream); box-shadow: 0 20px 45px #272b1912; }
-  .beauty-hero__media img { display: block; width: 100%; aspect-ratio: 8 / 9; object-fit: cover; }
-  .beauty-hero--image-first .beauty-hero__media { order: -1; }
-  .beauty-hero__grid:not(:has(.beauty-hero__media)) { grid-template-columns: 1fr; }
-  .beauty-hero__grid:not(:has(.beauty-hero__media)) h2 { max-width: 24ch; }
+  &.beauty-reference-home {
+    --beauty-paper: #fffaf4;
+    --beauty-cream: #fcf5ed;
+    --beauty-ink: #252421;
+    --beauty-muted: #706d67;
+    --beauty-olive: #45583a;
+    --beauty-gold: #cba457;
+
+    > .app-inner > .store-header > salla-advertisement {
+      display: block;
+      min-height: 42px;
+      background: #242321;
+      color: #cba457;
+      text-align: center;
+    }
+
+    .beauty-reference-nav {
+      min-height: 112px;
+      background: #fffcf7;
+      border-bottom: 1px solid #e9e1d5;
+      box-shadow: none;
+    }
+    .beauty-reference-nav__inner {
+      max-width: 2160px;
+      min-height: 112px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 2rem;
+      padding-inline: clamp(1rem, 4vw, 5rem);
+    }
+    .beauty-reference-nav__brand {
+      color: var(--beauty-olive);
+      font-family: Arial, sans-serif;
+      font-size: clamp(1.55rem, 2vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -.055em;
+      white-space: nowrap;
+    }
+    .beauty-reference-nav custom-main-menu { min-height: auto; justify-self: center; }
+    .beauty-reference-nav .main-menu { gap: clamp(1.4rem, 2vw, 3rem); }
+    .beauty-reference-nav .main-menu > li > a {
+      color: var(--beauty-ink);
+      font-size: clamp(1rem, 1.2vw, 1.5rem);
+      font-weight: 500;
+      padding-block: 1rem;
+    }
+    .beauty-reference-nav__actions {
+      display: flex;
+      align-items: center;
+      justify-self: end;
+      gap: clamp(.6rem, 1.2vw, 1.25rem);
+      direction: ltr;
+    }
+    .beauty-reference-nav__actions salla-search { width: 42px; overflow: hidden; transition: width .2s ease; }
+    .beauty-reference-nav__actions salla-search:focus-within { width: min(250px, 20vw); }
+    .beauty-reference-nav__actions .header-btn__icon {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 0;
+      color: var(--beauty-ink);
+      font-size: 1.6rem;
+      margin: 0;
+    }
+    .beauty-reference-nav__toggle { color: var(--beauty-ink); font-size: 1.5rem; }
+  }
+
+  .beauty-hero {
+    margin-block: 0;
+    background: #fcf5ed;
+  }
+  .beauty-hero__grid {
+    max-width: 2160px;
+    min-height: clamp(650px, 43vw, 1000px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(3rem, 8vw, 12rem);
+    padding: clamp(3rem, 5vw, 7rem) clamp(1rem, 4vw, 5rem);
+  }
+  .beauty-hero__copy { text-align: start; max-width: 770px; }
+  .beauty-hero__offer {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    background: #f1e5cb;
+    border-radius: 999px;
+    padding: .35rem 1.1rem;
+    color: #33312c;
+    font-size: clamp(.9rem, 1.05vw, 1.3rem);
+    font-weight: 650;
+    margin-block-end: clamp(1.6rem, 3vw, 3.7rem);
+  }
+  .beauty-hero__offer svg { width: 1.1em; height: 1.1em; color: var(--beauty-olive); }
+  .beauty-hero__copy h2 {
+    color: var(--beauty-ink);
+    font-size: clamp(3.1rem, 5vw, 7.3rem);
+    line-height: 1.09;
+    font-weight: 800;
+    letter-spacing: -.035em;
+  }
+  .beauty-hero__description {
+    color: var(--beauty-muted);
+    font-size: clamp(1.15rem, 1.55vw, 2.15rem);
+    line-height: 1.6;
+    margin-block: clamp(1.7rem, 2.5vw, 3rem) clamp(2rem, 3vw, 3.5rem);
+    max-width: 41rem;
+  }
+  .beauty-hero__action {
+    justify-content: center;
+    min-height: clamp(58px, 4.15vw, 98px);
+    gap: clamp(1rem, 2vw, 2.5rem);
+    padding-inline: clamp(1.75rem, 2.6vw, 3.5rem);
+    border-radius: 1.2rem;
+    font-size: clamp(1.2rem, 1.45vw, 2rem);
+  }
+  .beauty-hero__visual { position: relative; width: 100%; max-width: 760px; justify-self: center; }
+  .beauty-hero__media {
+    overflow: hidden;
+    border-radius: clamp(1.2rem, 1.4vw, 2rem);
+    box-shadow: 0 30px 50px #3e342119;
+    background: #efe1c8;
+  }
+  .beauty-hero__media img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+  .beauty-hero__new {
+    position: absolute;
+    top: 9%;
+    left: calc(-1 * clamp(2rem, 6vw, 9rem));
+    width: clamp(86px, 6.6vw, 158px);
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--beauty-ink);
+    color: #fff;
+    box-shadow: 0 10px 25px #25242121;
+    font-size: clamp(.9rem, 1vw, 1.3rem);
+    line-height: 1.6;
+  }
+  .beauty-hero__new strong { font-size: 1.22em; }
+  .beauty-hero__natural {
+    position: absolute;
+    right: calc(-1 * clamp(2.5rem, 6.7vw, 10rem));
+    bottom: -2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: .9rem 1rem;
+    border-radius: 1.25rem;
+    background: #fff;
+    color: #77736c;
+    box-shadow: 0 12px 26px #27231e20;
+    font-size: clamp(.9rem, 1vw, 1.25rem);
+    line-height: 1.4;
+  }
+  .beauty-hero__natural strong { display: block; color: var(--beauty-ink); font-size: 1.15em; }
+  .beauty-hero__natural-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: .75rem; background: #f1f1ec; color: var(--beauty-olive); }
+  .beauty-hero__natural-icon svg { width: 26px; height: 26px; }
+  .beauty-hero__benefits { border-top: 1px solid #ebe3d8; background: #fcf5ed; }
+  .beauty-hero__benefits-inner {
+    max-width: 2160px;
+    min-height: clamp(110px, 8.3vw, 200px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    gap: 1rem;
+    padding-inline: clamp(1rem, 4vw, 5rem);
+  }
+  .beauty-hero__benefits-inner > div { display: flex; align-items: center; justify-content: center; gap: 1rem; color: var(--beauty-ink); font-size: clamp(1rem, 1.2vw, 1.5rem); white-space: nowrap; }
+  .beauty-hero__benefits svg { width: clamp(25px, 2vw, 44px); height: clamp(25px, 2vw, 44px); color: var(--beauty-olive); flex: none; }
+  html[dir='ltr'] & .beauty-hero__new { left: auto; right: calc(-1 * clamp(2rem, 6vw, 9rem)); }
+  html[dir='ltr'] & .beauty-hero__natural { right: auto; left: calc(-1 * clamp(2.5rem, 6.7vw, 10rem)); }
 
   .beauty-features { background: var(--beauty-cream); padding-block: 1.5rem; }
-  .beauty-hero + .beauty-features { margin-block-start: -5rem; }
+  .beauty-hero + .beauty-features { margin-block-start: 0; }
   .beauty-features__list { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
   .beauty-features__list li { display: flex; align-items: center; gap: 1rem; flex: 1 1 180px; }
   .beauty-features__list i { color: var(--beauty-olive); font-size: 1.8rem; }
@@ -132,13 +297,25 @@
   &.footer-is-light .beauty-footer h3 { color: var(--beauty-olive); }
   &.footer-is-light .beauty-footer .copyright-text p { color: var(--beauty-ink); }
 
+  @media (max-width: 1023px) {
+    &.beauty-reference-home .beauty-reference-nav,
+    &.beauty-reference-home .beauty-reference-nav__inner { min-height: 70px; }
+    &.beauty-reference-home .beauty-reference-nav__inner { grid-template-columns: 1fr auto; gap: 1rem; }
+    &.beauty-reference-home .beauty-reference-nav custom-main-menu { display: none; }
+    &.beauty-reference-home .beauty-reference-nav__actions salla-search { display: none; }
+    .beauty-hero__grid { grid-template-columns: 1fr; min-height: 0; gap: 2.75rem; padding-block: 3.5rem 4.5rem; }
+    .beauty-hero__copy { order: 0; }
+    .beauty-hero__copy h2 { font-size: clamp(2.6rem, 10vw, 4rem); }
+    .beauty-hero__description { font-size: 1.15rem; }
+    .beauty-hero__visual { order: 1; max-width: 600px; width: calc(100% - 3rem); }
+    .beauty-hero__new { left: -1.5rem; top: 6%; }
+    .beauty-hero__natural { right: -1.5rem; bottom: -1.5rem; }
+    .beauty-hero__benefits-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding-block: 2rem; }
+    .beauty-hero__benefits-inner > div { justify-content: start; white-space: normal; font-size: .95rem; }
+    html[dir='ltr'] & .beauty-hero__new { left: auto; right: -1.5rem; }
+    html[dir='ltr'] & .beauty-hero__natural { right: auto; left: -1.5rem; }
+  }
   @media (max-width: 767px) {
-    .beauty-hero__grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .beauty-hero__copy { padding-block: 0; }
-    .beauty-hero__copy h2 { max-width: 16ch; font-size: clamp(2.2rem, 9vw, 3.4rem); }
-    .beauty-hero__media { max-width: 420px; width: 100%; margin-inline: auto; }
-    .beauty-hero__media img { aspect-ratio: 5 / 4; }
-    .beauty-hero + .beauty-features { margin-block-start: -2.5rem; }
     .beauty-features__list li { flex-basis: 40%; }
     .beauty-categories__list { justify-content: flex-start; }
     .beauty-category__image { width: 72px; height: 72px; }

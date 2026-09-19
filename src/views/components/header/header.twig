@@ -8,6 +8,22 @@
 {% set important_links = theme.settings.get('important_links') %}
 <header data-testid="store-header" class="store-header">
   <salla-advertisement data-testid="beauty-announcement"></salla-advertisement>
+  {% if is_page('index') %}
+  <div id="mainnav" class="main-nav-container beauty-reference-nav">
+    <div class="container beauty-reference-nav__inner">
+      <a data-testid="store-header-logo" class="beauty-reference-nav__brand" href="{{ store.url }}" aria-label="{{ store.name }}">Core Care</a>
+      <custom-main-menu></custom-main-menu>
+      <div class="beauty-reference-nav__actions">
+        <salla-search data-testid="store-header-search" inline oval height="36"></salla-search>
+        <salla-user-menu data-testid="store-header-user-menu" avatar-only show-header show-trigger></salla-user-menu>
+        <salla-cart-summary data-testid="store-header-cart">
+          <i slot="icon" class="header-btn__icon icon sicon-shopping-bag" aria-hidden="true"></i>
+        </salla-cart-summary>
+        <a data-testid="store-header-mobile-toggle" class="beauty-reference-nav__toggle mburger mburger--collapse lg:hidden" href="#mobile-menu" aria-label="{{ trans('beauty.open_menu') }}"><i class="sicon-menu" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+  {% else %}
   {# Bullet Delivery tag — mobile: own full-width row above the top nav
      (Figma "Mobile version"). Desktop keeps the inline pill below, next to
      scopes. Both instances self-gate on the same backend flag; `lg:hidden`
@@ -84,4 +100,5 @@
           </div>
       </div>
   </div>
+  {% endif %}
 </header>
