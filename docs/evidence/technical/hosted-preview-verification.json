@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-21",
+  "theme_id": 523702774,
+  "repository": "https://github.com/asemahmedhammed-sudo/core-care",
+  "branch": "main",
+  "commit": "de21d37ed103298c208a47bb6b040bf7b2b54f8d",
+  "draft_id": 1772733141,
+  "editor_url": "https://s.salla.sa/themes/editor/draft-1772733141",
+  "method": "Partners Portal > theme > Core Care demo store > Preview Theme; no CLI or local asset server",
+  "verified": {
+    "hero_rendered": true,
+    "independent_browser_check": "The same Salla-generated watch link rendered the styled Core Care hero in native Google Chrome, separate from the in-app browser session.",
+    "collections_rendered": true,
+    "collection_images_loaded": 3,
+    "product_cards_rendered": true,
+    "stylesheet": "https://salla.design/themes/draft/1772733141/app.css",
+    "scripts_origin": "https://salla.design/themes/draft/1772733141/",
+    "images_origin": "https://cdn.files.salla.network/",
+    "localhost_or_loopback_resource_references": 0,
+    "visual_inspection": "Cream/olive/gold design, Core Care header and skincare hero photo rendered in standalone hosted preview."
+  },
+  "limits": [
+    "Preview remains a development draft, not a published storefront theme.",
+    "Use the editor or generate Preview Theme from Partners on another device; the redirected preview=true URL depends on the preview session.",
+    "Demo store retains its fashion product catalogue and displays a dismissible maintenance notice.",
+    "No marketplace publication or live-store activation was performed."
+  ],
+  "credentials_saved": false
+}

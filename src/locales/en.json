@@ -34,6 +34,22 @@
     "wishlist_toggle": "Add to or remove from wishlist",
     "routine": "Care routine",
     "routine_empty": "There are no products in this routine yet.",
-    "tax_certificate": "VAT certificate"
+    "tax_certificate": "VAT certificate",
+    "hero": {
+      "eyebrow": "Up to 30% off",
+      "title": "Natural beauty, in expert hands",
+      "description": "Discover our exclusive skincare collection made with carefully selected natural ingredients.",
+      "action": "Shop now",
+      "image_alt": "Skincare products on ivory satin",
+      "new": "New",
+      "year": "2026",
+      "natural": "Natural ingredients",
+      "natural_value": "100% natural",
+      "benefits_label": "Shopping benefits",
+      "fast_delivery": "Fast delivery",
+      "quality": "Quality guaranteed",
+      "easy_returns": "Easy returns",
+      "natural_benefit": "100% natural ingredients"
+    }
   }
 }

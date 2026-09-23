@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-21",
+  "editor_url": "https://s.salla.sa/themes/editor/draft-2055870671",
+  "store_slug": "dev-6scnfpzmqggm029t",
+  "reported_preview_store_slug": "dev-bqivva6l3hp4ul7w",
+  "finding": "The editor targets a different demo store. Core Care styles already loaded, but the homepage only had a personalized-products bundle and lacked the beauty sections.",
+  "changes_saved_in_salla": [
+    {"component": "home.beauty-hero", "editor_component_id": 1325273760},
+    {"component": "home.beauty-collections", "editor_component_id": 1477866981, "images": 3},
+    {"component": "products_slider", "editor_component_id": 1369887456, "source": "latest", "count": 4}
+  ],
+  "existing_bundle_preserved": true,
+  "cross_session_follow_up": {
+    "user_report": "Design appears on this device but not another device; affected link not yet clarified.",
+    "same_editor_url_in_native_chrome": "https://s.salla.sa/themes/editor/draft-2055870671",
+    "native_chrome_rendered_store": "dev-bqivva6l3hp4ul7w",
+    "native_chrome_hero_component_id": 1565646920,
+    "in_app_browser_rendered_store": "dev-6scnfpzmqggm029t",
+    "in_app_browser_hero_component_id": 1325273760,
+    "preview_assets_url_override": "",
+    "preview_websocket_port_override": "",
+    "conclusion": "The same editor URL displayed different demo stores and component configurations across browser sessions. Reload persistence in one session does not verify portability to another device. The other device's active store and tested link still need verification."
+  },
+  "verification": {
+    "reopened_exact_reported_editor_url": true,
+    "saved_sections_persisted": true,
+    "body_class": "theme-beauty beauty-palette-olive beauty-reference-home",
+    "stylesheet": "https://salla.design/themes/draft/2055870671/app.css",
+    "hero_image_loaded": true,
+    "collection_images_loaded_after_scroll": 3,
+    "product_images_loaded": 4,
+    "visual_check": "Hero, cream/olive/gold styling, three collection cards and latest products rendered inside the Salla editor."
+  },
+  "limits": [
+    "The demo catalogue still contains fashion products.",
+    "Collection cards have no destination links because matching skincare categories were not supplied.",
+    "The bare preview=true link on the other demo store showed Raed in this browser session; it is not a permanent link selecting this draft.",
+    "No theme code change, marketplace publication or live-theme activation was performed."
+  ]
+}

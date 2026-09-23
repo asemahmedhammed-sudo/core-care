@@ -11,7 +11,7 @@
   {% if is_page('index') %}
   <div id="mainnav" class="main-nav-container beauty-reference-nav">
     <div class="container beauty-reference-nav__inner">
-      <a data-testid="store-header-logo" class="beauty-reference-nav__brand" href="{{ store.url }}" aria-label="{{ store.name }}">Core Care</a>
+      <a data-testid="store-header-logo" class="beauty-reference-nav__brand" href="{{ store.url }}" aria-label="{{ store.name }}">{{ store.name }}</a>
       <custom-main-menu></custom-main-menu>
       <div class="beauty-reference-nav__actions">
         <salla-search data-testid="store-header-search" inline oval height="36"></salla-search>

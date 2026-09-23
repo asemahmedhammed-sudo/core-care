@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-09-18T18:30:22.003Z",
+  "generatedAt": "2026-09-23T15:00:43.245Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -293,7 +293,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 19,
+    "keyCount": 33,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -1394,7 +1394,7 @@
     {
       "file": "src/views/components/header/header.twig",
       "kind": "modified-upstream",
-      "sha256": "c528e1062039b3c69c0e5528d67901edad11b87436dfce1bbac36fffa9f6f445"
+      "sha256": "ade30d5850a793791e6536ecb006c7382de9bb1b6b9a474daa08ca5e1a40a562"
     },
     {
       "file": "src/views/components/home/beauty-collections.twig",
@@ -1404,7 +1404,7 @@
     {
       "file": "src/views/components/home/beauty-hero.twig",
       "kind": "new-template",
-      "sha256": "0bdecfa1aa221e44d0794105bbd52be1a3d6593d06faeb4b9d3853bbcedaa382"
+      "sha256": "ce78f488d2952107ebc761ccfef39f8c85a890523e4b84cafcef33287255a3bc"
     },
     {
       "file": "src/views/components/home/beauty-routine.twig",
@@ -1429,7 +1429,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "c894900841338b2e2a3cc50bb3b202d7f514c36ea8cd9c78fd17dea1264dffbf"
+      "sha256": "aaee6751e9782f14fc078765316edc50d04fa18fe411c66c22f58d953c0cf242"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -1521,10 +1521,10 @@
     "status": "pending-owner-data",
     "fields": {
       "name": {
-        "ar": "",
-        "en": ""
+        "ar": "كور كير",
+        "en": "Core Care"
       },
-      "repository": "",
+      "repository": "https://github.com/asemahmedhammed-sudo/core-care",
       "support": ""
     },
     "note": "Empty owner metadata is intentional pending real owner values; JSON parsing does not imply publication validity."

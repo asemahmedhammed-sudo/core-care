@@ -124,6 +124,10 @@
     margin-block: 0;
     background: #fcf5ed;
   }
+  .beauty-hero--plain,
+  .beauty-hero--plain .beauty-hero__benefits { background: transparent; }
+  .beauty-hero--square-image .beauty-hero__media { border-radius: 0; }
+  .beauty-hero--image-first .beauty-hero__visual { order: -1; }
   .beauty-hero__grid {
     max-width: 2160px;
     min-height: clamp(650px, 43vw, 1000px);
@@ -308,6 +312,7 @@
     .beauty-hero__copy h2 { font-size: clamp(2.6rem, 10vw, 4rem); }
     .beauty-hero__description { font-size: 1.15rem; }
     .beauty-hero__visual { order: 1; max-width: 600px; width: calc(100% - 3rem); }
+    .beauty-hero--image-first .beauty-hero__visual { order: -1; }
     .beauty-hero__new { left: -1.5rem; top: 6%; }
     .beauty-hero__natural { right: -1.5rem; bottom: -1.5rem; }
     .beauty-hero__benefits-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding-block: 2rem; }

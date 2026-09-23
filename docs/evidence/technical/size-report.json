@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-18T14:15:36.190Z",
+  "generatedAt": "2026-09-23T15:01:32.579Z",
   "environment": {
-    "node": "v24.19.0",
+    "node": "v25.0.0",
     "os": "Darwin 24.6.0",
     "arch": "arm64"
   },
@@ -41,10 +41,10 @@
     {
       "id": "built-public-all",
       "description": "All files in public/, including images.",
-      "fileCount": 20,
-      "rawBytes": 487851,
-      "gzipBytes": 126073,
-      "brotliBytes": 109983,
+      "fileCount": 21,
+      "rawBytes": 747447,
+      "gzipBytes": 380069,
+      "brotliBytes": 364028,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -55,10 +55,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 223390,
-          "gzipBytes": 34213,
-          "brotliBytes": 27580,
-          "sha256": "a6aa8a15a722fcc44e93c1157f8d566c8f6bacf68a9d11123f54d00b011d8dfe"
+          "bytes": 229899,
+          "gzipBytes": 35438,
+          "brotliBytes": 28642,
+          "sha256": "e51e76f2d793a28552ec09c2bc842c6d8764654094ef192dbb063e62e018432d"
         },
         {
           "file": "public/app.js",
@@ -87,6 +87,13 @@
           "gzipBytes": 12297,
           "brotliBytes": 10881,
           "sha256": "a491fc5ef0d83136f04bcb7643eb20a51ec3a118d30ea34890133aba8b7aefd6"
+        },
+        {
+          "file": "public/images/beauty-hero-products.jpg",
+          "bytes": 252914,
+          "gzipBytes": 252690,
+          "brotliBytes": 252919,
+          "sha256": "17475fbeb2bca9a795201b84e33796b20e7b7f1011701b6ace9acd995598a60a"
         },
         {
           "file": "public/images/check.svg",
@@ -160,10 +167,10 @@
         },
         {
           "file": "public/product-card.js",
-          "bytes": 10558,
-          "gzipBytes": 2877,
-          "brotliBytes": 2481,
-          "sha256": "168a08a0b227f9c93eea65d5b48edb02792a684bd86686bfd0282754b3ac138a"
+          "bytes": 10731,
+          "gzipBytes": 2958,
+          "brotliBytes": 2545,
+          "sha256": "a175484cd3a9790ddfb57377789bc3ee049afa7816cece24d4404e1837de13c7"
         },
         {
           "file": "public/product.js",
@@ -192,9 +199,9 @@
       "id": "built-public-js-css",
       "description": "Only generated JavaScript and CSS in public/.",
       "fileCount": 13,
-      "rawBytes": 458344,
-      "gzipBytes": 107049,
-      "brotliBytes": 91546,
+      "rawBytes": 465026,
+      "gzipBytes": 108355,
+      "brotliBytes": 92672,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -205,10 +212,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 223390,
-          "gzipBytes": 34213,
-          "brotliBytes": 27580,
-          "sha256": "a6aa8a15a722fcc44e93c1157f8d566c8f6bacf68a9d11123f54d00b011d8dfe"
+          "bytes": 229899,
+          "gzipBytes": 35438,
+          "brotliBytes": 28642,
+          "sha256": "e51e76f2d793a28552ec09c2bc842c6d8764654094ef192dbb063e62e018432d"
         },
         {
           "file": "public/app.js",
@@ -261,10 +268,10 @@
         },
         {
           "file": "public/product-card.js",
-          "bytes": 10558,
-          "gzipBytes": 2877,
-          "brotliBytes": 2481,
-          "sha256": "168a08a0b227f9c93eea65d5b48edb02792a684bd86686bfd0282754b3ac138a"
+          "bytes": 10731,
+          "gzipBytes": 2958,
+          "brotliBytes": 2545,
+          "sha256": "a175484cd3a9790ddfb57377789bc3ee049afa7816cece24d4404e1837de13c7"
         },
         {
           "file": "public/product.js",
@@ -292,11 +299,18 @@
     {
       "id": "source-runtime",
       "description": "Twilight manifest plus src/ assets, translations, and Twig; excludes public/.",
-      "fileCount": 120,
-      "rawBytes": 505510,
-      "gzipBytes": 143387,
-      "brotliBytes": 122279,
+      "fileCount": 121,
+      "rawBytes": 770388,
+      "gzipBytes": 398990,
+      "brotliBytes": 377597,
       "files": [
+        {
+          "file": "src/assets/images/beauty-hero-products.jpg",
+          "bytes": 252914,
+          "gzipBytes": 252690,
+          "brotliBytes": 252919,
+          "sha256": "17475fbeb2bca9a795201b84e33796b20e7b7f1011701b6ace9acd995598a60a"
+        },
         {
           "file": "src/assets/images/check.svg",
           "bytes": 824,
@@ -453,10 +467,10 @@
         },
         {
           "file": "src/assets/js/partials/product-card.js",
-          "bytes": 13352,
-          "gzipBytes": 3498,
-          "brotliBytes": 3000,
-          "sha256": "3cf4c997e00cd69fdc252965f5ae93088d43eb5fd9f9a28cfbe86c92f3d37bf1"
+          "bytes": 13614,
+          "gzipBytes": 3629,
+          "brotliBytes": 3090,
+          "sha256": "2995c525fb7525e07075f2271a1d3b8d1befca74cffdbb1befa9db56213fbd7e"
         },
         {
           "file": "src/assets/js/partials/tooltip.js",
@@ -782,10 +796,10 @@
         },
         {
           "file": "src/assets/styles/06-beauty/beauty.scss",
-          "bytes": 12232,
-          "gzipBytes": 2980,
-          "brotliBytes": 2546,
-          "sha256": "685624f3708efb627c797b12ba6734e6d0b2b6aad010abcf51fc029e724a2bd3"
+          "bytes": 18888,
+          "gzipBytes": 4314,
+          "brotliBytes": 3701,
+          "sha256": "453f721d704b55795acc6304827367c66c36acaaf22095ab18f01bfa1e823012"
         },
         {
           "file": "src/assets/styles/app.scss",
@@ -796,17 +810,17 @@
         },
         {
           "file": "src/locales/ar.json",
-          "bytes": 1601,
-          "gzipBytes": 723,
-          "brotliBytes": 561,
-          "sha256": "b6aaa7a9a2b403fc1bdbc193b5e040f6b4e8659c1953ee115dbba61f2c6b2e9d"
+          "bytes": 2444,
+          "gzipBytes": 1044,
+          "brotliBytes": 819,
+          "sha256": "e1c552315d35739d5cf2f4815af91cf8a9a6802500d9fc2500a16c4cdc8447e4"
         },
         {
           "file": "src/locales/en.json",
-          "bytes": 1251,
-          "gzipBytes": 535,
-          "brotliBytes": 414,
-          "sha256": "7198b3c309e3474088cfe223fff5e2e9b8b30808efdab511c13dc69addb41818"
+          "bytes": 1891,
+          "gzipBytes": 795,
+          "brotliBytes": 613,
+          "sha256": "8bc80db1e2b58141b7245bb717aae7da6652a39c32eb9ff0186cc7b1cb367174"
         },
         {
           "file": "src/views/components/footer/footer.twig",
@@ -817,10 +831,10 @@
         },
         {
           "file": "src/views/components/header/header.twig",
-          "bytes": 4267,
-          "gzipBytes": 1448,
-          "brotliBytes": 1198,
-          "sha256": "c528e1062039b3c69c0e5528d67901edad11b87436dfce1bbac36fffa9f6f445"
+          "bytes": 5368,
+          "gzipBytes": 1588,
+          "brotliBytes": 1314,
+          "sha256": "ade30d5850a793791e6536ecb006c7382de9bb1b6b9a474daa08ca5e1a40a562"
         },
         {
           "file": "src/views/components/home/beauty-collections.twig",
@@ -831,10 +845,10 @@
         },
         {
           "file": "src/views/components/home/beauty-hero.twig",
-          "bytes": 1361,
-          "gzipBytes": 548,
-          "brotliBytes": 425,
-          "sha256": "0bdecfa1aa221e44d0794105bbd52be1a3d6593d06faeb4b9d3853bbcedaa382"
+          "bytes": 3631,
+          "gzipBytes": 1168,
+          "brotliBytes": 911,
+          "sha256": "ce78f488d2952107ebc761ccfef39f8c85a890523e4b84cafcef33287255a3bc"
         },
         {
           "file": "src/views/components/home/beauty-routine.twig",
@@ -985,10 +999,10 @@
         },
         {
           "file": "src/views/layouts/master.twig",
-          "bytes": 12363,
-          "gzipBytes": 2737,
-          "brotliBytes": 2222,
-          "sha256": "2206942fa647a2f793932cc1f4e672bfa241627610f73b82e79d2c29b24c92ac"
+          "bytes": 12484,
+          "gzipBytes": 2788,
+          "brotliBytes": 2260,
+          "sha256": "aaee6751e9782f14fc078765316edc50d04fa18fe411c66c22f58d953c0cf242"
         },
         {
           "file": "src/views/pages/blog/index.twig",
@@ -1132,20 +1146,20 @@
         },
         {
           "file": "twilight.json",
-          "bytes": 43459,
-          "gzipBytes": 5732,
-          "brotliBytes": 4714,
-          "sha256": "d15eb60b012c340c7c067c64c2fbb00a951d7cae084f18674a08840d3b611c8d"
+          "bytes": 43530,
+          "gzipBytes": 5788,
+          "brotliBytes": 4771,
+          "sha256": "937c66a38202e9ec81a3e9a84c2a1d7d40469902138f757f46daacb2e84747f2"
         }
       ]
     },
     {
       "id": "runtime-manifest-views-locales-built",
       "description": "Manifest, Twig, locales, and all built public files; source assets excluded.",
-      "fileCount": 69,
-      "rawBytes": 772241,
-      "gzipBytes": 187444,
-      "brotliBytes": 161089,
+      "fileCount": 70,
+      "rawBytes": 1036883,
+      "gzipBytes": 442888,
+      "brotliBytes": 416288,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -1156,10 +1170,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 223390,
-          "gzipBytes": 34213,
-          "brotliBytes": 27580,
-          "sha256": "a6aa8a15a722fcc44e93c1157f8d566c8f6bacf68a9d11123f54d00b011d8dfe"
+          "bytes": 229899,
+          "gzipBytes": 35438,
+          "brotliBytes": 28642,
+          "sha256": "e51e76f2d793a28552ec09c2bc842c6d8764654094ef192dbb063e62e018432d"
         },
         {
           "file": "public/app.js",
@@ -1188,6 +1202,13 @@
           "gzipBytes": 12297,
           "brotliBytes": 10881,
           "sha256": "a491fc5ef0d83136f04bcb7643eb20a51ec3a118d30ea34890133aba8b7aefd6"
+        },
+        {
+          "file": "public/images/beauty-hero-products.jpg",
+          "bytes": 252914,
+          "gzipBytes": 252690,
+          "brotliBytes": 252919,
+          "sha256": "17475fbeb2bca9a795201b84e33796b20e7b7f1011701b6ace9acd995598a60a"
         },
         {
           "file": "public/images/check.svg",
@@ -1261,10 +1282,10 @@
         },
         {
           "file": "public/product-card.js",
-          "bytes": 10558,
-          "gzipBytes": 2877,
-          "brotliBytes": 2481,
-          "sha256": "168a08a0b227f9c93eea65d5b48edb02792a684bd86686bfd0282754b3ac138a"
+          "bytes": 10731,
+          "gzipBytes": 2958,
+          "brotliBytes": 2545,
+          "sha256": "a175484cd3a9790ddfb57377789bc3ee049afa7816cece24d4404e1837de13c7"
         },
         {
           "file": "public/product.js",
@@ -1289,17 +1310,17 @@
         },
         {
           "file": "src/locales/ar.json",
-          "bytes": 1601,
-          "gzipBytes": 723,
-          "brotliBytes": 561,
-          "sha256": "b6aaa7a9a2b403fc1bdbc193b5e040f6b4e8659c1953ee115dbba61f2c6b2e9d"
+          "bytes": 2444,
+          "gzipBytes": 1044,
+          "brotliBytes": 819,
+          "sha256": "e1c552315d35739d5cf2f4815af91cf8a9a6802500d9fc2500a16c4cdc8447e4"
         },
         {
           "file": "src/locales/en.json",
-          "bytes": 1251,
-          "gzipBytes": 535,
-          "brotliBytes": 414,
-          "sha256": "7198b3c309e3474088cfe223fff5e2e9b8b30808efdab511c13dc69addb41818"
+          "bytes": 1891,
+          "gzipBytes": 795,
+          "brotliBytes": 613,
+          "sha256": "8bc80db1e2b58141b7245bb717aae7da6652a39c32eb9ff0186cc7b1cb367174"
         },
         {
           "file": "src/views/components/footer/footer.twig",
@@ -1310,10 +1331,10 @@
         },
         {
           "file": "src/views/components/header/header.twig",
-          "bytes": 4267,
-          "gzipBytes": 1448,
-          "brotliBytes": 1198,
-          "sha256": "c528e1062039b3c69c0e5528d67901edad11b87436dfce1bbac36fffa9f6f445"
+          "bytes": 5368,
+          "gzipBytes": 1588,
+          "brotliBytes": 1314,
+          "sha256": "ade30d5850a793791e6536ecb006c7382de9bb1b6b9a474daa08ca5e1a40a562"
         },
         {
           "file": "src/views/components/home/beauty-collections.twig",
@@ -1324,10 +1345,10 @@
         },
         {
           "file": "src/views/components/home/beauty-hero.twig",
-          "bytes": 1361,
-          "gzipBytes": 548,
-          "brotliBytes": 425,
-          "sha256": "0bdecfa1aa221e44d0794105bbd52be1a3d6593d06faeb4b9d3853bbcedaa382"
+          "bytes": 3631,
+          "gzipBytes": 1168,
+          "brotliBytes": 911,
+          "sha256": "ce78f488d2952107ebc761ccfef39f8c85a890523e4b84cafcef33287255a3bc"
         },
         {
           "file": "src/views/components/home/beauty-routine.twig",
@@ -1478,10 +1499,10 @@
         },
         {
           "file": "src/views/layouts/master.twig",
-          "bytes": 12363,
-          "gzipBytes": 2737,
-          "brotliBytes": 2222,
-          "sha256": "2206942fa647a2f793932cc1f4e672bfa241627610f73b82e79d2c29b24c92ac"
+          "bytes": 12484,
+          "gzipBytes": 2788,
+          "brotliBytes": 2260,
+          "sha256": "aaee6751e9782f14fc078765316edc50d04fa18fe411c66c22f58d953c0cf242"
         },
         {
           "file": "src/views/pages/blog/index.twig",
@@ -1625,20 +1646,20 @@
         },
         {
           "file": "twilight.json",
-          "bytes": 43459,
-          "gzipBytes": 5732,
-          "brotliBytes": 4714,
-          "sha256": "d15eb60b012c340c7c067c64c2fbb00a951d7cae084f18674a08840d3b611c8d"
+          "bytes": 43530,
+          "gzipBytes": 5788,
+          "brotliBytes": 4771,
+          "sha256": "937c66a38202e9ec81a3e9a84c2a1d7d40469902138f757f46daacb2e84747f2"
         }
       ]
     },
     {
       "id": "project-excluding-tooling-docs",
       "description": "Project files excluding declared directories; includes build config, locks, source, and output.",
-      "fileCount": 151,
-      "rawBytes": 1296366,
-      "gzipBytes": 359630,
-      "brotliBytes": 309977,
+      "fileCount": 320,
+      "rawBytes": 19179603,
+      "gzipBytes": 17142251,
+      "brotliBytes": 16993067,
       "files": [
         {
           "file": ".gitignore",
@@ -1646,6 +1667,1140 @@
           "gzipBytes": 293,
           "brotliBytes": 267,
           "sha256": "c5bd04e57893150ad06655ff9f20917e6c1ae98c01cda41a268bf519349b0bca"
+        },
+        {
+          "file": ".kilo/.gitignore",
+          "bytes": 107,
+          "gzipBytes": 95,
+          "brotliBytes": 74,
+          "sha256": "1ff25b005585f501edf16194863ece8eef55d50d46eed6322095aabdf6eafb40"
+        },
+        {
+          "file": ".kilo/worktrees/.metadata_never_index",
+          "bytes": 0,
+          "gzipBytes": 20,
+          "brotliBytes": 1,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/.gitignore",
+          "bytes": 502,
+          "gzipBytes": 293,
+          "brotliBytes": 267,
+          "sha256": "c5bd04e57893150ad06655ff9f20917e6c1ae98c01cda41a268bf519349b0bca"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/.npmrc",
+          "bytes": 19,
+          "gzipBytes": 39,
+          "brotliBytes": 23,
+          "sha256": "7151cf397def0c2cb0ab65643701d27d335a72c90f775675b5f826bc7005818a"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/CHANGELOG.md",
+          "bytes": 1294,
+          "gzipBytes": 659,
+          "brotliBytes": 546,
+          "sha256": "054a6fdc9686a3802b200380b7397ccbb77fe4ff73a068a0d9ea3a6a6debfb32"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/README.md",
+          "bytes": 3716,
+          "gzipBytes": 1803,
+          "brotliBytes": 1463,
+          "sha256": "c54b15d1e54c45adf3b526e3af6303062ad706e0dc9f8fb223dd0c4e52a45018"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/SALLA_COMPLIANCE.md",
+          "bytes": 66965,
+          "gzipBytes": 19267,
+          "brotliBytes": 15907,
+          "sha256": "65b49628447eda4412d3e16a548add0baab13cf4f888f87e44dec1d0a3105f59"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/package.json",
+          "bytes": 1863,
+          "gzipBytes": 734,
+          "brotliBytes": 647,
+          "sha256": "0cecbca9d43184c96d723455b11b93c7f14aecc1102f33b54824a148ac251a9f"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/pnpm-lock.yaml",
+          "bytes": 221389,
+          "gzipBytes": 65006,
+          "brotliBytes": 56796,
+          "sha256": "c119bf681bde571d1754bd0ffee93ea1a3f95f9a96d6d01d1c130951dd425e82"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/pnpm-workspace.yaml",
+          "bytes": 131,
+          "gzipBytes": 114,
+          "brotliBytes": 87,
+          "sha256": "9d3491eb41ee0e70d34ee6a6cb2ca1f6a7cdec5473f617c5882e167e4d2dd5f8"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/postcss.config.js",
+          "bytes": 229,
+          "gzipBytes": 154,
+          "brotliBytes": 138,
+          "sha256": "2cf19600e08bbc09668c5ca85570feb439f0d64d46c3d441b31a5f944641075f"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/preview/reference-home.html",
+          "bytes": 11685,
+          "gzipBytes": 3287,
+          "brotliBytes": 2582,
+          "sha256": "3329ec88db6f5d56100018f87e1bebe89560b68b11961a39a25d5321ce026fb6"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/add-product-toast.js",
+          "bytes": 7427,
+          "gzipBytes": 2713,
+          "brotliBytes": 2200,
+          "sha256": "84cd96442173166c249457e3b0444ce387540d5a041457fc4d953718b0c1a492"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/app.css",
+          "bytes": 229568,
+          "gzipBytes": 35380,
+          "brotliBytes": 28536,
+          "sha256": "1c3c8d992d3b8737d1bcce3abe752ff048df389bd496e634ccf19f807d6257ae"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/app.js",
+          "bytes": 112659,
+          "gzipBytes": 32508,
+          "brotliBytes": 28784,
+          "sha256": "99811e1e5acd2385ad4f1b76205506681d7e2471a30d48cedd44821d8133f61d"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/checkout.js",
+          "bytes": 7068,
+          "gzipBytes": 2630,
+          "brotliBytes": 2308,
+          "sha256": "d001ad9696b7fc9236dda2eb2bd0f85da7ea92200eb8b3a5cf36f46713e94270"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/digital-files.js",
+          "bytes": 2628,
+          "gzipBytes": 725,
+          "brotliBytes": 578,
+          "sha256": "0ea3e88b523454d92093b0f9d6dd2522f731e7f696a86dafe82b6bd2440c1c7e"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/home.js",
+          "bytes": 37655,
+          "gzipBytes": 12297,
+          "brotliBytes": 10881,
+          "sha256": "a491fc5ef0d83136f04bcb7643eb20a51ec3a118d30ea34890133aba8b7aefd6"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/beauty-hero-products.png",
+          "bytes": 2708791,
+          "gzipBytes": 2693933,
+          "brotliBytes": 2680325,
+          "sha256": "0190158fcfc57934acf2fc0ec9fde485f44aec4a009477688157e5196dc8ecfb"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/check.svg",
+          "bytes": 824,
+          "gzipBytes": 441,
+          "brotliBytes": 395,
+          "sha256": "0d1a1977da28f83e4294b3b64c9b4cb6afcc46377eb99bf07dbdf5d71d208215"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/collections/brightening-serum.png",
+          "bytes": 1408833,
+          "gzipBytes": 1395811,
+          "brotliBytes": 1394060,
+          "sha256": "568f731fd836d8bd98bbb0a1b3fbfe30d51e2fda6053403989903e606385b503"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/collections/complete-routine.png",
+          "bytes": 1825898,
+          "gzipBytes": 1812977,
+          "brotliBytes": 1807226,
+          "sha256": "d065cee7e194f11d7d9f8b8ac61ddd763b9fecd0cc35471ac6bc596d7e102186"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/collections/dry-skin.png",
+          "bytes": 1781465,
+          "gzipBytes": 1768569,
+          "brotliBytes": 1765824,
+          "sha256": "f2127e729f686a4296d0151d5c2e11a4c82b4f0d78fd8f5884074a3866e3bbdb"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/delivery-bro.svg",
+          "bytes": 7573,
+          "gzipBytes": 2977,
+          "brotliBytes": 2683,
+          "sha256": "f0e6d85ab51ae8c9370e4b5ad14b7eaa558451b0a0a603b2ead109c04aa23c58"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/placeholder.png",
+          "bytes": 20664,
+          "gzipBytes": 15085,
+          "brotliBytes": 14897,
+          "sha256": "495a4948585c5da0579f1b64574c32d8cf99ea67881688442927c8fdff07eda9"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/s-empty-small.png",
+          "bytes": 107,
+          "gzipBytes": 130,
+          "brotliBytes": 111,
+          "sha256": "c8fd3fc49f7433b63ddbdf00a309ff3713eac113b8a5540b0d5f504b9bc5587a"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/s-empty-square.png",
+          "bytes": 95,
+          "gzipBytes": 112,
+          "brotliBytes": 99,
+          "sha256": "172e4e1fca052a61b5d95ba3b321c1f748fbd0aa08ec5914391abef89ee9f3cd"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/s-empty-wide.png",
+          "bytes": 125,
+          "gzipBytes": 148,
+          "brotliBytes": 129,
+          "sha256": "3aaf1b82ca349247c1da5e8a293e7482c063c77b41140f1b640bc1983411e4bc"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/images/s-empty.png",
+          "bytes": 119,
+          "gzipBytes": 131,
+          "brotliBytes": 123,
+          "sha256": "bf2ffbcf4269eac339246b6ef2e37f3abb33a2905decffba0e1cf198190342e8"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/main-menu.js",
+          "bytes": 5321,
+          "gzipBytes": 1704,
+          "brotliBytes": 1441,
+          "sha256": "2803ede1e3640f465c1798e756d998d45f603b45d0a3a6994ca4bae1f7c8864d"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/order.js",
+          "bytes": 980,
+          "gzipBytes": 495,
+          "brotliBytes": 413,
+          "sha256": "55402ca8697514bc8b342d226d5a01359777aed6bf61347eea050ed925403462"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/pages.js",
+          "bytes": 2077,
+          "gzipBytes": 999,
+          "brotliBytes": 871,
+          "sha256": "bb6d00ef56469d784e36fac9281a9350f4e23b7d4dd56b12a3566720f08eb225"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/product-card.js",
+          "bytes": 10731,
+          "gzipBytes": 2958,
+          "brotliBytes": 2545,
+          "sha256": "a175484cd3a9790ddfb57377789bc3ee049afa7816cece24d4404e1837de13c7"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/product.js",
+          "bytes": 45558,
+          "gzipBytes": 14573,
+          "brotliBytes": 12920,
+          "sha256": "14a59236f9c0601d2d8dca2f24d12aa03f2787f2c372e6379718b9d6ac7fba87"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/testimonials.js",
+          "bytes": 920,
+          "gzipBytes": 518,
+          "brotliBytes": 424,
+          "sha256": "a3b6eab2824c457b19703651fbf7d64de517e73cb64cb678f1d289130c15a4b1"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/public/wishlist-card.js",
+          "bytes": 2103,
+          "gzipBytes": 797,
+          "brotliBytes": 665,
+          "sha256": "03f409fbc2ab2c19b30f95f4517f50b1fa1cfc161621e5b9be61ddb9787cac01"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/beauty-hero-products.png",
+          "bytes": 2708791,
+          "gzipBytes": 2693933,
+          "brotliBytes": 2680325,
+          "sha256": "0190158fcfc57934acf2fc0ec9fde485f44aec4a009477688157e5196dc8ecfb"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/check.svg",
+          "bytes": 824,
+          "gzipBytes": 441,
+          "brotliBytes": 395,
+          "sha256": "0d1a1977da28f83e4294b3b64c9b4cb6afcc46377eb99bf07dbdf5d71d208215"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/collections/brightening-serum.png",
+          "bytes": 1408833,
+          "gzipBytes": 1395811,
+          "brotliBytes": 1394060,
+          "sha256": "568f731fd836d8bd98bbb0a1b3fbfe30d51e2fda6053403989903e606385b503"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/collections/complete-routine.png",
+          "bytes": 1825898,
+          "gzipBytes": 1812977,
+          "brotliBytes": 1807226,
+          "sha256": "d065cee7e194f11d7d9f8b8ac61ddd763b9fecd0cc35471ac6bc596d7e102186"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/collections/dry-skin.png",
+          "bytes": 1781465,
+          "gzipBytes": 1768569,
+          "brotliBytes": 1765824,
+          "sha256": "f2127e729f686a4296d0151d5c2e11a4c82b4f0d78fd8f5884074a3866e3bbdb"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/delivery-bro.svg",
+          "bytes": 7573,
+          "gzipBytes": 2977,
+          "brotliBytes": 2683,
+          "sha256": "f0e6d85ab51ae8c9370e4b5ad14b7eaa558451b0a0a603b2ead109c04aa23c58"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/placeholder.png",
+          "bytes": 20664,
+          "gzipBytes": 15085,
+          "brotliBytes": 14897,
+          "sha256": "495a4948585c5da0579f1b64574c32d8cf99ea67881688442927c8fdff07eda9"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/s-empty-small.png",
+          "bytes": 107,
+          "gzipBytes": 130,
+          "brotliBytes": 111,
+          "sha256": "c8fd3fc49f7433b63ddbdf00a309ff3713eac113b8a5540b0d5f504b9bc5587a"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/s-empty-square.png",
+          "bytes": 95,
+          "gzipBytes": 112,
+          "brotliBytes": 99,
+          "sha256": "172e4e1fca052a61b5d95ba3b321c1f748fbd0aa08ec5914391abef89ee9f3cd"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/s-empty-wide.png",
+          "bytes": 125,
+          "gzipBytes": 148,
+          "brotliBytes": 129,
+          "sha256": "3aaf1b82ca349247c1da5e8a293e7482c063c77b41140f1b640bc1983411e4bc"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/images/s-empty.png",
+          "bytes": 119,
+          "gzipBytes": 131,
+          "brotliBytes": 123,
+          "sha256": "bf2ffbcf4269eac339246b6ef2e37f3abb33a2905decffba0e1cf198190342e8"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/app-helpers.js",
+          "bytes": 3951,
+          "gzipBytes": 929,
+          "brotliBytes": 811,
+          "sha256": "3aeb70bc650b4bc7a7045b39e8a98615d3d222648e57c0a72764c91a35c9d032"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/app.js",
+          "bytes": 9411,
+          "gzipBytes": 3263,
+          "brotliBytes": 2775,
+          "sha256": "6242e2c9f2a11d93f435024d715b1df98c8986f31ff4ff93310e52bfd690bb0a"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/base-page.js",
+          "bytes": 926,
+          "gzipBytes": 491,
+          "brotliBytes": 381,
+          "sha256": "038d30a8d374d820f69d9be485d8a33467b49b38ec4f4b832798e18a4f043fae"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/beauty-routine.js",
+          "bytes": 1705,
+          "gzipBytes": 699,
+          "brotliBytes": 588,
+          "sha256": "6ac5130d5321b2717b80c71074f964986f771d43b9da077eab08826bc106cb66"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/blog.js",
+          "bytes": 2932,
+          "gzipBytes": 1021,
+          "brotliBytes": 841,
+          "sha256": "6f19f9d841e67d8a3627ba31b18fe68f6449e16eb500d25fad1324a6b62e2f9c"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/brands.js",
+          "bytes": 762,
+          "gzipBytes": 404,
+          "brotliBytes": 325,
+          "sha256": "0b30d436c8b71294776eca5fc3cdf05bda6a9b3577d76038a806f7f4e18651ba"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/cart.js",
+          "bytes": 7736,
+          "gzipBytes": 2375,
+          "brotliBytes": 2044,
+          "sha256": "b17930e3b972729367cac1fe3ec6972fcc00430a69cf396315667d16d8705cdc"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/home.js",
+          "bytes": 1223,
+          "gzipBytes": 586,
+          "brotliBytes": 476,
+          "sha256": "b8f89321edeecef9653b5e0417807509c3eb91ecadc0e0ac48031cc744f603d3"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/loyalty.js",
+          "bytes": 1176,
+          "gzipBytes": 391,
+          "brotliBytes": 326,
+          "sha256": "d854957dae56391d4a9a3fee722e69518b649c055580dd20fa15ca977fcee922"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/order.js",
+          "bytes": 749,
+          "gzipBytes": 316,
+          "brotliBytes": 250,
+          "sha256": "48185dba534e7f7394141abb826443b53e6666bf1c110cfe8ac160dbf3108b4d"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/partials/add-product-toast.js",
+          "bytes": 9329,
+          "gzipBytes": 3030,
+          "brotliBytes": 2459,
+          "sha256": "3b4b62a5972cac4b8890f134c19e20a29383af3d35cd27573e486fad99d9ad85"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/partials/anime.js",
+          "bytes": 2592,
+          "gzipBytes": 585,
+          "brotliBytes": 498,
+          "sha256": "475be6bf7eff9335f6321eace5a6b0799c8ce2fb96006603e5929ed310e39865"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/partials/digital-files.js",
+          "bytes": 3250,
+          "gzipBytes": 813,
+          "brotliBytes": 669,
+          "sha256": "3326c2b43eaa04f6c04d93a71111371aa7fac4a8e0700ce06a8ba95ae03fddee"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/partials/image-zoom.js",
+          "bytes": 2376,
+          "gzipBytes": 959,
+          "brotliBytes": 764,
+          "sha256": "15a169564142e460e398eb3c65b2a375447221711b27769ea7a2388c97ee2fc8"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/partials/main-menu.js",
+          "bytes": 9533,
+          "gzipBytes": 2623,
+          "brotliBytes": 2196,
+          "sha256": "e9bacacb6cd22f5ea764f04cadee46b7bcd7b76a34e7e0914b4130ed1339b59c"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/partials/product-card.js",
+          "bytes": 13614,
+          "gzipBytes": 3629,
+          "brotliBytes": 3090,
+          "sha256": "2995c525fb7525e07075f2271a1d3b8d1befca74cffdbb1befa9db56213fbd7e"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/partials/tooltip.js",
+          "bytes": 1834,
+          "gzipBytes": 517,
+          "brotliBytes": 410,
+          "sha256": "8e7e017710a78b5109b663392c271651d754e57985cb71d76014c447bad37270"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/partials/validate-product-options.js",
+          "bytes": 5485,
+          "gzipBytes": 1596,
+          "brotliBytes": 1350,
+          "sha256": "2ca2e47eee1ebfb6887e38afd189937cc6c4b4a1b280eccc4d561eef9c1bac54"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/partials/wishlist-card.js",
+          "bytes": 2201,
+          "gzipBytes": 835,
+          "brotliBytes": 680,
+          "sha256": "875912308f223629950156d7239bfea977da8f4f505bf4925e7e6d9accf9ae56"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/product.js",
+          "bytes": 5069,
+          "gzipBytes": 1732,
+          "brotliBytes": 1440,
+          "sha256": "542fde601dae287592fd6fe478e12dca935ce89c532acfdc3ea141412c32e74a"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/products.js",
+          "bytes": 2266,
+          "gzipBytes": 864,
+          "brotliBytes": 697,
+          "sha256": "c44f5fc8be76cd5004dd455a342d0fd2b35174a97638baf0a464ffc6431f66fd"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/testimonials.js",
+          "bytes": 776,
+          "gzipBytes": 375,
+          "brotliBytes": 320,
+          "sha256": "dfaa2ffb8ba1f0bd0566ae9d46238f5de3036ae6b1dec62d3fa8541f6da5cbaa"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/thankyou.js",
+          "bytes": 537,
+          "gzipBytes": 318,
+          "brotliBytes": 264,
+          "sha256": "2ddb971bb50e46de9027daa2dad24fbb92f7bcca188353b3f998c3ae3d6f4ecf"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/twilight.js",
+          "bytes": 640,
+          "gzipBytes": 395,
+          "brotliBytes": 316,
+          "sha256": "3cd210a79a153697382dfbcc6848d0069d519fc15767b991e0c5d79fe0e56056"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/js/wishlist.js",
+          "bytes": 1632,
+          "gzipBytes": 653,
+          "brotliBytes": 562,
+          "sha256": "c723dfc89e648282671333df6c758e488c518d181ef221878e82b88979d8e748"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/01-settings/breakpoints.scss",
+          "bytes": 372,
+          "gzipBytes": 157,
+          "brotliBytes": 122,
+          "sha256": "fe6da46cbe6510c892fbabdf778037fa799b845dfbc18e0666bc8fa438eb979a"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/01-settings/fonts.scss",
+          "bytes": 0,
+          "gzipBytes": 20,
+          "brotliBytes": 1,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/01-settings/global.scss",
+          "bytes": 663,
+          "gzipBytes": 338,
+          "brotliBytes": 284,
+          "sha256": "c5c5cede9d76b13be9c7d77abbc39dcca253dfac1356d078aec4ce6d06e3cffd"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/01-settings/tailwind.scss",
+          "bytes": 58,
+          "gzipBytes": 60,
+          "brotliBytes": 53,
+          "sha256": "186419c47e46d1688974fe6d1d4688d7234f1790113a0c1e933526b522c9a04c"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/02-generic/_mixins.scss",
+          "bytes": 170,
+          "gzipBytes": 132,
+          "brotliBytes": 100,
+          "sha256": "81db2ff71164a6c69e7629637d8bd09c641b7138c7747bf9685a8afd010ee0ea"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/02-generic/animations.scss",
+          "bytes": 1468,
+          "gzipBytes": 416,
+          "brotliBytes": 356,
+          "sha256": "59337f92d0c4d41a7540123e226c3eda918ef2671a2753cbebe18be34879ef93"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/02-generic/common.scss",
+          "bytes": 7957,
+          "gzipBytes": 2921,
+          "brotliBytes": 2513,
+          "sha256": "bea9aefc3c62dd7ea16ff0239f7591d777b5b502f46ce52e4e3c893a9e3a6b66"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/02-generic/lazyload.scss",
+          "bytes": 383,
+          "gzipBytes": 185,
+          "brotliBytes": 146,
+          "sha256": "70cf5141fa6f96dff1fba44a0ca02456ccfffb0622103531fe5524809d771e78"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/02-generic/ltr.scss",
+          "bytes": 410,
+          "gzipBytes": 254,
+          "brotliBytes": 205,
+          "sha256": "1fff51d3383b3fee90b611268eb70b611e6b9f7f99c0dc1f038bfd67d5108d02"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/02-generic/reset.scss",
+          "bytes": 1017,
+          "gzipBytes": 449,
+          "brotliBytes": 351,
+          "sha256": "5a5736d5baf064a675d685d2d56a655c13c0ff1cbc8f9f8ac7d790551c6be9bb"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/02-generic/rtl.scss",
+          "bytes": 455,
+          "gzipBytes": 279,
+          "brotliBytes": 211,
+          "sha256": "130622cf400ed2d57b75a2e3c7b1f736af1ed5214e2d92d0926ef178a43e716f"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/02-generic/tooltip.scss",
+          "bytes": 2121,
+          "gzipBytes": 600,
+          "brotliBytes": 468,
+          "sha256": "3de18dad5f829f5b2da9fd882d40416c70e4b1ac33e6b8c0d4b29749b7b01248"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/03-elements/buttons.scss",
+          "bytes": 6089,
+          "gzipBytes": 1880,
+          "brotliBytes": 1592,
+          "sha256": "60f3c267a8a2179bbc7ec5e4e3e081f561cb07c03d4a7817fa58b0ddf8c830fe"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/03-elements/form.scss",
+          "bytes": 1101,
+          "gzipBytes": 514,
+          "brotliBytes": 408,
+          "sha256": "b6e8e2f2e06e6d709119c481d3d9085c7670b3ba48190e140713746235299e80"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/03-elements/product-card.scss",
+          "bytes": 6976,
+          "gzipBytes": 1671,
+          "brotliBytes": 1447,
+          "sha256": "e146248bbfb5b3aa27ddec96475a0f80e039d4ee71eb9656d7cf1655b4b6f7f7"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/03-elements/radio-images.scss",
+          "bytes": 1615,
+          "gzipBytes": 637,
+          "brotliBytes": 502,
+          "sha256": "20518550879fd7b49d43b3627cba51dee691b82fe295f222c261e6e13fc8bb08"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/03-elements/radio.scss",
+          "bytes": 2205,
+          "gzipBytes": 726,
+          "brotliBytes": 584,
+          "sha256": "f383f7429c866e5d6fe8bf2db7fa3bb7526024adcea62b1e1e680c6334da7abc"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/03-elements/testimonials.scss",
+          "bytes": 2757,
+          "gzipBytes": 859,
+          "brotliBytes": 762,
+          "sha256": "df63aecf789eba2ea63877cfe99de2168d65f9e725b9a4979f8aef70e8e730a8"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/add-product-toast.scss",
+          "bytes": 3126,
+          "gzipBytes": 935,
+          "brotliBytes": 808,
+          "sha256": "9eedd433da5197512d1e280070a9a44e7722d65d7f71f8ec97382a5940204737"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/brands.scss",
+          "bytes": 1149,
+          "gzipBytes": 525,
+          "brotliBytes": 439,
+          "sha256": "2aef4d6f96af6f74697da205695e4cece068a4f0fa2b19910422babc7e53d83c"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/filters.scss",
+          "bytes": 0,
+          "gzipBytes": 20,
+          "brotliBytes": 1,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/footer.scss",
+          "bytes": 831,
+          "gzipBytes": 373,
+          "brotliBytes": 312,
+          "sha256": "35b58be9639c89fec487020428d0de4f1ffdbbb7e4aebfeb1e35791eadd32295"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/gifting.scss",
+          "bytes": 369,
+          "gzipBytes": 213,
+          "brotliBytes": 159,
+          "sha256": "6a6afd2c61a85b259beef51058e5e0eb20017dbf274f7298674c4dd22e8c9137"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/header.scss",
+          "bytes": 6293,
+          "gzipBytes": 2238,
+          "brotliBytes": 1917,
+          "sha256": "70f66fd42bd2356225d19fe0c497a576b3f85c5a0895234e4b475873de870286"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/home-blocks.scss",
+          "bytes": 8647,
+          "gzipBytes": 2658,
+          "brotliBytes": 2305,
+          "sha256": "6c960cb92ffa76cab3fbe4e68fdbbb8478d6867b1bd1fe8c9109888e2a44e513"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/loyalty.scss",
+          "bytes": 1923,
+          "gzipBytes": 753,
+          "brotliBytes": 643,
+          "sha256": "ee666b8a3b18d377ef05a6642509e7bb8f0444a80138c2be044c8a0d2f1320ac"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/menus.scss",
+          "bytes": 5113,
+          "gzipBytes": 1739,
+          "brotliBytes": 1476,
+          "sha256": "f2f1166f63aae2e5c8d2b68de6ffb91775c838fdbe612c6658c920533ac2b976"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/no-content-placeholder.scss",
+          "bytes": 298,
+          "gzipBytes": 183,
+          "brotliBytes": 148,
+          "sha256": "24ddf76f2ce041874b3c966f77716459df588b7fa9624900b837a4cbc15e188d"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/product.scss",
+          "bytes": 8699,
+          "gzipBytes": 2967,
+          "brotliBytes": 2537,
+          "sha256": "3f5f6261d1b58d50ac9741c050c2c9aa796378a3ff231e8f6f442b59c5311f00"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/slider.scss",
+          "bytes": 3392,
+          "gzipBytes": 1308,
+          "brotliBytes": 1117,
+          "sha256": "3c209b42c578b776e0b4e03ed6e3ac8a5e5cad42e9f3fc17ee257c850b6147ef"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/user-menu.scss",
+          "bytes": 1479,
+          "gzipBytes": 630,
+          "brotliBytes": 499,
+          "sha256": "419b951f49380272102ca752bdc74009d851851d55fb244638dfb1f389d90511"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/user-pages.scss",
+          "bytes": 2592,
+          "gzipBytes": 1048,
+          "brotliBytes": 858,
+          "sha256": "aab37e2bf3e3abcef5ceddd98ca335f23e2278de9a26ca558c4af642461cb8c3"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/04-components/virtooal.scss",
+          "bytes": 1372,
+          "gzipBytes": 543,
+          "brotliBytes": 421,
+          "sha256": "337a882718633725b294830b42300357b1973573c4d280842f6eded138aa3a0e"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/05-utilities/chat-bots.scss",
+          "bytes": 1551,
+          "gzipBytes": 602,
+          "brotliBytes": 460,
+          "sha256": "e72e32f1ea646e47e3de602f5fd8977f77a92bb72cd7942faf1c7bbfbd77e022"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/05-utilities/font-customization.scss",
+          "bytes": 146,
+          "gzipBytes": 118,
+          "brotliBytes": 86,
+          "sha256": "154ddc136de1f4160a9c375b110da7e1699497ba5a72faafdb38ed761360667e"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/05-utilities/safari-fixes.scss",
+          "bytes": 234,
+          "gzipBytes": 189,
+          "brotliBytes": 132,
+          "sha256": "509ff26ca77697ea7bc72ecf556c12c83d7617587e8f2c42ee94e9c554fe1437"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/05-utilities/swal.scss",
+          "bytes": 1178,
+          "gzipBytes": 464,
+          "brotliBytes": 387,
+          "sha256": "a5c79b3b8dc01223f1364edb5007547e24373507af935faed96477b14b6a4894"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/06-beauty/beauty.scss",
+          "bytes": 18590,
+          "gzipBytes": 4258,
+          "brotliBytes": 3651,
+          "sha256": "d862a65855c4e0f8321adbab28c6a3f3903805741ed2109b18b44f4cf4f7362d"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/assets/styles/app.scss",
+          "bytes": 3729,
+          "gzipBytes": 1140,
+          "brotliBytes": 938,
+          "sha256": "c9b9e6c2e34436725970374f5d4428972ffb9ac5af24f54c5a7a19b10f2ad0c0"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/locales/ar.json",
+          "bytes": 1601,
+          "gzipBytes": 723,
+          "brotliBytes": 561,
+          "sha256": "b6aaa7a9a2b403fc1bdbc193b5e040f6b4e8659c1953ee115dbba61f2c6b2e9d"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/locales/en.json",
+          "bytes": 1251,
+          "gzipBytes": 535,
+          "brotliBytes": 414,
+          "sha256": "7198b3c309e3474088cfe223fff5e2e9b8b30808efdab511c13dc69addb41818"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/footer/footer.twig",
+          "bytes": 3115,
+          "gzipBytes": 1051,
+          "brotliBytes": 870,
+          "sha256": "5eb9c2579a9150678b57539f8db9aa438f15a2832eaafece78fddcb32f424b32"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/header/header.twig",
+          "bytes": 5361,
+          "gzipBytes": 1594,
+          "brotliBytes": 1327,
+          "sha256": "f3f3757a22ea582b9ab72f9abda53fe8c37cd01d103bafcce11427a0828b2dd7"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/beauty-collections.twig",
+          "bytes": 1359,
+          "gzipBytes": 511,
+          "brotliBytes": 412,
+          "sha256": "bb1c73885576511f473bd579273cbf08cca52fb2ec20de0f7507767f26978580"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/beauty-hero.twig",
+          "bytes": 4111,
+          "gzipBytes": 1592,
+          "brotliBytes": 1238,
+          "sha256": "0f7b0bf49c5de08b017c86a439a471e979d2b302240d1e3e77d71429f4cbfc5d"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/beauty-routine.twig",
+          "bytes": 2029,
+          "gzipBytes": 683,
+          "brotliBytes": 544,
+          "sha256": "37e8cd47c1ca41229faef4978b0c861d0b0dfb2cfe87118006a474dc13d562e1"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/brands.twig",
+          "bytes": 2479,
+          "gzipBytes": 891,
+          "brotliBytes": 740,
+          "sha256": "8e09ef084e0dbeed059f4b7cecd6d13ee8a7ed8d0b62ccb76d60f1c2f58f9c85"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/custom-testimonials.twig",
+          "bytes": 2659,
+          "gzipBytes": 937,
+          "brotliBytes": 756,
+          "sha256": "91974404c5641d0cd236e31e8fe1953112e4d2c0bba95314fff46ee72c9f8ac6"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/enhanced-slider.twig",
+          "bytes": 2324,
+          "gzipBytes": 810,
+          "brotliBytes": 639,
+          "sha256": "7b08ffef6b1e1f0e7691c34e8a0f226acdc778b94aca6084f50e98692d23f91c"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/enhanced-square-banners.twig",
+          "bytes": 2097,
+          "gzipBytes": 633,
+          "brotliBytes": 513,
+          "sha256": "36381853dc9555e4b9f58b6c2c09ab2e78d6af89f22bea53a498986fb155e6d4"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/featured-products-style1.twig",
+          "bytes": 4184,
+          "gzipBytes": 918,
+          "brotliBytes": 768,
+          "sha256": "260e7c15664f9e9ed5f1559a6e44a6009a1fd865793e4c5855f7b45929f531eb"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/featured-products-style2.twig",
+          "bytes": 3862,
+          "gzipBytes": 979,
+          "brotliBytes": 816,
+          "sha256": "cdbef0a2ee333421c4ac47e931cc6761715ac085159219288db9316227ccad76"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/featured-products-style3.twig",
+          "bytes": 2962,
+          "gzipBytes": 733,
+          "brotliBytes": 591,
+          "sha256": "e9d26e41b7a168439b860414f9a66b27c84602c5c131d04f9577f685eb112958"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/fixed-banner.twig",
+          "bytes": 1679,
+          "gzipBytes": 534,
+          "brotliBytes": 410,
+          "sha256": "b3fb3cf614ca1c397f64543585f68be5356e6d43598db31dfb1ad29ec989e52f"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/fixed-products.twig",
+          "bytes": 1833,
+          "gzipBytes": 709,
+          "brotliBytes": 571,
+          "sha256": "64b6d7659c51d593bb1335c864f0fcfeb5462aa105460ef4be7369b036957778"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/latest-products.twig",
+          "bytes": 648,
+          "gzipBytes": 315,
+          "brotliBytes": 243,
+          "sha256": "eac4358e70c7497841cd2fa943d7491e767143f99b9575ee7f0c08640be5ca7e"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/main-links.twig",
+          "bytes": 1119,
+          "gzipBytes": 457,
+          "brotliBytes": 353,
+          "sha256": "49934ada426e090ec140e4b90ead6b0c3bb10c48ac343c60e8531c4fda1cd4bf"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/parallax-background.twig",
+          "bytes": 1578,
+          "gzipBytes": 580,
+          "brotliBytes": 459,
+          "sha256": "8dbc09361c60ce42fb88ee2433948619023d67b95d76deabcaa60602484415ba"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/photos-slider.twig",
+          "bytes": 1552,
+          "gzipBytes": 574,
+          "brotliBytes": 440,
+          "sha256": "2b812641c646e76e646c9187816ca2e572e11e6174ee5c8b6bd7cbfe90c7cb76"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/products-slider.twig",
+          "bytes": 1657,
+          "gzipBytes": 546,
+          "brotliBytes": 440,
+          "sha256": "82d73e7ee21ccc237640470ee919e9250eb233f5e177f50bbaaa4e9665649285"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/slider-products-with-header.twig",
+          "bytes": 2333,
+          "gzipBytes": 721,
+          "brotliBytes": 582,
+          "sha256": "f4f724727702608754564e3bf52e69eb99e8b6921ab310e2ab10120f61ae43af"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/square-photos.twig",
+          "bytes": 2455,
+          "gzipBytes": 855,
+          "brotliBytes": 698,
+          "sha256": "cd6284e3247ee121ca813fe971f672c983f111c0a2f0e27877330a0674111dd0"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/store-features.twig",
+          "bytes": 403,
+          "gzipBytes": 246,
+          "brotliBytes": 197,
+          "sha256": "3c72f4079fafbe76cef29c0ac868fa61cb6a266eda61afa813f99e0f1f5821ab"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/testimonials.twig",
+          "bytes": 888,
+          "gzipBytes": 375,
+          "brotliBytes": 306,
+          "sha256": "c9f77fd2038d4f2086f836a9beb66a77f608f683788664d0487f496e3c8b6363"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/components/home/youtube.twig",
+          "bytes": 561,
+          "gzipBytes": 265,
+          "brotliBytes": 194,
+          "sha256": "05b3cae85fb3b2b07be3e4b018c5d99273e5a8cf430bb0984d07a188cdc546d3"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/layouts/customer.twig",
+          "bytes": 2461,
+          "gzipBytes": 886,
+          "brotliBytes": 739,
+          "sha256": "cdda82a439367ef32df0fc79412d422df077df4335406ecb6b24b892345ec924"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/layouts/master.twig",
+          "bytes": 12484,
+          "gzipBytes": 2788,
+          "brotliBytes": 2260,
+          "sha256": "aaee6751e9782f14fc078765316edc50d04fa18fe411c66c22f58d953c0cf242"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/blog/index.twig",
+          "bytes": 12157,
+          "gzipBytes": 2533,
+          "brotliBytes": 2163,
+          "sha256": "b6a4c242185d505603282dd07717f0c595b217fefa5c1e555d5e6b875a50d83b"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/blog/single.twig",
+          "bytes": 6572,
+          "gzipBytes": 1608,
+          "brotliBytes": 1373,
+          "sha256": "6aa0368a28f59a738636148f30c25c9fb3a15ed1b41bfcdcaf337b9a4d1a9eb8"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/brands/index.twig",
+          "bytes": 3588,
+          "gzipBytes": 1074,
+          "brotliBytes": 930,
+          "sha256": "63c89056ad52ff61f025cff75b04fcdc3c88026c15eccdec490c2f372d1118da"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/brands/single.twig",
+          "bytes": 3576,
+          "gzipBytes": 1010,
+          "brotliBytes": 861,
+          "sha256": "faffcce2332f3b7ddbe1c764b8f5faa9cf16ad394fbb258478a19bccdc0d2450"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/cart.twig",
+          "bytes": 19745,
+          "gzipBytes": 3806,
+          "brotliBytes": 3255,
+          "sha256": "40cbaad55f795e5d39bbcfd31c021522697dbc472bb64657588d3ba27344b1d3"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/customer/notifications.twig",
+          "bytes": 1193,
+          "gzipBytes": 324,
+          "brotliBytes": 271,
+          "sha256": "aae7677c0fa9eae545c12f5f38c3d14f8922f7021527d1d300e276db4974aafc"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/customer/orders/index.twig",
+          "bytes": 873,
+          "gzipBytes": 366,
+          "brotliBytes": 291,
+          "sha256": "64dfa3f66a63b6f465bc051ab6c6bf8b0bc4194599cfc08aaa4808e3dcb44281"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/customer/orders/single.twig",
+          "bytes": 41805,
+          "gzipBytes": 5837,
+          "brotliBytes": 4988,
+          "sha256": "f5157a664f261ad2247c689853c233b4b8d6a0e70f45f2163bcbfe534b7c7fd9"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/customer/profile.twig",
+          "bytes": 6413,
+          "gzipBytes": 1323,
+          "brotliBytes": 1110,
+          "sha256": "5368faea4da9f9d970131eaf6244fbf03200ebf946033127093991852189f56b"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/customer/wallet.twig",
+          "bytes": 641,
+          "gzipBytes": 203,
+          "brotliBytes": 166,
+          "sha256": "18900661a74bc48da1dde8571fd70ddbe94e292e9f66914c761e6ceb79597968"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/customer/wishlist.twig",
+          "bytes": 759,
+          "gzipBytes": 352,
+          "brotliBytes": 276,
+          "sha256": "468ba18bbaff3bf6274712aa4e0b3ec8a936f9e3fda8e396e69450b104fbdbe3"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/index.twig",
+          "bytes": 709,
+          "gzipBytes": 242,
+          "brotliBytes": 185,
+          "sha256": "d96c476dd70c921c829defa98b5a532023b428fee4dea2b178a5a2b0fcdabb62"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/loyalty.twig",
+          "bytes": 11833,
+          "gzipBytes": 2227,
+          "brotliBytes": 1892,
+          "sha256": "27c30d82f8594723ea509fcab889baa8cc362f46741157134156d8d730b9ee60"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/page-single.twig",
+          "bytes": 1687,
+          "gzipBytes": 631,
+          "brotliBytes": 514,
+          "sha256": "2beb9c0e5663ef16391ec14ddbdd2c3f62b6168e4a3a551b5d8462cc1803f1ff"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/partials/product/options.twig",
+          "bytes": 10826,
+          "gzipBytes": 2078,
+          "brotliBytes": 1779,
+          "sha256": "6acffd4ca9b4c05b4a8cdb4fc56049bbe69afb02ed82e1ecaf086da0b90f29fc"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/partials/product/reservations.twig",
+          "bytes": 711,
+          "gzipBytes": 304,
+          "brotliBytes": 267,
+          "sha256": "28f08e732822c47dfec85a8ae2539f75fafd6b268d9db4ef69059957a6891de6"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/product/index.twig",
+          "bytes": 5788,
+          "gzipBytes": 1770,
+          "brotliBytes": 1480,
+          "sha256": "7846c79d0873fe060137eda63c78dc79e04281fb4fe9104ffe0a9bd519c81c38"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/product/single.twig",
+          "bytes": 36183,
+          "gzipBytes": 6111,
+          "brotliBytes": 5268,
+          "sha256": "c4b239a2d21879b5adee3c33ab5efa884df30d654e69bd23fa3561aaf5508e5e"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/testimonials.twig",
+          "bytes": 1635,
+          "gzipBytes": 601,
+          "brotliBytes": 507,
+          "sha256": "98213f6d14fc741f5575c0abb6a91211016a04d4c698ff43bef163eecf7eec59"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/src/views/pages/thank-you.twig",
+          "bytes": 7157,
+          "gzipBytes": 2039,
+          "brotliBytes": 1715,
+          "sha256": "458242993717ea357cd9ac6b07f1ffd2d0f430ff8f00a318b5bc7f87cf7da9b6"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/tailwind.config.js",
+          "bytes": 4959,
+          "gzipBytes": 1326,
+          "brotliBytes": 1140,
+          "sha256": "7da4d77cfbf130dd68676d41bacdd841c52c85c67ece2a5a55ca556f94d0286b"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/twilight.json",
+          "bytes": 43481,
+          "gzipBytes": 5749,
+          "brotliBytes": 4734,
+          "sha256": "f47f3c66ff970e7be7971d33b393b54348948d5c0f48e919bd0135d676919603"
+        },
+        {
+          "file": ".kilo/worktrees/candied-silkworm/webpack.config.js",
+          "bytes": 2544,
+          "gzipBytes": 836,
+          "brotliBytes": 734,
+          "sha256": "988f0c36498e6f87417ae1cb108eaa30004f74ac14fc60ab2b00bd7ac7bf4ad0"
         },
         {
           "file": ".npmrc",
@@ -1663,24 +2818,24 @@
         },
         {
           "file": "README.md",
-          "bytes": 3649,
-          "gzipBytes": 1767,
-          "brotliBytes": 1435,
-          "sha256": "b38f963909f39e9f76054f2e41dfd1faa822cc5762b7b16610a7c99280cc4d9d"
+          "bytes": 3716,
+          "gzipBytes": 1803,
+          "brotliBytes": 1463,
+          "sha256": "c54b15d1e54c45adf3b526e3af6303062ad706e0dc9f8fb223dd0c4e52a45018"
         },
         {
           "file": "SALLA_COMPLIANCE.md",
-          "bytes": 66407,
-          "gzipBytes": 19228,
-          "brotliBytes": 15889,
-          "sha256": "f7c00312cf71e9cc89319f6a149d4bb06802bea829ee6cf100bd4a7d32579e0f"
+          "bytes": 66965,
+          "gzipBytes": 19267,
+          "brotliBytes": 15907,
+          "sha256": "65b49628447eda4412d3e16a548add0baab13cf4f888f87e44dec1d0a3105f59"
         },
         {
           "file": "package.json",
-          "bytes": 1882,
-          "gzipBytes": 748,
-          "brotliBytes": 660,
-          "sha256": "6df15ba78c273a5caaac6895c5c9ead4261e068c124e9d58c70874835b16b5a6"
+          "bytes": 1863,
+          "gzipBytes": 734,
+          "brotliBytes": 647,
+          "sha256": "0cecbca9d43184c96d723455b11b93c7f14aecc1102f33b54824a148ac251a9f"
         },
         {
           "file": "pnpm-lock.yaml",
@@ -1704,6 +2859,41 @@
           "sha256": "2cf19600e08bbc09668c5ca85570feb439f0d64d46c3d441b31a5f944641075f"
         },
         {
+          "file": "preview/images/brightening-serum.jpg",
+          "bytes": 130724,
+          "gzipBytes": 130072,
+          "brotliBytes": 130729,
+          "sha256": "0cd868f615977eb4d00197f062d72a80e9d75fac9f0ba063376f095bb36a7ec4"
+        },
+        {
+          "file": "preview/images/complete-routine.jpg",
+          "bytes": 213478,
+          "gzipBytes": 213354,
+          "brotliBytes": 213483,
+          "sha256": "72410bf6e7b8f6c59132a45214712348fa980c76cfa2f4b8805dc9ad67214a24"
+        },
+        {
+          "file": "preview/images/dry-skin.jpg",
+          "bytes": 212632,
+          "gzipBytes": 212337,
+          "brotliBytes": 212637,
+          "sha256": "d276dba35cc4f609dcc18c7fb9b55d87016402b2edfdc2d75e53e0ec52917def"
+        },
+        {
+          "file": "preview/index.html",
+          "bytes": 14074,
+          "gzipBytes": 4325,
+          "brotliBytes": 3514,
+          "sha256": "b9ea89d2acf6930097cc8d87c65933519dffbf798e0ecfde3b262302ff0bd5de"
+        },
+        {
+          "file": "preview/reference-home.html",
+          "bytes": 11553,
+          "gzipBytes": 3285,
+          "brotliBytes": 2579,
+          "sha256": "d70968d82abf26fb51ae720ebed6fe5b9365cb4a92481211b2227882ba5ba4fd"
+        },
+        {
           "file": "public/add-product-toast.js",
           "bytes": 7427,
           "gzipBytes": 2713,
@@ -1712,10 +2902,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 223390,
-          "gzipBytes": 34213,
-          "brotliBytes": 27580,
-          "sha256": "a6aa8a15a722fcc44e93c1157f8d566c8f6bacf68a9d11123f54d00b011d8dfe"
+          "bytes": 229899,
+          "gzipBytes": 35438,
+          "brotliBytes": 28642,
+          "sha256": "e51e76f2d793a28552ec09c2bc842c6d8764654094ef192dbb063e62e018432d"
         },
         {
           "file": "public/app.js",
@@ -1744,6 +2934,13 @@
           "gzipBytes": 12297,
           "brotliBytes": 10881,
           "sha256": "a491fc5ef0d83136f04bcb7643eb20a51ec3a118d30ea34890133aba8b7aefd6"
+        },
+        {
+          "file": "public/images/beauty-hero-products.jpg",
+          "bytes": 252914,
+          "gzipBytes": 252690,
+          "brotliBytes": 252919,
+          "sha256": "17475fbeb2bca9a795201b84e33796b20e7b7f1011701b6ace9acd995598a60a"
         },
         {
           "file": "public/images/check.svg",
@@ -1817,10 +3014,10 @@
         },
         {
           "file": "public/product-card.js",
-          "bytes": 10558,
-          "gzipBytes": 2877,
-          "brotliBytes": 2481,
-          "sha256": "168a08a0b227f9c93eea65d5b48edb02792a684bd86686bfd0282754b3ac138a"
+          "bytes": 10731,
+          "gzipBytes": 2958,
+          "brotliBytes": 2545,
+          "sha256": "a175484cd3a9790ddfb57377789bc3ee049afa7816cece24d4404e1837de13c7"
         },
         {
           "file": "public/product.js",
@@ -1842,6 +3039,13 @@
           "gzipBytes": 797,
           "brotliBytes": 665,
           "sha256": "03f409fbc2ab2c19b30f95f4517f50b1fa1cfc161621e5b9be61ddb9787cac01"
+        },
+        {
+          "file": "src/assets/images/beauty-hero-products.jpg",
+          "bytes": 252914,
+          "gzipBytes": 252690,
+          "brotliBytes": 252919,
+          "sha256": "17475fbeb2bca9a795201b84e33796b20e7b7f1011701b6ace9acd995598a60a"
         },
         {
           "file": "src/assets/images/check.svg",
@@ -1999,10 +3203,10 @@
         },
         {
           "file": "src/assets/js/partials/product-card.js",
-          "bytes": 13352,
-          "gzipBytes": 3498,
-          "brotliBytes": 3000,
-          "sha256": "3cf4c997e00cd69fdc252965f5ae93088d43eb5fd9f9a28cfbe86c92f3d37bf1"
+          "bytes": 13614,
+          "gzipBytes": 3629,
+          "brotliBytes": 3090,
+          "sha256": "2995c525fb7525e07075f2271a1d3b8d1befca74cffdbb1befa9db56213fbd7e"
         },
         {
           "file": "src/assets/js/partials/tooltip.js",
@@ -2328,10 +3532,10 @@
         },
         {
           "file": "src/assets/styles/06-beauty/beauty.scss",
-          "bytes": 12232,
-          "gzipBytes": 2980,
-          "brotliBytes": 2546,
-          "sha256": "685624f3708efb627c797b12ba6734e6d0b2b6aad010abcf51fc029e724a2bd3"
+          "bytes": 18888,
+          "gzipBytes": 4314,
+          "brotliBytes": 3701,
+          "sha256": "453f721d704b55795acc6304827367c66c36acaaf22095ab18f01bfa1e823012"
         },
         {
           "file": "src/assets/styles/app.scss",
@@ -2342,17 +3546,17 @@
         },
         {
           "file": "src/locales/ar.json",
-          "bytes": 1601,
-          "gzipBytes": 723,
-          "brotliBytes": 561,
-          "sha256": "b6aaa7a9a2b403fc1bdbc193b5e040f6b4e8659c1953ee115dbba61f2c6b2e9d"
+          "bytes": 2444,
+          "gzipBytes": 1044,
+          "brotliBytes": 819,
+          "sha256": "e1c552315d35739d5cf2f4815af91cf8a9a6802500d9fc2500a16c4cdc8447e4"
         },
         {
           "file": "src/locales/en.json",
-          "bytes": 1251,
-          "gzipBytes": 535,
-          "brotliBytes": 414,
-          "sha256": "7198b3c309e3474088cfe223fff5e2e9b8b30808efdab511c13dc69addb41818"
+          "bytes": 1891,
+          "gzipBytes": 795,
+          "brotliBytes": 613,
+          "sha256": "8bc80db1e2b58141b7245bb717aae7da6652a39c32eb9ff0186cc7b1cb367174"
         },
         {
           "file": "src/views/components/footer/footer.twig",
@@ -2363,10 +3567,10 @@
         },
         {
           "file": "src/views/components/header/header.twig",
-          "bytes": 4267,
-          "gzipBytes": 1448,
-          "brotliBytes": 1198,
-          "sha256": "c528e1062039b3c69c0e5528d67901edad11b87436dfce1bbac36fffa9f6f445"
+          "bytes": 5368,
+          "gzipBytes": 1588,
+          "brotliBytes": 1314,
+          "sha256": "ade30d5850a793791e6536ecb006c7382de9bb1b6b9a474daa08ca5e1a40a562"
         },
         {
           "file": "src/views/components/home/beauty-collections.twig",
@@ -2377,10 +3581,10 @@
         },
         {
           "file": "src/views/components/home/beauty-hero.twig",
-          "bytes": 1361,
-          "gzipBytes": 548,
-          "brotliBytes": 425,
-          "sha256": "0bdecfa1aa221e44d0794105bbd52be1a3d6593d06faeb4b9d3853bbcedaa382"
+          "bytes": 3631,
+          "gzipBytes": 1168,
+          "brotliBytes": 911,
+          "sha256": "ce78f488d2952107ebc761ccfef39f8c85a890523e4b84cafcef33287255a3bc"
         },
         {
           "file": "src/views/components/home/beauty-routine.twig",
@@ -2531,10 +3735,10 @@
         },
         {
           "file": "src/views/layouts/master.twig",
-          "bytes": 12363,
-          "gzipBytes": 2737,
-          "brotliBytes": 2222,
-          "sha256": "2206942fa647a2f793932cc1f4e672bfa241627610f73b82e79d2c29b24c92ac"
+          "bytes": 12484,
+          "gzipBytes": 2788,
+          "brotliBytes": 2260,
+          "sha256": "aaee6751e9782f14fc078765316edc50d04fa18fe411c66c22f58d953c0cf242"
         },
         {
           "file": "src/views/pages/blog/index.twig",
@@ -2685,10 +3889,10 @@
         },
         {
           "file": "twilight.json",
-          "bytes": 43459,
-          "gzipBytes": 5732,
-          "brotliBytes": 4714,
-          "sha256": "d15eb60b012c340c7c067c64c2fbb00a951d7cae084f18674a08840d3b611c8d"
+          "bytes": 43530,
+          "gzipBytes": 5788,
+          "brotliBytes": 4771,
+          "sha256": "937c66a38202e9ec81a3e9a84c2a1d7d40469902138f757f46daacb2e84747f2"
         },
         {
           "file": "webpack.config.js",
