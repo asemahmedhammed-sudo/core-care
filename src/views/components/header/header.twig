@@ -11,14 +11,22 @@
   {% if is_page('index') %}
   <div id="mainnav" class="main-nav-container beauty-reference-nav">
     <div class="container beauty-reference-nav__inner">
-      <a data-testid="store-header-logo" class="beauty-reference-nav__brand" href="{{ store.url }}" aria-label="{{ store.name }}">{{ store.name }}</a>
-      <custom-main-menu></custom-main-menu>
+      <a data-testid="store-header-logo" class="beauty-reference-nav__brand" href="{{ link('/') }}" aria-label="{{ store.name }}">{{ theme.settings.get('beauty_brand_name', store.name) }}</a>
+      <div class="beauty-reference-nav__navigation">
+        <nav class="beauty-reference-nav__desktop" aria-label="القائمة الرئيسية">
+          <a href="{{ link('/') }}"{% if is_page('index') %} aria-current="page"{% endif %}>الرئيسية</a>
+          <a href="{{ link('latest-products') }}">المنتجات</a>
+          <a href="{{ link('offers') }}">العروض</a>
+          <a href="{{ link('/') }}#store-footer">من نحن</a>
+        </nav>
+        <custom-main-menu class="beauty-reference-nav__mobile-menu"></custom-main-menu>
+      </div>
       <div class="beauty-reference-nav__actions">
-        <salla-search data-testid="store-header-search" inline oval height="36"></salla-search>
-        <salla-user-menu data-testid="store-header-user-menu" avatar-only show-header show-trigger></salla-user-menu>
         <salla-cart-summary data-testid="store-header-cart">
           <i slot="icon" class="header-btn__icon icon sicon-shopping-bag" aria-hidden="true"></i>
         </salla-cart-summary>
+        <salla-user-menu data-testid="store-header-user-menu" avatar-only show-header show-trigger></salla-user-menu>
+        <salla-search data-testid="store-header-search" inline oval height="36"></salla-search>
         <a data-testid="store-header-mobile-toggle" class="beauty-reference-nav__toggle mburger mburger--collapse lg:hidden" href="#mobile-menu" aria-label="{{ trans('beauty.open_menu') }}"><i class="sicon-menu" aria-hidden="true"></i></a>
       </div>
     </div>

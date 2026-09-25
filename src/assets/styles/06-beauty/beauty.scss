@@ -90,26 +90,47 @@
       white-space: nowrap;
       justify-self: start;
     }
-    .beauty-reference-nav custom-main-menu {
+    .beauty-reference-nav__navigation {
       width: 100%;
       min-width: 0;
-      min-height: auto;
       justify-self: stretch;
     }
-    .beauty-reference-nav .mobile-menu { width: 100%; }
-    .beauty-reference-nav .main-menu {
-      flex-wrap: nowrap;
+    .beauty-reference-nav__desktop {
+      display: flex;
+      align-items: center;
       justify-content: center;
-      gap: clamp(.75rem, 1.25vw, 1.75rem);
-      margin-inline: 0;
-      padding-top: 0;
+      gap: clamp(2.25rem, 4vw, 5.5rem);
     }
-    .beauty-reference-nav .main-menu > li > a {
+    .beauty-reference-nav__desktop a {
+      position: relative;
       color: var(--beauty-ink);
-      font-size: clamp(.9rem, 1vw, 1.15rem);
-      font-weight: 500;
-      padding: 1rem .45rem;
+      font-size: clamp(1rem, 1.2vw, 1.35rem);
+      font-weight: 600;
+      line-height: 1;
+      padding-block: 1rem;
       white-space: nowrap;
+      transition: color .2s ease;
+    }
+    .beauty-reference-nav__desktop a::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: .45rem;
+      width: 0;
+      height: 2px;
+      background: var(--beauty-olive);
+      transition: width .2s ease;
+    }
+    .beauty-reference-nav__desktop a:hover,
+    .beauty-reference-nav__desktop a[aria-current='page'] { color: var(--beauty-olive); }
+    .beauty-reference-nav__desktop a:hover::after,
+    .beauty-reference-nav__desktop a[aria-current='page']::after { width: 100%; }
+    .beauty-reference-nav__mobile-menu {
+      position: absolute;
+      width: 0;
+      height: 0;
+      min-height: 0;
+      overflow: hidden;
     }
     .beauty-reference-nav__actions {
       display: flex;
@@ -317,7 +338,9 @@
     &.beauty-reference-home .beauty-reference-nav,
     &.beauty-reference-home .beauty-reference-nav__inner { min-height: 70px; }
     &.beauty-reference-home .beauty-reference-nav__inner { grid-template-columns: 1fr auto; gap: 1rem; }
-    &.beauty-reference-home .beauty-reference-nav custom-main-menu { position: absolute; width: 0; height: 0; min-height: 0; }
+    &.beauty-reference-home .beauty-reference-nav__navigation { position: absolute; width: 0; height: 0; min-height: 0; }
+    &.beauty-reference-home .beauty-reference-nav__desktop { display: none; }
+    &.beauty-reference-home .beauty-reference-nav__mobile-menu { overflow: visible; }
     &.beauty-reference-home .beauty-reference-nav__actions salla-search { display: none; }
     .beauty-hero__grid { grid-template-columns: 1fr; min-height: 0; gap: 2.75rem; padding-block: 3.5rem 4.5rem; }
     .beauty-hero__copy { order: 0; }

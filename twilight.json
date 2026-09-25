@@ -246,6 +246,15 @@
             "selected": false
         },
         {
+            "id": "beauty_brand_name",
+            "type": "string",
+            "format": "text",
+            "label": "اسم العلامة في رأس الصفحة",
+            "description": "الاسم المختصر الظاهر كشعار نصي في رأس الصفحة الرئيسية",
+            "required": false,
+            "value": "Core Care"
+        },
+        {
             "id": "beauty_palette",
             "type": "items",
             "format": "dropdown-list",
