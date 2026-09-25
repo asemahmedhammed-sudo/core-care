@@ -95,6 +95,12 @@
       min-width: 0;
       justify-self: stretch;
     }
+    .beauty-reference-nav__inner > custom-main-menu:not(.beauty-reference-nav__mobile-menu) {
+      width: 100%;
+      min-width: 0;
+      min-height: 0;
+      justify-self: stretch;
+    }
     .beauty-reference-nav__desktop {
       display: flex;
       align-items: center;
@@ -132,6 +138,9 @@
       min-height: 0;
       overflow: hidden;
     }
+    @media (min-width: 1024px) {
+      .beauty-reference-nav__inner > custom-main-menu:not(.beauty-reference-nav__mobile-menu) > .mobile-menu { display: none; }
+    }
     .beauty-reference-nav__actions {
       display: flex;
       align-items: center;
@@ -139,6 +148,10 @@
       gap: clamp(.6rem, 1.2vw, 1.25rem);
       direction: ltr;
     }
+    .beauty-reference-nav__actions salla-cart-summary { order: 1; }
+    .beauty-reference-nav__actions salla-user-menu { order: 2; }
+    .beauty-reference-nav__actions salla-search { order: 3; }
+    .beauty-reference-nav__actions .beauty-reference-nav__toggle { order: 4; }
     .beauty-reference-nav__actions salla-search { width: 42px; overflow: hidden; transition: width .2s ease; }
     .beauty-reference-nav__actions salla-search:focus-within { width: min(250px, 20vw); }
     .beauty-reference-nav__actions .header-btn__icon {
@@ -341,6 +354,8 @@
     &.beauty-reference-home .beauty-reference-nav__navigation { position: absolute; width: 0; height: 0; min-height: 0; }
     &.beauty-reference-home .beauty-reference-nav__desktop { display: none; }
     &.beauty-reference-home .beauty-reference-nav__mobile-menu { overflow: visible; }
+    &.beauty-reference-home .beauty-reference-nav__inner > custom-main-menu:not(.beauty-reference-nav__mobile-menu) { position: absolute; width: 0; height: 0; min-height: 0; overflow: visible; }
+    &.beauty-reference-home .beauty-reference-nav__inner > custom-main-menu:not(.beauty-reference-nav__mobile-menu) .beauty-reference-nav__desktop { display: none; }
     &.beauty-reference-home .beauty-reference-nav__actions salla-search { display: none; }
     .beauty-hero__grid { grid-template-columns: 1fr; min-height: 0; gap: 2.75rem; padding-block: 3.5rem 4.5rem; }
     .beauty-hero__copy { order: 0; }

@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-09-23T15:12:43.141Z",
+  "generatedAt": "2026-09-25T12:57:17.730Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -744,12 +744,18 @@
     },
     {
       "location": "settings[17]",
+      "id": "beauty_brand_name",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[18]",
       "id": "beauty_palette",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[18]",
+      "location": "settings[19]",
       "id": "beauty_alternate_sections",
       "type": "boolean",
       "format": "switch"
@@ -1389,12 +1395,12 @@
     {
       "file": "src/views/components/footer/footer.twig",
       "kind": "modified-upstream",
-      "sha256": "5eb9c2579a9150678b57539f8db9aa438f15a2832eaafece78fddcb32f424b32"
+      "sha256": "eac6c9ddc167a4cf8043b2cc56a68c4a670bf860aea94f63a230b2deaf6224f6"
     },
     {
       "file": "src/views/components/header/header.twig",
       "kind": "modified-upstream",
-      "sha256": "ade30d5850a793791e6536ecb006c7382de9bb1b6b9a474daa08ca5e1a40a562"
+      "sha256": "4dc36473d813915bc1f66954278e37bee284318a37749eaadf8810800cb1a3d4"
     },
     {
       "file": "src/views/components/home/beauty-collections.twig",
@@ -1429,7 +1435,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "aaee6751e9782f14fc078765316edc50d04fa18fe411c66c22f58d953c0cf242"
+      "sha256": "1c40b01ad9cb3a12a5e1a7bf8cb8fabc7a3e51ebae663d2877111dc6db5e6126"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -1506,6 +1512,22 @@
   ],
   "hardcodedCommerce": [],
   "literalTextCandidates": [
+    {
+      "file": "src/views/components/header/header.twig",
+      "literal": "الرئيسية"
+    },
+    {
+      "file": "src/views/components/header/header.twig",
+      "literal": "المنتجات"
+    },
+    {
+      "file": "src/views/components/header/header.twig",
+      "literal": "العروض"
+    },
+    {
+      "file": "src/views/components/header/header.twig",
+      "literal": "من نحن"
+    },
     {
       "file": "src/views/pages/customer/orders/single.twig",
       "literal": "&nbsp;"

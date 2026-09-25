@@ -1,5 +1,15 @@
 class NavigationMenu extends HTMLElement {
     connectedCallback() {
+        this.isReferenceHome = document.body.classList.contains('beauty-reference-home');
+
+        // Preview requests can keep an older cached header.twig while loading
+        // the latest local assets. Keep the branded home header usable in that
+        // state as well, then let the Twig setting take over once it refreshes.
+        if (this.isReferenceHome) {
+            const brand = this.closest('.beauty-reference-nav__inner')?.querySelector('.beauty-reference-nav__brand');
+            if (brand) brand.textContent = 'Core Care';
+        }
+
         // Seed a skeleton placeholder shown until the menu data is fetched
         // and render() replaces this innerHTML with the real menu.
         this.innerHTML = `
@@ -257,7 +267,16 @@ class NavigationMenu extends HTMLElement {
     * Render the header menu
     */
     render() {
+        const referenceNavigation = this.isReferenceHome ? `
+        <nav class="beauty-reference-nav__desktop beauty-reference-nav__desktop--asset-fallback" aria-label="${document.documentElement.lang === 'ar' ? 'القائمة الرئيسية' : 'Main navigation'}">
+            <a href="/" aria-current="page">${document.documentElement.lang === 'ar' ? 'الرئيسية' : 'Home'}</a>
+            <a href="/latest-products">${document.documentElement.lang === 'ar' ? 'المنتجات' : 'Products'}</a>
+            <a href="/offers">${document.documentElement.lang === 'ar' ? 'العروض' : 'Offers'}</a>
+            <a href="/#store-footer">${document.documentElement.lang === 'ar' ? 'من نحن' : 'About us'}</a>
+        </nav>` : '';
+
         this.innerHTML =  `
+        ${referenceNavigation}
         <nav id="mobile-menu" class="mobile-menu">
             <ul class="main-menu">${this.getMenus()}</ul>
             <button class="btn--close close-mobile-menu sicon-cancel lg:hidden"></button>
