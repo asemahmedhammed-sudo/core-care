@@ -59,7 +59,10 @@
     {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
 
     <script defer data-cfasync="false" crossorigin="anonymous" src="{{ 'product-card.js'|asset }}"></script>
-    <script defer src="{{ 'main-menu.js'|asset }}"></script>
+    {# Keep preview requests on the current repository assets. Salla serves draft
+       assets with a long browser cache, while the draft URL itself stays the same. #}
+    {% set theme_asset_revision = '20260925-header-1' %}
+    <script defer src="{{ 'main-menu.js'|asset }}?v={{ theme_asset_revision }}"></script>
     {% if theme.settings.get('enable_add_product_toast', true) %}
         <script defer src="{{ 'add-product-toast.js'|asset }}"></script>
     {% endif %}
@@ -80,7 +83,7 @@
     {% hook head %}
     {% block head %}{% endblock %}
     {% block styles %}{% endblock %}
-    <link rel="stylesheet" href="{{ 'app.css' | asset }}">
+    <link rel="stylesheet" href="{{ 'app.css' | asset }}?v={{ theme_asset_revision }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
     
