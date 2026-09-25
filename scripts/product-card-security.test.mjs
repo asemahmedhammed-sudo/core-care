@@ -59,3 +59,27 @@ test('product card escapes merchant text and rejects executable URLs', () => {
   assert.doesNotMatch(card.innerHTML, /onclick=|onerror="|<script>|javascript:/u);
   assert.match(card.innerHTML, /product-status="sale"/u);
 });
+
+test('bestseller badges use real discounts and suppress long marketing descriptions', () => {
+  const card = new ProductCard();
+  card.closest = () => ({ dataset: { addToCartLabel: 'أضيفي للسلة' } });
+  card.product = { is_on_sale: true, regular_price: 200, sale_price: 150 };
+  assert.match(card.getProductBadge(), /−25%/u);
+  card.product = { promotion_title: 'تنظيف لطيف يعيد للشعر مظهر طبيعي' };
+  assert.equal(card.getProductBadge(), '');
+  card.product = { promotion_title: 'جديد' };
+  assert.match(card.getProductBadge(), /جديد/u);
+  card.product = { is_on_sale: true, regular_price: 0, sale_price: 10 };
+  assert.equal(card.getProductBadge(), '');
+});
+
+test('bestseller button copy preserves booking and preorder actions', () => {
+  const card = new ProductCard();
+  card.closest = () => ({ dataset: { addToCartLabel: 'أضيفي للسلة' } });
+  card.product = { status: 'sale', type: 'product' };
+  assert.equal(card.getAddButtonLabel(), 'أضيفي للسلة');
+  card.product.type = 'booking';
+  assert.equal(card.getAddButtonLabel(), salla.lang.get('pages.cart.book_now'));
+  card.product.has_preorder_campaign = true;
+  assert.equal(card.getAddButtonLabel(), salla.lang.get('pages.products.pre_order_now'));
+});

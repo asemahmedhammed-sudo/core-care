@@ -60,6 +60,21 @@ class ProductCard extends HTMLElement {
       return `<div class="s-product-card-promotion-title">${this.escapeHTML(this.product.preorder.label)}</div>`
     }
 
+    if (this.closest?.('.beauty-bestsellers')) {
+      const regular = Number(this.product.regular_price);
+      const sale = Number(this.product.sale_price);
+      if (this.product.is_on_sale && Number.isFinite(regular) && Number.isFinite(sale) && regular > 0 && sale >= 0 && sale < regular) {
+        const discount = Math.floor((regular - sale) / regular * 100);
+        if (discount > 0) return `<div class="s-product-card-promotion-title"><bdi>−${discount}%</bdi></div>`;
+      }
+      // Long promotional descriptions belong on the product page, not over its photo.
+      const promotion = String(this.product.promotion_title || '').trim();
+      if (promotion && promotion.length <= 12) {
+        return `<div class="s-product-card-promotion-title">${this.escapeHTML(promotion)}</div>`;
+      }
+      return '';
+    }
+
     if (this.product.promotion_title) {
       return `<div class="s-product-card-promotion-title">${this.escapeHTML(this.product.promotion_title)}</div>`
     }
@@ -113,7 +128,7 @@ class ProductCard extends HTMLElement {
     }
 
     if (this.product.status === 'sale') {
-      return salla.lang.get('pages.cart.add_to_cart');
+      return this.closest?.('.beauty-bestsellers')?.dataset.addToCartLabel || salla.lang.get('pages.cart.add_to_cart');
     }
 
     if (this.product.type !== 'donating') {
@@ -185,6 +200,10 @@ class ProductCard extends HTMLElement {
     const productUrl = this.safeUrl(this.product.url);
     const productName = this.escapeHTML(this.product.name);
     const productType = this.escapeHTML(this.product.type);
+    const suppliedCartLabel = this.product.add_to_cart_label;
+    const useSectionCartLabel = this.closest?.('.beauty-bestsellers') &&
+      (!suppliedCartLabel || suppliedCartLabel === salla.lang.get('pages.cart.add_to_cart'));
+    const cartLabel = useSectionCartLabel ? this.getAddButtonLabel() : (suppliedCartLabel || this.getAddButtonLabel());
     const wishlistLabel = this.escapeHTML(document.body.dataset.beautyWishlistLabel || salla.lang.get('beauty.wishlist_toggle'));
     this.classList.add('s-product-card-entry'); 
     this.setAttribute('id', this.product.id);
@@ -294,7 +313,7 @@ class ProductCard extends HTMLElement {
                 ${this.product.status == 'sale' ?
                     `<i class="text-base sicon-${ this.product.type == 'booking' ? 'calendar-time' : 'shopping-bag'}"></i>` : ``
                   }
-                <span>${this.escapeHTML(this.product.add_to_cart_label || this.getAddButtonLabel())}</span>
+                <span>${this.escapeHTML(cartLabel)}</span>
               </salla-add-product-button>
 
               ${this.horizontal || this.fullImage ?
