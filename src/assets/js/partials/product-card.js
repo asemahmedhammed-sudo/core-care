@@ -272,6 +272,7 @@ class ProductCard extends HTMLElement {
             ${this.product?.donation?.can_donate ? '' : this.getProductPrice()}
             ${this.product?.rating?.stars ?
               `<div class="s-product-card-rating">
+                <span class="beauty-rating-stars" aria-hidden="true" style="--rating-fill: ${Math.min(5, Math.max(0, Number(this.product.rating.stars) || 0)) * 20}%">★★★★★</span>
                 <i class="sicon-star2 before:text-orange-300"></i>
                 <span>${this.escapeHTML(this.product.rating.stars)}</span>
               </div>`

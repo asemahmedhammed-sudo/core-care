@@ -9,12 +9,13 @@
 | limit                 | int       | Number of products to be shown                                   |
 #}
 {% set is_vertical = theme.settings.get('vertical_fixed_products', true) %}
-<section component-id="{{ componentId }}" data-testid="store-home-fixed-products" class="s-block container">
+{% set is_bestsellers = products.source == 'sales' or title in ['الأكثر مبيعًا', 'الأكثر مبيعاً', 'الأكثر مبيعا', 'Best sellers', 'Bestsellers'] %}
+<section component-id="{{ componentId }}" data-testid="store-home-fixed-products" class="s-block {{ is_bestsellers ? 'beauty-bestsellers' : '' }} container">
     {% if title %}
       <div class="s-block__title">
         <div class="right-side">
           <h2>{{ title }}</h2>
-          {# <p>عنوان فرعي توصيفي صغير</p> #}
+          {% if is_bestsellers %}<p>{{ trans('beauty.bestsellers_subtitle') }}</p>{% endif %}
         </div>
         {% if display_all_url %}
             <a href="{{ display_all_url }}" class="s-block__display-all">{{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left"></i></a>
