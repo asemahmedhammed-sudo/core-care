@@ -158,7 +158,7 @@ class NavigationMenu extends HTMLElement {
         if (!mainMenu) return;
 
         // Check if more menu is enabled from global window variable set in master.twig
-        const isMoreMenuEnabled = window.enable_more_menu;
+        const isMoreMenuEnabled = ![false, 'false', 0, '0', null, undefined].includes(window.enable_more_menu);
         if (!isMoreMenuEnabled) {
             // If disabled, keep the menu behavior as original (no More dropdown / overflow handling)
             return;
@@ -201,18 +201,12 @@ class NavigationMenu extends HTMLElement {
         });
 
         // Calculate available width
-        const containerWidth = container.offsetWidth;
-        const otherElements = container.querySelector('.flex').children;
-        let usedWidth = 0;
-
-        // Calculate width used by logo and other elements
-        Array.from(otherElements).forEach(element => {
-            if (!element.contains(mainMenu)) {
-                usedWidth += element.offsetWidth;
-            }
-        });
-
-        const availableWidth = containerWidth - usedWidth - 300; // 300px buffer for More dropdown
+        // The home-page header places the menu in a CSS grid, while inner
+        // pages use the original flex layout. Measuring the menu host works
+        // for both layouts and prevents categories from wrapping over the
+        // logo/actions when the store has many navigation entries.
+        const hostWidth = this.getBoundingClientRect().width;
+        const availableWidth = Math.max(180, hostWidth - 90); // reserve room for "More"
         let currentWidth = 0;
         let visibleCount = 0;
 
