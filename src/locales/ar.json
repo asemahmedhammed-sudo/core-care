@@ -28,6 +28,13 @@
     "bank_offer_sub_title_single": "ادفع قيمة مشترياتك عبر أحد بطاقات بنك :bank_name واحصل على خصم بنسبة "
   },
   "beauty": {
+    "header": {
+      "tagline": "عناية تليق بك، وجمال يشبهك",
+      "categories": "جميع الأقسام",
+      "brands": "الماركات",
+      "account": "حسابي",
+      "notifications": "الإشعارات"
+    },
     "footer": {
       "quick_links": "روابط سريعة",
       "customer_service": "خدمة العملاء",

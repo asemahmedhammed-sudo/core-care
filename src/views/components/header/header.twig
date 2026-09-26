@@ -9,27 +9,34 @@
 <header data-testid="store-header" class="store-header">
   <salla-advertisement data-testid="beauty-announcement"></salla-advertisement>
   {% if is_page('index') %}
-  <div id="mainnav" class="main-nav-container beauty-reference-nav">
-    <div class="container beauty-reference-nav__inner">
-      <a data-testid="store-header-logo" class="beauty-reference-nav__brand" href="{{ link('/') }}" aria-label="{{ store.name }}">{{ theme.settings.get('beauty_brand_name', store.name) }}</a>
-      <div class="beauty-reference-nav__navigation">
-        <nav class="beauty-reference-nav__desktop" aria-label="القائمة الرئيسية">
-          <a href="{{ link('/') }}"{% if is_page('index') %} aria-current="page"{% endif %}>الرئيسية</a>
-          <a href="{{ link('latest-products') }}">المنتجات</a>
-          <a href="{{ link('offers') }}">العروض</a>
-          <a href="{{ link('/') }}#store-footer">من نحن</a>
-        </nav>
-        <custom-main-menu class="beauty-reference-nav__mobile-menu"></custom-main-menu>
-      </div>
-      <div class="beauty-reference-nav__actions">
+  <div id="mainnav" class="main-nav-container core-care-header">
+    <div class="container core-care-header__top">
+      <a data-testid="store-header-logo" class="core-care-header__brand" href="{{ link('/') }}" aria-label="{{ store.name }}">
+        {% if store.logo %}
+          <img src="{{ store.logo | cdn(400) }}" width="220" height="84" fetchpriority="high" alt="{{ store.name }}">
+        {% else %}
+          {{ theme.settings.get('beauty_brand_name', store.name) }}
+        {% endif %}
+      </a>
+      <salla-search class="core-care-header__search" data-testid="store-header-search" inline height="48"></salla-search>
+      <p class="core-care-header__tagline"><span aria-hidden="true">✦</span>{{ trans('beauty.header.tagline') }}</p>
+    </div>
+    <div class="container core-care-header__bottom">
+      <nav class="core-care-header__links" aria-label="{{ trans('beauty.open_menu') }}">
+        <a data-testid="store-header-mobile-toggle" href="#mobile-menu" aria-label="{{ trans('beauty.header.categories') }}"><i class="sicon-menu" aria-hidden="true"></i><span>{{ trans('beauty.header.categories') }}</span><i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></a>
+        <a href="{{ link('brands') }}">{{ trans('beauty.header.brands') }}</a>
+      </nav>
+      <div class="core-care-header__actions">
+        <salla-user-menu data-testid="store-header-user-menu" show-header show-trigger>
+          <div slot="trigger"><button class="core-care-header__account" type="button" aria-label="{{ trans('beauty.header.account') }}"><i class="sicon-user" aria-hidden="true"></i><span>{{ trans('beauty.header.account') }}</span><i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></button></div>
+        </salla-user-menu>
+        <a class="core-care-header__notification" href="{{ link('account/notifications') }}" aria-label="{{ trans('beauty.header.notifications') }}"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></a>
         <salla-cart-summary data-testid="store-header-cart">
           <i slot="icon" class="header-btn__icon icon sicon-shopping-bag" aria-hidden="true"></i>
         </salla-cart-summary>
-        <salla-user-menu data-testid="store-header-user-menu" avatar-only show-header show-trigger></salla-user-menu>
-        <salla-search data-testid="store-header-search" inline oval height="36"></salla-search>
-        <a data-testid="store-header-mobile-toggle" class="beauty-reference-nav__toggle mburger mburger--collapse lg:hidden" href="#mobile-menu" aria-label="{{ trans('beauty.open_menu') }}"><i class="sicon-menu" aria-hidden="true"></i></a>
       </div>
     </div>
+    <custom-main-menu class="core-care-header__drawer"></custom-main-menu>
   </div>
   {% else %}
   {# Bullet Delivery tag — mobile: own full-width row above the top nav

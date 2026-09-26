@@ -1,0 +1,47 @@
+body.theme-beauty .core-care-header {
+  background: #fff;
+  color: #222;
+  border-bottom: 1px solid #e5e5e5;
+  .container { max-width: 1440px; padding-inline: clamp(16px, 4vw, 56px); }
+  &__top { display: grid; grid-template-columns: 220px minmax(220px, 1fr) auto; align-items: center; gap: 32px; padding-block: 24px; }
+  &__brand { color: #222; font-size: 28px; font-weight: 800; }
+  &__brand img { width: 220px; height: 84px; object-fit: contain; }
+  &__tagline { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 600; }
+  &__tagline i { font-size: 24px; }
+  &__search { min-width: 0; width: 100%; }
+  .s-search-input { background: #f7f7f8; border: 1px solid transparent; border-radius: 10px; color: #222; }
+  .s-search-input:focus { border-color: #aaa; }
+  &__bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 14px 20px; }
+  &__links, &__actions { display: flex; align-items: center; gap: 24px; }
+  &__links a, &__account { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: #222; font-size: 17px; }
+  &__links a + a { border-inline-start: 1px solid #e5e5e5; padding-inline-start: 24px; }
+  &__links i, &__account i { font-size: 23px; }
+  &__notification { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; font-size: 24px; }
+  .s-cart-summary-content { display: none; }
+  .header-btn__icon { color: #222; border: 0; margin: 0; width: 44px; height: 44px; font-size: 25px; }
+  &__drawer > .beauty-reference-nav__desktop, &__drawer > .main-menu-skel { display: none; }
+  @media (max-width: 1023px) {
+    &__top { grid-template-columns: 170px minmax(0, 1fr); gap: 20px; }
+    &__brand img { width: 170px; height: 64px; }
+    &__tagline { display: none; }
+  }
+  @media (max-width: 639px) {
+    &__top { grid-template-columns: 1fr; gap: 12px; padding-block: 14px; }
+    &__brand { justify-self: center; }
+    &__brand img { height: 56px; }
+    &__bottom { gap: 8px; padding-block: 8px 12px; }
+    &__links, &__actions { gap: 4px; }
+    &__links a, &__account { font-size: 13px; gap: 4px; }
+    &__links a + a { padding-inline-start: 8px; }
+    &__links .sicon-keyboard_arrow_down, &__account span, &__account .sicon-keyboard_arrow_down { display: none; }
+    &__account { justify-content: center; width: 40px; }
+    &__notification, .header-btn__icon { width: 36px; }
+  }
+}
+// The category drawer is also available on desktop for this header.
+body:has(.core-care-header) .mm-ocd .close-mobile-menu { display: block; }
+body:has(.core-care-header) .mm-ocd {
+  .main-menu { display: block; margin: 0; padding: 0; }
+  li[data-menu-item] { display: none !important; }
+  li.lg\:hidden { display: block !important; }
+}

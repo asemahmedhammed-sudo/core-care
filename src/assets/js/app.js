@@ -155,7 +155,8 @@ isElementLoaded(selector){
   this.isElementLoaded('#mobile-menu').then((menu) => {
 
  
-  const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", "( slidingSubmenus: false)");
+  const menuBreakpoint = document.querySelector('.core-care-header') ? '(min-width: 0px)' : '(max-width: 1024px)';
+  const mobileMenu = new MobileMenu(menu, menuBreakpoint, "( slidingSubmenus: false)");
 
   salla.lang.onLoaded(() => {
     mobileMenu.navigation({ title: salla.lang.get('blocks.header.main_menu') });
@@ -176,6 +177,8 @@ isElementLoaded(selector){
   }
 
   initiateStickyMenu() {
+    // The two-row home header stays in normal flow, without a sticky inner wrapper.
+    if (document.querySelector('.core-care-header')) return;
     let header = this.element('#mainnav'),
       height = this.element('#mainnav .inner')?.clientHeight;
     //when it's landing page, there is no header

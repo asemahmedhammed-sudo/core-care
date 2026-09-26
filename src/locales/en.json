@@ -28,6 +28,13 @@
     "bank_offer_sub_title_single": "Pay for your purchases via :bank_name bank card and get discount"
   },
   "beauty": {
+    "header": {
+      "tagline": "Care you deserve. Beauty that is you.",
+      "categories": "All categories",
+      "brands": "Brands",
+      "account": "My account",
+      "notifications": "Notifications"
+    },
     "footer": {
       "quick_links": "Quick links",
       "customer_service": "Customer service",
