@@ -60,7 +60,7 @@ test('product card escapes merchant text and rejects executable URLs', () => {
   assert.match(card.innerHTML, /product-status="sale"/u);
 });
 
-test('bestseller badges use real discounts and suppress long marketing descriptions', () => {
+test('homepage product badges use real discounts and suppress long marketing descriptions', () => {
   const card = new ProductCard();
   card.closest = () => ({ dataset: { addToCartLabel: 'أضيفي للسلة' } });
   card.product = { is_on_sale: true, regular_price: 200, sale_price: 150 };
@@ -73,7 +73,7 @@ test('bestseller badges use real discounts and suppress long marketing descripti
   assert.equal(card.getProductBadge(), '');
 });
 
-test('bestseller button copy preserves booking and preorder actions', () => {
+test('homepage product button copy preserves booking and preorder actions', () => {
   const card = new ProductCard();
   card.closest = () => ({ dataset: { addToCartLabel: 'أضيفي للسلة' } });
   card.product = { status: 'sale', type: 'product' };

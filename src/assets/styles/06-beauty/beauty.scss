@@ -332,8 +332,8 @@
   .s-product-card-content-subtitle { color: var(--beauty-muted); }
   .beauty-rating-stars { display: none; }
 
-  // Bestseller presentation, shared by Salla's fixed list and carousel.
-  .beauty-bestsellers {
+  // Shared presentation for homepage product lists and carousels.
+  .beauty-product-section {
     &.container {
       width: calc(100% - clamp(2rem, 13.5vw, 18rem));
       padding-inline: 0;
@@ -458,7 +458,7 @@
     }
   }
 
-  &.beauty-reference-home .beauty-bestsellers {
+  &.beauty-reference-home .beauty-product-section {
     --beauty-cream: #f3e9dd;
     --beauty-paper: #faf7f1;
     --beauty-olive: #4b5c3b;

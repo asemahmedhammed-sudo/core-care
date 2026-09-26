@@ -60,7 +60,7 @@ class ProductCard extends HTMLElement {
       return `<div class="s-product-card-promotion-title">${this.escapeHTML(this.product.preorder.label)}</div>`
     }
 
-    if (this.closest?.('.beauty-bestsellers')) {
+    if (this.closest?.('.beauty-product-section')) {
       const regular = Number(this.product.regular_price);
       const sale = Number(this.product.sale_price);
       if (this.product.is_on_sale && Number.isFinite(regular) && Number.isFinite(sale) && regular > 0 && sale >= 0 && sale < regular) {
@@ -128,7 +128,7 @@ class ProductCard extends HTMLElement {
     }
 
     if (this.product.status === 'sale') {
-      return this.closest?.('.beauty-bestsellers')?.dataset.addToCartLabel || salla.lang.get('pages.cart.add_to_cart');
+      return this.closest?.('.beauty-product-section')?.dataset.addToCartLabel || salla.lang.get('pages.cart.add_to_cart');
     }
 
     if (this.product.type !== 'donating') {
@@ -201,7 +201,7 @@ class ProductCard extends HTMLElement {
     const productName = this.escapeHTML(this.product.name);
     const productType = this.escapeHTML(this.product.type);
     const suppliedCartLabel = this.product.add_to_cart_label;
-    const useSectionCartLabel = this.closest?.('.beauty-bestsellers') &&
+    const useSectionCartLabel = this.closest?.('.beauty-product-section') &&
       (!suppliedCartLabel || suppliedCartLabel === salla.lang.get('pages.cart.add_to_cart'));
     const cartLabel = useSectionCartLabel ? this.getAddButtonLabel() : (suppliedCartLabel || this.getAddButtonLabel());
     const wishlistLabel = this.escapeHTML(document.body.dataset.beautyWishlistLabel || salla.lang.get('beauty.wishlist_toggle'));
