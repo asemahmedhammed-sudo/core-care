@@ -1,9 +1,9 @@
-<footer id="store-footer" data-testid="store-footer" class="store-footer beauty-footer">
+<footer id="store-footer" data-testid="store-footer" class="store-footer beauty-footer core-care-footer">
 	<div aria-label="footer" class="store-footer__inner">
-		<div class="container grid grid-col-1 lg:grid-cols-6 gap-8 lg:gap-6">
-			<div class="lg:col-span-2 rtl:lg:pl-20 ltr:lg:pr-20">
+		<div class="container core-care-footer__grid">
+			<div class="core-care-footer__brand">
 				<a href="{{ link('/') }}" class="flex items-center m-0">
-					<h3>{{store.name}}</h3>
+					<h3>{{ theme.settings.get('beauty_brand_name', store.name) }}</h3>
 				</a>
 				{% if store.description %}
 					<div class="max-w-sm leading-6 mb-6">
@@ -11,7 +11,7 @@
           </div>
 				{% endif %}
 
-				<div class="hidden lg:block">
+				<div class="core-care-footer__social">
 					<salla-social data-testid="store-footer-social" class="block mb-6"></salla-social>
 				</div>
 
@@ -46,27 +46,31 @@
         </div>
 
 			<div>
-				<h3>{{ trans('blocks.footer.pages_links') }}</h3>
+				<h3>{{ trans('beauty.footer.quick_links') }}</h3>
+				<nav class="core-care-footer__links" aria-label="{{ trans('beauty.footer.quick_links') }}">
+					<a href="{{ link('/') }}">{{ trans('beauty.footer.home') }}</a>
+					<a href="{{ link('latest-products') }}">{{ trans('beauty.footer.products') }}</a>
+					<a href="{{ link('offers') }}">{{ trans('beauty.footer.offers') }}</a>
+					<a href="#store-footer">{{ trans('beauty.footer.about') }}</a>
+				</nav>
+			</div>
+
+			<div class="core-care-footer__service">
+				<h3>{{ trans('beauty.footer.customer_service') }}</h3>
 				<salla-menu data-testid="store-footer-menu" source="footer" with-cookie-preferences></salla-menu>
-			</div>
-
-			<div>
 				<salla-contacts data-testid="store-footer-contacts"></salla-contacts>
-
-				<div class="lg:hidden contact-social">
-					<salla-social data-testid="store-footer-social-mobile"></salla-social>
-				</div>
 			</div>
-
-			<salla-apps-icons data-testid="store-footer-apps" class="lg:col-span-2 rtl:lg:pr-20 ltr:lg:pl-20"></salla-apps-icons>
+			<div class="core-care-footer__payments">
+				<h3>{{ trans('beauty.footer.payment_methods') }}</h3>
+				<salla-payments data-testid="store-footer-payments"></salla-payments>
+				<salla-apps-icons data-testid="store-footer-apps"></salla-apps-icons>
+			</div>
 
 		</div>
 	</div>
 
-	<div class="md:flex items-center justify-between py-4 container text-center">
+	<div class="core-care-footer__bottom container text-center">
 		<span class="text-sm copyright-text">{% hook copyright %}</span>
-		<salla-payments data-testid="store-footer-payments"></salla-payments>
 	</div>
-</div>
 
 <span class="hidden bottom-2 rtl:pl-24 ltr:pr-24 md:grid-cols-3 opacity-40"></span></footer>

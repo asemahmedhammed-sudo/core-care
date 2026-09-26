@@ -1,0 +1,51 @@
+// Keep the reference footer consistent across both theme colour settings.
+body .store-footer.beauty-footer.core-care-footer {
+  background: #1e1e1b;
+  color: #a3a39f;
+  margin-block-start: 4rem;
+
+  .store-footer__inner {
+    background: transparent;
+    border: 0;
+    padding-block: 64px 54px;
+  }
+
+  .core-care-footer__grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  h3 { color: #f5f5f1; font-size: 22px; font-weight: 700; margin-bottom: 28px; }
+  .core-care-footer__brand h3 { color: #c6a052; font-size: 28px; }
+  .core-care-footer__brand > div:first-of-type { font-size: 17px; line-height: 1.9; max-width: 360px; }
+  .core-care-footer__links { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+  .core-care-footer__links a, salla-menu { font-size: 18px; line-height: 1.7; }
+  a:focus-visible { outline: 2px solid #c6a052; outline-offset: 5px; border-radius: 3px; }
+  .s-menu-footer-list { display: flex; flex-direction: column; gap: 14px; }
+  .s-menu-footer-item { margin: 0; color: inherit; font-size: inherit; line-height: inherit; }
+  .s-menu-footer-item a { color: inherit; }
+  salla-contacts { display: block; margin-block-start: 20px; }
+  .s-social-list { gap: 16px; flex-wrap: wrap; margin-block: 26px 0; }
+  .s-social-link a { width: 46px; height: 46px; border: 1px solid #4a4a45; color: #f5f5f1; font-size: 20px; }
+  .s-social-link a svg { width: 20px; height: 20px; }
+  .s-social-link a:hover { border-color: #c6a052; color: #c6a052; }
+  .s-payments-list { justify-content: flex-start; gap: 12px; max-width: 270px; }
+  .s-payments-list-item { width: 76px; height: 40px; padding: 9px 12px; border-radius: 10px; background: #353532; }
+  .s-payments-list-item img { filter: grayscale(1) brightness(0) invert(1); }
+  salla-apps-icons { display: block; margin-block-start: 24px; }
+  .core-care-footer__bottom { border-top: 1px solid #393934; padding-block: 34px; }
+  .copyright-text, .copyright-text p, .copyright-text a { color: #94948e; font-size: 15px; }
+
+  @media (max-width: 1023px) {
+    .core-care-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+  }
+  @media (max-width: 479px) {
+    .store-footer__inner { padding-block: 40px; }
+    .core-care-footer__grid { gap: 32px 20px; }
+    .core-care-footer__brand, .core-care-footer__payments { grid-column: 1 / -1; }
+    h3 { font-size: 18px; margin-bottom: 20px; }
+    .core-care-footer__links a, salla-menu { font-size: 16px; }
+    .core-care-footer__bottom { padding-block: 24px; }
+  }
+}

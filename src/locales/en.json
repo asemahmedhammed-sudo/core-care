@@ -28,6 +28,15 @@
     "bank_offer_sub_title_single": "Pay for your purchases via :bank_name bank card and get discount"
   },
   "beauty": {
+    "footer": {
+      "quick_links": "Quick links",
+      "customer_service": "Customer service",
+      "payment_methods": "Payment methods",
+      "home": "Home",
+      "products": "Products",
+      "offers": "Offers",
+      "about": "About us"
+    },
     "bestsellers_subtitle": "Our customers’ favourite products",
     "product_section_add_to_cart": "Add to cart",
     "skip_content": "Skip to content",
