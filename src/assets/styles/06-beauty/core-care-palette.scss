@@ -1,0 +1,46 @@
+// Neutral storefront palette inspired by niceonesa.com; colours only.
+body.theme-beauty {
+  --beauty-paper: #fff;
+  --beauty-cream: #f8f8f8;
+  --beauty-ink: #222;
+  --beauty-muted: #666;
+  --beauty-olive: #222;
+  --beauty-gold: #222;
+  --beauty-border: #e5e5e5;
+  --color-primary: #222;
+  --color-primary-dark: #000;
+  --color-primary-light: #f2f2f2;
+  --color-primary-reverse: #fff;
+  background-color: #f8f8f8;
+
+  &.beauty-reference-home .beauty-product-section {
+    --beauty-cream: #f8f8f8;
+    --beauty-paper: #fff;
+    --beauty-olive: #222;
+  }
+  &.beauty-reference-home .beauty-reference-nav { background-color: #fff; border-color: #e5e5e5; }
+  &.beauty-reference-home > .app-inner > .store-header > salla-advertisement { background-color: #222; color: #fff; }
+  .beauty-hero, .beauty-hero__benefits { background-color: #f8f8f8; border-color: #e5e5e5; }
+  .beauty-hero--plain, .beauty-hero--plain .beauty-hero__benefits { background-color: transparent; }
+  .beauty-hero__offer, .beauty-hero__natural-icon { background-color: #eee; color: #222; }
+  .beauty-hero__media { background-color: #f2f2f2; box-shadow: 0 30px 50px #00000019; }
+  .beauty-hero__natural { color: #666; box-shadow: 0 12px 26px #00000020; }
+  .beauty-button--gold, .beauty-collection__action, .s-product-card-promotion-title { background-color: #222; color: #fff; }
+  .beauty-collection::before { background: linear-gradient(0deg, #000000e0, #00000000 85%); }
+  .s-product-card-entry { border-color: #e5e5e5; }
+  .beauty-product-section .s-product-card-sale-price span { color: #767676; }
+  .beauty-skip-link { background-color: #222; color: #fff; }
+
+  .store-footer.beauty-footer.core-care-footer {
+    background-color: #f8f8f8;
+    color: #666;
+    h3, .core-care-footer__brand h3 { color: #222; }
+    .store-footer__inner { background-color: transparent; }
+    .s-contacts-title { color: #555; }
+    .s-contacts-icon, .s-social-link a { color: #222; border-color: #d5d5d5; }
+    .s-social-link a:hover { color: #000; border-color: #222; }
+    a:focus-visible { outline-color: #222; }
+    .core-care-footer__bottom { border-color: #e5e5e5; }
+    .copyright-text, .copyright-text p, .copyright-text a { color: #666; }
+  }
+}
