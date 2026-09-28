@@ -23,7 +23,7 @@
     </div>
     <div class="container core-care-header__bottom">
       <nav class="core-care-header__links" aria-label="{{ trans('beauty.open_menu') }}">
-        <a data-testid="store-header-mobile-toggle" href="#mobile-menu" aria-label="{{ trans('beauty.header.categories') }}"><i class="sicon-menu" aria-hidden="true"></i><span>{{ trans('beauty.header.categories') }}</span><i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></a>
+        <button data-testid="store-header-mobile-toggle" data-categories-toggle type="button" aria-expanded="false" aria-controls="core-care-categories"><i class="sicon-menu" aria-hidden="true"></i><span>{{ trans('beauty.header.categories') }}</span><i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></button>
         <a href="{{ link('brands') }}">{{ trans('beauty.header.brands') }}</a>
       </nav>
       <div class="core-care-header__actions">
@@ -36,7 +36,7 @@
         </salla-cart-summary>
       </div>
     </div>
-    <custom-main-menu class="core-care-header__drawer"></custom-main-menu>
+    <core-care-categories id="core-care-categories" hidden aria-label="{{ trans('beauty.header.categories') }}"></core-care-categories>
   </div>
   {% else %}
   {# Bullet Delivery tag — mobile: own full-width row above the top nav

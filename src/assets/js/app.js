@@ -151,6 +151,7 @@ isElementLoaded(selector){
 
 
   initiateMobileMenu() {
+  if (document.querySelector('core-care-categories')) return;
 
   this.isElementLoaded('#mobile-menu').then((menu) => {
 

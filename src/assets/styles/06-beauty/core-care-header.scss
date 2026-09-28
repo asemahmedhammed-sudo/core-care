@@ -13,8 +13,8 @@ body.theme-beauty .core-care-header {
   .s-search-input:focus { border-color: #aaa; }
   &__bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 14px 20px; }
   &__links, &__actions { display: flex; align-items: center; gap: 24px; }
-  &__links a, &__account { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: #222; font-size: 17px; }
-  &__links a + a { border-inline-start: 1px solid #e5e5e5; padding-inline-start: 24px; }
+  &__links a, &__links button, &__account { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: #222; font-size: 17px; }
+  &__links > a { border-inline-start: 1px solid #e5e5e5; padding-inline-start: 24px; }
   &__links i, &__account i { font-size: 23px; }
   &__notification { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; font-size: 24px; }
   .s-cart-summary-content { display: none; }
@@ -31,8 +31,8 @@ body.theme-beauty .core-care-header {
     &__brand img { height: 56px; }
     &__bottom { gap: 8px; padding-block: 8px 12px; }
     &__links, &__actions { gap: 4px; }
-    &__links a, &__account { font-size: 13px; gap: 4px; }
-    &__links a + a { padding-inline-start: 8px; }
+    &__links a, &__links button, &__account { font-size: 13px; gap: 4px; }
+    &__links > a { padding-inline-start: 8px; }
     &__links .sicon-keyboard_arrow_down, &__account span, &__account .sicon-keyboard_arrow_down { display: none; }
     &__account { justify-content: center; width: 40px; }
     &__notification, .header-btn__icon { width: 36px; }

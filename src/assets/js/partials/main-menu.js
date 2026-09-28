@@ -1,3 +1,5 @@
+import './core-care-categories';
+
 class NavigationMenu extends HTMLElement {
     connectedCallback() {
         this.isReferenceHome = document.body.classList.contains('beauty-reference-home');
