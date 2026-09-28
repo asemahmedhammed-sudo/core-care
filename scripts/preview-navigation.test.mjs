@@ -16,3 +16,14 @@ test('live store, existing preview links and external services are unchanged', (
   }
   assert.equal(previewLink(store, home, store, store), store);
 });
+test('Salla draft store.url can itself be the preview URL', () => {
+  for (const path of ['/', '/perfumes-body/c891056892', '/item/p123?variant=2#details', '/brands']) {
+    assert.equal(previewLink(store.slice(0, -1) + path, home, home.slice(0, -1), home + 'brands'), home.slice(0, -1) + path);
+  }
+  for (const url of ['https://other-store.com/item/p123', 'https://wa.me/123', home + 'brands']) {
+    assert.equal(previewLink(url, home, home, home), url);
+  }
+  const otherPreview = 'https://salla.design/another-store/';
+  assert.equal(previewLink(store, otherPreview, otherPreview, otherPreview), store);
+  assert.equal(previewLink(store, home, home, store), store);
+});

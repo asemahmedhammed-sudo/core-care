@@ -3,7 +3,13 @@ export function previewLink(value, homeValue, storeValue, currentValue) {
   try {
     const current = new URL(currentValue);
     const home = new URL(homeValue, current);
-    const store = new URL(storeValue);
+    let store = new URL(storeValue);
+    // In draft mode Salla rewrites store.url itself to salla.design, but its
+    // menu/product APIs still return the verified production domain. Keep this
+    // alias scoped to this store's preview, never to arbitrary external links.
+    if (store.origin === home.origin && home.pathname.replace(/\/$/, '') === '/corecare') {
+      store = new URL('https://corecare-sa.com/');
+    }
     const target = new URL(value, current);
     if (current.hostname !== 'salla.design' || home.origin !== current.origin ||
         !home.pathname.split('/').filter(Boolean).length ||
