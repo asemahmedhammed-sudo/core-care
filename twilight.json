@@ -130,7 +130,7 @@
             "id": "squar_photo_bg_image_size",
             "type": "items",
             "format": "dropdown-list",
-            "label": "طريقة عرض الصور في قسم قائمة عناصر ",
+            "label": "طريقة عرض الصور في قسم قائمة عناصر",
             "description": null,
             "labelHTML": null,
             "icon": "sicon-list",
