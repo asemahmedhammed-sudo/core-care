@@ -56,6 +56,8 @@ class ProductCard extends HTMLElement {
   } 
 
   getProductBadge() {
+    // Explicit opt-in; absent settings on existing stores stay hidden too.
+    const showPromotion = document.body?.dataset?.beautyShowProductPromotionTitles === 'true';
     if (this.product?.preorder?.label) {
       return `<div class="s-product-card-promotion-title">${this.escapeHTML(this.product.preorder.label)}</div>`
     }
@@ -67,15 +69,14 @@ class ProductCard extends HTMLElement {
         const discount = Math.floor((regular - sale) / regular * 100);
         if (discount > 0) return `<div class="s-product-card-promotion-title"><bdi>−${discount}%</bdi></div>`;
       }
-      // Long promotional descriptions belong on the product page, not over its photo.
       const promotion = String(this.product.promotion_title || '').trim();
-      if (promotion && promotion.length <= 12) {
+      if (showPromotion && promotion) {
         return `<div class="s-product-card-promotion-title">${this.escapeHTML(promotion)}</div>`;
       }
       return '';
     }
 
-    if (this.product.promotion_title) {
+    if (showPromotion && this.product.promotion_title) {
       return `<div class="s-product-card-promotion-title">${this.escapeHTML(this.product.promotion_title)}</div>`
     }
     if (this.showQuantity && this.product?.quantity) {

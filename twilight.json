@@ -275,6 +275,17 @@
         {
             "type": "boolean",
             "icon": "sicon-toggle-off",
+            "label": "إظهار العبارات الترويجية على بطاقات المنتجات",
+            "description": "إظهار العنوان الترويجي فوق صور المنتجات. إيقافه لا يحذف العبارات من بيانات المنتجات ولا يخفي شارات الخصم أو الطلب المسبق.",
+            "id": "beauty_show_product_promotion_titles",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
             "label": "إظهار زر \"أعلمني عند التوفر\" في بطاقة المنتج",
             "description": "يظهر زر إشعار التوفر في بطاقات المنتجات التي نفذت كميتها",
             "id": "notify_when_available_in_card",

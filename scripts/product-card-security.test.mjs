@@ -1,4 +1,4 @@
-import test from 'node:test';
+import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -7,6 +7,8 @@ import vm from 'node:vm';
 const source = fs.readFileSync(new URL('../src/assets/js/partials/product-card.js', import.meta.url), 'utf8')
   .replace(/^import BasePage from '\.\.\/base-page';\s*/u, '');
 let ProductCard;
+const bodyDataset = { beautyWishlistLabel: 'Wishlist' };
+afterEach(() => { delete bodyDataset.beautyShowProductPromotionTitles; });
 const salla = {
   lang: { get: () => 'Wishlist' },
   config: { isGuest: () => true, get: () => false },
@@ -27,7 +29,7 @@ vm.runInNewContext(source, {
   customElements: { define: (_, value) => { ProductCard = value; } },
   window: { location: { href: 'https://preview.example/product' }, notify_when_available_in_card: false },
   URL,
-  document: { body: { dataset: { beautyWishlistLabel: 'Wishlist' } } },
+  document: { body: { dataset: bodyDataset } },
   salla,
 });
 
@@ -38,6 +40,7 @@ test('only the documented currency icon is restored as markup', () => {
 });
 
 test('product card escapes merchant text and rejects executable URLs', () => {
+  bodyDataset.beautyShowProductPromotionTitles = 'true';
   const card = new ProductCard();
   card.product = {
     id: 7,
@@ -60,7 +63,7 @@ test('product card escapes merchant text and rejects executable URLs', () => {
   assert.match(card.innerHTML, /product-status="sale"/u);
 });
 
-test('homepage product badges use real discounts and suppress long marketing descriptions', () => {
+test('homepage badges preserve real discounts and allow marketing titles only when enabled', () => {
   const card = new ProductCard();
   card.closest = () => ({ dataset: { addToCartLabel: 'أضيفي للسلة' } });
   card.product = { is_on_sale: true, regular_price: 200, sale_price: 150 };
@@ -68,9 +71,48 @@ test('homepage product badges use real discounts and suppress long marketing des
   card.product = { promotion_title: 'تنظيف لطيف يعيد للشعر مظهر طبيعي' };
   assert.equal(card.getProductBadge(), '');
   card.product = { promotion_title: 'جديد' };
+  assert.equal(card.getProductBadge(), '');
+  bodyDataset.beautyShowProductPromotionTitles = 'true';
   assert.match(card.getProductBadge(), /جديد/u);
+  card.product = { promotion_title: 'دفء ذهبي يضيء إطلالتك' };
+  assert.match(card.getProductBadge(), /دفء ذهبي يضيء إطلالتك/u);
   card.product = { is_on_sale: true, regular_price: 0, sale_price: 10 };
   assert.equal(card.getProductBadge(), '');
+});
+
+test('promotion visibility toggles all cards without deleting product data or hiding operational badges', () => {
+  for (const home of [true, false]) {
+    const card = new ProductCard();
+    card.closest = () => home ? {} : null;
+    card.product = { promotion_title: 'رموش أوضح' };
+    for (const disabled of [undefined, 'false', '0']) {
+      bodyDataset.beautyShowProductPromotionTitles = disabled;
+      assert.equal(card.getProductBadge(), '');
+    }
+    bodyDataset.beautyShowProductPromotionTitles = 'true';
+    assert.match(card.getProductBadge(), /رموش أوضح/u);
+    bodyDataset.beautyShowProductPromotionTitles = 'false';
+    assert.equal(card.getProductBadge(), '');
+    assert.equal(card.product.promotion_title, 'رموش أوضح');
+    card.product.preorder = { label: 'طلب مسبق' };
+    assert.match(card.getProductBadge(), /طلب مسبق/u);
+  }
+  const card = new ProductCard();
+  card.product = { promotion_title: 'جديد', quantity: 5 };
+  card.showQuantity = true;
+  card.remained = 'المتبقي';
+  assert.match(card.getProductBadge(), /s-product-card-quantity/u);
+});
+
+test('promotion switch defaults off and is wired to the shared layout', () => {
+  const theme = JSON.parse(fs.readFileSync(new URL('../twilight.json', import.meta.url), 'utf8'));
+  const setting = theme.settings.find(item => item.id === 'beauty_show_product_promotion_titles');
+  assert.equal(setting.type, 'boolean');
+  assert.equal(setting.format, 'switch');
+  assert.equal(setting.value, false);
+  assert.equal(setting.selected, false);
+  const layout = fs.readFileSync(new URL('../src/views/layouts/master.twig', import.meta.url), 'utf8');
+  assert.match(layout, /data-beauty-show-product-promotion-titles="\{\{ theme.settings.get\('beauty_show_product_promotion_titles', false\) \? 'true' : 'false' \}\}"/);
 });
 
 test('homepage product button copy preserves booking and preorder actions', () => {
