@@ -28,6 +28,20 @@
     "bank_offer_sub_title_single": "Pay for your purchases via :bank_name bank card and get discount"
   },
   "beauty": {
+    "promo": {
+      "carousel": "carousel",
+      "label": "Discover Core Care",
+      "title_1": "Care you love. Finds worth discovering.",
+      "title_2": "Refresh your everyday routine",
+      "title_3": "Your favourite brands, together",
+      "action_1": "Explore offers",
+      "action_2": "Discover new arrivals",
+      "action_3": "Shop brands",
+      "previous": "Previous banner",
+      "next": "Next banner",
+      "choose": "Choose a banner",
+      "slide": "Banner"
+    },
     "header": {
       "tagline": "Care you deserve. Beauty that is you.",
       "categories": "All categories",

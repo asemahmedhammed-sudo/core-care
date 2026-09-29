@@ -7,8 +7,9 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
+    {% component 'home.promotions' %}
     {% component home %}
 {% endblock %}
 {% block scripts %}
-    <script defer src="{{ 'home.js' | asset }}"></script>
+    <script defer src="{{ 'home.js' | asset }}?v=20260929-home-layout-1"></script>
 {% endblock %}

@@ -26,6 +26,107 @@
     ],
     "settings": [
         {
+            "id": "beauty_promotions_enabled",
+            "type": "boolean",
+            "format": "switch",
+            "label": "عرض سلايدر العروض مباشرة تحت الهيدر",
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "beauty_promo_1_image",
+            "type": "string",
+            "format": "image",
+            "label": "صورة بانر العروض 1",
+            "description": "مقاس مقترح 1920 × 480 بكسل. تترك فارغة لعرض تصميم Core Care الافتراضي.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_promo_1_title",
+            "type": "string",
+            "format": "text",
+            "label": "عنوان ووصف بانر العروض 1",
+            "multilanguage": true,
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 120
+        },
+        {
+            "id": "beauty_promo_1_url",
+            "type": "string",
+            "format": "text",
+            "label": "رابط بانر العروض 1",
+            "description": "رابط https:// كامل. اتركه فارغًا لاستخدام صفحة المتجر الافتراضية.",
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 1000
+        },
+        {
+            "id": "beauty_promo_2_image",
+            "type": "string",
+            "format": "image",
+            "label": "صورة بانر العروض 2",
+            "description": "مقاس مقترح 1920 × 480 بكسل. تترك فارغة لعرض تصميم Core Care الافتراضي.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_promo_2_title",
+            "type": "string",
+            "format": "text",
+            "label": "عنوان ووصف بانر العروض 2",
+            "multilanguage": true,
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 120
+        },
+        {
+            "id": "beauty_promo_2_url",
+            "type": "string",
+            "format": "text",
+            "label": "رابط بانر العروض 2",
+            "description": "رابط https:// كامل. اتركه فارغًا لاستخدام صفحة المتجر الافتراضية.",
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 1000
+        },
+        {
+            "id": "beauty_promo_3_image",
+            "type": "string",
+            "format": "image",
+            "label": "صورة بانر العروض 3",
+            "description": "مقاس مقترح 1920 × 480 بكسل. تترك فارغة لعرض تصميم Core Care الافتراضي.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_promo_3_title",
+            "type": "string",
+            "format": "text",
+            "label": "عنوان ووصف بانر العروض 3",
+            "multilanguage": true,
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 120
+        },
+        {
+            "id": "beauty_promo_3_url",
+            "type": "string",
+            "format": "text",
+            "label": "رابط بانر العروض 3",
+            "description": "رابط https:// كامل. اتركه فارغًا لاستخدام صفحة المتجر الافتراضية.",
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 1000
+        },
+        {
             "id": "squar_photo_bg_image_size",
             "type": "items",
             "format": "dropdown-list",

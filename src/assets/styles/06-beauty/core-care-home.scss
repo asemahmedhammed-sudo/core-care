@@ -1,0 +1,94 @@
+body.theme-beauty.beauty-reference-home {
+  #main-content { display: flex; flex-direction: column; }
+  #main-content > .beauty-promotions { order: -2; }
+  #main-content > .beauty-hero { order: -1; margin-block: 0; }
+
+  .beauty-promotions {
+    width: 100%;
+    padding: clamp(12px, 1.3vw, 24px) clamp(16px, 2vw, 40px) 0;
+    background: #f8f8f8;
+  }
+  .beauty-promotions__viewport { position: relative; max-width: 1920px; margin-inline: auto; border-radius: 10px; overflow: hidden; }
+  .beauty-promotions__slide {
+    display: grid; grid-template-columns: 1.1fr 1fr; align-items: center;
+    aspect-ratio: 4 / 1; background: #ececea; color: var(--beauty-ink); overflow: hidden;
+  }
+  .beauty-promotions [hidden] { display: none !important; }
+  .beauty-promotions__slide--2 { background: #e5e5e3; }
+  .beauty-promotions__slide--3 { background: #f0f0ef; }
+  .beauty-promotions__copy { padding: 24px clamp(56px, 6vw, 116px); position: relative; z-index: 1; }
+  .beauty-promotions__brand { font-size: clamp(10px, 1vw, 16px); letter-spacing: .18em; }
+  .beauty-promotions h2 { font-size: clamp(24px, 3vw, 56px); font-weight: 800; line-height: 1.35; margin: 12px 0 20px; }
+  .beauty-promotions__action { display: inline-flex; align-items: center; gap: 16px; font-weight: 600; font-size: clamp(13px, 1.2vw, 20px); border-bottom: 1px solid; padding-bottom: 5px; }
+  .beauty-promotions__photo { width: 100%; height: 100%; min-height: 0; object-fit: cover; object-position: center 55%; }
+  .beauty-promotions__slide--uploaded { display: block; }
+  .beauty-promotions__artwork { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .beauty-promotions__arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    display: grid; place-items: center; width: clamp(34px, 3vw, 52px); height: clamp(34px, 3vw, 52px);
+    border: 1px solid #2221; border-radius: 50%; background: #ffffffe8; color: #222;
+    font: 36px/1 Arial, sans-serif; cursor: pointer;
+  }
+  .beauty-promotions__arrow--prev { inset-inline-start: 12px; }
+  .beauty-promotions__arrow--next { inset-inline-end: 12px; }
+  .beauty-promotions__arrow span { display: block; }
+  &[dir='rtl'] .beauty-promotions__arrow span { transform: scaleX(-1); }
+  .beauty-promotions__dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 2px; border-radius: 24px; background: #ffffffb8; padding: 0 5px; }
+  .beauty-promotions__dots button { display: grid; place-items: center; width: 28px; height: 28px; cursor: pointer; }
+  .beauty-promotions__dots button::before { content: ''; width: 7px; height: 7px; background: #777; border-radius: 50%; }
+  .beauty-promotions__dots [aria-current='true']::before { background: #222; width: 10px; height: 10px; }
+  .beauty-promotions :focus-visible { outline: 2px solid #222; outline-offset: -4px; }
+
+  .beauty-hero__grid {
+    max-width: 1520px; width: 100%; min-height: 0;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+    gap: clamp(56px, 7vw, 120px);
+    padding: clamp(48px, 5vw, 80px) clamp(32px, 7vw, 112px) clamp(64px, 6vw, 96px);
+  }
+  .beauty-hero__copy { max-width: 660px; }
+  .beauty-hero__copy h2 { font-size: clamp(36px, 4vw, 64px); line-height: 1.22; letter-spacing: -.025em; text-wrap: balance; }
+  .beauty-hero__offer { font-size: clamp(13px, 1vw, 16px); margin-block-end: 24px; padding: 6px 18px; }
+  .beauty-hero__description { max-width: 35rem; font-size: clamp(16px, 1.4vw, 22px); line-height: 1.85; margin-block: 24px 30px; }
+  .beauty-hero__action { min-height: 54px; padding-inline: 28px; gap: 24px; font-size: 18px; border-radius: 12px; }
+  .beauty-hero__visual { max-width: clamp(320px, 32vw, 520px); width: 100%; }
+  .beauty-hero__media { border-radius: 24px; box-shadow: 0 20px 40px #00000012; }
+  .beauty-hero__new { left: -40px; top: 9%; width: 88px; font-size: 14px; }
+  .beauty-hero__natural { right: -32px; bottom: -24px; padding: 14px; gap: 12px; font-size: 14px; border-radius: 18px; }
+  .beauty-hero__natural-icon { width: 42px; height: 42px; }
+  .beauty-hero__benefits-inner { max-width: 1440px; min-height: 104px; padding: 24px 32px; gap: 24px; }
+  .beauty-hero__benefits-inner > div { font-size: 16px; gap: 12px; }
+  .beauty-hero__benefits svg { width: 28px; height: 28px; }
+
+  @media (max-width: 767px) {
+    .beauty-promotions__slide { aspect-ratio: 2.1 / 1; }
+    .beauty-promotions__slide--uploaded { aspect-ratio: 4 / 1; }
+    .beauty-promotions__copy { padding: 20px 36px 38px; }
+    .beauty-promotions__brand { font-size: 9px; letter-spacing: .08em; }
+    .beauty-promotions h2 { font-size: clamp(18px, 4.6vw, 30px); margin: 7px 0 10px; }
+    .beauty-promotions__action { font-size: 11px; gap: 8px; }
+    .beauty-promotions__arrow { width: 32px; height: 32px; font-size: 26px; }
+    .beauty-promotions__arrow--prev { inset-inline-start: 4px; }
+    .beauty-promotions__arrow--next { inset-inline-end: 4px; }
+    .beauty-promotions__dots { bottom: 5px; }
+    .beauty-hero__grid { grid-template-columns: 1fr; gap: 32px; padding: 36px 24px 56px; }
+    .beauty-hero__copy h2 { font-size: clamp(32px, 8vw, 46px); }
+    .beauty-hero__copy { max-width: 540px; justify-self: center; }
+    .beauty-hero__offer { margin-block-end: 18px; }
+    .beauty-hero__description { margin-block: 18px 24px; font-size: 16px; }
+    .beauty-hero__visual { width: calc(100% - 40px); max-width: 420px; }
+    .beauty-hero__new { left: -20px; width: 72px; font-size: 12px; }
+    .beauty-hero__natural { right: -20px; font-size: 12px; padding: 12px; }
+    .beauty-hero__benefits-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; padding: 24px; }
+    .beauty-hero__benefits-inner > div { font-size: 13px; white-space: normal; }
+  }
+}
+html[dir='rtl'] .beauty-promotions__arrow span { transform: scaleX(-1); }
+html[dir='rtl'] body.theme-beauty.beauty-reference-home .beauty-hero__copy { text-align: right; }
+html[dir='ltr'] body.theme-beauty.beauty-reference-home {
+  .beauty-hero__new { left: auto; right: -40px; }
+  .beauty-hero__natural { right: auto; left: -32px; }
+  @media (max-width: 767px) {
+    .beauty-hero__new { right: -20px; }
+    .beauty-hero__natural { left: -20px; }
+  }
+}

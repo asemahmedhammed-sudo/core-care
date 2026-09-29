@@ -2,7 +2,10 @@ import "lite-youtube-embed";
 import "./beauty-routine";
 import BasePage from "./base-page";
 import Lightbox from "fslightbox";
+import initPromotionCarousels from './partials/promotion-carousel';
 window.fslightbox = Lightbox;
+// The banner does not depend on the store SDK being ready.
+initPromotionCarousels();
 
 class Home extends BasePage {
     onReady() {

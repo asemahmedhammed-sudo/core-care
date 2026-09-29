@@ -1,0 +1,33 @@
+{# Rendered by the homepage before merchant sections. Settings remain editable. #}
+{% if theme.settings.get('beauty_promotions_enabled', true) %}
+<section class="beauty-promotions" data-promotion-carousel role="region" aria-roledescription="{{ trans('beauty.promo.carousel') }}" aria-label="{{ trans('beauty.promo.label') }}">
+  <div class="beauty-promotions__viewport">
+    {% for number in 1..3 %}
+      {% set image = theme.settings.get('beauty_promo_' ~ number ~ '_image') %}
+      {% set title = theme.settings.get('beauty_promo_' ~ number ~ '_title') ?: trans('beauty.promo.title_' ~ number) %}
+      {% set destination = theme.settings.get('beauty_promo_' ~ number ~ '_url') %}
+      {% set destination = (destination starts with 'https://') ? destination : link(number == 1 ? 'offers' : (number == 2 ? 'latest-products' : 'brands')) %}
+      <a id="beauty-promotion-{{ number }}" data-promotion-slide class="beauty-promotions__slide beauty-promotions__slide--{{ number }} {{ image ? 'beauty-promotions__slide--uploaded' : '' }}" href="{{ destination }}" aria-label="{{ title }}" {% if number != 1 %}hidden{% endif %}>
+        {% if image %}
+          <img class="beauty-promotions__artwork" src="{{ image }}" alt="{{ title }}" width="1920" height="480" loading="{{ number == 1 ? 'eager' : 'lazy' }}" {% if number == 1 %}fetchpriority="high"{% endif %}>
+        {% else %}
+          <div class="beauty-promotions__copy">
+            <span class="beauty-promotions__brand">{{ store.name }}</span>
+            <h2>{{ title }}</h2>
+            <span class="beauty-promotions__action">{{ trans('beauty.promo.action_' ~ number) }} <span aria-hidden="true">←</span></span>
+          </div>
+          <img class="beauty-promotions__photo" src="{{ 'images/beauty-hero-products.jpg'|asset }}" alt="" width="1000" height="1000" loading="{{ number == 1 ? 'eager' : 'lazy' }}">
+        {% endif %}
+      </a>
+    {% endfor %}
+    <div class="beauty-promotions__controls" data-promotion-controls hidden>
+      <button type="button" data-promotion-prev class="beauty-promotions__arrow beauty-promotions__arrow--prev" aria-label="{{ trans('beauty.promo.previous') }}"><span aria-hidden="true">‹</span></button>
+      <button type="button" data-promotion-next class="beauty-promotions__arrow beauty-promotions__arrow--next" aria-label="{{ trans('beauty.promo.next') }}"><span aria-hidden="true">›</span></button>
+      <div class="beauty-promotions__dots" aria-label="{{ trans('beauty.promo.choose') }}">
+        {% for number in 1..3 %}<button type="button" data-promotion-dot aria-label="{{ trans('beauty.promo.slide') }} {{ number }}" aria-controls="beauty-promotion-{{ number }}" aria-current="{{ number == 1 ? 'true' : 'false' }}"></button>{% endfor %}
+      </div>
+    </div>
+    <span class="sr-only" data-promotion-status aria-live="polite" aria-atomic="true"></span>
+  </div>
+</section>
+{% endif %}
