@@ -4,6 +4,13 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const source = fs.readFileSync(new URL('../src/assets/js/partials/promotion-carousel.js', import.meta.url), 'utf8').replace('export default ', '');
+test('homepage includes the promotions partial without invoking the Salla component registry', () => {
+  const page = fs.readFileSync(new URL('../src/views/pages/index.twig', import.meta.url), 'utf8');
+  assert.match(page, /\{% include 'pages\.partials\.home\.promotions' %\}/);
+  assert.doesNotMatch(page, /\{% component ['"]home\.promotions['"]/);
+  assert.ok(fs.existsSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url)));
+  assert.ok(page.indexOf("include 'pages.partials.home.promotions'") < page.indexOf('component home'));
+});
 function fixture(direction = 'rtl') {
   const element = (label = '') => ({ hidden: false, dataset: {}, attrs: { 'aria-label': label }, events: {},
     addEventListener(event, callback) { this.events[event] = callback; },
