@@ -20,7 +20,7 @@
   &.beauty-palette-store { --beauty-olive: var(--color-primary); }
 
   .container { max-width: 1280px; }
-  .s-block { margin-block: clamp(2.5rem, 5vw, 5rem); }
+  .s-block { margin-block: clamp(1.75rem, 3vw, 3rem) 0; }
   .s-block__title h2, .s-slider-block__title h2 { color: var(--beauty-olive); }
   .s-block__display-all { color: var(--beauty-olive); }
   .breadcrumbs { color: var(--beauty-muted); }
@@ -39,7 +39,7 @@
   .main-menu .sub-menu { border-radius: var(--beauty-radius); }
   .topnav-is-dark .top-navbar { background: var(--beauty-ink); color: var(--beauty-paper); }
 
-  .beauty-surface { background: var(--beauty-cream); padding-block: clamp(2.5rem, 6vw, 5.5rem); }
+  .beauty-surface { background: var(--beauty-cream); padding-block: clamp(2rem, 4vw, 4rem); }
   .beauty-rounded { border-radius: var(--beauty-radius); overflow: hidden; }
   .beauty-section-heading { margin-block-end: 1.75rem; }
   .beauty-section-heading h2 { color: var(--beauty-olive); font-size: clamp(1.35rem, 2.5vw, 2rem); font-weight: 700; line-height: 1.4; }
@@ -149,11 +149,38 @@
       direction: ltr;
     }
     .beauty-reference-nav__actions salla-cart-summary { order: 1; }
+    .beauty-reference-nav__actions salla-cart-summary .s-cart-summary-content { display: none; }
     .beauty-reference-nav__actions salla-user-menu { order: 2; }
     .beauty-reference-nav__actions salla-search { order: 3; }
     .beauty-reference-nav__actions .beauty-reference-nav__toggle { order: 4; }
-    .beauty-reference-nav__actions salla-search { width: 42px; overflow: hidden; transition: width .2s ease; }
-    .beauty-reference-nav__actions salla-search:focus-within { width: min(250px, 20vw); }
+    .beauty-reference-nav__actions salla-search,
+    .beauty-reference-nav__actions salla-search .s-search-placeholder-wrapper,
+    .beauty-reference-nav__actions salla-search .s-search-input-wrapper {
+      width: 42px;
+      min-width: 42px;
+      height: 42px;
+      overflow: hidden;
+    }
+    .beauty-reference-nav__actions salla-search .s-search-input {
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      color: transparent;
+      caret-color: transparent;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+    .beauty-reference-nav__actions salla-search .s-search-input::placeholder { color: transparent; }
+    .beauty-reference-nav__actions salla-search .s-search-icon-wrap {
+      inset: 0;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+    .beauty-reference-nav__actions salla-search .s-search-icon { font-size: 1.55rem; }
     .beauty-reference-nav__actions .header-btn__icon {
       width: 36px;
       height: 36px;
@@ -338,7 +365,7 @@
       width: calc(100% - clamp(2rem, 13.5vw, 18rem));
       padding-inline: 0;
     }
-    padding-block: clamp(1.5rem, 3vw, 3rem);
+    padding-block: clamp(1.5rem, 2.5vw, 2.5rem);
     background: var(--beauty-cream);
     box-shadow: 0 0 0 100vmax var(--beauty-cream);
     clip-path: inset(0 -100vmax);
@@ -464,15 +491,15 @@
     --beauty-olive: #4b5c3b;
   }
 
-  &.beauty-alternate-sections #main-content > .s-block:nth-of-type(even):not(.container):not(.beauty-hero):not(.beauty-routine):not(.beauty-features) { background-color: var(--beauty-cream); padding-block: 3rem; }
-  &.beauty-alternate-sections #main-content > .s-block.container:nth-of-type(even):not(.beauty-categories):not(.beauty-collections) { padding-block: 2rem; }
+  &.beauty-alternate-sections #main-content > .s-block:nth-of-type(even):not(.container):not(.beauty-hero):not(.beauty-routine):not(.beauty-features) { background-color: var(--beauty-cream); padding-block: clamp(2rem, 3vw, 3rem); }
+  &.beauty-alternate-sections #main-content > .s-block.container:nth-of-type(even):not(.beauty-categories):not(.beauty-collections) { padding-block: clamp(1.5rem, 2vw, 2rem); }
 
   .product-single h1, #page-main-title { color: var(--beauty-olive); }
   .product-slider { border-radius: var(--beauty-radius); overflow: hidden; background: var(--beauty-cream); }
   .product__description { color: var(--beauty-muted); }
   .beauty-category-banner { width: 100%; aspect-ratio: 4 / 1; object-fit: cover; border-radius: var(--beauty-radius); margin-block-end: 1.5rem; }
   .content--single-page, .blog-entry, .cart-item { border-radius: var(--beauty-radius); }
-  .beauty-footer { margin-block-start: 4rem; background: #25271f; color: var(--beauty-paper); }
+  .beauty-footer { margin-block-start: clamp(2rem, 3vw, 3rem); background: #25271f; color: var(--beauty-paper); }
   .beauty-footer .store-footer__inner { background: #303729; border-color: #ffffff20; }
   .beauty-footer h3 { color: #dfc794; }
   .beauty-footer .copyright-text p { color: var(--beauty-paper); }

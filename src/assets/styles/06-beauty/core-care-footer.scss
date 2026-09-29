@@ -2,7 +2,7 @@
 body .store-footer.beauty-footer.core-care-footer {
   background: #1e1e1b;
   color: #a3a39f;
-  margin-block-start: 4rem;
+  margin-block-start: clamp(2rem, 3vw, 3rem);
 
   .container { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: clamp(20px, 4vw, 64px); }
 
