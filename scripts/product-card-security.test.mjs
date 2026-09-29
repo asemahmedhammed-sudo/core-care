@@ -115,6 +115,16 @@ test('promotion switch defaults off and is wired to the shared layout', () => {
   assert.match(layout, /data-beauty-show-product-promotion-titles="\{\{ theme.settings.get\('beauty_show_product_promotion_titles', false\) \? 'true' : 'false' \}\}"/);
 });
 
+test('custom cards register before platform components can choose native fallback cards', () => {
+  const layout = fs.readFileSync(new URL('../src/views/layouts/master.twig', import.meta.url), 'utf8');
+  const cardScript = layout.match(/<script[^>]*src="[^"\n]*'product-card\.js'[^"\n]*"[^>]*><\/script>/)?.[0];
+  assert.ok(cardScript);
+  assert.doesNotMatch(cardScript, /\s(?:defer|async|type="module")(?:\s|=|>)/);
+  assert.match(cardScript, /data-cfasync="false"/);
+  assert.ok(layout.indexOf(cardScript) < layout.indexOf("hook 'head:end'"));
+  assert.ok(layout.indexOf(cardScript) < layout.indexOf('<body'));
+});
+
 test('homepage product button copy preserves booking and preorder actions', () => {
   const card = new ProductCard();
   card.closest = () => ({ dataset: { addToCartLabel: 'أضيفي للسلة' } });
