@@ -1,16 +1,23 @@
 // Neutral storefront palette inspired by niceonesa.com; colours only.
 body.theme-beauty {
-  --beauty-paper: #fff;
-  --beauty-cream: #f8f8f8;
-  --beauty-ink: #222;
-  --beauty-muted: #666;
-  --beauty-olive: #222;
-  --beauty-gold: #222;
-  --beauty-border: #e5e5e5;
-  --color-primary: #222;
-  --color-primary-dark: #000;
-  --color-primary-light: #f2f2f2;
-  --color-primary-reverse: #fff;
+  // Match the legacy homepage/palette selectors so their more specific
+  // variables cannot bring back cream surfaces or olive text and icons.
+  &,
+  &.beauty-reference-home,
+  &.beauty-palette-rose,
+  &.beauty-palette-store {
+    --beauty-paper: #fff;
+    --beauty-cream: #f8f8f8;
+    --beauty-ink: #222;
+    --beauty-muted: #666;
+    --beauty-olive: #222;
+    --beauty-gold: #222;
+    --beauty-border: #e5e5e5;
+    --color-primary: #222;
+    --color-primary-dark: #000;
+    --color-primary-light: #f2f2f2;
+    --color-primary-reverse: #fff;
+  }
   background-color: #f8f8f8;
 
   &.beauty-reference-home .beauty-product-section {
