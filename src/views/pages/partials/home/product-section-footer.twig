@@ -1,0 +1,7 @@
+{% if display_all_url and display_all_url != '#' %}
+  <div class="beauty-product-section__footer">
+    <a href="{{ display_all_url }}" class="beauty-product-section__all">
+      {{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left" aria-hidden="true"></i>
+    </a>
+  </div>
+{% endif %}

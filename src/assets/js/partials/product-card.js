@@ -205,6 +205,9 @@ class ProductCard extends HTMLElement {
     const useSectionCartLabel = this.closest?.('.beauty-product-section') &&
       (!suppliedCartLabel || suppliedCartLabel === salla.lang.get('pages.cart.add_to_cart'));
     const cartLabel = useSectionCartLabel ? this.getAddButtonLabel() : (suppliedCartLabel || this.getAddButtonLabel());
+    const productSection = this.closest?.('.beauty-product-section');
+    const showSectionActions = productSection && !this.horizontal && !this.fullImage && !this.minimal;
+    const viewProductLabel = this.escapeHTML(productSection?.dataset.viewProductLabel || salla.lang.get('beauty.view_product'));
     const wishlistLabel = this.escapeHTML(document.body.dataset.beautyWishlistLabel || salla.lang.get('beauty.wishlist_toggle'));
     this.classList.add('s-product-card-entry'); 
     this.setAttribute('id', this.product.id);
@@ -238,6 +241,7 @@ class ProductCard extends HTMLElement {
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
           ${this.fullImage ? `<a href="${productUrl}" aria-label="${productName}" class="s-product-card-overlay"></a>`:''}
+          ${showSectionActions ? '<div class="beauty-product-card-actions">' : ''}
           ${!this.horizontal && !this.fullImage ?
             `<salla-button
               shape="icon"
@@ -250,6 +254,7 @@ class ProductCard extends HTMLElement {
               <i class="sicon-heart"></i>
             </salla-button>` : ``
           }
+          ${showSectionActions ? `<a class="beauty-product-card-view" href="${productUrl}" aria-label="${viewProductLabel}: ${productName}"><i class="sicon-eye" aria-hidden="true"></i></a></div>` : ''}
         </div>
         <div class="s-product-card-content">
           ${this.isSpecial && this.product?.quantity ?

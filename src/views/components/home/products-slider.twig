@@ -10,19 +10,17 @@
 | limit                 | int       | Number of products to be shown                                   |
 #}
 
-{% set is_bestsellers = products.source == 'sales' or title in ['الأكثر مبيعًا', 'الأكثر مبيعاً', 'الأكثر مبيعا', 'Best sellers', 'Bestsellers'] %}
-<section component-id="{{ componentId }}" data-testid="store-home-products-slider" id="best-offers-{{ position }}-slider" data-add-to-cart-label="{{ trans('beauty.product_section_add_to_cart') }}" class="s-block beauty-product-section {{ is_bestsellers ? 'beauty-bestsellers' : '' }} s-block--best-offers container overflow-hidden">
+<section component-id="{{ componentId }}" data-testid="store-home-products-slider" id="best-offers-{{ position }}-slider" data-add-to-cart-label="{{ trans('beauty.product_section_add_to_cart') }}" data-view-product-label="{{ trans('beauty.view_product') }}" class="s-block beauty-product-section s-block--best-offers container">
   {% if products|length %}
+    {% include 'pages.partials.home.product-section-heading' with { section_title: title, section_subtitle: sub_title } %}
     <salla-products-slider
-            data-testid="store-home-products-slider-widget"
-            source="{{ products.source }}"
-            limit="{{ limit }}"
-            autoplay
-            source-value="{{ products.source_value|json_encode }}"
-            display-all-url="{{display_all_url}}"
-            block-title="{{ title }}"
-            block-subTitle="{{ sub_title ?: (is_bestsellers ? trans('beauty.bestsellers_subtitle') : '') }}"
-            slider-id="slider-with-bg-{{ position }}"
+      data-testid="store-home-products-slider-widget"
+      source="{{ products.source }}"
+      limit="{{ limit }}"
+      source-value="{{ products.source_value|json_encode }}"
+      slider-id="slider-with-bg-{{ position }}"
+      product-card-component="custom-salla-product-card"
     ></salla-products-slider>
+    {% include 'pages.partials.home.product-section-footer' %}
   {% endif %}
 </section>

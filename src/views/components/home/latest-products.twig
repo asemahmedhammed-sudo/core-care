@@ -4,10 +4,7 @@
 | products        | Products[] |                                |
 | position        | Int        | Sorting number start from zero |
 #}
-<section component-id="{{ componentId }}" data-testid="store-home-products-section" class="s-block s-block--latest-products container mt-6 sm:mt-8">
-    <div class="s-block__title">
-      <h2>{{ trans('blocks.home.latest_products') }}</h2>
-    </div>
-    
-    <salla-products-list data-testid="store-home-latest-products-list" source="latest"></salla-products-list>
-</section> 
+<section component-id="{{ componentId }}" data-testid="store-home-products-section" data-add-to-cart-label="{{ trans('beauty.product_section_add_to_cart') }}" data-view-product-label="{{ trans('beauty.view_product') }}" class="s-block beauty-product-section s-block--latest-products container">
+    {% include 'pages.partials.home.product-section-heading' with { section_title: trans('blocks.home.latest_products') } %}
+    <salla-products-list data-testid="store-home-latest-products-list" source="latest" product-card-component="custom-salla-product-card"></salla-products-list>
+</section>

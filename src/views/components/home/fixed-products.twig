@@ -8,29 +8,15 @@
 | position              | Int       | Sorting number start from zero                                   |
 | limit                 | int       | Number of products to be shown                                   |
 #}
-{% set is_vertical = theme.settings.get('vertical_fixed_products', true) %}
-{% set is_bestsellers = products.source == 'sales' or title in ['الأكثر مبيعًا', 'الأكثر مبيعاً', 'الأكثر مبيعا', 'Best sellers', 'Bestsellers'] %}
-<section component-id="{{ componentId }}" data-testid="store-home-fixed-products" data-add-to-cart-label="{{ trans('beauty.product_section_add_to_cart') }}" class="s-block beauty-product-section {{ is_bestsellers ? 'beauty-bestsellers' : '' }} container">
-    {% if title %}
-      <div class="s-block__title">
-        <div class="right-side">
-          <h2>{{ title }}</h2>
-          {% if is_bestsellers %}<p>{{ trans('beauty.bestsellers_subtitle') }}</p>{% endif %}
-        </div>
-        {% if display_all_url %}
-            <a href="{{ display_all_url }}" class="s-block__display-all">{{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left"></i></a>
-        {% endif %}
-      </div>
-    {% endif %}
-
+<section component-id="{{ componentId }}" data-testid="store-home-fixed-products" data-add-to-cart-label="{{ trans('beauty.product_section_add_to_cart') }}" data-view-product-label="{{ trans('beauty.view_product') }}" class="s-block beauty-product-section container">
+    {% include 'pages.partials.home.product-section-heading' with { section_title: title } %}
     <salla-products-list
       data-testid="store-home-fixed-products-list"
       source="{{ products.source }}"
       limit="{{ limit }}"
       source-value="{{ products.source_value|json_encode }}"
-      class="{{is_vertical ? 'vertical-products' : 'horizontal-products'}}"
-      {{is_vertical ? '' : 'horizontal-cards'}}
-      >
-    </salla-products-list>
+      class="vertical-products"
+      product-card-component="custom-salla-product-card"
+    ></salla-products-list>
+    {% include 'pages.partials.home.product-section-footer' %}
 </section>
-
