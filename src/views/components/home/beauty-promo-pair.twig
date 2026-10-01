@@ -1,0 +1,15 @@
+{% set visible_banners = [] %}
+{% for banner in component.banners %}
+  {% if banner.image %}{% set visible_banners = visible_banners|merge([banner]) %}{% endif %}
+{% endfor %}
+{% if visible_banners|length %}
+  <section component-id="{{ componentId }}" data-testid="beauty-promo-pair" class="s-block container beauty-campaigns">
+    <div class="beauty-campaigns__pair {{ visible_banners|length == 1 ? 'beauty-campaigns__pair--single' : '' }}">
+      {% for banner in visible_banners %}
+        {% include 'pages.partials.home.promo-banner' with {
+          banner: { image: banner.image, mobile_image: banner.mobile_image, image_alt: banner.image_alt, url: banner.url }
+        } only %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

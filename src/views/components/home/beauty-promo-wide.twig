@@ -1,0 +1,7 @@
+{% if component.image %}
+  <section component-id="{{ componentId }}" data-testid="beauty-promo-wide" class="s-block container beauty-campaigns">
+    {% include 'pages.partials.home.promo-banner' with {
+      banner: { image: component.image, mobile_image: component.mobile_image, image_alt: component.image_alt, url: component.url }
+    } only %}
+  </section>
+{% endif %}

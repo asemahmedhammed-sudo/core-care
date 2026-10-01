@@ -1,0 +1,8 @@
+{% set linked = banner.url and banner.url != '#' %}
+{% set tag = linked ? 'a' : 'div' %}
+<{{ tag }} class="beauty-campaigns__banner" {% if linked %}href="{{ banner.url }}"{% endif %}>
+  <picture>
+    {% if banner.mobile_image %}<source media="(max-width: 639px)" srcset="{{ banner.mobile_image }}">{% endif %}
+    <img src="{{ banner.image }}" alt="{{ banner.image_alt }}" loading="lazy" decoding="async">
+  </picture>
+</{{ tag }}>

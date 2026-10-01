@@ -760,6 +760,241 @@
             ]
         },
         {
+            "key": "91205839-67d2-4fbc-82a2-c14c0d9bf926",
+            "title": {
+                "ar": "بانر إعلاني عريض",
+                "en": "Wide campaign banner"
+            },
+            "icon": "sicon-image",
+            "path": "home.beauty-promo-wide",
+            "is_default": false,
+            "fields": [
+                {
+                    "id": "image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة البانر",
+                    "required": true,
+                    "value": null,
+                    "description": "المقاس المقترح 2000×380 بكسل. تظهر الصورة كاملة دون قص؛ يمكن أن تتضمن النص والشعار والعرض."
+                },
+                {
+                    "id": "mobile_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة خاصة للجوال (اختياري)",
+                    "required": false,
+                    "value": null,
+                    "description": "المقاس المقترح 750×500 بكسل. عند تركها فارغة تظهر الصورة الأساسية كاملة."
+                },
+                {
+                    "id": "image_alt",
+                    "type": "string",
+                    "format": "text",
+                    "label": "وصف البانر والعرض",
+                    "multilanguage": true,
+                    "required": true,
+                    "value": null,
+                    "minLength": 1,
+                    "maxLength": 240,
+                    "description": "اكتب مضمون الإعلان ليكون واضحًا لقارئات الشاشة، مثل اسم الماركة والعرض."
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-link",
+                    "label": "رابط البانر",
+                    "id": "url",
+                    "value": null,
+                    "description": "اختياري: اختر وجهة عند الضغط على الصورة.",
+                    "required": false,
+                    "format": "variable-list",
+                    "searchable": true,
+                    "source": "custom",
+                    "sources": [
+                        {
+                            "label": "منتج",
+                            "key": "products",
+                            "value": "products"
+                        },
+                        {
+                            "label": "منتجات مع وسم",
+                            "key": "products_tags",
+                            "value": "products_tags"
+                        },
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "ماركة تجارية",
+                            "key": "brands",
+                            "value": "brands"
+                        },
+                        {
+                            "label": "صفحة تعريفية",
+                            "key": "pages",
+                            "value": "pages"
+                        },
+                        {
+                            "label": "مقالة",
+                            "key": "blog_articles",
+                            "value": "blog_articles"
+                        },
+                        {
+                            "label": "تصنيف ضمن المدونة",
+                            "key": "blog_categories",
+                            "value": "blog_categories"
+                        },
+                        {
+                            "label": "التخفيضات",
+                            "key": "offers_link",
+                            "value": "offers_link"
+                        },
+                        {
+                            "label": "الماركات التجارية",
+                            "key": "brands_link",
+                            "value": "brands_link"
+                        },
+                        {
+                            "label": "المدونة",
+                            "key": "blog_link",
+                            "value": "blog_link"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "5fe199ee-be0a-483e-89c8-9240d7b39d37",
+            "title": {
+                "ar": "بانران إعلانيان متجاوران",
+                "en": "Paired campaign banners"
+            },
+            "icon": "sicon-image",
+            "path": "home.beauty-promo-pair",
+            "is_default": false,
+            "fields": [
+                {
+                    "id": "banners",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "البانرات",
+                    "item_label": "بانر",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 2,
+                    "value": [],
+                    "fields": [
+                        {
+                            "id": "banners.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة البانر",
+                            "required": true,
+                            "value": null,
+                            "description": "المقاس المقترح 1000×320 بكسل. تظهر الصورة كاملة دون قص؛ يمكن أن تتضمن النص والشعار والعرض."
+                        },
+                        {
+                            "id": "banners.mobile_image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة خاصة للجوال (اختياري)",
+                            "required": false,
+                            "value": null,
+                            "description": "المقاس المقترح 750×500 بكسل. عند تركها فارغة تظهر الصورة الأساسية كاملة."
+                        },
+                        {
+                            "id": "banners.image_alt",
+                            "type": "string",
+                            "format": "text",
+                            "label": "وصف البانر والعرض",
+                            "multilanguage": true,
+                            "required": true,
+                            "value": null,
+                            "minLength": 1,
+                            "maxLength": 240,
+                            "description": "اكتب مضمون الإعلان ليكون واضحًا لقارئات الشاشة، مثل اسم الماركة والعرض."
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-link",
+                            "label": "رابط البانر",
+                            "id": "banners.url",
+                            "value": null,
+                            "description": "اختياري: اختر وجهة عند الضغط على الصورة.",
+                            "required": false,
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "منتجات مع وسم",
+                                    "key": "products_tags",
+                                    "value": "products_tags"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "مقالة",
+                                    "key": "blog_articles",
+                                    "value": "blog_articles"
+                                },
+                                {
+                                    "label": "تصنيف ضمن المدونة",
+                                    "key": "blog_categories",
+                                    "value": "blog_categories"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "الماركات التجارية",
+                                    "key": "brands_link",
+                                    "value": "brands_link"
+                                },
+                                {
+                                    "label": "المدونة",
+                                    "key": "blog_link",
+                                    "value": "blog_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "key": "0fbf8a57-74d9-4db9-940e-5804a622c20f",
             "title": {
                 "ar": "اختيار روتين العناية",
