@@ -105,6 +105,7 @@ body.theme-beauty .beauty-product-section {
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
+      &--empty { background: none; color: #ffb91d; }
     }
     .s-product-card-promotion-title {
       inset: 16px auto auto;

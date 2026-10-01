@@ -135,3 +135,25 @@ test('homepage product button copy preserves booking and preorder actions', () =
   card.product.has_preorder_campaign = true;
   assert.equal(card.getAddButtonLabel(), salla.lang.get('pages.products.pre_order_now'));
 });
+
+test('homepage cards show empty stars without inventing a rating and retain fractional ratings', () => {
+  const card = new ProductCard();
+  card.closest = () => ({ dataset: {} });
+  card.product = { id: 7, name: 'Product', url: '/product', status: 'sale', type: 'product', price: 10 };
+  for (const rating of [undefined, null, { stars: 0 }, { stars: 'invalid' }]) {
+    card.product.rating = rating;
+    card.render();
+    assert.match(card.innerHTML, /beauty-rating-stars--empty/);
+    assert.match(card.innerHTML, /☆☆☆☆☆/u);
+    assert.match(card.innerHTML, /--rating-fill: 0%/);
+  }
+  card.product.rating = { stars: '4.5' };
+  card.render();
+  assert.match(card.innerHTML, /--rating-fill: 90%/);
+  assert.match(card.innerHTML, /aria-label="4.5 \/ 5"/);
+  assert.doesNotMatch(card.innerHTML, /beauty-rating-stars--empty/);
+  card.closest = () => null;
+  card.product.rating = null;
+  card.render();
+  assert.doesNotMatch(card.innerHTML, /class="s-product-card-rating"/);
+});

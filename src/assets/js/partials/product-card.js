@@ -207,6 +207,9 @@ class ProductCard extends HTMLElement {
     const cartLabel = useSectionCartLabel ? this.getAddButtonLabel() : (suppliedCartLabel || this.getAddButtonLabel());
     const productSection = this.closest?.('.beauty-product-section');
     const showSectionActions = productSection && !this.horizontal && !this.fullImage && !this.minimal;
+    const rawRating = Number(this.product?.rating?.stars);
+    const rating = Number.isFinite(rawRating) ? Math.min(5, Math.max(0, rawRating)) : 0;
+    const ratingLabel = rating > 0 ? `${rating} / 5` : salla.lang.get('beauty.no_product_reviews');
     const viewProductLabel = this.escapeHTML(productSection?.dataset.viewProductLabel || salla.lang.get('beauty.view_product'));
     const wishlistLabel = this.escapeHTML(document.body.dataset.beautyWishlistLabel || salla.lang.get('beauty.wishlist_toggle'));
     this.classList.add('s-product-card-entry'); 
@@ -295,11 +298,11 @@ class ProductCard extends HTMLElement {
             : ''}
           <div class="s-product-card-content-sub ${this.isSpecial ? 's-product-card-content-extra-padding' : ''}">
             ${this.product?.donation?.can_donate ? '' : this.getProductPrice()}
-            ${this.product?.rating?.stars ?
-              `<div class="s-product-card-rating">
-                <span class="beauty-rating-stars" aria-hidden="true" style="--rating-fill: ${Math.min(5, Math.max(0, Number(this.product.rating.stars) || 0)) * 20}%">★★★★★</span>
-                <i class="sicon-star2 before:text-orange-300"></i>
-                <span>${this.escapeHTML(this.product.rating.stars)}</span>
+            ${rating > 0 || showSectionActions ?
+              `<div class="s-product-card-rating" role="img" aria-label="${this.escapeHTML(ratingLabel)}" title="${this.escapeHTML(ratingLabel)}">
+                <span class="beauty-rating-stars${rating > 0 ? '' : ' beauty-rating-stars--empty'}" aria-hidden="true" style="--rating-fill: ${rating * 20}%">${rating > 0 ? '★★★★★' : '☆☆☆☆☆'}</span>
+                <i class="sicon-star2 before:text-orange-300" aria-hidden="true"></i>
+                <span aria-hidden="true">${rating}</span>
               </div>`
                : ``}
           </div>

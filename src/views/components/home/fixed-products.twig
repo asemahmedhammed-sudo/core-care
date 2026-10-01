@@ -18,5 +18,7 @@
       class="vertical-products"
       product-card-component="custom-salla-product-card"
     ></salla-products-list>
-    {% include 'pages.partials.home.product-section-footer' %}
+    {% include 'pages.partials.home.product-section-footer' with {
+      display_all_url: display_all_url and display_all_url != '#' ? display_all_url : link('latest-products')
+    } %}
 </section>
