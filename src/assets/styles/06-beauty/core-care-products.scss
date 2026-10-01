@@ -4,9 +4,8 @@ body.theme-beauty .beauty-product-section {
   --product-ink: #171e2e;
   --product-muted: #626c7b;
   padding-block: 0;
-  background: #fff;
-  box-shadow: 0 0 0 100vmax #fff;
-  clip-path: inset(0 -100vmax);
+  // Let the page background continue between and around the product cards.
+  background: transparent;
 
   &.container {
     width: calc(100% - clamp(32px, 4vw, 64px));
