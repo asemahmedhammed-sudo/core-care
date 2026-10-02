@@ -38,7 +38,7 @@ body.theme-beauty.product-single {
     .s-slider-thumbs .swiper-slide::after { display: none; }
     .promotion-title { font-size: 12px; background: var(--beauty-olive); }
   }
-  .core-product-price .hidden, .core-product-price.hidden { display: none !important; }
+  .core-product-price [class~='hidden'], .core-product-price[class~='hidden'] { display: none !important; }
   &.rtl .core-product-title { padding-right: 0; padding-left: 90px; }
   &.rtl .core-product-actions { left: 0; right: auto; }
   &.rtl .core-product-brand-link { margin-left: 0; margin-right: auto; }
@@ -49,7 +49,7 @@ body.theme-beauty.product-single {
   .s-rating-stars-selected { color: #e9b632; }
   .core-product-price {
     margin-block: 8px 4px;
-    > div:not(.hidden) { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+    > div:not([class~='hidden']) { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
     strong { font-size: 26px; font-weight: 700; line-height: 1.4; }
     .core-product-sale { color: #c34d7e; }
     del { color: #888; font-size: 15px; }
@@ -65,8 +65,9 @@ body.theme-beauty.product-single {
   .product-form > section:not(.core-product-purchase) { padding: 12px 0; margin-block: 0 12px; }
   salla-product-options { display: block; margin: 0; padding: 0; }
   .s-product-options-option:not(.s-product-options-option-booking) { display: block !important; padding: 0; margin-block: 0 16px; }
-  .s-product-options-label { margin-bottom: 8px; }
+  .s-product-options-option-label { margin-bottom: 8px; }
   .s-product-options-option-container { margin-top: 0; text-align: start; }
+  &.rtl .s-product-options-option-container, &.rtl .s-product-options-option-label { text-align: right; }
   .core-product-purchase { display: flex; flex-direction: column; gap: 12px; padding: 0; background: #fff; border-radius: 0; }
   .core-product-quantity { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0; }
   .core-product-quantity .form-label { margin: 0; font-size: 13px; color: #555; }
@@ -94,6 +95,7 @@ body.theme-beauty.product-single {
   .core-product-brand-link { margin-inline-start: auto; display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--beauty-olive); font-weight: 400; }
   .core-product-quick-order { display: block; margin-top: 16px; }
   .core-product-quick-order:empty, .core-product-disclosures:empty { display: none; }
+  .core-product-related:has(> salla-products-slider.hydrated):not(:has(custom-salla-product-card, salla-product-card)) { display: none; }
   .s-comments-product { background: #fafafa; padding-block: 24px; }
 
   @media (max-width: 767px) {

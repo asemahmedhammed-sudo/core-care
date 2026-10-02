@@ -211,7 +211,7 @@
                     <div class="price_is_on_sale {{ product.is_on_sale ? '' : 'hidden' }}">
                         <strong class="total-price core-product-sale">{{ product.sale_price|money }}</strong>
                         <del class="before-price">{{ product.regular_price|money }}</del>
-                        <span class="core-product-discount {{ product.discount_percentage ? '' : 'hidden' }}">-{{ product.discount_percentage|replace({'%': ''})|round }}%</span>
+                        <span dir="ltr" class="core-product-discount {{ product.discount_percentage ? '' : 'hidden' }}">-{{ product.discount_percentage|replace({'%': ''})|round }}%</span>
                     </div>
                     <div class="starting-or-normal-price {{ product.is_on_sale ? 'hidden' : '' }}">
                         {% if product.starting_price %}
@@ -440,7 +440,7 @@
     <div class="s-blocks-wrapper s-before-related">{% hook 'product.single.before_product_recommendations' %}</div>
 
     {# Similar Products Area #}
-    <div class="container mb-5 sm:mb-8">
+    <div class="container core-product-related">
         <salla-products-slider data-testid="store-product-related" source="related" source-value="{{product.id}}" block-title="{{trans('pages.products.similar_products')}}" display-all-url></salla-products-slider>
     </div>
     
