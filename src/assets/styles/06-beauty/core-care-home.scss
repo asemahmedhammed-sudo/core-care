@@ -8,6 +8,19 @@ body.theme-beauty.beauty-reference-home {
   #main-content > .beauty-promotions { order: -2; }
   #main-content > .beauty-hero { order: -1; margin-block: 0; }
   #main-content > .s-block { margin-block: 0; }
+  // Salla's editor inserts before/after markers as siblings of each section.
+  // They must not become flex items and add a gap of their own.
+  #main-content > .s-design-invisible-dom { display: contents; }
+  #main-content > salla-hook:empty { display: none; }
+  // Recommendation bundles hide their host when there are no results. Remove
+  // the empty wrapper too, including its alternating-background padding/gap.
+  #main-content > .s-block:has(> [component-name][hidden]:only-child) { display: none; }
+  #main-content > .beauty-categories:not(:has(.beauty-categories__list > li)) { display: none; }
+
+  .beauty-categories .beauty-section-heading {
+    margin-block-end: clamp(16px, 1.5vw, 24px);
+  }
+  .beauty-categories__list { padding-block: 0; }
   #main-content > .beauty-hero + .beauty-features {
     margin-block-start: calc(-1 * var(--beauty-section-gap));
   }
