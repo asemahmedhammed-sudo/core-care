@@ -17,7 +17,7 @@ class Product extends BasePage {
         this.initProductOptionValidations();
         this.initNativeGallery();
 
-        if(imageZoom){
+        if (imageZoom && document.querySelector('salla-slider.details-slider')) {
             // call the function when the page is ready
             this.initImagesZooming();
             // listen to screen resizing
@@ -96,6 +96,12 @@ class Product extends BasePage {
         app.productWeight.forEach((el) => {el.innerHTML = data.weight || ''});
         app.totalPrice.forEach((el) => {el.innerHTML = salla.money(data.price)});
         app.beforePrice.forEach((el) => {el.innerHTML = salla.money(data.regular_price)});
+        const discount = document.querySelector('.core-product-discount');
+        if (discount) {
+          discount.classList.toggle('hidden', !is_on_sale);
+          discount.textContent = is_on_sale ? `-${Math.round((1 - data.price / data.regular_price) * 100)}%` : '';
+        }
+        document.querySelector('salla-installment')?.setAttribute('price', data.price);
         app.productSku.forEach((el) => {el.innerHTML = data.sku || ''});
 
         app.toggleClassIf('.price_is_on_sale','showed','hidden', ()=> is_on_sale)

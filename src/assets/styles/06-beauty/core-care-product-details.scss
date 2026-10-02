@@ -1,0 +1,114 @@
+// Product purchase layout, inspired by the reference while retaining Core Care branding.
+body.theme-beauty.product-single {
+  background: #fff;
+  color: #222;
+
+  #main-content {
+    gap: clamp(24px, 3vw, 40px);
+    > * { margin-block: 0; }
+    > .s-blocks-wrapper:empty { display: none; }
+  }
+  .container--breadcrumbs { background: #f8f8f8; }
+  .breadcrumbs { padding-block: 16px; font-size: 12px; }
+  .container--product-details { max-width: 1240px; }
+  .core-product-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(32px, 5vw, 72px);
+  }
+  .core-product-layout--no-image { grid-template-columns: minmax(0, 720px); justify-content: center; }
+  .core-product-gallery { min-width: 0; position: sticky; top: 120px; }
+  .core-product-gallery .details-slider {
+    height: auto;
+    .s-slider-container { width: 100%; border: 0; border-radius: 0; background: #fff; }
+    .s-slider-block__title { display: none; }
+    .swiper-slide { border-radius: 0; box-shadow: none; background: #fff; }
+    .s-slider-container .swiper-slide { aspect-ratio: 1; }
+    .s-slider-container img { width: 100%; height: 100%; object-fit: contain; }
+    model-viewer { min-height: 0 !important; width: 100%; height: auto; aspect-ratio: 1; }
+    .s-slider-thumbs { flex: 0 0 76px; width: 76px; margin: 0; margin-inline-end: 12px; order: -1; }
+    .s-slider-thumbs-container { width: 76px; max-height: 440px; min-height: 0; top: auto; transform: none; padding: 0; margin: 0; }
+    .s-slider-thumbs .swiper-slide { padding: 4px; border: 1px solid #eee; border-radius: 4px; }
+    .s-slider-thumbs img { object-fit: contain; background: #fff; border-radius: 0; }
+    .s-slider-thumbs .swiper-slide-thumb-active { border-color: #222; }
+    .s-slider-thumbs .swiper-slide::after { display: none; }
+    .promotion-title { font-size: 12px; background: var(--beauty-olive); }
+  }
+  .core-product-info { min-width: 0; position: relative; padding-block: 20px 0; }
+  .core-product-title { margin: 0 0 12px; padding-inline-end: 84px; color: #222; font-size: clamp(20px, 1.7vw, 24px); line-height: 1.65; font-weight: 700; }
+  .core-product-subtitle { margin: 0 0 12px; color: #777; font-size: 13px; line-height: 1.7; }
+  [data-testid='store-product-rating'] { display: block; margin-block: 0 12px; }
+  .s-rating-stars-selected { color: #e9b632; }
+  .core-product-price {
+    margin-block: 8px 4px;
+    > div:not(.hidden) { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+    strong { font-size: 26px; font-weight: 700; line-height: 1.4; }
+    .core-product-sale { color: #c34d7e; }
+    del { color: #888; font-size: 15px; }
+  }
+  .core-product-discount { padding: 2px 8px; background: #fae8ef; color: #a93765; font-size: 12px; border-radius: 20px; }
+  .core-product-tax { display: block; margin-block: 0 16px; color: #777; font-size: 12px; }
+  .core-product-actions { position: absolute; inset-inline-end: 0; top: 24px; display: flex; align-items: center; gap: 6px; }
+  .core-product-actions .s-button-element, .core-product-actions .s-social-share-button { border: 1px solid #eee; border-radius: 50%; background: #fff; width: 36px; height: 36px; padding: 0; color: #222; }
+  .core-product-actions .s-button-element i { font-size: 22px; }
+  [data-testid='store-product-installment'] { display: block; margin-block: 16px; }
+  .s-installment { margin-block: 8px; border-radius: 6px; border-color: #eee; box-shadow: none; }
+  .product-form { margin-block: 16px 0; }
+  .product-form > section:not(.core-product-purchase) { padding: 12px 0; margin-block: 0 12px; }
+  .core-product-purchase { display: flex; flex-direction: column; gap: 12px; padding: 0; background: #fff; border-radius: 0; }
+  .core-product-quantity { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0; }
+  .core-product-quantity .form-label { margin: 0; font-size: 13px; color: #555; }
+  .core-product-quantity .s-quantity-input-container { height: 40px; border-radius: 4px; border: 1px solid #ddd; }
+  .sticky-product-bar__btn { margin: 0; }
+  .sticky-product-bar__btn .s-button-element { min-height: 48px; border-radius: 6px; font-size: 15px; }
+  .sticky-product-bar__btn .s-button-primary { background: #222; border-color: #222; color: #fff; }
+  .sticky-product-bar__btn .s-button-primary:hover { background: #3b3b3b; border-color: #3b3b3b; }
+  .sticky-product-bar__btn[product-status='out-and-notify'] .s-button-primary { background: #eee; border-color: #ddd; color: #333; }
+  .core-product-disclosures { margin-top: 16px; }
+  .core-product-disclosure { border-bottom: 1px solid #eee; }
+  .core-product-disclosure summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; padding-block: 16px; font-size: 14px; list-style: none; }
+  .core-product-disclosure summary::-webkit-details-marker { display: none; }
+  .core-product-disclosure summary i { font-size: 20px; transition: transform .2s; }
+  .core-product-disclosure[open] summary i { transform: rotate(180deg); }
+  .core-product-disclosure summary:focus-visible { outline: 2px solid var(--beauty-olive); outline-offset: 3px; }
+  .core-product-disclosure-content { padding-block: 0 16px; font-size: 14px; color: #555; line-height: 1.9; overflow-wrap: anywhere; }
+  .core-product-disclosure-content img, .core-product-disclosure-content video { max-width: 100%; height: auto; }
+  .core-product-disclosure-content table { display: block; max-width: 100%; overflow-x: auto; }
+  .core-product-disclosure-content > div { padding-inline: 0; margin-block: 0 8px; }
+  .core-product-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .core-product-tags a { color: var(--beauty-olive); text-decoration: underline; }
+  .core-product-brand { display: flex; align-items: center; gap: 12px; padding: 12px; margin-top: 16px; border: 1px solid #eee; border-radius: 8px; font-size: 14px; font-weight: 600; }
+  .core-product-brand img { width: 56px; height: 56px; object-fit: contain; }
+  .core-product-brand-link { margin-inline-start: auto; display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--beauty-olive); font-weight: 400; }
+  .core-product-quick-order { display: block; margin-top: 16px; }
+  .core-product-quick-order:empty, .core-product-disclosures:empty { display: none; }
+  .s-comments-product { background: #fafafa; padding-block: 24px; }
+
+  @media (max-width: 767px) {
+    .container--product-details { padding-inline: 16px; }
+    .breadcrumbs { padding-block: 12px; font-size: 11px; }
+    .core-product-layout { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .core-product-gallery { position: static; }
+    .core-product-gallery .details-slider {
+      .s-slider-container .swiper-slide { aspect-ratio: 1.1; }
+      .s-slider-thumbs { width: 100%; margin: 8px 0 0; }
+      .s-slider-thumbs-container { width: 100%; max-height: none; }
+      .s-slider-thumbs .swiper-slide { height: 60px; }
+    }
+    .core-product-info { padding-block: 0; }
+    .core-product-title { font-size: 18px; padding-inline-end: 80px; line-height: 1.6; }
+    .core-product-actions { top: 2px; }
+    .core-product-price strong { font-size: 24px; }
+    .core-product-brand { padding: 10px; }
+  }
+  @media (max-width: 640px) {
+    &.is-sticky-product-bar .core-product-purchase {
+      flex-direction: row; flex-wrap: nowrap; gap: 8px; padding: 12px 16px max(12px, env(safe-area-inset-bottom)); z-index: 20;
+      .sticky-product-bar__quantity { width: auto; flex: 0 0 112px; }
+      salla-quantity-input, .s-quantity-input-container { width: 112px; }
+      .s-quantity-input-input { width: 40px; }
+      .sticky-product-bar__btn { width: auto; min-width: 0; flex: 1; }
+    }
+  }
+}

@@ -102,8 +102,9 @@
     <div class="s-blocks-wrapper s-before-product-info !mt-0">{% hook 'product.single.before_product_info' %}</div>
 
     <div class="container container--product-details">
-        <div class="flex flex-col items-start md:flex-row" id="product-{{ product.id }}">
-            <div class="sidebar md:sticky top-24 w-full md:!w-2/4 rtl:ml-8 ltr:mr-8 mb-5 md:mb-0 overflow-hidden shrink-0">
+        <div class="core-product-layout {{ product.images|length ? '' : 'core-product-layout--no-image' }}" id="product-{{ product.id }}">
+            {% if product.images|length %}
+            <div class="sidebar core-product-gallery">
                 {% set has_many_images = product.images|length > 1 %}
                 <salla-slider
                         data-testid="store-product-image-slider"
@@ -111,6 +112,8 @@
                         class="details-slider rounded-md image-slider"
                         data-images='{{ product.images|json_encode }}'
                         type="thumbs"
+                        vertical-thumbs
+                        show-controls="{{ has_many_images ? 'true' : 'false' }}"
                         loop="false"
                         auto-height
                         listen-to-thumbnails-option
@@ -118,16 +121,6 @@
                     {% if product.promotion_title %}
                         <div class="promotion-title">{{ product.promotion_title }}</div>
                     {% endif %}
-
-                    <salla-button
-                            class="btn--wishlist animated sws"
-                            data-id="{{ product.id }}"
-                            onclick="salla.wishlist.toggle('{{ product.id }}')"
-                            shape="icon"
-                            fill="outline"
-                            color="light">
-                        <i class="sicon-heart"></i>
-                    </salla-button>
 
                     {# Calories Badge #}
                     {% if product.calories %}
@@ -140,7 +133,7 @@
                     <div slot="items">
                         {% for image in product.images %}
                             {% if image.three_d_image_url %}
-                                <model-viewer style="min-height: 500px;" class="swiper-slide model-entry w-full h-full"
+                                <model-viewer  class="swiper-slide model-entry w-full h-full"
                                     loading="eager" camera-controls
                                     touch-action="pan-y" auto-rotate
                                     poster="{{ image.url }}"
@@ -196,24 +189,14 @@
                 </salla-slider>
             </div>
 
-            <div class="main-content md:sticky md:overflow-hidden top-24 w-full md:w-2/4">
+            {% endif %}
+            <div class="main-content core-product-info">
                 {% hook 'product:single.description.start' %}
 
-                {% if product.brand.name %}
-                    <div class="product-brand mb-5 w-12">
-                        <a class="brand-logo" href="{{ product.brand.url }}" title="{{ product.brand.name }}">
-                            <img width="100%" height="100%" class="max-h-full object-contain"
-                                 src="{{ product.brand.logo }}"
-                                 title="{{ product.brand.name }}"
-                                 alt="{{ product.brand.name }}">
-                        </a>
-                    </div>
-                {% endif %}
-
-                <h1 data-testid="store-product-title" class="text-xl md:text-2xl leading-10 font-bold mb-6 text-gray-800">{{ product.name }}</h1>
+                <h1 data-testid="store-product-title" class="core-product-title">{{ product.name }}</h1>
 
                 {% if product.subtitle %}
-                    <h2 class="product-entry__sub-title text-sm text-gray-500 leading-6 mb-2.5">
+                    <h2 class="product-entry__sub-title core-product-subtitle">
                         {{ product.subtitle }}
                     </h2>
                 {% endif %}
@@ -223,64 +206,37 @@
                                         reviews="{{ product.rating.count }}"></salla-rating-stars>
                 {% endif %}
 
-                {% if product.is_taxable %}
-                    <small class="color-grey">{{ trans('pages.products.tax_included') }}</small>
-                {% endif %}
-                {# Price #}
-                <div data-testid="store-product-price" class="flex whitespace-nowrap gap-4 items-center">
-                  <div class="{{ product.is_on_sale ? '' : 'hidden' }} space-x-2 rtl:space-x-reverse whitespace-nowrap">
-                      <p class="text-red-800 font-bold text-xl inline-block">{{product.sale_price|money}}</p>
-                      <span class="text-gray-500 line-through">{{product.regular_price|money}}</span>
-                  </div>
-                  <div class="gap-4 {{ product.is_on_sale ? 'hidden' : 'flex' }}">
-                      {% if product.starting_price %} 
-                          <span class="">{{ trans('pages.products.starting_price') }}</span>
-                      {% endif %} 
-                          <p class=" font-bold text-xl inline-block"> {{product.starting_price ? product.starting_price|money : product.price|money }}</p>
-                  </div>
-                </div>
-
-                <div data-testid="store-product-description" class="product__description p-2 px-5 sm:p-1 leading-7 mb-3">
-                    {% set product_desc = product.description|replace({"&nbsp;":"\n"}) %}
-                    {% if product.has_read_more %}
-                        <article class="article article--main relative leading-8 overflow-hidden transition-all max-h-0 duration-300 py-4"
-                            id="more-content" style="max-height:5.25rem">
-                            {{ product_desc|raw }}
-                        </article>
-
-                        {# Read More Button #}
-                        <a id="btn-show-more" class="link--primary inline-block mt-2 cursor-pointer">
-                            {{ trans('pages.products.read_more') }}
-                        </a>
-                    {% else %}
-                        <article class="article--main pb-1">
-                            {{ product_desc|raw }}
-                        </article>
-                    {% endif %}
-                </div>
-
-                {% if product.tags|length and theme.settings.get('show_tags', true) %}
-                    <div class="mb-3">
-                        {% for tag in product.tags %}
-                            <a href="{{ tag.url }}"
-                               class="rtl:ml-2 ltr:mr-2 inline-flex  text-gray-500 hover:text-primary underline text-sm mb-1">{{ tag.name }}
-                                ,</a>
-                        {% endfor %}
+                {# One live price, updated by the selected product options. #}
+                <div data-testid="store-product-price" class="core-product-price price-wrapper">
+                    <div class="price_is_on_sale {{ product.is_on_sale ? '' : 'hidden' }}">
+                        <strong class="total-price core-product-sale">{{ product.sale_price|money }}</strong>
+                        <del class="before-price">{{ product.regular_price|money }}</del>
+                        <span class="core-product-discount {{ product.discount_percentage ? '' : 'hidden' }}">-{{ product.discount_percentage }}%</span>
                     </div>
+                    <div class="starting-or-normal-price {{ product.is_on_sale ? 'hidden' : '' }}">
+                        {% if product.starting_price %}
+                            <span class="starting-price-title">{{ trans('pages.products.starting_price') }}</span>
+                        {% endif %}
+                        <strong class="total-price">{{ product.starting_price ? product.starting_price|money : product.price|money }}</strong>
+                    </div>
+                </div>
+                <div data-testid="store-product-out-of-stock" class="out-of-stock hidden text-red-600">{{ trans('pages.products.out_of_stock') }}</div>
+                {% if product.is_taxable %}
+                    <small class="core-product-tax">{{ trans('pages.products.tax_included') }}</small>
                 {% endif %}
 
-                <div class="flex rtl:space-x-reverse space-x-3">
-                    <salla-social-share data-testid="store-product-social-share" class="inline-flex mb-5" aria-label="social share"></salla-social-share>
+                <div class="core-product-actions">
+                    <salla-social-share data-testid="store-product-social-share" class="inline-flex" aria-label="{{ trans('beauty.product.share') }}"></salla-social-share>
 
                     <salla-button
                             data-testid="store-product-wishlist-btn"
-                            class="btn--wishlist animated hidden sm:inline-flex"
+                            class="btn--wishlist animated"
                             data-id="{{ product.id }}"
                             onclick="salla.wishlist.toggle('{{ product.id }}')"
                             shape="icon"
                             fill="outline"
                             color="light"
-							aria-label="add to wishlist">
+							aria-label="{{ trans('beauty.wishlist_toggle') }}">
                         <i class="sicon-heart"></i>
                     </salla-button>
                 </div>
@@ -302,32 +258,10 @@
                         {% endif %}
                     </div>
                 {% endif %}
-                {% if product.sku %}
-                    <div class="mb-4 flex justify-between sm:grid sm:grid-cols-3 bg-white rounded-md px-4 py-2">
-                        <div class="flex items-center">
-                            <i class="sicon-barcode mx-1"></i>
-                            {{ trans('pages.products.sku') }}
-                        </div>
-                        <div class="text-unicode product-sku">{{ product.sku }}</div>
-                    </div>
-                {% endif %}
-                {% if product.barcode %}
-                    <div class="mb-4 flex justify-between sm:grid sm:grid-cols-3 bg-white rounded-md px-4 py-2">
-                        <div class="flex items-center">
-                            <i class="sicon-barcode mx-1"></i>
-                            {{ trans('pages.products.barcode') }}
-                        </div>
-                        <div class="text-unicode product-barcode">{{ product.barcode }}</div>
-                    </div>
-                {% endif %}
                 {% hook 'product:single.description' %}
 
                 {# Installment Methods #}
                 <salla-installment data-testid="store-product-installment" price="{{ product.price }}"></salla-installment>
-                {% if product.has_metadata %}
-                <salla-metadata data-testid="store-product-metadata"></salla-metadata>
-                {% endif %}
-
                 {% if product.show_availability %}
                     <section class="bg-white p-5 rounded-md mb-5 last:mb-0">
                         <div class="center-between">
@@ -367,30 +301,6 @@
 
                     {% hook 'product:single.form.end' %}
 
-                    <section class="flex bg-white p-5 sm:pb-0 rounded-md rounded-b-none">
-                        <div class="center-between w-full">
-                            <label class="form-label">
-                                <b class="block">
-                                    {{ trans('pages.products.price') }}
-                                </b>
-                            </label>
-
-                            <div class="flex whitespace-nowrap price-wrapper gap-4 items-center">
-                              <div class="{{ product.is_on_sale ? '' : 'hidden' }} price_is_on_sale space-x-2 rtl:space-x-reverse whitespace-nowrap">
-                                <h2 class="total-price text-red-800 font-bold text-xl inline-block">{{product.sale_price|money}}</h2>
-                                <span class="before-price text-gray-500 line-through">{{product.regular_price|money}}</span>
-                              </div>
-                              <div class="starting-or-normal-price gap-4 {{ product.is_on_sale ? 'hidden' : 'flex' }}">
-                                {% if product.starting_price %} 
-                                  <span class="starting-price-title">{{ trans('pages.products.starting_price') }}</span>
-                                {% endif %} 
-                                <h2 class="total-price font-bold text-xl inline-block"> {{product.starting_price ? product.starting_price|money : product.price|money }}</h2>
-                              </div>
-                            </div>
-
-                            <div data-testid="store-product-out-of-stock" class="out-of-stock min-h-7 leading-7 hidden text-base text-red-600 !opacity-50 font-bold">{{ trans('pages.products.out_of_stock')}}</div>
-                        </div>
-                    </section>
                     {# Pre-order Campaign #}
                     {% if product.has_preorder_campaign %}
                         <section class="mt-5 p-5">
@@ -398,16 +308,16 @@
                         </section>
                     {% endif %}
 
-                    <section class="sticky-product-bar bg-white p-5 rounded-md rounded-b-none">
+                    <section class="sticky-product-bar core-product-purchase">
                         {# Quantity #}
                         {% if product.is_hidden_quantity or product.type == 'booking' %}
-                            <input type="hidden" value="1" name="quantity" aria-label="Quantity"/>
+                            <input type="hidden" value="1" name="quantity" aria-label="{{ trans('pages.products.quantity') }}"/>
                         {% else %}
-                            <div class="sticky-product-bar__quantity center-between mb-5">
+                            <div class="sticky-product-bar__quantity core-product-quantity">
                                 <label class="form-label font-bold">
                                     {{ trans('pages.products.quantity') }}
                                 </label>
-                                <salla-quantity-input data-testid="store-product-quantity" max="{{ product.max_quantity }}" value="1" name="quantity" aria-label="Quantity"
+                                <salla-quantity-input data-testid="store-product-quantity" max="{{ product.max_quantity }}" value="1" name="quantity" aria-label="{{ trans('pages.products.quantity') }}"
                                   class="border-gray-200 flex justify-end"></salla-quantity-input>
                             </div>
                         {% endif %}
@@ -419,7 +329,7 @@
                                 {{product.is_require_shipping ? 'required-shipping' : ''}}
                                 {{product.has_preorder_campaign ? 'has-pre-order' : ''}}
                                 amount="{{ product.base_currency_price }}"
-                                class="mt-5 w-full sticky-product-bar__btn"
+                                class="w-full sticky-product-bar__btn"
                                 product-status="{{ product.status }}"
                                 product-type="{{ product.type }}"
                                 product-id="{{ product.id }}"
@@ -442,8 +352,66 @@
                     {% endif %}
                 </form>
 
+
+                <div class="core-product-disclosures">
+                    {% if product.description %}
+                        <details class="core-product-disclosure" data-testid="store-product-description-disclosure">
+                            <summary>{{ trans('beauty.product.description') }}<i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></summary>
+                            <div data-testid="store-product-description" class="product__description core-product-disclosure-content">
+                                <article class="article--main">{{ product.description|replace({"&nbsp;":" "})|raw }}</article>
+                            </div>
+                        </details>
+                    {% endif %}
+                    {% if product.sku or product.barcode or product.has_metadata or (product.tags|length and theme.settings.get('show_tags', true)) %}
+                        <details class="core-product-disclosure" data-testid="store-product-specifications">
+                            <summary>{{ trans('beauty.product.specifications') }}<i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></summary>
+                            <div class="core-product-disclosure-content">
+                                {% if product.sku %}
+                                    <div class="mb-4 flex justify-between sm:grid sm:grid-cols-3 bg-white rounded-md px-4 py-2">
+                                        <div class="flex items-center">
+                                            <i class="sicon-barcode mx-1"></i>
+                                            {{ trans('pages.products.sku') }}
+                                        </div>
+                                        <div class="text-unicode product-sku">{{ product.sku }}</div>
+                                    </div>
+                                {% endif %}
+                                {% if product.barcode %}
+                                    <div class="mb-4 flex justify-between sm:grid sm:grid-cols-3 bg-white rounded-md px-4 py-2">
+                                        <div class="flex items-center">
+                                            <i class="sicon-barcode mx-1"></i>
+                                            {{ trans('pages.products.barcode') }}
+                                        </div>
+                                        <div class="text-unicode product-barcode">{{ product.barcode }}</div>
+                                    </div>
+                                {% endif %}
+                                {% if product.has_metadata %}
+                                <salla-metadata data-testid="store-product-metadata"></salla-metadata>
+                                {% endif %}
+
+
+                                {% if product.tags|length and theme.settings.get('show_tags', true) %}
+                                    <div class="core-product-tags">
+                                        {% for tag in product.tags %}
+                                            <a href="{{ tag.url }}">{{ tag.name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </details>
+                    {% endif %}
+                </div>
+                {% if product.brand.name %}
+                    <a class="core-product-brand" href="{{ product.brand.url }}">
+                        {% if product.brand.logo %}
+                            <img width="56" height="56" loading="lazy" src="{{ product.brand.logo }}" alt="{{ product.brand.name }}">
+                        {% endif %}
+                        <span>{{ product.brand.name }}</span>
+                        <span class="core-product-brand-link">{{ trans('beauty.product.brand_products') }}<i class="sicon-keyboard_arrow_left" aria-hidden="true"></i></span>
+                    </a>
+                {% endif %}
+
                 {% hook 'product:single.description.end' %}
-                <salla-quick-order data-testid="store-product-quick-order" class="mt-5 md:-mb-2 block"></salla-quick-order>
+                <salla-quick-order data-testid="store-product-quick-order" class="core-product-quick-order"></salla-quick-order>
             </div>
         </div>
         <salla-offer data-testid="store-product-offer"></salla-offer>
@@ -482,7 +450,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script defer src="{{ 'product.js' | asset }}"></script>
+    <script defer src="{{ 'product.js' | asset }}?v=20261002-product-details-1"></script>
     {% if product.has_3d_image %}
         <script type="module" defer src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     {% endif %}

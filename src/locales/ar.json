@@ -84,6 +84,12 @@
       "quality": "ضمان الجودة",
       "easy_returns": "إرجاع سهل",
       "natural_benefit": "مكونات طبيعية 100٪"
+    },
+    "product": {
+      "description": "الوصف",
+      "specifications": "المواصفات",
+      "brand_products": "عرض منتجات الماركة",
+      "share": "مشاركة المنتج"
     }
   }
 }

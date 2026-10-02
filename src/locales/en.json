@@ -84,6 +84,12 @@
       "quality": "Quality guaranteed",
       "easy_returns": "Easy returns",
       "natural_benefit": "100% natural ingredients"
+    },
+    "product": {
+      "description": "Description",
+      "specifications": "Specifications",
+      "brand_products": "Shop the brand",
+      "share": "Share product"
     }
   }
 }
