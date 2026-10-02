@@ -6,8 +6,11 @@ body.theme-beauty.product-single {
   #main-content {
     gap: clamp(24px, 3vw, 40px);
     > * { margin-block: 0; }
-    > .s-blocks-wrapper:empty { display: none; }
+    > .s-blocks-wrapper { display: contents; }
+    > .s-design-invisible-dom, salla-hook { display: contents; }
+    > .s-block { margin-block: 0; }
   }
+  .s-block:has(> [component-name][hidden]:only-child) { display: none; }
   .container--breadcrumbs { background: #f8f8f8; }
   .breadcrumbs { padding-block: 16px; font-size: 12px; }
   .container--product-details { max-width: 1240px; }
@@ -35,6 +38,10 @@ body.theme-beauty.product-single {
     .s-slider-thumbs .swiper-slide::after { display: none; }
     .promotion-title { font-size: 12px; background: var(--beauty-olive); }
   }
+  .core-product-price .hidden, .core-product-price.hidden { display: none !important; }
+  &.rtl .core-product-title { padding-right: 0; padding-left: 90px; }
+  &.rtl .core-product-actions { left: 0; right: auto; }
+  &.rtl .core-product-brand-link { margin-left: 0; margin-right: auto; }
   .core-product-info { min-width: 0; position: relative; padding-block: 20px 0; }
   .core-product-title { margin: 0 0 12px; padding-inline-end: 84px; color: #222; font-size: clamp(20px, 1.7vw, 24px); line-height: 1.65; font-weight: 700; }
   .core-product-subtitle { margin: 0 0 12px; color: #777; font-size: 13px; line-height: 1.7; }
@@ -56,6 +63,10 @@ body.theme-beauty.product-single {
   .s-installment { margin-block: 8px; border-radius: 6px; border-color: #eee; box-shadow: none; }
   .product-form { margin-block: 16px 0; }
   .product-form > section:not(.core-product-purchase) { padding: 12px 0; margin-block: 0 12px; }
+  salla-product-options { display: block; margin: 0; padding: 0; }
+  .s-product-options-option:not(.s-product-options-option-booking) { display: block !important; padding: 0; margin-block: 0 16px; }
+  .s-product-options-label { margin-bottom: 8px; }
+  .s-product-options-option-container { margin-top: 0; text-align: start; }
   .core-product-purchase { display: flex; flex-direction: column; gap: 12px; padding: 0; background: #fff; border-radius: 0; }
   .core-product-quantity { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0; }
   .core-product-quantity .form-label { margin: 0; font-size: 13px; color: #555; }

@@ -211,7 +211,7 @@
                     <div class="price_is_on_sale {{ product.is_on_sale ? '' : 'hidden' }}">
                         <strong class="total-price core-product-sale">{{ product.sale_price|money }}</strong>
                         <del class="before-price">{{ product.regular_price|money }}</del>
-                        <span class="core-product-discount {{ product.discount_percentage ? '' : 'hidden' }}">-{{ product.discount_percentage }}%</span>
+                        <span class="core-product-discount {{ product.discount_percentage ? '' : 'hidden' }}">-{{ product.discount_percentage|replace({'%': ''})|round }}%</span>
                     </div>
                     <div class="starting-or-normal-price {{ product.is_on_sale ? 'hidden' : '' }}">
                         {% if product.starting_price %}
@@ -246,7 +246,7 @@
                         {% if product.sold_quantity %}
                             <div class="px-4 !text-red-800">
                                 <i class="sicon-fire rtl:ml-1.5 ltr:mr-1.5"></i> {{ trans('pages.products.sold') }}
-                                <span>{{ pluralize('pages.products.sold_times', product.sold_quantity) }}</span>
+                                <span>{{ pluralize('pages.products.sold_times', product.sold_quantity)|raw }}</span>
                             </div>
                         {% endif %}
                         {% if product.can_show_remained_quantity %}
@@ -353,6 +353,8 @@
                 </form>
 
 
+                {% set has_specifications = product.sku or product.barcode or product.has_metadata or (product.tags|length and theme.settings.get('show_tags', true)) %}
+                {% if product.description or has_specifications %}
                 <div class="core-product-disclosures">
                     {% if product.description %}
                         <details class="core-product-disclosure" data-testid="store-product-description-disclosure">
@@ -362,7 +364,7 @@
                             </div>
                         </details>
                     {% endif %}
-                    {% if product.sku or product.barcode or product.has_metadata or (product.tags|length and theme.settings.get('show_tags', true)) %}
+                    {% if has_specifications %}
                         <details class="core-product-disclosure" data-testid="store-product-specifications">
                             <summary>{{ trans('beauty.product.specifications') }}<i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></summary>
                             <div class="core-product-disclosure-content">
@@ -400,6 +402,7 @@
                         </details>
                     {% endif %}
                 </div>
+                {% endif %}
                 {% if product.brand.name %}
                     <a class="core-product-brand" href="{{ product.brand.url }}">
                         {% if product.brand.logo %}
