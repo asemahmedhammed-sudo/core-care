@@ -8,7 +8,7 @@ const source = fs.readFileSync(new URL('../src/assets/js/partials/product-card.j
   .replace(/^import BasePage from '\.\.\/base-page';\s*/u, '');
 let ProductCard;
 const bodyDataset = { beautyWishlistLabel: 'Wishlist' };
-afterEach(() => { delete bodyDataset.beautyShowProductPromotionTitles; });
+afterEach(() => { delete bodyDataset.beautyShowProductPromotionTitles; salla.money = amount => String(amount); });
 const salla = {
   lang: { get: () => 'Wishlist' },
   config: { isGuest: () => true, get: () => false },
@@ -65,7 +65,7 @@ test('product card escapes merchant text and rejects executable URLs', () => {
 
 test('homepage badges preserve real discounts and allow marketing titles only when enabled', () => {
   const card = new ProductCard();
-  card.closest = () => ({ dataset: { addToCartLabel: 'أضيفي للسلة' } });
+  card.closest = selector => selector === '.beauty-product-section' ? { dataset: { addToCartLabel: 'أضيفي للسلة' } } : null;
   card.product = { is_on_sale: true, regular_price: 200, sale_price: 150 };
   assert.match(card.getProductBadge(), /−25%/u);
   card.product = { promotion_title: 'تنظيف لطيف يعيد للشعر مظهر طبيعي' };
@@ -83,7 +83,7 @@ test('homepage badges preserve real discounts and allow marketing titles only wh
 test('promotion visibility toggles all cards without deleting product data or hiding operational badges', () => {
   for (const home of [true, false]) {
     const card = new ProductCard();
-    card.closest = () => home ? {} : null;
+    card.closest = selector => selector === '.beauty-product-section' && home ? {} : null;
     card.product = { promotion_title: 'رموش أوضح' };
     for (const disabled of [undefined, 'false', '0']) {
       bodyDataset.beautyShowProductPromotionTitles = disabled;
@@ -127,7 +127,7 @@ test('custom cards register before platform components can choose native fallbac
 
 test('homepage product button copy preserves booking and preorder actions', () => {
   const card = new ProductCard();
-  card.closest = () => ({ dataset: { addToCartLabel: 'أضيفي للسلة' } });
+  card.closest = selector => selector === '.beauty-product-section' ? { dataset: { addToCartLabel: 'أضيفي للسلة' } } : null;
   card.product = { status: 'sale', type: 'product' };
   assert.equal(card.getAddButtonLabel(), 'أضيفي للسلة');
   card.product.type = 'booking';
@@ -138,7 +138,7 @@ test('homepage product button copy preserves booking and preorder actions', () =
 
 test('homepage cards show empty stars without inventing a rating and retain fractional ratings', () => {
   const card = new ProductCard();
-  card.closest = () => ({ dataset: {} });
+  card.closest = selector => selector === '.beauty-product-section' ? { dataset: {} } : null;
   card.product = { id: 7, name: 'Product', url: '/product', status: 'sale', type: 'product', price: 10 };
   for (const rating of [undefined, null, { stars: 0 }, { stars: 'invalid' }]) {
     card.product.rating = rating;
@@ -156,4 +156,49 @@ test('homepage cards show empty stars without inventing a rating and retain frac
   card.product.rating = null;
   card.render();
   assert.doesNotMatch(card.innerHTML, /class="s-product-card-rating"/);
+});
+
+function recommendationCard(overrides = {}) {
+  const card = new ProductCard();
+  card.closest = selector => selector === '.core-product-related' ? {} : null;
+  card.product = { id: 9, name: 'Product', url: '/product', image: { url: '/image.jpg' }, status: 'sale', type: 'product', price: 80, ...overrides };
+  card.render();
+  return card;
+}
+
+test('recommendations use real brand, rating, count and sale data and escape merchant text', () => {
+  const card = recommendationCard({ brand: { name: '<script>brand</script>' }, rating: { stars: '4.9', count: 27 }, is_on_sale: true, regular_price: 100, sale_price: 80 });
+  assert.match(card.innerHTML, /&lt;script&gt;brand&lt;\/script&gt;/);
+  assert.match(card.innerHTML, /4.9 \/ 5 \(27\)/);
+  assert.match(card.innerHTML, /core-recommendation-discount">-20%/);
+  assert.match(card.innerHTML, /<del>/);
+  assert.doesNotMatch(card.innerHTML, /s-product-card-content-subtitle|<script>/);
+});
+
+test('recommendations omit missing metadata and invalid discounts without empty placeholders', () => {
+  const card = recommendationCard({ rating: { stars: 'invalid', count: 20 }, is_on_sale: true, regular_price: 0, sale_price: 80 });
+  assert.doesNotMatch(card.innerHTML, /core-recommendation-rating|core-recommendation-brand|core-recommendation-discount|<del>/);
+  assert.match(card.innerHTML, /core-recommendation-price">80/);
+});
+
+test('recommendation actions retain native booking, options and availability behavior', () => {
+  const options = recommendationCard({ has_options: true });
+  assert.match(options.innerHTML, /<rect/);
+  assert.match(options.innerHTML, /product-id="9" product-status="sale" product-type="product"/);
+  const booking = recommendationCard({ type: 'booking' });
+  assert.match(booking.innerHTML, /sicon-calendar-time/);
+  assert.match(booking.innerHTML, /product-type="booking"/);
+  const unavailable = recommendationCard({ status: 'out', is_out_of_stock: true });
+  assert.match(unavailable.innerHTML, /core-recommendation-cart--status/);
+  assert.match(unavailable.innerHTML, /product-status="out"/);
+  assert.doesNotMatch(unavailable.innerHTML, /class="sr-only"/);
+});
+
+test('wishlist listener attaches to the host once, not its hydrated nested button', () => {
+  const card = recommendationCard();
+  const selectors = [];
+  card.querySelectorAll = selector => { selectors.push(selector); return []; };
+  card.render();
+  assert.ok(selectors.includes('salla-button.s-product-card-wishlist-btn'));
+  assert.ok(!selectors.includes('.s-product-card-wishlist-btn'));
 });

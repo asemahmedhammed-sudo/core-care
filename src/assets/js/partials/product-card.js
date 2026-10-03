@@ -196,6 +196,38 @@ class ProductCard extends HTMLElement {
     }
   }
 
+  renderRecommendation({ productId, productUrl, productName, productType, cartLabel, wishlistLabel, rating, status }) {
+    const brand = this.product.brand?.name;
+    const count = Number(this.product.rating?.count);
+    const regular = Number(this.product.regular_price);
+    const sale = Number(this.product.sale_price);
+    const onSale = this.product.is_on_sale && Number.isFinite(regular) && Number.isFinite(sale) && regular > 0 && sale >= 0 && sale < regular;
+    const discount = onSale ? Math.floor((regular - sale) / regular * 100) : 0;
+    const icon = this.product.type === 'booking' ? '<i class="sicon-calendar-time" aria-hidden="true"></i>' :
+      `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">${this.product.has_options ?
+        '<rect x="10" y="5" width="16" height="16" rx="3"/><rect x="6" y="10" width="16" height="16" rx="3"/>' :
+        '<path d="M8 11h15l2 16H6l2-16Z"/><path d="M11 12V9a4.5 4.5 0 0 1 9 0v3"/>'}<path d="M5 3v8M1 7h8"/></svg>`;
+    const available = this.effectiveStatus === 'sale';
+    return `
+      <div class="core-recommendation-image">
+        <a href="${productUrl}" aria-label="${productName}"><img src="${this.safeUrl(this.product.image?.url || this.product.thumbnail || this.placeholder || '')}" alt="${this.escapeHTML(this.product.image?.alt || this.product.name)}" loading="lazy" width="240" height="240" /></a>
+        ${this.getProductBadge()}
+        <salla-button shape="icon" fill="outline" color="light" aria-label="${wishlistLabel}" class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added' : 'not-added'}" data-id="${productId}"><i class="sicon-heart" aria-hidden="true"></i></salla-button>
+      </div>
+      <div class="core-recommendation-content">
+        <div class="core-recommendation-tools">
+          ${rating > 0 ? `<div class="core-recommendation-rating" role="img" aria-label="${rating} / 5${Number.isSafeInteger(count) && count > 0 ? ` (${count})` : ''}"><span class="core-recommendation-score"><i class="sicon-star2" aria-hidden="true"></i><bdi>${rating.toFixed(1)}</bdi></span>${Number.isSafeInteger(count) && count > 0 ? `<bdi class="core-recommendation-count">(${count})</bdi>` : ''}</div>` : ''}
+          ${!this.hideAddBtn ? `<salla-add-product-button class="core-recommendation-cart${available ? '' : ' core-recommendation-cart--status'}" fill="outline" width="normal" product-id="${productId}" product-status="${status}" product-type="${productType}" aria-label="${this.escapeHTML(cartLabel)}: ${productName}">${available ? icon : ''}<span class="${available ? 'sr-only' : ''}">${this.escapeHTML(cartLabel)}</span></salla-add-product-button>` : ''}
+        </div>
+        ${brand ? `<p class="core-recommendation-brand" dir="auto">${this.escapeHTML(brand)}</p>` : ''}
+        <h3 class="core-recommendation-name"><a href="${productUrl}" title="${productName}">${productName}</a></h3>
+        <div class="core-recommendation-prices">
+          ${onSale ? `<del>${this.getPriceFormat(regular)}</del>` : ''}
+          <div class="core-recommendation-price-row"><bdi class="core-recommendation-price${onSale ? ' core-recommendation-price--sale' : ''}">${!onSale && this.product.starting_price ? `<span class="core-recommendation-starting">${this.escapeHTML(this.startingPrice)}</span> ` : ''}${this.getPriceFormat(onSale ? sale : (this.product.starting_price || this.product.price))}</bdi>${discount > 0 ? `<bdi class="core-recommendation-discount">-${discount}%</bdi>` : ''}</div>
+        </div>
+      </div>`;
+  }
+
   render(){
     const productId = this.escapeHTML(this.product.id);
     const productUrl = this.safeUrl(this.product.url);
@@ -228,7 +260,9 @@ class ProductCard extends HTMLElement {
       ? 'out-and-notify'
       : this.product.status;
     const status = this.escapeHTML(this.effectiveStatus);
-      this.innerHTML = `
+    const recommendation = this.closest?.('.core-product-related') && !this.product.donation && !this.isSpecial;
+    if (recommendation) this.classList.add('core-recommendation-card');
+      this.innerHTML = recommendation ? this.renderRecommendation({ productId, productUrl, productName, productType, cartLabel, wishlistLabel, rating, status }) : `
         <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'}">
           <a href="${productUrl}" aria-label="${this.escapeHTML(this.product?.image?.alt || this.product.name)}">
            <img 
@@ -356,7 +390,7 @@ class ProductCard extends HTMLElement {
       }
 
       // Optimistic & Per-card wishlist toggle
-      this.querySelectorAll('.s-product-card-wishlist-btn').forEach((btn) => {
+      this.querySelectorAll('salla-button.s-product-card-wishlist-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
           salla.wishlist.toggle(this.product.id);
           const willBeAdded = !btn.classList.contains('s-product-card-wishlist-added');
