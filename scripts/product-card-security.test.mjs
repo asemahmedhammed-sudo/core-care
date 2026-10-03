@@ -8,7 +8,7 @@ const source = fs.readFileSync(new URL('../src/assets/js/partials/product-card.j
   .replace(/^import BasePage from '\.\.\/base-page';\s*/u, '');
 let ProductCard;
 const bodyDataset = { beautyWishlistLabel: 'Wishlist' };
-afterEach(() => { delete bodyDataset.beautyShowProductPromotionTitles; salla.money = amount => String(amount); });
+afterEach(() => { delete bodyDataset.beautyShowProductPromotionTitles; salla.money = amount => String(amount); delete salla.config.currency; });
 const salla = {
   lang: { get: () => 'Wishlist' },
   config: { isGuest: () => true, get: () => false },
@@ -208,4 +208,39 @@ test('hiding the cart with no rating removes the empty recommendation tools row'
   card.hideAddBtn = true;
   card.render();
   assert.doesNotMatch(card.innerHTML, /core-recommendation-tools|core-recommendation-cart/);
+});
+
+test('recommendation SAR prices use a single real currency icon before the formatted amount', () => {
+  salla.config.currency = () => ({ code: 'SAR' });
+  salla.money = () => '107.61 ريال';
+  const card = recommendationCard();
+  const price = card.getRecommendationMoney(107.61);
+  assert.match(price, /dir="ltr"><i class="sicon-sar" role="img" aria-label="SAR"><\/i><span>107.61<\/span>/);
+  assert.doesNotMatch(price, /ريال|﷼/);
+  salla.money = () => '107.61 <i class=sicon-sar></i>';
+  assert.equal(card.getRecommendationMoney(107.61), price);
+  salla.money = () => '107.61 <script>alert(1)</script> ريال';
+  assert.doesNotMatch(card.getRecommendationMoney(107.61), /<script>/);
+  assert.match(card.getRecommendationMoney(107.61), /&lt;script&gt;/);
+  salla.config.currency = () => ({ code: 'USD' });
+  salla.money = () => '$107.61';
+  assert.equal(card.getRecommendationMoney(107.61), '$107.61');
+});
+
+test('real offer countdowns retain the expiry time and omit expired or invalid deadlines', () => {
+  const deadline = Date.now() + 3600000;
+  const card = recommendationCard({ is_on_sale: true, regular_price: 100, sale_price: 80, discount_ends: deadline });
+  const ksa = new Date(deadline + 10800000).toISOString().slice(0, 19).replace('T', ' ');
+  assert.match(card.innerHTML, new RegExp(`date="${ksa}"`));
+  assert.match(card.innerHTML, /end-of-day="false"/);
+  for (const discount_ends of [Date.now() - 1000, 'invalid', undefined]) {
+    card.product.discount_ends = discount_ends;
+    card.render();
+    assert.doesNotMatch(card.innerHTML, /salla-count-down/);
+  }
+  card.product.discount_ends = deadline;
+  card.product.preorder = { label: 'طلب مسبق' };
+  card.render();
+  assert.match(card.innerHTML, /طلب مسبق/);
+  assert.doesNotMatch(card.innerHTML, /salla-count-down/);
 });

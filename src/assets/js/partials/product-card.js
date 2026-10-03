@@ -196,6 +196,36 @@ class ProductCard extends HTMLElement {
     }
   }
 
+  getRecommendationMoney(price) {
+    const formatted = this.getPriceFormat(price);
+    const sarIcon = '<i class="sicon-sar" aria-hidden="true"></i>';
+    const currency = salla.config.currency?.()?.code;
+    if (!formatted || (currency && currency !== 'SAR')) return formatted;
+    if (currency === 'SAR' || formatted.includes(sarIcon)) {
+      const amount = formatted.replace(sarIcon, '').replace(/(?:SAR|ر\.س|ريال(?: سعودي)?|﷼|\u20c1)/gu, '').trim();
+      return `<span class="core-recommendation-money" dir="ltr"><i class="sicon-sar" role="img" aria-label="SAR"></i><span>${amount}</span></span>`;
+    }
+    return formatted;
+  }
+
+  getRecommendationBadge() {
+    const value = this.product.discount_ends;
+    if (!this.product.preorder?.label && this.product.is_on_sale && value) {
+      const numeric = Number(value);
+      const raw = String(value);
+      const date = Number.isFinite(numeric) ? new Date(numeric < 1e12 ? numeric * 1000 : numeric) :
+        new Date(/^\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2}:\d{2})?$/.test(raw) ? `${raw.length === 10 ? `${raw}T23:59:59` : raw.replace(' ', 'T')}+03:00` : raw);
+      if (Number.isFinite(date.getTime()) && date.getTime() > Date.now()) {
+        // The platform countdown accepts a date/time in KSA, rather than ISO with a zone.
+        const ksaDate = new Date(date.getTime() + 3 * 60 * 60 * 1000).toISOString().slice(0, 19).replace('T', ' ');
+        return `<div class="core-recommendation-badge core-recommendation-badge--timer"><span>${this.escapeHTML(salla.lang.get('beauty.recommendation_ends_in'))}</span><salla-count-down date="${ksaDate}" end-of-day="false" boxed="false" labeled="false" digits="en" auto-segments="true" size="sm"></salla-count-down></div>`;
+      }
+    }
+    const badge = this.getProductBadge();
+    return /^(الأكثر مبيع[ًاً]*|best seller)$/iu.test(String(this.product.promotion_title || '').trim()) && !this.product.preorder?.label ?
+      badge.replace('s-product-card-promotion-title', 's-product-card-promotion-title core-recommendation-badge--bestseller') : badge;
+  }
+
   renderRecommendation({ productId, productUrl, productName, productType, cartLabel, wishlistLabel, rating, status }) {
     const brand = this.product.brand?.name;
     const count = Number(this.product.rating?.count);
@@ -205,25 +235,25 @@ class ProductCard extends HTMLElement {
     const discount = onSale ? Math.floor((regular - sale) / regular * 100) : 0;
     const icon = this.product.type === 'booking' ? '<i class="sicon-calendar-time" aria-hidden="true"></i>' :
       `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">${this.product.has_options ?
-        '<rect x="10" y="5" width="16" height="16" rx="3"/><rect x="6" y="10" width="16" height="16" rx="3"/>' :
-        '<path d="M8 11h15l2 16H6l2-16Z"/><path d="M11 12V9a4.5 4.5 0 0 1 9 0v3"/>'}<path d="M5 3v8M1 7h8"/></svg>`;
+        '<rect x="13" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="14" height="14" rx="2"/><rect x="5" y="13" width="14" height="14" rx="2"/><path d="M6 2v8M2 6h8"/>' :
+        '<path d="M7 12h16l2 15H5l2-15Z"/><path d="M10 12V9a5 5 0 0 1 10 0v3"/><circle class="core-recommendation-icon-clear" cx="24" cy="25" r="6" stroke="none"/><path d="M24 20v10M19 25h10"/>'}</svg>`;
     const available = this.effectiveStatus === 'sale';
     return `
       <div class="core-recommendation-image">
         <a href="${productUrl}" aria-label="${productName}"><img src="${this.safeUrl(this.product.image?.url || this.product.thumbnail || this.placeholder || '')}" alt="${this.escapeHTML(this.product.image?.alt || this.product.name)}" loading="lazy" width="240" height="240" /></a>
-        ${this.getProductBadge()}
-        <salla-button shape="icon" fill="outline" color="light" aria-label="${wishlistLabel}" class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added' : 'not-added'}" data-id="${productId}"><i class="sicon-heart" aria-hidden="true"></i></salla-button>
+        ${this.getRecommendationBadge()}
+        <salla-button shape="icon" fill="outline" color="light" aria-label="${wishlistLabel}" class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added' : 'not-added'}" data-id="${productId}"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 28S3 20 3 10.5C3 3 12 2 16 9c4-7 13-6 13 1.5C29 20 16 28 16 28Z"/></svg></salla-button>
+        ${!this.hideAddBtn ? `<salla-add-product-button class="core-recommendation-cart${rating > 0 ? '' : ' core-recommendation-cart--no-rating'}${available ? '' : ' core-recommendation-cart--status'}" fill="outline" width="normal" product-id="${productId}" product-status="${status}" product-type="${productType}" aria-label="${this.escapeHTML(cartLabel)}: ${productName}">${available ? icon : ''}<span class="${available ? 'sr-only' : ''}">${this.escapeHTML(cartLabel)}</span></salla-add-product-button>` : ''}
       </div>
       <div class="core-recommendation-content">
-        ${rating > 0 || !this.hideAddBtn ? `<div class="core-recommendation-tools">
-          ${rating > 0 ? `<div class="core-recommendation-rating" role="img" aria-label="${rating} / 5${Number.isSafeInteger(count) && count > 0 ? ` (${count})` : ''}"><span class="core-recommendation-score"><i class="sicon-star2" aria-hidden="true"></i><bdi>${rating.toFixed(1)}</bdi></span>${Number.isSafeInteger(count) && count > 0 ? `<bdi class="core-recommendation-count">(${count})</bdi>` : ''}</div>` : ''}
-          ${!this.hideAddBtn ? `<salla-add-product-button class="core-recommendation-cart${available ? '' : ' core-recommendation-cart--status'}" fill="outline" width="normal" product-id="${productId}" product-status="${status}" product-type="${productType}" aria-label="${this.escapeHTML(cartLabel)}: ${productName}">${available ? icon : ''}<span class="${available ? 'sr-only' : ''}">${this.escapeHTML(cartLabel)}</span></salla-add-product-button>` : ''}
+        ${rating > 0 ? `<div class="core-recommendation-tools">
+          ${rating > 0 ? `<div class="core-recommendation-rating" role="img" aria-label="${rating} / 5${Number.isSafeInteger(count) && count > 0 ? ` (${count})` : ''}"><span class="core-recommendation-score" dir="ltr"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3L1 7.6l6.2-.9Z"/></svg><bdi>${rating.toFixed(1)}</bdi></span>${Number.isSafeInteger(count) && count > 0 ? `<bdi class="core-recommendation-count">(${count})</bdi>` : ''}</div>` : ''}
         </div>` : ''}
-        ${brand ? `<p class="core-recommendation-brand" dir="auto">${this.escapeHTML(brand)}</p>` : ''}
+        ${brand ? `<p class="core-recommendation-brand"><bdi>${this.escapeHTML(brand)}</bdi></p>` : ''}
         <h3 class="core-recommendation-name"><a href="${productUrl}" title="${productName}">${productName}</a></h3>
         <div class="core-recommendation-prices">
-          ${onSale ? `<del>${this.getPriceFormat(regular)}</del>` : ''}
-          <div class="core-recommendation-price-row"><bdi class="core-recommendation-price${onSale ? ' core-recommendation-price--sale' : ''}">${!onSale && this.product.starting_price ? `<span class="core-recommendation-starting">${this.escapeHTML(this.startingPrice)}</span> ` : ''}${this.getPriceFormat(onSale ? sale : (this.product.starting_price || this.product.price))}</bdi>${discount > 0 ? `<bdi class="core-recommendation-discount">-${discount}%</bdi>` : ''}</div>
+          ${onSale ? `<del>${this.getRecommendationMoney(regular)}</del>` : ''}
+          <div class="core-recommendation-price-row"><bdi class="core-recommendation-price${onSale ? ' core-recommendation-price--sale' : ''}">${!onSale && this.product.starting_price ? `<span class="core-recommendation-starting">${this.escapeHTML(this.startingPrice)}</span> ` : ''}${this.getRecommendationMoney(onSale ? sale : (this.product.starting_price || this.product.price))}</bdi>${discount > 0 ? `<bdi class="core-recommendation-discount">-${discount}%</bdi>` : ''}</div>
         </div>
       </div>`;
   }
