@@ -202,3 +202,10 @@ test('wishlist listener attaches to the host once, not its hydrated nested butto
   assert.ok(selectors.includes('salla-button.s-product-card-wishlist-btn'));
   assert.ok(!selectors.includes('.s-product-card-wishlist-btn'));
 });
+
+test('hiding the cart with no rating removes the empty recommendation tools row', () => {
+  const card = recommendationCard();
+  card.hideAddBtn = true;
+  card.render();
+  assert.doesNotMatch(card.innerHTML, /core-recommendation-tools|core-recommendation-cart/);
+});

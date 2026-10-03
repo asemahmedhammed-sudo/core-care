@@ -215,10 +215,10 @@ class ProductCard extends HTMLElement {
         <salla-button shape="icon" fill="outline" color="light" aria-label="${wishlistLabel}" class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added' : 'not-added'}" data-id="${productId}"><i class="sicon-heart" aria-hidden="true"></i></salla-button>
       </div>
       <div class="core-recommendation-content">
-        <div class="core-recommendation-tools">
+        ${rating > 0 || !this.hideAddBtn ? `<div class="core-recommendation-tools">
           ${rating > 0 ? `<div class="core-recommendation-rating" role="img" aria-label="${rating} / 5${Number.isSafeInteger(count) && count > 0 ? ` (${count})` : ''}"><span class="core-recommendation-score"><i class="sicon-star2" aria-hidden="true"></i><bdi>${rating.toFixed(1)}</bdi></span>${Number.isSafeInteger(count) && count > 0 ? `<bdi class="core-recommendation-count">(${count})</bdi>` : ''}</div>` : ''}
           ${!this.hideAddBtn ? `<salla-add-product-button class="core-recommendation-cart${available ? '' : ' core-recommendation-cart--status'}" fill="outline" width="normal" product-id="${productId}" product-status="${status}" product-type="${productType}" aria-label="${this.escapeHTML(cartLabel)}: ${productName}">${available ? icon : ''}<span class="${available ? 'sr-only' : ''}">${this.escapeHTML(cartLabel)}</span></salla-add-product-button>` : ''}
-        </div>
+        </div>` : ''}
         ${brand ? `<p class="core-recommendation-brand" dir="auto">${this.escapeHTML(brand)}</p>` : ''}
         <h3 class="core-recommendation-name"><a href="${productUrl}" title="${productName}">${productName}</a></h3>
         <div class="core-recommendation-prices">

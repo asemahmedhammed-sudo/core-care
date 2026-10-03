@@ -178,14 +178,15 @@ body.theme-beauty.product-single {
     .core-recommendation-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
     .s-product-card-wishlist-btn { position: absolute; inset: 8px auto auto 8px; width: 36px; height: 36px; margin: 0; }
     .s-product-card-wishlist-btn .s-button-element { width: 36px; height: 36px; min-height: 0; padding: 4px; border: 0; border-radius: 0; background: transparent; color: #222; font-size: 25px; }
-    .s-product-card-promotion-title { top: 12px; inset-inline: 52px 12px; width: fit-content; max-width: calc(100% - 64px); margin-inline-start: auto; padding: 3px 8px; border-radius: 20px; background: #f42d70; font-size: 11px; line-height: 1.4; }
+    .s-product-card-promotion-title { top: 12px; right: 12px; left: auto; width: fit-content; max-width: calc(100% - 64px); padding: 3px 8px; border-radius: 20px; background: #f42d70; font-size: 11px; line-height: 1.4; }
     .core-recommendation-content { display: flex; flex-direction: column; flex: 1; gap: 4px; padding: 0 14px 14px; text-align: start; }
     .core-recommendation-tools { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; }
     .core-recommendation-rating { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; font-size: 12px; }
     .core-recommendation-score { display: inline-flex; align-items: center; gap: 2px; padding: 1px 4px; border-radius: 12px; background: #f7f7f7; color: #555; }
     .core-recommendation-score i { color: #f6c52b; font-size: 13px; }
     .core-recommendation-count { color: #999; font-size: 11px; }
-    .core-recommendation-cart { display: block; flex: none; margin-inline-start: auto; }
+    .core-recommendation-cart { display: block; flex: none; margin-left: auto; }
+    html[dir="rtl"] & .core-recommendation-cart { margin-left: 0; margin-right: auto; }
     .core-recommendation-cart .s-button-element { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; min-height: 0; padding: 7px; border: 0; border-radius: 50%; background: #f3f3f4; color: #383342; }
     .core-recommendation-cart .s-button-text { display: flex; align-items: center; justify-content: center; gap: 0; }
     .core-recommendation-cart svg { width: 27px; height: 27px; }
