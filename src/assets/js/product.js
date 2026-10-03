@@ -16,6 +16,7 @@ class Product extends BasePage {
 
         this.initProductOptionValidations();
         this.initNativeGallery();
+        this.initInstallmentSummary();
 
         if (imageZoom && document.querySelector('salla-slider.details-slider')) {
             // call the function when the page is ready
@@ -46,6 +47,34 @@ class Product extends BasePage {
             event.preventDefault();
             event.stopPropagation();
         }, { capture: true });
+    }
+
+    initInstallmentSummary() {
+        const details = document.querySelector('.core-product-installments');
+        const widget = details?.querySelector('salla-installment');
+        const logos = details?.querySelector('.core-product-installment-logos');
+        if (!widget || !logos) return;
+
+        // The summary follows enabled Salla providers; expanded content remains
+        // the native widget, including its terms and live option-price updates.
+        const sync = () => {
+            details.hidden = !widget.children.length;
+            const providers = [
+                ['tabby', '#tabbyPromoWrapper', 'tabby_installment'],
+                ['Tamara', 'tamara-widget, .tamara-product-widget', 'tamara_installment'],
+            ];
+            logos.replaceChildren(...providers.filter(([, selector]) => widget.querySelector(selector)).map(([name, , logo]) => {
+                const image = document.createElement('img');
+                const path = `images/payment/${logo}_mini.png`;
+                image.src = logo === 'tabby_installment' ? salla.url.assetsCdn(path) : salla.url.cdn(path);
+                image.alt = name;
+                image.width = 48;
+                image.height = 20;
+                return image;
+            }));
+        };
+        new MutationObserver(sync).observe(widget, { childList: true, subtree: true });
+        sync();
     }
 
     initImagesZooming() {

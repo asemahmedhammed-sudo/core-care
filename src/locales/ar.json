@@ -89,7 +89,9 @@
       "description": "الوصف",
       "specifications": "المواصفات",
       "brand_products": "عرض منتجات الماركة",
-      "share": "مشاركة المنتج"
+      "share": "مشاركة المنتج",
+      "installments": "هل تريد الدفع بالتقسيط؟",
+      "view_all": "عرض الكل"
     }
   }
 }

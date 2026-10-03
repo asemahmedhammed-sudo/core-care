@@ -89,7 +89,9 @@
       "description": "Description",
       "specifications": "Specifications",
       "brand_products": "Shop the brand",
-      "share": "Share product"
+      "share": "Share product",
+      "installments": "Want to pay in installments?",
+      "view_all": "View all"
     }
   }
 }

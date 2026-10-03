@@ -84,6 +84,9 @@
 | product.currency                       | string                      |                                                                        |
 #}
 {% extends "layouts.master" %}
+{% block styles %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+{% endblock %}
 {% block content %}
     {% if theme.settings.get('product_show_breadcrumbs', true) %}
       <div class="container container--breadcrumbs">
@@ -118,10 +121,6 @@
                         auto-height
                         listen-to-thumbnails-option
                         show-thumbs-controls="false">
-                    {% if product.promotion_title %}
-                        <div class="promotion-title">{{ product.promotion_title }}</div>
-                    {% endif %}
-
                     {# Calories Badge #}
                     {% if product.calories %}
                         <div class="absolute z-[2] top-4 rtl:left-4 ltr:right-4 bg-white shadow-sm flex flex-col justify-center items-center rounded-full w-20 h-20 md:w-24 md:h-24">
@@ -193,7 +192,21 @@
             <div class="main-content core-product-info">
                 {% hook 'product:single.description.start' %}
 
-                <h1 data-testid="store-product-title" class="core-product-title">{{ product.name }}</h1>
+                {% if product.promotion_title %}
+                    <span class="core-product-promotion">{{ product.promotion_title }}</span>
+                {% endif %}
+                <div class="core-product-heading">
+                    <h1 data-testid="store-product-title" class="core-product-title">{{ product.name }}</h1>
+                    <salla-button
+                            data-testid="store-product-wishlist-btn"
+                            class="btn--wishlist animated"
+                            data-id="{{ product.id }}"
+                            onclick="salla.wishlist.toggle('{{ product.id }}')"
+                            shape="icon" fill="outline" color="light"
+                            aria-label="{{ trans('beauty.wishlist_toggle') }}">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+                    </salla-button>
+                </div>
 
                 {% if product.subtitle %}
                     <h2 class="product-entry__sub-title core-product-subtitle">
@@ -225,22 +238,6 @@
                     <small class="core-product-tax">{{ trans('pages.products.tax_included') }}</small>
                 {% endif %}
 
-                <div class="core-product-actions">
-                    <salla-social-share data-testid="store-product-social-share" class="inline-flex" aria-label="{{ trans('beauty.product.share') }}"></salla-social-share>
-
-                    <salla-button
-                            data-testid="store-product-wishlist-btn"
-                            class="btn--wishlist animated"
-                            data-id="{{ product.id }}"
-                            onclick="salla.wishlist.toggle('{{ product.id }}')"
-                            shape="icon"
-                            fill="outline"
-                            color="light"
-							aria-label="{{ trans('beauty.wishlist_toggle') }}">
-                        <i class="sicon-heart"></i>
-                    </salla-button>
-                </div>
-
                 {% if product.sold_quantity or product.can_show_remained_quantity %}
                     <div class="bg-white py-2.5 mb-5 rounded-md inline-flex text-sm">
                         {% if product.sold_quantity %}
@@ -261,7 +258,14 @@
                 {% hook 'product:single.description' %}
 
                 {# Installment Methods #}
-                <salla-installment data-testid="store-product-installment" price="{{ product.price }}"></salla-installment>
+                <details class="core-product-installments" data-testid="store-product-installment-details" hidden>
+                    <summary>
+                        <span>{{ trans('beauty.product.installments') }}</span>
+                        <span class="core-product-installment-logos" aria-hidden="true"></span>
+                        <i class="sicon-info" aria-hidden="true"></i>
+                    </summary>
+                    <salla-installment data-testid="store-product-installment" price="{{ product.price }}"></salla-installment>
+                </details>
                 {% if product.show_availability %}
                     <section class="bg-white p-5 rounded-md mb-5 last:mb-0">
                         <div class="center-between">
@@ -308,7 +312,7 @@
                         </section>
                     {% endif %}
 
-                    <section class="sticky-product-bar core-product-purchase">
+                    <section class="core-product-purchase">
                         {# Quantity #}
                         {% if product.is_hidden_quantity or product.type == 'booking' %}
                             <input type="hidden" value="1" name="quantity" aria-label="{{ trans('pages.products.quantity') }}"/>
@@ -324,8 +328,6 @@
                         {# Add to cart #}
                         <salla-add-product-button
                                 data-testid="store-product-add-to-cart"
-                                {{product.can_quick_buy ? 'quick-buy' : ''}}
-                                {{theme.settings.get('sticky_add_to_cart') ? ' support-sticky-bar' : ''}}
                                 {{product.is_require_shipping ? 'required-shipping' : ''}}
                                 {{product.has_preorder_campaign ? 'has-pre-order' : ''}}
                                 amount="{{ product.base_currency_price }}"
@@ -409,7 +411,7 @@
                             <img width="56" height="56" loading="lazy" src="{{ product.brand.logo }}" alt="{{ product.brand.name }}">
                         {% endif %}
                         <span>{{ product.brand.name }}</span>
-                        <span class="core-product-brand-link">{{ trans('beauty.product.brand_products') }}<i class="sicon-keyboard_arrow_left" aria-hidden="true"></i></span>
+                        <span class="core-product-brand-link">{{ trans('beauty.product.view_all') }}<i class="sicon-keyboard_arrow_left" aria-hidden="true"></i></span>
                     </a>
                 {% endif %}
 
@@ -419,18 +421,6 @@
         </div>
         <salla-offer data-testid="store-product-offer"></salla-offer>
     </div>
-
-    {#
-        Hook: product.single.before_customer_reviews
-        Fires before the customer reviews/comments section.
-        Use this hook to inject content between the product info and the reviews block.
-    #}
-    <div class="s-blocks-wrapper s-before-reviews">{% hook 'product.single.before_customer_reviews' %}</div>
-
-    {# Comments Area #}
-    {% if store.settings.rating.show_on_product %}
-        <salla-comments data-testid="store-product-comments" item-id="{{product.id}}" type="product"></salla-comments>
-    {% endif %}
 
     {#
         Hook: product.single.before_product_recommendations
@@ -450,10 +440,16 @@
         Use this hook to append content below the recommendations section.
     #}
     <div class="s-blocks-wrapper s-after-related">{% hook 'product.single.after_product_recommendations' %}</div>
+
+    {# Customer reviews follow the recommendations, as in the reference. #}
+    <div class="s-blocks-wrapper s-before-reviews">{% hook 'product.single.before_customer_reviews' %}</div>
+    {% if store.settings.rating.show_on_product %}
+        <salla-comments data-testid="store-product-comments" item-id="{{product.id}}" type="product"></salla-comments>
+    {% endif %}
 {% endblock %}
 
 {% block scripts %}
-    <script defer src="{{ 'product.js' | asset }}?v=20261002-product-details-1"></script>
+    <script defer src="{{ 'product.js' | asset }}?v=20261003-product-reference-1"></script>
     {% if product.has_3d_image %}
         <script type="module" defer src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     {% endif %}
