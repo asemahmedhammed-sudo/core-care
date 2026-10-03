@@ -91,7 +91,12 @@
       "brand_products": "Shop the brand",
       "share": "Share product",
       "installments": "Want to pay in installments?",
-      "view_all": "View all"
+      "view_all": "View all",
+      "gallery": "Product gallery",
+      "image": "Image",
+      "open_image": "Enlarge product image",
+      "previous_images": "Show previous images",
+      "next_images": "Show next images"
     }
   }
 }

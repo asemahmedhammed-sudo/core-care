@@ -1,0 +1,59 @@
+{% set has_many_images = product.images|length > 1 %}
+<core-product-gallery class="core-product-gallery core-product-media {{ has_many_images ? '' : 'core-product-media--single' }}"
+                      data-testid="store-product-image-slider" data-product-gallery
+                      data-images='{{ product.images|json_encode }}'
+                      aria-label="{{ trans('beauty.product.gallery') }}">
+    <div class="core-product-media__stage">
+        {% if product.calories %}
+            <div class="core-product-media__calories"><strong>{{ product.calories }}</strong>{{ trans('pages.products.calories') }}</div>
+        {% endif %}
+        {% for image in product.images %}
+            {% if image.three_d_image_url %}
+                <div id="product-media-{{ product.id }}-{{ loop.index0 }}" data-gallery-slide data-img-id="{{ image.id }}" {{ loop.first ? '' : 'hidden' }}>
+                    <model-viewer loading="lazy" camera-controls touch-action="pan-y" auto-rotate
+                                  poster="{{ image.url }}" src="{{ image.three_d_image_url }}"
+                                  shadow-intensity="1" alt="{{ image.alt|default(product.name) }}"></model-viewer>
+                </div>
+            {% else %}
+                <a id="product-media-{{ product.id }}-{{ loop.index0 }}" data-gallery-slide
+                   data-img-id="{{ image.id }}" data-slid-index="{{ loop.index0 }}"
+                   {{ loop.first ? '' : 'hidden' }}
+                   data-fslightbox="product_{{ product.id }}" data-caption="{{ image.alt }}" data-infinite="false"
+                   {% if image.video_url %}data-video-src="{{ image.video_url }}"{% endif %}
+                   data-type="{{ image.video_type ?? 'image' }}"
+                   href="{{ (image.video_url is iterable ? image.video_url|first : image.video_url)|default(image.url) }}"
+                   aria-label="{{ trans('beauty.product.open_image') }}: {{ image.alt|default(product.name) }}"
+                   class="core-product-media__image magnify-wrapper {{ image.video_url ? 'video-entry' : '' }}">
+                    <img id="product-image-{{ product.id }}-{{ image.id }}" src="{{ image.url }}"
+                         loading="{{ loop.first ? 'eager' : 'lazy' }}" {{ loop.first ? 'fetchpriority="high"' : '' }}
+                         alt="{{ image.alt|default(product.name) }}" width="800" height="800">
+                    {% if image.video_url %}<span class="core-product-media__play" aria-hidden="true">▶</span>{% endif %}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% if has_many_images %}
+        <div class="core-product-media__rail" data-gallery-rail>
+            <button type="button" class="core-product-media__scroll core-product-media__scroll--previous" data-gallery-previous
+                    aria-label="{{ trans('beauty.product.previous_images') }}" hidden>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 15 7-7 7 7"/></svg>
+            </button>
+            <div class="core-product-media__thumbs" data-testid="store-product-thumbnails" data-gallery-thumbs>
+                {% for image in product.images %}
+                    <button type="button" class="core-product-media__thumb" data-gallery-thumb="{{ loop.index0 }}"
+                            aria-label="{{ trans('beauty.product.image') }} {{ loop.index }}: {{ image.alt|default(product.name) }}"
+                            aria-controls="product-media-{{ product.id }}-{{ loop.index0 }}"
+                            aria-pressed="{{ loop.first ? 'true' : 'false' }}">
+                        <img src="{{ image.url }}" loading="{{ loop.index < 6 ? 'eager' : 'lazy' }}"
+                             alt="" width="120" height="120">
+                        {% if image.video_url %}<span class="core-product-media__thumb-play" aria-hidden="true">▶</span>{% endif %}
+                    </button>
+                {% endfor %}
+            </div>
+            <button type="button" class="core-product-media__scroll core-product-media__scroll--next" data-gallery-next
+                    aria-label="{{ trans('beauty.product.next_images') }}" hidden>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+            </button>
+        </div>
+    {% endif %}
+</core-product-gallery>

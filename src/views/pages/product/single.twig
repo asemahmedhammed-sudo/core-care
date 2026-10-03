@@ -107,86 +107,7 @@
     <div class="container container--product-details">
         <div class="core-product-layout {{ product.images|length ? '' : 'core-product-layout--no-image' }}" id="product-{{ product.id }}">
             {% if product.images|length %}
-            <div class="sidebar core-product-gallery">
-                {% set has_many_images = product.images|length > 1 %}
-                <salla-slider
-                        data-testid="store-product-image-slider"
-                        id="details-slider-{{ product.id }}"
-                        class="details-slider rounded-md image-slider"
-                        data-images='{{ product.images|json_encode }}'
-                        type="thumbs"
-                        vertical-thumbs
-                        show-controls="{{ has_many_images ? 'true' : 'false' }}"
-                        loop="false"
-                        auto-height
-                        listen-to-thumbnails-option
-                        show-thumbs-controls="false">
-                    {# Calories Badge #}
-                    {% if product.calories %}
-                        <div class="absolute z-[2] top-4 rtl:left-4 ltr:right-4 bg-white shadow-sm flex flex-col justify-center items-center rounded-full w-20 h-20 md:w-24 md:h-24">
-                            <span class="text-red-500 text-xl leading-none font-bold">{{ product.calories }}</span>
-                            <span class="text-xs text-gray-500">{{ trans('pages.products.calories') }}</span>
-                        </div>
-                    {% endif %}
-
-                    <div slot="items">
-                        {% for image in product.images %}
-                            {% if image.three_d_image_url %}
-                                <model-viewer  class="swiper-slide model-entry w-full h-full"
-                                    loading="eager" camera-controls
-                                    touch-action="pan-y" auto-rotate
-                                    poster="{{ image.url }}"
-                                    src="{{ image.three_d_image_url }}"
-                                    shadow-intensity="1" alt="{{ image.alt }}">
-                                </model-viewer>
-                                    {% else %}
-                                <a data-fslightbox="product_{{ product.id }}"
-                                   data-img-id="{{ image.id }}"
-                                   data-slid-index="{{ loop.index-1 }}"{% if image.video_url %} data-video-src="{{ image.video_url }}"{% endif %}
-                                   data-caption="{{ image.alt }}"
-                                   data-infinite="false"
-                                   data-type="{{ image.video_type ?? 'image' }}"
-                                   href="{{ (image.video_url is iterable ? image.video_url|first : image.video_url)|default(image.url) }}"
-                                   aria-label="{{ product.name }}"
-                                   class="swiper-slide magnify-wrapper homeslider__slide {{ image.video_url?'video-entry':'' }}">
-                                    {% if loop.first %}
-                                        <img id="{{image.id}}" fetchpriority="high" loading="eager" src="{{ image.url }}"
-                                             alt="{{ image.alt }}"
-                                             class="h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
-                                    {% else %}
-                                        <img id="{{image.id}}" src="{{ image.url }}"
-                                             loading="lazy"
-                                             alt="{{ image.alt }}"
-                                             class="h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
-                                    {% endif %}
-                                </a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-
-                    {% if has_many_images %}
-                        <div data-testid="store-product-thumbnails" slot="thumbs">
-                            {% for image in product.images %}
-                                <div class="slide--one-fourth {{ image.video_url?'video-entry':'' }} {{ image.three_d_image_url?'model-entry':'' }}" data-caption="{{ image.alt }}">
-                                    {% if loop.index < 5 %}
-                                        <img src="{{ image.url }}"
-                                             loading="eager"
-                                             class="object-cover w-full h-full bg-gray-100 rounded-md overflow-hidden"
-                                             title="{{ image.alt }}"
-                                             alt="{{ image.alt }}"/>
-                                    {% else %}
-                                        <img src="{{ image.url }}"
-                                             loading="lazy"
-                                             class="object-cover w-full h-full bg-gray-100 rounded-md overflow-hidden"
-                                             title="{{ image.alt }}"
-                                             alt="{{ image.alt }}"/>
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </salla-slider>
-            </div>
+            {% include 'pages.partials.product.gallery' %}
 
             {% endif %}
             <div class="main-content core-product-info">
@@ -449,7 +370,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script defer src="{{ 'product.js' | asset }}?v=20261003-product-reference-1"></script>
+    <script defer src="{{ 'product.js' | asset }}?v=20261003-product-gallery-1"></script>
     {% if product.has_3d_image %}
         <script type="module" defer src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     {% endif %}
