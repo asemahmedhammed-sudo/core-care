@@ -47,3 +47,16 @@ Post-upload desktop/mobile visual verification, live low-content/image-less case
 and editor hide/reorder verification remain incomplete until the specified hosted
 development version serves the new assets. Initial screenshots are not evidence
 of the final changes, and no pixel-for-pixel parity is claimed.
+
+## Hosted recheck
+
+Commit 3d0aaa8 was pushed successfully to origin/main. Reloaded the exact editor
+version 1026765166; its iframe URL retained that version and product 195141722,
+but returned `422 Twilight Error: File [src/views/pages/product/single.twig] Not Found`.
+The template exists in the pushed Git tree, so this response alone cannot identify
+the platform's synchronization/build issue. The Partners portal requires login;
+the prior authenticated session is no longer available. No other theme was opened.
+Screenshot: output/qa/product-reference-hosted-error.jpg.
+
+Requested explicit approval for the official Core Care preview after the automatic
+review rejection. No such approval had arrived when this report was written.

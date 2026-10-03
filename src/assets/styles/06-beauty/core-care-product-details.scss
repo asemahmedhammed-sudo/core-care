@@ -132,7 +132,7 @@ body.theme-beauty.product-single {
     .core-product-gallery { position: static; }
     .core-product-gallery .details-slider {
       .s-slider-container .swiper-slide { aspect-ratio: 1.1; }
-      .s-slider-thumbs { width: 100%; margin: 8px 0 0; }
+      .s-slider-thumbs { flex: none; width: 100%; margin: 8px 0 0; }
       .s-slider-thumbs-container { width: 100%; max-height: none; }
       .s-slider-thumbs .swiper-slide { height: 60px; }
     }
