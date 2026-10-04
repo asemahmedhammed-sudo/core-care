@@ -10,6 +10,12 @@ initPromotionCarousels();
 class Home extends BasePage {
     onReady() {
         this.initFeaturedTabs();
+        document.querySelectorAll('.beauty-product-section salla-products-slider').forEach(slider => {
+            slider.sliderConfig = {
+                slidesPerView: 2.6, spaceBetween: 16,
+                breakpoints: { 640: { slidesPerView: 3.8 }, 768: { slidesPerView: 4.8 }, 1024: { slidesPerView: 6 }, 1280: { slidesPerView: 7 } }
+            };
+        });
     }
 
     /**

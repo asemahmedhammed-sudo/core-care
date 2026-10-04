@@ -21,8 +21,8 @@
       </a>
     {% endfor %}
     <div class="beauty-promotions__controls" data-promotion-controls hidden>
-      <button type="button" data-promotion-prev class="beauty-promotions__arrow beauty-promotions__arrow--prev" aria-label="{{ trans('beauty.promo.previous') }}"><span aria-hidden="true">‹</span></button>
-      <button type="button" data-promotion-next class="beauty-promotions__arrow beauty-promotions__arrow--next" aria-label="{{ trans('beauty.promo.next') }}"><span aria-hidden="true">›</span></button>
+      <button type="button" data-promotion-prev class="beauty-promotions__arrow beauty-promotions__arrow--prev" aria-label="{{ trans('beauty.promo.previous') }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+      <button type="button" data-promotion-next class="beauty-promotions__arrow beauty-promotions__arrow--next" aria-label="{{ trans('beauty.promo.next') }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
       <div class="beauty-promotions__dots" aria-label="{{ trans('beauty.promo.choose') }}">
         {% for number in 1..3 %}<button type="button" data-promotion-dot aria-label="{{ trans('beauty.promo.slide') }} {{ number }}" aria-controls="beauty-promotion-{{ number }}" aria-current="{{ number == 1 ? 'true' : 'false' }}"></button>{% endfor %}
       </div>

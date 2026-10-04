@@ -1,4 +1,11 @@
 <footer id="store-footer" data-testid="store-footer" class="store-footer beauty-footer core-care-footer">
+  <div class="core-care-footer__support">
+    <div class="container">
+      <h2>{{ trans('beauty.footer.support_title') }}</h2>
+      <p>{{ trans('beauty.footer.support_description') }}</p>
+      <salla-contacts data-testid="store-footer-contacts"></salla-contacts>
+    </div>
+  </div>
 	<div aria-label="footer" class="store-footer__inner">
 		<div class="container core-care-footer__grid">
 			<div class="core-care-footer__brand">
@@ -58,7 +65,6 @@
 			<div class="core-care-footer__service">
 				<h3>{{ trans('beauty.footer.customer_service') }}</h3>
 				<salla-menu data-testid="store-footer-menu" source="footer" with-cookie-preferences></salla-menu>
-				<salla-contacts data-testid="store-footer-contacts"></salla-contacts>
 			</div>
 			<div class="core-care-footer__payments">
 				<h3>{{ trans('beauty.footer.payment_methods') }}</h3>

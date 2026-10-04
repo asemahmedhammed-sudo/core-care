@@ -1,37 +1,14 @@
-{# The reference design is the default; merchants can replace its copy, image and link. #}
+{# Optional editorial campaign; preserve merchant fields without fabricated offers/claims. #}
+{% if component.image or component.title or component.description %}
 <section component-id="{{ componentId }}" data-testid="beauty-hero" class="s-block beauty-hero {{ component.image_first ? 'beauty-hero--image-first' : '' }} {{ component.soft_background == false ? 'beauty-hero--plain' : '' }} {{ component.rounded_image == false ? 'beauty-hero--square-image' : '' }}">
-  <div class="container beauty-hero__grid">
+  <div class="container beauty-hero__grid {{ not component.image ? 'beauty-hero__grid--no-image' : '' }}">
     <div class="beauty-hero__copy">
-      <p class="beauty-hero__offer">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.7 3.3C13.5 3.2 7.5 5.4 5.6 10.6c-.8 2.3-.5 4.7.8 6.6 1.7-3 4.3-5 8.5-6.2-3.6 2-5.7 4.4-6.9 8.1a1 1 0 0 0 1.9.6c.4-1.3.9-2.5 1.6-3.6 5.4 1.1 9.4-2.2 9.5-8.7l-.1-4.1Z"/></svg>
-        <span>{{ component.eyebrow ?: trans('beauty.hero.eyebrow') }}</span>
-      </p>
-      <h2>{{ component.title ?: trans('beauty.hero.title') }}</h2>
-      <p class="beauty-hero__description">{{ component.description ?: trans('beauty.hero.description') }}</p>
-      <a class="beauty-button beauty-button--gold beauty-hero__action" href="{{ component.button_url ?: store.url }}">
-        <span>{{ component.button_label ?: trans('beauty.hero.action') }}</span>
-        <i class="sicon-arrow-left beauty-directional" aria-hidden="true"></i>
-      </a>
+      {% if component.eyebrow %}<p class="beauty-hero__offer">{{ component.eyebrow }}</p>{% endif %}
+      {% if component.title %}<h2>{{ component.title }}</h2>{% endif %}
+      {% if component.description %}<p class="beauty-hero__description">{{ component.description }}</p>{% endif %}
+      {% if component.button_label and component.button_url %}<a class="beauty-button beauty-button--gold beauty-hero__action" href="{{ component.button_url }}"><span>{{ component.button_label }}</span><i class="sicon-arrow-left beauty-directional" aria-hidden="true"></i></a>{% endif %}
     </div>
-
-    <div class="beauty-hero__visual">
-      <div class="beauty-hero__media">
-        <img src="{{ component.image ?: ('images/beauty-hero-products.jpg'|asset) }}" alt="{{ component.image_alt ?: trans('beauty.hero.image_alt') }}" width="1000" height="1000" {% if position == 0 %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
-      </div>
-      <span class="beauty-hero__new">{{ trans('beauty.hero.new') }}<strong>{{ trans('beauty.hero.year') }}</strong></span>
-      <div class="beauty-hero__natural">
-        <span class="beauty-hero__natural-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.7 3.3C13.5 3.2 7.5 5.4 5.6 10.6c-.8 2.3-.5 4.7.8 6.6 1.7-3 4.3-5 8.5-6.2-3.6 2-5.7 4.4-6.9 8.1a1 1 0 0 0 1.9.6c.4-1.3.9-2.5 1.6-3.6 5.4 1.1 9.4-2.2 9.5-8.7l-.1-4.1Z"/></svg></span>
-        <span>{{ trans('beauty.hero.natural') }}<strong>{{ trans('beauty.hero.natural_value') }}</strong></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="beauty-hero__benefits" aria-label="{{ trans('beauty.hero.benefits_label') }}">
-    <div class="container beauty-hero__benefits-inner">
-      <div><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5h11v9H3V5Zm12 3h3.1l2.4 3V14H15V8ZM5 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0Zm11 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0ZM3 15h18v2h-1a4 4 0 0 0-8 0H9a4 4 0 0 0-8 0V7h2v8Z"/></svg><span>{{ trans('beauty.hero.fast_delivery') }}</span></div>
-      <div><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 8 3v6c0 5.5-3.6 9.3-8 11-4.4-1.7-8-5.5-8-11V5l8-3Zm-1 13 5-5-1.4-1.4-3.6 3.6-1.6-1.6L8 12l3 3Z"/></svg><span>{{ trans('beauty.hero.quality') }}</span></div>
-      <div><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3a9 9 0 1 1-8.5 12h2.2A7 7 0 1 0 5 9l2.7 2.7L6.3 13.1 1 7.8l5.3-5.3 1.4 1.4L5.1 6.5A9 9 0 0 1 12 3Z"/></svg><span>{{ trans('beauty.hero.easy_returns') }}</span></div>
-      <div><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.7 3.3C13.5 3.2 7.5 5.4 5.6 10.6c-.8 2.3-.5 4.7.8 6.6 1.7-3 4.3-5 8.5-6.2-3.6 2-5.7 4.4-6.9 8.1a1 1 0 0 0 1.9.6c.4-1.3.9-2.5 1.6-3.6 5.4 1.1 9.4-2.2 9.5-8.7l-.1-4.1Z"/></svg><span>{{ trans('beauty.hero.natural_benefit') }}</span></div>
-    </div>
+    {% if component.image %}<div class="beauty-hero__visual"><div class="beauty-hero__media"><img src="{{ component.image }}" alt="{{ component.image_alt }}" width="1000" height="1000" loading="{{ position == 0 ? 'eager' : 'lazy' }}"></div></div>{% endif %}
   </div>
 </section>
+{% endif %}

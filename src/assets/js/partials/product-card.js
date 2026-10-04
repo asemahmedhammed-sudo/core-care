@@ -221,9 +221,12 @@ class ProductCard extends HTMLElement {
         return `<div class="core-recommendation-badge core-recommendation-badge--timer"><span>${this.escapeHTML(salla.lang.get('beauty.recommendation_ends_in'))}</span><salla-count-down date="${ksaDate}" end-of-day="false" boxed="false" labeled="false" digits="en" auto-segments="true" size="sm"></salla-count-down></div>`;
       }
     }
-    const badge = this.getProductBadge();
+    const promotion = String(this.product.promotion_title || '').trim();
+    const homepage = this.closest?.('.beauty-product-section');
+    const badge = homepage && !this.product.preorder?.label ?
+      (document.body?.dataset?.beautyShowProductPromotionTitles === 'true' && promotion ? `<div class="s-product-card-promotion-title">${this.escapeHTML(promotion)}</div>` : '') : this.getProductBadge();
     return /^(الأكثر مبيع[ًاً]*|best seller)$/iu.test(String(this.product.promotion_title || '').trim()) && !this.product.preorder?.label ?
-      badge.replace('s-product-card-promotion-title', 's-product-card-promotion-title core-recommendation-badge--bestseller') : badge;
+      badge.replace('s-product-card-promotion-title', 's-product-card-promotion-title core-recommendation-badge--bestseller') : /^(الأكثر شهرة|most popular)$/iu.test(promotion) ? badge.replace('s-product-card-promotion-title', 's-product-card-promotion-title core-recommendation-badge--popular') : badge;
   }
 
   renderRecommendation({ productId, productUrl, productName, productType, cartLabel, wishlistLabel, rating, status }) {
@@ -238,9 +241,11 @@ class ProductCard extends HTMLElement {
         '<rect x="13" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="14" height="14" rx="2"/><rect x="5" y="13" width="14" height="14" rx="2"/><path d="M6 2v8M2 6h8"/>' :
         '<path d="M7 12h16l2 15H5l2-15Z"/><path d="M10 12V9a5 5 0 0 1 10 0v3"/><circle class="core-recommendation-icon-clear" cx="24" cy="25" r="6" stroke="none"/><path d="M24 20v10M19 25h10"/>'}</svg>`;
     const available = this.effectiveStatus === 'sale';
+    const media = this.product.image?.url || this.product.thumbnail;
+    const hasMedia = media && !salla.url.is_placeholder(media);
     return `
-      <div class="core-recommendation-image">
-        <a href="${productUrl}" aria-label="${productName}"><img src="${this.safeUrl(this.product.image?.url || this.product.thumbnail || this.placeholder || '')}" alt="${this.escapeHTML(this.product.image?.alt || this.product.name)}" loading="lazy" width="240" height="240" /></a>
+      <div class="core-recommendation-image${hasMedia ? '' : ' core-recommendation-image--empty'}">
+        ${hasMedia ? `<a href="${productUrl}" aria-label="${productName}"><img src="${this.safeUrl(this.product.image?.url || this.product.thumbnail || this.placeholder || '')}" alt="${this.escapeHTML(this.product.image?.alt || this.product.name)}" loading="lazy" width="240" height="240" /></a>` : ''}
         ${this.getRecommendationBadge()}
         <salla-button shape="icon" fill="outline" color="light" aria-label="${wishlistLabel}" class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added' : 'not-added'}" data-id="${productId}"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 28S3 20 3 10.5C3 3 12 2 16 9c4-7 13-6 13 1.5C29 20 16 28 16 28Z"/></svg></salla-button>
         ${!this.hideAddBtn ? `<salla-add-product-button class="core-recommendation-cart${rating > 0 ? '' : ' core-recommendation-cart--no-rating'}${available ? '' : ' core-recommendation-cart--status'}" fill="outline" width="normal" product-id="${productId}" product-status="${status}" product-type="${productType}" aria-label="${this.escapeHTML(cartLabel)}: ${productName}">${available ? icon : ''}<span class="${available ? 'sr-only' : ''}">${this.escapeHTML(cartLabel)}</span></salla-add-product-button>` : ''}
@@ -290,7 +295,7 @@ class ProductCard extends HTMLElement {
       ? 'out-and-notify'
       : this.product.status;
     const status = this.escapeHTML(this.effectiveStatus);
-    const recommendation = this.closest?.('.core-product-related') && !this.product.donation && !this.isSpecial;
+    const recommendation = (this.closest?.('.core-product-related') || showSectionActions) && !this.product.donation && !this.isSpecial;
     if (recommendation) this.classList.add('core-recommendation-card');
       this.innerHTML = recommendation ? this.renderRecommendation({ productId, productUrl, productName, productType, cartLabel, wishlistLabel, rating, status }) : `
         <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'}">

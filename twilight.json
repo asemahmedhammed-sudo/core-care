@@ -376,12 +376,12 @@
             "options": [
                 {
                     "key": "0ee8ea4d-6c72-4044-bc60-be99ad6c4868",
-                    "label": "كريمي وزيتوني",
+                    "label": "محايد مع وردي وبنفسجي",
                     "value": "olive"
                 },
                 {
                     "key": "aebec0fa-6637-4bf6-afc2-b7e96f55ebc8",
-                    "label": "كريمي ووردي",
+                    "label": "محايد (خيار محفوظ للتوافق)",
                     "value": "rose"
                 },
                 {
@@ -393,7 +393,7 @@
             "selected": [
                 {
                     "key": "0ee8ea4d-6c72-4044-bc60-be99ad6c4868",
-                    "label": "كريمي وزيتوني",
+                    "label": "محايد مع وردي وبنفسجي",
                     "value": "olive"
                 }
             ]
@@ -402,7 +402,16 @@
             "id": "beauty_alternate_sections",
             "type": "boolean",
             "format": "switch",
-            "label": "خلفيات متناوبة لأقسام الصفحة الرئيسية",
+            "label": "خلفيات رمادية متناوبة لأقسام الصفحة الرئيسية",
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "beauty_reference_font",
+            "type": "boolean",
+            "format": "switch",
+            "label": "استخدام خط IBM Plex Sans Arabic",
+            "description": "أوقف الخيار لاستخدام الخط المحدد في هوية المتجر.",
             "value": true,
             "selected": true
         }

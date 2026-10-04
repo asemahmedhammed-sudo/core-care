@@ -136,26 +136,33 @@ test('homepage product button copy preserves booking and preorder actions', () =
   assert.equal(card.getAddButtonLabel(), salla.lang.get('pages.products.pre_order_now'));
 });
 
-test('homepage cards show empty stars without inventing a rating and retain fractional ratings', () => {
+test('homepage compact cards omit missing ratings and preserve actual fractional ratings', () => {
   const card = new ProductCard();
   card.closest = selector => selector === '.beauty-product-section' ? { dataset: {} } : null;
   card.product = { id: 7, name: 'Product', url: '/product', status: 'sale', type: 'product', price: 10 };
   for (const rating of [undefined, null, { stars: 0 }, { stars: 'invalid' }]) {
     card.product.rating = rating;
     card.render();
-    assert.match(card.innerHTML, /beauty-rating-stars--empty/);
-    assert.match(card.innerHTML, /☆☆☆☆☆/u);
-    assert.match(card.innerHTML, /--rating-fill: 0%/);
+    assert.doesNotMatch(card.innerHTML, /core-recommendation-rating|beauty-rating-stars|core-recommendation-tools/);
+    assert.match(card.innerHTML, /product-id="7" product-status="sale" product-type="product"/);
   }
-  card.product.rating = { stars: '4.5' };
+  card.product.rating = { stars: '4.5', count: 3 };
   card.render();
-  assert.match(card.innerHTML, /--rating-fill: 90%/);
-  assert.match(card.innerHTML, /aria-label="4.5 \/ 5"/);
+  assert.match(card.innerHTML, /aria-label="4.5 \/ 5 \(3\)"/);
+  assert.match(card.innerHTML, /core-recommendation-count/);
   assert.doesNotMatch(card.innerHTML, /beauty-rating-stars--empty/);
-  card.closest = () => null;
-  card.product.rating = null;
+});
+
+test('homepage cards retain options, escape brand text and omit missing media', () => {
+  const card = new ProductCard();
+  card.closest = selector => selector === '.beauty-product-section' ? { dataset: {} } : null;
+  card.product = { id: 8, name: '<svg onload=alert(1)>', brand: { name: '<script>brand</script>' }, url: 'javascript:alert(1)', status: 'sale', type: 'product', price: 10, has_options: true };
   card.render();
-  assert.doesNotMatch(card.innerHTML, /class="s-product-card-rating"/);
+  assert.match(card.innerHTML, /core-recommendation-image--empty/);
+  assert.doesNotMatch(card.innerHTML, /<img|<script|<svg onload|javascript:/);
+  assert.match(card.innerHTML, /&lt;script&gt;brand&lt;\/script&gt;/);
+  assert.match(card.innerHTML, /<rect/);
+  assert.match(card.innerHTML, /product-id="8" product-status="sale" product-type="product"/);
 });
 
 function recommendationCard(overrides = {}) {

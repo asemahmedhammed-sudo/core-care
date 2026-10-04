@@ -56,7 +56,9 @@
       "home": "Home",
       "products": "Products",
       "offers": "Offers",
-      "about": "About us"
+      "about": "About us",
+      "support_title": "Need help?",
+      "support_description": "Contact us through the available support channels."
     },
     "bestsellers_subtitle": "Our customers’ favourite products",
     "view_product": "View product",

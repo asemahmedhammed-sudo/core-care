@@ -36,11 +36,11 @@ for (const page of ['home', 'inner']) {
       const tokens = bodyTokens(['theme-beauty', `beauty-palette-${palette}`,
         ...(page === 'home' ? ['beauty-reference-home', 'beauty-alternate-sections'] : [])]);
       for (const [name, value] of Object.entries({
-        '--beauty-paper': '#fff', '--beauty-cream': '#f8f8f8',
-        '--beauty-ink': '#222', '--beauty-muted': '#666',
-        '--beauty-olive': '#222', '--beauty-gold': '#222',
-        '--beauty-border': '#e5e5e5', '--color-primary': '#222',
-        '--color-primary-reverse': '#fff',
+        '--cc-canvas': '#f8f8f8', '--cc-surface': '#fff', '--cc-text': '#000',
+        '--cc-sale': '#ee2d64', '--cc-announcement': '#e874a5', '--cc-secondary': '#997adb',
+        '--cc-border': '#e5e7eb', '--beauty-paper': 'var(--cc-surface)',
+        '--beauty-ink': 'var(--cc-text)', '--beauty-olive': 'var(--cc-action)',
+        '--cc-action': palette === 'store' ? 'var(--color-primary)' : '#222',
       })) assert.equal(tokens[name], value, `${page}/${palette}: ${name}`);
     }
   });

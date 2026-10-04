@@ -56,7 +56,9 @@
       "home": "الرئيسية",
       "products": "المنتجات",
       "offers": "العروض",
-      "about": "من نحن"
+      "about": "من نحن",
+      "support_title": "تحتاج مساعدة؟",
+      "support_description": "تواصل معنا عبر قنوات الدعم المتاحة."
     },
     "bestsellers_subtitle": "المنتجات المفضلة لدى عملائنا",
     "view_product": "عرض المنتج",

@@ -8,24 +8,27 @@
 {% set important_links = theme.settings.get('important_links') %}
 <header data-testid="store-header" class="store-header">
   <salla-advertisement data-testid="beauty-announcement"></salla-advertisement>
-  <div id="mainnav" class="main-nav-container core-care-header">
     <div class="container core-care-header__top">
       <a data-testid="store-header-logo" class="core-care-header__brand" href="{{ link('/') }}" aria-label="{{ store.name }}">
         {% if store.logo %}
-          <img src="{{ store.logo | cdn(400) }}" width="220" height="84" fetchpriority="high" alt="{{ store.name }}">
+          <img src="{{ store.logo | cdn(400) }}" width="170" height="59" fetchpriority="high" alt="{{ store.name }}">
         {% else %}
           {{ theme.settings.get('beauty_brand_name', store.name) }}
         {% endif %}
       </a>
-      <salla-search class="core-care-header__search" data-testid="store-header-search" inline height="48"></salla-search>
-      <p class="core-care-header__tagline"><span aria-hidden="true">✦</span>{{ trans('beauty.header.tagline') }}</p>
+      <salla-search class="core-care-header__search" data-testid="store-header-search" inline height="45"></salla-search>
+      <p class="core-care-header__tagline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8 14-2 8 6-3 6 3-2-8"/></svg>{{ trans('beauty.header.tagline') }}</p>
     </div>
+  <div id="mainnav" data-header-sticky="{{ theme.settings.get('header_is_sticky', true) ? 'true' : 'false' }}" class="main-nav-container core-care-header">
     <div class="container core-care-header__bottom">
       <nav class="core-care-header__links" aria-label="{{ trans('beauty.open_menu') }}">
         <button data-testid="store-header-mobile-toggle" data-categories-toggle type="button" aria-expanded="false" aria-controls="core-care-categories"><i class="sicon-menu" aria-hidden="true"></i><span>{{ trans('beauty.header.categories') }}</span><i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></button>
         <a href="{{ link('brands') }}">{{ trans('beauty.header.brands') }}</a>
       </nav>
       <div class="core-care-header__actions">
+        {% if store.scope %}<button class="core-care-header__scope" type="button" aria-label="{{ store.scope.name }}" onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})"><i class="sicon-location" aria-hidden="true"></i><span>{{ store.scope.name }}</span></button>{% endif %}
+        {% if store.settings.is_multilingual or store.settings.currencies_enabled %}<salla-localization-modal data-testid="store-header-localization" show-trigger></salla-localization-modal>{% endif %}
+        <div class="core-care-header__delivery"><salla-bullet-delivery-tag></salla-bullet-delivery-tag></div>
         <salla-user-menu data-testid="store-header-user-menu" show-header show-trigger>
           <div slot="trigger"><button class="core-care-header__account" type="button" aria-label="{{ trans('beauty.header.account') }}"><i class="sicon-user" aria-hidden="true"></i><span>{{ trans('beauty.header.account') }}</span><i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></button></div>
         </salla-user-menu>
@@ -37,19 +40,4 @@
     </div>
     <core-care-categories id="core-care-categories" hidden aria-label="{{ trans('beauty.header.categories') }}"></core-care-categories>
   </div>
-  {% if store.settings.is_multilingual or store.settings.currencies_enabled or store.scope %}
-  <div class="top-navbar">
-    <div class="container flex items-center gap-4 py-2">
-      {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
-        <salla-localization-modal data-testid="store-header-localization" show-trigger></salla-localization-modal>
-      {% endif %}
-      {% if store.scope %}
-        <button class="btn--rounded-gray" onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})">
-          <i class="sicon-location" aria-hidden="true"></i> {{ store.scope.name }}
-        </button>
-      {% endif %}
-      <salla-bullet-delivery-tag></salla-bullet-delivery-tag>
-    </div>
-  </div>
-  {% endif %}
 </header>

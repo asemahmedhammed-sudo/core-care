@@ -9,7 +9,7 @@
 | limit                 | int       | Number of products to be shown                                   |
 #}
 <section component-id="{{ componentId }}" data-testid="store-home-fixed-products" data-add-to-cart-label="{{ trans('beauty.product_section_add_to_cart') }}" data-view-product-label="{{ trans('beauty.view_product') }}" class="s-block beauty-product-section container">
-    {% include 'pages.partials.home.product-section-heading' with { section_title: title } %}
+    {% include 'pages.partials.home.product-section-heading' with { section_title: title, display_all_url: display_all_url and display_all_url != '#' ? display_all_url : link('latest-products') } %}
     <salla-products-list
       data-testid="store-home-fixed-products-list"
       source="{{ products.source }}"
@@ -18,7 +18,4 @@
       class="vertical-products"
       product-card-component="custom-salla-product-card"
     ></salla-products-list>
-    {% include 'pages.partials.home.product-section-footer' with {
-      display_all_url: display_all_url and display_all_url != '#' ? display_all_url : link('latest-products')
-    } %}
 </section>

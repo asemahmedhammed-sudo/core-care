@@ -1,53 +1,77 @@
-// Neutral storefront palette inspired by niceonesa.com; colours only.
+// Reference defaults; Salla's configured primary colour remains available to merchants.
 body.theme-beauty {
-  // Match the legacy homepage/palette selectors so their more specific
-  // variables cannot bring back cream surfaces or olive text and icons.
-  &,
-  &.beauty-reference-home,
-  &.beauty-palette-rose,
-  &.beauty-palette-store {
-    --beauty-paper: #fff;
-    --beauty-cream: #f8f8f8;
-    --beauty-ink: #222;
-    --beauty-muted: #666;
-    --beauty-olive: #222;
-    --beauty-gold: #222;
-    --beauty-border: #e5e5e5;
-    --color-primary: #222;
-    --color-primary-dark: #000;
-    --color-primary-light: #f2f2f2;
-    --color-primary-reverse: #fff;
+  &, &.beauty-reference-home, &.beauty-palette-rose, &.beauty-palette-store {
+    --cc-canvas: #f8f8f8;
+    --cc-surface: #fff;
+    --cc-text: #000;
+    --cc-action: #222;
+    --cc-icon: #0c070f;
+    --cc-search-surface: #f7f8fa;
+    --cc-utility-surface: #f2f2f2;
+    --cc-menu-surface: #f9f9f9;
+    --cc-menu-hover: #f4f4f4;
+    --cc-footer-surface: #fcfcfc;
+    --cc-border: #e5e7eb;
+    --cc-sale: #ee2d64;
+    --cc-announcement: #e874a5;
+    --cc-secondary: #997adb;
+    --cc-secondary-soft: #ebe4f8;
+    --cc-discount-surface: rgba(247, 171, 182, .4);
+    --cc-urgency: #ff001f;
+    --cc-popular: #007917;
+    --cc-bestseller: #634980;
+    --cc-rating-star: #f5c523;
+    --cc-text-muted: #757575;
+    --cc-rating-text: #505050;
+    --cc-price-old: #b0b0b0;
+    // Darker than the reference's pale count for readable essential metadata.
+    --cc-rating-count: #757575;
+    --cc-input-text: #323233;
+    --cc-input-muted: #757575;
+    --cc-footer-muted: #fff;
+    --cc-overlay: rgba(0, 0, 0, .7);
+    --beauty-paper: var(--cc-surface);
+    --beauty-cream: var(--cc-canvas);
+    --beauty-ink: var(--cc-text);
+    --beauty-muted: var(--cc-text-muted);
+    --beauty-olive: var(--cc-action);
+    --beauty-gold: var(--cc-action);
+    --beauty-border: var(--cc-border);
+    --beauty-radius: 8px;
+    --s-radius: 8px;
   }
-  background-color: #f8f8f8;
-
-  &.beauty-reference-home .beauty-product-section {
-    --beauty-cream: #f8f8f8;
-    --beauty-paper: #fff;
-    --beauty-olive: #222;
+  &.beauty-palette-store { --cc-action: var(--color-primary); }
+  &.beauty-reference-font { --font-main: 'IBM Plex Sans Arabic', sans-serif; }
+  font-family: var(--font-main), sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  background: var(--cc-canvas);
+  color: var(--cc-text);
+  .container { width: 100%; max-width: 1440px; padding-inline: 16px; }
+  .beauty-section-heading { margin-block-end: 12px; text-align: start; }
+  .beauty-section-heading h2, .s-block__title h2, .s-slider-block__title h2 {
+    color: var(--cc-text); font-size: 18px; font-weight: 500; line-height: 28px;
   }
-  &.beauty-reference-home .beauty-reference-nav { background-color: #fff; border-color: #e5e5e5; }
-  &.beauty-reference-home > .app-inner > .store-header > salla-advertisement { background-color: #222; color: #fff; }
-  .beauty-hero, .beauty-hero__benefits { background-color: #f8f8f8; border-color: #e5e5e5; }
-  .beauty-hero--plain, .beauty-hero--plain .beauty-hero__benefits { background-color: transparent; }
-  .beauty-hero__offer, .beauty-hero__natural-icon { background-color: #eee; color: #222; }
-  .beauty-hero__media { background-color: #f2f2f2; box-shadow: 0 30px 50px #00000019; }
-  .beauty-hero__natural { color: #666; box-shadow: 0 12px 26px #00000020; }
-  .beauty-button--gold, .beauty-collection__action, .s-product-card-promotion-title { background-color: #222; color: #fff; }
-  .beauty-collection::before { background: linear-gradient(0deg, #000000e0, #00000000 85%); }
-  .s-product-card-entry { border-color: #e5e5e5; }
-  .beauty-product-section .s-product-card-sale-price span { color: #767676; }
-  .beauty-skip-link { background-color: #222; color: #fff; }
-
-  .store-footer.beauty-footer.core-care-footer {
-    background-color: #f8f8f8;
-    color: #666;
-    h3, .core-care-footer__brand h3 { color: #222; }
-    .store-footer__inner { background-color: transparent; }
-    .s-contacts-title { color: #555; }
-    .s-contacts-icon, .s-social-link a { color: #222; border-color: #d5d5d5; }
-    .s-social-link a:hover { color: #000; border-color: #222; }
-    a:focus-visible { outline-color: #222; }
-    .core-care-footer__bottom { border-color: #e5e5e5; }
-    .copyright-text, .copyright-text p, .copyright-text a { color: #666; }
+  .beauty-section-heading p { font-size: 14px; line-height: 21px; margin-block-start: 4px; }
+  .s-block__display-all { color: var(--cc-text); }
+  .beauty-button { min-height: 44px; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; gap: 12px; }
+  .beauty-button--gold, .beauty-collection__action { background: var(--cc-action); color: #fff; }
+  .beauty-skip-link { background: var(--cc-action); color: #fff; }
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible { outline-color: var(--cc-action); }
+  > .app-inner > .store-header > salla-advertisement { background: var(--cc-announcement); color: #fff; }
+  .s-advertisement-content { min-height: 40px; padding-block: 10px; background: var(--cc-announcement); color: #fff; font-size: 12px; }
+  .s-advertisement-content a { color: inherit; }
+  .beauty-features { padding-block: 12px; background: var(--cc-surface); }
+  .beauty-categories__list { justify-content: flex-start; gap: 16px; }
+  .beauty-category { font-size: 12px; gap: 8px; }
+  .beauty-category__image { width: 72px; height: 72px; }
+  .beauty-category__image i { font-size: 24px; }
+  @media (min-width: 640px) { .container { max-width: 640px; } }
+  @media (min-width: 768px) { .container { max-width: 768px; } }
+  @media (min-width: 1024px) { .container { max-width: 1024px; } }
+  @media (min-width: 1280px) { .container { max-width: 1440px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .beauty-button, .beauty-category__image { transition: none; }
+    .beauty-button:hover { transform: none; }
   }
 }

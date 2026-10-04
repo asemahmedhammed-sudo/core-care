@@ -60,7 +60,7 @@
 
     {# Keep preview requests on the current repository assets. Salla serves draft
        assets with a long browser cache, while the draft URL itself stays the same. #}
-    {% set theme_asset_revision = '20261004-product-recommendations-3' %}
+    {% set theme_asset_revision = '20261004-home-identity-1' %}
     {# Register before Twilight hydrates product lists: it checks customElements
        once and otherwise keeps native cards, bypassing theme card settings. #}
     <script data-cfasync="false" crossorigin="anonymous" src="{{ 'product-card.js'|asset }}?v={{ theme_asset_revision }}"></script>
@@ -86,7 +86,11 @@
     {% block head %}{% endblock %}
     {% block styles %}{% endblock %}
     <link rel="stylesheet" href="{{ 'app.css' | asset }}?v={{ theme_asset_revision }}">
+    {% if theme.settings.get('beauty_reference_font', true) %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap">
+    {% else %}
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
+    {% endif %}
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
     
     <style>
@@ -103,7 +107,7 @@
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
-<body id="app" data-beauty-show-product-promotion-titles="{{ theme.settings.get('beauty_show_product_promotion_titles', false) ? 'true' : 'false' }}" data-store-home="{{ link('/') }}" data-store-canonical="{{ store.url }}" data-beauty-wishlist-label="{{ trans('beauty.wishlist_toggle') }}" class="theme-beauty beauty-palette-{{ theme.settings.get('beauty_palette', 'olive') }} {{ is_page('index') ? 'beauty-reference-home' : '' }} {{ theme.settings.get('beauty_alternate_sections', true) ? 'beauty-alternate-sections' : '' }} overflow-x-hidden {% hook 'body:classes' %}
+<body id="app" data-beauty-show-product-promotion-titles="{{ theme.settings.get('beauty_show_product_promotion_titles', false) ? 'true' : 'false' }}" data-store-home="{{ link('/') }}" data-store-canonical="{{ store.url }}" data-beauty-wishlist-label="{{ trans('beauty.wishlist_toggle') }}" class="theme-beauty beauty-palette-{{ theme.settings.get('beauty_palette', 'olive') }} {{ is_page('index') ? 'beauty-reference-home' : '' }} {{ theme.settings.get('beauty_alternate_sections', true) ? 'beauty-alternate-sections' : '' }} {{ theme.settings.get('beauty_reference_font', true) ? 'beauty-reference-font' : '' }} {% hook 'body:classes' %}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
   {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
