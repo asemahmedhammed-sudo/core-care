@@ -49,7 +49,7 @@ body.theme-beauty {
     --beauty-radius: var(--cc-card-radius);
     --s-radius: var(--cc-control-radius);
   }
-  &.beauty-palette-store { --cc-action: var(--color-primary); --cc-action-text: var(--color-primary-reverse); }
+  &.beauty-palette-store { --cc-action: var(--color-primary); --cc-action-text: var(--cc-primary-contrast, var(--color-primary-reverse)); }
   &.beauty-reference-font { --font-main: 'IBM Plex Sans Arabic', sans-serif; }
   font-family: var(--font-main), sans-serif;
   font-size: 14px;
