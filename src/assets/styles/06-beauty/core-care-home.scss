@@ -105,12 +105,25 @@ body.theme-beauty.beauty-reference-home {
   .beauty-hero--plain { background: transparent; }
   .beauty-hero--square-image .beauty-hero__media { border-radius: 0; }
   .beauty-categories .beauty-section-heading { margin-block-end: 12px; }
-  .beauty-collections .beauty-section-heading { margin-block-end: 12px; }
+  .beauty-collections .beauty-section-heading {
+    display: flex; flex-direction: column; align-items: flex-start;
+    margin-block-end: 12px;
+  }
   .beauty-collections__grid { gap: 12px; }
   .beauty-collections .beauty-rounded { border-radius: 8px; }
   .beauty-collection__copy h3 { font-size: 18px; line-height: 28px; font-weight: 500; }
   .beauty-collection:not(:first-child) .beauty-collection__copy h3 { font-size: 16px; }
   .beauty-collection__copy { inset-inline: 16px; bottom: 16px; }
+  .beauty-collections .beauty-collection__action {
+    // Keep the image CTA readable even when the merchant's primary colour is white.
+    background: var(--cc-text); color: var(--cc-surface);
+    min-height: 44px; max-width: 100%; padding: 10px 16px; gap: 8px;
+    margin-block-start: 12px; font-size: 14px; font-weight: 500; line-height: 21px;
+  }
+  .beauty-collection__action i { flex-shrink: 0; }
+  .beauty-collection:focus-visible .beauty-collection__action {
+    outline: 2px solid var(--cc-surface); outline-offset: 3px;
+  }
   .beauty-collections--equal .beauty-collection { min-height: 0; aspect-ratio: 1.39; }
   #main-content > .s-block.container:has(.beauty-collections__grid:empty) { display: none; }
   @media (max-width: 767px) {
@@ -118,6 +131,10 @@ body.theme-beauty.beauty-reference-home {
     .beauty-hero__grid--no-image { grid-template-columns: 1fr; }
   }
 }
+
+// PostCSS resolves text-align: start to left; retain the storefront language direction.
+html[dir='rtl'] body.theme-beauty.beauty-reference-home .beauty-collections .beauty-section-heading { text-align: right; }
+html[dir='ltr'] body.theme-beauty.beauty-reference-home .beauty-collections .beauty-section-heading { text-align: left; }
 
 html[dir='rtl'] .beauty-promotions__arrow svg { transform: scaleX(-1); }
 // The production PostCSS pipeline resolves logical insets to physical LTR values.
