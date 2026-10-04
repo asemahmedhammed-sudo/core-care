@@ -1,3 +1,14 @@
+// Align the heading and the scrollable list to the same language-dependent edge.
+// Explicit alignment survives PostCSS converting text-align: start to left.
+body.theme-beauty .beauty-categories {
+  .beauty-section-heading { margin-block-end: 12px; text-align: start; }
+  .beauty-categories__list { justify-content: flex-start; gap: 16px; padding: 0; }
+  .beauty-category { gap: 8px; }
+  .beauty-category > span:last-child { max-width: 100%; overflow-wrap: anywhere; }
+}
+html[dir='rtl'] body.theme-beauty .beauty-categories .beauty-section-heading { text-align: right; }
+html[dir='ltr'] body.theme-beauty .beauty-categories .beauty-section-heading { text-align: left; }
+
 body.theme-beauty.beauty-reference-home {
   #main-content {
     --beauty-section-gap: clamp(24px, 2.5vw, 40px);
@@ -15,11 +26,6 @@ body.theme-beauty.beauty-reference-home {
   // the empty wrapper too, including its alternating-background padding/gap.
   #main-content > .s-block:has(> [component-name][hidden]:only-child) { display: none; }
   #main-content > .beauty-categories:not(:has(.beauty-categories__list > li)) { display: none; }
-
-  .beauty-categories .beauty-section-heading {
-    margin-block-end: clamp(16px, 1.5vw, 24px);
-  }
-  .beauty-categories__list { padding-block: 0; }
 
   .beauty-promotions { width: 100%; padding: 16px 24px 0; background: transparent; }
   .beauty-promotions__viewport { position: relative; max-width: 1392px; margin-inline: auto; border-radius: 8px; overflow: hidden; }
@@ -104,7 +110,6 @@ body.theme-beauty.beauty-reference-home {
   .beauty-hero__media img { aspect-ratio: 1; object-fit: contain; }
   .beauty-hero--plain { background: transparent; }
   .beauty-hero--square-image .beauty-hero__media { border-radius: 0; }
-  .beauty-categories .beauty-section-heading { margin-block-end: 12px; }
   .beauty-collections .beauty-section-heading {
     display: flex; flex-direction: column; align-items: flex-start;
     margin-block-end: 12px;

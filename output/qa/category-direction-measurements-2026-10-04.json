@@ -1,0 +1,414 @@
+{
+  "normal": [
+    {
+      "afterGap": 36,
+      "align": "right",
+      "beforeGap": 36,
+      "dir": "rtl",
+      "headingGap": 12,
+      "itemOrder": [
+        1352,
+        1264,
+        1176
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 1440
+    },
+    {
+      "afterGap": 36,
+      "align": "left",
+      "beforeGap": 36,
+      "dir": "ltr",
+      "headingGap": 12,
+      "itemOrder": [
+        16,
+        104,
+        192
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 1440
+    },
+    {
+      "afterGap": 25.59375,
+      "align": "right",
+      "beforeGap": 25.59375,
+      "dir": "rtl",
+      "headingGap": 12,
+      "itemOrder": [
+        936,
+        848,
+        760
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 1024
+    },
+    {
+      "afterGap": 25.59375,
+      "align": "left",
+      "beforeGap": 25.59375,
+      "dir": "ltr",
+      "headingGap": 12,
+      "itemOrder": [
+        16,
+        104,
+        192
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 1024
+    },
+    {
+      "afterGap": 24,
+      "align": "right",
+      "beforeGap": 24,
+      "dir": "rtl",
+      "headingGap": 12,
+      "itemOrder": [
+        680,
+        592,
+        504
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 768
+    },
+    {
+      "afterGap": 24,
+      "align": "left",
+      "beforeGap": 24,
+      "dir": "ltr",
+      "headingGap": 12,
+      "itemOrder": [
+        16,
+        104,
+        192
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 768
+    },
+    {
+      "afterGap": 24,
+      "align": "right",
+      "beforeGap": 24,
+      "dir": "rtl",
+      "headingGap": 12,
+      "itemOrder": [
+        302,
+        214,
+        126
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 390
+    },
+    {
+      "afterGap": 24,
+      "align": "left",
+      "beforeGap": 24,
+      "dir": "ltr",
+      "headingGap": 12,
+      "itemOrder": [
+        16,
+        104,
+        192
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 390
+    },
+    {
+      "afterGap": 24,
+      "align": "right",
+      "beforeGap": 24,
+      "dir": "rtl",
+      "headingGap": 12,
+      "itemOrder": [
+        232,
+        144,
+        56
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 320
+    },
+    {
+      "afterGap": 24,
+      "align": "left",
+      "beforeGap": 24,
+      "dir": "ltr",
+      "headingGap": 12,
+      "itemOrder": [
+        16,
+        104,
+        192
+      ],
+      "overflow": false,
+      "startOffset": 0,
+      "width": 320
+    }
+  ],
+  "edgeCases": [
+    {
+      "scenario": "count=1",
+      "dir": "rtl",
+      "height": 138,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "count=0",
+      "dir": "rtl",
+      "height": 0,
+      "instances": 1,
+      "isolatedLabels": [],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": false
+    },
+    {
+      "scenario": "count=12",
+      "dir": "rtl",
+      "height": 138,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": true,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "mixed",
+      "dir": "rtl",
+      "height": 156,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "long",
+      "dir": "rtl",
+      "height": 174,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": true,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "no-title",
+      "dir": "rtl",
+      "height": 98,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "hidden",
+      "dir": "rtl",
+      "height": 0,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": false
+    },
+    {
+      "scenario": "reorder",
+      "dir": "rtl",
+      "height": 138,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "repeat",
+      "dir": "rtl",
+      "height": 138,
+      "instances": 2,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "count=1",
+      "dir": "ltr",
+      "height": 138,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "count=0",
+      "dir": "ltr",
+      "height": 0,
+      "instances": 1,
+      "isolatedLabels": [],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": false
+    },
+    {
+      "scenario": "count=12",
+      "dir": "ltr",
+      "height": 138,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": true,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "mixed",
+      "dir": "ltr",
+      "height": 156,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "long",
+      "dir": "ltr",
+      "height": 174,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": true,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "no-title",
+      "dir": "ltr",
+      "height": 98,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "hidden",
+      "dir": "ltr",
+      "height": 0,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": false
+    },
+    {
+      "scenario": "reorder",
+      "dir": "ltr",
+      "height": 138,
+      "instances": 1,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    },
+    {
+      "scenario": "repeat",
+      "dir": "ltr",
+      "height": 138,
+      "instances": 2,
+      "isolatedLabels": [
+        "isolate",
+        "isolate",
+        "isolate"
+      ],
+      "listOverflow": false,
+      "pageOverflow": false,
+      "visible": true
+    }
+  ]
+}
