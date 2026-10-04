@@ -1,10 +1,10 @@
 {
     "name": {
-        "ar": "كور كير",
-        "en": "Core Care"
+        "ar": "العناية",
+        "en": "core care"
     },
     "repository": "https://github.com/asemahmedhammed-sudo/core-care",
-    "author_email": "",
+    "author_email": "asemahmedhammed@gmail.com",
     "features": [
         "mega-menu",
         "fonts",
@@ -1759,7 +1759,7 @@
             ]
         }
     ],
-    "support_url": "",
+    "support_url": "https://asemahmed.dev/ar",
     "description": {
         "ar": "ثيم لقطاع الصحة والجمال بتخطيط صور تحريري، وفئات دائرية، ومجموعات مرنة، وتبويبات لروتين العناية مرتبطة بمنتجات المتجر.",
         "en": "A health and beauty theme with editorial imagery, circular categories, configurable collections and care routine tabs connected to store products."
