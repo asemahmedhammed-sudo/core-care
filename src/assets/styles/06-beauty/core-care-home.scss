@@ -21,40 +21,24 @@ body.theme-beauty.beauty-reference-home {
   }
   .beauty-categories__list { padding-block: 0; }
 
-  .beauty-promotions {
-    width: 100%;
-    padding: clamp(12px, 1.3vw, 24px) clamp(16px, 2vw, 40px) 0;
-    background: #f8f8f8;
-  }
-  .beauty-promotions__viewport { position: relative; max-width: 1920px; margin-inline: auto; border-radius: 10px; overflow: hidden; }
-  .beauty-promotions__slide {
-    display: grid; grid-template-columns: 1.1fr 1fr; align-items: center;
-    aspect-ratio: 4 / 1; background: #ececea; color: var(--beauty-ink); overflow: hidden;
-  }
+  .beauty-promotions { width: 100%; padding: 16px 24px 0; background: transparent; }
+  .beauty-promotions__viewport { position: relative; max-width: 1392px; margin-inline: auto; border-radius: 8px; overflow: hidden; }
+  .beauty-promotions__slide { display: block; aspect-ratio: 4 / 1; background: var(--cc-canvas); }
   .beauty-promotions [hidden] { display: none !important; }
-  .beauty-promotions__slide--2 { background: #e5e5e3; }
-  .beauty-promotions__slide--3 { background: #f0f0ef; }
-  .beauty-promotions__copy { padding: 24px clamp(56px, 6vw, 116px); position: relative; z-index: 1; }
-  .beauty-promotions__brand { font-size: clamp(10px, 1vw, 16px); letter-spacing: .18em; }
-  .beauty-promotions h2 { font-size: clamp(24px, 3vw, 56px); font-weight: 800; line-height: 1.35; margin: 12px 0 20px; }
-  .beauty-promotions__action { display: inline-flex; align-items: center; gap: 16px; font-weight: 600; font-size: clamp(13px, 1.2vw, 20px); border-bottom: 1px solid; padding-bottom: 5px; }
-  .beauty-promotions__photo { width: 100%; height: 100%; min-height: 0; object-fit: cover; object-position: center 55%; }
-  .beauty-promotions__slide--uploaded { display: block; }
   .beauty-promotions__artwork { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .beauty-promotions__artwork--default { object-fit: cover; }
   .beauty-promotions__arrow {
     position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
-    display: grid; place-items: center; width: clamp(34px, 3vw, 52px); height: clamp(34px, 3vw, 52px);
-    border: 1px solid #2221; border-radius: 50%; background: #ffffffe8; color: #222;
-    font: 36px/1 Arial, sans-serif; cursor: pointer;
+    display: grid; place-items: center; width: 44px; height: 44px;
+    border: 0; border-radius: 50%; background: #ffffffe8; color: #222; cursor: pointer;
   }
-  .beauty-promotions__arrow--prev { inset-inline-start: 12px; }
-  .beauty-promotions__arrow--next { inset-inline-end: 12px; }
-  .beauty-promotions__arrow span { display: block; }
-  &[dir='rtl'] .beauty-promotions__arrow span { transform: scaleX(-1); }
-  .beauty-promotions__dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 2px; border-radius: 24px; background: #ffffffb8; padding: 0 5px; }
-  .beauty-promotions__dots button { display: grid; place-items: center; width: 28px; height: 28px; cursor: pointer; }
-  .beauty-promotions__dots button::before { content: ''; width: 7px; height: 7px; background: #777; border-radius: 50%; }
-  .beauty-promotions__dots [aria-current='true']::before { background: #222; width: 10px; height: 10px; }
+  .beauty-promotions__arrow svg { width: 18px; height: 18px; fill: none; }
+  .beauty-promotions__arrow--prev { inset-inline-start: 10px; }
+  .beauty-promotions__arrow--next { inset-inline-end: 10px; }
+  .beauty-promotions__dots { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex; }
+  .beauty-promotions__dots button { display: grid; place-items: center; width: 44px; height: 44px; cursor: pointer; }
+  .beauty-promotions__dots button::before { content: ''; width: 7px; height: 7px; background: #0004; border-radius: 50%; }
+  .beauty-promotions__dots [aria-current='true']::before { background: #0c070f; width: 9px; height: 9px; }
   .beauty-promotions :focus-visible { outline: 2px solid #222; outline-offset: -4px; }
 
   .beauty-hero__grid {
@@ -78,16 +62,11 @@ body.theme-beauty.beauty-reference-home {
   .beauty-hero__benefits svg { width: 28px; height: 28px; }
 
   @media (max-width: 767px) {
-    .beauty-promotions__slide { aspect-ratio: 2.1 / 1; }
-    .beauty-promotions__slide--uploaded { aspect-ratio: 4 / 1; }
-    .beauty-promotions__copy { padding: 20px 36px 38px; }
-    .beauty-promotions__brand { font-size: 9px; letter-spacing: .08em; }
-    .beauty-promotions h2 { font-size: clamp(18px, 4.6vw, 30px); margin: 7px 0 10px; }
-    .beauty-promotions__action { font-size: 11px; gap: 8px; }
-    .beauty-promotions__arrow { width: 32px; height: 32px; font-size: 26px; }
-    .beauty-promotions__arrow--prev { inset-inline-start: 4px; }
-    .beauty-promotions__arrow--next { inset-inline-end: 4px; }
-    .beauty-promotions__dots { bottom: 5px; }
+    .beauty-promotions { padding-inline: 12px; }
+    .beauty-promotions__arrow { background: radial-gradient(circle, #ffffffe8 50%, transparent 53%); }
+    .beauty-promotions__arrow--prev { inset-inline-start: 0; }
+    .beauty-promotions__arrow--next { inset-inline-end: 0; }
+    .beauty-promotions__dots button { width: 44px; height: 44px; }
     .beauty-hero__grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px 40px; }
     .beauty-hero__copy h2 { font-size: clamp(32px, 8vw, 46px); }
     .beauty-hero__copy { max-width: 540px; justify-self: center; }
@@ -100,7 +79,6 @@ body.theme-beauty.beauty-reference-home {
     .beauty-hero__benefits-inner > div { font-size: 13px; white-space: normal; }
   }
 }
-html[dir='rtl'] .beauty-promotions__arrow span { transform: scaleX(-1); }
 html[dir='rtl'] body.theme-beauty.beauty-reference-home .beauty-hero__copy { text-align: right; }
 html[dir='ltr'] body.theme-beauty.beauty-reference-home {
   .beauty-hero__new { left: auto; right: -40px; }
@@ -113,19 +91,6 @@ html[dir='ltr'] body.theme-beauty.beauty-reference-home {
 
 // Reference composition: compact campaign art and editorial content, no legacy badges.
 body.theme-beauty.beauty-reference-home {
-  .beauty-promotions { padding: 16px 24px 0; background: transparent; }
-  .beauty-promotions__viewport { max-width: 1392px; border-radius: 8px; }
-  .beauty-promotions__slide, .beauty-promotions__slide--uploaded { aspect-ratio: 4 / 1; }
-  .beauty-promotions__copy { padding: 12px 48px; }
-  .beauty-promotions__brand { font-size: 10px; letter-spacing: 0; }
-  .beauty-promotions h2 { font-size: clamp(14px, 1.8vw, 24px); line-height: 1.4; margin: 4px 0; font-weight: 500; }
-  .beauty-promotions__action { font-size: 12px; padding: 0; border: 0; gap: 8px; }
-  .beauty-promotions__arrow { width: 44px; height: 44px; background: #fff; border: 0; }
-  .beauty-promotions__arrow svg { width: 18px; height: 18px; }
-  .beauty-promotions__arrow--prev { inset-inline-start: 4px; }
-  .beauty-promotions__arrow--next { inset-inline-end: 4px; }
-  .beauty-promotions__dots { bottom: 0; padding: 0; background: transparent; }
-  .beauty-promotions__dots button { width: 44px; height: 44px; }
   .beauty-hero { background: var(--cc-surface); }
   .beauty-hero__grid { max-width: 1440px; min-height: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 240px); gap: 24px; padding: 16px 24px; }
   .beauty-hero__grid--no-image { grid-template-columns: 1fr; }
@@ -149,9 +114,6 @@ body.theme-beauty.beauty-reference-home {
   .beauty-collections--equal .beauty-collection { min-height: 0; aspect-ratio: 1.39; }
   #main-content > .s-block.container:has(.beauty-collections__grid:empty) { display: none; }
   @media (max-width: 767px) {
-    .beauty-promotions__copy { padding: 8px 48px 8px 12px; }
-    .beauty-promotions__brand, .beauty-promotions__action { display: none; }
-    .beauty-promotions__dots { display: none; }
     .beauty-hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 120px); gap: 12px; padding: 12px 16px; }
     .beauty-hero__grid--no-image { grid-template-columns: 1fr; }
   }

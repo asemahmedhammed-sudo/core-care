@@ -11,11 +11,12 @@ test('homepage includes the promotions partial without invoking the Salla compon
   assert.ok(fs.existsSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url)));
   assert.ok(page.indexOf("include 'pages.partials.home.promotions'") < page.indexOf('component home'));
 });
-function fixture(direction = 'rtl') {
+function fixture(direction = 'rtl', count = 3) {
   const element = (label = '') => ({ hidden: false, dataset: {}, attrs: { 'aria-label': label }, events: {},
     addEventListener(event, callback) { this.events[event] = callback; },
     setAttribute(key, value) { this.attrs[key] = value; }, getAttribute(key) { return this.attrs[key]; }, focus() {} });
-  const slides = ['one', 'two', 'three'].map(element);
+  const slides = ['one', 'two', 'three'].slice(0, count).map(element);
+  slides.forEach((slide, i) => { slide.hidden = i !== 0; });
   const dots = slides.map(() => element());
   const controls = element(); controls.hidden = true;
   const previous = element(), next = element(), status = element(), carousel = element();
@@ -56,4 +57,22 @@ test('horizontal swipe changes slide and suppresses accidental link navigation',
   let prevented = false;
   f.carousel.events.click({ preventDefault() { prevented = true; } });
   assert.equal(prevented, true);
+});
+
+test('zero or one image leaves navigation hidden without event handlers', () => {
+  for (const count of [0, 1]) {
+    const f = fixture('rtl', count);
+    assert.equal(f.controls.hidden, true);
+    assert.equal(f.next.events.click, undefined);
+    assert.equal(f.carousel.dataset.initialized, undefined);
+    if (count) assert.equal(f.slides[0].hidden, false);
+  }
+});
+test('initializing again keeps the chosen banner and does not reset navigation', () => {
+  const f = fixture();
+  f.dots[2].events.click();
+  vm.runInNewContext('initPromotionCarousels();', f.context);
+  assert.deepEqual(f.slides.map(slide => slide.hidden), [true, true, false]);
+  f.next.events.click();
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
 });

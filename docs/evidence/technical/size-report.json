@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T11:00:35.397Z",
+  "generatedAt": "2026-10-04T17:58:33.767Z",
   "environment": {
     "node": "v25.0.0",
     "os": "Darwin 24.6.0",
@@ -41,10 +41,10 @@
     {
       "id": "built-public-all",
       "description": "All files in public/, including images.",
-      "fileCount": 21,
-      "rawBytes": 835910,
-      "gzipBytes": 395436,
-      "brotliBytes": 376705,
+      "fileCount": 24,
+      "rawBytes": 985386,
+      "gzipBytes": 548004,
+      "brotliBytes": 529226,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -55,10 +55,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 298171,
-          "gzipBytes": 44417,
-          "brotliBytes": 35772,
-          "sha256": "cc2cadc1853ebe217d474527fd6651bf4356bc69cdf34d1090d0650b22c8d345"
+          "bytes": 294691,
+          "gzipBytes": 43920,
+          "brotliBytes": 35325,
+          "sha256": "44ef69085ff8215619bcc097e5abec26b6fbb480c1c14abfe29d364a36c9c64d"
         },
         {
           "file": "public/app.js",
@@ -101,6 +101,27 @@
           "gzipBytes": 441,
           "brotliBytes": 395,
           "sha256": "0d1a1977da28f83e4294b3b64c9b4cb6afcc46377eb99bf07dbdf5d71d208215"
+        },
+        {
+          "file": "public/images/core-care-promo-1.webp",
+          "bytes": 55994,
+          "gzipBytes": 56032,
+          "brotliBytes": 55998,
+          "sha256": "a2da8b0c411d93d98c643ceb050e987a4451344312e5b55c9f31bb9b576d081e"
+        },
+        {
+          "file": "public/images/core-care-promo-2.webp",
+          "bytes": 56978,
+          "gzipBytes": 57016,
+          "brotliBytes": 56982,
+          "sha256": "8c5ddf4a061f65053523a0af1e57c74ce739a492984758475ab9a3e460600c27"
+        },
+        {
+          "file": "public/images/core-care-promo-3.webp",
+          "bytes": 39984,
+          "gzipBytes": 40017,
+          "brotliBytes": 39988,
+          "sha256": "15059931bb83a49565b07e518edafa639eda4c4c079ce0aa45ba537c217d5b9b"
         },
         {
           "file": "public/images/delivery-bro.svg",
@@ -199,9 +220,9 @@
       "id": "built-public-js-css",
       "description": "Only generated JavaScript and CSS in public/.",
       "fileCount": 13,
-      "rawBytes": 553489,
-      "gzipBytes": 123722,
-      "brotliBytes": 105349,
+      "rawBytes": 550009,
+      "gzipBytes": 123225,
+      "brotliBytes": 104902,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -212,10 +233,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 298171,
-          "gzipBytes": 44417,
-          "brotliBytes": 35772,
-          "sha256": "cc2cadc1853ebe217d474527fd6651bf4356bc69cdf34d1090d0650b22c8d345"
+          "bytes": 294691,
+          "gzipBytes": 43920,
+          "brotliBytes": 35325,
+          "sha256": "44ef69085ff8215619bcc097e5abec26b6fbb480c1c14abfe29d364a36c9c64d"
         },
         {
           "file": "public/app.js",
@@ -299,10 +320,10 @@
     {
       "id": "source-runtime",
       "description": "Twilight manifest plus src/ assets, translations, and Twig; excludes public/.",
-      "fileCount": 140,
-      "rawBytes": 894030,
-      "gzipBytes": 427304,
-      "brotliBytes": 400895,
+      "fileCount": 143,
+      "rawBytes": 1045015,
+      "gzipBytes": 580000,
+      "brotliBytes": 553581,
       "files": [
         {
           "file": "src/assets/images/beauty-hero-products.jpg",
@@ -317,6 +338,27 @@
           "gzipBytes": 441,
           "brotliBytes": 395,
           "sha256": "0d1a1977da28f83e4294b3b64c9b4cb6afcc46377eb99bf07dbdf5d71d208215"
+        },
+        {
+          "file": "src/assets/images/core-care-promo-1.webp",
+          "bytes": 55994,
+          "gzipBytes": 56032,
+          "brotliBytes": 55998,
+          "sha256": "a2da8b0c411d93d98c643ceb050e987a4451344312e5b55c9f31bb9b576d081e"
+        },
+        {
+          "file": "src/assets/images/core-care-promo-2.webp",
+          "bytes": 56978,
+          "gzipBytes": 57016,
+          "brotliBytes": 56982,
+          "sha256": "8c5ddf4a061f65053523a0af1e57c74ce739a492984758475ab9a3e460600c27"
+        },
+        {
+          "file": "src/assets/images/core-care-promo-3.webp",
+          "bytes": 39984,
+          "gzipBytes": 40017,
+          "brotliBytes": 39988,
+          "sha256": "15059931bb83a49565b07e518edafa639eda4c4c079ce0aa45ba537c217d5b9b"
         },
         {
           "file": "src/assets/images/delivery-bro.svg",
@@ -859,10 +901,10 @@
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-home.scss",
-          "bytes": 10345,
-          "gzipBytes": 2599,
-          "brotliBytes": 2156,
-          "sha256": "12cdbdba410d770691ae726f7e7ed540f2148b53a8cd0ec1357232a790532d9b"
+          "bytes": 7713,
+          "gzipBytes": 2135,
+          "brotliBytes": 1770,
+          "sha256": "220fd2040bbd27115d6480a1c23c6246e1b2182bc168c0fca7d01df27c62c0e8"
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-palette.scss",
@@ -1097,10 +1139,10 @@
         },
         {
           "file": "src/views/layouts/master.twig",
-          "bytes": 13494,
-          "gzipBytes": 3171,
-          "brotliBytes": 2572,
-          "sha256": "ab99fd3e5be169b272dbf6ffeb0b2a402cab365c0c59320c3af6a850a900f81e"
+          "bytes": 13498,
+          "gzipBytes": 3173,
+          "brotliBytes": 2577,
+          "sha256": "a6573d83464c044d4caacd6ce04443f491a84c8f68e1e9625f3bac4b16f93194"
         },
         {
           "file": "src/views/pages/blog/index.twig",
@@ -1181,10 +1223,10 @@
         },
         {
           "file": "src/views/pages/index.twig",
-          "bytes": 788,
-          "gzipBytes": 293,
-          "brotliBytes": 219,
-          "sha256": "236b1d973b357a63de9773e3fee31c1eb59534cd1ab219f6bc2923a8373c222b"
+          "bytes": 792,
+          "gzipBytes": 297,
+          "brotliBytes": 223,
+          "sha256": "9c8e1c2046a268961890f9b545fbfb15e857e63744be4984ce694b6f7245c8f2"
         },
         {
           "file": "src/views/pages/loyalty.twig",
@@ -1223,10 +1265,10 @@
         },
         {
           "file": "src/views/pages/partials/home/promotions.twig",
-          "bytes": 3064,
-          "gzipBytes": 962,
-          "brotliBytes": 789,
-          "sha256": "d89f56f5be46442bc891d41765adc4e5e6973deb025971d3b0abd17d89e7909c"
+          "bytes": 3240,
+          "gzipBytes": 978,
+          "brotliBytes": 816,
+          "sha256": "aba97aa38f4681b1f78972eb88c47273b5066c069640b73a393e8ac2fecf0402"
         },
         {
           "file": "src/views/pages/partials/product/gallery.twig",
@@ -1279,20 +1321,20 @@
         },
         {
           "file": "twilight.json",
-          "bytes": 74545,
-          "gzipBytes": 7305,
-          "brotliBytes": 5821,
-          "sha256": "e12133e1fc2aa777a3767ffdd3219b5e056a377dcd4f61fb6455ef4716b211b8"
+          "bytes": 75022,
+          "gzipBytes": 7378,
+          "brotliBytes": 5889,
+          "sha256": "c4f3c0d18f8fa40ec0e0d5f8cb2e3a4052a8377ece0b3dbd4d7aefd3eebaa8c1"
         }
       ]
     },
     {
       "id": "runtime-manifest-views-locales-built",
       "description": "Manifest, Twig, locales, and all built public files; source assets excluded.",
-      "fileCount": 77,
-      "rawBytes": 1162750,
-      "gzipBytes": 463230,
-      "brotliBytes": 432787,
+      "fileCount": 80,
+      "rawBytes": 1312887,
+      "gzipBytes": 615893,
+      "brotliBytes": 585412,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -1303,10 +1345,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 298171,
-          "gzipBytes": 44417,
-          "brotliBytes": 35772,
-          "sha256": "cc2cadc1853ebe217d474527fd6651bf4356bc69cdf34d1090d0650b22c8d345"
+          "bytes": 294691,
+          "gzipBytes": 43920,
+          "brotliBytes": 35325,
+          "sha256": "44ef69085ff8215619bcc097e5abec26b6fbb480c1c14abfe29d364a36c9c64d"
         },
         {
           "file": "public/app.js",
@@ -1349,6 +1391,27 @@
           "gzipBytes": 441,
           "brotliBytes": 395,
           "sha256": "0d1a1977da28f83e4294b3b64c9b4cb6afcc46377eb99bf07dbdf5d71d208215"
+        },
+        {
+          "file": "public/images/core-care-promo-1.webp",
+          "bytes": 55994,
+          "gzipBytes": 56032,
+          "brotliBytes": 55998,
+          "sha256": "a2da8b0c411d93d98c643ceb050e987a4451344312e5b55c9f31bb9b576d081e"
+        },
+        {
+          "file": "public/images/core-care-promo-2.webp",
+          "bytes": 56978,
+          "gzipBytes": 57016,
+          "brotliBytes": 56982,
+          "sha256": "8c5ddf4a061f65053523a0af1e57c74ce739a492984758475ab9a3e460600c27"
+        },
+        {
+          "file": "public/images/core-care-promo-3.webp",
+          "bytes": 39984,
+          "gzipBytes": 40017,
+          "brotliBytes": 39988,
+          "sha256": "15059931bb83a49565b07e518edafa639eda4c4c079ce0aa45ba537c217d5b9b"
         },
         {
           "file": "public/images/delivery-bro.svg",
@@ -1646,10 +1709,10 @@
         },
         {
           "file": "src/views/layouts/master.twig",
-          "bytes": 13494,
-          "gzipBytes": 3171,
-          "brotliBytes": 2572,
-          "sha256": "ab99fd3e5be169b272dbf6ffeb0b2a402cab365c0c59320c3af6a850a900f81e"
+          "bytes": 13498,
+          "gzipBytes": 3173,
+          "brotliBytes": 2577,
+          "sha256": "a6573d83464c044d4caacd6ce04443f491a84c8f68e1e9625f3bac4b16f93194"
         },
         {
           "file": "src/views/pages/blog/index.twig",
@@ -1730,10 +1793,10 @@
         },
         {
           "file": "src/views/pages/index.twig",
-          "bytes": 788,
-          "gzipBytes": 293,
-          "brotliBytes": 219,
-          "sha256": "236b1d973b357a63de9773e3fee31c1eb59534cd1ab219f6bc2923a8373c222b"
+          "bytes": 792,
+          "gzipBytes": 297,
+          "brotliBytes": 223,
+          "sha256": "9c8e1c2046a268961890f9b545fbfb15e857e63744be4984ce694b6f7245c8f2"
         },
         {
           "file": "src/views/pages/loyalty.twig",
@@ -1772,10 +1835,10 @@
         },
         {
           "file": "src/views/pages/partials/home/promotions.twig",
-          "bytes": 3064,
-          "gzipBytes": 962,
-          "brotliBytes": 789,
-          "sha256": "d89f56f5be46442bc891d41765adc4e5e6973deb025971d3b0abd17d89e7909c"
+          "bytes": 3240,
+          "gzipBytes": 978,
+          "brotliBytes": 816,
+          "sha256": "aba97aa38f4681b1f78972eb88c47273b5066c069640b73a393e8ac2fecf0402"
         },
         {
           "file": "src/views/pages/partials/product/gallery.twig",
@@ -1828,20 +1891,20 @@
         },
         {
           "file": "twilight.json",
-          "bytes": 74545,
-          "gzipBytes": 7305,
-          "brotliBytes": 5821,
-          "sha256": "e12133e1fc2aa777a3767ffdd3219b5e056a377dcd4f61fb6455ef4716b211b8"
+          "bytes": 75022,
+          "gzipBytes": 7378,
+          "brotliBytes": 5889,
+          "sha256": "c4f3c0d18f8fa40ec0e0d5f8cb2e3a4052a8377ece0b3dbd4d7aefd3eebaa8c1"
         }
       ]
     },
     {
       "id": "project-excluding-tooling-docs",
       "description": "Project files excluding declared directories; includes build config, locks, source, and output.",
-      "fileCount": 382,
-      "rawBytes": 9115837,
-      "gzipBytes": 6108224,
-      "brotliBytes": 5917060,
+      "fileCount": 388,
+      "rawBytes": 9416298,
+      "gzipBytes": 6413488,
+      "brotliBytes": 6222267,
       "files": [
         {
           "file": ".gitignore",
@@ -3385,10 +3448,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 298171,
-          "gzipBytes": 44417,
-          "brotliBytes": 35772,
-          "sha256": "cc2cadc1853ebe217d474527fd6651bf4356bc69cdf34d1090d0650b22c8d345"
+          "bytes": 294691,
+          "gzipBytes": 43920,
+          "brotliBytes": 35325,
+          "sha256": "44ef69085ff8215619bcc097e5abec26b6fbb480c1c14abfe29d364a36c9c64d"
         },
         {
           "file": "public/app.js",
@@ -3431,6 +3494,27 @@
           "gzipBytes": 441,
           "brotliBytes": 395,
           "sha256": "0d1a1977da28f83e4294b3b64c9b4cb6afcc46377eb99bf07dbdf5d71d208215"
+        },
+        {
+          "file": "public/images/core-care-promo-1.webp",
+          "bytes": 55994,
+          "gzipBytes": 56032,
+          "brotliBytes": 55998,
+          "sha256": "a2da8b0c411d93d98c643ceb050e987a4451344312e5b55c9f31bb9b576d081e"
+        },
+        {
+          "file": "public/images/core-care-promo-2.webp",
+          "bytes": 56978,
+          "gzipBytes": 57016,
+          "brotliBytes": 56982,
+          "sha256": "8c5ddf4a061f65053523a0af1e57c74ce739a492984758475ab9a3e460600c27"
+        },
+        {
+          "file": "public/images/core-care-promo-3.webp",
+          "bytes": 39984,
+          "gzipBytes": 40017,
+          "brotliBytes": 39988,
+          "sha256": "15059931bb83a49565b07e518edafa639eda4c4c079ce0aa45ba537c217d5b9b"
         },
         {
           "file": "public/images/delivery-bro.svg",
@@ -3536,6 +3620,27 @@
           "gzipBytes": 441,
           "brotliBytes": 395,
           "sha256": "0d1a1977da28f83e4294b3b64c9b4cb6afcc46377eb99bf07dbdf5d71d208215"
+        },
+        {
+          "file": "src/assets/images/core-care-promo-1.webp",
+          "bytes": 55994,
+          "gzipBytes": 56032,
+          "brotliBytes": 55998,
+          "sha256": "a2da8b0c411d93d98c643ceb050e987a4451344312e5b55c9f31bb9b576d081e"
+        },
+        {
+          "file": "src/assets/images/core-care-promo-2.webp",
+          "bytes": 56978,
+          "gzipBytes": 57016,
+          "brotliBytes": 56982,
+          "sha256": "8c5ddf4a061f65053523a0af1e57c74ce739a492984758475ab9a3e460600c27"
+        },
+        {
+          "file": "src/assets/images/core-care-promo-3.webp",
+          "bytes": 39984,
+          "gzipBytes": 40017,
+          "brotliBytes": 39988,
+          "sha256": "15059931bb83a49565b07e518edafa639eda4c4c079ce0aa45ba537c217d5b9b"
         },
         {
           "file": "src/assets/images/delivery-bro.svg",
@@ -4078,10 +4183,10 @@
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-home.scss",
-          "bytes": 10345,
-          "gzipBytes": 2599,
-          "brotliBytes": 2156,
-          "sha256": "12cdbdba410d770691ae726f7e7ed540f2148b53a8cd0ec1357232a790532d9b"
+          "bytes": 7713,
+          "gzipBytes": 2135,
+          "brotliBytes": 1770,
+          "sha256": "220fd2040bbd27115d6480a1c23c6246e1b2182bc168c0fca7d01df27c62c0e8"
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-palette.scss",
@@ -4316,10 +4421,10 @@
         },
         {
           "file": "src/views/layouts/master.twig",
-          "bytes": 13494,
-          "gzipBytes": 3171,
-          "brotliBytes": 2572,
-          "sha256": "ab99fd3e5be169b272dbf6ffeb0b2a402cab365c0c59320c3af6a850a900f81e"
+          "bytes": 13498,
+          "gzipBytes": 3173,
+          "brotliBytes": 2577,
+          "sha256": "a6573d83464c044d4caacd6ce04443f491a84c8f68e1e9625f3bac4b16f93194"
         },
         {
           "file": "src/views/pages/blog/index.twig",
@@ -4400,10 +4505,10 @@
         },
         {
           "file": "src/views/pages/index.twig",
-          "bytes": 788,
-          "gzipBytes": 293,
-          "brotliBytes": 219,
-          "sha256": "236b1d973b357a63de9773e3fee31c1eb59534cd1ab219f6bc2923a8373c222b"
+          "bytes": 792,
+          "gzipBytes": 297,
+          "brotliBytes": 223,
+          "sha256": "9c8e1c2046a268961890f9b545fbfb15e857e63744be4984ce694b6f7245c8f2"
         },
         {
           "file": "src/views/pages/loyalty.twig",
@@ -4442,10 +4547,10 @@
         },
         {
           "file": "src/views/pages/partials/home/promotions.twig",
-          "bytes": 3064,
-          "gzipBytes": 962,
-          "brotliBytes": 789,
-          "sha256": "d89f56f5be46442bc891d41765adc4e5e6973deb025971d3b0abd17d89e7909c"
+          "bytes": 3240,
+          "gzipBytes": 978,
+          "brotliBytes": 816,
+          "sha256": "aba97aa38f4681b1f78972eb88c47273b5066c069640b73a393e8ac2fecf0402"
         },
         {
           "file": "src/views/pages/partials/product/gallery.twig",
@@ -4505,10 +4610,10 @@
         },
         {
           "file": "twilight.json",
-          "bytes": 74545,
-          "gzipBytes": 7305,
-          "brotliBytes": 5821,
-          "sha256": "e12133e1fc2aa777a3767ffdd3219b5e056a377dcd4f61fb6455ef4716b211b8"
+          "bytes": 75022,
+          "gzipBytes": 7378,
+          "brotliBytes": 5889,
+          "sha256": "c4f3c0d18f8fa40ec0e0d5f8cb2e3a4052a8377ece0b3dbd4d7aefd3eebaa8c1"
         },
         {
           "file": "webpack.config.js",
