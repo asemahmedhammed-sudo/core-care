@@ -10,4 +10,6 @@ Cards use 20px native icons in 36px pale-purple circles, readable dark text, iso
 
 A clean temporary checkout of eadc74d plus the three changed source files was used to keep unrelated working changes out of generated assets. Production build passed with nine existing webpack/Sass/size warnings; 37/37 tests and 13/13 static checks passed. Generated app.css inspected; dated audit is docs/evidence/technical/support-layout-audit-2026-10-04.json. Pre-existing dirty app.js and static-audit.json preserved. No hand edits to public assets.
 
-Expected hosted stylesheet revision: 20261004-support-layout-1. Platform desktop/mobile review pending synchronization; no release-readiness claim.
+Expected hosted stylesheet revision: 20261004-support-layout-2. Platform desktop/mobile review pending synchronization; no release-readiness claim.
+
+Initial hosted review revealed a three-column contact row with the fourth card alone. The minimum adaptive column width was increased to 320px and the stacked introduction breakpoint moved to 1023px, giving a balanced two-by-two desktop grid and one column on narrow phones. Final clean-checkout build and tests were repeated and passed with the same warnings/results.

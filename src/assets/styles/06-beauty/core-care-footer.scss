@@ -9,7 +9,7 @@ body.theme-beauty .store-footer.beauty-footer.core-care-footer {
     h2 { color: #fff; font-size: 20px; font-weight: 700; line-height: 28px; margin: 0 0 8px; }
     p { color: var(--cc-icon); font-size: 14px; line-height: 22px; margin: 0; }
     salla-contacts { display: block; min-width: 0; margin: 0; }
-    .s-contacts-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; margin: 0; padding: 0; }
+    .s-contacts-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px; margin: 0; padding: 0; }
     .s-contacts-list > div { min-width: 0; margin: 0; }
     .s-contacts-title { display: none; }
     .s-contacts-item {
@@ -28,7 +28,7 @@ body.theme-beauty .store-footer.beauty-footer.core-care-footer {
       svg { width: 20px; height: 20px; fill: currentColor; }
     }
     .unicode { min-width: 0; direction: ltr; unicode-bidi: isolate; text-align: start; overflow-wrap: anywhere; }
-    @media (max-width: 767px) {
+    @media (max-width: 1023px) {
       padding-block: 24px;
       .core-care-footer__support-layout { grid-template-columns: minmax(0, 1fr); gap: 16px; }
       .s-contacts-list { gap: 8px; }
