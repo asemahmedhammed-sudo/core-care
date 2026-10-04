@@ -41,6 +41,7 @@ for (const page of ['home', 'inner']) {
         '--cc-border': '#e5e7eb', '--beauty-paper': 'var(--cc-surface)',
         '--beauty-ink': 'var(--cc-text)', '--beauty-olive': 'var(--cc-action)',
         '--cc-action': palette === 'store' ? 'var(--color-primary)' : '#222',
+        '--cc-action-text': palette === 'store' ? 'var(--color-primary-reverse)' : '#fff',
       })) assert.equal(tokens[name], value, `${page}/${palette}: ${name}`);
     }
   });

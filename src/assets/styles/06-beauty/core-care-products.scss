@@ -56,7 +56,7 @@ body.theme-beauty {
   .core-recommendation-cart .s-button-element {
     display: flex; align-items: center; justify-content: center; width: 100%; min-height: 44px;
     padding: 10px 8px; border: 1px solid var(--cc-border); border-radius: var(--cc-control-radius);
-    background: var(--cc-surface); color: var(--cc-action); font-size: 13px; font-weight: 500;
+    background: var(--cc-surface); color: var(--cc-text); font-size: 13px; font-weight: 500;
     transition: background-color .22s ease, color .22s ease, border-color .22s ease;
   }
   .core-recommendation-cart .s-button-text { display: flex; align-items: center; justify-content: center; gap: 6px; white-space: normal; }
@@ -79,13 +79,13 @@ body.theme-beauty {
   .core-recommendation-price--sale { color: var(--cc-sale); }
   .core-recommendation-discount { padding: 1px 5px; border-radius: 9999px; background: var(--cc-discount-surface); color: var(--cc-sale-text); font-size: 12px; line-height: 18px; }
   .core-recommendation-starting { font-size: 11px; font-weight: 400; }
-  :where(a, .s-button-element):focus-visible { outline: 2px solid var(--cc-action); outline-offset: -2px; }
+  :where(a, .s-button-element):focus-visible { outline: 2px solid var(--cc-text); outline-offset: -2px; }
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     .core-recommendation-card:hover { transform: translateY(-3px); box-shadow: var(--cc-card-shadow-hover); border-color: var(--cc-border); }
   }
   .core-recommendation-card:hover .core-recommendation-cart:not(.core-recommendation-cart--status) .s-button-element,
   .core-recommendation-card:focus-within .core-recommendation-cart:not(.core-recommendation-cart--status) .s-button-element {
-    background: var(--cc-action); border-color: var(--cc-action); color: var(--cc-surface);
+    background: var(--cc-action); border-color: var(--cc-action); color: var(--cc-action-text);
   }
   .core-recommendation-card:hover .core-recommendation-icon-clear,
   .core-recommendation-card:focus-within .core-recommendation-icon-clear { fill: var(--cc-action); }

@@ -1,12 +1,12 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-04T21:02:40.803Z",
+  "generatedAt": "2026-10-04T21:26:56.690Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
     "arch": "arm64"
   },
-  "root": "/Users/test/.codex/worktrees/storefront-polish/core-care-sall-theam",
+  "root": "/Users/test/Documents/ChatGPT/core-care-sall-theam",
   "upstream": {
     "source": "https://github.com/SallaApp/theme-raed",
     "commit": "4332880be63909cc4251ea8783d25c88efa8f468",
@@ -1745,7 +1745,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "f67fd8853adcbf20583549834e7c501a285794d2886329ed254818a334f48f5a"
+      "sha256": "6a67cddfcdee59d14242399f85f61ecebc52b82c8fd266e6592c2a2af478f64a"
     },
     {
       "file": "src/views/pages/brands/single.twig",

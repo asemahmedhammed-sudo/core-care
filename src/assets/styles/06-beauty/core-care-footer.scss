@@ -54,7 +54,7 @@ body.theme-beauty .store-footer.beauty-footer.core-care-footer {
   salla-apps-icons { display: block; margin-block-start: 12px; }
   .core-care-footer__bottom { border-top: 1px solid var(--cc-border); padding-block: 16px; }
   .copyright-text, .copyright-text p, .copyright-text a { color: var(--cc-text-muted); font-size: 12px; }
-  :where(a, button):focus-visible { outline: 2px solid var(--cc-action); outline-offset: 3px; }
+  :where(a, button):focus-visible { outline: 2px solid var(--cc-text); outline-offset: 3px; }
   @media (max-width: 1023px) { .core-care-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 479px) { .container { padding-inline: 16px; } .core-care-footer__grid { gap: 20px 12px; } .core-care-footer__brand, .core-care-footer__payments { grid-column: 1 / -1; } }
 }

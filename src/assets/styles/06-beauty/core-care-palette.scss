@@ -5,6 +5,7 @@ body.theme-beauty {
     --cc-surface: #fff;
     --cc-text: #000;
     --cc-action: #222;
+    --cc-action-text: #fff;
     --cc-icon: #0c070f;
     --cc-search-surface: #f7f8fa;
     --cc-utility-surface: #f2f2f2;
@@ -48,7 +49,7 @@ body.theme-beauty {
     --beauty-radius: var(--cc-card-radius);
     --s-radius: var(--cc-control-radius);
   }
-  &.beauty-palette-store { --cc-action: var(--color-primary); }
+  &.beauty-palette-store { --cc-action: var(--color-primary); --cc-action-text: var(--color-primary-reverse); }
   &.beauty-reference-font { --font-main: 'IBM Plex Sans Arabic', sans-serif; }
   font-family: var(--font-main), sans-serif;
   font-size: 14px;
@@ -63,9 +64,9 @@ body.theme-beauty {
   .beauty-section-heading p { font-size: 14px; line-height: 21px; margin-block-start: 4px; }
   .s-block__display-all { color: var(--cc-text); }
   .beauty-button { min-height: 44px; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; gap: 12px; }
-  .beauty-button--gold, .beauty-collection__action { background: var(--cc-action); color: #fff; }
-  .beauty-skip-link { background: var(--cc-action); color: #fff; }
-  :where(a, button, input, select, textarea, [tabindex]):focus-visible { outline-color: var(--cc-action); }
+  .beauty-button--gold, .beauty-collection__action { background: var(--cc-action); color: var(--cc-action-text); }
+  .beauty-skip-link { background: var(--cc-action); color: var(--cc-action-text); }
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible { outline-color: var(--cc-text); }
   > .app-inner > .store-header > salla-advertisement { background: var(--cc-announcement); color: #fff; }
   .s-advertisement-content { min-height: 40px; padding-block: 10px; background: var(--cc-announcement); color: #fff; font-size: 12px; }
   .s-advertisement-content a { color: inherit; }
