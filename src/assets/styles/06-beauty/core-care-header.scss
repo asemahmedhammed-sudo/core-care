@@ -12,8 +12,8 @@ body.theme-beauty {
   .s-search-input { height: 45px; background: var(--cc-search-surface); border: 1px solid transparent; border-radius: 8px; color: var(--cc-input-text); }
   .s-search-input:focus { border-color: var(--cc-action); }
   .core-care-header {
-    background: var(--cc-surface); color: var(--cc-icon); border-block: 1px solid var(--cc-border);
-    width: 100%;
+    background: var(--cc-surface); color: var(--cc-icon); border-block: 0; border-block-end: 1px solid var(--cc-border);
+    width: 100%; min-height: 59px;
     &[data-header-sticky='true'] { position: sticky; top: 0; }
     &__bottom { min-height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 7px; }
     &__links, &__actions { display: flex; align-items: center; gap: 12px; min-width: 0; }

@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-04T06:23:49.006Z",
+  "generatedAt": "2026-10-04T11:00:14.211Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -1745,7 +1745,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "96df816ad174627e0b61c4ba45497896316b661737bebf2259b6d9c5b3194162"
+      "sha256": "ab99fd3e5be169b272dbf6ffeb0b2a402cab365c0c59320c3af6a850a900f81e"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -1765,7 +1765,7 @@
     {
       "file": "src/views/pages/index.twig",
       "kind": "modified-upstream",
-      "sha256": "8adea7f3b891e43bea65b3bb2192f40428ff931241616154f8b15768427d584c"
+      "sha256": "236b1d973b357a63de9773e3fee31c1eb59534cd1ab219f6bc2923a8373c222b"
     },
     {
       "file": "src/views/pages/partials/home/product-section-footer.twig",

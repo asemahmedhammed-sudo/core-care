@@ -45,7 +45,8 @@ body.theme-beauty .beauty-product-section {
   .core-recommendation-cart { position: absolute; z-index: 1; inset-inline-end: 0; inset-block-end: -12px; margin: 0; }
   .core-recommendation-cart .s-button-element { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; min-height: 44px; padding: 10px; border: 0; border-radius: 50%; background: radial-gradient(circle, var(--cc-utility-surface) 58%, transparent 60%); color: var(--cc-icon); }
   .core-recommendation-cart .s-button-text { display: flex; align-items: center; justify-content: center; gap: 0; }
-  .core-recommendation-cart svg { width: 24px; height: 24px; }
+  .core-recommendation-cart svg { width: 24px; height: 24px; fill: none; }
+  .core-recommendation-cart svg path { fill: none; }
   .core-recommendation-cart svg rect, .core-recommendation-icon-clear { fill: var(--cc-utility-surface); }
   .core-recommendation-cart--no-rating, .core-recommendation-cart--status { inset-block-end: 0; }
   .core-recommendation-cart--status { max-width: calc(100% - 16px); }
