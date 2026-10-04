@@ -9,7 +9,7 @@ body.theme-beauty {
   .core-care-header__tagline { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; }
   .core-care-header__tagline svg { width: 24px; height: 24px; }
   .core-care-header__search { min-width: 0; width: 100%; }
-  .s-search-input { height: 45px; background: var(--cc-search-surface); border: 1px solid transparent; border-radius: 8px; color: var(--cc-input-text); }
+  .s-search-input { height: 45px; background: var(--cc-search-surface); border: 1px solid transparent; border-radius: var(--cc-control-radius); color: var(--cc-input-text); }
   .s-search-input:focus { border-color: var(--cc-action); }
   .core-care-header {
     background: var(--cc-surface); color: var(--cc-icon); border-block: 0; border-block-end: 1px solid var(--cc-border);

@@ -1,7 +1,7 @@
 // Campaign artwork keeps its own ratio so embedded offers and logos stay visible.
 body.theme-beauty .beauty-campaigns {
-  width: calc(100% - clamp(32px, 4vw, 64px));
-  max-width: 1440px;
+  width: calc(100% - 2 * var(--cc-gutter));
+  max-width: calc(1440px - 2 * var(--cc-gutter));
   padding: 0;
   background: transparent;
 
@@ -16,13 +16,13 @@ body.theme-beauty .beauty-campaigns {
     display: block;
     min-width: 0;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: var(--cc-media-radius);
     picture, img { display: block; width: 100%; }
     img { height: auto; }
     &:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
   }
   @media (max-width: 639px) {
     &__pair { grid-template-columns: minmax(0, 1fr); }
-    &__banner { border-radius: 8px; }
+    &__banner { border-radius: var(--cc-media-radius); }
   }
 }

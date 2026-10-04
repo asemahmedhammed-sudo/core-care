@@ -12,7 +12,15 @@ body.theme-beauty {
     --cc-menu-hover: #f4f4f4;
     --cc-footer-surface: #fcfcfc;
     --cc-border: #e5e7eb;
+    --cc-card-border: #eee;
+    --cc-card-radius: 16px;
+    --cc-control-radius: 10px;
+    --cc-media-radius: 12px;
+    --cc-card-shadow: 0 2px 8px rgba(0, 0, 0, .025);
+    --cc-card-shadow-hover: 0 8px 24px rgba(0, 0, 0, .07);
+    --cc-gutter: clamp(12px, 1.7vw, 24px);
     --cc-sale: #ee2d64;
+    --cc-sale-text: #b81746;
     --cc-announcement: #e874a5;
     --cc-secondary: #997adb;
     --cc-secondary-soft: #ebe4f8;
@@ -23,7 +31,7 @@ body.theme-beauty {
     --cc-rating-star: #f5c523;
     --cc-text-muted: #757575;
     --cc-rating-text: #505050;
-    --cc-price-old: #b0b0b0;
+    --cc-price-old: #757575;
     // Darker than the reference's pale count for readable essential metadata.
     --cc-rating-count: #757575;
     --cc-input-text: #323233;
@@ -37,8 +45,8 @@ body.theme-beauty {
     --beauty-olive: var(--cc-action);
     --beauty-gold: var(--cc-action);
     --beauty-border: var(--cc-border);
-    --beauty-radius: 8px;
-    --s-radius: 8px;
+    --beauty-radius: var(--cc-card-radius);
+    --s-radius: var(--cc-control-radius);
   }
   &.beauty-palette-store { --cc-action: var(--color-primary); }
   &.beauty-reference-font { --font-main: 'IBM Plex Sans Arabic', sans-serif; }
@@ -47,10 +55,10 @@ body.theme-beauty {
   line-height: 1.5;
   background: var(--cc-canvas);
   color: var(--cc-text);
-  .container { width: 100%; max-width: 1440px; padding-inline: 16px; }
+  .container { width: 100%; max-width: 1440px; padding-inline: var(--cc-gutter); }
   .beauty-section-heading { margin-block-end: 12px; text-align: start; }
   .beauty-section-heading h2, .s-block__title h2, .s-slider-block__title h2 {
-    color: var(--cc-text); font-size: 18px; font-weight: 500; line-height: 28px;
+    color: var(--cc-text); font-size: 20px; font-weight: 500; line-height: 30px;
   }
   .beauty-section-heading p { font-size: 14px; line-height: 21px; margin-block-start: 4px; }
   .s-block__display-all { color: var(--cc-text); }

@@ -251,3 +251,35 @@ test('real offer countdowns retain the expiry time and omit expired or invalid d
   assert.match(card.innerHTML, /طلب مسبق/);
   assert.doesNotMatch(card.innerHTML, /salla-count-down/);
 });
+
+test('standard beauty cards share hierarchy and a visible native cart action across routes', () => {
+  const card = new ProductCard();
+  card.closest = selector => selector === 'body.theme-beauty' ? {} : null;
+  card.product = { id: 12, name: 'Product', url: '/product', status: 'sale', type: 'product',
+    price: 80, brand: { name: 'Brand' }, rating: { stars: 4.9, count: 3 } };
+  card.render();
+  const order = ['core-recommendation-brand', 'core-recommendation-name',
+    'core-recommendation-rating', 'core-recommendation-prices', 'core-recommendation-cart'];
+  for (let i = 1; i < order.length; i++) {
+    assert.ok(card.innerHTML.indexOf(order[i - 1]) < card.innerHTML.indexOf(order[i]));
+  }
+  assert.match(card.innerHTML, /core-recommendation-cart-label/);
+  assert.doesNotMatch(card.innerHTML, /class="sr-only"/);
+  assert.match(card.innerHTML, /product-id="12" product-status="sale" product-type="product"/);
+  card.hideAddBtn = true;
+  card.render();
+  assert.doesNotMatch(card.innerHTML, /core-recommendation-cart/);
+});
+
+test('unifying standard beauty cards preserves specialist product formats', () => {
+  for (const format of ['horizontal', 'minimal', 'fullImage', 'isSpecial', 'donation']) {
+    const card = new ProductCard();
+    card.closest = selector => selector === 'body.theme-beauty' ? {} : null;
+    card.product = { id: 13, name: 'Product', url: '/product', status: 'sale', type: 'product', price: 80 };
+    if (format === 'donation') card.product.donation = { can_donate: false };
+    else card[format] = true;
+    card.render();
+    assert.doesNotMatch(card.innerHTML, /core-recommendation-content/);
+    assert.match(card.innerHTML, /s-product-card-content/);
+  }
+});

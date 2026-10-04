@@ -1,0 +1,62 @@
+// Shared storefront controls and surfaces. Keep semantic danger/success states intact.
+body.theme-beauty {
+  .breadcrumbs { padding-block: 16px; font-size: 12px; line-height: 20px; }
+  #page-main-title { color: var(--cc-text); font-size: 22px; font-weight: 500; line-height: 32px; }
+  .btn, .s-button-element { font-family: inherit; }
+  .btn:not(.btn--rounded-full):not(.btn--icon):not(.btn--circle-gray),
+  .s-button-element:not(.s-button-icon) { border-radius: var(--cc-control-radius); }
+  .btn--primary, .s-button-primary {
+    background: var(--cc-action); border-color: var(--cc-action); color: var(--cc-surface);
+  }
+  .btn--outline-primary, .s-button-outline.s-button-primary {
+    background: var(--cc-surface); border-color: var(--cc-border); color: var(--cc-action);
+  }
+  .btn--primary, .btn--outline-primary { min-height: 44px; font-size: 14px; font-weight: 500; }
+  .form-input, .s-form-control {
+    border-radius: var(--cc-control-radius); background: var(--cc-surface); color: var(--cc-input-text);
+    line-height: 24px; min-height: 44px;
+  }
+  .form-input:not(.has-error):not(.has-success), .s-form-control:not([aria-invalid='true']) { border-color: var(--cc-border); }
+  .form-input:focus-visible, .s-form-control:focus-visible { border-color: var(--cc-action); }
+  .form-input:disabled, .s-form-control:disabled { background: var(--cc-utility-surface); color: var(--cc-input-muted); }
+  textarea.form-input { min-height: 112px; }
+  .form-label { font-weight: 500; color: var(--cc-input-text); }
+  .content--single-page, .blog-entry, .cart-item, .product-entry--wishlist,
+  .s-cart-summary-card, .s-cart-summary-card-content {
+    border-radius: var(--cc-card-radius); border: 1px solid var(--cc-card-border);
+    background: var(--cc-surface); box-shadow: var(--cc-card-shadow);
+  }
+  .content--single-page, .blog-entry, .cart-item, .product-entry--wishlist { overflow-wrap: anywhere; }
+  .product-entry--wishlist .product-entry__image { border-radius: var(--cc-media-radius); background: var(--cc-surface); }
+  .product-entry--wishlist .product-entry__image img { object-fit: contain; }
+  .blog-entry__title, .product-entry--wishlist h3 { color: var(--cc-text); font-weight: 500; }
+  .product-entry--wishlist .text-red-400 { color: var(--cc-sale); }
+  .brand-item { border: 1px solid var(--cc-card-border); border-radius: var(--cc-card-radius); box-shadow: var(--cc-card-shadow); }
+  .brands-nav:not(.is-sticky) { gap: 8px; margin-block-end: 16px; }
+  .brands-nav:not(.is-sticky) .brands-nav__item { margin: 0; min-width: 44px; min-height: 44px; border: 1px solid var(--cc-border); border-radius: var(--cc-control-radius); }
+  .beauty-routine__tabs { gap: 8px; padding: 0 0 4px; margin-block-end: 12px; }
+  .beauty-routine__tabs button { min-height: 44px; padding: 8px 16px; font-size: 14px; font-weight: 500; background: var(--cc-surface); }
+  .beauty-routine__tabs button[aria-selected='true'] { background: var(--cc-action); }
+  .beauty-routine__description { line-height: 24px; margin-block-end: 16px; }
+  .beauty-empty { padding: 20px; }
+  .beauty-features__list { gap: 16px; }
+  .beauty-features__list li { gap: 12px; }
+  .beauty-features__list h2 { font-weight: 500; line-height: 22px; }
+  .beauty-features__list p { line-height: 20px; }
+  .no-content-placeholder { padding-block: 32px; gap: 12px; }
+  .no-content-placeholder .icon { color: var(--cc-action); background: var(--cc-secondary-soft); }
+  .container--products-list {
+    gap: 20px;
+    > .main-content { min-width: 0; margin-inline: 0; }
+    salla-filters { width: 220px; }
+    #product-filter { min-height: 44px; height: auto; padding-block: 8px; max-width: 100%; }
+  }
+  @media (max-width: 767px) {
+    .container--products-list #page-main-title { font-size: 18px; line-height: 28px; }
+    .container--products-list .main-content > .core-collection-heading { align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+    .container--products-list salla-filters { width: min(320px, 100vw); }
+  }
+  @media (hover: hover) {
+    .btn--primary:hover, .s-button-primary:hover { filter: brightness(.9); }
+  }
+}

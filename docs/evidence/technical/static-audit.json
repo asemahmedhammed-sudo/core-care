@@ -1,12 +1,12 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-09-25T12:57:17.730Z",
+  "generatedAt": "2026-10-04T21:02:40.803Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
     "arch": "arm64"
   },
-  "root": "/Users/test/Documents/ChatGPT/core-care-sall-theam",
+  "root": "/Users/test/.codex/worktrees/storefront-polish/core-care-sall-theam",
   "upstream": {
     "source": "https://github.com/SallaApp/theme-raed",
     "commit": "4332880be63909cc4251ea8783d25c88efa8f468",
@@ -69,6 +69,25 @@
             "description",
             "equal_tiles",
             "rounded_images",
+            "banners"
+          ]
+        },
+        {
+          "path": "home.beauty-promo-wide",
+          "file": "src/views/components/home/beauty-promo-wide.twig",
+          "exists": true,
+          "fields": [
+            "image",
+            "mobile_image",
+            "image_alt",
+            "url"
+          ]
+        },
+        {
+          "path": "home.beauty-promo-pair",
+          "file": "src/views/components/home/beauty-promo-pair.twig",
+          "exists": true,
+          "fields": [
             "banners"
           ]
         },
@@ -293,7 +312,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 33,
+    "keyCount": 75,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -330,6 +349,25 @@
         "description",
         "equal_tiles",
         "rounded_images",
+        "banners"
+      ]
+    },
+    {
+      "path": "home.beauty-promo-wide",
+      "file": "src/views/components/home/beauty-promo-wide.twig",
+      "exists": true,
+      "fields": [
+        "image",
+        "mobile_image",
+        "image_alt",
+        "url"
+      ]
+    },
+    {
+      "path": "home.beauty-promo-pair",
+      "file": "src/views/components/home/beauty-promo-pair.twig",
+      "exists": true,
+      "fields": [
         "banners"
       ]
     },
@@ -549,6 +587,60 @@
       "found": true
     },
     {
+      "component": "home.beauty-promo-wide",
+      "field": "image",
+      "expectedReference": "component.image",
+      "found": true
+    },
+    {
+      "component": "home.beauty-promo-wide",
+      "field": "mobile_image",
+      "expectedReference": "component.mobile_image",
+      "found": true
+    },
+    {
+      "component": "home.beauty-promo-wide",
+      "field": "image_alt",
+      "expectedReference": "component.image_alt",
+      "found": true
+    },
+    {
+      "component": "home.beauty-promo-wide",
+      "field": "url",
+      "expectedReference": "component.url",
+      "found": true
+    },
+    {
+      "component": "home.beauty-promo-pair",
+      "field": "banners",
+      "expectedReference": "component.banners",
+      "found": true
+    },
+    {
+      "component": "home.beauty-promo-pair",
+      "field": "banners.image",
+      "expectedReference": "banner.image",
+      "found": true
+    },
+    {
+      "component": "home.beauty-promo-pair",
+      "field": "banners.mobile_image",
+      "expectedReference": "banner.mobile_image",
+      "found": true
+    },
+    {
+      "component": "home.beauty-promo-pair",
+      "field": "banners.image_alt",
+      "expectedReference": "banner.image_alt",
+      "found": true
+    },
+    {
+      "component": "home.beauty-promo-pair",
+      "field": "banners.url",
+      "expectedReference": "banner.url",
+      "found": true
+    },
+    {
       "component": "home.beauty-routine",
       "field": "title",
       "expectedReference": "component.title",
@@ -642,121 +734,193 @@
   "merchantFields": [
     {
       "location": "settings[0]",
+      "id": "beauty_promotions_enabled",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[1]",
+      "id": "beauty_promo_1_image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "settings[2]",
+      "id": "beauty_promo_1_title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[3]",
+      "id": "beauty_promo_1_url",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[4]",
+      "id": "beauty_promo_2_image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "settings[5]",
+      "id": "beauty_promo_2_title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[6]",
+      "id": "beauty_promo_2_url",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[7]",
+      "id": "beauty_promo_3_image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "settings[8]",
+      "id": "beauty_promo_3_title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[9]",
+      "id": "beauty_promo_3_url",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[10]",
       "id": "squar_photo_bg_image_size",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[1]",
+      "location": "settings[11]",
       "id": "square_photos_equal_size",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[2]",
+      "location": "settings[12]",
       "id": "vertical_fixed_products",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[3]",
+      "location": "settings[13]",
       "id": "is_more_button_enabled",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[4]",
+      "location": "settings[14]",
       "id": "header_is_sticky",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[5]",
+      "location": "settings[15]",
       "id": "topnav_is_dark",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[6]",
+      "location": "settings[16]",
       "id": "important_links",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[7]",
+      "location": "settings[17]",
       "id": "enable_more_menu",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[8]",
+      "location": "settings[18]",
       "id": "footer_is_dark",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[9]",
+      "location": "settings[19]",
       "id": "product_show_breadcrumbs",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[10]",
+      "location": "settings[20]",
       "id": "product_index_show_breadcrumbs",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[11]",
+      "location": "settings[21]",
       "id": "enable_add_product_toast",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[12]",
+      "location": "settings[22]",
+      "id": "beauty_show_product_promotion_titles",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[23]",
       "id": "notify_when_available_in_card",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[13]",
+      "location": "settings[24]",
       "id": "sticky_add_to_cart",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[14]",
+      "location": "settings[25]",
       "id": "show_tags",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[15]",
+      "location": "settings[26]",
       "id": "slider_background_size",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[16]",
+      "location": "settings[27]",
       "id": "imageZoom",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[17]",
+      "location": "settings[28]",
       "id": "beauty_brand_name",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "settings[18]",
+      "location": "settings[29]",
       "id": "beauty_palette",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[19]",
+      "location": "settings[30]",
       "id": "beauty_alternate_sections",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[31]",
+      "id": "beauty_reference_font",
       "type": "boolean",
       "format": "switch"
     },
@@ -888,81 +1052,57 @@
     },
     {
       "location": "components[2].fields[0]",
-      "id": "title",
+      "id": "image",
       "type": "string",
-      "format": "text"
+      "format": "image"
     },
     {
       "location": "components[2].fields[1]",
-      "id": "description",
+      "id": "mobile_image",
       "type": "string",
-      "format": "textarea"
+      "format": "image"
     },
     {
       "location": "components[2].fields[2]",
-      "id": "soft_background",
-      "type": "boolean",
-      "format": "switch"
-    },
-    {
-      "location": "components[2].fields[3]",
-      "id": "limit",
-      "type": "number",
-      "format": "integer"
-    },
-    {
-      "location": "components[2].fields[4]",
-      "id": "routines",
-      "type": "collection",
-      "format": "collection"
-    },
-    {
-      "location": "components[2].fields[4].fields[0]",
-      "id": "routines.title",
+      "id": "image_alt",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "components[2].fields[4].fields[1]",
-      "id": "routines.description",
-      "type": "string",
-      "format": "textarea"
-    },
-    {
-      "location": "components[2].fields[4].fields[2]",
-      "id": "routines.products",
+      "location": "components[2].fields[3]",
+      "id": "url",
       "type": "items",
-      "format": "dropdown-list"
+      "format": "variable-list"
     },
     {
       "location": "components[3].fields[0]",
-      "id": "slides",
+      "id": "banners",
       "type": "collection",
       "format": "collection"
     },
     {
       "location": "components[3].fields[0].fields[0]",
-      "id": "slides.image",
+      "id": "banners.image",
       "type": "string",
       "format": "image"
     },
     {
       "location": "components[3].fields[0].fields[1]",
-      "id": "slides.title",
+      "id": "banners.mobile_image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[3].fields[0].fields[2]",
+      "id": "banners.image_alt",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "components[3].fields[0].fields[2]",
-      "id": "slides.description",
-      "type": "string",
-      "format": "textarea"
-    },
-    {
       "location": "components[3].fields[0].fields[3]",
-      "id": "slides.without_overlay",
-      "type": "boolean",
-      "format": "switch"
+      "id": "banners.url",
+      "type": "items",
+      "format": "variable-list"
     },
     {
       "location": "components[4].fields[0]",
@@ -972,138 +1112,216 @@
     },
     {
       "location": "components[4].fields[1]",
-      "id": "show_cats",
-      "type": "boolean",
-      "format": "switch"
-    },
-    {
-      "location": "components[4].fields[2]",
-      "id": "categories",
-      "type": "items",
-      "format": "dropdown-list"
-    },
-    {
-      "location": "components[4].fields[3]",
-      "id": "links",
-      "type": "collection",
-      "format": "collection"
-    },
-    {
-      "location": "components[4].fields[3].fields[0]",
-      "id": "links.icon",
-      "type": "string",
-      "format": "icon"
-    },
-    {
-      "location": "components[4].fields[3].fields[1]",
-      "id": "links.title",
-      "type": "string",
-      "format": "text"
-    },
-    {
-      "location": "components[4].fields[3].fields[2]",
-      "id": "links.url",
-      "type": "items",
-      "format": "variable-list"
-    },
-    {
-      "location": "components[5].fields[0]",
-      "id": "background",
-      "type": "string",
-      "format": "image"
-    },
-    {
-      "location": "components[5].fields[1]",
-      "id": "title",
-      "type": "string",
-      "format": "text"
-    },
-    {
-      "location": "components[5].fields[2]",
       "id": "description",
       "type": "string",
       "format": "textarea"
     },
     {
-      "location": "components[5].fields[3]",
-      "id": "products",
-      "type": "items",
-      "format": "dropdown-list"
+      "location": "components[4].fields[2]",
+      "id": "soft_background",
+      "type": "boolean",
+      "format": "switch"
     },
     {
-      "location": "components[5].fields[4]",
-      "id": "display_all_url",
-      "type": "items",
-      "format": "variable-list"
+      "location": "components[4].fields[3]",
+      "id": "limit",
+      "type": "number",
+      "format": "integer"
     },
     {
-      "location": "components[6].fields[0]",
-      "id": "banners",
+      "location": "components[4].fields[4]",
+      "id": "routines",
       "type": "collection",
       "format": "collection"
     },
     {
-      "location": "components[6].fields[0].fields[0]",
-      "id": "banners.image",
-      "type": "string",
-      "format": "image"
-    },
-    {
-      "location": "components[6].fields[0].fields[1]",
-      "id": "banners.url",
-      "type": "items",
-      "format": "variable-list"
-    },
-    {
-      "location": "components[6].fields[0].fields[2]",
-      "id": "banners.title",
+      "location": "components[4].fields[4].fields[0]",
+      "id": "routines.title",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "components[6].fields[0].fields[3]",
-      "id": "banners.description",
+      "location": "components[4].fields[4].fields[1]",
+      "id": "routines.description",
       "type": "string",
       "format": "textarea"
     },
     {
-      "location": "components[7].fields[0]",
+      "location": "components[4].fields[4].fields[2]",
+      "id": "routines.products",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "components[5].fields[0]",
+      "id": "slides",
+      "type": "collection",
+      "format": "collection"
+    },
+    {
+      "location": "components[5].fields[0].fields[0]",
+      "id": "slides.image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[5].fields[0].fields[1]",
+      "id": "slides.title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[5].fields[0].fields[2]",
+      "id": "slides.description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[5].fields[0].fields[3]",
+      "id": "slides.without_overlay",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[6].fields[0]",
       "id": "title",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "components[7].fields[1]",
-      "id": "brands",
+      "location": "components[6].fields[1]",
+      "id": "show_cats",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "components[6].fields[2]",
+      "id": "categories",
       "type": "items",
       "format": "dropdown-list"
     },
     {
+      "location": "components[6].fields[3]",
+      "id": "links",
+      "type": "collection",
+      "format": "collection"
+    },
+    {
+      "location": "components[6].fields[3].fields[0]",
+      "id": "links.icon",
+      "type": "string",
+      "format": "icon"
+    },
+    {
+      "location": "components[6].fields[3].fields[1]",
+      "id": "links.title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[6].fields[3].fields[2]",
+      "id": "links.url",
+      "type": "items",
+      "format": "variable-list"
+    },
+    {
+      "location": "components[7].fields[0]",
+      "id": "background",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[7].fields[1]",
+      "id": "title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[7].fields[2]",
+      "id": "description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[7].fields[3]",
+      "id": "products",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "components[7].fields[4]",
+      "id": "display_all_url",
+      "type": "items",
+      "format": "variable-list"
+    },
+    {
       "location": "components[8].fields[0]",
-      "id": "items",
+      "id": "banners",
       "type": "collection",
       "format": "collection"
     },
     {
       "location": "components[8].fields[0].fields[0]",
+      "id": "banners.image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "components[8].fields[0].fields[1]",
+      "id": "banners.url",
+      "type": "items",
+      "format": "variable-list"
+    },
+    {
+      "location": "components[8].fields[0].fields[2]",
+      "id": "banners.title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[8].fields[0].fields[3]",
+      "id": "banners.description",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "components[9].fields[0]",
+      "id": "title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "components[9].fields[1]",
+      "id": "brands",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "components[10].fields[0]",
+      "id": "items",
+      "type": "collection",
+      "format": "collection"
+    },
+    {
+      "location": "components[10].fields[0].fields[0]",
       "id": "items.name",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "components[8].fields[0].fields[1]",
+      "location": "components[10].fields[0].fields[1]",
       "id": "items.avatar",
       "type": "string",
       "format": "image"
     },
     {
-      "location": "components[8].fields[0].fields[2]",
+      "location": "components[10].fields[0].fields[2]",
       "id": "items.stars",
       "type": "number",
       "format": "integer"
     },
     {
-      "location": "components[8].fields[0].fields[3]",
+      "location": "components[10].fields[0].fields[3]",
       "id": "items.text",
       "type": "string",
       "format": "textarea"
@@ -1111,6 +1329,54 @@
   ],
   "htmlInputFields": [],
   "lengthInventory": [
+    {
+      "location": "$.settings.2.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.2.maxLength",
+      "value": 120
+    },
+    {
+      "location": "$.settings.3.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.3.maxLength",
+      "value": 1000
+    },
+    {
+      "location": "$.settings.5.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.5.maxLength",
+      "value": 120
+    },
+    {
+      "location": "$.settings.6.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.6.maxLength",
+      "value": 1000
+    },
+    {
+      "location": "$.settings.8.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.8.maxLength",
+      "value": 120
+    },
+    {
+      "location": "$.settings.9.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.9.maxLength",
+      "value": 1000
+    },
     {
       "location": "$.components.0.fields.0.minLength",
       "value": 0
@@ -1208,52 +1474,12 @@
       "value": 80
     },
     {
-      "location": "$.components.2.fields.0.minLength",
-      "value": 0
-    },
-    {
-      "location": "$.components.2.fields.0.maxLength",
-      "value": 200
-    },
-    {
-      "location": "$.components.2.fields.1.minLength",
-      "value": 0
-    },
-    {
-      "location": "$.components.2.fields.1.maxLength",
-      "value": 500
-    },
-    {
-      "location": "$.components.2.fields.4.minLength",
+      "location": "$.components.2.fields.2.minLength",
       "value": 1
     },
     {
-      "location": "$.components.2.fields.4.maxLength",
-      "value": 6
-    },
-    {
-      "location": "$.components.2.fields.4.fields.0.minLength",
-      "value": 0
-    },
-    {
-      "location": "$.components.2.fields.4.fields.0.maxLength",
-      "value": 100
-    },
-    {
-      "location": "$.components.2.fields.4.fields.1.minLength",
-      "value": 0
-    },
-    {
-      "location": "$.components.2.fields.4.fields.1.maxLength",
-      "value": 400
-    },
-    {
-      "location": "$.components.2.fields.4.fields.2.maxLength",
-      "value": 8
-    },
-    {
-      "location": "$.components.2.fields.4.fields.2.minLength",
-      "value": 1
+      "location": "$.components.2.fields.2.maxLength",
+      "value": 240
     },
     {
       "location": "$.components.3.fields.0.minLength",
@@ -1261,23 +1487,15 @@
     },
     {
       "location": "$.components.3.fields.0.maxLength",
-      "value": 10
-    },
-    {
-      "location": "$.components.3.fields.0.fields.1.minLength",
-      "value": 0
-    },
-    {
-      "location": "$.components.3.fields.0.fields.1.maxLength",
-      "value": 100
+      "value": 2
     },
     {
       "location": "$.components.3.fields.0.fields.2.minLength",
-      "value": 0
+      "value": 1
     },
     {
       "location": "$.components.3.fields.0.fields.2.maxLength",
-      "value": 255
+      "value": 240
     },
     {
       "location": "$.components.4.fields.0.minLength",
@@ -1285,79 +1503,119 @@
     },
     {
       "location": "$.components.4.fields.0.maxLength",
-      "value": 100
+      "value": 200
     },
     {
-      "location": "$.components.4.fields.3.minLength",
+      "location": "$.components.4.fields.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.4.fields.1.maxLength",
+      "value": 500
+    },
+    {
+      "location": "$.components.4.fields.4.minLength",
       "value": 1
     },
     {
-      "location": "$.components.4.fields.3.maxLength",
+      "location": "$.components.4.fields.4.maxLength",
+      "value": 6
+    },
+    {
+      "location": "$.components.4.fields.4.fields.0.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.4.fields.4.fields.0.maxLength",
       "value": 100
     },
     {
-      "location": "$.components.4.fields.3.fields.1.minLength",
-      "value": 2
-    },
-    {
-      "location": "$.components.4.fields.3.fields.1.maxLength",
-      "value": 80
-    },
-    {
-      "location": "$.components.5.fields.1.minLength",
+      "location": "$.components.4.fields.4.fields.1.minLength",
       "value": 0
     },
     {
-      "location": "$.components.5.fields.1.maxLength",
-      "value": "80"
+      "location": "$.components.4.fields.4.fields.1.maxLength",
+      "value": 400
     },
     {
-      "location": "$.components.5.fields.2.minLength",
-      "value": 0
-    },
-    {
-      "location": "$.components.5.fields.2.maxLength",
-      "value": "256"
-    },
-    {
-      "location": "$.components.5.fields.3.maxLength",
+      "location": "$.components.4.fields.4.fields.2.maxLength",
       "value": 8
     },
     {
-      "location": "$.components.5.fields.3.minLength",
+      "location": "$.components.4.fields.4.fields.2.minLength",
       "value": 1
     },
     {
-      "location": "$.components.6.fields.0.minLength",
+      "location": "$.components.5.fields.0.minLength",
       "value": 1
     },
     {
-      "location": "$.components.6.fields.0.maxLength",
-      "value": 5
+      "location": "$.components.5.fields.0.maxLength",
+      "value": 10
     },
     {
-      "location": "$.components.6.fields.0.fields.2.minLength",
+      "location": "$.components.5.fields.0.fields.1.minLength",
       "value": 0
     },
     {
-      "location": "$.components.6.fields.0.fields.2.maxLength",
+      "location": "$.components.5.fields.0.fields.1.maxLength",
       "value": 100
     },
     {
-      "location": "$.components.6.fields.0.fields.3.minLength",
+      "location": "$.components.5.fields.0.fields.2.minLength",
       "value": 0
     },
     {
-      "location": "$.components.6.fields.0.fields.3.maxLength",
+      "location": "$.components.5.fields.0.fields.2.maxLength",
       "value": 255
     },
     {
-      "location": "$.components.7.fields.0.minLength",
+      "location": "$.components.6.fields.0.minLength",
       "value": 0
     },
     {
-      "location": "$.components.7.fields.0.maxLength",
-      "value": 200
+      "location": "$.components.6.fields.0.maxLength",
+      "value": 100
+    },
+    {
+      "location": "$.components.6.fields.3.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.6.fields.3.maxLength",
+      "value": 100
+    },
+    {
+      "location": "$.components.6.fields.3.fields.1.minLength",
+      "value": 2
+    },
+    {
+      "location": "$.components.6.fields.3.fields.1.maxLength",
+      "value": 80
+    },
+    {
+      "location": "$.components.7.fields.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.7.fields.1.maxLength",
+      "value": "80"
+    },
+    {
+      "location": "$.components.7.fields.2.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.7.fields.2.maxLength",
+      "value": "256"
+    },
+    {
+      "location": "$.components.7.fields.3.maxLength",
+      "value": 8
+    },
+    {
+      "location": "$.components.7.fields.3.minLength",
+      "value": 1
     },
     {
       "location": "$.components.8.fields.0.minLength",
@@ -1365,6 +1623,38 @@
     },
     {
       "location": "$.components.8.fields.0.maxLength",
+      "value": 5
+    },
+    {
+      "location": "$.components.8.fields.0.fields.2.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.8.fields.0.fields.2.maxLength",
+      "value": 100
+    },
+    {
+      "location": "$.components.8.fields.0.fields.3.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.8.fields.0.fields.3.maxLength",
+      "value": 255
+    },
+    {
+      "location": "$.components.9.fields.0.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.components.9.fields.0.maxLength",
+      "value": 200
+    },
+    {
+      "location": "$.components.10.fields.0.minLength",
+      "value": 1
+    },
+    {
+      "location": "$.components.10.fields.0.maxLength",
       "value": 30
     }
   ],
@@ -1395,12 +1685,12 @@
     {
       "file": "src/views/components/footer/footer.twig",
       "kind": "modified-upstream",
-      "sha256": "eac6c9ddc167a4cf8043b2cc56a68c4a670bf860aea94f63a230b2deaf6224f6"
+      "sha256": "0db3af7d8a6d5c92c40db90d7f733077169039421c241de81b2d13a8a4aae65b"
     },
     {
       "file": "src/views/components/header/header.twig",
       "kind": "modified-upstream",
-      "sha256": "4dc36473d813915bc1f66954278e37bee284318a37749eaadf8810800cb1a3d4"
+      "sha256": "de2adc993513f19215691f570e31302315a62d94ad1a69dd1dc9e1643705e345"
     },
     {
       "file": "src/views/components/home/beauty-collections.twig",
@@ -1410,7 +1700,17 @@
     {
       "file": "src/views/components/home/beauty-hero.twig",
       "kind": "new-template",
-      "sha256": "ce78f488d2952107ebc761ccfef39f8c85a890523e4b84cafcef33287255a3bc"
+      "sha256": "ca4901b5b038c02d5123a69720aa09eb0a0b7d9c42a140e46514c0acdf0ea3ab"
+    },
+    {
+      "file": "src/views/components/home/beauty-promo-pair.twig",
+      "kind": "new-template",
+      "sha256": "912e19a617346bab91b167834d4b1c1148cab6c3e0f30df159983bca2d4c36b1"
+    },
+    {
+      "file": "src/views/components/home/beauty-promo-wide.twig",
+      "kind": "new-template",
+      "sha256": "9f8468b98a8d430b53b5d061b7f21b4a24a982f2a4e24c70a066d0d4adb28708"
     },
     {
       "file": "src/views/components/home/beauty-routine.twig",
@@ -1418,14 +1718,24 @@
       "sha256": "37e8cd47c1ca41229faef4978b0c861d0b0dfb2cfe87118006a474dc13d562e1"
     },
     {
+      "file": "src/views/components/home/fixed-products.twig",
+      "kind": "modified-upstream",
+      "sha256": "620b14b0c967285988cbbf71b67a7adc51ebe7aca865de8391b04357629e3dde"
+    },
+    {
+      "file": "src/views/components/home/latest-products.twig",
+      "kind": "modified-upstream",
+      "sha256": "35448deab0caf8e87a9c4435bc8b3e36413044d610b747eb1093d419cb3d218c"
+    },
+    {
       "file": "src/views/components/home/main-links.twig",
       "kind": "modified-upstream",
-      "sha256": "49934ada426e090ec140e4b90ead6b0c3bb10c48ac343c60e8531c4fda1cd4bf"
+      "sha256": "0e914ca85b6b36e9ce26f13e0be3f72f77819bbba1ef8a711ddee35976380222"
     },
     {
       "file": "src/views/components/home/products-slider.twig",
       "kind": "modified-upstream",
-      "sha256": "82d73e7ee21ccc237640470ee919e9250eb233f5e177f50bbaaa4e9665649285"
+      "sha256": "0ad8044874093b7545c0da0579a57682fabd72fbef42021461f87f92c98a0dd4"
     },
     {
       "file": "src/views/components/home/store-features.twig",
@@ -1435,7 +1745,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "1c40b01ad9cb3a12a5e1a7bf8cb8fabc7a3e51ebae663d2877111dc6db5e6126"
+      "sha256": "f67fd8853adcbf20583549834e7c501a285794d2886329ed254818a334f48f5a"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -1453,14 +1763,44 @@
       "sha256": "f5157a664f261ad2247c689853c233b4b8d6a0e70f45f2163bcbfe534b7c7fd9"
     },
     {
+      "file": "src/views/pages/index.twig",
+      "kind": "modified-upstream",
+      "sha256": "fec717e9f0daf19927c7ff5b6c47beba8e0b7aa0e95fb415d239a709d366c17e"
+    },
+    {
+      "file": "src/views/pages/partials/home/product-section-footer.twig",
+      "kind": "new-template",
+      "sha256": "79b5228a2c86203028c4981186e1b1688a662b82fb719f012f9bb86d767f4ab3"
+    },
+    {
+      "file": "src/views/pages/partials/home/product-section-heading.twig",
+      "kind": "new-template",
+      "sha256": "9f8246d492fa9ded8f16bf6c9f1d7cb5407090dd32baac9168c2e3a36424ca16"
+    },
+    {
+      "file": "src/views/pages/partials/home/promo-banner.twig",
+      "kind": "new-template",
+      "sha256": "70b1376d096b7f2c6f77731ad3814bde694020fb68df43d8adba03a5b9b03796"
+    },
+    {
+      "file": "src/views/pages/partials/home/promotions.twig",
+      "kind": "new-template",
+      "sha256": "13ed99cfb84ba70215e53634c06d616dd6352aad47ec8df79ad48ea49934cb80"
+    },
+    {
+      "file": "src/views/pages/partials/product/gallery.twig",
+      "kind": "new-template",
+      "sha256": "a4342b7355c9791c2121c612411fa68baadda64443c8c3a62d2ffb37f2c64619"
+    },
+    {
       "file": "src/views/pages/product/index.twig",
       "kind": "modified-upstream",
-      "sha256": "7846c79d0873fe060137eda63c78dc79e04281fb4fe9104ffe0a9bd519c81c38"
+      "sha256": "691bbe0f7031e8c400fde0e102944812475406a25cefb66a466fa9442e7ca911"
     },
     {
       "file": "src/views/pages/product/single.twig",
       "kind": "modified-upstream",
-      "sha256": "c4b239a2d21879b5adee3c33ab5efa884df30d654e69bd23fa3561aaf5508e5e"
+      "sha256": "2d65b06ba2555d2447237deb5fe4dd39301ae2d1dfaa27eb9721b4bcc7d25eba"
     },
     {
       "file": "src/views/pages/thank-you.twig",
@@ -1491,18 +1831,18 @@
     },
     {
       "file": "src/views/pages/product/single.twig",
-      "line": 248,
-      "expression": "product_desc|raw",
+      "line": 167,
+      "expression": "pluralize('pages.products.sold_times', product.sold_quantity)|raw",
       "outputContext": "element-content",
       "upstreamFile": true,
-      "source": "Salla product rich description (product_desc assignment must be checked)",
-      "risk": "Platform-managed rich content; upstream origin does not prove sanitation.",
-      "review": "verify-platform-sanitization"
+      "source": "Translation result, potentially interpolated",
+      "risk": "Inspect arguments and intended markup; ordinary text can be escaped.",
+      "review": "review-translation-and-arguments"
     },
     {
       "file": "src/views/pages/product/single.twig",
-      "line": 257,
-      "expression": "product_desc|raw",
+      "line": 286,
+      "expression": "product.description|replace({\"&nbsp;\":\" \"})|raw",
       "outputContext": "element-content",
       "upstreamFile": true,
       "source": "Salla product rich description (product_desc assignment must be checked)",
@@ -1513,22 +1853,6 @@
   "hardcodedCommerce": [],
   "literalTextCandidates": [
     {
-      "file": "src/views/components/header/header.twig",
-      "literal": "الرئيسية"
-    },
-    {
-      "file": "src/views/components/header/header.twig",
-      "literal": "المنتجات"
-    },
-    {
-      "file": "src/views/components/header/header.twig",
-      "literal": "العروض"
-    },
-    {
-      "file": "src/views/components/header/header.twig",
-      "literal": "من نحن"
-    },
-    {
       "file": "src/views/pages/customer/orders/single.twig",
       "literal": "&nbsp;"
     }
@@ -1538,16 +1862,22 @@
     "count": 4,
     "note": "No source is marked safe merely because it occurs in upstream Raed."
   },
-  "networkSourceCandidates": [],
+  "networkSourceCandidates": [
+    {
+      "file": "src/assets/js/product.js",
+      "line": 36,
+      "pattern": "salla.product.getPrice("
+    }
+  ],
   "ownerMetadata": {
     "status": "pending-owner-data",
     "fields": {
       "name": {
-        "ar": "كور كير",
-        "en": "Core Care"
+        "ar": "العناية",
+        "en": "core care"
       },
       "repository": "https://github.com/asemahmedhammed-sudo/core-care",
-      "support": ""
+      "support": "asemahmedhammed@gmail.com"
     },
     "note": "Empty owner metadata is intentional pending real owner values; JSON parsing does not imply publication validity."
   },
