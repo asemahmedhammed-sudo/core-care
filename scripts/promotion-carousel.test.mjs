@@ -11,7 +11,7 @@ test('homepage includes the promotions partial without invoking the Salla compon
   assert.ok(fs.existsSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url)));
   assert.ok(page.indexOf("include 'pages.partials.home.promotions'") < page.indexOf('component home'));
 });
-function fixture(direction = 'rtl', count = 3) {
+function fixture(direction = 'rtl', count = 3, withCounter = true) {
   const element = (label = '') => ({ hidden: false, dataset: {}, attrs: { 'aria-label': label }, events: {},
     addEventListener(event, callback) { this.events[event] = callback; },
     setAttribute(key, value) { this.attrs[key] = value; }, getAttribute(key) { return this.attrs[key]; }, focus() {} });
@@ -19,13 +19,13 @@ function fixture(direction = 'rtl', count = 3) {
   slides.forEach((slide, i) => { slide.hidden = i !== 0; });
   const dots = slides.map(() => element());
   const controls = element(); controls.hidden = true;
-  const previous = element(), next = element(), status = element(), carousel = element();
+  const previous = element(), next = element(), status = element(), carousel = element(), current = element(), total = element();
   carousel.querySelectorAll = selector => selector === '[data-promotion-slide]' ? slides : dots;
-  carousel.querySelector = selector => ({ '[data-promotion-prev]': previous, '[data-promotion-next]': next, '[data-promotion-status]': status, '[data-promotion-controls]': controls })[selector];
+  carousel.querySelector = selector => ({ '[data-promotion-prev]': previous, '[data-promotion-next]': next, '[data-promotion-status]': status, '[data-promotion-controls]': controls, '[data-promotion-current]': withCounter ? current : null, '[data-promotion-total]': withCounter ? total : null })[selector];
   const root = { querySelectorAll: () => [carousel] };
   const context = { document: root, getComputedStyle: () => ({ direction }) };
   vm.runInNewContext(source + '\ninitPromotionCarousels();', context);
-  return { slides, dots, controls, previous, next, status, carousel, context };
+  return { slides, dots, controls, previous, next, status, carousel, current, total, context };
 }
 test('promotions next/previous wrap, dots select and announce the active slide', () => {
   const f = fixture();
@@ -72,7 +72,35 @@ test('initializing again keeps the chosen banner and does not reset navigation',
   const f = fixture();
   f.dots[2].events.click();
   vm.runInNewContext('initPromotionCarousels();', f.context);
+  assert.equal(f.current.textContent, '03');
   assert.deepEqual(f.slides.map(slide => slide.hidden), [true, true, false]);
   f.next.events.click();
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
+});
+
+test('visible counter follows navigation and uses the actual image count', () => {
+  for (const count of [2, 3]) {
+    const f = fixture('rtl', count);
+    assert.equal(f.current.textContent, '01');
+    assert.equal(f.total.textContent, String(count).padStart(2, '0'));
+    f.previous.events.click();
+    assert.equal(f.current.textContent, String(count).padStart(2, '0'));
+    f.next.events.click();
+    assert.equal(f.current.textContent, '01');
+    f.dots[1].events.click();
+    assert.equal(f.current.textContent, '02');
+    f.carousel.events.keydown({ key: 'ArrowLeft', preventDefault() {} });
+    assert.equal(f.current.textContent, count === 2 ? '01' : '03');
+    f.carousel.events.touchstart({ touches: [{ clientX: 50, clientY: 50 }] });
+    f.carousel.events.touchend({ changedTouches: [{ clientX: 150, clientY: 55 }] });
+    assert.equal(f.current.textContent, count === 2 ? '02' : '01');
+  }
+});
+
+test('cached banners without the counter retain navigation', () => {
+  const f = fixture('rtl', 3, false);
+  f.next.events.click();
+  assert.equal(f.controls.hidden, false);
+  assert.equal(f.status.textContent, 'two');
+  assert.deepEqual(f.slides.map(slide => slide.hidden), [true, false, true]);
 });

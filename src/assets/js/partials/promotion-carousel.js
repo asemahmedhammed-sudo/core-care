@@ -5,12 +5,18 @@ export default function initPromotionCarousels(root = document) {
     const dots = [...carousel.querySelectorAll('[data-promotion-dot]')];
     if (slides.length < 2) return;
     carousel.dataset.initialized = 'true';
+    const currentLabel = carousel.querySelector('[data-promotion-current]');
+    const totalLabel = carousel.querySelector('[data-promotion-total]');
+    // Keep navigation usable if cached Twig predates the visible counter.
+    if (totalLabel) totalLabel.textContent = String(slides.length).padStart(2, '0');
+    if (currentLabel) currentLabel.textContent = '01';
     let current = 0;
     const rtl = getComputedStyle(carousel).direction === 'rtl';
     const show = index => {
       current = (index + slides.length) % slides.length;
       slides.forEach((slide, i) => { slide.hidden = i !== current; });
       dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
+      if (currentLabel) currentLabel.textContent = String(current + 1).padStart(2, '0');
       carousel.querySelector('[data-promotion-status]').textContent = slides[current].getAttribute('aria-label');
     };
     carousel.querySelector('[data-promotion-prev]').addEventListener('click', () => show(current - 1));

@@ -33,19 +33,36 @@ body.theme-beauty.beauty-reference-home {
   .beauty-promotions [hidden] { display: none !important; }
   .beauty-promotions__artwork { display: block; width: 100%; height: 100%; object-fit: contain; }
   .beauty-promotions__artwork--default { object-fit: cover; }
-  .beauty-promotions__arrow {
-    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
-    display: grid; place-items: center; width: 44px; height: 44px;
-    border: 0; border-radius: 50%; background: #ffffffe8; color: #222; cursor: pointer;
+  .beauty-promotions__controls {
+    --promo-accent: var(--cc-bestseller, #634980);
+    --promo-soft: var(--cc-secondary-soft, #ebe4f8);
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 2;
+    display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100% - 16px);
+    padding: 8px; border: 1px solid #ffffffa6; border-radius: 999px;
+    background: #fffffff2; color: var(--promo-accent);
+    box-shadow: 0 6px 24px #23142e14; backdrop-filter: blur(12px);
   }
-  .beauty-promotions__arrow svg { width: 18px; height: 18px; fill: none; }
-  .beauty-promotions__arrow--prev { inset-inline-start: 10px; }
-  .beauty-promotions__arrow--next { inset-inline-end: 10px; }
-  .beauty-promotions__dots { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex; }
-  .beauty-promotions__dots button { display: grid; place-items: center; width: 44px; height: 44px; cursor: pointer; }
-  .beauty-promotions__dots button::before { content: ''; width: 7px; height: 7px; background: #0004; border-radius: 50%; }
-  .beauty-promotions__dots [aria-current='true']::before { background: #0c070f; width: 9px; height: 9px; box-shadow: 0 0 0 1px #ffffff80; }
-  .beauty-promotions :focus-visible { outline: 2px solid #222; outline-offset: -4px; }
+  .beauty-promotions__arrow {
+    flex: 0 0 44px;
+    display: grid; place-items: center; width: 44px; height: 44px;
+    border: 0; border-radius: 50%; background: var(--promo-soft); color: var(--promo-accent); cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+  }
+  .beauty-promotions__arrow svg { width: 20px; height: 20px; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .beauty-promotions__dots { display: flex; align-items: center; }
+  .beauty-promotions__dots button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
+  .beauty-promotions__dots button::before { content: ''; width: 8px; height: 8px; background: var(--promo-accent); opacity: .35; border-radius: 999px; transition: width .2s ease, opacity .2s ease; }
+  .beauty-promotions__dots [aria-current='true']::before { width: 28px; opacity: 1; }
+  .beauty-promotions__counter { display: flex; align-items: baseline; justify-content: center; gap: 4px; min-width: 64px; font-size: 16px; font-weight: 500; line-height: 24px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .beauty-promotions__counter-separator, [data-promotion-total] { color: var(--cc-text-muted); }
+  .beauty-promotions :focus-visible { outline: 2px solid var(--promo-accent, var(--cc-action)); outline-offset: -3px; }
+  @media (hover: hover) {
+    .beauty-promotions__arrow:hover { background: var(--promo-accent); color: var(--cc-surface); }
+    .beauty-promotions__dots button:hover::before { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .beauty-promotions__arrow, .beauty-promotions__dots button::before { transition: none; }
+  }
 
   .beauty-hero__grid {
     max-width: 1520px; width: 100%; min-height: 0;
@@ -69,10 +86,11 @@ body.theme-beauty.beauty-reference-home {
 
   @media (max-width: 767px) {
     .beauty-promotions { padding-inline: 12px; }
-    .beauty-promotions__arrow { background: radial-gradient(circle, #ffffffe8 50%, transparent 53%); }
-    .beauty-promotions__arrow--prev { inset-inline-start: 0; }
-    .beauty-promotions__arrow--next { inset-inline-end: 0; }
-    .beauty-promotions__dots button { width: 44px; height: 44px; }
+    // Keep campaign text unobstructed in the shallow 4:1 mobile artwork.
+    .beauty-promotions__viewport { overflow: visible; }
+    .beauty-promotions__slide { border-radius: 8px; overflow: hidden; }
+    .beauty-promotions__controls { position: static; transform: none; margin: 8px auto 0; max-width: 100%; gap: 4px; padding: 4px; }
+    .beauty-promotions__counter { min-width: 52px; font-size: 14px; }
     .beauty-hero__grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px 40px; }
     .beauty-hero__copy h2 { font-size: clamp(32px, 8vw, 46px); }
     .beauty-hero__copy { max-width: 540px; justify-self: center; }
@@ -142,13 +160,3 @@ html[dir='rtl'] body.theme-beauty.beauty-reference-home .beauty-collections .bea
 html[dir='ltr'] body.theme-beauty.beauty-reference-home .beauty-collections .beauty-section-heading { text-align: left; }
 
 html[dir='rtl'] .beauty-promotions__arrow svg { transform: scaleX(-1); }
-// The production PostCSS pipeline resolves logical insets to physical LTR values.
-// Keep the RTL control positions explicit so their chevrons point outward.
-html[dir='rtl'] body.theme-beauty.beauty-reference-home {
-  .beauty-promotions__arrow--prev { left: auto; right: 10px; }
-  .beauty-promotions__arrow--next { right: auto; left: 10px; }
-  @media (max-width: 767px) {
-    .beauty-promotions__arrow--prev { right: 0; }
-    .beauty-promotions__arrow--next { left: 0; }
-  }
-}

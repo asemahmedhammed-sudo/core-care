@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-04",
+  "environment": "local production build; not Salla",
+  "baseRevision": "bf77f4a825505e84fca0fb2a37494a2cf1bb6cdc",
+  "assetRevision": "20261004-slider-controls-1",
+  "sha256": {
+    "src/assets/styles/06-beauty/core-care-home.scss": "b67e65ccb9fb2e009432c39adedf262f37fdc7b51f53572aa7edb2088d197854",
+    "src/assets/js/partials/promotion-carousel.js": "3290a58cfb08e1d377c8173fcccc84a5eb70ca6f0dbaf5187300b7077b848019",
+    "src/views/pages/partials/home/promotions.twig": "13ed99cfb84ba70215e53634c06d616dd6352aad47ec8df79ad48ea49934cb80",
+    "src/views/layouts/master.twig": "32ba65778988b54beb637e4eca512cf405e6c38be640d13034c68f1c7d1dcf4b",
+    "public/app.css": "6f8f0a73ece984652168e805dc59845e4b7a0f18801aeac931f3ba553bde8d3d",
+    "public/home.js": "d40cd7b91a332836100f63c49765c7f77cbfb88e719069bfbdd55bebab328e32"
+  }
+}
