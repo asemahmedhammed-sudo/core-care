@@ -42,3 +42,29 @@ Evidence: docs/evidence/visual/full-image-slider-local-desktop-1440-2026-10-04.j
 **Hosted verification incomplete:** authenticated merchant request workflow created draft 559537499 and displayed it in the in-app browser and Chrome. Both still served 20261004-home-identity-1 / beauty-hero-products.jpg and the old split copy. The expected full-image revision has not reached that hosted draft. The Partners session expired (login screen); a fresh Chrome Partners page remained on its loading screen. User was asked to sign back in to Partners to restore synchronization access. No live activation, marketplace submission, or publication was performed.
 
 Untested on updated Salla: actual Twig rendering/settings persistence, one/two uploaded-image configurations, disabled carousel, real touch swipe, mobile/desktop appearance after synchronization. No deployment or publication-readiness claim.
+
+## Follow-up: development request synchronized
+
+The earlier stale-draft limitation was resolved in the user's follow-up. The authenticated official Salla CLI preview workflow selected Core Care and synchronized the clean committed source at 233a2a4, already on origin/main. Opening customization from the original accepted merchant request then produced draft 1822801083. This is the original Core Care request, not the separate CLI demo draft.
+
+The actual hosted request now serves app.css and home.js with revision **20261004-full-image-slider-2**. All three core-care-promo WebP images loaded after navigation, the split-copy element is absent, and no script/style/image references point to localhost. The temporary CLI preview server was stopped before hosted verification.
+
+Hosted checks used the Codex in-app browser. Chrome's connection was unavailable at this stage; the required hosted Chrome review remains outstanding. Earlier Chrome screenshots above are local evidence only.
+
+| Hosted viewport | Image frame | Gap to following section / heading box | Horizontal overflow |
+| --- | --- | --- | --- |
+| 1440 × 1000 | 1392 × 348 | 36px / 44px | None; scroll width 1440px |
+| 390 × 844 | 366 × 91.5 | 24px / 32px | None; scroll width 390px |
+| 320 × 844 | 296 × 74 | 24px section gap | None; scroll width 320px |
+
+The preceding navigation is 59px high, with 16px between its bottom and the image. Mobile search/navigation together measure 112px. Section headings use 18px and the body uses IBM Plex Sans Arabic. Arrow hit areas remain 44 × 44px at 390px. Visual review of the header, carousel and following bestsellers section found no abnormal empty space, card overlap or separate copy panel.
+
+Interactive hosted checks passed: Next 1→2, dot selection →3, RTL ArrowRight 3→2, Previous wrap 1→3, and mobile Next 1→2. All three banner images loaded. Restored slide 1 and reset the temporary viewport override after verification. Merchant configuration was not changed.
+
+Hosted screenshots:
+
+- docs/evidence/visual/full-image-slider-salla-desktop-2026-10-04.jpg
+- docs/evidence/visual/full-image-slider-salla-mobile-390-2026-10-04.jpg
+- docs/evidence/visual/full-image-slider-salla-mobile-320-2026-10-04.jpg
+
+Remaining coverage limits: hosted Chrome, physical touch swipe, hosted LTR, uploaded single/two-image configurations, disabled/reordered settings and settings persistence were not exercised in this follow-up. Unit tests cover controller behavior, but do not replace those platform checks. This verifies the requested full-image carousel on the actual development request; it does not certify complete theme parity or release readiness. No live-store activation or marketplace publication was performed.
