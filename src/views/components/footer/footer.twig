@@ -1,9 +1,11 @@
 <footer id="store-footer" data-testid="store-footer" class="store-footer beauty-footer core-care-footer">
   <div class="core-care-footer__support">
-    <div class="container">
-      <h2>{{ trans('beauty.footer.support_title') }}</h2>
-      <p>{{ trans('beauty.footer.support_description') }}</p>
-      <salla-contacts data-testid="store-footer-contacts"></salla-contacts>
+    <div class="container core-care-footer__support-layout">
+      <div class="core-care-footer__support-intro">
+        <h2>{{ trans('beauty.footer.support_title') }}</h2>
+        <p>{{ trans('beauty.footer.support_description') }}</p>
+      </div>
+      <salla-contacts data-testid="store-footer-contacts" hide-title></salla-contacts>
     </div>
   </div>
 	<div aria-label="footer" class="store-footer__inner">
