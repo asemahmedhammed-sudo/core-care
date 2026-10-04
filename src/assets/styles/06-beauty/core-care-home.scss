@@ -38,7 +38,7 @@ body.theme-beauty.beauty-reference-home {
   .beauty-promotions__dots { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex; }
   .beauty-promotions__dots button { display: grid; place-items: center; width: 44px; height: 44px; cursor: pointer; }
   .beauty-promotions__dots button::before { content: ''; width: 7px; height: 7px; background: #0004; border-radius: 50%; }
-  .beauty-promotions__dots [aria-current='true']::before { background: #0c070f; width: 9px; height: 9px; }
+  .beauty-promotions__dots [aria-current='true']::before { background: #0c070f; width: 9px; height: 9px; box-shadow: 0 0 0 1px #ffffff80; }
   .beauty-promotions :focus-visible { outline: 2px solid #222; outline-offset: -4px; }
 
   .beauty-hero__grid {
@@ -120,3 +120,13 @@ body.theme-beauty.beauty-reference-home {
 }
 
 html[dir='rtl'] .beauty-promotions__arrow svg { transform: scaleX(-1); }
+// The production PostCSS pipeline resolves logical insets to physical LTR values.
+// Keep the RTL control positions explicit so their chevrons point outward.
+html[dir='rtl'] body.theme-beauty.beauty-reference-home {
+  .beauty-promotions__arrow--prev { left: auto; right: 10px; }
+  .beauty-promotions__arrow--next { right: auto; left: 10px; }
+  @media (max-width: 767px) {
+    .beauty-promotions__arrow--prev { right: 0; }
+    .beauty-promotions__arrow--next { left: 0; }
+  }
+}

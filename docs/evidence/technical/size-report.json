@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:58:33.767Z",
+  "generatedAt": "2026-10-04T18:07:10.185Z",
   "environment": {
     "node": "v25.0.0",
     "os": "Darwin 24.6.0",
@@ -42,9 +42,9 @@
       "id": "built-public-all",
       "description": "All files in public/, including images.",
       "fileCount": 24,
-      "rawBytes": 985386,
-      "gzipBytes": 548004,
-      "brotliBytes": 529226,
+      "rawBytes": 985854,
+      "gzipBytes": 548057,
+      "brotliBytes": 529314,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -55,10 +55,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 294691,
-          "gzipBytes": 43920,
-          "brotliBytes": 35325,
-          "sha256": "44ef69085ff8215619bcc097e5abec26b6fbb480c1c14abfe29d364a36c9c64d"
+          "bytes": 295159,
+          "gzipBytes": 43973,
+          "brotliBytes": 35413,
+          "sha256": "3b57a133f376d587a03d3a688621b736703badcf2ad28e0beba267e41c3980f5"
         },
         {
           "file": "public/app.js",
@@ -220,9 +220,9 @@
       "id": "built-public-js-css",
       "description": "Only generated JavaScript and CSS in public/.",
       "fileCount": 13,
-      "rawBytes": 550009,
-      "gzipBytes": 123225,
-      "brotliBytes": 104902,
+      "rawBytes": 550477,
+      "gzipBytes": 123278,
+      "brotliBytes": 104990,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -233,10 +233,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 294691,
-          "gzipBytes": 43920,
-          "brotliBytes": 35325,
-          "sha256": "44ef69085ff8215619bcc097e5abec26b6fbb480c1c14abfe29d364a36c9c64d"
+          "bytes": 295159,
+          "gzipBytes": 43973,
+          "brotliBytes": 35413,
+          "sha256": "3b57a133f376d587a03d3a688621b736703badcf2ad28e0beba267e41c3980f5"
         },
         {
           "file": "public/app.js",
@@ -321,9 +321,9 @@
       "id": "source-runtime",
       "description": "Twilight manifest plus src/ assets, translations, and Twig; excludes public/.",
       "fileCount": 143,
-      "rawBytes": 1045015,
-      "gzipBytes": 580000,
-      "brotliBytes": 553581,
+      "rawBytes": 1045526,
+      "gzipBytes": 580147,
+      "brotliBytes": 553694,
       "files": [
         {
           "file": "src/assets/images/beauty-hero-products.jpg",
@@ -901,10 +901,10 @@
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-home.scss",
-          "bytes": 7713,
-          "gzipBytes": 2135,
-          "brotliBytes": 1770,
-          "sha256": "220fd2040bbd27115d6480a1c23c6246e1b2182bc168c0fca7d01df27c62c0e8"
+          "bytes": 8224,
+          "gzipBytes": 2282,
+          "brotliBytes": 1883,
+          "sha256": "32cfa7baddabb1de744dc73dddb5730ddb067d9421dde1ceafbe7a47eda4b1e9"
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-palette.scss",
@@ -1332,9 +1332,9 @@
       "id": "runtime-manifest-views-locales-built",
       "description": "Manifest, Twig, locales, and all built public files; source assets excluded.",
       "fileCount": 80,
-      "rawBytes": 1312887,
-      "gzipBytes": 615893,
-      "brotliBytes": 585412,
+      "rawBytes": 1313355,
+      "gzipBytes": 615946,
+      "brotliBytes": 585500,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -1345,10 +1345,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 294691,
-          "gzipBytes": 43920,
-          "brotliBytes": 35325,
-          "sha256": "44ef69085ff8215619bcc097e5abec26b6fbb480c1c14abfe29d364a36c9c64d"
+          "bytes": 295159,
+          "gzipBytes": 43973,
+          "brotliBytes": 35413,
+          "sha256": "3b57a133f376d587a03d3a688621b736703badcf2ad28e0beba267e41c3980f5"
         },
         {
           "file": "public/app.js",
@@ -1902,9 +1902,9 @@
       "id": "project-excluding-tooling-docs",
       "description": "Project files excluding declared directories; includes build config, locks, source, and output.",
       "fileCount": 388,
-      "rawBytes": 9416298,
-      "gzipBytes": 6413488,
-      "brotliBytes": 6222267,
+      "rawBytes": 9417277,
+      "gzipBytes": 6413688,
+      "brotliBytes": 6222468,
       "files": [
         {
           "file": ".gitignore",
@@ -3448,10 +3448,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 294691,
-          "gzipBytes": 43920,
-          "brotliBytes": 35325,
-          "sha256": "44ef69085ff8215619bcc097e5abec26b6fbb480c1c14abfe29d364a36c9c64d"
+          "bytes": 295159,
+          "gzipBytes": 43973,
+          "brotliBytes": 35413,
+          "sha256": "3b57a133f376d587a03d3a688621b736703badcf2ad28e0beba267e41c3980f5"
         },
         {
           "file": "public/app.js",
@@ -4183,10 +4183,10 @@
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-home.scss",
-          "bytes": 7713,
-          "gzipBytes": 2135,
-          "brotliBytes": 1770,
-          "sha256": "220fd2040bbd27115d6480a1c23c6246e1b2182bc168c0fca7d01df27c62c0e8"
+          "bytes": 8224,
+          "gzipBytes": 2282,
+          "brotliBytes": 1883,
+          "sha256": "32cfa7baddabb1de744dc73dddb5730ddb067d9421dde1ceafbe7a47eda4b1e9"
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-palette.scss",

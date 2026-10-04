@@ -26,4 +26,4 @@ Baseline hosted draft 1432443105 served revision 20261004-product-recommendation
 
 ## Hosted checks
 
-Pending after pushing implementation. Record actual revision, viewport, gaps, overflow, interactions, screenshots and untested cases here. Local checks do not establish platform verification.
+Implementation b65bb36 and hosted-specific correction 86bda9d were pushed to main. Draft 567672602 served 20261004-home-identity-1: mobile 390px, IBM Plex Sans Arabic, 18px headings, compact cards, purple support band and 24px section gaps, no page overflow. Initial navigation was still 68px and cart SVG filled because of inherited production CSS; 86bda9d corrects these to 59px / outline. Subsequent drafts 466355532 and 559537499 continued to serve the older identity-1 assets, so those corrections have not been confirmed hosted. The Partners login expired. The user's following request replaces the split promotion fallback with full-image slides; its source revision is 20261004-full-image-slider-2, with verification recorded in full-image-slider-2026-10-04.md. Platform verification remains incomplete; no whole-theme parity or release-readiness claim.

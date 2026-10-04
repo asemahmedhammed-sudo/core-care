@@ -29,8 +29,16 @@ Generator output ratios were 3:1 and 2.5:1; CSS cover frames default art in the 
 - 37/37 tests passed; 13/13 repository static checks passed. Existing carousel tests cover wrap/dots/RTL/LTR/swipe/vertical-scroll and accidental link suppression; added single/empty and repeated-initialization checks.
 - git diff --check passed. Generated CSS and image references inspected.
 - Existing dirty public/app.js and static-audit.json preserved; dated static-audit copy records this run.
-- Expected hosted revision: 20261004-full-image-slider-1.
+- Expected hosted revision: 20261004-full-image-slider-2.
 
 ## Platform verification
 
-Pending push and actual hosted preview. Record the observed revision, draft, browser, viewport, interaction outcomes, neighboring gaps, screenshots and limitations below. A successful push is not deployment proof.
+Implementation pushed to origin/main as cf59457. A subsequent RTL-position correction is included in the final source state: the production PostCSS pipeline converts logical insets to physical LTR positions, so explicit RTL positions are necessary. Active pagination has a subtle white outline for visibility on dark artwork.
+
+**Local Chrome verification passed (partial evidence):** production app.css and WebP defaults, source carousel controller, standalone fixture. Desktop viewport 1492px: image frame 1392×348, following-section gap 37.30px. An additional Chrome iframe at exactly 1440px measured 1392×348 with a 36px gap and no overflow; Previous wrapped 1→3. Mobile iframe viewports 390 and 320px: frames 366×91.5 and 296×74, following-section gap 24px; scroll widths equal viewport widths. Images loaded; one full image per slide, no separate copy. Next changed 1→2; dot selected 3; RTL ArrowRight changed 3→2; LTR ArrowRight changed 1→2. Default decorative artwork is cropped by cover; uploaded 4:1 art will not need cropping. Actual touch swipe is covered by unit tests, not this mouse-driven Chrome session.
+
+Evidence: docs/evidence/visual/full-image-slider-local-desktop-1440-2026-10-04.jpg and docs/evidence/visual/full-image-slider-local-mobile-2026-10-04.jpg. These are explicitly local fixtures, not hosted Salla screenshots.
+
+**Hosted verification incomplete:** authenticated merchant request workflow created draft 559537499 and displayed it in the in-app browser and Chrome. Both still served 20261004-home-identity-1 / beauty-hero-products.jpg and the old split copy. The expected full-image revision has not reached that hosted draft. The Partners session expired (login screen); a fresh Chrome Partners page remained on its loading screen. User was asked to sign back in to Partners to restore synchronization access. No live activation, marketplace submission, or publication was performed.
+
+Untested on updated Salla: actual Twig rendering/settings persistence, one/two uploaded-image configurations, disabled carousel, real touch swipe, mobile/desktop appearance after synchronization. No deployment or publication-readiness claim.
