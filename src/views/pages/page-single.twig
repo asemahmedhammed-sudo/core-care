@@ -10,7 +10,10 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    {% if page.type == 'customised' %}
+    {% set policy_page_id = theme.settings.get('beauty_policy_page_id', '')|trim %}
+    {% if policy_page_id and policy_page_id == (page.id ~ '') %}
+      {% include 'pages.partials.return-policy' %}
+    {% elseif page.type == 'customised' %}
       {#
           Hook: information_page.information_page
           Fires before the main informative page content section.

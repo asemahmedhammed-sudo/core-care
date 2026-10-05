@@ -1,0 +1,63 @@
+body.theme-beauty .core-policy {
+  max-width: 1120px;
+  color: var(--cc-text);
+  font-size: 14px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+
+  &__breadcrumbs { padding-block: 16px; font-size: 12px; }
+  &__breadcrumbs:has(salla-breadcrumb:empty) { display: none; }
+  &__header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; padding-block: 12px 24px; border-block-end: 1px solid var(--cc-border); }
+  &__heading { max-width: 640px; }
+  &__eyebrow { color: var(--cc-rating-text); font-size: 12px; }
+  h1 { margin-block: 8px; font-size: clamp(22px, 3vw, 28px); font-weight: 500; line-height: 1.5; }
+  h2 { font-size: 18px; font-weight: 500; line-height: 28px; }
+  &__heading > p, &__updated { color: var(--cc-rating-text); }
+  &__updated { font-size: 12px; }
+  &__layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: start; gap: 32px; margin-block-start: 24px; }
+  &__sidebar { display: grid; gap: 20px; min-width: 0; }
+  &__contents, &__help { padding: 20px; border-radius: 8px; }
+  &__contents { background: var(--cc-surface); border: 1px solid var(--cc-border); }
+  &__contents h2 { margin-block-end: 12px; font-size: 16px; }
+  &__contents a { display: flex; align-items: center; min-height: 44px; padding-block: 8px; color: var(--cc-rating-text); border-block-end: 1px solid var(--cc-border); }
+  &__contents a:last-child { border: 0; }
+  &__contents a:hover { color: var(--cc-text); text-decoration: underline; text-underline-offset: 4px; }
+  &__help { background: var(--cc-secondary-soft); }
+  &__help > svg { margin-block-end: 12px; }
+  &__help h2 { font-size: 16px; }
+  &__help p { margin-block: 8px 16px; color: var(--cc-rating-text); }
+  &__action { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; border-radius: 8px; background: var(--cc-action); color: var(--cc-action-text); font-weight: 500; }
+  &__action:hover { text-decoration: underline; text-underline-offset: 4px; }
+  &__body { display: grid; gap: 24px; min-width: 0; }
+  &__section { padding: 24px; border: 1px solid var(--cc-border); border-radius: 8px; background: var(--cc-surface); scroll-margin-block-start: 180px; }
+  &__section > h2 { margin-block-end: 12px; }
+  &__intro, &__notice, &__answer { white-space: pre-line; }
+  &__intro { color: var(--cc-rating-text); }
+  &__notice { padding: 12px 16px; margin-block: 16px; border-inline-start: 2px solid var(--cc-secondary); background: var(--cc-canvas); border-radius: 4px; }
+  &__question { border-block-end: 1px solid var(--cc-border); }
+  &__question:last-child { border: 0; }
+  &__question summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 52px; padding-block: 12px; cursor: pointer; font-weight: 500; list-style: none; }
+  &__question summary::-webkit-details-marker { display: none; }
+  &__question summary:hover { color: var(--cc-rating-text); }
+  &__question summary:focus-visible { outline: 2px solid var(--cc-text); outline-offset: 2px; border-radius: 4px; }
+  &__question summary svg { flex: none; transition: transform .2s ease; }
+  &__question[open] summary svg { transform: rotate(180deg); }
+  &__answer { color: var(--cc-rating-text); padding-block-end: 16px; }
+  &__license { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding-block: 10px; text-decoration: underline; text-underline-offset: 4px; }
+
+  @media (max-width: 767px) {
+    &__header { align-items: start; gap: 8px; padding-block: 8px 20px; }
+    &__layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    &__contents { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; border: 0; background: transparent; }
+    &__contents h2 { flex-basis: 100%; margin-block-end: 4px; }
+    &__contents a { min-height: 44px; padding: 8px 12px; border: 1px solid var(--cc-border); border-radius: 999px; background: var(--cc-surface); font-size: 12px; }
+    &__contents a:last-child { border: 1px solid var(--cc-border); }
+    &__help { display: none; }
+    &__section { padding: 16px; scroll-margin-block-start: 140px; }
+    &__question summary { gap: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) { &__question summary svg { transition: none; } }
+}
+
+// Keep the final policy text and the existing support band within the section rhythm.
+body.theme-beauty #main-content:has(> .core-policy) + .core-care-footer { margin-block-start: 24px; }
