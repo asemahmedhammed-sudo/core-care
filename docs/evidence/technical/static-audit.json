@@ -1,12 +1,12 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-05T19:31:45.800Z",
+  "generatedAt": "2026-10-05T22:35:33.166Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
     "arch": "arm64"
   },
-  "root": "/private/tmp/core-care-promo-bounded-push",
+  "root": "/private/tmp/core-care-promo-timer-push",
   "upstream": {
     "source": "https://github.com/SallaApp/theme-raed",
     "commit": "4332880be63909cc4251ea8783d25c88efa8f468",
@@ -312,7 +312,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 83,
+    "keyCount": 124,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -734,246 +734,414 @@
   "merchantFields": [
     {
       "location": "settings[0]",
-      "id": "beauty_promotions_enabled",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_policy_page_id",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[1]",
-      "id": "beauty_promo_1_image",
+      "id": "beauty_policy_updated",
       "type": "string",
-      "format": "image"
+      "format": "text"
     },
     {
       "location": "settings[2]",
-      "id": "beauty_promo_1_mobile_image",
+      "id": "beauty_policy_intro",
       "type": "string",
-      "format": "image"
+      "format": "textarea"
     },
     {
       "location": "settings[3]",
-      "id": "beauty_promo_1_title",
+      "id": "beauty_policy_devices",
       "type": "string",
-      "format": "text"
+      "format": "textarea"
     },
     {
       "location": "settings[4]",
-      "id": "beauty_promo_1_show_title",
-      "type": "boolean",
-      "format": "switch"
-    },
-    {
-      "location": "settings[5]",
-      "id": "beauty_promo_1_button_label",
+      "id": "beauty_policy_fees_question",
       "type": "string",
       "format": "text"
     },
     {
+      "location": "settings[5]",
+      "id": "beauty_policy_fees_answer",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
       "location": "settings[6]",
-      "id": "beauty_promo_1_url",
+      "id": "beauty_policy_lenses_question",
       "type": "string",
       "format": "text"
     },
     {
       "location": "settings[7]",
-      "id": "beauty_promo_2_image",
+      "id": "beauty_policy_lenses_answer",
       "type": "string",
-      "format": "image"
+      "format": "textarea"
     },
     {
       "location": "settings[8]",
-      "id": "beauty_promo_2_mobile_image",
+      "id": "beauty_policy_damaged_question",
       "type": "string",
-      "format": "image"
+      "format": "text"
     },
     {
       "location": "settings[9]",
-      "id": "beauty_promo_2_title",
+      "id": "beauty_policy_damaged_answer",
       "type": "string",
-      "format": "text"
+      "format": "textarea"
     },
     {
       "location": "settings[10]",
-      "id": "beauty_promo_2_show_title",
-      "type": "boolean",
-      "format": "switch"
-    },
-    {
-      "location": "settings[11]",
-      "id": "beauty_promo_2_button_label",
+      "id": "beauty_policy_deadline_question",
       "type": "string",
       "format": "text"
     },
     {
+      "location": "settings[11]",
+      "id": "beauty_policy_deadline_answer",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
       "location": "settings[12]",
-      "id": "beauty_promo_2_url",
+      "id": "beauty_policy_processing_question",
       "type": "string",
       "format": "text"
     },
     {
       "location": "settings[13]",
-      "id": "beauty_promo_3_image",
+      "id": "beauty_policy_processing_answer",
       "type": "string",
-      "format": "image"
+      "format": "textarea"
     },
     {
       "location": "settings[14]",
-      "id": "beauty_promo_3_mobile_image",
+      "id": "beauty_policy_offers_question",
       "type": "string",
-      "format": "image"
+      "format": "text"
     },
     {
       "location": "settings[15]",
-      "id": "beauty_promo_3_title",
+      "id": "beauty_policy_offers_answer",
       "type": "string",
-      "format": "text"
+      "format": "textarea"
     },
     {
       "location": "settings[16]",
-      "id": "beauty_promo_3_show_title",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_policy_payment_question",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[17]",
-      "id": "beauty_promo_3_button_label",
+      "id": "beauty_policy_payment_answer",
       "type": "string",
-      "format": "text"
+      "format": "textarea"
     },
     {
       "location": "settings[18]",
-      "id": "beauty_promo_3_url",
+      "id": "beauty_policy_show_wallet",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[19]",
+      "id": "beauty_policy_qitaf_question",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "settings[19]",
-      "id": "squar_photo_bg_image_size",
-      "type": "items",
-      "format": "dropdown-list"
-    },
-    {
       "location": "settings[20]",
-      "id": "square_photos_equal_size",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_policy_qitaf_answer",
+      "type": "string",
+      "format": "textarea"
     },
     {
       "location": "settings[21]",
-      "id": "vertical_fixed_products",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_policy_rajhi_question",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[22]",
-      "id": "is_more_button_enabled",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_policy_rajhi_answer",
+      "type": "string",
+      "format": "textarea"
     },
     {
       "location": "settings[23]",
-      "id": "header_is_sticky",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_policy_temporary_question",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[24]",
-      "id": "topnav_is_dark",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_policy_temporary_answer",
+      "type": "string",
+      "format": "textarea"
     },
     {
       "location": "settings[25]",
-      "id": "important_links",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_policy_license_url",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[26]",
-      "id": "enable_more_menu",
+      "id": "beauty_promotions_enabled",
       "type": "boolean",
       "format": "switch"
     },
     {
       "location": "settings[27]",
-      "id": "footer_is_dark",
+      "id": "beauty_promotions_autoplay",
       "type": "boolean",
       "format": "switch"
     },
     {
       "location": "settings[28]",
-      "id": "product_show_breadcrumbs",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_promotions_interval",
+      "type": "number",
+      "format": "integer"
     },
     {
       "location": "settings[29]",
-      "id": "product_index_show_breadcrumbs",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_promo_1_image",
+      "type": "string",
+      "format": "image"
     },
     {
       "location": "settings[30]",
-      "id": "enable_add_product_toast",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_promo_1_mobile_image",
+      "type": "string",
+      "format": "image"
     },
     {
       "location": "settings[31]",
-      "id": "beauty_show_product_promotion_titles",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_promo_1_title",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[32]",
-      "id": "notify_when_available_in_card",
+      "id": "beauty_promo_1_show_title",
       "type": "boolean",
       "format": "switch"
     },
     {
       "location": "settings[33]",
-      "id": "sticky_add_to_cart",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_promo_1_button_label",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[34]",
-      "id": "show_tags",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_promo_1_url",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[35]",
-      "id": "slider_background_size",
-      "type": "items",
-      "format": "dropdown-list"
+      "id": "beauty_promo_2_image",
+      "type": "string",
+      "format": "image"
     },
     {
       "location": "settings[36]",
-      "id": "imageZoom",
-      "type": "boolean",
-      "format": "switch"
+      "id": "beauty_promo_2_mobile_image",
+      "type": "string",
+      "format": "image"
     },
     {
       "location": "settings[37]",
-      "id": "beauty_brand_name",
+      "id": "beauty_promo_2_title",
       "type": "string",
       "format": "text"
     },
     {
       "location": "settings[38]",
+      "id": "beauty_promo_2_show_title",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[39]",
+      "id": "beauty_promo_2_button_label",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[40]",
+      "id": "beauty_promo_2_url",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[41]",
+      "id": "beauty_promo_3_image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "settings[42]",
+      "id": "beauty_promo_3_mobile_image",
+      "type": "string",
+      "format": "image"
+    },
+    {
+      "location": "settings[43]",
+      "id": "beauty_promo_3_title",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[44]",
+      "id": "beauty_promo_3_show_title",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[45]",
+      "id": "beauty_promo_3_button_label",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[46]",
+      "id": "beauty_promo_3_url",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[47]",
+      "id": "squar_photo_bg_image_size",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "settings[48]",
+      "id": "square_photos_equal_size",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[49]",
+      "id": "vertical_fixed_products",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[50]",
+      "id": "is_more_button_enabled",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[51]",
+      "id": "header_is_sticky",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[52]",
+      "id": "topnav_is_dark",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[53]",
+      "id": "important_links",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[54]",
+      "id": "enable_more_menu",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[55]",
+      "id": "footer_is_dark",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[56]",
+      "id": "product_show_breadcrumbs",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[57]",
+      "id": "product_index_show_breadcrumbs",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[58]",
+      "id": "enable_add_product_toast",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[59]",
+      "id": "beauty_show_product_promotion_titles",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[60]",
+      "id": "notify_when_available_in_card",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[61]",
+      "id": "sticky_add_to_cart",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[62]",
+      "id": "show_tags",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[63]",
+      "id": "slider_background_size",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "settings[64]",
+      "id": "imageZoom",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[65]",
+      "id": "beauty_brand_name",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[66]",
       "id": "beauty_palette",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[39]",
+      "location": "settings[67]",
       "id": "beauty_alternate_sections",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[40]",
+      "location": "settings[68]",
       "id": "beauty_reference_font",
       "type": "boolean",
       "format": "switch"
@@ -1384,12 +1552,44 @@
   "htmlInputFields": [],
   "lengthInventory": [
     {
+      "location": "$.settings.0.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.0.maxLength",
+      "value": 30
+    },
+    {
+      "location": "$.settings.1.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.1.maxLength",
+      "value": 60
+    },
+    {
+      "location": "$.settings.2.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.2.maxLength",
+      "value": 2000
+    },
+    {
       "location": "$.settings.3.minLength",
       "value": 0
     },
     {
       "location": "$.settings.3.maxLength",
-      "value": 120
+      "value": 2000
+    },
+    {
+      "location": "$.settings.4.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.4.maxLength",
+      "value": 240
     },
     {
       "location": "$.settings.5.minLength",
@@ -1397,7 +1597,7 @@
     },
     {
       "location": "$.settings.5.maxLength",
-      "value": 80
+      "value": 2000
     },
     {
       "location": "$.settings.6.minLength",
@@ -1405,7 +1605,23 @@
     },
     {
       "location": "$.settings.6.maxLength",
-      "value": 1000
+      "value": 240
+    },
+    {
+      "location": "$.settings.7.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.7.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.8.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.8.maxLength",
+      "value": 240
     },
     {
       "location": "$.settings.9.minLength",
@@ -1413,7 +1629,15 @@
     },
     {
       "location": "$.settings.9.maxLength",
-      "value": 120
+      "value": 2000
+    },
+    {
+      "location": "$.settings.10.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.10.maxLength",
+      "value": 240
     },
     {
       "location": "$.settings.11.minLength",
@@ -1421,7 +1645,7 @@
     },
     {
       "location": "$.settings.11.maxLength",
-      "value": 80
+      "value": 2000
     },
     {
       "location": "$.settings.12.minLength",
@@ -1429,7 +1653,23 @@
     },
     {
       "location": "$.settings.12.maxLength",
-      "value": 1000
+      "value": 240
+    },
+    {
+      "location": "$.settings.13.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.13.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.14.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.14.maxLength",
+      "value": 240
     },
     {
       "location": "$.settings.15.minLength",
@@ -1437,7 +1677,15 @@
     },
     {
       "location": "$.settings.15.maxLength",
-      "value": 120
+      "value": 2000
+    },
+    {
+      "location": "$.settings.16.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.16.maxLength",
+      "value": 240
     },
     {
       "location": "$.settings.17.minLength",
@@ -1445,14 +1693,134 @@
     },
     {
       "location": "$.settings.17.maxLength",
-      "value": 80
+      "value": 2000
     },
     {
-      "location": "$.settings.18.minLength",
+      "location": "$.settings.19.minLength",
       "value": 0
     },
     {
-      "location": "$.settings.18.maxLength",
+      "location": "$.settings.19.maxLength",
+      "value": 240
+    },
+    {
+      "location": "$.settings.20.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.20.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.21.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.21.maxLength",
+      "value": 240
+    },
+    {
+      "location": "$.settings.22.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.22.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.23.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.23.maxLength",
+      "value": 240
+    },
+    {
+      "location": "$.settings.24.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.24.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.25.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.25.maxLength",
+      "value": 1000
+    },
+    {
+      "location": "$.settings.31.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.31.maxLength",
+      "value": 120
+    },
+    {
+      "location": "$.settings.33.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.33.maxLength",
+      "value": 80
+    },
+    {
+      "location": "$.settings.34.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.34.maxLength",
+      "value": 1000
+    },
+    {
+      "location": "$.settings.37.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.37.maxLength",
+      "value": 120
+    },
+    {
+      "location": "$.settings.39.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.39.maxLength",
+      "value": 80
+    },
+    {
+      "location": "$.settings.40.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.40.maxLength",
+      "value": 1000
+    },
+    {
+      "location": "$.settings.43.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.43.maxLength",
+      "value": 120
+    },
+    {
+      "location": "$.settings.45.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.45.maxLength",
+      "value": 80
+    },
+    {
+      "location": "$.settings.46.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.46.maxLength",
       "value": 1000
     },
     {
@@ -1741,7 +2109,56 @@
     "documentedMaximum": 1000,
     "reason": "Technical review says Length in Twilight without identifying a property or the measured object. This inventory makes no binding interpretation."
   },
-  "lengthValuesOver1000": [],
+  "lengthValuesOver1000": [
+    {
+      "location": "$.settings.2.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.3.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.5.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.7.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.9.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.11.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.13.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.15.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.17.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.20.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.22.maxLength",
+      "value": 2000
+    },
+    {
+      "location": "$.settings.24.maxLength",
+      "value": 2000
+    }
+  ],
   "master": {
     "blocks": [
       "head_scripts",
@@ -1823,7 +2240,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "b9763fdb6772948f0ece9e1cc7e0049bcaaaa6cf10c02d632bd0aace72619bcd"
+      "sha256": "f464a302821c726ea764900408bcc2169ff2abed340fb5c6a6a973c8d7d1ff3c"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -1843,7 +2260,12 @@
     {
       "file": "src/views/pages/index.twig",
       "kind": "modified-upstream",
-      "sha256": "b26d568db84eaf3c3e44d369cc2a80547016ffbdc1f00784f3de0348dc06fd32"
+      "sha256": "654d8f6183b4423386a80f58b31dded84e37bd4a652fa6a5a4f74fafe17afdf0"
+    },
+    {
+      "file": "src/views/pages/page-single.twig",
+      "kind": "modified-upstream",
+      "sha256": "5aa9a581b3c4dbe21bd12cc93e8ae8f92b17820129bd54630057eff3953a879d"
     },
     {
       "file": "src/views/pages/partials/home/product-section-footer.twig",
@@ -1863,12 +2285,17 @@
     {
       "file": "src/views/pages/partials/home/promotions.twig",
       "kind": "new-template",
-      "sha256": "16fb81e2a449689d7527a4b1f6c6e173dca0fabbb58017bd8f72ce7d205369cb"
+      "sha256": "e80a819be2b44079c49ab46475885c0cd3930b4b477a83b9d58f57829bae3499"
     },
     {
       "file": "src/views/pages/partials/product/gallery.twig",
       "kind": "new-template",
       "sha256": "a4342b7355c9791c2121c612411fa68baadda64443c8c3a62d2ffb37f2c64619"
+    },
+    {
+      "file": "src/views/pages/partials/return-policy.twig",
+      "kind": "new-template",
+      "sha256": "c0f1d0716d11a49abdfb49292c5eee76aab6775e8437988c0697019fcf928fa4"
     },
     {
       "file": "src/views/pages/product/index.twig",
@@ -1899,7 +2326,7 @@
     },
     {
       "file": "src/views/pages/page-single.twig",
-      "line": 31,
+      "line": 34,
       "expression": "page.content|raw",
       "outputContext": "element-content",
       "upstreamFile": true,

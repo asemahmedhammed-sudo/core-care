@@ -74,15 +74,10 @@ body.theme-beauty.beauty-reference-home {
   .beauty-promotions__dots button { position: relative; flex: 0 0 44px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
   .beauty-promotions__dots [data-promotion-dot]::before { content: ''; width: 6px; height: 6px; background: var(--cc-text-muted); border-radius: 999px; transition: transform .35s ease, background-color .35s ease; }
   .beauty-promotions__dots [aria-current='true']::before { transform: scale(1.35); background: var(--promo-accent); }
-  .beauty-promotions__toggle { color: var(--cc-icon); }
-  .beauty-promotions__toggle svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .beauty-promotions__toggle [data-promotion-play], .beauty-promotions__toggle[data-paused='true'] [data-promotion-pause] { display: none; }
-  .beauty-promotions__toggle[data-paused='true'] [data-promotion-play] { display: block; }
   .beauty-promotions :focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
   @media (hover: hover) {
     .beauty-promotions__arrow:hover::before { background: var(--cc-utility-surface); }
     .beauty-promotions__dots [data-promotion-dot]:hover::before { background: var(--promo-accent); }
-    .beauty-promotions__toggle:hover { color: var(--cc-text-muted); }
   }
   @media (prefers-reduced-motion: reduce) {
     .beauty-promotions__slide.is-entering > * { animation: none; }

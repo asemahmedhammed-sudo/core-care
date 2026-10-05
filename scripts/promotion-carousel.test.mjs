@@ -25,7 +25,7 @@ test('shopping destinations accept HTTPS store links and reject unsafe or malfor
   }
 });
 
-function fixture(direction = 'rtl', count = 3, instances = 1, { autoplay = false, reduced = false, enabled = true } = {}) {
+function fixture(direction = 'rtl', count = 3, instances = 1, { autoplay = false, reduced = false, enabled = true, interval } = {}) {
   const document = { activeElement: null, hidden: false, events: {},
     addEventListener(event, callback) { this.events[event] = callback; },
     removeEventListener(event) { delete this.events[event]; }
@@ -45,13 +45,13 @@ function fixture(direction = 'rtl', count = 3, instances = 1, { autoplay = false
     const images = slides.map(() => ({ loading: 'lazy' }));
     slides.forEach((slide, i) => { slide.hidden = i !== 0; slide.querySelector = () => images[i]; });
     const controls = element(); controls.hidden = true;
-    const previous = element(), next = element(), status = element(), carousel = element(), pagination = element(), viewport = element(), toggle = autoplay ? element() : null;
-    if (toggle) { toggle.dataset.pauseLabel = 'Pause automatic banners'; toggle.dataset.resumeLabel = 'Resume automatic banners'; }
-    carousel.dataset.promotionAutoplay = String(enabled);
+    const previous = element(), next = element(), status = element(), carousel = element(), pagination = element(), viewport = element();
+    carousel.dataset.promotionAutoplay = String(autoplay && enabled);
+    if (interval !== undefined) carousel.dataset.promotionInterval = interval;
     pagination.dataset.slideLabel = 'Banner';
     carousel.querySelectorAll = () => slides;
-    carousel.querySelector = selector => ({ '[data-promotion-prev]': previous, '[data-promotion-next]': next, '[data-promotion-status]': status, '[data-promotion-controls]': controls, '[data-promotion-dots]': pagination, '[data-promotion-toggle]': toggle, '.beauty-promotions__viewport': viewport })[selector];
-    return { slides, images, get dots() { return pagination.children.filter(dot => 'data-promotion-dot' in dot.attrs); }, controls, previous, next, status, carousel, viewport, toggle };
+    carousel.querySelector = selector => ({ '[data-promotion-prev]': previous, '[data-promotion-next]': next, '[data-promotion-status]': status, '[data-promotion-controls]': controls, '[data-promotion-dots]': pagination, '.beauty-promotions__viewport': viewport })[selector];
+    return { slides, images, get dots() { return pagination.children.filter(dot => 'data-promotion-dot' in dot.attrs); }, controls, previous, next, status, carousel, viewport };
   });
   document.querySelectorAll = () => fixtures.map(f => f.carousel);
   let now = 1000;
@@ -303,26 +303,6 @@ test('autoplay gives each banner six seconds and cycles back without changing ma
   }
 });
 
-test('pause and resume retain user choice and never navigate a banner link', () => {
-  const f = fixture('rtl', 3, 1, { autoplay: true });
-  let prevented = 0, stopped = 0;
-  const event = { preventDefault() { prevented++; }, stopPropagation() { stopped++; } };
-  f.toggle.events.click(event);
-  assert.equal(f.toggle.attrs['aria-label'], 'Resume automatic banners');
-  assert.equal(f.status.attrs['aria-live'], 'polite');
-  f.advanceTime(18000);
-  assert.equal(f.dots[0].attrs['aria-current'], 'true');
-  f.carousel.events.mouseenter();
-  f.carousel.events.mouseleave();
-  assert.equal(f.timerCount, 0);
-  f.toggle.events.click(event);
-  assert.equal(f.toggle.attrs['aria-label'], 'Pause automatic banners');
-  f.advanceTime(6000);
-  assert.equal(f.dots[1].attrs['aria-current'], 'true');
-  assert.equal(prevented, 2);
-  assert.equal(stopped, 2);
-});
-
 test('hover, keyboard focus and a hidden document pause autoplay with a fresh interval on return', () => {
   const f = fixture('ltr', 3, 1, { autoplay: true });
   f.advanceTime(5000);
@@ -367,15 +347,16 @@ test('manual navigation and touch gestures reset the autoplay reading interval',
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
 });
 
-test('reduced motion starts paused and pauses again if the preference changes', () => {
+test('reduced motion suspends rotation without a visible play control', () => {
   const f = fixture('rtl', 3, 1, { autoplay: true, reduced: true });
   f.advanceTime(18000);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
-  assert.equal(f.toggle.attrs['aria-label'], 'Resume automatic banners');
-  // A deliberate resume is allowed, with CSS transitions still disabled.
-  f.toggle.events.click(clickEvent());
+  assert.equal(f.timerCount, 0);
+  f.motion.matches = false;
+  f.motion.events.change();
   f.advanceTime(6000);
   assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  f.motion.matches = true;
   f.motion.events.change();
   f.advanceTime(12000);
   assert.equal(f.dots[1].attrs['aria-current'], 'true');
@@ -386,7 +367,6 @@ test('merchant-disabled, zero-slide and single-slide carousels have no autoplay 
   for (const count of [0, 1, 3]) {
     const f = fixture('rtl', count, 1, { autoplay: true, enabled: false });
     assert.equal(f.timerCount, 0);
-    if (count > 1) assert.equal(f.toggle.hidden, true);
   }
   for (const count of [0, 1]) {
     const f = fixture('rtl', count, 1, { autoplay: true });
@@ -400,7 +380,7 @@ test('reinitialization does not duplicate timers and each instance can pause ind
   assert.equal(f.timerCount, 2);
   vm.runInNewContext('initPromotionCarousels();', f.context);
   assert.equal(f.timerCount, 2);
-  f.toggle.events.click(clickEvent());
+  f.carousel.events.mouseenter();
   f.advanceTime(6000);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
   assert.equal(f.fixtures[1].dots[1].attrs['aria-current'], 'true');
@@ -428,4 +408,29 @@ test('autoplay stops offscreen so changing natural image heights cannot shift vi
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
   f.advanceTime(1);
   assert.equal(f.dots[1].attrs['aria-current'], 'true');
+});
+
+test('configured duration is per instance, defaults to six seconds and rejects invalid values', () => {
+  for (const [input, expected] of [[undefined, 6], ['10', 10], ['3', 3], ['60', 60], ['', 6], ['NaN', 6], ['Infinity', 6], ['-5', 6], ['2', 6], ['61', 6], ['6.5', 6]]) {
+    const f = fixture('rtl', 3, 1, {autoplay: true, interval: input});
+    f.advanceTime(expected * 1000 - 1);
+    assert.equal(f.dots[0].attrs['aria-current'], 'true', String(input));
+    f.advanceTime(1);
+    assert.equal(f.dots[1].attrs['aria-current'], 'true', String(input));
+    assert.equal(f.controls.children.length, 0);
+    assert.equal(f.dots.length, 3);
+  }
+});
+
+test('merchant interval setting is passed to the timer without adding a visible control', () => {
+  const config = JSON.parse(fs.readFileSync(new URL('../twilight.json', import.meta.url), 'utf8'));
+  const field = config.settings.find(setting => setting.id === 'beauty_promotions_interval');
+  assert.equal(field.type, 'number');
+  assert.equal(field.format, 'integer');
+  assert.equal(field.value, 6);
+  assert.equal(field.minimum, 3);
+  assert.equal(field.maximum, 60);
+  const template = fs.readFileSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url), 'utf8');
+  assert.match(template, /data-promotion-interval=.*beauty_promotions_interval/);
+  assert.doesNotMatch(template, /data-promotion-toggle|data-promotion-play|data-promotion-pause/);
 });

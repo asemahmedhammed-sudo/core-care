@@ -8,8 +8,9 @@ export default function initPromotionCarousels(root = document) {
     if (slides.length < 2) return;
     const pagination = carousel.querySelector('[data-promotion-dots]');
     if (!controls || !pagination) return;
-    const toggle = carousel.querySelector('[data-promotion-toggle]');
-    const autoplay = carousel.dataset.promotionAutoplay !== 'false' && !!toggle;
+    const autoplay = carousel.dataset.promotionAutoplay === 'true';
+    const seconds = Number(carousel.dataset.promotionInterval);
+    const interval = Number.isInteger(seconds) && seconds >= 3 && seconds <= 60 ? seconds * 1000 : 6000;
     carousel.dataset.initialized = 'true';
     const instance = ++carouselSequence;
     // Derive controls from the rendered slides, including partially configured slots.
@@ -23,11 +24,10 @@ export default function initPromotionCarousels(root = document) {
       dot.setAttribute('aria-current', String(i === 0));
       return dot;
     });
-    pagination.replaceChildren(...dots, ...(toggle ? [toggle] : []));
+    pagination.replaceChildren(...dots);
     let current = 0;
     const status = carousel.querySelector('[data-promotion-status]');
     const motion = autoplay ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
-    let paused = motion?.matches || false;
     let hovered = false;
     let focused = false;
     let touching = false;
@@ -39,8 +39,6 @@ export default function initPromotionCarousels(root = document) {
         schedule();
       }, { threshold: .15 }) : null;
     const motionChanged = () => {
-      // Reduced motion pauses automatically; restarting requires an explicit action.
-      if (motion.matches) paused = true;
       schedule();
     };
     const schedule = () => {
@@ -53,19 +51,17 @@ export default function initPromotionCarousels(root = document) {
         motion.removeEventListener('change', motionChanged);
         return;
       }
-      toggle.dataset.paused = String(paused);
-      toggle.setAttribute('aria-label', paused ? toggle.dataset.resumeLabel : toggle.dataset.pauseLabel);
-      const stopped = paused || hovered || focused || touching || document.hidden || !inView;
+      const stopped = motion.matches || hovered || focused || touching || document.hidden || !inView;
       status.setAttribute('aria-live', stopped ? 'polite' : 'off');
       if (stopped) return;
-      // Warm only the upcoming image before its six-second reading interval ends.
+      // Warm only the upcoming image before the configured reading interval ends.
       const nextImage = slides[(current + 1) % slides.length].querySelector('img');
       if (nextImage) nextImage.loading = 'eager';
       timer = setTimeout(() => {
         if (!carousel.isConnected) { schedule(); return; }
         show((current + 1) % slides.length);
         schedule();
-      }, 6000);
+      }, interval);
     };
     const previous = carousel.querySelector('[data-promotion-prev]');
     const following = carousel.querySelector('[data-promotion-next]');
@@ -153,14 +149,7 @@ export default function initPromotionCarousels(root = document) {
     }, true);
     updateArrows();
     controls.hidden = false;
-    if (toggle) toggle.hidden = !autoplay;
     if (autoplay) {
-      toggle.addEventListener('click', event => {
-        event.preventDefault();
-        event.stopPropagation();
-        paused = !paused;
-        schedule();
-      });
       carousel.addEventListener('mouseenter', () => { hovered = true; schedule(); });
       carousel.addEventListener('mouseleave', () => { hovered = false; schedule(); });
       carousel.addEventListener('focusin', () => { focused = true; schedule(); });
