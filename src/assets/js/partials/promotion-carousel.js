@@ -25,18 +25,29 @@ export default function initPromotionCarousels(root = document) {
     });
     pagination.replaceChildren(...dots);
     let current = 0;
+    const previous = carousel.querySelector('[data-promotion-prev]');
+    const following = carousel.querySelector('[data-promotion-next]');
+    const updateArrows = () => {
+      previous.disabled = current === 0;
+      following.disabled = current === slides.length - 1;
+      previous.setAttribute('aria-hidden', String(previous.disabled));
+      following.setAttribute('aria-hidden', String(following.disabled));
+    };
     const rtl = () => getComputedStyle(carousel).direction === 'rtl';
     const show = index => {
-      const next = (index + slides.length) % slides.length;
+      const next = Math.max(0, Math.min(index, slides.length - 1));
       if (next === current) return;
       // Move focus before hiding a banner link or its optional CTA.
-      if (slides[current].contains(document.activeElement)) dots[next].focus();
+      if (slides[current].contains(document.activeElement)
+        || (next === 0 && document.activeElement === previous)
+        || (next === slides.length - 1 && document.activeElement === following)) dots[next].focus();
       current = next;
       slides.forEach((slide, i) => {
         slide.hidden = i !== current;
         slide.classList.toggle('is-entering', i === current);
       });
       dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
+      updateArrows();
       carousel.querySelector('[data-promotion-status]').textContent = slides[current].getAttribute('aria-label');
     };
     const navigate = index => event => {
@@ -45,8 +56,8 @@ export default function initPromotionCarousels(root = document) {
       event.stopPropagation();
       show(index());
     };
-    carousel.querySelector('[data-promotion-prev]').addEventListener('click', navigate(() => current - 1));
-    carousel.querySelector('[data-promotion-next]').addEventListener('click', navigate(() => current + 1));
+    previous.addEventListener('click', navigate(() => current - 1));
+    following.addEventListener('click', navigate(() => current + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', navigate(() => i)));
     carousel.addEventListener('keydown', event => {
       if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
@@ -84,9 +95,17 @@ export default function initPromotionCarousels(root = document) {
       // activation and later mouse clicks must still follow the banner link.
       const suppress = event.detail > 0 && Date.now() < suppressClickUntil;
       suppressClickUntil = 0;
-      if (event.target?.closest('[data-promotion-controls]')) return;
+      if (event.target?.closest('[data-promotion-controls]')) {
+        // Browsers differ in how clicks on disabled controls reach ancestors.
+        if (event.target.closest('button')?.disabled) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        return;
+      }
       if (suppress) event.preventDefault();
     }, true);
+    updateArrows();
     controls.hidden = false;
   });
 }

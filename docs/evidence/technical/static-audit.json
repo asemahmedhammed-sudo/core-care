@@ -1,12 +1,12 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-05T18:41:30.932Z",
+  "generatedAt": "2026-10-05T19:31:45.800Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
     "arch": "arm64"
   },
-  "root": "/private/tmp/core-care-promo-position-push",
+  "root": "/private/tmp/core-care-promo-bounded-push",
   "upstream": {
     "source": "https://github.com/SallaApp/theme-raed",
     "commit": "4332880be63909cc4251ea8783d25c88efa8f468",
@@ -1823,7 +1823,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "b7bfb9cda7a722399bf505f2ad79f7bc8674e48fc798cecef8fdfafefef6f88a"
+      "sha256": "b9763fdb6772948f0ece9e1cc7e0049bcaaaa6cf10c02d632bd0aace72619bcd"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -1843,7 +1843,7 @@
     {
       "file": "src/views/pages/index.twig",
       "kind": "modified-upstream",
-      "sha256": "a3a65c7873917b99e6a6ddcb81ebaae983fbced511cc1ac16ee62a2064687166"
+      "sha256": "b26d568db84eaf3c3e44d369cc2a80547016ffbdc1f00784f3de0348dc06fd32"
     },
     {
       "file": "src/views/pages/partials/home/product-section-footer.twig",
@@ -1863,7 +1863,7 @@
     {
       "file": "src/views/pages/partials/home/promotions.twig",
       "kind": "new-template",
-      "sha256": "2a1f9fbf36a824d57cdae886765d4751edf9daac31b0e0d9100bd48902d94790"
+      "sha256": "16fb81e2a449689d7527a4b1f6c6e173dca0fabbb58017bd8f72ce7d205369cb"
     },
     {
       "file": "src/views/pages/partials/product/gallery.twig",

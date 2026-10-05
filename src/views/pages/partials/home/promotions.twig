@@ -21,8 +21,8 @@
       <div data-promotion-slide class="beauty-promotions__slide" aria-label="{{ title|e('html_attr') }}" {% if visible_slide != 1 %}hidden{% endif %}>
         <a class="beauty-promotions__image-link" href="{{ destination|e('html_attr') }}" aria-label="{{ title|e('html_attr') }}">
           <picture class="beauty-promotions__media">
-            {% if mobile_image %}<source media="(max-width: 767px)" srcset="{{ mobile_image|e('html_attr') }}" width="960" height="480">{% endif %}
-            <img class="beauty-promotions__artwork" src="{{ image|e('html_attr') }}" alt="{{ title|e('html_attr') }}" width="{{ default_artwork ? 1440 : 1920 }}" height="480" loading="{{ visible_slide == 1 ? 'eager' : 'lazy' }}" {% if visible_slide == 1 %}fetchpriority="high"{% endif %}>
+            {% if mobile_image %}<source media="(max-width: 767px)" srcset="{{ mobile_image|e('html_attr') }}" width="960" height="320">{% endif %}
+            <img class="beauty-promotions__artwork" src="{{ image|e('html_attr') }}" alt="{{ title|e('html_attr') }}" width="1440" height="480" loading="{{ visible_slide == 1 ? 'eager' : 'lazy' }}" {% if visible_slide == 1 %}fetchpriority="high"{% endif %}>
           </picture>
         </a>
         {% if show_title or valid_destination %}

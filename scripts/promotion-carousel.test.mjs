@@ -71,10 +71,11 @@ test('pagination uses actual rendered count and accessible sequential labels', (
       assert.equal(dot.attrs['aria-controls'], f.slides[i].id);
     });
     f.previous.events.click(clickEvent());
-    assert.equal(f.status.textContent, `Banner ${count}`);
-    assert.equal(f.dots[count - 1].attrs['aria-current'], 'true');
-    f.next.events.click(clickEvent());
     assert.equal(f.dots[0].attrs['aria-current'], 'true');
+    f.dots[count - 1].events.click(clickEvent());
+    assert.equal(f.status.textContent, `Banner ${count}`);
+    f.next.events.click(clickEvent());
+    assert.equal(f.dots[count - 1].attrs['aria-current'], 'true');
     f.dots[1].events.click(clickEvent());
     assert.deepEqual(f.slides.map(slide => slide.hidden), Array.from({ length: count }, (_, i) => i !== 1));
   }
@@ -88,22 +89,28 @@ test('the first indicator starts at the visual center with slide order preserved
     assert.equal(f.dots[1].attrs['aria-current'], 'true');
   }
 });
-test('three arrow presses wrap to the first banner and never trigger delegated navigation', () => {
+test('arrows stop at both ends and never trigger delegated navigation', () => {
   for (const direction of ['rtl', 'ltr']) {
-    const f = fixture(direction);
-    let prevented = 0, stopped = 0;
-    const event = { preventDefault() { prevented++; }, stopPropagation() { stopped++; } };
-    for (let cycle = 0; cycle < 10; cycle++) {
-      for (let step = 0; step < 3; step++) f.next.events.click(event);
+    for (const count of [2, 3, 5]) {
+      const f = fixture(direction, count);
+      assert.equal(f.previous.disabled, true);
+      assert.equal(f.previous.attrs['aria-hidden'], 'true');
+      assert.equal(f.next.disabled, false);
+      let prevented = 0, stopped = 0;
+      const event = { preventDefault() { prevented++; }, stopPropagation() { stopped++; } };
+      for (let step = 0; step < 30; step++) f.next.events.click(event);
+      assert.equal(f.dots[count - 1].attrs['aria-current'], 'true');
+      assert.equal(f.next.disabled, true);
+      assert.equal(f.next.attrs['aria-hidden'], 'true');
+      assert.equal(f.previous.disabled, false);
+      for (let step = 0; step < 30; step++) f.previous.events.click(event);
       assert.equal(f.dots[0].attrs['aria-current'], 'true');
-      assert.deepEqual(f.slides.map(slide => slide.hidden), [false, true, true]);
+      assert.equal(f.previous.disabled, true);
+      f.dots[1].events.click(event);
+      assert.equal(f.dots[1].attrs['aria-current'], 'true');
+      assert.equal(prevented, 61);
+      assert.equal(stopped, 61);
     }
-    f.previous.events.click(event);
-    assert.equal(f.dots[2].attrs['aria-current'], 'true');
-    f.dots[0].events.click(event);
-    assert.equal(f.dots[0].attrs['aria-current'], 'true');
-    assert.equal(prevented, 32);
-    assert.equal(stopped, 32);
   }
 });
 test('touches on overlaid controls do not swipe or suppress navigation clicks', () => {
@@ -118,19 +125,27 @@ test('touches on overlaid controls do not swipe or suppress navigation clicks', 
   f.next.events.click(clickEvent());
   assert.equal(f.dots[2].attrs['aria-current'], 'true');
 });
-test('keyboard and swipe follow RTL/LTR, with Home and End navigation', () => {
+test('keyboard and swipe follow RTL/LTR and stop at the first and last slide', () => {
   for (const direction of ['rtl', 'ltr']) {
     const f = fixture(direction);
-    key(f, 'ArrowRight');
-    assert.equal(f.status.textContent, direction === 'rtl' ? 'Banner 3' : 'Banner 2');
+    const forward = direction === 'rtl' ? 'ArrowLeft' : 'ArrowRight';
+    const backward = direction === 'rtl' ? 'ArrowRight' : 'ArrowLeft';
+    key(f, backward);
+    assert.equal(f.dots[0].attrs['aria-current'], 'true');
+    key(f, forward);
+    assert.equal(f.status.textContent, 'Banner 2');
     key(f, 'Home');
     assert.equal(f.status.textContent, 'Banner 1');
-    swipe(f, -80);
-    assert.equal(f.status.textContent, direction === 'rtl' ? 'Banner 3' : 'Banner 2');
+    swipe(f, direction === 'rtl' ? -80 : 80);
+    assert.equal(f.dots[0].attrs['aria-current'], 'true');
+    swipe(f, direction === 'rtl' ? 80 : -80);
+    assert.equal(f.status.textContent, 'Banner 2');
     key(f, 'End');
+    key(f, forward);
+    swipe(f, direction === 'rtl' ? 80 : -80);
     assert.equal(f.dots[2].attrs['aria-current'], 'true');
-    key(f, 'ArrowLeft');
-    assert.equal(f.status.textContent, direction === 'rtl' ? 'Banner 1' : 'Banner 2');
+    key(f, backward);
+    assert.equal(f.status.textContent, 'Banner 2');
   }
 });
 test('vertical, short, cancelled and multi-touch gestures preserve active slide', () => {
@@ -201,10 +216,36 @@ test('hiding a focused image link or CTA moves focus to the destination indicato
   assert.equal(f.document.activeElement, f.dots[1]);
   f.document.activeElement = f.previous;
   f.previous.events.click(clickEvent());
-  assert.equal(f.document.activeElement, f.previous);
+  assert.equal(f.document.activeElement, f.dots[0]);
 });
 test('keyboard navigation does not consume editable field keys', () => {
   const f = fixture();
   key(f, 'ArrowLeft', { closest: () => ({}) });
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+});
+
+test('focus moves to pagination before a terminal arrow becomes unavailable', () => {
+  const f = fixture();
+  f.dots[1].events.click(clickEvent());
+  f.document.activeElement = f.next;
+  f.next.events.click(clickEvent());
+  assert.equal(f.next.disabled, true);
+  assert.equal(f.document.activeElement, f.dots[2]);
+  f.dots[1].events.click(clickEvent());
+  assert.equal(f.previous.disabled, false);
+  assert.equal(f.next.disabled, false);
+});
+
+test('disabled arrow capture blocks boundary clicks that a browser bubbles to ancestors', () => {
+  const f = fixture();
+  let prevented = false, stopped = false;
+  f.viewport.events.click({
+    target: {closest: selector => selector === 'button' ? f.previous : f.controls},
+    detail: 1,
+    preventDefault() { prevented = true; },
+    stopPropagation() { stopped = true; }
+  });
+  assert.equal(prevented, true);
+  assert.equal(stopped, true);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
 });
