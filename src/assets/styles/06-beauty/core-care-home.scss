@@ -35,10 +35,10 @@ body.theme-beauty.beauty-reference-home {
   .beauty-promotions__slide { display: contents; }
   .beauty-promotions__slide.is-entering > * { animation: beauty-promotion-enter .35s ease; }
   .beauty-promotions__image-link { display: block; grid-area: 1 / 1 / 2 / -1; min-width: 0; border-radius: var(--cc-media-radius); }
-  // One reserved frame for every slide; contain keeps different artwork intact.
+  // Fill the shared frame without stretching artwork or leaving side gutters.
   .beauty-promotions__media { display: block; aspect-ratio: 3 / 1; border-radius: var(--cc-media-radius); overflow: hidden; background: var(--cc-canvas); }
-  .beauty-promotions__artwork { display: block; width: 100%; height: 100%; object-fit: contain; }
-  .beauty-promotions__copy { grid-area: 3 / 1 / 4 / -1; min-width: 0; display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px; padding-block-start: 8px; }
+  .beauty-promotions__artwork { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .beauty-promotions__copy { grid-area: 2 / 1 / 3 / -1; min-width: 0; display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px; padding-block-start: 8px; }
   .beauty-promotions__copy h2 { flex: 1 1 200px; min-width: 0; font-size: 18px; font-weight: 500; line-height: 28px; overflow-wrap: anywhere; }
   .beauty-promotions__action { max-width: 100%; text-align: center; overflow-wrap: anywhere; }
   .beauty-promotions__controls {
@@ -60,15 +60,21 @@ body.theme-beauty.beauty-reference-home {
     box-shadow: 0 1px 4px #00000012; transition: background-color .35s ease;
   }
   .beauty-promotions__arrow svg { position: relative; width: 18px; height: 18px; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  // Separate row below the image; optional copy cannot cover the indicators.
+  // A subtle capsule inside the artwork; full-size targets remain separate.
   .beauty-promotions__dots {
-    grid-area: 2 / 1 / 3 / -1; justify-self: center;
-    margin-block-start: 4px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-    width: max-content; max-width: 100%; min-width: 0;
+    grid-area: 1 / 1 / 2 / -1; justify-self: center; align-self: end;
+    position: relative; z-index: 2; margin-block-end: 4px;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    width: max-content; max-width: calc(100% - 120px); min-width: 0;
   }
-  .beauty-promotions__dots button { flex: 0 0 44px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
-  .beauty-promotions__dots button::before { content: ''; width: 6px; height: 6px; background: var(--cc-text-muted); border-radius: 999px; transition: width .35s ease, background-color .35s ease; }
-  .beauty-promotions__dots [aria-current='true']::before { width: 24px; background: var(--promo-accent); }
+  .beauty-promotions__dots::before {
+    content: ''; position: absolute; inset-block: 10px; inset-inline: 8px;
+    border-radius: 999px; background: color-mix(in srgb, var(--cc-surface) 85%, transparent);
+    box-shadow: 0 1px 4px #00000012; pointer-events: none;
+  }
+  .beauty-promotions__dots button { position: relative; flex: 0 0 44px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
+  .beauty-promotions__dots button::before { content: ''; width: 6px; height: 6px; background: var(--cc-text-muted); border-radius: 999px; transition: transform .35s ease, background-color .35s ease; }
+  .beauty-promotions__dots [aria-current='true']::before { transform: scale(1.35); background: var(--promo-accent); }
   .beauty-promotions :focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
   @media (hover: hover) {
     .beauty-promotions__arrow:hover::before { background: var(--cc-utility-surface); }

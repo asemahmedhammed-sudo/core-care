@@ -1,0 +1,1753 @@
+{
+  "environment": "Local manually assembled Twig-equivalent fixtures in Codex in-app browser; not Salla",
+  "revision": "20261005-promo-cover-dots-1",
+  "records": [
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        296,
+        98.6640625
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        296,
+        98.6640625
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        336,
+        112
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        336,
+        112
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(17, 12, 20)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        366,
+        122
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        366,
+        122
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        741.890625,
+        247.296875
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        741.890625,
+        247.296875
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        1392,
+        464
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "accent": "rgb(14, 9, 17)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        1392,
+        464
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        296,
+        98.6640625
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        296,
+        98.6640625
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        336,
+        112
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        336,
+        112
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(14, 9, 17)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        366,
+        122
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "accent": "rgb(13, 8, 16)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        366,
+        122
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        741.890625,
+        247.296875
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "accent": "rgb(14, 9, 17)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        741.890625,
+        247.296875
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        1392,
+        464
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "accent": "rgb(14, 9, 17)",
+      "active": "Banner 3",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        1392,
+        464
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "accent": "color(srgb 1 1 1 / 0.85)",
+      "active": "Banner 1",
+      "activeShape": "auto",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": true,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 0,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 1,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 2,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 2,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        336,
+        112
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        336,
+        112
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(18, 13, 20)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        366,
+        122
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        366,
+        122
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        741.890625,
+        247.296875
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        741.890625,
+        247.296875
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        1392,
+        464
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        1392,
+        464
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "accent": "color(srgb 1 1 1 / 0.85)",
+      "active": "Banner 1",
+      "activeShape": "auto",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": true,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 0,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 1,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 2,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 2,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        336,
+        112
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        336,
+        112
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        351,
+        117
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        366,
+        122
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        366,
+        122
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        741.890625,
+        247.296875
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        741.890625,
+        247.296875
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "accent": "rgb(12, 7, 15)",
+      "active": "Banner 1",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        1392,
+        464
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "accent": "rgb(14, 9, 16)",
+      "active": "Banner 2",
+      "activeShape": "6px",
+      "arrowCentered": true,
+      "capsule": "color(srgb 1 1 1 / 0.85)",
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fit": "cover",
+      "frame": [
+        1392,
+        464
+      ],
+      "leaks": 0,
+      "loaded": true,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "previousGap": 16,
+      "slides": 3,
+      "targets44": true,
+      "width": 1440
+    }
+  ],
+  "interactions": [
+    {
+      "direction": "rtl",
+      "step": "next-keyboard",
+      "result": {
+        "accent": "rgb(71, 69, 72)",
+        "active": "Banner 2",
+        "activeShape": "6px",
+        "arrowCentered": true,
+        "capsule": "color(srgb 1 1 1 / 0.85)",
+        "controlsHidden": false,
+        "copyBelow": true,
+        "direction": "rtl",
+        "dotCount": 3,
+        "dotsCentered": true,
+        "dotsInside": true,
+        "fit": "cover",
+        "frame": [
+          366,
+          122
+        ],
+        "leaks": 0,
+        "loaded": true,
+        "natural": [
+          1000,
+          1000
+        ],
+        "nextGap": 24,
+        "overflow": false,
+        "overlap": false,
+        "previousGap": 16,
+        "slides": 3,
+        "targets44": true,
+        "width": 390
+      }
+    },
+    {
+      "direction": "rtl",
+      "step": "direction-keyboard",
+      "result": {
+        "accent": "rgb(71, 69, 73)",
+        "active": "Banner 3",
+        "activeShape": "6px",
+        "arrowCentered": true,
+        "capsule": "color(srgb 1 1 1 / 0.85)",
+        "controlsHidden": false,
+        "copyBelow": true,
+        "direction": "rtl",
+        "dotCount": 3,
+        "dotsCentered": true,
+        "dotsInside": true,
+        "fit": "cover",
+        "frame": [
+          366,
+          122
+        ],
+        "leaks": 0,
+        "loaded": true,
+        "natural": [
+          1440,
+          576
+        ],
+        "nextGap": 24,
+        "overflow": false,
+        "overlap": false,
+        "previousGap": 16,
+        "slides": 3,
+        "targets44": true,
+        "width": 390
+      }
+    },
+    {
+      "direction": "rtl",
+      "step": "home-end",
+      "result": {
+        "accent": "rgb(20, 16, 23)",
+        "active": "Banner 3",
+        "activeShape": "6px",
+        "arrowCentered": true,
+        "capsule": "color(srgb 1 1 1 / 0.85)",
+        "controlsHidden": false,
+        "copyBelow": true,
+        "direction": "rtl",
+        "dotCount": 3,
+        "dotsCentered": true,
+        "dotsInside": true,
+        "fit": "cover",
+        "frame": [
+          366,
+          122
+        ],
+        "leaks": 0,
+        "loaded": true,
+        "natural": [
+          1440,
+          576
+        ],
+        "nextGap": 24,
+        "overflow": false,
+        "overlap": false,
+        "previousGap": 16,
+        "slides": 3,
+        "targets44": true,
+        "width": 390
+      },
+      "focus": {
+        "label": "Banner 1",
+        "nextDisabled": true,
+        "outline": "solid",
+        "prevDisabled": false
+      }
+    },
+    {
+      "direction": "ltr",
+      "step": "next-keyboard",
+      "result": {
+        "accent": "rgb(35, 31, 38)",
+        "active": "Banner 2",
+        "activeShape": "6px",
+        "arrowCentered": true,
+        "capsule": "color(srgb 1 1 1 / 0.85)",
+        "controlsHidden": false,
+        "copyBelow": true,
+        "direction": "ltr",
+        "dotCount": 3,
+        "dotsCentered": true,
+        "dotsInside": true,
+        "fit": "cover",
+        "frame": [
+          366,
+          122
+        ],
+        "leaks": 0,
+        "loaded": true,
+        "natural": [
+          1000,
+          1000
+        ],
+        "nextGap": 24,
+        "overflow": false,
+        "overlap": false,
+        "previousGap": 16,
+        "slides": 3,
+        "targets44": true,
+        "width": 390
+      }
+    },
+    {
+      "direction": "ltr",
+      "step": "direction-keyboard",
+      "result": {
+        "accent": "rgb(66, 64, 68)",
+        "active": "Banner 3",
+        "activeShape": "6px",
+        "arrowCentered": true,
+        "capsule": "color(srgb 1 1 1 / 0.85)",
+        "controlsHidden": false,
+        "copyBelow": true,
+        "direction": "ltr",
+        "dotCount": 3,
+        "dotsCentered": true,
+        "dotsInside": true,
+        "fit": "cover",
+        "frame": [
+          366,
+          122
+        ],
+        "leaks": 0,
+        "loaded": true,
+        "natural": [
+          1440,
+          576
+        ],
+        "nextGap": 24,
+        "overflow": false,
+        "overlap": false,
+        "previousGap": 16,
+        "slides": 3,
+        "targets44": true,
+        "width": 390
+      }
+    },
+    {
+      "direction": "ltr",
+      "step": "home-end",
+      "result": {
+        "accent": "rgb(24, 20, 27)",
+        "active": "Banner 3",
+        "activeShape": "6px",
+        "arrowCentered": true,
+        "capsule": "color(srgb 1 1 1 / 0.85)",
+        "controlsHidden": false,
+        "copyBelow": true,
+        "direction": "ltr",
+        "dotCount": 3,
+        "dotsCentered": true,
+        "dotsInside": true,
+        "fit": "cover",
+        "frame": [
+          366,
+          122
+        ],
+        "leaks": 0,
+        "loaded": true,
+        "natural": [
+          1440,
+          576
+        ],
+        "nextGap": 24,
+        "overflow": false,
+        "overlap": false,
+        "previousGap": 16,
+        "slides": 3,
+        "targets44": true,
+        "width": 390
+      },
+      "focus": {
+        "label": "Banner 1",
+        "nextDisabled": true,
+        "outline": "solid",
+        "prevDisabled": false
+      }
+    }
+  ],
+  "baseRevision": "0a3eedb",
+  "repositoryChecks": {
+    "build": "passed",
+    "tests": {
+      "passed": 54,
+      "failed": 0
+    },
+    "staticAudit": {
+      "passed": 13,
+      "failed": 0
+    },
+    "warnings": [
+      "Existing Sass @import deprecations",
+      "Existing Webpack asset and entrypoint size warnings",
+      "Existing Tailwind line-clamp plugin notice"
+    ]
+  },
+  "sourceHashes": {
+    "src/assets/styles/06-beauty/core-care-home.scss": "4f9005aa0b60483a2f67aa1108ca43f5050b46678b6f7f646dafa7ed581764b9",
+    "src/views/layouts/master.twig": "259945159fa0ea55831959909fb02ac8886d3a99a1af150eecdac0402d63d2d4",
+    "src/views/pages/index.twig": "39bcc2dd28450b83ff76ab47ade6fda8aec7e92045c0a133afa55010c0ec391a",
+    "twilight.json": "718c674f4fb513fa12ef08c29db7cdc7f8029dc7e2ec3a67e2d894ed35a94e20",
+    "public/app.css": "e4141927cbc4d7b014d47cd1af190ebbad4233f74d2caeb9efa16fa78862be68",
+    "public/home.js": "0d7e5ed2eac420a73ded59eaab19a01ecea266811bd599fed8c3888027e1578c"
+  },
+  "platformVerification": {
+    "status": "incomplete",
+    "currentBuildServedBySalla": "not verified",
+    "chrome": "not connected to available browser tooling",
+    "preview": "No fresh preview attempted for this correction. The preceding dated bounded-frame check records Salla rejecting preview with Tag 1.1.27 already exists / Authorization Error. No version workaround or live-store change applied."
+  },
+  "screenshots": [
+    "output/qa/promo-cover-desktop-1440-2026-10-05.jpg",
+    "output/qa/promo-cover-mobile-390-2026-10-05.jpg"
+  ]
+}
