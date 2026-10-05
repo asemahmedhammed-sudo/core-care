@@ -27,7 +27,7 @@ test('shopping destinations accept HTTPS store links and reject unsafe or malfor
 
 function fixture(direction = 'rtl', count = 3, instances = 1) {
   const document = { activeElement: null };
-  const element = (label = '') => ({ hidden: false, dataset: {}, attrs: { 'aria-label': label }, events: {}, children: [],
+  const element = (label = '') => ({ hidden: false, dataset: {}, style: {}, attrs: { 'aria-label': label }, events: {}, children: [],
     classList: { toggle() {} },
     addEventListener(event, callback) { this.events[event] = callback; },
     setAttribute(key, value) { this.attrs[key] = value; }, getAttribute(key) { return this.attrs[key]; },
@@ -53,6 +53,7 @@ function fixture(direction = 'rtl', count = 3, instances = 1) {
   vm.runInNewContext(source + '\ninitPromotionCarousels();', context);
   return { ...fixtures[0], fixtures, context, document, advanceTime(ms) { now += ms; } };
 }
+const clickEvent = () => ({ detail: 1, preventDefault() {}, stopPropagation() {} });
 const key = (f, value, target = f.next) => f.carousel.events.keydown({ key: value, target, preventDefault() {} });
 const swipe = (f, dx, dy = 0) => {
   f.viewport.events.touchstart({ touches: [{ clientX: 100, clientY: 100 }] });
@@ -69,14 +70,53 @@ test('pagination uses actual rendered count and accessible sequential labels', (
       assert.equal(dot.attrs['aria-label'], `Banner ${i + 1}`);
       assert.equal(dot.attrs['aria-controls'], f.slides[i].id);
     });
-    f.previous.events.click();
+    f.previous.events.click(clickEvent());
     assert.equal(f.status.textContent, `Banner ${count}`);
     assert.equal(f.dots[count - 1].attrs['aria-current'], 'true');
-    f.next.events.click();
+    f.next.events.click(clickEvent());
     assert.equal(f.dots[0].attrs['aria-current'], 'true');
-    f.dots[1].events.click();
+    f.dots[1].events.click(clickEvent());
     assert.deepEqual(f.slides.map(slide => slide.hidden), Array.from({ length: count }, (_, i) => i !== 1));
   }
+});
+test('the first indicator starts at the visual center with slide order preserved', () => {
+  for (const count of [2, 3, 5]) {
+    const f = fixture('rtl', count);
+    assert.equal(Number(f.dots[0].style.order), Math.floor((count - 1) / 2));
+    assert.deepEqual(f.dots.map(dot => Number(dot.style.order)).sort((a, b) => a - b), Array.from({length: count}, (_, i) => i));
+    f.next.events.click(clickEvent());
+    assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  }
+});
+test('three arrow presses wrap to the first banner and never trigger delegated navigation', () => {
+  for (const direction of ['rtl', 'ltr']) {
+    const f = fixture(direction);
+    let prevented = 0, stopped = 0;
+    const event = { preventDefault() { prevented++; }, stopPropagation() { stopped++; } };
+    for (let cycle = 0; cycle < 10; cycle++) {
+      for (let step = 0; step < 3; step++) f.next.events.click(event);
+      assert.equal(f.dots[0].attrs['aria-current'], 'true');
+      assert.deepEqual(f.slides.map(slide => slide.hidden), [false, true, true]);
+    }
+    f.previous.events.click(event);
+    assert.equal(f.dots[2].attrs['aria-current'], 'true');
+    f.dots[0].events.click(event);
+    assert.equal(f.dots[0].attrs['aria-current'], 'true');
+    assert.equal(prevented, 32);
+    assert.equal(stopped, 32);
+  }
+});
+test('touches on overlaid controls do not swipe or suppress navigation clicks', () => {
+  const f = fixture();
+  f.viewport.events.touchstart({ target: { closest: () => f.controls }, touches: [{ clientX: 100, clientY: 100 }] });
+  f.viewport.events.touchend({ changedTouches: [{ clientX: 200, clientY: 100 }] });
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+  swipe(f, 80);
+  let prevented = false;
+  f.viewport.events.click({target: {closest: () => f.controls}, detail: 1, preventDefault() { prevented = true; }});
+  assert.equal(prevented, false);
+  f.next.events.click(clickEvent());
+  assert.equal(f.dots[2].attrs['aria-current'], 'true');
 });
 test('keyboard and swipe follow RTL/LTR, with Home and End navigation', () => {
   for (const direction of ['rtl', 'ltr']) {
@@ -143,7 +183,7 @@ test('zero or one image leaves navigation hidden and creates no indicators or ha
 });
 test('reinitialization preserves active slide and controls; instances have unique targets', () => {
   const f = fixture('rtl', 3, 2);
-  f.dots[2].events.click();
+  f.dots[2].events.click(clickEvent());
   const nextHandler = f.next.events.click;
   vm.runInNewContext('initPromotionCarousels();', f.context);
   assert.equal(f.dots.length, 3);
@@ -157,10 +197,10 @@ test('hiding a focused image link or CTA moves focus to the destination indicato
   const cta = {};
   f.slides[0].children.push(cta);
   f.document.activeElement = cta;
-  f.next.events.click();
+  f.next.events.click(clickEvent());
   assert.equal(f.document.activeElement, f.dots[1]);
   f.document.activeElement = f.previous;
-  f.previous.events.click();
+  f.previous.events.click(clickEvent());
   assert.equal(f.document.activeElement, f.previous);
 });
 test('keyboard navigation does not consume editable field keys', () => {

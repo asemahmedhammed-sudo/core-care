@@ -15,6 +15,8 @@ export default function initPromotionCarousels(root = document) {
       slide.id = `beauty-promotion-${instance}-${i + 1}`;
       const dot = document.createElement('button');
       dot.type = 'button';
+      // Start the visual sequence in the middle without changing slide order.
+      dot.style.order = String((i + Math.floor((slides.length - 1) / 2)) % slides.length);
       dot.setAttribute('data-promotion-dot', '');
       dot.setAttribute('aria-label', `${pagination.dataset.slideLabel} ${i + 1}`);
       dot.setAttribute('aria-controls', slide.id);
@@ -37,9 +39,15 @@ export default function initPromotionCarousels(root = document) {
       dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
       carousel.querySelector('[data-promotion-status]').textContent = slides[current].getAttribute('aria-label');
     };
-    carousel.querySelector('[data-promotion-prev]').addEventListener('click', () => show(current - 1));
-    carousel.querySelector('[data-promotion-next]').addEventListener('click', () => show(current + 1));
-    dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+    const navigate = index => event => {
+      // Navigation belongs to the carousel, never to banner or delegated links.
+      event.preventDefault();
+      event.stopPropagation();
+      show(index());
+    };
+    carousel.querySelector('[data-promotion-prev]').addEventListener('click', navigate(() => current - 1));
+    carousel.querySelector('[data-promotion-next]').addEventListener('click', navigate(() => current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', navigate(() => i)));
     carousel.addEventListener('keydown', event => {
       if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
       if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
@@ -53,6 +61,10 @@ export default function initPromotionCarousels(root = document) {
     const viewport = carousel.querySelector('.beauty-promotions__viewport');
     viewport.addEventListener('touchstart', event => {
       suppressClickUntil = 0;
+      if (event.target?.closest('[data-promotion-controls]')) {
+        start = null;
+        return;
+      }
       const touch = event.touches[0];
       start = event.touches.length === 1 ? { x: touch.clientX, y: touch.clientY } : null;
     }, { passive: true });
@@ -72,6 +84,7 @@ export default function initPromotionCarousels(root = document) {
       // activation and later mouse clicks must still follow the banner link.
       const suppress = event.detail > 0 && Date.now() < suppressClickUntil;
       suppressClickUntil = 0;
+      if (event.target?.closest('[data-promotion-controls]')) return;
       if (suppress) event.preventDefault();
     }, true);
     controls.hidden = false;

@@ -1,12 +1,12 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-05T18:11:48.906Z",
+  "generatedAt": "2026-10-05T18:41:30.932Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
     "arch": "arm64"
   },
-  "root": "/private/tmp/core-care-promo-push",
+  "root": "/private/tmp/core-care-promo-position-push",
   "upstream": {
     "source": "https://github.com/SallaApp/theme-raed",
     "commit": "4332880be63909cc4251ea8783d25c88efa8f468",
@@ -312,7 +312,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 76,
+    "keyCount": 83,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -1823,7 +1823,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "387e8821d4fa21f2dc48fcc1e17be1737715a0eb364588103e5e1c27406b56e5"
+      "sha256": "b7bfb9cda7a722399bf505f2ad79f7bc8674e48fc798cecef8fdfafefef6f88a"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -1843,7 +1843,7 @@
     {
       "file": "src/views/pages/index.twig",
       "kind": "modified-upstream",
-      "sha256": "87f4c66c5621283d12682c3eaeea17536c59daf389b4fd7f2626aa8ef5c999da"
+      "sha256": "a3a65c7873917b99e6a6ddcb81ebaae983fbced511cc1ac16ee62a2064687166"
     },
     {
       "file": "src/views/pages/partials/home/product-section-footer.twig",
@@ -1863,7 +1863,7 @@
     {
       "file": "src/views/pages/partials/home/promotions.twig",
       "kind": "new-template",
-      "sha256": "d6d814674c1509bd9f916ca624680fdcfc33a0438e0c4833cb7b6714f7e46a29"
+      "sha256": "2a1f9fbf36a824d57cdae886765d4751edf9daac31b0e0d9100bd48902d94790"
     },
     {
       "file": "src/views/pages/partials/product/gallery.twig",
@@ -1873,7 +1873,7 @@
     {
       "file": "src/views/pages/product/index.twig",
       "kind": "modified-upstream",
-      "sha256": "691bbe0f7031e8c400fde0e102944812475406a25cefb66a466fa9442e7ca911"
+      "sha256": "52a95bc991d1b663ba9af13b80d2260a195eebac6935b8ce18dd6c86eb57f0c8"
     },
     {
       "file": "src/views/pages/product/single.twig",

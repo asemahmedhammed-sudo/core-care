@@ -29,31 +29,35 @@ body.theme-beauty.beauty-reference-home {
 
   .beauty-promotions { width: 100%; padding: 16px var(--cc-gutter) 0; background: transparent; }
   .beauty-promotions__viewport, .beauty-promotions__controls { max-width: 1392px; margin-inline: auto; }
+  // Shared grid anchors arrows to the artwork row, independent of optional copy.
+  .beauty-promotions__viewport { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; }
   .beauty-promotions [hidden] { display: none !important; }
-  .beauty-promotions__slide { min-width: 0; }
-  .beauty-promotions__slide.is-entering { animation: beauty-promotion-enter .35s ease; }
-  .beauty-promotions__image-link { display: block; border-radius: var(--cc-media-radius); }
+  .beauty-promotions__slide { display: contents; }
+  .beauty-promotions__slide.is-entering > * { animation: beauty-promotion-enter .35s ease; }
+  .beauty-promotions__image-link { display: block; grid-area: 1 / 1 / 2 / -1; min-width: 0; border-radius: var(--cc-media-radius); }
   .beauty-promotions__media { display: block; border-radius: var(--cc-media-radius); overflow: hidden; background: var(--cc-canvas); }
   // Intrinsic ratios keep uploaded artwork complete without an empty fixed frame.
   .beauty-promotions__artwork { display: block; width: 100%; height: auto; object-fit: contain; }
-  .beauty-promotions__copy { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px; padding-block-start: 12px; }
+  .beauty-promotions__copy { grid-area: 2 / 1 / 3 / -1; min-width: 0; display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px; padding-block-start: 12px; }
   .beauty-promotions__copy h2 { flex: 1 1 200px; min-width: 0; font-size: 18px; font-weight: 500; line-height: 28px; overflow-wrap: anywhere; }
   .beauty-promotions__action { max-width: 100%; text-align: center; overflow-wrap: anywhere; }
   .beauty-promotions__controls {
-    --promo-accent: var(--cc-secondary);
-    display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 4px;
-    margin-block-start: 4px; color: var(--cc-icon);
+    --promo-accent: var(--cc-action);
+    display: contents; color: var(--cc-icon);
   }
   .beauty-promotions__arrow {
-    position: relative; display: grid; place-items: center; width: 44px; height: 44px;
+    grid-row: 1; align-self: center; position: relative; z-index: 2;
+    display: grid; place-items: center; width: 44px; height: 44px;
     border: 0; border-radius: 50%; background: transparent; color: var(--cc-icon); cursor: pointer;
   }
+  .beauty-promotions__arrow--prev { grid-column: 1; justify-self: start; margin-inline-start: 8px; }
+  .beauty-promotions__arrow--next { grid-column: 3; justify-self: end; margin-inline-end: 8px; }
   .beauty-promotions__arrow::before {
     content: ''; position: absolute; inset: 6px; border-radius: inherit; background: var(--cc-surface);
     box-shadow: 0 1px 3px #0000000a; transition: background-color .35s ease;
   }
   .beauty-promotions__arrow svg { position: relative; width: 18px; height: 18px; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .beauty-promotions__dots { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; min-width: 0; }
+  .beauty-promotions__dots { grid-area: 3 / 1 / 4 / -1; margin-block-start: 4px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; min-width: 0; }
   .beauty-promotions__dots button { flex: 0 0 44px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
   .beauty-promotions__dots button::before { content: ''; width: 6px; height: 6px; background: var(--cc-text-muted); border-radius: 999px; transition: width .35s ease, background-color .35s ease; }
   .beauty-promotions__dots [aria-current='true']::before { width: 24px; background: var(--promo-accent); }
@@ -63,7 +67,7 @@ body.theme-beauty.beauty-reference-home {
     .beauty-promotions__dots button:hover::before { background: var(--promo-accent); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .beauty-promotions__slide.is-entering { animation: none; }
+    .beauty-promotions__slide.is-entering > * { animation: none; }
     .beauty-promotions__arrow::before, .beauty-promotions__dots button::before { transition: none; }
   }
 
