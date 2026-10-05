@@ -15,8 +15,6 @@ export default function initPromotionCarousels(root = document) {
       slide.id = `beauty-promotion-${instance}-${i + 1}`;
       const dot = document.createElement('button');
       dot.type = 'button';
-      // Start the visual sequence in the middle without changing slide order.
-      dot.style.order = String((i + Math.floor((slides.length - 1) / 2)) % slides.length);
       dot.setAttribute('data-promotion-dot', '');
       dot.setAttribute('aria-label', `${pagination.dataset.slideLabel} ${i + 1}`);
       dot.setAttribute('aria-controls', slide.id);
@@ -30,8 +28,6 @@ export default function initPromotionCarousels(root = document) {
     const updateArrows = () => {
       previous.disabled = current === 0;
       following.disabled = current === slides.length - 1;
-      previous.setAttribute('aria-hidden', String(previous.disabled));
-      following.setAttribute('aria-hidden', String(following.disabled));
     };
     const rtl = () => getComputedStyle(carousel).direction === 'rtl';
     const show = index => {

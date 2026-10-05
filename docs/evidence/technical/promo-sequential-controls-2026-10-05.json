@@ -1,0 +1,1952 @@
+{
+  "environment": "Codex in-app browser; local manually assembled fixtures with isolated production CSS/JS; not Salla",
+  "revision": "20261005-promo-sequential-controls-1",
+  "records": [
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 360
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 360
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 360
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 360
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 390
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 390
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 390
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 390
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 768
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 768
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 768
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 768
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 36,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 1440
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 36,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 1440
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 36,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 1440
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 36,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 1440
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 360
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 360
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 360
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 360
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 390
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 390
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 390
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 390
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 768
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 768
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 768
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 768
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 36,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 1440
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 36,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 1440
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 36,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 1440
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 36,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 1440
+    },
+    {
+      "active": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": false,
+          "disabled": false,
+          "height": 0,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 0
+        },
+        {
+          "ariaHidden": null,
+          "centered": false,
+          "disabled": false,
+          "height": 0,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 0
+        }
+      ],
+      "controlsHidden": true,
+      "direction": "rtl",
+      "dotCount": 0,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-1-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 2,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-2-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 2,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-2-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-optional-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-optional-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "rtl",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-rtl-3-optional-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": false,
+          "disabled": false,
+          "height": 0,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 0
+        },
+        {
+          "ariaHidden": null,
+          "centered": false,
+          "disabled": false,
+          "height": 0,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 0
+        }
+      ],
+      "controlsHidden": true,
+      "direction": "ltr",
+      "dotCount": 0,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-1-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 2,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-2-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 2,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-2-default-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "activeLabel": "Banner 2",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-optional-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 3",
+      "activeLabel": "Banner 3",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "1",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "0.55",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-optional-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "activeLabel": "Banner 1",
+      "arrows": [
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": true,
+          "height": 44,
+          "label": "Previous banner",
+          "opacity": "0.55",
+          "width": 44
+        },
+        {
+          "ariaHidden": null,
+          "centered": true,
+          "disabled": false,
+          "height": 44,
+          "label": "Next banner",
+          "opacity": "1",
+          "width": 44
+        }
+      ],
+      "controlsHidden": false,
+      "direction": "ltr",
+      "dotCount": 3,
+      "dotsCentered": true,
+      "dotsInside": true,
+      "fixture": "/output/qa/promo-sequential-ltr-3-optional-2026-10-05.html",
+      "leaks": 0,
+      "nextGap": 24,
+      "overflow": false,
+      "sequential": true,
+      "targets44": true,
+      "url": "",
+      "width": 375
+    }
+  ],
+  "baseRevision": "1e0ad7822a4c53fb105b86ff08fae7aae4664792",
+  "checks": {
+    "build": "pnpm build passed in shared workspace; direct production Webpack passed in isolated source snapshot",
+    "tests": "54/54 passed in both environments",
+    "audit": "13/13 passed in both environments",
+    "warnings": "9 existing Webpack Sass/performance warnings plus existing Tailwind plugin notice"
+  },
+  "sourceHashes": {
+    "src/assets/js/partials/promotion-carousel.js": "5ec453263de4610e4c66126dfd0de022e43f9c2bf8ed768c4da4562344d26c43",
+    "src/assets/styles/06-beauty/core-care-home.scss": "b9ff15e87dfe1563932600d523ce37e0b4710f36084e73cf33d043c7e09a521d",
+    "src/views/pages/index.twig": "678dff98c5a630d3dee1289d47771a478b28afed9931cc468206686c0868de35",
+    "src/views/layouts/master.twig": "69a50d4dbb49571dc4bee4f9e9ca3920bfe42ab5d3b3c8898c2d27307b289672",
+    "scripts/promotion-carousel.test.mjs": "a2916dcca8421df60beb58169db0b006d1785b9fed392e4de46eacdbc4a9e008",
+    "public/app.css": "a20dc5605f1b2c510657135b1196a4d643fcb0e885d99aefc1e6bac22fb68729",
+    "public/home.js": "ddf2bba436eb9f3bb78ac70bffac6df72e4982d0dc660190ee0f4bd1add595da"
+  },
+  "platformVerification": {
+    "status": "incomplete",
+    "environment": "Current Salla asset identity unverified; Chrome not connected; prior preview rejected duplicate Tag 1.1.27 / Authorization Error. No fresh preview retry in this pass."
+  },
+  "screenshots": [
+    "output/qa/promo-sequential-desktop-2026-10-05.jpg",
+    "output/qa/promo-sequential-mobile-2026-10-05.jpg"
+  ]
+}

@@ -52,9 +52,8 @@ body.theme-beauty.beauty-reference-home {
   }
   .beauty-promotions__arrow--prev { grid-column: 1; justify-self: center; }
   .beauty-promotions__arrow--next { grid-column: 3; justify-self: center; }
-  // Keep the disabled hit area above the banner link: a repeated edge click
-  // must not fall through to the linked image when its chevron disappears.
-  .beauty-promotions__arrow:disabled { opacity: 0; cursor: default; }
+  // Keep terminal controls visible and their hit areas above the linked image.
+  .beauty-promotions__arrow:disabled { opacity: .55; cursor: default; }
   .beauty-promotions__arrow::before {
     content: ''; position: absolute; inset: 3px; border-radius: inherit; background: var(--cc-surface);
     box-shadow: 0 1px 4px #00000012; transition: background-color .35s ease;

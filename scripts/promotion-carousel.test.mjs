@@ -80,13 +80,18 @@ test('pagination uses actual rendered count and accessible sequential labels', (
     assert.deepEqual(f.slides.map(slide => slide.hidden), Array.from({ length: count }, (_, i) => i !== 1));
   }
 });
-test('the first indicator starts at the visual center with slide order preserved', () => {
-  for (const count of [2, 3, 5]) {
-    const f = fixture('rtl', count);
-    assert.equal(Number(f.dots[0].style.order), Math.floor((count - 1) / 2));
-    assert.deepEqual(f.dots.map(dot => Number(dot.style.order)).sort((a, b) => a - b), Array.from({length: count}, (_, i) => i));
-    f.next.events.click(clickEvent());
-    assert.equal(f.dots[1].attrs['aria-current'], 'true');
+test('indicator order matches slide and keyboard order in both directions', () => {
+  for (const direction of ['rtl', 'ltr']) {
+    for (const count of [2, 3, 5]) {
+      const f = fixture(direction, count);
+      assert.ok(f.dots.every(dot => dot.style.order === undefined));
+      assert.equal(f.dots[0].attrs['aria-current'], 'true');
+      for (let index = 1; index < count; index++) {
+        key(f, direction === 'rtl' ? 'ArrowLeft' : 'ArrowRight');
+        assert.equal(f.dots[index].attrs['aria-current'], 'true');
+        assert.equal(f.dots.filter(dot => dot.attrs['aria-current'] === 'true').length, 1);
+      }
+    }
   }
 });
 test('arrows stop at both ends and never trigger delegated navigation', () => {
@@ -94,14 +99,14 @@ test('arrows stop at both ends and never trigger delegated navigation', () => {
     for (const count of [2, 3, 5]) {
       const f = fixture(direction, count);
       assert.equal(f.previous.disabled, true);
-      assert.equal(f.previous.attrs['aria-hidden'], 'true');
+      assert.equal(f.previous.attrs['aria-hidden'], undefined);
       assert.equal(f.next.disabled, false);
       let prevented = 0, stopped = 0;
       const event = { preventDefault() { prevented++; }, stopPropagation() { stopped++; } };
       for (let step = 0; step < 30; step++) f.next.events.click(event);
       assert.equal(f.dots[count - 1].attrs['aria-current'], 'true');
       assert.equal(f.next.disabled, true);
-      assert.equal(f.next.attrs['aria-hidden'], 'true');
+      assert.equal(f.next.attrs['aria-hidden'], undefined);
       assert.equal(f.previous.disabled, false);
       for (let step = 0; step < 30; step++) f.previous.events.click(event);
       assert.equal(f.dots[0].attrs['aria-current'], 'true');
