@@ -28,6 +28,15 @@
     "bank_offer_sub_title_single": "ادفع قيمة مشترياتك عبر أحد بطاقات بنك :bank_name واحصل على خصم بنسبة "
   },
   "beauty": {
+    "collection": {
+      "filters": "فرز حسب",
+      "reset": "مسح الفلاتر",
+      "close": "إغلاق الفلاتر",
+      "show_results": "عرض النتائج",
+      "categories": "تصنيفات المنتجات",
+      "all_products": "جميع المنتجات",
+      "browse_products": "تصفّح جميع المنتجات"
+    },
     "promo": {
       "carousel": "سلايدر",
       "label": "اكتشفي Core Care",

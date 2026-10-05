@@ -35,26 +35,51 @@
   #}
 	<div class="s-blocks-wrapper s-before-products-list !mt-0">{% hook 'product.index.before_products_group_with_filter' %}</div>
 
-	<div class="container container--products-list flex items-start flex-col md:flex-row">
+	<div class="container container--products-list core-collection" data-collection-page data-collection-build="20261005-collection-1" data-category-url="{{ category.url|e('html_attr') }}">
 		{% if filters %}
-			<button class="btn--close-sm close-filters sicon-cancel hidden"></button>
-			<salla-filters data-testid="store-products-filters" class="md:w-72 lg:sticky lg:top-20 flex-none" id="filters-menu"></salla-filters>
-		{% endif %}
+            <div class="core-collection-filter-home" data-filter-home>
+                <aside class="core-collection-filters" id="filters-menu" aria-labelledby="collection-filter-title">
+                    <div class="core-collection-filter-heading">
+                        <h2 id="collection-filter-title">{{ trans('beauty.collection.filters') }}</h2>
+                        <button type="button" class="core-collection-reset" data-filter-reset>{{ trans('beauty.collection.reset') }}</button>
+                        <button type="button" class="core-collection-filter-close" data-filter-close aria-label="{{ trans('beauty.collection.close') }}">×</button>
+                    </div>
+                    <salla-filters data-testid="store-products-filters" id="collection-native-filters"></salla-filters>
+                    <div class="core-collection-filter-footer">
+                        <button type="button" class="core-collection-apply" data-filter-apply>{{ trans('beauty.collection.show_results') }}</button>
+                    </div>
+                </aside>
+            </div>
+            <dialog class="core-collection-filter-dialog" id="collection-filter-dialog" aria-labelledby="collection-filter-title"></dialog>
+        {% endif %}
 
-		<div class="main-content flex-1 w-full {{ filters ? 'ltr:lg:ml-8 rtl:lg:mr-8' : '' }}">
+		<div class="main-content">
+            {% if category %}
+                <nav class="core-collection-categories" data-collection-categories aria-label="{{ trans('beauty.collection.categories') }}" data-all-label="{{ trans('beauty.collection.all_products') }}">
+                    <a class="core-collection-chip" href="{{ category.url|e('html_attr') }}" aria-current="page">{{ trans('beauty.collection.all_products') }}</a>
+                    {% for child in category.sub_categories|default([]) %}
+                        {% set child_url = child.url|default('') %}
+                        {% if child.name and (child_url starts with 'https://' or child_url starts with 'http://' or (child_url starts with '/' and not (child_url starts with '//'))) %}
+                            <a class="core-collection-chip" href="{{ child_url|e('html_attr') }}"><bdi>{{ child.name }}</bdi></a>
+                        {% endif %}
+                    {% endfor %}
+                </nav>
+            {% endif %}
 			{% if category.image %}<img class="beauty-category-banner" src="{{ category.image }}" alt="{{ category.name }}" width="1200" height="300" loading="eager">{% endif %}
-			<div class="core-collection-heading mb-4 flex justify-between items-center gap-3">
-				<h1 class="font-bold text-xl rtl:pl-3 ltr:pr-3" id="page-main-title">{{ page.title }}</h1>
-				<div class="flex items-center space-x-2 rtl:space-x-reverse">
+			<div class="core-collection-heading">
+				<h1 class="core-collection-title" id="page-main-title">{{ page.title }}</h1>
+				<div class="core-collection-controls">
 					{% if filters %}
-						<a data-testid="store-products-filters-mobile-trigger" href="#filters-menu" class="filters-trigger bg-border-color text-primary lg:hidden mt-2">
-							<i class="sicon-filter text-gray-text text-2xl me-2.5"></i>
-						</a>
+                        <button type="button" data-testid="store-products-filters-mobile-trigger" class="core-collection-filter-trigger" data-filter-open aria-controls="collection-filter-dialog" aria-haspopup="dialog" aria-expanded="false">
+                            <i class="sicon-filter" aria-hidden="true"></i>
+                            <span>{{ trans('beauty.collection.filters') }}</span>
+                            <bdi data-filter-count hidden>0</bdi>
+                        </button>
 					{% endif %}
 					{% if sort_options|length %}
-						<div class="flex items-center">
-							<label class="hidden sm:block rtl:ml-3 ltr:mr-3 whitespace-nowrap" for="product-filter">{{ trans('pages.categories.sorting') }}</label>
-							<select id="product-filter" class="form-input pt-0 pb-1 rtl:md:pl-10 ltr:md:pr-10">
+						<div class="core-collection-sort">
+							<label class="sr-only" for="product-filter">{{ trans('pages.categories.sorting') }}</label>
+							<select id="product-filter" class="form-input">
 								{% for sort in sort_options %}
 									<option value="{{ sort.id }}" {{ sort.is_selected?'selected':'' }}>{{ sort.name }}</option>
 								{% endfor %}
@@ -72,10 +97,14 @@
 			{% set has_selected_sort = sort_list|filter(sort => sort.is_selected)|length %}
 			{% set fallback_sort = (sort_list|length and not has_selected_sort and first_sort.id != 'ourSuggest') ? first_sort.id : '' %}
 
-			<div class="flex">
+			<div class="core-collection-results">
 				<salla-products-list data-testid="store-products-list" class="flex-1 min-w-0" source="{{ page.slug }}" source-value="{{ page.id }}" sort-by="{{ fallback_sort }}" {{ filters ?'filters-Results':'' }}></salla-products-list>
 			</div>
 
+            <div class="core-collection-empty-actions">
+                {% if filters %}<button type="button" class="core-collection-reset" data-filter-reset>{{ trans('beauty.collection.reset') }}</button>{% endif %}
+                <a class="core-collection-browse" href="{{ link('latest-products') }}">{{ trans('beauty.collection.browse_products') }}</a>
+            </div>
 			{% hook 'product:index.items.end' %}
 		</div>
 	</div>
@@ -100,5 +129,5 @@
 {% endblock %}
 
 {% block scripts %}
-	<script defer src="{{ 'product.js' | asset }}"></script>
+	<script defer src="{{ 'product.js' | asset }}?v=20261005-collection-1"></script>
 {% endblock %}

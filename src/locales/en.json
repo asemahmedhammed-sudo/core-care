@@ -28,6 +28,15 @@
     "bank_offer_sub_title_single": "Pay for your purchases via :bank_name bank card and get discount"
   },
   "beauty": {
+    "collection": {
+      "filters": "Filters",
+      "reset": "Clear filters",
+      "close": "Close filters",
+      "show_results": "Show results",
+      "categories": "Product categories",
+      "all_products": "All products",
+      "browse_products": "Browse all products"
+    },
     "promo": {
       "carousel": "carousel",
       "label": "Discover Core Care",

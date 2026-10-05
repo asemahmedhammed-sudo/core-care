@@ -1,64 +1,128 @@
 import BasePage from './base-page';
-import MobileMenu from 'mmenu-light';
+import { categoryNavigation, activeFilterCount } from './partials/collection-state';
+
 class Products extends BasePage {
     onReady() {
-        let productsList = app.element('salla-products-list'),
-            urlParams = new URLSearchParams(window.location.search)
-
-
-        // Set Sort
-        if (urlParams.has('sort')) {
-            app.element('#product-filter').value = urlParams.get('sort');
+        const root = document.querySelector('[data-collection-page]');
+        if (!root || root.dataset.initialized) return;
+        root.dataset.initialized = 'true';
+        const list = root.querySelector('salla-products-list');
+        const sort = root.querySelector('#product-filter');
+        if (sort && list) {
+            const saved = new URLSearchParams(window.location.search).get('sort');
+            if (Array.from(sort.options).some(option => option.value === saved)) {
+                sort.value = saved;
+                if (list.sortBy && list.sortBy !== saved) {
+                    list.sortBy = saved;
+                    list.reload();
+                }
+            }
+            sort.addEventListener('change', async () => {
+                const url = new URL(window.location.href);
+                url.searchParams.set('sort', sort.value);
+                window.history.replaceState(null, '', url);
+                list.sortBy = sort.value;
+                // reload retains the platform's parsed filters and pagination state.
+                await list.reload();
+            });
         }
-
-
-        // Sort Products
-        app.on('change', '#product-filter', async event => {
-            window.history.replaceState(null, null, salla.helpers.addParamToUrl('sort', event.currentTarget.value));
-            productsList.sortBy = event.currentTarget.value;
-            await productsList.reload();
-            productsList.setAttribute('filters', `{"sort": "${event.currentTarget.value}"}`)
-        });
-
-        salla.event.on('salla-products-list::products.fetched', res=>{
-            res.title && (app.element('#page-main-title').innerHTML = res.title);
-        });
-
-
-        this.initiateMobileMenu()
+        this.initCategories(root);
+        this.initFilters(root);
     }
 
-    initiateMobileMenu() {
-        let filters = app.element("#filters-menu"),
-            trigger = app.element("a[href='#filters-menu']"),
-            close = app.element("button.close-filters");
+    initCategories(root) {
+        const nav = root.querySelector('[data-collection-categories]');
+        const menu = document.querySelector('core-care-categories');
+        if (!nav || !menu) return;
+        const sync = () => {
+            if (!Array.isArray(menu.menus)) return;
+            observer.disconnect();
+            const items = categoryNavigation(menu.menus, root.dataset.categoryUrl, nav.dataset.allLabel);
+            if (!items.length) return;
+            nav.replaceChildren(...items.map(item => {
+                const link = document.createElement('a');
+                link.className = 'core-collection-chip';
+                link.href = item.url;
+                link.textContent = item.title;
+                if (item.active) link.setAttribute('aria-current', 'page');
+                return link;
+            }));
+        };
+        // Reuse the header's existing menu response, without a second feed request.
+        const observer = new MutationObserver(sync);
+        observer.observe(menu, { childList: true });
+        sync();
+    }
 
-        if (!filters) {
-            return;
-        }
-        filters = new MobileMenu(filters, "(max-width: 1024px)", "( slidingSubmenus: false)");
-        const drawer = filters.offcanvas({ position: salla.config.get('theme.is_rtl') ? "right" : 'left' });
-        trigger.addEventListener('click', event => {
-            document.body.classList.add('filters-opened');
-            event.preventDefault() || drawer.close() || drawer.open()
+    initFilters(root) {
+        const filters = root.querySelector('salla-filters');
+        const panel = root.querySelector('.core-collection-filters');
+        const home = root.querySelector('[data-filter-home]');
+        const dialog = root.querySelector('dialog');
+        const trigger = root.querySelector('[data-filter-open]');
+        if (!filters || !panel || !dialog || !trigger) return;
+        const desktop = window.matchMedia('(min-width: 1024px)');
+        const close = () => { if (dialog.open) dialog.close(); };
+        trigger.addEventListener('click', () => {
+            dialog.append(panel);
+            dialog.showModal();
+            document.body.classList.add('core-collection-dialog-open');
+            trigger.setAttribute('aria-expanded', 'true');
         });
-        close.addEventListener('click', event => {
-            document.body.classList.remove('filters-opened');
-            event.preventDefault() || drawer.close()
+        dialog.addEventListener('close', () => {
+            home.append(panel);
+            document.body.classList.remove('core-collection-dialog-open');
+            trigger.setAttribute('aria-expanded', 'false');
+            if (!desktop.matches) trigger.focus();
         });
-        salla.event.on('salla-filters::changed', filters => {
-            if (!Object.entries(filters).length) {
-                return
+        dialog.addEventListener('click', event => { if (event.target === dialog) close(); });
+        root.querySelector('[data-filter-close]').addEventListener('click', close);
+        root.querySelector('[data-filter-apply]').addEventListener('click', close);
+        desktop.addEventListener('change', () => { if (desktop.matches) close(); });
+        root.querySelectorAll('[data-filter-reset]').forEach(button => {
+            button.addEventListener('click', async () => {
+                button.disabled = true;
+                try { await filters.resetFilters(); }
+                finally { button.disabled = false; }
+            });
+        });
+        const syncCount = async () => {
+            const count = activeFilterCount(await filters.getFilters(), salla.config.get('page.id'));
+            const badge = trigger.querySelector('[data-filter-count]');
+            badge.textContent = salla.helpers.number(count);
+            badge.hidden = count === 0;
+            root.dataset.filtersActive = String(count > 0);
+        };
+        salla.event.on('salla-filters::changed', syncCount);
+        filters.componentOnReady().then(syncCount);
+        const enhance = () => {
+            root.dataset.filtersAvailable = String(filters.style.display !== 'none' && !!filters.querySelector('salla-filters-widget'));
+            filters.querySelectorAll('salla-filters-widget').forEach((widget, index) => {
+                const title = widget.querySelector('.s-filters-widget-title');
+                const content = widget.querySelector('.s-filters-widget-content');
+                if (!title || !content) return;
+                content.id = `collection-filter-group-${index}`;
+                title.setAttribute('role', 'button');
+                title.tabIndex = 0;
+                title.setAttribute('aria-controls', content.id);
+                title.setAttribute('aria-expanded', String(!content.classList.contains('s-filters-widget-closed')));
+                const search = widget.querySelector('.s-filters-widget-search-input');
+                if (search) search.setAttribute('aria-label', title.textContent.trim());
+            });
+        };
+        filters.addEventListener('keydown', event => {
+            const title = event.target.closest('.s-filters-widget-title');
+            if (title && ['Enter', ' '].includes(event.key)) {
+                event.preventDefault();
+                title.click();
             }
-            document.body.classList.remove('filters-opened');
-            drawer.close()
-        })
+        });
+        new MutationObserver(enhance).observe(filters, { subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'style'] });
+        enhance();
     }
 }
 
 Products.initiateWhenReady([
-    'product.index',
-    'product.index.latest',
-    'product.index.offers', 'product.index.search',
-    'product.index.tag',
+    'product.index', 'product.index.latest', 'product.index.offers',
+    'product.index.search', 'product.index.tag', 'product.index.sales',
 ]);
