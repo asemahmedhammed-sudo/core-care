@@ -1,0 +1,36 @@
+# Policy page linking attempt — 2026-10-06
+
+- Request: apply the existing policy design to the informative page newly created by the merchant; continue the development-theme workflow.
+- Source identity: policy implementation commit `8f7d3df` on `main`. Other promotion/source/evidence changes are present in the shared working tree and were preserved. No new policy-source change, commit, or push was required in this attempt.
+- Official Salla CLI 3.2.56 preview was opened for the configured `Core Care` development store. The unrelated-changes commit/push prompt was declined.
+- In the Codex in-app browser, the new preview successfully displayed `beauty_policy_page_id` and the policy content settings. The page ID value was blank and the update date was `29/09/2024`. This confirms that the new field definition is now available in this preview; it does not verify the policy page rendering or merchant settings persistence.
+- The preview iframe identified its store as `متجر تجريبي`, with demo clothing products. Its informative-page selector returned `لا توجد نتائج مطابقة`. The merchant's newly created policy page could not be identified in this session. No page ID was saved and no extra page was created.
+- The existing native Chrome merchant editor initially displayed `سياسة الاستبدال والاسترجاع` in a generic page layout and merchant storefront links. Its address changed to design options, but subsequent native observations contained no page HTML, and the editor could not be used to complete the linking.
+- Requested the merchant's actual policy-page URL or its Salla edit URL to identify the intended page and account context. The earlier draft ID is not assumed to be the merchant's new page.
+- Evidence: `output/qa/return-policy-settings-available-2026-10-06.jpg`, captured from the development settings panel. No private preview URL or authentication token is included here.
+- Preview/watch was stopped. `pnpm build` restored production assets and passed with 9 Sass deprecation/bundle-performance warnings. `git diff --check` passed after the build. Development-output whitespace detected while the production build was still running was resolved by that completed build, without manual edits to generated assets.
+- No storefront source was changed by this attempt, so previously passing policy tests were not rerun. Existing concurrent changes are not certified by this record.
+- Result: setting availability **verified in a development preview**; linking to the merchant's page **incomplete**; actual policy rendering, desktop/mobile Chrome review, contacts/anchors and RTL/LTR runtime checks **incomplete**. No live-store or theme publication action performed.
+
+## Follow-up after merchant supplied the page screenshot
+
+- The merchant's screenshot explicitly identifies `version_id=1026765166` and `page_id=1741544897`, with the policy page marked draft. This is the same page record created earlier, now confirmed as the merchant's intended target.
+- Used the native Chrome merchant session, not the in-app demo-store session, to open design options for that version. A normal browser reload successfully loaded the current settings. The underlying storefront preview identified Core Care with merchant products, confirming the merchant context before the write.
+- Set only `beauty_policy_page_id` to `1741544897` and clicked `حفظ التغييرات`. The form became disabled after saving. Reloaded the design-options page through the browser reload control; the new page HTML still contained the ID value `1741544897`. This confirms remote setting persistence for the intended version.
+- Screenshot proof: `output/qa/return-policy-linked-settings-2026-10-06.png`, showing the unpublished development theme, the policy page ID field, and original update date. No private preview URL/token is included in the image.
+- Navigated to the supplied page edit URL. The editor selected `سياسة الاستبدال والاسترجاع`, but its draft preview rendered the Salla public homepage, not policy content. Actual policy template rendering, question interactions, spacing, mobile/desktop and direction review remain unverified. The settings screenshot is configuration evidence, not storefront-design evidence.
+- Page status was not changed. No theme publication, extra page creation, source edit, asset rebuild, commit, or remote push was performed in this follow-up. Requested separate authorization only if the merchant wants to publish the draft page; publishing a page does not publish the development theme or prove its design is active on the live storefront.
+- Updated result: **page ID binding saved and verified**; **Salla visual/runtime verification incomplete**; page remains **draft** and theme remains **unpublished development**.
+
+## Publication authorized by the merchant
+
+- The merchant explicitly approved page publication and a focused `main` push by saying `موافق و ارفع main`.
+- Source at this stage: `0d86f147c287cf0ab62e544f93dc4b61b1ad2500`, with policy implementation still present from `8f7d3df`. Unrelated dirty shared reports and `public/product.js` were excluded from this task's commit.
+- Opened the exact supplied editor URL in a separate native Chrome tab. The menu offered `تحويل إلى منشور`, and this action was performed once. Salla confirmed `تحوَّلت صفحة "سياسة الاستبدال والاسترجاع" إلى منشور.`
+- Read-only verification of the canonical public page confirmed that the page is reachable and published, but its body currently contains only `سياسة الاستبدال والاسترجاعييي`. The current active theme does not display the new policy template. Publication of the page did not publish/apply the development theme.
+- Public-content evidence: `output/qa/return-policy-published-current-content-2026-10-06.jpg`. This image documents the incomplete live content, **not** approval of the policy layout.
+- An existing development preview link did not serve the expected updated theme. While opening theme options to resolve this, the native Chrome session redirected to `/auth`. Requested that the merchant sign back in before continuing. Did not search for credentials, submit new authentication data, or publish the entire development theme.
+- An earlier settings tab showed an empty page ID despite the earlier successful save/reload evidence. This may be a stale tab or a later settings save; its cause is not established. Binding must be rechecked in a fresh authenticated merchant session before claiming that the development page renders correctly.
+- No source/asset changes were made in this publication attempt. Verification record accuracy and `git diff --check` are the relevant local checks; build/tests were not rerun for documentation-only changes.
+- Focused `main` push includes this record and the public-content screenshot. It does not certify Salla runtime rendering or release readiness.
+- Current result: **page published**, **implementation already on main**, **current page content incomplete**, **updated-design/runtime verification incomplete**, **development theme not published**. Remaining work: restore merchant session, confirm ID binding, load the correct updated development assets/template, replace or resolve the currently visible trial content as appropriate, and review desktop/mobile/RTL/LTR before release claims.
