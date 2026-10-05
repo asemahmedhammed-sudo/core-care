@@ -43,6 +43,15 @@
             "value": null
         },
         {
+            "id": "beauty_promo_1_mobile_image",
+            "type": "string",
+            "format": "image",
+            "label": "صورة الجوال لبانر العروض 1",
+            "description": "اختياري؛ يُستخدم تحت 768px. يوصى بنسبة 2:1 (960 × 480). تبقى الصورة كاملة دون قص؛ اتركه فارغًا لاستخدام صورة البانر الرئيسية.",
+            "required": false,
+            "value": null
+        },
+        {
             "id": "beauty_promo_1_title",
             "type": "string",
             "format": "text",
@@ -52,6 +61,27 @@
             "value": null,
             "minLength": 0,
             "maxLength": 120
+        },
+        {
+            "id": "beauty_promo_1_show_title",
+            "type": "boolean",
+            "format": "switch",
+            "label": "إظهار عنوان نصي لبانر العروض 1",
+            "description": "فعّله فقط إذا لم تتضمن الصورة عنوانًا. يستخدم الوصف/العنوان المحفوظ كنص HTML أسفل الصورة المرفوعة.",
+            "value": false,
+            "selected": false
+        },
+        {
+            "id": "beauty_promo_1_button_label",
+            "type": "string",
+            "format": "text",
+            "label": "نص زر التسوق لبانر العروض 1",
+            "multilanguage": true,
+            "description": "اختياري؛ الافتراضي «تسوّقي الآن». يظهر الزر فقط عند ضبط رابط https:// صالح للبانر.",
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 80
         },
         {
             "id": "beauty_promo_1_url",
@@ -74,6 +104,15 @@
             "value": null
         },
         {
+            "id": "beauty_promo_2_mobile_image",
+            "type": "string",
+            "format": "image",
+            "label": "صورة الجوال لبانر العروض 2",
+            "description": "اختياري؛ يُستخدم تحت 768px. يوصى بنسبة 2:1 (960 × 480). تبقى الصورة كاملة دون قص؛ اتركه فارغًا لاستخدام صورة البانر الرئيسية.",
+            "required": false,
+            "value": null
+        },
+        {
             "id": "beauty_promo_2_title",
             "type": "string",
             "format": "text",
@@ -83,6 +122,27 @@
             "value": null,
             "minLength": 0,
             "maxLength": 120
+        },
+        {
+            "id": "beauty_promo_2_show_title",
+            "type": "boolean",
+            "format": "switch",
+            "label": "إظهار عنوان نصي لبانر العروض 2",
+            "description": "فعّله فقط إذا لم تتضمن الصورة عنوانًا. يستخدم الوصف/العنوان المحفوظ كنص HTML أسفل الصورة المرفوعة.",
+            "value": false,
+            "selected": false
+        },
+        {
+            "id": "beauty_promo_2_button_label",
+            "type": "string",
+            "format": "text",
+            "label": "نص زر التسوق لبانر العروض 2",
+            "multilanguage": true,
+            "description": "اختياري؛ الافتراضي «تسوّقي الآن». يظهر الزر فقط عند ضبط رابط https:// صالح للبانر.",
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 80
         },
         {
             "id": "beauty_promo_2_url",
@@ -105,6 +165,15 @@
             "value": null
         },
         {
+            "id": "beauty_promo_3_mobile_image",
+            "type": "string",
+            "format": "image",
+            "label": "صورة الجوال لبانر العروض 3",
+            "description": "اختياري؛ يُستخدم تحت 768px. يوصى بنسبة 2:1 (960 × 480). تبقى الصورة كاملة دون قص؛ اتركه فارغًا لاستخدام صورة البانر الرئيسية.",
+            "required": false,
+            "value": null
+        },
+        {
             "id": "beauty_promo_3_title",
             "type": "string",
             "format": "text",
@@ -114,6 +183,27 @@
             "value": null,
             "minLength": 0,
             "maxLength": 120
+        },
+        {
+            "id": "beauty_promo_3_show_title",
+            "type": "boolean",
+            "format": "switch",
+            "label": "إظهار عنوان نصي لبانر العروض 3",
+            "description": "فعّله فقط إذا لم تتضمن الصورة عنوانًا. يستخدم الوصف/العنوان المحفوظ كنص HTML أسفل الصورة المرفوعة.",
+            "value": false,
+            "selected": false
+        },
+        {
+            "id": "beauty_promo_3_button_label",
+            "type": "string",
+            "format": "text",
+            "label": "نص زر التسوق لبانر العروض 3",
+            "multilanguage": true,
+            "description": "اختياري؛ الافتراضي «تسوّقي الآن». يظهر الزر فقط عند ضبط رابط https:// صالح للبانر.",
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 80
         },
         {
             "id": "beauty_promo_3_url",
