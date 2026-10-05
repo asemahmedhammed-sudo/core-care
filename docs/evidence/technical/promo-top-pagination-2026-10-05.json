@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-05",
+  "baseRevision": "0acf0c7c714de368d41d426dd69af56b75d18057",
+  "workingTree": "local edits; pre-existing changes preserved",
+  "assetRevision": "20261005-promo-top-pagination-1",
+  "checks": {
+    "productionBuild": "passed with 9 existing warnings and Tailwind notice",
+    "tests": {
+      "passed": 52,
+      "failed": 0
+    },
+    "staticAudit": {
+      "passed": 13
+    },
+    "diffCheck": "passed"
+  },
+  "localBrowser": {
+    "name": "Codex in-app browser",
+    "scope": "standalone fixtures using production CSS/home.js",
+    "widths": [
+      360,
+      375,
+      390,
+      768,
+      1440
+    ],
+    "directions": [
+      "rtl",
+      "ltr"
+    ],
+    "paginationTopInsetPx": 8,
+    "paginationCenterOffsetPx": 0,
+    "controlHitAreaPx": [
+      44,
+      44
+    ],
+    "horizontalOverflowPx": 0,
+    "whiteAccent": "confirmed white fill with dark 1px and white 2px rings"
+  },
+  "platformVerification": "incomplete; no updated Salla preview obtained in this follow-up",
+  "files": {
+    "src/assets/styles/06-beauty/core-care-home.scss": {
+      "bytes": 11528,
+      "sha256": "2f2f0c6279cb635dbf58d5be3a316cba3dfb8c34a5cea618625de44bd61fd083"
+    },
+    "src/views/layouts/master.twig": {
+      "bytes": 13710,
+      "sha256": "9755b6e1ca1da4175920ef0f4da65a0f21778c3e5f7309d4abde7e3be5d5d26d"
+    },
+    "src/views/pages/index.twig": {
+      "bytes": 795,
+      "sha256": "e9241ca342e3af847673560198683c93e2e468e1c9f625f0eaaf96b78920d9cc"
+    },
+    "docs/MERCHANT_GUIDE.md": {
+      "bytes": 17734,
+      "sha256": "cc943a56057d174373c48c25769034a2fe6d75fcabf8aae48b1b81a98d732c4a"
+    },
+    "public/app.css": {
+      "bytes": 308557,
+      "sha256": "cf30879b638c4a9fc62651b73b692b2cce24a762df51e011c7c4795f015910b4"
+    }
+  }
+}

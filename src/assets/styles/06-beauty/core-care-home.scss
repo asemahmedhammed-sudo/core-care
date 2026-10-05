@@ -57,11 +57,18 @@ body.theme-beauty.beauty-reference-home {
     box-shadow: 0 1px 3px #0000000a; transition: background-color .35s ease;
   }
   .beauty-promotions__arrow svg { position: relative; width: 18px; height: 18px; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .beauty-promotions__dots { grid-area: 3 / 1 / 4 / -1; margin-block-start: 4px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; min-width: 0; }
+  // Share the artwork row so pagination follows the image, never the optional copy.
+  .beauty-promotions__dots {
+    grid-area: 1 / 2 / 2 / 3; align-self: start; justify-self: center; z-index: 2;
+    margin-block-start: 8px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    width: max-content; max-width: 100%; min-width: 0;
+  }
   .beauty-promotions__dots button { flex: 0 0 44px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
-  .beauty-promotions__dots button::before { content: ''; width: 6px; height: 6px; background: var(--cc-text-muted); border-radius: 999px; transition: width .35s ease, background-color .35s ease; }
-  .beauty-promotions__dots [aria-current='true']::before { width: 24px; background: var(--promo-accent); }
+  .beauty-promotions__dots button::before { content: ''; width: 6px; height: 6px; background: var(--cc-text-muted); border-radius: 999px; box-shadow: 0 0 0 1px var(--cc-surface); transition: width .35s ease, background-color .35s ease; }
+  // The configured accent can be white: keep its shape visible on any artwork.
+  .beauty-promotions__dots [aria-current='true']::before { width: 24px; background: var(--promo-accent); box-shadow: 0 0 0 1px var(--cc-icon), 0 0 0 2px var(--cc-surface); }
   .beauty-promotions :focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
+  .beauty-promotions__dots button:focus-visible { outline-color: var(--cc-surface); outline-offset: -3px; box-shadow: inset 0 0 0 1px var(--cc-icon); }
   @media (hover: hover) {
     .beauty-promotions__arrow:hover::before { background: var(--cc-utility-surface); }
     .beauty-promotions__dots button:hover::before { background: var(--promo-accent); }
