@@ -1,0 +1,1670 @@
+{
+  "environment": "Local Twig-equivalent fixtures, Codex in-app browser; production CSS/JS; not Salla",
+  "revision": "20261006-promo-natural-autoplay-1",
+  "records": [
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        296,
+        98.6640625
+      ],
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        296,
+        118.3984375
+      ],
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        296,
+        118.3984375
+      ],
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        336,
+        112
+      ],
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        336,
+        134.3984375
+      ],
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        336,
+        134.3984375
+      ],
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        117
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        140.3984375
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        140.3984375
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        366,
+        122
+      ],
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        366,
+        146.3984375
+      ],
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        366,
+        146.3984375
+      ],
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        741.890625,
+        247.296875
+      ],
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        741.890625,
+        296.75
+      ],
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        741.890625,
+        296.75
+      ],
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        1392,
+        464
+      ],
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        1392,
+        556.796875
+      ],
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        1392,
+        556.796875
+      ],
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        296,
+        98.6640625
+      ],
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        296,
+        118.3984375
+      ],
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        296,
+        118.3984375
+      ],
+      "targets44": true,
+      "width": 320
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        336,
+        112
+      ],
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        336,
+        134.3984375
+      ],
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        336,
+        134.3984375
+      ],
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        117
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        140.3984375
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        140.3984375
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        366,
+        122
+      ],
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        366,
+        146.3984375
+      ],
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        366,
+        146.3984375
+      ],
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        741.890625,
+        247.296875
+      ],
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        741.890625,
+        296.75
+      ],
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        741.890625,
+        296.75
+      ],
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        1392,
+        464
+      ],
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        1392,
+        556.796875
+      ],
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "active": "Banner 3",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        1392,
+        556.796875
+      ],
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        336,
+        336
+      ],
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        351
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        366,
+        366
+      ],
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        741.890625,
+        296.75
+      ],
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-rtl-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        1392,
+        556.796875
+      ],
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": true,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 0,
+      "fixture": "/output/qa/promo-natural-rtl-1-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": false,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        117
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 2,
+      "fixture": "/output/qa/promo-natural-rtl-2-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        117
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        336,
+        336
+      ],
+      "targets44": true,
+      "width": 360
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        351
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1000,
+        1000
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        366,
+        366
+      ],
+      "targets44": true,
+      "width": 390
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        741.890625,
+        296.75
+      ],
+      "targets44": true,
+      "width": 768
+    },
+    {
+      "active": "Banner 2",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-ltr-3-optional-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        576
+      ],
+      "nextGap": 36,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        1392,
+        556.796875
+      ],
+      "targets44": true,
+      "width": 1440
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": true,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 0,
+      "fixture": "/output/qa/promo-natural-ltr-1-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": false,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        117
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "ltr",
+      "dotCount": 2,
+      "fixture": "/output/qa/promo-natural-ltr-2-default-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": true,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        117
+      ],
+      "targets44": true,
+      "width": 375
+    },
+    {
+      "active": "Banner 1",
+      "arrowCentered": true,
+      "controlsHidden": false,
+      "copyBelow": true,
+      "direction": "rtl",
+      "dotCount": 3,
+      "fixture": "/output/qa/promo-natural-disabled-2026-10-06.html",
+      "groupCentered": true,
+      "groupInside": true,
+      "imageComplete": true,
+      "imageFillsFrame": true,
+      "leaks": 0,
+      "natural": [
+        1440,
+        480
+      ],
+      "nextGap": 24,
+      "overflow": false,
+      "overlap": false,
+      "pauseVisible": false,
+      "ratioPreserved": true,
+      "rendered": [
+        351,
+        117
+      ],
+      "targets44": true,
+      "width": 375
+    }
+  ],
+  "timing": {
+    "timeline": [
+      {
+        "slide": "Banner 1",
+        "time": 1791234789276
+      },
+      {
+        "slide": "Banner 2",
+        "time": 1791234795279
+      },
+      {
+        "slide": "Banner 3",
+        "time": 1791234801281
+      },
+      {
+        "slide": "Banner 1",
+        "time": 1791234807283
+      },
+      {
+        "slide": "Banner 2",
+        "time": 1791234813285
+      },
+      {
+        "slide": "Banner 3",
+        "time": 1791234819286
+      },
+      {
+        "slide": "Banner 1",
+        "time": 1791234825288
+      },
+      {
+        "slide": "Banner 2",
+        "time": 1791234831289
+      },
+      {
+        "slide": "Banner 3",
+        "time": 1791234837291
+      },
+      {
+        "slide": "Banner 1",
+        "time": 1791234843293
+      },
+      {
+        "slide": "Banner 2",
+        "time": 1791234849295
+      },
+      {
+        "slide": "Banner 3",
+        "time": 1791234855297
+      },
+      {
+        "slide": "Banner 1",
+        "time": 1791234861298
+      }
+    ],
+    "intervals": [
+      6003,
+      6002,
+      6002,
+      6002,
+      6001,
+      6002,
+      6001,
+      6002,
+      6002,
+      6002,
+      6002,
+      6001
+    ],
+    "pausedStart": {
+      "active": "Banner 1",
+      "focus": null,
+      "hidden": false,
+      "live": "polite",
+      "paused": "true",
+      "time": 1791234865965
+    },
+    "pausedEnd": {
+      "active": "Banner 1",
+      "focus": null,
+      "hidden": false,
+      "live": "polite",
+      "paused": "true",
+      "time": 1791234886441
+    },
+    "resumedStart": {
+      "active": "Banner 1",
+      "focus": null,
+      "hidden": false,
+      "live": "off",
+      "paused": "false",
+      "time": 1791234887299
+    },
+    "resumedEnd": {
+      "active": "Banner 3",
+      "focus": null,
+      "hidden": false,
+      "live": "off",
+      "paused": "false",
+      "time": 1791234954691
+    },
+    "finalBuildTimeline": [
+      {
+        "slide": "Banner 1",
+        "time": 1791238950416
+      },
+      {
+        "slide": "Banner 2",
+        "time": 1791238956435
+      },
+      {
+        "slide": "Banner 3",
+        "time": 1791238962436
+      },
+      {
+        "slide": "Banner 1",
+        "time": 1791238968439
+      },
+      {
+        "slide": "Banner 2",
+        "time": 1791238974441
+      },
+      {
+        "slide": "Banner 3",
+        "time": 1791238980442
+      }
+    ]
+  },
+  "baseRevision": "8f7d3df1e8023b1316add22860cf2c301ef54df6",
+  "checks": {
+    "build": "pnpm build passed",
+    "tests": {
+      "passed": 63,
+      "failed": 0
+    },
+    "staticAudit": {
+      "passed": 13,
+      "failed": 0
+    },
+    "size": "pnpm size:theme completed; measurements are not Salla acceptance",
+    "warnings": "9 existing Sass/Webpack performance warnings and the existing Tailwind line-clamp notice"
+  },
+  "assets": {
+    "homeJS": {
+      "bytes": 41889,
+      "delta": 1451,
+      "gzipDelta": 497
+    },
+    "appCSS": {
+      "bytes": 314933,
+      "delta": 642,
+      "gzipDelta": 89
+    },
+    "nextImagePreloading": "Only while automatic rotation is eligible; one upcoming source"
+  },
+  "sourceHashes": {
+    "src/assets/js/partials/promotion-carousel.js": "42d8a41ebefb5a0a217701faa75d667552a945a590ff44066d73a076b85d35cc",
+    "src/assets/styles/06-beauty/core-care-home.scss": "91951e7cffabf9674bd0e7aadc02a57d185a502b9b9d1f8f0c6c80ea330f12d6",
+    "src/views/pages/partials/home/promotions.twig": "8fa627fb05913a3b1b1bc1c4cd171eb781cbb5ba680fb9808f007326e05bfc18",
+    "src/views/layouts/master.twig": "a05707e6a98478bb1931daf954e23a2f54c1fa3cbfe217c1c3000ea0392864db",
+    "src/views/pages/index.twig": "bbdbe95d5d3ea28ed44b9ecce091ad573a57e9007c69a0367819278d3c249afa",
+    "src/locales/ar.json": "7d2abd3f75b4542ab28991b1809943b6d450c3a40b9261ea860a1d4a8bf3ece7",
+    "src/locales/en.json": "24ecd4b3cfd81c000a17a8f2615465fa3ca6116ea087f62181602919cc65f906",
+    "twilight.json": "a860df3cec6a2616e34668c461aa9f2e2765717665d2fc9a98fb891e4e97ea04",
+    "public/app.css": "750ac0fc55a4fe52dc050b1296d923dcff0da33a23aaff8ce3d1c97985c0f3be",
+    "public/home.js": "18f618e6faa0c1ffaada143d79bc622eb66fb1216ebbc85184e3ffac902b9924"
+  },
+  "merchantCompatibility": {
+    "newSetting": "beauty_promotions_autoplay",
+    "type": "boolean / switch",
+    "default": true,
+    "intervalMilliseconds": 6000,
+    "existingFieldIDsAndTypes": "unchanged"
+  },
+  "platformVerification": {
+    "status": "incomplete",
+    "chrome": "Current connected-browser inventory contains IAB and MCP Apps only",
+    "currentSallaAssetIdentity": "not verified",
+    "preview": "No fresh CLI preview retry. Previous dated check recorded duplicate Tag 1.1.27 / Authorization Error; historical failure is not current preview access evidence."
+  },
+  "screenshots": [
+    "output/qa/promo-natural-desktop-2026-10-06.jpg",
+    "output/qa/promo-natural-mobile-2026-10-06.jpg"
+  ],
+  "offscreen": "IntersectionObserver suspends when less than 15% is visible; verified by regression test"
+}

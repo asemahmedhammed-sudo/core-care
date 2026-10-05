@@ -25,9 +25,12 @@ test('shopping destinations accept HTTPS store links and reject unsafe or malfor
   }
 });
 
-function fixture(direction = 'rtl', count = 3, instances = 1) {
-  const document = { activeElement: null };
-  const element = (label = '') => ({ hidden: false, dataset: {}, style: {}, attrs: { 'aria-label': label }, events: {}, children: [],
+function fixture(direction = 'rtl', count = 3, instances = 1, { autoplay = false, reduced = false, enabled = true } = {}) {
+  const document = { activeElement: null, hidden: false, events: {},
+    addEventListener(event, callback) { this.events[event] = callback; },
+    removeEventListener(event) { delete this.events[event]; }
+  };
+  const element = (label = '') => ({ hidden: false, isConnected: true, dataset: {}, style: {}, attrs: { 'aria-label': label }, events: {}, children: [],
     classList: { toggle() {} },
     addEventListener(event, callback) { this.events[event] = callback; },
     setAttribute(key, value) { this.attrs[key] = value; }, getAttribute(key) { return this.attrs[key]; },
@@ -39,19 +42,44 @@ function fixture(direction = 'rtl', count = 3, instances = 1) {
   document.createElement = () => element();
   const fixtures = Array.from({ length: instances }, () => {
     const slides = Array.from({ length: count }, (_, i) => element(`Banner ${i + 1}`));
-    slides.forEach((slide, i) => { slide.hidden = i !== 0; });
+    const images = slides.map(() => ({ loading: 'lazy' }));
+    slides.forEach((slide, i) => { slide.hidden = i !== 0; slide.querySelector = () => images[i]; });
     const controls = element(); controls.hidden = true;
-    const previous = element(), next = element(), status = element(), carousel = element(), pagination = element(), viewport = element();
+    const previous = element(), next = element(), status = element(), carousel = element(), pagination = element(), viewport = element(), toggle = autoplay ? element() : null;
+    if (toggle) { toggle.dataset.pauseLabel = 'Pause automatic banners'; toggle.dataset.resumeLabel = 'Resume automatic banners'; }
+    carousel.dataset.promotionAutoplay = String(enabled);
     pagination.dataset.slideLabel = 'Banner';
     carousel.querySelectorAll = () => slides;
-    carousel.querySelector = selector => ({ '[data-promotion-prev]': previous, '[data-promotion-next]': next, '[data-promotion-status]': status, '[data-promotion-controls]': controls, '[data-promotion-dots]': pagination, '.beauty-promotions__viewport': viewport })[selector];
-    return { slides, get dots() { return pagination.children; }, controls, previous, next, status, carousel, viewport };
+    carousel.querySelector = selector => ({ '[data-promotion-prev]': previous, '[data-promotion-next]': next, '[data-promotion-status]': status, '[data-promotion-controls]': controls, '[data-promotion-dots]': pagination, '[data-promotion-toggle]': toggle, '.beauty-promotions__viewport': viewport })[selector];
+    return { slides, images, get dots() { return pagination.children.filter(dot => 'data-promotion-dot' in dot.attrs); }, controls, previous, next, status, carousel, viewport, toggle };
   });
   document.querySelectorAll = () => fixtures.map(f => f.carousel);
   let now = 1000;
-  const context = { document, getComputedStyle: () => ({ direction }), Date: { now: () => now } };
+  let sequence = 0;
+  const timers = new Map();
+  let intersectionCallback;
+  const motion = { matches: reduced, events: {}, addEventListener(event, callback) { this.events[event] = callback; }, removeEventListener(event) { delete this.events[event]; } };
+  const context = { document, getComputedStyle: () => ({ direction }), Date: { now: () => now }, window: { matchMedia: () => motion },
+    setTimeout(callback, delay) { const id = ++sequence; timers.set(id, { callback, due: now + delay }); return id; },
+    clearTimeout(id) { timers.delete(id); },
+    IntersectionObserver: class {
+      constructor(callback) { intersectionCallback = callback; this.callback = callback; }
+      observe() { this.callback([{ isIntersecting: true, intersectionRatio: 1 }]); }
+      disconnect() {}
+    }
+  };
   vm.runInNewContext(source + '\ninitPromotionCarousels();', context);
-  return { ...fixtures[0], fixtures, context, document, advanceTime(ms) { now += ms; } };
+  return { ...fixtures[0], fixtures, context, document, motion,
+    setInView(visible) { intersectionCallback([{ isIntersecting: visible, intersectionRatio: visible ? 1 : 0 }]); },
+    get timerCount() { return timers.size; }, advanceTime(ms) {
+    const target = now + ms;
+    while (true) {
+      const first = [...timers].sort((a, b) => a[1].due - b[1].due)[0];
+      if (!first || first[1].due > target) break;
+      now = first[1].due; timers.delete(first[0]); first[1].callback();
+    }
+    now = target;
+  } };
 }
 const clickEvent = () => ({ detail: 1, preventDefault() {}, stopPropagation() {} });
 const key = (f, value, target = f.next) => f.carousel.events.keydown({ key: value, target, preventDefault() {} });
@@ -253,4 +281,151 @@ test('disabled arrow capture blocks boundary clicks that a browser bubbles to an
   assert.equal(prevented, true);
   assert.equal(stopped, true);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
+});
+
+test('autoplay gives each banner six seconds and cycles back without changing manual boundaries', () => {
+  for (const direction of ['rtl', 'ltr']) {
+    const f = fixture(direction, 3, 1, { autoplay: true });
+    assert.equal(f.images[1].loading, 'eager');
+    assert.equal(f.status.attrs['aria-live'], 'off');
+    f.advanceTime(5999);
+    assert.equal(f.dots[0].attrs['aria-current'], 'true');
+    f.advanceTime(1);
+    assert.equal(f.dots[1].attrs['aria-current'], 'true');
+    f.advanceTime(6000);
+    assert.equal(f.dots[2].attrs['aria-current'], 'true');
+    assert.equal(f.next.disabled, true);
+    f.advanceTime(6000);
+    assert.equal(f.dots[0].attrs['aria-current'], 'true');
+    assert.equal(f.previous.disabled, true);
+    assert.equal(f.status.textContent, 'Banner 1');
+    assert.equal(f.timerCount, 1);
+  }
+});
+
+test('pause and resume retain user choice and never navigate a banner link', () => {
+  const f = fixture('rtl', 3, 1, { autoplay: true });
+  let prevented = 0, stopped = 0;
+  const event = { preventDefault() { prevented++; }, stopPropagation() { stopped++; } };
+  f.toggle.events.click(event);
+  assert.equal(f.toggle.attrs['aria-label'], 'Resume automatic banners');
+  assert.equal(f.status.attrs['aria-live'], 'polite');
+  f.advanceTime(18000);
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+  f.carousel.events.mouseenter();
+  f.carousel.events.mouseleave();
+  assert.equal(f.timerCount, 0);
+  f.toggle.events.click(event);
+  assert.equal(f.toggle.attrs['aria-label'], 'Pause automatic banners');
+  f.advanceTime(6000);
+  assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  assert.equal(prevented, 2);
+  assert.equal(stopped, 2);
+});
+
+test('hover, keyboard focus and a hidden document pause autoplay with a fresh interval on return', () => {
+  const f = fixture('ltr', 3, 1, { autoplay: true });
+  f.advanceTime(5000);
+  f.carousel.events.mouseenter();
+  f.advanceTime(12000);
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+  f.carousel.events.mouseleave();
+  f.advanceTime(5999);
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+  f.advanceTime(1);
+  assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  f.carousel.events.focusin();
+  f.advanceTime(12000);
+  assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  f.carousel.events.focusout({ relatedTarget: f.carousel });
+  assert.equal(f.timerCount, 0);
+  f.carousel.events.focusout({ relatedTarget: null });
+  f.document.hidden = true;
+  f.document.events.visibilitychange();
+  f.advanceTime(12000);
+  assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  f.document.hidden = false;
+  f.document.events.visibilitychange();
+  f.advanceTime(6000);
+  assert.equal(f.dots[2].attrs['aria-current'], 'true');
+});
+
+test('manual navigation and touch gestures reset the autoplay reading interval', () => {
+  const f = fixture('rtl', 3, 1, { autoplay: true });
+  f.advanceTime(5000);
+  f.next.events.click(clickEvent());
+  f.advanceTime(1000);
+  assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  f.viewport.events.touchstart({ touches: [{ clientX: 0, clientY: 0 }] });
+  f.advanceTime(12000);
+  assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  f.viewport.events.touchend({ changedTouches: [{ clientX: 80, clientY: 0 }] });
+  assert.equal(f.dots[2].attrs['aria-current'], 'true');
+  f.advanceTime(5999);
+  assert.equal(f.dots[2].attrs['aria-current'], 'true');
+  f.advanceTime(1);
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+});
+
+test('reduced motion starts paused and pauses again if the preference changes', () => {
+  const f = fixture('rtl', 3, 1, { autoplay: true, reduced: true });
+  f.advanceTime(18000);
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+  assert.equal(f.toggle.attrs['aria-label'], 'Resume automatic banners');
+  // A deliberate resume is allowed, with CSS transitions still disabled.
+  f.toggle.events.click(clickEvent());
+  f.advanceTime(6000);
+  assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  f.motion.events.change();
+  f.advanceTime(12000);
+  assert.equal(f.dots[1].attrs['aria-current'], 'true');
+  assert.equal(f.timerCount, 0);
+});
+
+test('merchant-disabled, zero-slide and single-slide carousels have no autoplay timer', () => {
+  for (const count of [0, 1, 3]) {
+    const f = fixture('rtl', count, 1, { autoplay: true, enabled: false });
+    assert.equal(f.timerCount, 0);
+    if (count > 1) assert.equal(f.toggle.hidden, true);
+  }
+  for (const count of [0, 1]) {
+    const f = fixture('rtl', count, 1, { autoplay: true });
+    assert.equal(f.timerCount, 0);
+    assert.equal(f.controls.hidden, true);
+  }
+});
+
+test('reinitialization does not duplicate timers and each instance can pause independently', () => {
+  const f = fixture('ltr', 3, 2, { autoplay: true });
+  assert.equal(f.timerCount, 2);
+  vm.runInNewContext('initPromotionCarousels();', f.context);
+  assert.equal(f.timerCount, 2);
+  f.toggle.events.click(clickEvent());
+  f.advanceTime(6000);
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+  assert.equal(f.fixtures[1].dots[1].attrs['aria-current'], 'true');
+  assert.equal(f.timerCount, 1);
+});
+
+test('a removed carousel stops its timer and releases global autoplay listeners', () => {
+  const f = fixture('rtl', 3, 1, { autoplay: true });
+  f.carousel.isConnected = false;
+  f.advanceTime(6000);
+  assert.equal(f.timerCount, 0);
+  assert.equal(f.document.events.visibilitychange, undefined);
+  assert.equal(f.motion.events.change, undefined);
+});
+
+test('autoplay stops offscreen so changing natural image heights cannot shift viewed products', () => {
+  const f = fixture('rtl', 3, 1, { autoplay: true });
+  f.advanceTime(5000);
+  f.setInView(false);
+  f.advanceTime(18000);
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+  assert.equal(f.timerCount, 0);
+  f.setInView(true);
+  f.advanceTime(5999);
+  assert.equal(f.dots[0].attrs['aria-current'], 'true');
+  f.advanceTime(1);
+  assert.equal(f.dots[1].attrs['aria-current'], 'true');
 });

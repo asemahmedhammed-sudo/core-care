@@ -50,7 +50,9 @@
       "next": "Next banner",
       "choose": "Choose a banner",
       "slide": "Banner",
-      "shop_now": "Shop now"
+      "shop_now": "Shop now",
+      "pause": "Pause automatic banners",
+      "resume": "Resume automatic banners"
     },
     "header": {
       "tagline": "Care you deserve. Beauty that is you.",

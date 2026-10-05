@@ -1,8 +1,9 @@
 {# A Twig partial, not a registered Salla home component. #}
 {% set configured_images = theme.settings.get('beauty_promo_1_image') or theme.settings.get('beauty_promo_2_image') or theme.settings.get('beauty_promo_3_image') %}
 {% set visible_slide = 0 %}
+{% set autoplay = theme.settings.get('beauty_promotions_autoplay', true) %}
 {% if theme.settings.get('beauty_promotions_enabled', true) %}
-<section class="beauty-promotions" data-promotion-carousel role="region" aria-roledescription="{{ trans('beauty.promo.carousel') }}" aria-label="{{ trans('beauty.promo.label') }}">
+<section class="beauty-promotions" data-promotion-carousel data-promotion-autoplay="{{ autoplay ? 'true' : 'false' }}" role="region" aria-roledescription="{{ trans('beauty.promo.carousel') }}" aria-label="{{ trans('beauty.promo.label') }}">
   <div class="beauty-promotions__viewport">
     {% for number in 1..3 %}
       {% set image = theme.settings.get('beauty_promo_' ~ number ~ '_image') %}
@@ -22,7 +23,7 @@
         <a class="beauty-promotions__image-link" href="{{ destination|e('html_attr') }}" aria-label="{{ title|e('html_attr') }}">
           <picture class="beauty-promotions__media">
             {% if mobile_image %}<source media="(max-width: 767px)" srcset="{{ mobile_image|e('html_attr') }}" width="960" height="320">{% endif %}
-            <img class="beauty-promotions__artwork" src="{{ image|e('html_attr') }}" alt="{{ title|e('html_attr') }}" width="1440" height="480" loading="{{ visible_slide == 1 ? 'eager' : 'lazy' }}" {% if visible_slide == 1 %}fetchpriority="high"{% endif %}>
+            <img class="beauty-promotions__artwork" src="{{ image|e('html_attr') }}" alt="{{ title|e('html_attr') }}" width="1440" height="{{ default_artwork and number != 1 ? 576 : 480 }}" loading="{{ visible_slide == 1 ? 'eager' : 'lazy' }}" {% if visible_slide == 1 %}fetchpriority="high"{% endif %}>
           </picture>
         </a>
         {% if show_title or valid_destination %}
@@ -36,7 +37,14 @@
     {% endfor %}
     <div class="beauty-promotions__controls" data-promotion-controls hidden>
       <button type="button" data-promotion-prev class="beauty-promotions__arrow beauty-promotions__arrow--prev" aria-label="{{ trans('beauty.promo.previous') }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
-      <div class="beauty-promotions__dots" data-promotion-dots data-slide-label="{{ trans('beauty.promo.slide') }}" role="group" aria-label="{{ trans('beauty.promo.choose') }}"></div>
+      <div class="beauty-promotions__dots" data-promotion-dots data-slide-label="{{ trans('beauty.promo.slide') }}" role="group" aria-label="{{ trans('beauty.promo.choose') }}">
+        {% if autoplay %}
+        <button type="button" class="beauty-promotions__toggle" data-promotion-toggle data-pause-label="{{ trans('beauty.promo.pause') }}" data-resume-label="{{ trans('beauty.promo.resume') }}" aria-label="{{ trans('beauty.promo.pause') }}">
+          <svg data-promotion-pause viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10"/></svg>
+          <svg data-promotion-play viewBox="0 0 16 16" aria-hidden="true"><path d="m5 3 8 5-8 5Z"/></svg>
+        </button>
+        {% endif %}
+      </div>
       <button type="button" data-promotion-next class="beauty-promotions__arrow beauty-promotions__arrow--next" aria-label="{{ trans('beauty.promo.next') }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
     </div>
   </div>
