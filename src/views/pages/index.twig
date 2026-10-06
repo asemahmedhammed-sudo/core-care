@@ -8,6 +8,7 @@
 {% extends "layouts.master" %}
 {% block content %}
     {# {% include 'pages.partials.home.promotions' %} #}
+    <!-- cc-diag {% for key in ['beauty_promotions_enabled','beauty_promotions_autoplay','beauty_promotions_interval'] %}{{ key }}={% set v = theme.settings.get(key) %}{{ v is null ? 'null' : (v is iterable ? 'iterable' : 'scalar') }};{% endfor %}{% for n in 1..3 %}{% for f in ['image','mobile_image','title','show_title','button_label','url'] %}{% set v = theme.settings.get('beauty_promo_' ~ n ~ '_' ~ f) %}{{ n }}_{{ f }}={{ v is null ? 'null' : (v is iterable ? 'iterable' : 'scalar') }};{% endfor %}{% endfor %} -->
     {% component home %}
 {% endblock %}
 {% block scripts %}
