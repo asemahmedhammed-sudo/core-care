@@ -35,9 +35,11 @@ body.theme-beauty.beauty-reference-home {
   .beauty-promotions__slide { display: contents; }
   .beauty-promotions__slide.is-entering > * { animation: beauty-promotion-enter .35s ease; }
   .beauty-promotions__image-link { display: block; grid-area: 1 / 1 / 2 / -1; min-width: 0; border-radius: var(--cc-media-radius); }
-  // Let each source define its height: full-width artwork without crop or gutters.
-  .beauty-promotions__media { display: block; border-radius: var(--cc-media-radius); overflow: hidden; background: var(--cc-canvas); }
-  .beauty-promotions__artwork { display: block; width: 100%; height: auto; }
+  // One frame for every slide so differing artwork ratios never resize the page.
+  .beauty-promotions__media { display: block; aspect-ratio: var(--promo-ratio, 3 / 1); border-radius: var(--cc-media-radius); overflow: hidden; background: var(--cc-canvas); }
+  .beauty-promotions__artwork { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  // Bundled artwork keeps its headline and logo at the top right in both directions.
+  .beauty-promotions__artwork--default { object-position: right top; }
   .beauty-promotions__copy { grid-area: 2 / 1 / 3 / -1; min-width: 0; display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px; padding-block-start: 8px; }
   .beauty-promotions__copy h2 { flex: 1 1 200px; min-width: 0; font-size: 18px; font-weight: 500; line-height: 28px; overflow-wrap: anywhere; }
   .beauty-promotions__action { max-width: 100%; text-align: center; overflow-wrap: anywhere; }
@@ -72,8 +74,8 @@ body.theme-beauty.beauty-reference-home {
     box-shadow: 0 1px 4px #00000012; pointer-events: none;
   }
   .beauty-promotions__dots button { position: relative; flex: 0 0 44px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
-  .beauty-promotions__dots [data-promotion-dot]::before { content: ''; width: 6px; height: 6px; background: var(--cc-text-muted); border-radius: 999px; transition: transform .35s ease, background-color .35s ease; }
-  .beauty-promotions__dots [aria-current='true']::before { transform: scale(1.35); background: var(--promo-accent); }
+  .beauty-promotions__dots [data-promotion-dot]::before { content: ''; width: 6px; height: 6px; background: var(--cc-text-muted); border-radius: 999px; transition: width .35s ease, background-color .35s ease; }
+  .beauty-promotions__dots [aria-current='true']::before { width: 16px; background: var(--promo-accent); }
   .beauty-promotions :focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
   @media (hover: hover) {
     .beauty-promotions__arrow:hover::before { background: var(--cc-utility-surface); }
@@ -105,7 +107,11 @@ body.theme-beauty.beauty-reference-home {
   .beauty-hero__benefits svg { width: 28px; height: 28px; }
 
   @media (max-width: 767px) {
-    .beauty-promotions { padding-inline: 12px; }
+    .beauty-promotions { --promo-ratio: 12 / 5; padding-inline: 12px; }
+    // Keep 44px targets with a smaller visible disc 10px inside each edge.
+    .beauty-promotions__viewport { grid-template-columns: 52px minmax(0, 1fr) 52px; }
+    .beauty-promotions__arrow::before { inset: 6px; }
+    .beauty-promotions__dots { max-width: calc(100% - 104px); margin-block-end: 0; }
     .beauty-hero__grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px 40px; }
     .beauty-hero__copy h2 { font-size: clamp(32px, 8vw, 46px); }
     .beauty-hero__copy { max-width: 540px; justify-self: center; }

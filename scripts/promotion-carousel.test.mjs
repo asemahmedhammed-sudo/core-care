@@ -448,3 +448,14 @@ test('merchant interval setting is passed to the timer without adding a visible 
   assert.match(template, /data-promotion-interval=.*beauty_promotions_interval/);
   assert.doesNotMatch(template, /data-promotion-toggle|data-promotion-play|data-promotion-pause/);
 });
+
+test('promotion frame keeps one aspect ratio across slides with differing artwork', () => {
+  const styles = fs.readFileSync(new URL('../src/assets/styles/06-beauty/core-care-home.scss', import.meta.url), 'utf8');
+  const template = fs.readFileSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url), 'utf8');
+  // Bundled artwork mixes 1440x480 and 1440x576; the frame, not the image, sets the height.
+  assert.match(styles, /\.beauty-promotions__media \{[^}]*aspect-ratio: var\(--promo-ratio, 3 \/ 1\)/);
+  assert.match(styles, /\.beauty-promotions__artwork \{[^}]*height: 100%; object-fit: cover;/);
+  assert.doesNotMatch(styles, /\.beauty-promotions__artwork \{[^}]*height: auto/);
+  assert.match(styles, /@media \(max-width: 767px\) \{\s*\.beauty-promotions \{ --promo-ratio: 12 \/ 5;/);
+  assert.match(template, /beauty-promotions__artwork\{% if default_artwork %\} beauty-promotions__artwork--default\{% endif %\}/);
+});
