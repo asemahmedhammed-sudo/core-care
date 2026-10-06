@@ -11,9 +11,21 @@ test('homepage includes the promotions partial before merchant components', () =
   assert.ok(page.indexOf("include 'pages.partials.home.promotions'") < page.indexOf('component home'));
 });
 
+test('multilanguage promotion text resolves the current language before string filters', () => {
+  const template = fs.readFileSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url), 'utf8');
+  const config = JSON.parse(fs.readFileSync(new URL('../twilight.json', import.meta.url), 'utf8'));
+  // Salla returns multilanguage settings as per-language arrays; |trim on an array aborts the homepage view.
+  const fields = [...new Set(config.settings.filter(setting => /^beauty_promo_\d+_/.test(setting.id) && setting.multilanguage).map(setting => setting.id.replace(/^beauty_promo_\d+_/, '')))];
+  assert.deepEqual(fields.sort(), ['button_label', 'title']);
+  for (const field of fields) {
+    assert.doesNotMatch(template, new RegExp(`get\\('beauty_promo_' ~ number ~ '_${field}'\\)\\|`));
+    assert.match(template, /is iterable \? \w+\[language\.code\]\|default\(\w+\|first\) : \w+\)\|default\(''\)\|trim/);
+  }
+});
+
 test('shopping destinations accept HTTPS store links and reject unsafe or malformed URLs', () => {
   const template = fs.readFileSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url), 'utf8');
-  // A regex `matches` test here is suspected of breaking Salla's homepage render; keep the check to plain operators.
+  // Keep link validation to plain Twig operators rather than a regex `matches` test.
   assert.doesNotMatch(template, /\bmatches\s*['"]/);
   const condition = template.match(/\{% set valid_destination = (.*?) %\}/)[1];
   assert.equal(condition, `configured_destination|lower starts with 'https://' and configured_destination|length > 8 and ' ' not in configured_destination and '"' not in configured_destination and '<' not in configured_destination and '>' not in configured_destination`);
