@@ -16,7 +16,8 @@
       {% set title = configured_title ?: trans('beauty.promo.title_' ~ number) %}
       {% set show_title = not default_artwork and configured_title and theme.settings.get('beauty_promo_' ~ number ~ '_show_title', false) %}
       {% set configured_destination = theme.settings.get('beauty_promo_' ~ number ~ '_url')|trim %}
-      {% set valid_destination = configured_destination matches '~^https://[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:[.][a-z0-9](?:[a-z0-9-]*[a-z0-9])?)*(?::[0-9]+)?(?:[/?#][^[:space:][:cntrl:]]*)?$~i' %}
+      {# Plain Twig operators instead of a regex `matches` test, suspected of breaking Salla's homepage render. #}
+      {% set valid_destination = configured_destination|lower starts with 'https://' and configured_destination|length > 8 and ' ' not in configured_destination and '"' not in configured_destination and '<' not in configured_destination and '>' not in configured_destination %}
       {% set destination = valid_destination ? configured_destination : link(number == 1 ? 'offers' : (number == 2 ? 'latest-products' : 'brands')) %}
       {% set button_label = theme.settings.get('beauty_promo_' ~ number ~ '_button_label')|trim ?: trans('beauty.promo.shop_now') %}
       <div data-promotion-slide class="beauty-promotions__slide" aria-label="{{ title|e('html_attr') }}" {% if visible_slide != 1 %}hidden{% endif %}>
