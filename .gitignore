@@ -36,3 +36,10 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 !.env.example
 .salla
 .pnpm-store/
+
+# Kept out of the Salla theme package (private themes are limited to 2 MB compressed)
+/output/
+/preview/
+/docs/evidence/visual/
+/docs/evidence/sources-business/
+/docs/evidence/lighthouse/
