@@ -17,7 +17,7 @@
     {% set is_policy_title = 'الاسترجاع' in page_title or 'الاستبدال' in page_title or 'return' in page_title or 'refund' in page_title %}
     {% set is_policy_page = policy_page_id
         ? policy_page_id == (page.id ~ '')
-        : (is_policy_title and not (page.content|default('')|striptags|trim)) %}
+        : (is_policy_title and not (page.content|default('')|trim)) %}
     {% if is_policy_page %}
       {% include 'pages.partials.return-policy' %}
     {% elseif page.type == 'customised' %}
