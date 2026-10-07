@@ -7,33 +7,38 @@ body.theme-beauty .core-policy {
 
   &__breadcrumbs { padding-block: 16px; font-size: 12px; }
   &__breadcrumbs:has(salla-breadcrumb:empty) { display: none; }
-  &__header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; padding-block: 12px 24px; border-block-end: 1px solid var(--cc-border); }
-  &__heading { max-width: 640px; }
+  &__header { max-width: 720px; padding-block: 8px 20px; }
   &__eyebrow { color: var(--cc-rating-text); font-size: 12px; }
-  h1 { margin-block: 8px; font-size: clamp(22px, 3vw, 28px); font-weight: 500; line-height: 1.5; }
+  h1 { margin-block: 4px 8px; font-size: clamp(20px, 2.4vw, 24px); font-weight: 500; line-height: 1.5; }
   h2 { font-size: 18px; font-weight: 500; line-height: 28px; }
-  &__heading > p, &__updated { color: var(--cc-rating-text); }
-  &__updated { font-size: 12px; }
-  &__layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: start; gap: 32px; margin-block-start: 24px; }
-  &__sidebar { display: grid; gap: 20px; min-width: 0; }
-  &__contents, &__help { padding: 20px; border-radius: 8px; }
-  &__contents { background: var(--cc-surface); border: 1px solid var(--cc-border); }
-  &__contents h2 { margin-block-end: 12px; font-size: 16px; }
-  &__contents a { display: flex; align-items: center; min-height: 44px; padding-block: 8px; color: var(--cc-rating-text); border-block-end: 1px solid var(--cc-border); }
-  &__contents a:last-child { border: 0; }
-  &__contents a:hover { color: var(--cc-text); text-decoration: underline; text-underline-offset: 4px; }
-  &__help { background: var(--cc-secondary-soft); }
-  &__help > svg { margin-block-end: 12px; }
-  &__help h2 { font-size: 16px; }
-  &__help p { margin-block: 8px 16px; color: var(--cc-rating-text); }
-  &__action { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; border-radius: 8px; background: var(--cc-action); color: var(--cc-action-text); font-weight: 500; }
-  &__action:hover { text-decoration: underline; text-underline-offset: 4px; }
-  &__body { display: grid; gap: 24px; min-width: 0; }
-  &__section { padding: 24px; border: 1px solid var(--cc-border); border-radius: 8px; background: var(--cc-surface); scroll-margin-block-start: 180px; }
-  &__section > h2 { margin-block-end: 12px; }
-  &__intro, &__notice, &__answer { white-space: pre-line; }
-  &__intro { color: var(--cc-rating-text); }
-  &__notice { padding: 12px 16px; margin-block: 16px; border-inline-start: 2px solid var(--cc-secondary); background: var(--cc-canvas); border-radius: 4px; }
+  h3 { margin-block: 20px 8px; font-size: 16px; font-weight: 500; line-height: 24px; }
+  &__header > p { color: var(--cc-rating-text); }
+  &__updated { margin-block-start: 4px; font-size: 12px; }
+
+  &__summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+  &__stat {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 12px;
+    padding: 16px; border: 1px solid var(--cc-border); border-radius: 8px; background: var(--cc-surface);
+    svg { grid-row: span 2; width: 40px; height: 40px; padding: 8px; border-radius: 50%; background: var(--cc-secondary-soft); color: var(--cc-icon); }
+    strong { font-size: 18px; font-weight: 600; line-height: 28px; }
+  }
+  &__stat-label { color: var(--cc-rating-text); font-size: 12px; line-height: 18px; }
+
+  &__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-block-start: 16px; }
+  &__section--wide { grid-column: 1 / -1; }
+  &__section { min-width: 0; padding: 24px; border: 1px solid var(--cc-border); border-radius: 8px; background: var(--cc-surface); }
+  &__section > h2 { margin-block-end: 8px; }
+  &__text, &__answer { color: var(--cc-rating-text); white-space: pre-line; }
+  &__notice { margin-block-start: 12px; padding: 12px 16px; border-inline-start: 2px solid var(--cc-secondary); border-radius: 4px; background: var(--cc-canvas); white-space: pre-line; }
+  &__list { display: grid; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
+  // Flex order follows the document direction; PostCSS would make logical insets physical.
+  &__list li { display: flex; align-items: flex-start; gap: 10px; }
+  &__list li::before { content: ''; flex: none; width: 6px; height: 6px; margin-block-start: .7em; border-radius: 50%; background: var(--cc-secondary); }
+  &__methods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 12px 0 0; }
+  &__methods > div { padding: 12px 16px; border-radius: 8px; background: var(--cc-canvas); }
+  &__methods dt { font-weight: 500; }
+  &__methods dd { margin: 0; color: var(--cc-rating-text); }
+
   &__question { border-block-end: 1px solid var(--cc-border); }
   &__question:last-child { border: 0; }
   &__question summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 52px; padding-block: 12px; cursor: pointer; font-weight: 500; list-style: none; }
@@ -42,22 +47,38 @@ body.theme-beauty .core-policy {
   &__question summary:focus-visible { outline: 2px solid var(--cc-text); outline-offset: 2px; border-radius: 4px; }
   &__question summary svg { flex: none; transition: transform .2s ease; }
   &__question[open] summary svg { transform: rotate(180deg); }
-  &__answer { color: var(--cc-rating-text); padding-block-end: 16px; }
+  &__answer { padding-block-end: 16px; }
   &__license { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding-block: 10px; text-decoration: underline; text-underline-offset: 4px; }
 
+  &__help {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px 24px;
+    padding: 24px; border-radius: 8px; background: var(--cc-secondary-soft);
+    p { margin-block-start: 4px; color: var(--cc-rating-text); }
+  }
+  &__contacts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  &__contacts a {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px;
+    border-radius: 8px; background: var(--cc-surface); color: var(--cc-icon); font-weight: 500;
+    &:hover { text-decoration: underline; text-underline-offset: 4px; }
+    &:focus-visible { outline: 2px solid var(--cc-text); outline-offset: 2px; }
+  }
+  &__contacts bdi { color: var(--cc-rating-text); font-weight: 400; direction: ltr; }
+
   @media (max-width: 767px) {
-    &__header { align-items: start; gap: 8px; padding-block: 8px 20px; }
-    &__layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-    &__contents { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; border: 0; background: transparent; }
-    &__contents h2 { flex-basis: 100%; margin-block-end: 4px; }
-    &__contents a { min-height: 44px; padding: 8px 12px; border: 1px solid var(--cc-border); border-radius: 999px; background: var(--cc-surface); font-size: 12px; }
-    &__contents a:last-child { border: 1px solid var(--cc-border); }
-    &__help { display: none; }
-    &__section { padding: 16px; scroll-margin-block-start: 140px; }
+    &__summary { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    &__stat { padding: 12px 16px; }
+    &__grid { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-block-start: 12px; }
+    &__section, &__help { padding: 16px; }
+    &__methods { grid-template-columns: minmax(0, 1fr); }
+    &__help { grid-template-columns: minmax(0, 1fr); }
+    &__contacts { display: grid; }
+    &__contacts a { width: 100%; }
     &__question summary { gap: 12px; }
   }
   @media (prefers-reduced-motion: reduce) { &__question summary svg { transition: none; } }
 }
 
-// Keep the final policy text and the existing support band within the section rhythm.
+// Keep the final policy block and the existing support band within the section rhythm.
 body.theme-beauty #main-content:has(> .core-policy) + .core-care-footer { margin-block-start: 24px; }
+// PostCSS resolves border-inline-start to the left edge; keep the accent on the RTL start.
+html[dir='rtl'] body.theme-beauty .core-policy__notice { border-left: 0; border-right: 2px solid var(--cc-secondary); }

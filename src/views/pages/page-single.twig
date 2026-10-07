@@ -11,7 +11,14 @@
 {% extends "layouts.master" %}
 {% block content %}
     {% set policy_page_id = theme.settings.get('beauty_policy_page_id', '')|trim %}
-    {% if policy_page_id and policy_page_id == (page.id ~ '') %}
+    {# Without a configured ID, an empty page titled as the returns policy uses the
+       policy design so it never renders a blank body. Authored page content wins. #}
+    {% set page_title = page.title|default('')|lower %}
+    {% set is_policy_title = 'الاسترجاع' in page_title or 'الاستبدال' in page_title or 'return' in page_title or 'refund' in page_title %}
+    {% set is_policy_page = policy_page_id
+        ? policy_page_id == (page.id ~ '')
+        : (is_policy_title and not (page.content|default('')|striptags|trim)) %}
+    {% if is_policy_page %}
       {% include 'pages.partials.return-policy' %}
     {% elseif page.type == 'customised' %}
       {#

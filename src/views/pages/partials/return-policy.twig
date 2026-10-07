@@ -1,5 +1,6 @@
-{# Explicitly selected information page only. Plain merchant text is always escaped. #}
+{# Returns policy page. Plain merchant text from theme settings is always escaped. #}
 {% import _self as policy %}
+{% macro text(key, theme) %}{{ theme.settings.get('beauty_policy_' ~ key)|default(trans('beauty.policy.' ~ key)) }}{% endmacro %}
 {% macro question(key, theme) %}
   <details class="core-policy__question">
     <summary>
@@ -9,78 +10,113 @@
     <div class="core-policy__answer">{{ theme.settings.get('beauty_policy_' ~ key ~ '_answer')|default(trans('beauty.policy.' ~ key ~ '_answer')) }}</div>
   </details>
 {% endmacro %}
-{% set policy_date = theme.settings.get('beauty_policy_updated', '29/09/2024')|trim %}
+{% set policy_date = theme.settings.get('beauty_policy_updated', '')|trim %}
+{% set show_wallet = theme.settings.get('beauty_policy_show_wallet', false) %}
 {% set license_url = theme.settings.get('beauty_policy_license_url', '')|trim %}
 {# HTTPS with a nonempty authority, without whitespace or user-info. #}
 {% set has_license = license_url matches '/^https:\/\/[a-zA-Z0-9](?:[a-zA-Z0-9.-]*[a-zA-Z0-9])?(?::[0-9]+)?(?:[\/?#][^\s<>"\\\\]*)?$/' %}
+{# Configured store contacts only; values that are not a plain address/number are skipped. #}
+{% set contact_email = store.contacts.email|default('')|trim %}
+{% set contact_whatsapp = store.contacts.whatsapp|default('')|trim %}
+{% set contact_phone = (store.contacts.mobile|default('') ?: store.contacts.phone|default(''))|trim %}
+{% set has_email = contact_email matches '/^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/' %}
+{% set has_whatsapp = contact_whatsapp matches '/^\+?[0-9][0-9 ]{6,}$/' %}
+{% set has_phone = contact_phone matches '/^\+?[0-9][0-9 ]{6,}$/' %}
 
 <article class="container core-policy" aria-labelledby="core-policy-title">
   <nav class="core-policy__breadcrumbs" aria-label="{{ trans('beauty.policy.breadcrumbs') }}"><salla-breadcrumb></salla-breadcrumb></nav>
+
   <header class="core-policy__header">
-    <div class="core-policy__heading">
-      <span class="core-policy__eyebrow">{{ trans('beauty.policy.eyebrow') }}</span>
-      <h1 id="core-policy-title">{{ page.title|default(trans('beauty.policy.title')) }}</h1>
-      <p>{{ trans('beauty.policy.description') }}</p>
-    </div>
+    <span class="core-policy__eyebrow">{{ trans('beauty.policy.eyebrow') }}</span>
+    <h1 id="core-policy-title">{{ page.title|default(trans('beauty.policy.title')) }}</h1>
+    <p>{{ trans('beauty.policy.description') }}</p>
     {% if policy_date %}<p class="core-policy__updated">{{ trans('beauty.policy.updated') }} <bdi>{{ policy_date }}</bdi></p>{% endif %}
   </header>
 
-  <div class="core-policy__layout">
-    <aside class="core-policy__sidebar">
-      <nav class="core-policy__contents" aria-label="{{ trans('beauty.policy.contents') }}">
-        <h2>{{ trans('beauty.policy.contents') }}</h2>
-        <a href="#policy-conditions">{{ trans('beauty.policy.conditions') }}</a>
-        <a href="#policy-request">{{ trans('beauty.policy.request') }}</a>
-        <a href="#policy-refund">{{ trans('beauty.policy.refund') }}</a>
-        {% if theme.settings.get('beauty_policy_show_wallet', false) %}<a href="#policy-wallet">{{ trans('beauty.policy.wallet') }}</a>{% endif %}
-        {% if has_license %}<a href="#policy-license">{{ trans('beauty.policy.license') }}</a>{% endif %}
-      </nav>
-      <div class="core-policy__help">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12a8 8 0 0116 0v5a3 3 0 01-3 3h-3M4 12v5H2v-5h2zm16 0h2v5h-2M11 20h3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h2>{{ trans('beauty.policy.help_title') }}</h2>
+  <h2 class="sr-only">{{ trans('beauty.policy.summary') }}</h2>
+  <ul class="core-policy__summary">
+    <li class="core-policy__stat">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke-linecap="round"/></svg>
+      <span class="core-policy__stat-label">{{ trans('beauty.policy.summary_deadline_label') }}</span>
+      <strong>{{ trans('beauty.policy.summary_deadline_value') }}</strong>
+    </li>
+    <li class="core-policy__stat">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="core-policy__stat-label">{{ trans('beauty.policy.summary_processing_label') }}</span>
+      <strong>{{ trans('beauty.policy.summary_processing_value') }}</strong>
+    </li>
+    <li class="core-policy__stat">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 016 0V8" stroke-linecap="round"/></svg>
+      <span class="core-policy__stat-label">{{ trans('beauty.policy.summary_fee_label') }}</span>
+      <strong>{{ trans('beauty.policy.summary_fee_value') }}</strong>
+    </li>
+  </ul>
+
+  <div class="core-policy__grid">
+    <section class="core-policy__section" aria-labelledby="policy-eligible-title">
+      <h2 id="policy-eligible-title">{{ trans('beauty.policy.eligible') }}</h2>
+      <p class="core-policy__text">{{ policy.text('intro', theme) }}</p>
+      <p class="core-policy__notice">{{ policy.text('devices', theme) }}</p>
+    </section>
+
+    <section class="core-policy__section" aria-labelledby="policy-exclusions-title">
+      <h2 id="policy-exclusions-title">{{ trans('beauty.policy.exclusions') }}</h2>
+      <p class="core-policy__text">{{ trans('beauty.policy.exclusions_lead') }}</p>
+      <ul class="core-policy__list">
+        <li>{{ trans('beauty.policy.exclusion_beauty') }}</li>
+        <li>{{ trans('beauty.policy.exclusion_lenses') }}</li>
+        <li>{{ trans('beauty.policy.exclusion_used') }}</li>
+      </ul>
+    </section>
+
+    <section class="core-policy__section core-policy__section--wide" aria-labelledby="policy-refund-title">
+      <h2 id="policy-refund-title">{{ trans('beauty.policy.refund') }}</h2>
+      <p class="core-policy__text">{{ trans('beauty.policy.refund_lead') }}</p>
+      <dl class="core-policy__methods">
+        <div><dt>{{ trans('beauty.policy.refund_card') }}</dt><dd>{{ trans('beauty.policy.refund_card_value') }}</dd></div>
+        <div><dt>{{ trans('beauty.policy.refund_cod') }}</dt><dd>{{ trans('beauty.policy.refund_cod_value') }}</dd></div>
+      </dl>
+      {% if show_wallet %}
+        <h3>{{ trans('beauty.policy.wallet') }}</h3>
+        <ul class="core-policy__list">
+          <li>{{ policy.text('temporary_answer', theme) }}</li>
+          <li>{{ policy.text('qitaf_answer', theme) }}</li>
+          <li>{{ policy.text('rajhi_answer', theme) }}</li>
+        </ul>
+      {% endif %}
+    </section>
+
+    <section class="core-policy__section core-policy__section--wide" aria-labelledby="policy-faq-title">
+      <h2 id="policy-faq-title">{{ trans('beauty.policy.faq') }}</h2>
+      {{ policy.question('damaged', theme) }}
+      {{ policy.question('deadline', theme) }}
+      {{ policy.question('processing', theme) }}
+      {{ policy.question('fees', theme) }}
+      {{ policy.question('lenses', theme) }}
+      {{ policy.question('offers', theme) }}
+      {{ policy.question('payment', theme) }}
+    </section>
+
+    {% if has_license %}
+      <section class="core-policy__section core-policy__section--wide" aria-labelledby="policy-license-title">
+        <h2 id="policy-license-title">{{ trans('beauty.policy.license') }}</h2>
+        <p class="core-policy__text">{{ trans('beauty.policy.license_description') }}</p>
+        <a class="core-policy__license" href="{{ license_url }}" target="_blank" rel="noopener noreferrer">{{ trans('beauty.policy.license_link') }} <span class="sr-only">{{ trans('beauty.policy.new_tab') }}</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 4H4v16h16v-6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </section>
+    {% endif %}
+
+    <section class="core-policy__help core-policy__section--wide" aria-labelledby="policy-help-title">
+      <div>
+        <h2 id="policy-help-title">{{ trans('beauty.policy.help_title') }}</h2>
         <p>{{ trans('beauty.policy.help_description') }}</p>
-        <a class="core-policy__action" href="#store-footer">{{ trans('beauty.policy.contact') }}</a>
       </div>
-    </aside>
-
-    <div class="core-policy__body">
-      <section class="core-policy__section" id="policy-conditions" aria-labelledby="policy-conditions-title">
-        <h2 id="policy-conditions-title">{{ trans('beauty.policy.conditions') }}</h2>
-        <p class="core-policy__intro">{{ theme.settings.get('beauty_policy_intro')|default(trans('beauty.policy.intro')) }}</p>
-        <p class="core-policy__notice">{{ theme.settings.get('beauty_policy_devices')|default(trans('beauty.policy.devices')) }}</p>
-        {{ policy.question('fees', theme) }}
-        {{ policy.question('lenses', theme) }}
-      </section>
-
-      <section class="core-policy__section" id="policy-request" aria-labelledby="policy-request-title">
-        <h2 id="policy-request-title">{{ trans('beauty.policy.request') }}</h2>
-        {{ policy.question('damaged', theme) }}
-        {{ policy.question('deadline', theme) }}
-        {{ policy.question('processing', theme) }}
-      </section>
-
-      <section class="core-policy__section" id="policy-refund" aria-labelledby="policy-refund-title">
-        <h2 id="policy-refund-title">{{ trans('beauty.policy.refund') }}</h2>
-        {{ policy.question('offers', theme) }}
-        {{ policy.question('payment', theme) }}
-      </section>
-
-      {% if theme.settings.get('beauty_policy_show_wallet', false) %}
-        <section class="core-policy__section" id="policy-wallet" aria-labelledby="policy-wallet-title">
-          <h2 id="policy-wallet-title">{{ trans('beauty.policy.wallet') }}</h2>
-          {{ policy.question('qitaf', theme) }}
-          {{ policy.question('rajhi', theme) }}
-          {{ policy.question('temporary', theme) }}
-        </section>
+      {% if has_email or has_whatsapp or has_phone %}
+        <ul class="core-policy__contacts">
+          {% if has_whatsapp %}<li><a href="https://wa.me/{{ contact_whatsapp|replace({'+': '', ' ': ''}) }}" target="_blank" rel="noopener noreferrer"><i class="sicon-whatsapp" aria-hidden="true"></i><span>{{ trans('beauty.policy.contact_whatsapp') }}</span><bdi class="unicode">{{ contact_whatsapp }}</bdi><span class="sr-only">{{ trans('beauty.policy.new_tab') }}</span></a></li>{% endif %}
+          {% if has_phone %}<li><a href="tel:{{ contact_phone|replace({' ': ''}) }}"><i class="sicon-phone" aria-hidden="true"></i><span>{{ trans('beauty.policy.contact_phone') }}</span><bdi class="unicode">{{ contact_phone }}</bdi></a></li>{% endif %}
+          {% if has_email %}<li><a href="mailto:{{ contact_email }}"><i class="sicon-mail" aria-hidden="true"></i><span>{{ trans('beauty.policy.contact_email') }}</span><bdi class="unicode">{{ contact_email }}</bdi></a></li>{% endif %}
+        </ul>
       {% endif %}
-
-      {% if has_license %}
-        <section class="core-policy__section" id="policy-license" aria-labelledby="policy-license-title">
-          <h2 id="policy-license-title">{{ trans('beauty.policy.license') }}</h2>
-          <p>{{ trans('beauty.policy.license_description') }}</p>
-          <a class="core-policy__license" href="{{ license_url }}" target="_blank" rel="noopener noreferrer">{{ trans('beauty.policy.license_link') }} <span class="sr-only">{{ trans('beauty.policy.new_tab') }}</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 4H4v16h16v-6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        </section>
-      {% endif %}
-    </div>
+    </section>
   </div>
 </article>

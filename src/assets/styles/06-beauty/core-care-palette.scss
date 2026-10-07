@@ -67,7 +67,7 @@ body.theme-beauty {
   .beauty-button--gold, .beauty-collection__action { background: var(--cc-action); color: var(--cc-action-text); }
   .beauty-skip-link { background: var(--cc-action); color: var(--cc-action-text); }
   :where(a, button, input, select, textarea, [tabindex]):focus-visible { outline-color: var(--cc-text); }
-  > .app-inner > .store-header > salla-advertisement { background: var(--cc-announcement); color: #fff; }
+  > .app-inner > .store-header > salla-advertisement { background: var(--cc-announcement); color: #fff; text-align: center; }
   .s-advertisement-content { min-height: 40px; padding-block: 10px; background: var(--cc-announcement); color: #fff; font-size: 12px; }
   .s-advertisement-content a { color: inherit; }
   .beauty-features { padding-block: 12px; background: var(--cc-surface); }
