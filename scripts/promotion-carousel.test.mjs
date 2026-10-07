@@ -297,19 +297,19 @@ test('disabled arrow capture blocks boundary clicks that a browser bubbles to an
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
 });
 
-test('autoplay gives each banner six seconds and cycles back without changing manual boundaries', () => {
+test('autoplay gives each banner five seconds and cycles back without changing manual boundaries', () => {
   for (const direction of ['rtl', 'ltr']) {
     const f = fixture(direction, 3, 1, { autoplay: true });
     assert.equal(f.images[1].loading, 'eager');
     assert.equal(f.status.attrs['aria-live'], 'off');
-    f.advanceTime(5999);
+    f.advanceTime(4999);
     assert.equal(f.dots[0].attrs['aria-current'], 'true');
     f.advanceTime(1);
     assert.equal(f.dots[1].attrs['aria-current'], 'true');
-    f.advanceTime(6000);
+    f.advanceTime(5000);
     assert.equal(f.dots[2].attrs['aria-current'], 'true');
     assert.equal(f.next.disabled, true);
-    f.advanceTime(6000);
+    f.advanceTime(5000);
     assert.equal(f.dots[0].attrs['aria-current'], 'true');
     assert.equal(f.previous.disabled, true);
     assert.equal(f.status.textContent, 'Banner 1');
@@ -319,12 +319,12 @@ test('autoplay gives each banner six seconds and cycles back without changing ma
 
 test('hover, keyboard focus and a hidden document pause autoplay with a fresh interval on return', () => {
   const f = fixture('ltr', 3, 1, { autoplay: true });
-  f.advanceTime(5000);
+  f.advanceTime(4000);
   f.carousel.events.mouseenter();
   f.advanceTime(12000);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
   f.carousel.events.mouseleave();
-  f.advanceTime(5999);
+  f.advanceTime(4999);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
   f.advanceTime(1);
   assert.equal(f.dots[1].attrs['aria-current'], 'true');
@@ -340,13 +340,13 @@ test('hover, keyboard focus and a hidden document pause autoplay with a fresh in
   assert.equal(f.dots[1].attrs['aria-current'], 'true');
   f.document.hidden = false;
   f.document.events.visibilitychange();
-  f.advanceTime(6000);
+  f.advanceTime(5000);
   assert.equal(f.dots[2].attrs['aria-current'], 'true');
 });
 
 test('manual navigation and touch gestures reset the autoplay reading interval', () => {
   const f = fixture('rtl', 3, 1, { autoplay: true });
-  f.advanceTime(5000);
+  f.advanceTime(4000);
   f.next.events.click(clickEvent());
   f.advanceTime(1000);
   assert.equal(f.dots[1].attrs['aria-current'], 'true');
@@ -355,7 +355,7 @@ test('manual navigation and touch gestures reset the autoplay reading interval',
   assert.equal(f.dots[1].attrs['aria-current'], 'true');
   f.viewport.events.touchend({ changedTouches: [{ clientX: 80, clientY: 0 }] });
   assert.equal(f.dots[2].attrs['aria-current'], 'true');
-  f.advanceTime(5999);
+  f.advanceTime(4999);
   assert.equal(f.dots[2].attrs['aria-current'], 'true');
   f.advanceTime(1);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
@@ -368,7 +368,7 @@ test('reduced motion suspends rotation without a visible play control', () => {
   assert.equal(f.timerCount, 0);
   f.motion.matches = false;
   f.motion.events.change();
-  f.advanceTime(6000);
+  f.advanceTime(5000);
   assert.equal(f.dots[1].attrs['aria-current'], 'true');
   f.motion.matches = true;
   f.motion.events.change();
@@ -395,7 +395,7 @@ test('reinitialization does not duplicate timers and each instance can pause ind
   vm.runInNewContext('initPromotionCarousels();', f.context);
   assert.equal(f.timerCount, 2);
   f.carousel.events.mouseenter();
-  f.advanceTime(6000);
+  f.advanceTime(5000);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
   assert.equal(f.fixtures[1].dots[1].attrs['aria-current'], 'true');
   assert.equal(f.timerCount, 1);
@@ -404,7 +404,7 @@ test('reinitialization does not duplicate timers and each instance can pause ind
 test('a removed carousel stops its timer and releases global autoplay listeners', () => {
   const f = fixture('rtl', 3, 1, { autoplay: true });
   f.carousel.isConnected = false;
-  f.advanceTime(6000);
+  f.advanceTime(5000);
   assert.equal(f.timerCount, 0);
   assert.equal(f.document.events.visibilitychange, undefined);
   assert.equal(f.motion.events.change, undefined);
@@ -412,20 +412,20 @@ test('a removed carousel stops its timer and releases global autoplay listeners'
 
 test('autoplay stops offscreen so changing natural image heights cannot shift viewed products', () => {
   const f = fixture('rtl', 3, 1, { autoplay: true });
-  f.advanceTime(5000);
+  f.advanceTime(4000);
   f.setInView(false);
   f.advanceTime(18000);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
   assert.equal(f.timerCount, 0);
   f.setInView(true);
-  f.advanceTime(5999);
+  f.advanceTime(4999);
   assert.equal(f.dots[0].attrs['aria-current'], 'true');
   f.advanceTime(1);
   assert.equal(f.dots[1].attrs['aria-current'], 'true');
 });
 
-test('configured duration is per instance, defaults to six seconds and rejects invalid values', () => {
-  for (const [input, expected] of [[undefined, 6], ['10', 10], ['3', 3], ['60', 60], ['', 6], ['NaN', 6], ['Infinity', 6], ['-5', 6], ['2', 6], ['61', 6], ['6.5', 6]]) {
+test('configured duration is per instance, defaults to five seconds and rejects invalid values', () => {
+  for (const [input, expected] of [[undefined, 5], ['10', 10], ['3', 3], ['60', 60], ['', 5], ['NaN', 5], ['Infinity', 5], ['-5', 5], ['2', 5], ['61', 5], ['6.5', 5]]) {
     const f = fixture('rtl', 3, 1, {autoplay: true, interval: input});
     f.advanceTime(expected * 1000 - 1);
     assert.equal(f.dots[0].attrs['aria-current'], 'true', String(input));
@@ -441,7 +441,7 @@ test('merchant interval setting is passed to the timer without adding a visible 
   const field = config.settings.find(setting => setting.id === 'beauty_promotions_interval');
   assert.equal(field.type, 'number');
   assert.equal(field.format, 'integer');
-  assert.equal(field.value, 6);
+  assert.equal(field.value, 5);
   assert.equal(field.minimum, 3);
   assert.equal(field.maximum, 60);
   const template = fs.readFileSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url), 'utf8');

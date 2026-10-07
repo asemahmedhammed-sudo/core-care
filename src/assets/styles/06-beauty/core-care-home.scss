@@ -70,16 +70,19 @@ body.theme-beauty.beauty-reference-home {
   }
   .beauty-promotions__dots::before {
     content: ''; position: absolute; inset-block: 10px; inset-inline: 8px;
-    border-radius: 999px; background: color-mix(in srgb, var(--cc-surface) 85%, transparent);
+    border-radius: 999px; background: linear-gradient(90deg, color-mix(in srgb, var(--cc-surface) 70%, transparent), color-mix(in srgb, var(--cc-surface) 92%, transparent));
     box-shadow: 0 1px 4px #00000012; pointer-events: none;
   }
   .beauty-promotions__dots button { position: relative; flex: 0 0 44px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
-  .beauty-promotions__dots [data-promotion-dot]::before { content: ''; width: 6px; height: 6px; background: var(--cc-text-muted); border-radius: 999px; transition: width .35s ease, background-color .35s ease; }
-  .beauty-promotions__dots [aria-current='true']::before { width: 16px; background: var(--promo-accent); }
+  // Graduated dots: far dots small and light, neighbours medium grey, active largest and dark.
+  .beauty-promotions__dots [data-promotion-dot]::before { content: ''; width: 5px; height: 5px; background: #c4c4c4; border-radius: 999px; transition: width .35s ease, height .35s ease, background-color .35s ease; }
+  .beauty-promotions__dots [aria-current='true'] + [data-promotion-dot]::before,
+  .beauty-promotions__dots [data-promotion-dot]:has(+ [aria-current='true'])::before { width: 8px; height: 8px; background: #9e9e9e; }
+  .beauty-promotions__dots [aria-current='true']::before { width: 10px; height: 10px; background: var(--promo-accent); }
   .beauty-promotions :focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
   @media (hover: hover) {
     .beauty-promotions__arrow:hover::before { background: var(--cc-utility-surface); }
-    .beauty-promotions__dots [data-promotion-dot]:hover::before { background: var(--promo-accent); }
+    .beauty-promotions__dots [data-promotion-dot]:not([aria-current='true']):hover::before { background: var(--cc-text-muted); }
   }
   @media (prefers-reduced-motion: reduce) {
     .beauty-promotions__slide.is-entering > * { animation: none; }

@@ -10,7 +10,7 @@ export default function initPromotionCarousels(root = document) {
     if (!controls || !pagination) return;
     const autoplay = carousel.dataset.promotionAutoplay === 'true';
     const seconds = Number(carousel.dataset.promotionInterval);
-    const interval = Number.isInteger(seconds) && seconds >= 3 && seconds <= 60 ? seconds * 1000 : 6000;
+    const interval = Number.isInteger(seconds) && seconds >= 3 && seconds <= 60 ? seconds * 1000 : 5000;
     carousel.dataset.initialized = 'true';
     const instance = ++carouselSequence;
     // Derive controls from the rendered slides, including partially configured slots.
