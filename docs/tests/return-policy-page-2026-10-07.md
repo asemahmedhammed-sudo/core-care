@@ -30,3 +30,14 @@ Environment: built `public/app.css` served by a local static server; partial han
 
 - **Salla platform verification: incomplete.** The development preview returned an empty document on 2026-10-06 (`real-store-development-preview-2026-10-06.md`); header/footer parity, `salla-breadcrumb`, real `store.contacts`, page ID/title fallback, and the announcement change were not observed on Salla.
 - Wallet/Qitaf/Al Rajhi availability could not be verified from repository configuration.
+
+## Salla development preview — follow-up (same day)
+
+- Commit `1cfa5a0` (pushed): the editor at `draft-439356259` showed nothing. Its preview session served revision `20261007-return-policy-1` for home/cart/brands, but page `1741544897` returned HTTP 200 with only `<!-- Error In This View! (The use of "import" is disabled in "pages.partials.return-policy" ...) -->`. Salla's renderer disables `import`, so the macro-based partial cannot render. (The pre-existing partial had the same `import`; it had never been rendered on Salla because no page ID was configured.)
+- Fix `b58aa6d` (pushed): removed `import`/macros, `matches` and `striptags`; uses only constructs already rendered on Salla (literal-array `for`, string `in`, `starts with`, `replace`).
+- Old drafts kept the pre-fix snapshot. Merchant dashboard → إدارة الثيمات → طلبات تطوير الثيمات → (approved request) → تخصيص الثيم opened `draft-1778769010`, whose preview serves the fix.
+- Native Chrome (Claude in Chrome), page `1741544897`, RTL:
+  - 1512px: new header (`core-care-header__top`), policy article with 3 cards, 5 blocks, 7 FAQ items, 3 contact links from store contacts; article end → footer 37px; scrollWidth = viewport.
+  - 390px and 360px (same-origin iframe inside the preview; Chrome window cannot go below 1440px): single-column grid, cards full width, scrollWidth = viewport, no element outside viewport, FAQ summaries 52px, contact links 44px.
+- Observed: "آخر تحديث: 29/09/2024" still shows because this draft has a saved value in `beauty_policy_updated`; the merchant setting was not changed.
+- Not exercised on Salla: LTR, accordion keyboard interaction (verified locally only), announcement bar (none configured in this store), wallet-programs toggle.
