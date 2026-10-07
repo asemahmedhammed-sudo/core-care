@@ -11,15 +11,25 @@
 {% extends "layouts.master" %}
 {% block content %}
     {% set policy_page_id = theme.settings.get('beauty_policy_page_id', '')|trim %}
-    {# Without a configured ID, an empty page titled as the returns policy uses the
-       policy design so it never renders a blank body. Authored page content wins. #}
+    {# Without a configured ID, a page titled as the returns policy uses the policy design. #}
     {% set page_title = page.title|default('')|lower %}
     {% set is_policy_title = 'الاسترجاع' in page_title or 'الاستبدال' in page_title or 'return' in page_title or 'refund' in page_title %}
-    {% set is_policy_page = policy_page_id
-        ? policy_page_id == (page.id ~ '')
-        : (is_policy_title and not (page.content|default('')|trim)) %}
+    {% set is_policy_page = policy_page_id ? policy_page_id == (page.id ~ '') : is_policy_title %}
     {% if is_policy_page %}
-      {% include 'pages.partials.return-policy' %}
+      <article class="container core-policy" aria-labelledby="core-policy-title">
+        {% include 'pages.partials.return-policy-intro' %}
+        {# Text written in Salla's page editor (محرر النصوص) appears here, so merchants can
+           edit and add policy details from the page itself. Same trusted merchant content and
+           output as the inherited page body below. #}
+        {% if page.content|default('')|trim %}
+          <section class="core-policy__section core-policy__content content-entry">{{ page.content|raw }}</section>
+        {% endif %}
+        {# Elements added from the editor's page sections (customised pages only). #}
+        {% if page.type == 'customised' %}
+          <div class="s-blocks-wrapper s-information-page core-policy__blocks">{% hook 'information_page.information_page' %}</div>
+        {% endif %}
+        {% include 'pages.partials.return-policy' %}
+      </article>
     {% elseif page.type == 'customised' %}
       {#
           Hook: information_page.information_page

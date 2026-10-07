@@ -24,6 +24,16 @@ body.theme-beauty .core-policy {
   }
   &__stat-label { color: var(--cc-rating-text); font-size: 12px; line-height: 18px; }
 
+  // Merchant text from Salla's page editor: plain readable typography, no extra chrome.
+  &__content { margin-block-start: 16px; color: var(--cc-rating-text); }
+  &__content > :first-child { margin-block-start: 0; }
+  &__content > :last-child { margin-block-end: 0; }
+  &__content :is(h2, h3, h4) { margin-block: 16px 8px; color: var(--cc-text); font-weight: 500; }
+  &__content :is(p, ul, ol) { margin-block: 0 12px; }
+  &__content :is(ul, ol) { padding-inline-start: 20px; list-style: revert; }
+  &__content a { color: var(--cc-text); text-decoration: underline; text-underline-offset: 4px; }
+  &__content img { max-width: 100%; height: auto; }
+  &__blocks:empty { display: none; }
   &__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-block-start: 16px; }
   &__section--wide { grid-column: 1 / -1; }
   &__section { min-width: 0; padding: 24px; border: 1px solid var(--cc-border); border-radius: 8px; background: var(--cc-surface); }
@@ -82,3 +92,4 @@ body.theme-beauty .core-policy {
 body.theme-beauty #main-content:has(> .core-policy) + .core-care-footer { margin-block-start: 24px; }
 // PostCSS resolves border-inline-start to the left edge; keep the accent on the RTL start.
 html[dir='rtl'] body.theme-beauty .core-policy__notice { border-left: 0; border-right: 2px solid var(--cc-secondary); }
+html[dir='rtl'] body.theme-beauty .core-policy__content :is(ul, ol) { padding-left: 0; padding-right: 20px; }

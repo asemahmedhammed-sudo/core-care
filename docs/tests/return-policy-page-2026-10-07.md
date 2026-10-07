@@ -41,3 +41,10 @@ Environment: built `public/app.css` served by a local static server; partial han
   - 390px and 360px (same-origin iframe inside the preview; Chrome window cannot go below 1440px): single-column grid, cards full width, scrollWidth = viewport, no element outside viewport, FAQ summaries 52px, contact links 44px.
 - Observed: "آخر تحديث: 29/09/2024" still shows because this draft has a saved value in `beauty_policy_updated`; the merchant setting was not changed.
 - Not exercised on Salla: LTR, accordion keyboard interaction (verified locally only), announcement bar (none configured in this store), wallet-programs toggle.
+
+## Editability follow-up
+
+- Salla editor, information-pages view for page `1741544897`: page sections offer only «محرر النصوص»; «إضافة عنصر جديد» states elements can be added only to customised pages. That view's iframe loads the live storefront domain (`salla.sa/corecare/...`), so it renders the published theme, not the development theme — the source of the differing header/footer seen there.
+- Change: the policy design now renders the page's own editor content (`page.content`, same inherited output as the default page body) under the summary cards, and Salla's `information_page.information_page` hook for customised pages. All fixed design texts (description, three cards, exclusions, refund methods, contact copy) became multilanguage theme settings (18 new IDs, no existing IDs changed). Every multilanguage value is resolved per language before string filters, matching the promotions fix (Salla returns them as arrays).
+- `public/app.css` was built in a separate worktree containing only this change, because the working tree has unrelated uncommitted recommendation-card SCSS edits.
+- Repository: build passed (9 warnings), tests 66/66, static audit 13/13. Salla rendering of this revision: pending re-check.

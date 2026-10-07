@@ -1,0 +1,37 @@
+{# Returns policy: breadcrumb, title and summary cards. Rendered inside the page-single article.
+   Multilanguage settings arrive as per-language arrays; resolve the current language before
+   string filters. Uses only Twig constructs already rendered elsewhere in this theme on Salla. #}
+{% set policy_date = theme.settings.get('beauty_policy_updated', '') %}
+{% set policy_date = (policy_date is iterable ? policy_date[language.code]|default(policy_date|first) : policy_date)|default('')|trim %}
+{% set description = theme.settings.get('beauty_policy_description') %}
+{% set description = (description is iterable ? description[language.code]|default(description|first) : description)|default('')|trim %}
+
+<nav class="core-policy__breadcrumbs" aria-label="{{ trans('beauty.policy.breadcrumbs') }}"><salla-breadcrumb></salla-breadcrumb></nav>
+
+<header class="core-policy__header">
+  <span class="core-policy__eyebrow">{{ trans('beauty.policy.eyebrow') }}</span>
+  <h1 id="core-policy-title">{{ page.title|default(trans('beauty.policy.title')) }}</h1>
+  <p>{{ description ?: trans('beauty.policy.description') }}</p>
+  {% if policy_date %}<p class="core-policy__updated">{{ trans('beauty.policy.updated') }} <bdi>{{ policy_date }}</bdi></p>{% endif %}
+</header>
+
+<h2 class="sr-only">{{ trans('beauty.policy.summary') }}</h2>
+<ul class="core-policy__summary">
+  {% for key in ['deadline', 'processing', 'fee'] %}
+    {% set label = theme.settings.get('beauty_policy_summary_' ~ key ~ '_label') %}
+    {% set label = (label is iterable ? label[language.code]|default(label|first) : label)|default('')|trim %}
+    {% set value = theme.settings.get('beauty_policy_summary_' ~ key ~ '_value') %}
+    {% set value = (value is iterable ? value[language.code]|default(value|first) : value)|default('')|trim %}
+    <li class="core-policy__stat">
+      {% if key == 'deadline' %}
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke-linecap="round"/></svg>
+      {% elseif key == 'processing' %}
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      {% else %}
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 016 0V8" stroke-linecap="round"/></svg>
+      {% endif %}
+      <span class="core-policy__stat-label">{{ label ?: trans('beauty.policy.summary_' ~ key ~ '_label') }}</span>
+      <strong>{{ value ?: trans('beauty.policy.summary_' ~ key ~ '_value') }}</strong>
+    </li>
+  {% endfor %}
+</ul>
