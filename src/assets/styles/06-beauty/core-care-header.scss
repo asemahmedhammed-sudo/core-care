@@ -1,8 +1,9 @@
 body.theme-beauty {
   .store-header { display: contents; }
+  .core-care-header__band { width: 100%; background: var(--cc-surface); }
   .core-care-header__top {
     display: grid; grid-template-columns: 170px minmax(0, 1fr) auto; align-items: center;
-    gap: 24px; padding-block: 8px; background: var(--cc-surface);
+    gap: 24px; padding-block: 8px;
   }
   .core-care-header__brand { color: var(--cc-text); font-size: 24px; font-weight: 700; }
   .core-care-header__brand img { display: block; width: 170px; height: 59px; object-fit: contain; }

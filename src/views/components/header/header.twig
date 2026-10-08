@@ -8,6 +8,7 @@
 {% set important_links = theme.settings.get('important_links') %}
 <header data-testid="store-header" class="store-header">
   <salla-advertisement data-testid="beauty-announcement"></salla-advertisement>
+  <div class="core-care-header__band">
     <div class="container core-care-header__top">
       <a data-testid="store-header-logo" class="core-care-header__brand" href="{{ link('/') }}" aria-label="{{ store.name }}">
         {% if store.logo %}
@@ -19,6 +20,7 @@
       <salla-search class="core-care-header__search" data-testid="store-header-search" inline height="45"></salla-search>
       <p class="core-care-header__tagline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8 14-2 8 6-3 6 3-2-8"/></svg>{{ trans('beauty.header.tagline') }}</p>
     </div>
+  </div>
   <div id="mainnav" data-header-sticky="{{ theme.settings.get('header_is_sticky', true) ? 'true' : 'false' }}" class="main-nav-container core-care-header">
     <div class="container core-care-header__bottom">
       <nav class="core-care-header__links" aria-label="{{ trans('beauty.open_menu') }}">
