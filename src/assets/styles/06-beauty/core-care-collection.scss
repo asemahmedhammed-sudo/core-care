@@ -28,8 +28,6 @@ body.theme-beauty {
     .core-recommendation-cart:not(.core-recommendation-cart--status) .core-recommendation-cart-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     .core-recommendation-cart--status { grid-column: 1 / -1; grid-row: 5; width: 100%; margin: 4px 0 0; }
     .core-recommendation-card:hover { transform: none; box-shadow: none; }
-    .core-recommendation-card:hover .core-recommendation-cart:not(.core-recommendation-cart--status) .s-button-element,
-    .core-recommendation-card:focus-within .core-recommendation-cart:not(.core-recommendation-cart--status) .s-button-element { background: var(--cc-action); color: var(--cc-action-text); }
     .s-products-list-placeholder { padding-block: 24px 12px; color: var(--cc-text-muted); }
     .s-products-list-placeholder p { color: var(--cc-text-muted); }
     .s-products-list-placeholder > span { width: 96px; height: 96px; margin-block-end: 12px; background: var(--cc-secondary-soft); }
