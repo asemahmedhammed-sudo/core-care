@@ -59,7 +59,10 @@
       "categories": "All categories",
       "brands": "Brands",
       "account": "My account",
-      "notifications": "Notifications"
+      "notifications": "Notifications",
+      "language": "Language",
+      "currency": "Currency",
+      "localization": "Language and currency"
     },
     "footer": {
       "quick_links": "Quick links",

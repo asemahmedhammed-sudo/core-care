@@ -59,7 +59,10 @@
       "categories": "جميع الأقسام",
       "brands": "الماركات",
       "account": "حسابي",
-      "notifications": "الإشعارات"
+      "notifications": "الإشعارات",
+      "language": "اللغة",
+      "currency": "العملة",
+      "localization": "اللغة والعملة"
     },
     "footer": {
       "quick_links": "روابط سريعة",
