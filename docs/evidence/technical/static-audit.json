@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-10T14:21:28.976Z",
+  "generatedAt": "2026-10-10T14:56:52.423Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -2567,7 +2567,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "d3202d8ed58164a2ed582fd827d2065912d8dbd78e60bd7973616539606cc027"
+      "sha256": "0f06f909c148a03dc512c48002039fdb4beb0e5706452f0d5f3f2ca9d4ac34d6"
     },
     {
       "file": "src/views/pages/brands/single.twig",

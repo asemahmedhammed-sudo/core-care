@@ -1,13 +1,20 @@
+// Salla language prefixes, e.g. /ar or /en.
+const LANGUAGE = /^[a-z]{2}$/;
+
 // API navigation URLs can still point at the live custom domain in Salla preview.
 export function previewLink(value, homeValue, storeValue, currentValue) {
   try {
     const current = new URL(currentValue);
     const home = new URL(homeValue, current);
     let store = new URL(storeValue);
+    // Preview homes are /<store>/ or, in newer drafts, /<language>/<store>/.
+    const homeSegments = home.pathname.split('/').filter(Boolean);
+    const language = homeSegments.length > 1 && LANGUAGE.test(homeSegments[0]) ? homeSegments[0] : '';
+    const storeSlug = (language ? homeSegments.slice(1) : homeSegments).join('/');
     // In draft mode Salla rewrites store.url itself to salla.design, but its
     // menu/product APIs still return the verified production domain. Keep this
     // alias scoped to this store's preview, never to arbitrary external links.
-    if (store.origin === home.origin && home.pathname.replace(/\/$/, '') === '/corecare') {
+    if (store.origin === home.origin && storeSlug === 'corecare') {
       store = new URL('https://corecare-sa.com/');
     }
     const target = new URL(value, current);
@@ -18,8 +25,13 @@ export function previewLink(value, homeValue, storeValue, currentValue) {
     const prefix = home.pathname.replace(/\/$/, '');
     const storePrefix = store.pathname.replace(/\/$/, '');
     if (storePrefix && target.pathname !== storePrefix && !target.pathname.startsWith(storePrefix + '/')) return value;
-    const path = target.pathname.slice(storePrefix.length);
-    return home.origin + prefix + (path || '/') + target.search + target.hash;
+    let path = target.pathname.slice(storePrefix.length);
+    if (!language) return home.origin + prefix + (path || '/') + target.search + target.hash;
+    // Live links put the language first (/ar/…); the preview puts it before the store slug.
+    const first = path.split('/')[1] || '';
+    const linkLanguage = LANGUAGE.test(first) ? first : language;
+    if (linkLanguage === first) path = path.slice(first.length + 1);
+    return `${home.origin}/${linkLanguage}/${storeSlug}${path || '/'}${target.search}${target.hash}`;
   } catch { return value; }
 }
 
