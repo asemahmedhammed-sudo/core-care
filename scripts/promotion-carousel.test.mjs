@@ -15,51 +15,25 @@ test('promotions slider is a registered home component the merchant can add, edi
   assert.ok(fs.existsSync(new URL('../src/views/components/home/beauty-promotions.twig', import.meta.url)));
   const slides = component.fields.find(field => field.id === 'slides');
   assert.equal(slides.type, 'collection');
-  assert.deepEqual(slides.fields.map(field => field.id), ['slides.image', 'slides.mobile_image', 'slides.title', 'slides.show_title', 'slides.button_label', 'slides.url']);
-  assert.equal(slides.fields.find(field => field.id === 'slides.url').format, 'variable-list');
+  assert.deepEqual(slides.fields.map(field => field.id), ['slides.image', 'slides.mobile_image']);
   // The legacy global switches no longer control anything once the slider is a component.
   for (const id of ['beauty_promotions_enabled', 'beauty_promotions_autoplay', 'beauty_promotions_interval']) {
     assert.equal(config.settings.some(setting => setting.id === id), false, id);
   }
 });
 
-test('promotions component resolves multilanguage text, validates links and falls back to legacy slides', () => {
+test('promotions component simplifies to images with fallback to legacy slides', () => {
   const view = fs.readFileSync(new URL('../src/views/components/home/beauty-promotions.twig', import.meta.url), 'utf8');
   const partial = fs.readFileSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url), 'utf8');
-  for (const field of ['title', 'button_label']) {
-    assert.match(view, new RegExp(`slide\\.${field} is iterable \\? slide\\.${field}\\[language\\.code\\]\\|default\\(slide\\.${field}\\|first\\)`));
-  }
-  assert.match(view, /\{% if slide\.image %\}/);
-  assert.doesNotMatch(view + partial, /\bmatches\s*['"]|\?\?|\|raw/);
-  const condition = view.match(/\{% set slide_url_safe = (.*?) %\}/)[1];
-  assert.equal(condition, `(slide_url|lower starts with 'https://' or slide_url|lower starts with 'http://' or (slide_url starts with '/' and not (slide_url starts with '//'))) and ' ' not in slide_url and '"' not in slide_url and '<' not in slide_url and '>' not in slide_url`);
-  // Mirror of the Twig condition above.
-  const safe = url => (/^https?:\/\//i.test(url) || (url.startsWith('/') && !url.startsWith('//'))) && !/[ "<>]/.test(url);
-  for (const url of ['https://shop.example.com/offers', '/offers', 'http://shop.example.com/c/1']) assert.equal(safe(url), true, url);
-  for (const url of ['', '#', '//evil.example', 'javascript:alert(1)', 'data:text/html,x', 'https://example.com/"x', '/a b']) assert.equal(safe(url), false, url);
+  // Component accepts only image and mobile_image fields.
+  assert.match(view, /slide\.image[\s\S]*?slide\.mobile_image/);
+  assert.doesNotMatch(view, /slide\.title|slide\.url|slide\.button|show_title/);
+  // Partial renders images only, no links or buttons.
+  assert.match(partial, /{% if not slides\|length %\}[\s\S]*?beauty_promo_' ~ number ~ '_image/);
+  assert.doesNotMatch(partial, /beauty-promotions__copy|beauty-button|beauty-promotions__action/);
+  assert.match(partial, /component-id="\{\{ component_id\|e\('html_attr'\) \}\}"/);
   assert.match(view, /promotion_autoplay: component\.autoplay is not defined or component\.autoplay is null or component\.autoplay,/);
   assert.match(view, /promotion_interval: component\.interval\|default\(5\)/);
-  assert.match(partial, /\{% if not slides\|length %\}[\s\S]*beauty_promo_' ~ number ~ '_image/);
-  assert.match(partial, /component-id="\{\{ component_id\|e\('html_attr'\) \}\}"/);
-  // Unlinked slides render a plain wrapper instead of an empty link.
-  assert.match(partial, /\{% set tag = href \? 'a' : 'div' %\}/);
-});
-
-test('promotions slider only keeps its header offset when it is the first section', () => {
-  const styles = fs.readFileSync(new URL('../src/assets/styles/06-beauty/core-care-home.scss', import.meta.url), 'utf8');
-  assert.match(styles, /#main-content > :not\(\.s-design-invisible-dom, salla-hook\) ~ \.beauty-promotions \{ padding-block-start: 0; \}/);
-});
-
-test('multilanguage promotion text resolves the current language before string filters', () => {
-  const template = fs.readFileSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url), 'utf8');
-  const config = JSON.parse(fs.readFileSync(new URL('../twilight.json', import.meta.url), 'utf8'));
-  // Salla returns multilanguage settings as per-language arrays; |trim on an array aborts the homepage view.
-  const fields = [...new Set(config.settings.filter(setting => /^beauty_promo_\d+_/.test(setting.id) && setting.multilanguage).map(setting => setting.id.replace(/^beauty_promo_\d+_/, '')))];
-  assert.deepEqual(fields.sort(), ['button_label', 'title']);
-  for (const field of fields) {
-    assert.doesNotMatch(template, new RegExp(`get\\('beauty_promo_' ~ number ~ '_${field}'\\)\\|`));
-    assert.match(template, /is iterable \? \w+\[language\.code\]\|default\(\w+\|first\) : \w+\)\|default\(''\)\|trim/);
-  }
 });
 
 test('shopping destinations accept HTTPS store links and reject unsafe or malformed URLs', () => {

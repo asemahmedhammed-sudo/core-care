@@ -36,21 +36,11 @@
   <div class="beauty-promotions__viewport">
     {% for slide in slides %}
       {% set default_artwork = slide.default_artwork %}
-      {% set href = slide.link|default(slide.destination) %}
-      {% set tag = href ? 'a' : 'div' %}
-      <div data-promotion-slide class="beauty-promotions__slide" aria-label="{{ slide.title|e('html_attr') }}" {% if not loop.first %}hidden{% endif %}>
-        <{{ tag }} class="beauty-promotions__image-link"{% if href %} href="{{ href|e('html_attr') }}" aria-label="{{ slide.title|e('html_attr') }}"{% endif %}>
-          <picture class="beauty-promotions__media">
-            {% if slide.mobile_image %}<source media="(max-width: 767px)" srcset="{{ slide.mobile_image|e('html_attr') }}" width="960" height="320">{% endif %}
-            <img class="beauty-promotions__artwork{% if default_artwork %} beauty-promotions__artwork--default{% endif %}" src="{{ slide.image|e('html_attr') }}" alt="{{ slide.title|e('html_attr') }}" width="1440" height="{{ slide.height }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" {% if loop.first %}fetchpriority="high"{% endif %}>
-          </picture>
-        </{{ tag }}>
-        {% if slide.heading or (slide.destination and slide.button_label) %}
-        <div class="beauty-promotions__copy">
-          {% if slide.heading %}<h2>{{ slide.heading }}</h2>{% endif %}
-          {% if slide.destination and slide.button_label %}<a class="beauty-button beauty-button--gold beauty-promotions__action" href="{{ slide.destination|e('html_attr') }}">{{ slide.button_label }}</a>{% endif %}
-        </div>
-        {% endif %}
+      <div data-promotion-slide class="beauty-promotions__slide" aria-label="{{ slide.title|default(trans('beauty.promo.label') ~ ' ' ~ loop.index)|e('html_attr') }}" {% if not loop.first %}hidden{% endif %}>
+        <picture class="beauty-promotions__media">
+          {% if slide.mobile_image %}<source media="(max-width: 767px)" srcset="{{ slide.mobile_image|e('html_attr') }}" width="960" height="320">{% endif %}
+          <img class="beauty-promotions__artwork{% if default_artwork %} beauty-promotions__artwork--default{% endif %}" src="{{ slide.image|e('html_attr') }}" alt="{{ slide.title|default(trans('beauty.promo.label') ~ ' ' ~ loop.index)|e('html_attr') }}" width="1440" height="{{ slide.height }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" {% if loop.first %}fetchpriority="high"{% endif %}>
+        </picture>
       </div>
     {% endfor %}
     <div class="beauty-promotions__controls" data-promotion-controls hidden>

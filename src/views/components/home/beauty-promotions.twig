@@ -1,20 +1,10 @@
-{# Merchant-editable promotions slider. Without configured slides it falls back to the legacy theme settings or bundled artwork. #}
+{# Merchant-editable promotions slider showing only images. Without configured slides it falls back to the legacy theme settings or bundled artwork. #}
 {% set promotion_slides = [] %}
 {% for slide in component.slides %}
   {% if slide.image %}
-    {# Multilanguage fields can arrive as per-language arrays; resolve the current language before string filters. #}
-    {% set slide_title = (slide.title is iterable ? slide.title[language.code]|default(slide.title|first) : slide.title)|default('')|trim %}
-    {% set slide_button = (slide.button_label is iterable ? slide.button_label[language.code]|default(slide.button_label|first) : slide.button_label)|default('')|trim %}
-    {% set slide_url = (slide.url is iterable ? '' : slide.url)|default('')|trim %}
-    {# Accept absolute HTTP(S) or store-relative links only; plain Twig operators keep validation independent of regex support. #}
-    {% set slide_url_safe = (slide_url|lower starts with 'https://' or slide_url|lower starts with 'http://' or (slide_url starts with '/' and not (slide_url starts with '//'))) and ' ' not in slide_url and '"' not in slide_url and '<' not in slide_url and '>' not in slide_url %}
     {% set promotion_slides = promotion_slides|merge([{
       image: slide.image,
       mobile_image: slide.mobile_image,
-      title: slide_title ?: trans('beauty.promo.label') ~ ' ' ~ loop.index,
-      heading: slide.show_title and slide_title ? slide_title : '',
-      destination: slide_url_safe ? slide_url : '',
-      button_label: slide_url_safe ? slide_button : '',
       default_artwork: false,
       height: 480
     }]) %}

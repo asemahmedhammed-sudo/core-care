@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-10T13:59:25.711Z",
+  "generatedAt": "2026-10-10T14:19:25.547Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -496,30 +496,6 @@
       "component": "home.beauty-promotions",
       "field": "slides.mobile_image",
       "expectedReference": "slide.mobile_image",
-      "found": true
-    },
-    {
-      "component": "home.beauty-promotions",
-      "field": "slides.title",
-      "expectedReference": "slide.title",
-      "found": true
-    },
-    {
-      "component": "home.beauty-promotions",
-      "field": "slides.show_title",
-      "expectedReference": "slide.show_title",
-      "found": true
-    },
-    {
-      "component": "home.beauty-promotions",
-      "field": "slides.button_label",
-      "expectedReference": "slide.button_label",
-      "found": true
-    },
-    {
-      "component": "home.beauty-promotions",
-      "field": "slides.url",
-      "expectedReference": "slide.url",
       "found": true
     },
     {
@@ -1327,30 +1303,6 @@
       "id": "slides.mobile_image",
       "type": "string",
       "format": "image"
-    },
-    {
-      "location": "components[0].fields[0].fields[2]",
-      "id": "slides.title",
-      "type": "string",
-      "format": "text"
-    },
-    {
-      "location": "components[0].fields[0].fields[3]",
-      "id": "slides.show_title",
-      "type": "boolean",
-      "format": "switch"
-    },
-    {
-      "location": "components[0].fields[0].fields[4]",
-      "id": "slides.button_label",
-      "type": "string",
-      "format": "text"
-    },
-    {
-      "location": "components[0].fields[0].fields[5]",
-      "id": "slides.url",
-      "type": "items",
-      "format": "variable-list"
     },
     {
       "location": "components[0].fields[1]",
@@ -2194,22 +2146,6 @@
       "value": 6
     },
     {
-      "location": "$.components.0.fields.0.fields.2.minLength",
-      "value": 1
-    },
-    {
-      "location": "$.components.0.fields.0.fields.2.maxLength",
-      "value": 120
-    },
-    {
-      "location": "$.components.0.fields.0.fields.4.minLength",
-      "value": 0
-    },
-    {
-      "location": "$.components.0.fields.0.fields.4.maxLength",
-      "value": 80
-    },
-    {
       "location": "$.components.1.fields.0.minLength",
       "value": 0
     },
@@ -2596,7 +2532,7 @@
     {
       "file": "src/views/components/home/beauty-promotions.twig",
       "kind": "new-template",
-      "sha256": "c652def163cb19bfa5db155e0a8ae884302ae766f72a62cf41f0fda41b977f2d"
+      "sha256": "d3af80d153e5972bfd5662aa7b0b38ffaf12ca555b4d64a6e4f7ea0b9caa6bd1"
     },
     {
       "file": "src/views/components/home/beauty-routine.twig",
@@ -2676,7 +2612,7 @@
     {
       "file": "src/views/pages/partials/home/promotions.twig",
       "kind": "new-template",
-      "sha256": "680f2eefd18a63532525746d476772e9b2837336731a85a2a18b302c4d0c4a28"
+      "sha256": "749685218b91cfbe7f88364a613f6cf90b3f7a508851f27584f7f8baf54174a0"
     },
     {
       "file": "src/views/pages/partials/product/gallery.twig",
