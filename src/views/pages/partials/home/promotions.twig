@@ -1,43 +1,57 @@
-{# A Twig partial, not a registered Salla home component. #}
+{# Shared promotions carousel markup, rendered by components/home/beauty-promotions.twig. #}
+{# Without merchant slides, keep the legacy theme-setting slides and bundled artwork. #}
+{% set slides = promotion_slides|default([]) %}
+{% if not slides|length %}
 {% set configured_images = theme.settings.get('beauty_promo_1_image') or theme.settings.get('beauty_promo_2_image') or theme.settings.get('beauty_promo_3_image') %}
-{% set visible_slide = 0 %}
-{% set autoplay = theme.settings.get('beauty_promotions_autoplay', true) %}
-{% if theme.settings.get('beauty_promotions_enabled', true) %}
-<section class="beauty-promotions" data-promotion-carousel data-promotion-autoplay="{{ autoplay ? 'true' : 'false' }}" data-promotion-interval="{{ theme.settings.get('beauty_promotions_interval', 5)|e('html_attr') }}" role="region" aria-roledescription="{{ trans('beauty.promo.carousel') }}" aria-label="{{ trans('beauty.promo.label') }}">
+{% for number in 1..3 %}
+  {% set image = theme.settings.get('beauty_promo_' ~ number ~ '_image') %}
+  {% if image or not configured_images %}
+  {% set default_artwork = not image %}
+  {# Multilanguage settings arrive as per-language arrays; resolve the current language before string filters. #}
+  {% set configured_title = theme.settings.get('beauty_promo_' ~ number ~ '_title') %}
+  {% set configured_title = (configured_title is iterable ? configured_title[language.code]|default(configured_title|first) : configured_title)|default('')|trim %}
+  {% set configured_destination = theme.settings.get('beauty_promo_' ~ number ~ '_url')|trim %}
+  {# Plain Twig operators keep link validation independent of regex support. #}
+  {% set valid_destination = configured_destination|lower starts with 'https://' and configured_destination|length > 8 and ' ' not in configured_destination and '"' not in configured_destination and '<' not in configured_destination and '>' not in configured_destination %}
+  {% set button_label = theme.settings.get('beauty_promo_' ~ number ~ '_button_label') %}
+  {% set button_label = (button_label is iterable ? button_label[language.code]|default(button_label|first) : button_label)|default('')|trim ?: trans('beauty.promo.shop_now') %}
+  {% set slides = slides|merge([{
+    image: image ?: ('images/core-care-promo-' ~ number ~ '.webp')|asset,
+    mobile_image: theme.settings.get('beauty_promo_' ~ number ~ '_mobile_image'),
+    title: configured_title ?: trans('beauty.promo.title_' ~ number),
+    heading: not default_artwork and configured_title and theme.settings.get('beauty_promo_' ~ number ~ '_show_title', false) ? configured_title : '',
+    link: valid_destination ? configured_destination : link(number == 1 ? 'offers' : (number == 2 ? 'latest-products' : 'brands')),
+    destination: valid_destination ? configured_destination : '',
+    button_label: valid_destination ? button_label : '',
+    default_artwork: default_artwork,
+    height: default_artwork and number != 1 ? 576 : 480
+  }]) %}
+  {% endif %}
+{% endfor %}
+{% endif %}
+{% set autoplay = promotion_autoplay is defined ? promotion_autoplay : true %}
+{% set interval = promotion_interval|default(5) %}
+{% if slides|length %}
+<section {% if component_id is defined %}component-id="{{ component_id|e('html_attr') }}" {% endif %}class="beauty-promotions" data-promotion-carousel data-promotion-autoplay="{{ autoplay ? 'true' : 'false' }}" data-promotion-interval="{{ interval|e('html_attr') }}" role="region" aria-roledescription="{{ trans('beauty.promo.carousel') }}" aria-label="{{ trans('beauty.promo.label') }}">
   <div class="beauty-promotions__viewport">
-    {% for number in 1..3 %}
-      {% set image = theme.settings.get('beauty_promo_' ~ number ~ '_image') %}
-      {% if image or not configured_images %}
-      {% set visible_slide = visible_slide + 1 %}
-      {% set default_artwork = not image %}
-      {% set image = image ?: ('images/core-care-promo-' ~ number ~ '.webp')|asset %}
-      {% set mobile_image = theme.settings.get('beauty_promo_' ~ number ~ '_mobile_image') %}
-      {# Multilanguage settings arrive as per-language arrays; resolve the current language before string filters. #}
-      {% set configured_title = theme.settings.get('beauty_promo_' ~ number ~ '_title') %}
-      {% set configured_title = (configured_title is iterable ? configured_title[language.code]|default(configured_title|first) : configured_title)|default('')|trim %}
-      {% set title = configured_title ?: trans('beauty.promo.title_' ~ number) %}
-      {% set show_title = not default_artwork and configured_title and theme.settings.get('beauty_promo_' ~ number ~ '_show_title', false) %}
-      {% set configured_destination = theme.settings.get('beauty_promo_' ~ number ~ '_url')|trim %}
-      {# Plain Twig operators keep link validation independent of regex support. #}
-      {% set valid_destination = configured_destination|lower starts with 'https://' and configured_destination|length > 8 and ' ' not in configured_destination and '"' not in configured_destination and '<' not in configured_destination and '>' not in configured_destination %}
-      {% set destination = valid_destination ? configured_destination : link(number == 1 ? 'offers' : (number == 2 ? 'latest-products' : 'brands')) %}
-      {% set button_label = theme.settings.get('beauty_promo_' ~ number ~ '_button_label') %}
-      {% set button_label = (button_label is iterable ? button_label[language.code]|default(button_label|first) : button_label)|default('')|trim ?: trans('beauty.promo.shop_now') %}
-      <div data-promotion-slide class="beauty-promotions__slide" aria-label="{{ title|e('html_attr') }}" {% if visible_slide != 1 %}hidden{% endif %}>
-        <a class="beauty-promotions__image-link" href="{{ destination|e('html_attr') }}" aria-label="{{ title|e('html_attr') }}">
+    {% for slide in slides %}
+      {% set default_artwork = slide.default_artwork %}
+      {% set href = slide.link|default(slide.destination) %}
+      {% set tag = href ? 'a' : 'div' %}
+      <div data-promotion-slide class="beauty-promotions__slide" aria-label="{{ slide.title|e('html_attr') }}" {% if not loop.first %}hidden{% endif %}>
+        <{{ tag }} class="beauty-promotions__image-link"{% if href %} href="{{ href|e('html_attr') }}" aria-label="{{ slide.title|e('html_attr') }}"{% endif %}>
           <picture class="beauty-promotions__media">
-            {% if mobile_image %}<source media="(max-width: 767px)" srcset="{{ mobile_image|e('html_attr') }}" width="960" height="320">{% endif %}
-            <img class="beauty-promotions__artwork{% if default_artwork %} beauty-promotions__artwork--default{% endif %}" src="{{ image|e('html_attr') }}" alt="{{ title|e('html_attr') }}" width="1440" height="{{ default_artwork and number != 1 ? 576 : 480 }}" loading="{{ visible_slide == 1 ? 'eager' : 'lazy' }}" {% if visible_slide == 1 %}fetchpriority="high"{% endif %}>
+            {% if slide.mobile_image %}<source media="(max-width: 767px)" srcset="{{ slide.mobile_image|e('html_attr') }}" width="960" height="320">{% endif %}
+            <img class="beauty-promotions__artwork{% if default_artwork %} beauty-promotions__artwork--default{% endif %}" src="{{ slide.image|e('html_attr') }}" alt="{{ slide.title|e('html_attr') }}" width="1440" height="{{ slide.height }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" {% if loop.first %}fetchpriority="high"{% endif %}>
           </picture>
-        </a>
-        {% if show_title or valid_destination %}
+        </{{ tag }}>
+        {% if slide.heading or (slide.destination and slide.button_label) %}
         <div class="beauty-promotions__copy">
-          {% if show_title %}<h2>{{ configured_title }}</h2>{% endif %}
-          {% if valid_destination %}<a class="beauty-button beauty-button--gold beauty-promotions__action" href="{{ configured_destination|e('html_attr') }}">{{ button_label }}</a>{% endif %}
+          {% if slide.heading %}<h2>{{ slide.heading }}</h2>{% endif %}
+          {% if slide.destination and slide.button_label %}<a class="beauty-button beauty-button--gold beauty-promotions__action" href="{{ slide.destination|e('html_attr') }}">{{ slide.button_label }}</a>{% endif %}
         </div>
         {% endif %}
       </div>
-      {% endif %}
     {% endfor %}
     <div class="beauty-promotions__controls" data-promotion-controls hidden>
       <button type="button" data-promotion-prev class="beauty-promotions__arrow beauty-promotions__arrow--prev" aria-label="{{ trans('beauty.promo.previous') }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>

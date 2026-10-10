@@ -28,6 +28,8 @@ body.theme-beauty.beauty-reference-home {
   #main-content > .beauty-categories:not(:has(.beauty-categories__list > li)) { display: none; }
 
   .beauty-promotions { width: 100%; padding: 16px var(--cc-gutter) 0; background: transparent; }
+  // As a merchant component the slider can follow other sections; only the first section keeps the offset below the header.
+  #main-content > :not(.s-design-invisible-dom, salla-hook) ~ .beauty-promotions { padding-block-start: 0; }
   .beauty-promotions__viewport, .beauty-promotions__controls { max-width: 1392px; margin-inline: auto; }
   // Shared grid anchors arrows to the artwork row, independent of optional copy.
   .beauty-promotions__viewport { display: grid; grid-template-columns: 60px minmax(0, 1fr) 60px; }

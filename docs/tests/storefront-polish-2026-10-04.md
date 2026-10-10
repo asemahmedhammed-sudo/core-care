@@ -78,16 +78,3 @@ Hover/reduced-motion behavior is implemented but needs native platform review.
 Implementation is present locally; repository checks passed. Full visual/functional
 acceptance and publication readiness remain incomplete pending a preview serving
 the updated build and the route/state checks above.
-
-## Development branch preparation — 2026-10-05
-
-User authorized pushing the changes to a development branch. Branch
-`codex/storefront-polish` starts at `8f739e9`. A managed worktree isolates this change
-from the unrelated dirty files in the original checkout. The pnpm launcher attempted
-to reinstall reused dependencies and aborted because no TTY was available; the
-documented direct Webpack/Node fallback passed (41 tests and 13 static checks).
-The unchanged source tree was compared byte-for-byte and its already verified
-production assets were copied from the primary build; this avoids dependency-path
-module ID churn in unrelated bundles. No generated asset was edited by hand.
-Local HTML fixtures remain in the primary checkout; the two screenshot evidence
-files accompany this branch. Hosted platform verification is still pending.

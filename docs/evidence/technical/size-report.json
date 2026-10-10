@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T21:27:21.814Z",
+  "generatedAt": "2026-10-05T21:22:06.973Z",
   "environment": {
     "node": "v25.0.0",
     "os": "Darwin 24.6.0",
@@ -42,9 +42,9 @@
       "id": "built-public-all",
       "description": "All files in public/, including images.",
       "fileCount": 24,
-      "rawBytes": 988389,
-      "gzipBytes": 549008,
-      "brotliBytes": 530002,
+      "rawBytes": 1007009,
+      "gzipBytes": 551944,
+      "brotliBytes": 532369,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -55,10 +55,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 297419,
-          "gzipBytes": 44855,
-          "brotliBytes": 36020,
-          "sha256": "9d0375fd6001885f31904efa31b15b59331d887979eb0e409665b4ff6f308d24"
+          "bytes": 314933,
+          "gzipBytes": 47093,
+          "brotliBytes": 37808,
+          "sha256": "750ac0fc55a4fe52dc050b1296d923dcff0da33a23aaff8ce3d1c97985c0f3be"
         },
         {
           "file": "public/app.js",
@@ -83,10 +83,10 @@
         },
         {
           "file": "public/home.js",
-          "bytes": 39576,
-          "gzipBytes": 12877,
-          "brotliBytes": 11411,
-          "sha256": "bbaa8a1100ef17b08350c27f243757aae3cd3f1816b7831253284336e034aeb6"
+          "bytes": 41889,
+          "gzipBytes": 13686,
+          "brotliBytes": 12135,
+          "sha256": "18f618e6faa0c1ffaada143d79bc622eb66fb1216ebbc85184e3ffac902b9924"
         },
         {
           "file": "public/images/beauty-hero-products.jpg",
@@ -195,10 +195,10 @@
         },
         {
           "file": "public/product.js",
-          "bytes": 48944,
-          "gzipBytes": 15733,
-          "brotliBytes": 14009,
-          "sha256": "9b466f7dd400f9b11c3722d907e2fa419e91ab02733729daee210284b2de3d5a"
+          "bytes": 47737,
+          "gzipBytes": 15622,
+          "brotliBytes": 13864,
+          "sha256": "cad68e0c8941af62a88de520b68bc7ed16ac9bfff5403a352f51a309d87f1761"
         },
         {
           "file": "public/testimonials.js",
@@ -220,9 +220,9 @@
       "id": "built-public-js-css",
       "description": "Only generated JavaScript and CSS in public/.",
       "fileCount": 13,
-      "rawBytes": 553012,
-      "gzipBytes": 124229,
-      "brotliBytes": 105678,
+      "rawBytes": 571632,
+      "gzipBytes": 127165,
+      "brotliBytes": 108045,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -233,10 +233,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 297419,
-          "gzipBytes": 44855,
-          "brotliBytes": 36020,
-          "sha256": "9d0375fd6001885f31904efa31b15b59331d887979eb0e409665b4ff6f308d24"
+          "bytes": 314933,
+          "gzipBytes": 47093,
+          "brotliBytes": 37808,
+          "sha256": "750ac0fc55a4fe52dc050b1296d923dcff0da33a23aaff8ce3d1c97985c0f3be"
         },
         {
           "file": "public/app.js",
@@ -261,10 +261,10 @@
         },
         {
           "file": "public/home.js",
-          "bytes": 39576,
-          "gzipBytes": 12877,
-          "brotliBytes": 11411,
-          "sha256": "bbaa8a1100ef17b08350c27f243757aae3cd3f1816b7831253284336e034aeb6"
+          "bytes": 41889,
+          "gzipBytes": 13686,
+          "brotliBytes": 12135,
+          "sha256": "18f618e6faa0c1ffaada143d79bc622eb66fb1216ebbc85184e3ffac902b9924"
         },
         {
           "file": "public/main-menu.js",
@@ -296,10 +296,10 @@
         },
         {
           "file": "public/product.js",
-          "bytes": 48944,
-          "gzipBytes": 15733,
-          "brotliBytes": 14009,
-          "sha256": "9b466f7dd400f9b11c3722d907e2fa419e91ab02733729daee210284b2de3d5a"
+          "bytes": 47737,
+          "gzipBytes": 15622,
+          "brotliBytes": 13864,
+          "sha256": "cad68e0c8941af62a88de520b68bc7ed16ac9bfff5403a352f51a309d87f1761"
         },
         {
           "file": "public/testimonials.js",
@@ -320,10 +320,10 @@
     {
       "id": "source-runtime",
       "description": "Twilight manifest plus src/ assets, translations, and Twig; excludes public/.",
-      "fileCount": 144,
-      "rawBytes": 1050571,
-      "gzipBytes": 581938,
-      "brotliBytes": 555169,
+      "fileCount": 148,
+      "rawBytes": 1115100,
+      "gzipBytes": 595503,
+      "brotliBytes": 566517,
       "files": [
         {
           "file": "src/assets/images/beauty-hero-products.jpg",
@@ -487,6 +487,13 @@
           "sha256": "475be6bf7eff9335f6321eace5a6b0799c8ce2fb96006603e5929ed310e39865"
         },
         {
+          "file": "src/assets/js/partials/collection-state.js",
+          "bytes": 2371,
+          "gzipBytes": 910,
+          "brotliBytes": 763,
+          "sha256": "593141371111901f74616e5a4a6402a86c538971015b89a67f84a712d815098c"
+        },
+        {
           "file": "src/assets/js/partials/core-care-categories.js",
           "bytes": 8269,
           "gzipBytes": 2375,
@@ -537,10 +544,10 @@
         },
         {
           "file": "src/assets/js/partials/promotion-carousel.js",
-          "bytes": 2991,
-          "gzipBytes": 960,
-          "brotliBytes": 795,
-          "sha256": "3290a58cfb08e1d377c8173fcccc84a5eb70ca6f0dbaf5187300b7077b848019"
+          "bytes": 7988,
+          "gzipBytes": 2379,
+          "brotliBytes": 2014,
+          "sha256": "42d8a41ebefb5a0a217701faa75d667552a945a590ff44066d73a076b85d35cc"
         },
         {
           "file": "src/assets/js/partials/tooltip.js",
@@ -572,10 +579,10 @@
         },
         {
           "file": "src/assets/js/products.js",
-          "bytes": 2266,
-          "gzipBytes": 864,
-          "brotliBytes": 697,
-          "sha256": "c44f5fc8be76cd5004dd455a342d0fd2b35174a97638baf0a464ffc6431f66fd"
+          "bytes": 6300,
+          "gzipBytes": 1870,
+          "brotliBytes": 1551,
+          "sha256": "f02afa7d0cac0b8b63e8e8fd3b7f146df95f86089f823445a929b45ce16fe736"
         },
         {
           "file": "src/assets/js/testimonials.js",
@@ -886,6 +893,13 @@
           "sha256": "8f45ae2ac46f85384af7c26244565ba49212516d8cd65593044827d7b215e3c3"
         },
         {
+          "file": "src/assets/styles/06-beauty/core-care-collection.scss",
+          "bytes": 9790,
+          "gzipBytes": 2121,
+          "brotliBytes": 1772,
+          "sha256": "818acfca31d50af3927d5fb37dfe0d7bdddc7f0e617e62f34d94c09213092d6f"
+        },
+        {
           "file": "src/assets/styles/06-beauty/core-care-footer.scss",
           "bytes": 4559,
           "gzipBytes": 1278,
@@ -901,10 +915,10 @@
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-home.scss",
-          "bytes": 10528,
-          "gzipBytes": 2855,
-          "brotliBytes": 2391,
-          "sha256": "7e227782fbb0e9225ef6461a51460e3f7743ec65ce85b52566f25e2bb3147430"
+          "bytes": 12166,
+          "gzipBytes": 3173,
+          "brotliBytes": 2633,
+          "sha256": "91951e7cffabf9674bd0e7aadc02a57d185a502b9b9d1f8f0c6c80ea330f12d6"
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-interface.scss",
@@ -915,10 +929,17 @@
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-palette.scss",
-          "bytes": 4039,
-          "gzipBytes": 1358,
-          "brotliBytes": 1144,
-          "sha256": "188c35dcb218f2a2e1ad53ce064b018b9b85843d46a8ad94bc9d3412142964ce"
+          "bytes": 4067,
+          "gzipBytes": 1366,
+          "brotliBytes": 1157,
+          "sha256": "ae02c9535a186b61c6a5063f1199cc736eb56adcf9805ccdbcaf222b624b7619"
+        },
+        {
+          "file": "src/assets/styles/06-beauty/core-care-policy.scss",
+          "bytes": 4455,
+          "gzipBytes": 1261,
+          "brotliBytes": 1041,
+          "sha256": "8bce989b4ffd99029056d8c1e2b8f66894b1ea2b68c522412856c5e417acbeea"
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-product-details.scss",
@@ -936,24 +957,24 @@
         },
         {
           "file": "src/assets/styles/app.scss",
-          "bytes": 4111,
-          "gzipBytes": 1204,
-          "brotliBytes": 990,
-          "sha256": "d72cdec5fbf32cd5506a006782ad575053e96087bd5df0e12689a5ad99cdf068"
+          "bytes": 4196,
+          "gzipBytes": 1218,
+          "brotliBytes": 998,
+          "sha256": "81b19c89a8aa8704d85cf60e3824f3f48756ac2863bb332d2173c619c20a78ff"
         },
         {
           "file": "src/locales/ar.json",
-          "bytes": 4619,
-          "gzipBytes": 1736,
-          "brotliBytes": 1374,
-          "sha256": "57772c3dd3f2e0b716e7bf4b05043fdd74c8d1d693b6096025bac193554c8429"
+          "bytes": 10700,
+          "gzipBytes": 3241,
+          "brotliBytes": 2630,
+          "sha256": "7d2abd3f75b4542ab28991b1809943b6d450c3a40b9261ea860a1d4a8bf3ece7"
         },
         {
           "file": "src/locales/en.json",
-          "bytes": 3659,
-          "gzipBytes": 1383,
-          "brotliBytes": 1090,
-          "sha256": "48d4b30ed8034e208a4edf8b3a81dcbc8aefd76be4bd6dfb518581844273f13e"
+          "bytes": 7902,
+          "gzipBytes": 2616,
+          "brotliBytes": 2136,
+          "sha256": "24ecd4b3cfd81c000a17a8f2615465fa3ca6116ea087f62181602919cc65f906"
         },
         {
           "file": "src/views/components/footer/footer.twig",
@@ -1146,10 +1167,10 @@
         },
         {
           "file": "src/views/layouts/master.twig",
-          "bytes": 13498,
-          "gzipBytes": 3174,
-          "brotliBytes": 2574,
-          "sha256": "6a67cddfcdee59d14242399f85f61ecebc52b82c8fd266e6592c2a2af478f64a"
+          "bytes": 13712,
+          "gzipBytes": 3254,
+          "brotliBytes": 2637,
+          "sha256": "a05707e6a98478bb1931daf954e23a2f54c1fa3cbfe217c1c3000ea0392864db"
         },
         {
           "file": "src/views/pages/blog/index.twig",
@@ -1230,10 +1251,10 @@
         },
         {
           "file": "src/views/pages/index.twig",
-          "bytes": 792,
-          "gzipBytes": 297,
-          "brotliBytes": 223,
-          "sha256": "fec717e9f0daf19927c7ff5b6c47beba8e0b7aa0e95fb415d239a709d366c17e"
+          "bytes": 797,
+          "gzipBytes": 299,
+          "brotliBytes": 224,
+          "sha256": "bbdbe95d5d3ea28ed44b9ecce091ad573a57e9007c69a0367819278d3c249afa"
         },
         {
           "file": "src/views/pages/loyalty.twig",
@@ -1244,10 +1265,10 @@
         },
         {
           "file": "src/views/pages/page-single.twig",
-          "bytes": 1687,
-          "gzipBytes": 631,
-          "brotliBytes": 514,
-          "sha256": "2beb9c0e5663ef16391ec14ddbdd2c3f62b6168e4a3a551b5d8462cc1803f1ff"
+          "bytes": 1891,
+          "gzipBytes": 718,
+          "brotliBytes": 585,
+          "sha256": "5aa9a581b3c4dbe21bd12cc93e8ae8f92b17820129bd54630057eff3953a879d"
         },
         {
           "file": "src/views/pages/partials/home/product-section-footer.twig",
@@ -1272,10 +1293,10 @@
         },
         {
           "file": "src/views/pages/partials/home/promotions.twig",
-          "bytes": 3475,
-          "gzipBytes": 1034,
-          "brotliBytes": 858,
-          "sha256": "13ed99cfb84ba70215e53634c06d616dd6352aad47ec8df79ad48ea49934cb80"
+          "bytes": 4789,
+          "gzipBytes": 1367,
+          "brotliBytes": 1168,
+          "sha256": "8fa627fb05913a3b1b1bc1c4cd171eb781cbb5ba680fb9808f007326e05bfc18"
         },
         {
           "file": "src/views/pages/partials/product/gallery.twig",
@@ -1299,11 +1320,18 @@
           "sha256": "28f08e732822c47dfec85a8ae2539f75fafd6b268d9db4ef69059957a6891de6"
         },
         {
+          "file": "src/views/pages/partials/return-policy.twig",
+          "bytes": 5552,
+          "gzipBytes": 1460,
+          "brotliBytes": 1193,
+          "sha256": "c0f1d0716d11a49abdfb49292c5eee76aab6775e8437988c0697019fcf928fa4"
+        },
+        {
           "file": "src/views/pages/product/index.twig",
-          "bytes": 5810,
-          "gzipBytes": 1778,
-          "brotliBytes": 1493,
-          "sha256": "691bbe0f7031e8c400fde0e102944812475406a25cefb66a466fa9442e7ca911"
+          "bytes": 8376,
+          "gzipBytes": 2101,
+          "brotliBytes": 1775,
+          "sha256": "52a95bc991d1b663ba9af13b80d2260a195eebac6935b8ce18dd6c86eb57f0c8"
         },
         {
           "file": "src/views/pages/product/single.twig",
@@ -1328,20 +1356,20 @@
         },
         {
           "file": "twilight.json",
-          "bytes": 75071,
-          "gzipBytes": 7397,
-          "brotliBytes": 5890,
-          "sha256": "ce3644933321066665ed49da0583798a8705e51ac9ab1c99ff5f9f9428cf0075"
+          "bytes": 92023,
+          "gzipBytes": 8882,
+          "brotliBytes": 7104,
+          "sha256": "a860df3cec6a2616e34668c461aa9f2e2765717665d2fc9a98fb891e4e97ea04"
         }
       ]
     },
     {
       "id": "runtime-manifest-views-locales-built",
       "description": "Manifest, Twig, locales, and all built public files; source assets excluded.",
-      "fileCount": 80,
-      "rawBytes": 1316300,
-      "gzipBytes": 616999,
-      "brotliBytes": 586264,
+      "fileCount": 81,
+      "rawBytes": 1372051,
+      "gzipBytes": 626443,
+      "brotliBytes": 594067,
       "files": [
         {
           "file": "public/add-product-toast.js",
@@ -1352,10 +1380,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 297419,
-          "gzipBytes": 44855,
-          "brotliBytes": 36020,
-          "sha256": "9d0375fd6001885f31904efa31b15b59331d887979eb0e409665b4ff6f308d24"
+          "bytes": 314933,
+          "gzipBytes": 47093,
+          "brotliBytes": 37808,
+          "sha256": "750ac0fc55a4fe52dc050b1296d923dcff0da33a23aaff8ce3d1c97985c0f3be"
         },
         {
           "file": "public/app.js",
@@ -1380,10 +1408,10 @@
         },
         {
           "file": "public/home.js",
-          "bytes": 39576,
-          "gzipBytes": 12877,
-          "brotliBytes": 11411,
-          "sha256": "bbaa8a1100ef17b08350c27f243757aae3cd3f1816b7831253284336e034aeb6"
+          "bytes": 41889,
+          "gzipBytes": 13686,
+          "brotliBytes": 12135,
+          "sha256": "18f618e6faa0c1ffaada143d79bc622eb66fb1216ebbc85184e3ffac902b9924"
         },
         {
           "file": "public/images/beauty-hero-products.jpg",
@@ -1492,10 +1520,10 @@
         },
         {
           "file": "public/product.js",
-          "bytes": 48944,
-          "gzipBytes": 15733,
-          "brotliBytes": 14009,
-          "sha256": "9b466f7dd400f9b11c3722d907e2fa419e91ab02733729daee210284b2de3d5a"
+          "bytes": 47737,
+          "gzipBytes": 15622,
+          "brotliBytes": 13864,
+          "sha256": "cad68e0c8941af62a88de520b68bc7ed16ac9bfff5403a352f51a309d87f1761"
         },
         {
           "file": "public/testimonials.js",
@@ -1513,17 +1541,17 @@
         },
         {
           "file": "src/locales/ar.json",
-          "bytes": 4619,
-          "gzipBytes": 1736,
-          "brotliBytes": 1374,
-          "sha256": "57772c3dd3f2e0b716e7bf4b05043fdd74c8d1d693b6096025bac193554c8429"
+          "bytes": 10700,
+          "gzipBytes": 3241,
+          "brotliBytes": 2630,
+          "sha256": "7d2abd3f75b4542ab28991b1809943b6d450c3a40b9261ea860a1d4a8bf3ece7"
         },
         {
           "file": "src/locales/en.json",
-          "bytes": 3659,
-          "gzipBytes": 1383,
-          "brotliBytes": 1090,
-          "sha256": "48d4b30ed8034e208a4edf8b3a81dcbc8aefd76be4bd6dfb518581844273f13e"
+          "bytes": 7902,
+          "gzipBytes": 2616,
+          "brotliBytes": 2136,
+          "sha256": "24ecd4b3cfd81c000a17a8f2615465fa3ca6116ea087f62181602919cc65f906"
         },
         {
           "file": "src/views/components/footer/footer.twig",
@@ -1716,10 +1744,10 @@
         },
         {
           "file": "src/views/layouts/master.twig",
-          "bytes": 13498,
-          "gzipBytes": 3174,
-          "brotliBytes": 2574,
-          "sha256": "6a67cddfcdee59d14242399f85f61ecebc52b82c8fd266e6592c2a2af478f64a"
+          "bytes": 13712,
+          "gzipBytes": 3254,
+          "brotliBytes": 2637,
+          "sha256": "a05707e6a98478bb1931daf954e23a2f54c1fa3cbfe217c1c3000ea0392864db"
         },
         {
           "file": "src/views/pages/blog/index.twig",
@@ -1800,10 +1828,10 @@
         },
         {
           "file": "src/views/pages/index.twig",
-          "bytes": 792,
-          "gzipBytes": 297,
-          "brotliBytes": 223,
-          "sha256": "fec717e9f0daf19927c7ff5b6c47beba8e0b7aa0e95fb415d239a709d366c17e"
+          "bytes": 797,
+          "gzipBytes": 299,
+          "brotliBytes": 224,
+          "sha256": "bbdbe95d5d3ea28ed44b9ecce091ad573a57e9007c69a0367819278d3c249afa"
         },
         {
           "file": "src/views/pages/loyalty.twig",
@@ -1814,10 +1842,10 @@
         },
         {
           "file": "src/views/pages/page-single.twig",
-          "bytes": 1687,
-          "gzipBytes": 631,
-          "brotliBytes": 514,
-          "sha256": "2beb9c0e5663ef16391ec14ddbdd2c3f62b6168e4a3a551b5d8462cc1803f1ff"
+          "bytes": 1891,
+          "gzipBytes": 718,
+          "brotliBytes": 585,
+          "sha256": "5aa9a581b3c4dbe21bd12cc93e8ae8f92b17820129bd54630057eff3953a879d"
         },
         {
           "file": "src/views/pages/partials/home/product-section-footer.twig",
@@ -1842,10 +1870,10 @@
         },
         {
           "file": "src/views/pages/partials/home/promotions.twig",
-          "bytes": 3475,
-          "gzipBytes": 1034,
-          "brotliBytes": 858,
-          "sha256": "13ed99cfb84ba70215e53634c06d616dd6352aad47ec8df79ad48ea49934cb80"
+          "bytes": 4789,
+          "gzipBytes": 1367,
+          "brotliBytes": 1168,
+          "sha256": "8fa627fb05913a3b1b1bc1c4cd171eb781cbb5ba680fb9808f007326e05bfc18"
         },
         {
           "file": "src/views/pages/partials/product/gallery.twig",
@@ -1869,11 +1897,18 @@
           "sha256": "28f08e732822c47dfec85a8ae2539f75fafd6b268d9db4ef69059957a6891de6"
         },
         {
+          "file": "src/views/pages/partials/return-policy.twig",
+          "bytes": 5552,
+          "gzipBytes": 1460,
+          "brotliBytes": 1193,
+          "sha256": "c0f1d0716d11a49abdfb49292c5eee76aab6775e8437988c0697019fcf928fa4"
+        },
+        {
           "file": "src/views/pages/product/index.twig",
-          "bytes": 5810,
-          "gzipBytes": 1778,
-          "brotliBytes": 1493,
-          "sha256": "691bbe0f7031e8c400fde0e102944812475406a25cefb66a466fa9442e7ca911"
+          "bytes": 8376,
+          "gzipBytes": 2101,
+          "brotliBytes": 1775,
+          "sha256": "52a95bc991d1b663ba9af13b80d2260a195eebac6935b8ce18dd6c86eb57f0c8"
         },
         {
           "file": "src/views/pages/product/single.twig",
@@ -1898,20 +1933,20 @@
         },
         {
           "file": "twilight.json",
-          "bytes": 75071,
-          "gzipBytes": 7397,
-          "brotliBytes": 5890,
-          "sha256": "ce3644933321066665ed49da0583798a8705e51ac9ab1c99ff5f9f9428cf0075"
+          "bytes": 92023,
+          "gzipBytes": 8882,
+          "brotliBytes": 7104,
+          "sha256": "a860df3cec6a2616e34668c461aa9f2e2765717665d2fc9a98fb891e4e97ea04"
         }
       ]
     },
     {
       "id": "project-excluding-tooling-docs",
       "description": "Project files excluding declared directories; includes build config, locks, source, and output.",
-      "fileCount": 409,
-      "rawBytes": 9877381,
-      "gzipBytes": 6732279,
-      "brotliBytes": 6532408,
+      "fileCount": 538,
+      "rawBytes": 12998146,
+      "gzipBytes": 8799374,
+      "brotliBytes": 8487829,
       "files": [
         {
           "file": ".gitignore",
@@ -3139,6 +3174,20 @@
           "sha256": "41c6f2bb9ca1e8e907ab10e4796fb90ed6bccf8baf7681d764e514ac86216284"
         },
         {
+          "file": "output/qa/collection-layout-2026-10-05.html",
+          "bytes": 20973,
+          "gzipBytes": 2382,
+          "brotliBytes": 1718,
+          "sha256": "ac937217b6511f8a735b6d36413c8b25b411615b179a45788c78093d40fa3ec1"
+        },
+        {
+          "file": "output/qa/collection-layout-ltr-2026-10-05.html",
+          "bytes": 20973,
+          "gzipBytes": 2382,
+          "brotliBytes": 1710,
+          "sha256": "14dd0ba4695ad83be00eb95595eebc121f86de26f32dcab330d1308794135e4c"
+        },
+        {
           "file": "output/qa/full-image-slider-local-desktop-1440-2026-10-04.jpg",
           "bytes": 85949,
           "gzipBytes": 80583,
@@ -3363,6 +3412,748 @@
           "sha256": "2b200efa0e26c06de8f5684e130d0a0c9ccfa1391d939114da0e7285388901e7"
         },
         {
+          "file": "output/qa/promo-bounded-ltr-1-default-2026-10-05.html",
+          "bytes": 2680,
+          "gzipBytes": 1184,
+          "brotliBytes": 837,
+          "sha256": "80375c8465587568558193b5b767407026ca1f043e4b656bd2a991b66169e996"
+        },
+        {
+          "file": "output/qa/promo-bounded-ltr-1-optional-2026-10-05.html",
+          "bytes": 3064,
+          "gzipBytes": 1373,
+          "brotliBytes": 977,
+          "sha256": "b21c16f3373709aa300c684da32a43d4979ca862993cbb60dcc7753e490c4fc2"
+        },
+        {
+          "file": "output/qa/promo-bounded-ltr-2-default-2026-10-05.html",
+          "bytes": 3039,
+          "gzipBytes": 1220,
+          "brotliBytes": 867,
+          "sha256": "5873467373d47421338455d175a08f6f1914be6ee98c2718b8962604c0cb4d6b"
+        },
+        {
+          "file": "output/qa/promo-bounded-ltr-2-optional-2026-10-05.html",
+          "bytes": 3782,
+          "gzipBytes": 1409,
+          "brotliBytes": 1008,
+          "sha256": "a3043a05aa36075cb0da300b2679059a4f78e11e831335080c3965b9e18eda4d"
+        },
+        {
+          "file": "output/qa/promo-bounded-ltr-3-default-2026-10-05.html",
+          "bytes": 3396,
+          "gzipBytes": 1243,
+          "brotliBytes": 887,
+          "sha256": "9cefba746406d3733d0f96601be0394d9c39fcef5b9fdd25310fbab402645ec0"
+        },
+        {
+          "file": "output/qa/promo-bounded-ltr-3-optional-2026-10-05.html",
+          "bytes": 4498,
+          "gzipBytes": 1438,
+          "brotliBytes": 1030,
+          "sha256": "5832b6ed56031a03db700cfd22a3a15310cd646fb9d912a599f515f905b1d1d3"
+        },
+        {
+          "file": "output/qa/promo-bounded-rtl-1-default-2026-10-05.html",
+          "bytes": 2680,
+          "gzipBytes": 1184,
+          "brotliBytes": 844,
+          "sha256": "2f5218187d3222fdafbc042499296b1fbdadcd64bc2e053426cfaac99460e1ff"
+        },
+        {
+          "file": "output/qa/promo-bounded-rtl-1-optional-2026-10-05.html",
+          "bytes": 3064,
+          "gzipBytes": 1373,
+          "brotliBytes": 981,
+          "sha256": "9407a859c20c85a00908077e321d2930775230b54f412bf1bcb77e836fe4ed97"
+        },
+        {
+          "file": "output/qa/promo-bounded-rtl-2-default-2026-10-05.html",
+          "bytes": 3039,
+          "gzipBytes": 1220,
+          "brotliBytes": 872,
+          "sha256": "429365c7d4f8a3c4c0c1312b6979215ab3328a04145c4422403d75573afacf53"
+        },
+        {
+          "file": "output/qa/promo-bounded-rtl-2-optional-2026-10-05.html",
+          "bytes": 3782,
+          "gzipBytes": 1409,
+          "brotliBytes": 1012,
+          "sha256": "ad73510958ad1a892f97e5b1b65d0519d3ccc5124a61ad509720cef480097ef9"
+        },
+        {
+          "file": "output/qa/promo-bounded-rtl-3-default-2026-10-05.html",
+          "bytes": 3396,
+          "gzipBytes": 1243,
+          "brotliBytes": 891,
+          "sha256": "bbb8863f3a862c39b1297b55fe1a5836934eb40f5ce970b950886d5e75b499a4"
+        },
+        {
+          "file": "output/qa/promo-bounded-rtl-3-optional-2026-10-05.html",
+          "bytes": 4498,
+          "gzipBytes": 1438,
+          "brotliBytes": 1033,
+          "sha256": "626fb8de82ec51e83d349119eec2ccc1a12c4b659f0e343dc01a1013d797fb5c"
+        },
+        {
+          "file": "output/qa/promo-cover-desktop-1440-2026-10-05.jpg",
+          "bytes": 90823,
+          "gzipBytes": 83024,
+          "brotliBytes": 82426,
+          "sha256": "b283e6b6607035ab2baf919fc7ebfa833f24653ef6122d04872e8f2cd25fea97"
+        },
+        {
+          "file": "output/qa/promo-cover-ltr-1-default-2026-10-05.html",
+          "bytes": 2698,
+          "gzipBytes": 1197,
+          "brotliBytes": 845,
+          "sha256": "6d2de04af22767abba167c094fe6f21c5c097848e51d808874f0c329fdc0a6bf"
+        },
+        {
+          "file": "output/qa/promo-cover-ltr-1-optional-2026-10-05.html",
+          "bytes": 3082,
+          "gzipBytes": 1386,
+          "brotliBytes": 983,
+          "sha256": "bc3e16a0903492616928dc04da6e390d593de8e5128a3fb41d0d8a8ffd0bdfea"
+        },
+        {
+          "file": "output/qa/promo-cover-ltr-2-default-2026-10-05.html",
+          "bytes": 3057,
+          "gzipBytes": 1232,
+          "brotliBytes": 873,
+          "sha256": "d3668664bef679983c0d08c1c50b374f4acf460562003b72aee0f59f355f03fa"
+        },
+        {
+          "file": "output/qa/promo-cover-ltr-2-optional-2026-10-05.html",
+          "bytes": 3800,
+          "gzipBytes": 1423,
+          "brotliBytes": 1015,
+          "sha256": "86c2c8e76f376932cd0c717f2d308411e03fe8373ad81750505b5a926c419374"
+        },
+        {
+          "file": "output/qa/promo-cover-ltr-3-default-2026-10-05.html",
+          "bytes": 3414,
+          "gzipBytes": 1257,
+          "brotliBytes": 897,
+          "sha256": "f1da23428192a822bc66f3b3fe09488b131b05626ac5631290be08085341e481"
+        },
+        {
+          "file": "output/qa/promo-cover-ltr-3-optional-2026-10-05.html",
+          "bytes": 4516,
+          "gzipBytes": 1452,
+          "brotliBytes": 1036,
+          "sha256": "983cc38a098cdbd1f87fafd56352610177efde182a04c71d25e713b57b48fee0"
+        },
+        {
+          "file": "output/qa/promo-cover-mobile-390-2026-10-05.jpg",
+          "bytes": 20206,
+          "gzipBytes": 17542,
+          "brotliBytes": 17366,
+          "sha256": "7529c7ff80ec8ac6792eb00552e63472b21f64ced79b7971f09c53cce249dd80"
+        },
+        {
+          "file": "output/qa/promo-cover-rtl-1-default-2026-10-05.html",
+          "bytes": 2698,
+          "gzipBytes": 1197,
+          "brotliBytes": 850,
+          "sha256": "2f8957cfafd15674c03cd30b091e0a655165def5efe4bc1a058a68d48c0cee6c"
+        },
+        {
+          "file": "output/qa/promo-cover-rtl-1-optional-2026-10-05.html",
+          "bytes": 3082,
+          "gzipBytes": 1386,
+          "brotliBytes": 988,
+          "sha256": "18d26fa0d8e605dad56ac0aef03381f970ddd30b69c50ecc05ef3de5ba6ab61b"
+        },
+        {
+          "file": "output/qa/promo-cover-rtl-2-default-2026-10-05.html",
+          "bytes": 3057,
+          "gzipBytes": 1232,
+          "brotliBytes": 881,
+          "sha256": "9b1cd4b9208faf150923117a3fcfc45c9453358a5f2884f5e443a8d86cb60075"
+        },
+        {
+          "file": "output/qa/promo-cover-rtl-2-optional-2026-10-05.html",
+          "bytes": 3800,
+          "gzipBytes": 1423,
+          "brotliBytes": 1019,
+          "sha256": "6408d0a236f90c6aa6e20ff87a9b26c954b4d9839caf0775e291e354fac4d7c7"
+        },
+        {
+          "file": "output/qa/promo-cover-rtl-3-default-2026-10-05.html",
+          "bytes": 3414,
+          "gzipBytes": 1257,
+          "brotliBytes": 902,
+          "sha256": "5bfb0f53aa83f646d14a006a8b916443e46c1e61ec4b138a4b2b57b1a6578e30"
+        },
+        {
+          "file": "output/qa/promo-cover-rtl-3-optional-2026-10-05.html",
+          "bytes": 4516,
+          "gzipBytes": 1452,
+          "brotliBytes": 1039,
+          "sha256": "c1246914efee3c10ea198fab9079bfcc783b269480cfa89c3b0b1b680c34ac97"
+        },
+        {
+          "file": "output/qa/promo-natural-desktop-2026-10-06.jpg",
+          "bytes": 119242,
+          "gzipBytes": 111206,
+          "brotliBytes": 110734,
+          "sha256": "d7f604700c053c85476a8ccf6ee6074059382845cf471d7c0413916b7c8f43ce"
+        },
+        {
+          "file": "output/qa/promo-natural-disabled-2026-10-06.html",
+          "bytes": 4384,
+          "gzipBytes": 1595,
+          "brotliBytes": 1187,
+          "sha256": "c0a9eb483586405e2cfa3c64f27bdace3d73dabb94a8d22d742fe9fe80b55c91"
+        },
+        {
+          "file": "output/qa/promo-natural-ltr-1-default-2026-10-06.html",
+          "bytes": 3669,
+          "gzipBytes": 1541,
+          "brotliBytes": 1136,
+          "sha256": "dcf26ec017fe2de52da74737c9aa82fa7c9dba3b7afc2dfc56efca783c43368b"
+        },
+        {
+          "file": "output/qa/promo-natural-ltr-1-optional-2026-10-06.html",
+          "bytes": 4053,
+          "gzipBytes": 1729,
+          "brotliBytes": 1274,
+          "sha256": "e5cb92d1baa894c6e2de47b3c2888b72db4ff3a365b2d1c91d98399e8e59aa22"
+        },
+        {
+          "file": "output/qa/promo-natural-ltr-2-default-2026-10-06.html",
+          "bytes": 4026,
+          "gzipBytes": 1572,
+          "brotliBytes": 1165,
+          "sha256": "d420826f1e41bbacda49e534e08e97b1160c5765d86a53af57a5fade2e75cf8c"
+        },
+        {
+          "file": "output/qa/promo-natural-ltr-2-optional-2026-10-06.html",
+          "bytes": 4769,
+          "gzipBytes": 1774,
+          "brotliBytes": 1310,
+          "sha256": "c704daa6a961dac0f5494624e455c6deee314159b3df6ea010638b19ffc45c92"
+        },
+        {
+          "file": "output/qa/promo-natural-ltr-3-default-2026-10-06.html",
+          "bytes": 4383,
+          "gzipBytes": 1593,
+          "brotliBytes": 1180,
+          "sha256": "859e9c269ca5a12de4dc32d8b10bd6408c083ebdfbd62e1532c3df8ce93d5f39"
+        },
+        {
+          "file": "output/qa/promo-natural-ltr-3-optional-2026-10-06.html",
+          "bytes": 5485,
+          "gzipBytes": 1798,
+          "brotliBytes": 1374,
+          "sha256": "c3846f7fc47f0c526e57a01ecf8e8a8cd2f60770181f6e394ebef7a3a5fdccb5"
+        },
+        {
+          "file": "output/qa/promo-natural-mobile-2026-10-06.jpg",
+          "bytes": 22568,
+          "gzipBytes": 20046,
+          "brotliBytes": 19831,
+          "sha256": "8042912669227a391f1f85879b1090457e86036ad33b344d2896375658c47ccc"
+        },
+        {
+          "file": "output/qa/promo-natural-rtl-1-default-2026-10-06.html",
+          "bytes": 3669,
+          "gzipBytes": 1541,
+          "brotliBytes": 1141,
+          "sha256": "ea50ce7da7e52d1c4607e54a37145b1a18b041fe637790bfe9c805c5bcd4c0e7"
+        },
+        {
+          "file": "output/qa/promo-natural-rtl-1-optional-2026-10-06.html",
+          "bytes": 4053,
+          "gzipBytes": 1729,
+          "brotliBytes": 1317,
+          "sha256": "a83aebc9bbb12b92b7a1187d414783ce557b88f4c48834162574eacef6289aa7"
+        },
+        {
+          "file": "output/qa/promo-natural-rtl-2-default-2026-10-06.html",
+          "bytes": 4026,
+          "gzipBytes": 1572,
+          "brotliBytes": 1171,
+          "sha256": "dc13e988f3bff00a85a11728977c57380d3010505863f402d4512f3121e495ab"
+        },
+        {
+          "file": "output/qa/promo-natural-rtl-2-optional-2026-10-06.html",
+          "bytes": 4769,
+          "gzipBytes": 1774,
+          "brotliBytes": 1315,
+          "sha256": "a8f85573ce494a4093042ae2e068a249c72967cba16b8ff68606e261717c7f9d"
+        },
+        {
+          "file": "output/qa/promo-natural-rtl-3-default-2026-10-06.html",
+          "bytes": 4383,
+          "gzipBytes": 1593,
+          "brotliBytes": 1187,
+          "sha256": "74f3157b7890f932b65bcb1bc4ca1273d8ce52f27cbc1943bc236d7a7a3f7a2e"
+        },
+        {
+          "file": "output/qa/promo-natural-rtl-3-optional-2026-10-06.html",
+          "bytes": 5485,
+          "gzipBytes": 1798,
+          "brotliBytes": 1335,
+          "sha256": "f9cc44f2628e3353504969f10bf6bab16c506b00fe39d062a076f6d941b94ca7"
+        },
+        {
+          "file": "output/qa/promo-position-ltr-1-default-2026-10-05.html",
+          "bytes": 2683,
+          "gzipBytes": 1186,
+          "brotliBytes": 837,
+          "sha256": "a1622f8a0dfdc3adf2f03fc87dea8a914cee16f0fa736e6fba0358bb2dcc0d0c"
+        },
+        {
+          "file": "output/qa/promo-position-ltr-1-optional-2026-10-05.html",
+          "bytes": 3067,
+          "gzipBytes": 1375,
+          "brotliBytes": 978,
+          "sha256": "7f09b522279a6447587a1e65a52cf5bbcb7d1311289c823712f5085e9453fb48"
+        },
+        {
+          "file": "output/qa/promo-position-ltr-2-default-2026-10-05.html",
+          "bytes": 3040,
+          "gzipBytes": 1212,
+          "brotliBytes": 862,
+          "sha256": "f6d430a8de13c31f14735755a9e287c0317d087a13588e8766e165c99a0390a5"
+        },
+        {
+          "file": "output/qa/promo-position-ltr-2-optional-2026-10-05.html",
+          "bytes": 3783,
+          "gzipBytes": 1410,
+          "brotliBytes": 1007,
+          "sha256": "360fd22f1c6130ff9682e17d1890ac18466ddb715fcc414eaab54f12513d7562"
+        },
+        {
+          "file": "output/qa/promo-position-ltr-3-default-2026-10-05.html",
+          "bytes": 3397,
+          "gzipBytes": 1234,
+          "brotliBytes": 879,
+          "sha256": "b969f6d2e5316d71a89c75184f9a5c80a7181bd8322dc1c97ae723888dc2c06a"
+        },
+        {
+          "file": "output/qa/promo-position-ltr-3-optional-2026-10-05.html",
+          "bytes": 4499,
+          "gzipBytes": 1436,
+          "brotliBytes": 1029,
+          "sha256": "4833c01c28eac8381b17f216ec794df126b0e73dc3057feaa6436ee5e778e704"
+        },
+        {
+          "file": "output/qa/promo-position-rtl-1-default-2026-10-05.html",
+          "bytes": 2683,
+          "gzipBytes": 1186,
+          "brotliBytes": 844,
+          "sha256": "e83495224006b7b6f5294783338e0c878dd3bd9a6cb62587fb6f50514f5d5c52"
+        },
+        {
+          "file": "output/qa/promo-position-rtl-1-optional-2026-10-05.html",
+          "bytes": 3067,
+          "gzipBytes": 1375,
+          "brotliBytes": 982,
+          "sha256": "113d57030a4fa5717b22b10a43d8af39ac4755e0ab6149a14227dec6520cfea0"
+        },
+        {
+          "file": "output/qa/promo-position-rtl-2-default-2026-10-05.html",
+          "bytes": 3040,
+          "gzipBytes": 1212,
+          "brotliBytes": 864,
+          "sha256": "e8800a7760752417ddbf2c74e739c43bb724543adb3b4fa94c5e1838a82d3894"
+        },
+        {
+          "file": "output/qa/promo-position-rtl-2-optional-2026-10-05.html",
+          "bytes": 3783,
+          "gzipBytes": 1410,
+          "brotliBytes": 1009,
+          "sha256": "4eedbc8b93afc4674f136743046e9583ad64cef83ca1e7af1fd6d2cf3a89c45c"
+        },
+        {
+          "file": "output/qa/promo-position-rtl-3-default-2026-10-05.html",
+          "bytes": 3397,
+          "gzipBytes": 1234,
+          "brotliBytes": 881,
+          "sha256": "415a506d4fbec3c53d5d4011c6025266fb3c5ca67c23a05d8f88874ce91a9744"
+        },
+        {
+          "file": "output/qa/promo-position-rtl-3-optional-2026-10-05.html",
+          "bytes": 4499,
+          "gzipBytes": 1436,
+          "brotliBytes": 1032,
+          "sha256": "4cd4094377816cd823d94d42943fed9c3b47e77e70abafdaf4b2e33aa991b403"
+        },
+        {
+          "file": "output/qa/promo-refinement-ltr-1-default-2026-10-05.html",
+          "bytes": 2495,
+          "gzipBytes": 1082,
+          "brotliBytes": 776,
+          "sha256": "5e2e1915046b5e4f21737569451fb3898b35ce2e22635195e65801764298e503"
+        },
+        {
+          "file": "output/qa/promo-refinement-ltr-1-optional-2026-10-05.html",
+          "bytes": 2853,
+          "gzipBytes": 1263,
+          "brotliBytes": 905,
+          "sha256": "ecf879c194a778bd9ad8702b0f2ed7e655be49cfe2b4b90cd71171da7ab33088"
+        },
+        {
+          "file": "output/qa/promo-refinement-ltr-2-default-2026-10-05.html",
+          "bytes": 2886,
+          "gzipBytes": 1108,
+          "brotliBytes": 799,
+          "sha256": "e86280017a259ffe6d83425e280b5c4fe3860b80a34ce4b38048fca017599507"
+        },
+        {
+          "file": "output/qa/promo-refinement-ltr-2-optional-2026-10-05.html",
+          "bytes": 3602,
+          "gzipBytes": 1296,
+          "brotliBytes": 933,
+          "sha256": "5c00781b6833c0853e473ae067ec256e0e19e22b2c451fdc44e51c600e2fed0e"
+        },
+        {
+          "file": "output/qa/promo-refinement-ltr-3-default-2026-10-05.html",
+          "bytes": 3277,
+          "gzipBytes": 1131,
+          "brotliBytes": 816,
+          "sha256": "bed00ef840fcf385b3ccca888fb116313ec4c408873c73203149318fb08e26b3"
+        },
+        {
+          "file": "output/qa/promo-refinement-ltr-3-optional-2026-10-05.html",
+          "bytes": 4351,
+          "gzipBytes": 1320,
+          "brotliBytes": 950,
+          "sha256": "1530d13eee537f67d38a05196861b3b26749651e7de4ae6c87bac8bd8fddb94d"
+        },
+        {
+          "file": "output/qa/promo-refinement-rtl-1-default-2026-10-05.html",
+          "bytes": 2495,
+          "gzipBytes": 1082,
+          "brotliBytes": 779,
+          "sha256": "cfafe4dfe6dfd66d8cd2e2dac040ba0f2cd20fdc929e223df288f69b010a82c2"
+        },
+        {
+          "file": "output/qa/promo-refinement-rtl-1-optional-2026-10-05.html",
+          "bytes": 2853,
+          "gzipBytes": 1263,
+          "brotliBytes": 910,
+          "sha256": "108154ea7394f670741f75174ab3a15e15a9389d2a05d279772fac66bb2b268e"
+        },
+        {
+          "file": "output/qa/promo-refinement-rtl-2-default-2026-10-05.html",
+          "bytes": 2886,
+          "gzipBytes": 1108,
+          "brotliBytes": 801,
+          "sha256": "314edc734ccb1cc565a17f95156155ba2936f7ed7adb17209736cfdaa2f74761"
+        },
+        {
+          "file": "output/qa/promo-refinement-rtl-2-optional-2026-10-05.html",
+          "bytes": 3602,
+          "gzipBytes": 1296,
+          "brotliBytes": 936,
+          "sha256": "b49e916ac153a0f14b08925d13c55e45fdf89f05334dfa5cb12ce90c2977c17a"
+        },
+        {
+          "file": "output/qa/promo-refinement-rtl-3-default-2026-10-05.html",
+          "bytes": 3277,
+          "gzipBytes": 1131,
+          "brotliBytes": 821,
+          "sha256": "5e0b903288e09267dd1a29fe7c5187998c61da3799c711bbd76342ad54b1c363"
+        },
+        {
+          "file": "output/qa/promo-refinement-rtl-3-optional-2026-10-05.html",
+          "bytes": 4351,
+          "gzipBytes": 1320,
+          "brotliBytes": 954,
+          "sha256": "06885abbd87d4a8c939adb2d76019031808d5e85bf89689d26408fb3f25fb27b"
+        },
+        {
+          "file": "output/qa/promo-request-ltr-1-default-2026-10-05.html",
+          "bytes": 2463,
+          "gzipBytes": 1076,
+          "brotliBytes": 767,
+          "sha256": "783d1c92615558fe8369c601f51a4b9b4f4ed956ea6628a1767607f79e24f9f0"
+        },
+        {
+          "file": "output/qa/promo-request-ltr-1-optional-2026-10-05.html",
+          "bytes": 2847,
+          "gzipBytes": 1262,
+          "brotliBytes": 904,
+          "sha256": "69772eb9cf38dfadd9e83af9355c1c3b6cc726c045609d62d81cdfff96464648"
+        },
+        {
+          "file": "output/qa/promo-request-ltr-2-default-2026-10-05.html",
+          "bytes": 2820,
+          "gzipBytes": 1099,
+          "brotliBytes": 795,
+          "sha256": "8c3524ee0ef04ce096e862415e57e939ab2142f14c2eeadd23e04363c9ca3dea"
+        },
+        {
+          "file": "output/qa/promo-request-ltr-2-optional-2026-10-05.html",
+          "bytes": 3563,
+          "gzipBytes": 1298,
+          "brotliBytes": 935,
+          "sha256": "480c0c671072fd091ac013ee831d1f6aabd27722cde7d090a8419e3a1c2a6462"
+        },
+        {
+          "file": "output/qa/promo-request-ltr-3-default-2026-10-05.html",
+          "bytes": 3177,
+          "gzipBytes": 1123,
+          "brotliBytes": 808,
+          "sha256": "c00cd2ac68dbf1e49553292dc9e57b9cc6929eaca044350d219dc661dd10c02a"
+        },
+        {
+          "file": "output/qa/promo-request-ltr-3-optional-2026-10-05.html",
+          "bytes": 4279,
+          "gzipBytes": 1322,
+          "brotliBytes": 954,
+          "sha256": "d1880832ee3bcb8e582074933de87a4dafa9d41e0e1bd772360d608da1f7c474"
+        },
+        {
+          "file": "output/qa/promo-request-rtl-1-default-2026-10-05.html",
+          "bytes": 2463,
+          "gzipBytes": 1076,
+          "brotliBytes": 773,
+          "sha256": "58017bb2b925f336cb0bb49bbe7c7013db107728bf2b4943dd71d497c734f510"
+        },
+        {
+          "file": "output/qa/promo-request-rtl-1-optional-2026-10-05.html",
+          "bytes": 2847,
+          "gzipBytes": 1262,
+          "brotliBytes": 910,
+          "sha256": "e9dd55e4a25ae1b12a604c5c3fa1ed32d290f94c321f97fce5cca639888d9dcd"
+        },
+        {
+          "file": "output/qa/promo-request-rtl-2-default-2026-10-05.html",
+          "bytes": 2820,
+          "gzipBytes": 1099,
+          "brotliBytes": 799,
+          "sha256": "094810deb49e82ce0ed965f5b166b876949243c2076f1aa12479b45d15b17ea4"
+        },
+        {
+          "file": "output/qa/promo-request-rtl-2-optional-2026-10-05.html",
+          "bytes": 3563,
+          "gzipBytes": 1298,
+          "brotliBytes": 939,
+          "sha256": "dc8c77bb8af48d752a86557e4ed694aaf011059af197041509b1380006a0efcb"
+        },
+        {
+          "file": "output/qa/promo-request-rtl-3-default-2026-10-05.html",
+          "bytes": 3177,
+          "gzipBytes": 1123,
+          "brotliBytes": 812,
+          "sha256": "2e1b073af729d422e6acade357a71fe7408939b19c32b6f1347f2c4155b32859"
+        },
+        {
+          "file": "output/qa/promo-request-rtl-3-optional-2026-10-05.html",
+          "bytes": 4279,
+          "gzipBytes": 1322,
+          "brotliBytes": 957,
+          "sha256": "6ce8e4765d5a5b8e12112f12ca5af44fcad9c133477b6fc5d9bc14ac5720be75"
+        },
+        {
+          "file": "output/qa/promo-sequential-desktop-2026-10-05.jpg",
+          "bytes": 103533,
+          "gzipBytes": 95023,
+          "brotliBytes": 94484,
+          "sha256": "26e4529675ee9721bfca88cd3594b8cdb6e4d33c7e4895cdbd7791d54c76b578"
+        },
+        {
+          "file": "output/qa/promo-sequential-ltr-1-default-2026-10-05.html",
+          "bytes": 2762,
+          "gzipBytes": 1219,
+          "brotliBytes": 861,
+          "sha256": "963eddd38748ad3272f7cce1b36636373ae7b494d27a7154641d49c6710b4e34"
+        },
+        {
+          "file": "output/qa/promo-sequential-ltr-1-optional-2026-10-05.html",
+          "bytes": 3146,
+          "gzipBytes": 1407,
+          "brotliBytes": 1004,
+          "sha256": "365ced40d2f29a7d7d4d562d5a82271146771abf9ddce5461a716e29095533d4"
+        },
+        {
+          "file": "output/qa/promo-sequential-ltr-2-default-2026-10-05.html",
+          "bytes": 3121,
+          "gzipBytes": 1255,
+          "brotliBytes": 888,
+          "sha256": "f9668f73edf263bf43757ad93f6016bfecfaf1d474087afef209abb91934011d"
+        },
+        {
+          "file": "output/qa/promo-sequential-ltr-2-optional-2026-10-05.html",
+          "bytes": 3864,
+          "gzipBytes": 1443,
+          "brotliBytes": 1039,
+          "sha256": "a0509e9f5f912b02ecb06168354ea628b3b67ffa5445a722c25cf7602b9a90bf"
+        },
+        {
+          "file": "output/qa/promo-sequential-ltr-3-default-2026-10-05.html",
+          "bytes": 3478,
+          "gzipBytes": 1278,
+          "brotliBytes": 916,
+          "sha256": "3a504aff9b152507e448c8e1af9d482dd8706e80b1f006daa1d5fb9e1487ddfd"
+        },
+        {
+          "file": "output/qa/promo-sequential-ltr-3-optional-2026-10-05.html",
+          "bytes": 4580,
+          "gzipBytes": 1472,
+          "brotliBytes": 1055,
+          "sha256": "15a58761eb7935b0cde1846bb2fb7fcdf17c4f72ceeb64145f5cfbadc4871489"
+        },
+        {
+          "file": "output/qa/promo-sequential-mobile-2026-10-05.jpg",
+          "bytes": 21099,
+          "gzipBytes": 18390,
+          "brotliBytes": 18199,
+          "sha256": "10d2e8683feab44b1ca27c6344e2a8caf64cca4bb061b2084742d6dd91b8ba40"
+        },
+        {
+          "file": "output/qa/promo-sequential-release/app.css",
+          "bytes": 308756,
+          "gzipBytes": 46324,
+          "brotliBytes": 37196,
+          "sha256": "a20dc5605f1b2c510657135b1196a4d643fcb0e885d99aefc1e6bac22fb68729"
+        },
+        {
+          "file": "output/qa/promo-sequential-release/home.js",
+          "bytes": 40438,
+          "gzipBytes": 13189,
+          "brotliBytes": 11668,
+          "sha256": "ddf2bba436eb9f3bb78ac70bffac6df72e4982d0dc660190ee0f4bd1add595da"
+        },
+        {
+          "file": "output/qa/promo-sequential-rtl-1-default-2026-10-05.html",
+          "bytes": 2762,
+          "gzipBytes": 1219,
+          "brotliBytes": 863,
+          "sha256": "904bbef2729027746b9f5ae13cc5090e1c061c4d246606f165ea01b17a5f8d05"
+        },
+        {
+          "file": "output/qa/promo-sequential-rtl-1-optional-2026-10-05.html",
+          "bytes": 3146,
+          "gzipBytes": 1407,
+          "brotliBytes": 1007,
+          "sha256": "f8f25e6ecb5d3ad27424658b2783c76dda893c0c38d82dca2aa5ad969fe688b7"
+        },
+        {
+          "file": "output/qa/promo-sequential-rtl-2-default-2026-10-05.html",
+          "bytes": 3121,
+          "gzipBytes": 1255,
+          "brotliBytes": 895,
+          "sha256": "e62b53ab75c55cbc8d34d082b7d3e690235882aec560408d4733803232483a95"
+        },
+        {
+          "file": "output/qa/promo-sequential-rtl-2-optional-2026-10-05.html",
+          "bytes": 3864,
+          "gzipBytes": 1443,
+          "brotliBytes": 1040,
+          "sha256": "9614ac5f1a36b3f6100ecd519e88db67763a1065ab215b615413293ed1449952"
+        },
+        {
+          "file": "output/qa/promo-sequential-rtl-3-default-2026-10-05.html",
+          "bytes": 3478,
+          "gzipBytes": 1278,
+          "brotliBytes": 919,
+          "sha256": "e8fd86fca3bae5398e2dba9b6a8c5572ee3b2fbeeca834fac14dd61bbb710719"
+        },
+        {
+          "file": "output/qa/promo-sequential-rtl-3-optional-2026-10-05.html",
+          "bytes": 4580,
+          "gzipBytes": 1472,
+          "brotliBytes": 1059,
+          "sha256": "4c1aec1505ea8021eb2b03e4f133815c1ba22c3c3971934450eb5702018afd07"
+        },
+        {
+          "file": "output/qa/promo-top-ltr-1-default-2026-10-05.html",
+          "bytes": 2683,
+          "gzipBytes": 1186,
+          "brotliBytes": 837,
+          "sha256": "a1622f8a0dfdc3adf2f03fc87dea8a914cee16f0fa736e6fba0358bb2dcc0d0c"
+        },
+        {
+          "file": "output/qa/promo-top-ltr-1-optional-2026-10-05.html",
+          "bytes": 3067,
+          "gzipBytes": 1375,
+          "brotliBytes": 978,
+          "sha256": "7f09b522279a6447587a1e65a52cf5bbcb7d1311289c823712f5085e9453fb48"
+        },
+        {
+          "file": "output/qa/promo-top-ltr-2-default-2026-10-05.html",
+          "bytes": 3040,
+          "gzipBytes": 1212,
+          "brotliBytes": 862,
+          "sha256": "f6d430a8de13c31f14735755a9e287c0317d087a13588e8766e165c99a0390a5"
+        },
+        {
+          "file": "output/qa/promo-top-ltr-2-optional-2026-10-05.html",
+          "bytes": 3783,
+          "gzipBytes": 1410,
+          "brotliBytes": 1007,
+          "sha256": "360fd22f1c6130ff9682e17d1890ac18466ddb715fcc414eaab54f12513d7562"
+        },
+        {
+          "file": "output/qa/promo-top-ltr-3-default-2026-10-05.html",
+          "bytes": 3397,
+          "gzipBytes": 1234,
+          "brotliBytes": 879,
+          "sha256": "b969f6d2e5316d71a89c75184f9a5c80a7181bd8322dc1c97ae723888dc2c06a"
+        },
+        {
+          "file": "output/qa/promo-top-ltr-3-optional-2026-10-05.html",
+          "bytes": 4499,
+          "gzipBytes": 1436,
+          "brotliBytes": 1029,
+          "sha256": "4833c01c28eac8381b17f216ec794df126b0e73dc3057feaa6436ee5e778e704"
+        },
+        {
+          "file": "output/qa/promo-top-rtl-1-default-2026-10-05.html",
+          "bytes": 2683,
+          "gzipBytes": 1186,
+          "brotliBytes": 844,
+          "sha256": "e83495224006b7b6f5294783338e0c878dd3bd9a6cb62587fb6f50514f5d5c52"
+        },
+        {
+          "file": "output/qa/promo-top-rtl-1-optional-2026-10-05.html",
+          "bytes": 3067,
+          "gzipBytes": 1375,
+          "brotliBytes": 982,
+          "sha256": "113d57030a4fa5717b22b10a43d8af39ac4755e0ab6149a14227dec6520cfea0"
+        },
+        {
+          "file": "output/qa/promo-top-rtl-2-default-2026-10-05.html",
+          "bytes": 3040,
+          "gzipBytes": 1212,
+          "brotliBytes": 864,
+          "sha256": "e8800a7760752417ddbf2c74e739c43bb724543adb3b4fa94c5e1838a82d3894"
+        },
+        {
+          "file": "output/qa/promo-top-rtl-2-optional-2026-10-05.html",
+          "bytes": 3783,
+          "gzipBytes": 1410,
+          "brotliBytes": 1009,
+          "sha256": "4eedbc8b93afc4674f136743046e9583ad64cef83ca1e7af1fd6d2cf3a89c45c"
+        },
+        {
+          "file": "output/qa/promo-top-rtl-3-default-2026-10-05.html",
+          "bytes": 3397,
+          "gzipBytes": 1234,
+          "brotliBytes": 881,
+          "sha256": "415a506d4fbec3c53d5d4011c6025266fb3c5ca67c23a05d8f88874ce91a9744"
+        },
+        {
+          "file": "output/qa/promo-top-rtl-3-optional-2026-10-05.html",
+          "bytes": 4499,
+          "gzipBytes": 1436,
+          "brotliBytes": 1032,
+          "sha256": "4cd4094377816cd823d94d42943fed9c3b47e77e70abafdaf4b2e33aa991b403"
+        },
+        {
+          "file": "output/qa/promo-top-rtl-white-2026-10-05.html",
+          "bytes": 3473,
+          "gzipBytes": 1270,
+          "brotliBytes": 908,
+          "sha256": "59ca5bccc1871fff51eb0b35df2360465054248307e916735aca65bca8e615e1"
+        },
+        {
           "file": "output/qa/reference-products-ltr.html",
           "bytes": 34232,
           "gzipBytes": 2102,
@@ -3375,6 +4166,83 @@
           "gzipBytes": 2114,
           "brotliBytes": 1484,
           "sha256": "df8923118e560e302c6f55611d5f9b0bfb24ac9ff1307bfc5837724fc7463be8"
+        },
+        {
+          "file": "output/qa/return-policy-ar-default-2026-10-05.html",
+          "bytes": 9319,
+          "gzipBytes": 2525,
+          "brotliBytes": 1935,
+          "sha256": "fc3e3901f90d4b0cc8d8b4b67bcd2812a6555c2fe95626816e25f1a56ab2b291"
+        },
+        {
+          "file": "output/qa/return-policy-ar-desktop-2026-10-05.jpg",
+          "bytes": 59765,
+          "gzipBytes": 45526,
+          "brotliBytes": 45183,
+          "sha256": "0d723490b14740cda63768d6198853d2758bdd78ea47c247f2dffeff903d4e62"
+        },
+        {
+          "file": "output/qa/return-policy-ar-desktop-full-2026-10-05.jpg",
+          "bytes": 81547,
+          "gzipBytes": 59748,
+          "brotliBytes": 59091,
+          "sha256": "61d2c4c16f0005ca462d2a18d4478e9776d7b9c703cfdcea6c5bcd0eb1d722fa"
+        },
+        {
+          "file": "output/qa/return-policy-ar-long-2026-10-05.html",
+          "bytes": 9990,
+          "gzipBytes": 2379,
+          "brotliBytes": 1779,
+          "sha256": "e3ae6e1b0af89c6c590fafb6b7b86bf6e8fff81c4b8991a1fab7ca5b5251aebe"
+        },
+        {
+          "file": "output/qa/return-policy-ar-mobile-2026-10-05.jpg",
+          "bytes": 36243,
+          "gzipBytes": 32155,
+          "brotliBytes": 31939,
+          "sha256": "d51f03e4cbc890f4854da82a6e6f79e9d9485e65a19adecdf51e33cc934b76ef"
+        },
+        {
+          "file": "output/qa/return-policy-ar-optional-2026-10-05.html",
+          "bytes": 12282,
+          "gzipBytes": 2921,
+          "brotliBytes": 2227,
+          "sha256": "d3089ee522733014b833294d286547de305dd7847f91a40df0396d9570dc5b65"
+        },
+        {
+          "file": "output/qa/return-policy-en-default-2026-10-05.html",
+          "bytes": 7925,
+          "gzipBytes": 2178,
+          "brotliBytes": 1666,
+          "sha256": "49f8fc97876f2cbaf39d6e5882fc7608766918c17e21f2faeb78582f426e6ea1"
+        },
+        {
+          "file": "output/qa/return-policy-en-long-2026-10-05.html",
+          "bytes": 8860,
+          "gzipBytes": 2065,
+          "brotliBytes": 1564,
+          "sha256": "8e71b578251ba5fdc4fd4a1e238b6a2e57de052a863bb96927334b06d054667a"
+        },
+        {
+          "file": "output/qa/return-policy-en-optional-2026-10-05.html",
+          "bytes": 10421,
+          "gzipBytes": 2516,
+          "brotliBytes": 1933,
+          "sha256": "856ee941c6d816cc0828d6d8e97e14b5992b1530a581478873c122091131b7e0"
+        },
+        {
+          "file": "output/qa/return-policy-render-2026-10-05.cjs",
+          "bytes": 5404,
+          "gzipBytes": 2272,
+          "brotliBytes": 1807,
+          "sha256": "018d1e36c107ed164b7a1649f9bf3f1caac7fc610706efdd80e1f5a7805cb65a"
+        },
+        {
+          "file": "output/qa/return-policy-salla-draft-2026-10-05.png",
+          "bytes": 497582,
+          "gzipBytes": 417382,
+          "brotliBytes": 403341,
+          "sha256": "308845fc89020bb01dea49fe6710438bebb6e726f3d20c83dac15fded5c212c3"
         },
         {
           "file": "output/qa/salla-spacing-fixed-desktop.jpg",
@@ -3473,6 +4341,48 @@
           "gzipBytes": 24050,
           "brotliBytes": 23848,
           "sha256": "59a88d1d21ee55163a6e4b4c7eca43e63a695375a43a82523bbdfa186255df75"
+        },
+        {
+          "file": "output/qa/storefront-polish-request-chrome-2026-10-05.jpg",
+          "bytes": 488934,
+          "gzipBytes": 392671,
+          "brotliBytes": 379228,
+          "sha256": "1788ce5c0731e7a05aea42a4850eed7d960b4539f95fc53e5ab93e5bdcd3cf0e"
+        },
+        {
+          "file": "output/qa/storefront-polish-request-chrome-cards-2026-10-05.jpg",
+          "bytes": 393820,
+          "gzipBytes": 265874,
+          "brotliBytes": 242269,
+          "sha256": "ba112d1b39560e9f72caf1dbd5ddeb3de6bbe18f79c8586c17786e75857062e2"
+        },
+        {
+          "file": "output/qa/storefront-polish-request-desktop-2026-10-05.jpg",
+          "bytes": 146447,
+          "gzipBytes": 135972,
+          "brotliBytes": 135007,
+          "sha256": "586a9ae1c171ad7f812de43f2fb9cb9e5022abb7e724fed1a6f802adca1415f6"
+        },
+        {
+          "file": "output/qa/storefront-polish-request-mobile-2026-10-05.jpg",
+          "bytes": 41128,
+          "gzipBytes": 37303,
+          "brotliBytes": 37000,
+          "sha256": "83caa57cdc28bc1ad06f383fc95c792826afb197abeac85e3c5f2b321c524683"
+        },
+        {
+          "file": "output/qa/storefront-polish-salla-desktop-1440-2026-10-05.jpg",
+          "bytes": 76339,
+          "gzipBytes": 70887,
+          "brotliBytes": 70583,
+          "sha256": "5fa2158fa939ea72fb6bd1d7c8b6c3397713ab5d2a7749d310f6bfb4aef19b32"
+        },
+        {
+          "file": "output/qa/storefront-polish-salla-mobile-390-2026-10-05.jpg",
+          "bytes": 39316,
+          "gzipBytes": 35885,
+          "brotliBytes": 35568,
+          "sha256": "e271af8f63e9e7b72a433580669f7bae667fd9bf093bcf3d1089925be8812214"
         },
         {
           "file": "output/theme-listing/core-care-cover-1600x1200.jpg",
@@ -3595,10 +4505,10 @@
         },
         {
           "file": "public/app.css",
-          "bytes": 297419,
-          "gzipBytes": 44855,
-          "brotliBytes": 36020,
-          "sha256": "9d0375fd6001885f31904efa31b15b59331d887979eb0e409665b4ff6f308d24"
+          "bytes": 314933,
+          "gzipBytes": 47093,
+          "brotliBytes": 37808,
+          "sha256": "750ac0fc55a4fe52dc050b1296d923dcff0da33a23aaff8ce3d1c97985c0f3be"
         },
         {
           "file": "public/app.js",
@@ -3623,10 +4533,10 @@
         },
         {
           "file": "public/home.js",
-          "bytes": 39576,
-          "gzipBytes": 12877,
-          "brotliBytes": 11411,
-          "sha256": "bbaa8a1100ef17b08350c27f243757aae3cd3f1816b7831253284336e034aeb6"
+          "bytes": 41889,
+          "gzipBytes": 13686,
+          "brotliBytes": 12135,
+          "sha256": "18f618e6faa0c1ffaada143d79bc622eb66fb1216ebbc85184e3ffac902b9924"
         },
         {
           "file": "public/images/beauty-hero-products.jpg",
@@ -3735,10 +4645,10 @@
         },
         {
           "file": "public/product.js",
-          "bytes": 48944,
-          "gzipBytes": 15733,
-          "brotliBytes": 14009,
-          "sha256": "9b466f7dd400f9b11c3722d907e2fa419e91ab02733729daee210284b2de3d5a"
+          "bytes": 47737,
+          "gzipBytes": 15622,
+          "brotliBytes": 13864,
+          "sha256": "cad68e0c8941af62a88de520b68bc7ed16ac9bfff5403a352f51a309d87f1761"
         },
         {
           "file": "public/testimonials.js",
@@ -3916,6 +4826,13 @@
           "sha256": "475be6bf7eff9335f6321eace5a6b0799c8ce2fb96006603e5929ed310e39865"
         },
         {
+          "file": "src/assets/js/partials/collection-state.js",
+          "bytes": 2371,
+          "gzipBytes": 910,
+          "brotliBytes": 763,
+          "sha256": "593141371111901f74616e5a4a6402a86c538971015b89a67f84a712d815098c"
+        },
+        {
           "file": "src/assets/js/partials/core-care-categories.js",
           "bytes": 8269,
           "gzipBytes": 2375,
@@ -3966,10 +4883,10 @@
         },
         {
           "file": "src/assets/js/partials/promotion-carousel.js",
-          "bytes": 2991,
-          "gzipBytes": 960,
-          "brotliBytes": 795,
-          "sha256": "3290a58cfb08e1d377c8173fcccc84a5eb70ca6f0dbaf5187300b7077b848019"
+          "bytes": 7988,
+          "gzipBytes": 2379,
+          "brotliBytes": 2014,
+          "sha256": "42d8a41ebefb5a0a217701faa75d667552a945a590ff44066d73a076b85d35cc"
         },
         {
           "file": "src/assets/js/partials/tooltip.js",
@@ -4001,10 +4918,10 @@
         },
         {
           "file": "src/assets/js/products.js",
-          "bytes": 2266,
-          "gzipBytes": 864,
-          "brotliBytes": 697,
-          "sha256": "c44f5fc8be76cd5004dd455a342d0fd2b35174a97638baf0a464ffc6431f66fd"
+          "bytes": 6300,
+          "gzipBytes": 1870,
+          "brotliBytes": 1551,
+          "sha256": "f02afa7d0cac0b8b63e8e8fd3b7f146df95f86089f823445a929b45ce16fe736"
         },
         {
           "file": "src/assets/js/testimonials.js",
@@ -4315,6 +5232,13 @@
           "sha256": "8f45ae2ac46f85384af7c26244565ba49212516d8cd65593044827d7b215e3c3"
         },
         {
+          "file": "src/assets/styles/06-beauty/core-care-collection.scss",
+          "bytes": 9790,
+          "gzipBytes": 2121,
+          "brotliBytes": 1772,
+          "sha256": "818acfca31d50af3927d5fb37dfe0d7bdddc7f0e617e62f34d94c09213092d6f"
+        },
+        {
           "file": "src/assets/styles/06-beauty/core-care-footer.scss",
           "bytes": 4559,
           "gzipBytes": 1278,
@@ -4330,10 +5254,10 @@
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-home.scss",
-          "bytes": 10528,
-          "gzipBytes": 2855,
-          "brotliBytes": 2391,
-          "sha256": "7e227782fbb0e9225ef6461a51460e3f7743ec65ce85b52566f25e2bb3147430"
+          "bytes": 12166,
+          "gzipBytes": 3173,
+          "brotliBytes": 2633,
+          "sha256": "91951e7cffabf9674bd0e7aadc02a57d185a502b9b9d1f8f0c6c80ea330f12d6"
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-interface.scss",
@@ -4344,10 +5268,17 @@
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-palette.scss",
-          "bytes": 4039,
-          "gzipBytes": 1358,
-          "brotliBytes": 1144,
-          "sha256": "188c35dcb218f2a2e1ad53ce064b018b9b85843d46a8ad94bc9d3412142964ce"
+          "bytes": 4067,
+          "gzipBytes": 1366,
+          "brotliBytes": 1157,
+          "sha256": "ae02c9535a186b61c6a5063f1199cc736eb56adcf9805ccdbcaf222b624b7619"
+        },
+        {
+          "file": "src/assets/styles/06-beauty/core-care-policy.scss",
+          "bytes": 4455,
+          "gzipBytes": 1261,
+          "brotliBytes": 1041,
+          "sha256": "8bce989b4ffd99029056d8c1e2b8f66894b1ea2b68c522412856c5e417acbeea"
         },
         {
           "file": "src/assets/styles/06-beauty/core-care-product-details.scss",
@@ -4365,24 +5296,24 @@
         },
         {
           "file": "src/assets/styles/app.scss",
-          "bytes": 4111,
-          "gzipBytes": 1204,
-          "brotliBytes": 990,
-          "sha256": "d72cdec5fbf32cd5506a006782ad575053e96087bd5df0e12689a5ad99cdf068"
+          "bytes": 4196,
+          "gzipBytes": 1218,
+          "brotliBytes": 998,
+          "sha256": "81b19c89a8aa8704d85cf60e3824f3f48756ac2863bb332d2173c619c20a78ff"
         },
         {
           "file": "src/locales/ar.json",
-          "bytes": 4619,
-          "gzipBytes": 1736,
-          "brotliBytes": 1374,
-          "sha256": "57772c3dd3f2e0b716e7bf4b05043fdd74c8d1d693b6096025bac193554c8429"
+          "bytes": 10700,
+          "gzipBytes": 3241,
+          "brotliBytes": 2630,
+          "sha256": "7d2abd3f75b4542ab28991b1809943b6d450c3a40b9261ea860a1d4a8bf3ece7"
         },
         {
           "file": "src/locales/en.json",
-          "bytes": 3659,
-          "gzipBytes": 1383,
-          "brotliBytes": 1090,
-          "sha256": "48d4b30ed8034e208a4edf8b3a81dcbc8aefd76be4bd6dfb518581844273f13e"
+          "bytes": 7902,
+          "gzipBytes": 2616,
+          "brotliBytes": 2136,
+          "sha256": "24ecd4b3cfd81c000a17a8f2615465fa3ca6116ea087f62181602919cc65f906"
         },
         {
           "file": "src/views/components/footer/footer.twig",
@@ -4575,10 +5506,10 @@
         },
         {
           "file": "src/views/layouts/master.twig",
-          "bytes": 13498,
-          "gzipBytes": 3174,
-          "brotliBytes": 2574,
-          "sha256": "6a67cddfcdee59d14242399f85f61ecebc52b82c8fd266e6592c2a2af478f64a"
+          "bytes": 13712,
+          "gzipBytes": 3254,
+          "brotliBytes": 2637,
+          "sha256": "a05707e6a98478bb1931daf954e23a2f54c1fa3cbfe217c1c3000ea0392864db"
         },
         {
           "file": "src/views/pages/blog/index.twig",
@@ -4659,10 +5590,10 @@
         },
         {
           "file": "src/views/pages/index.twig",
-          "bytes": 792,
-          "gzipBytes": 297,
-          "brotliBytes": 223,
-          "sha256": "fec717e9f0daf19927c7ff5b6c47beba8e0b7aa0e95fb415d239a709d366c17e"
+          "bytes": 797,
+          "gzipBytes": 299,
+          "brotliBytes": 224,
+          "sha256": "bbdbe95d5d3ea28ed44b9ecce091ad573a57e9007c69a0367819278d3c249afa"
         },
         {
           "file": "src/views/pages/loyalty.twig",
@@ -4673,10 +5604,10 @@
         },
         {
           "file": "src/views/pages/page-single.twig",
-          "bytes": 1687,
-          "gzipBytes": 631,
-          "brotliBytes": 514,
-          "sha256": "2beb9c0e5663ef16391ec14ddbdd2c3f62b6168e4a3a551b5d8462cc1803f1ff"
+          "bytes": 1891,
+          "gzipBytes": 718,
+          "brotliBytes": 585,
+          "sha256": "5aa9a581b3c4dbe21bd12cc93e8ae8f92b17820129bd54630057eff3953a879d"
         },
         {
           "file": "src/views/pages/partials/home/product-section-footer.twig",
@@ -4701,10 +5632,10 @@
         },
         {
           "file": "src/views/pages/partials/home/promotions.twig",
-          "bytes": 3475,
-          "gzipBytes": 1034,
-          "brotliBytes": 858,
-          "sha256": "13ed99cfb84ba70215e53634c06d616dd6352aad47ec8df79ad48ea49934cb80"
+          "bytes": 4789,
+          "gzipBytes": 1367,
+          "brotliBytes": 1168,
+          "sha256": "8fa627fb05913a3b1b1bc1c4cd171eb781cbb5ba680fb9808f007326e05bfc18"
         },
         {
           "file": "src/views/pages/partials/product/gallery.twig",
@@ -4728,11 +5659,18 @@
           "sha256": "28f08e732822c47dfec85a8ae2539f75fafd6b268d9db4ef69059957a6891de6"
         },
         {
+          "file": "src/views/pages/partials/return-policy.twig",
+          "bytes": 5552,
+          "gzipBytes": 1460,
+          "brotliBytes": 1193,
+          "sha256": "c0f1d0716d11a49abdfb49292c5eee76aab6775e8437988c0697019fcf928fa4"
+        },
+        {
           "file": "src/views/pages/product/index.twig",
-          "bytes": 5810,
-          "gzipBytes": 1778,
-          "brotliBytes": 1493,
-          "sha256": "691bbe0f7031e8c400fde0e102944812475406a25cefb66a466fa9442e7ca911"
+          "bytes": 8376,
+          "gzipBytes": 2101,
+          "brotliBytes": 1775,
+          "sha256": "52a95bc991d1b663ba9af13b80d2260a195eebac6935b8ce18dd6c86eb57f0c8"
         },
         {
           "file": "src/views/pages/product/single.twig",
@@ -4764,10 +5702,10 @@
         },
         {
           "file": "twilight.json",
-          "bytes": 75071,
-          "gzipBytes": 7397,
-          "brotliBytes": 5890,
-          "sha256": "ce3644933321066665ed49da0583798a8705e51ac9ab1c99ff5f9f9428cf0075"
+          "bytes": 92023,
+          "gzipBytes": 8882,
+          "brotliBytes": 7104,
+          "sha256": "a860df3cec6a2616e34668c461aa9f2e2765717665d2fc9a98fb891e4e97ea04"
         },
         {
           "file": "webpack.config.js",
