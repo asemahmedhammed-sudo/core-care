@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-10T17:26:28.877Z",
+  "generatedAt": "2026-10-10T20:06:39.136Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -322,7 +322,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 172,
+    "keyCount": 173,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -2507,7 +2507,7 @@
     {
       "file": "src/views/components/header/header.twig",
       "kind": "modified-upstream",
-      "sha256": "a2cbbd1b389e795b96685e5ab35045ebee229a719bce6e34aa16a78e550b1609"
+      "sha256": "89fcd044e4918fa344e98be5d1e92c0338861c9da0a5b7f049eb1dbca09701d9"
     },
     {
       "file": "src/views/components/home/beauty-collections.twig",
@@ -2552,7 +2552,7 @@
     {
       "file": "src/views/components/home/main-links.twig",
       "kind": "modified-upstream",
-      "sha256": "0e914ca85b6b36e9ce26f13e0be3f72f77819bbba1ef8a711ddee35976380222"
+      "sha256": "ac910a2944759595307df0488dd798ea8fecdbd12a299beca76c70da962166e7"
     },
     {
       "file": "src/views/components/home/products-slider.twig",
@@ -2567,7 +2567,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "b8e483b891b69dd0c4b86a3dfd160060a94d78c8bcdc02dce95e4d3747d5ed35"
+      "sha256": "afcc2decdb34b76197b9da6906b1d77ef9a5b7eade95ac7e225a0d3d387d2617"
     },
     {
       "file": "src/views/pages/brands/single.twig",

@@ -23,8 +23,13 @@ class CoreCareLanguageMenu extends HTMLElement {
         this.trigger = this.querySelector('[data-language-toggle]');
         this.panel = this.querySelector('[data-language-panel]');
         this.list = this.querySelector('[data-language-list]');
+        this.backdrop = this.querySelector('[data-language-backdrop]');
         if (!this.trigger || !this.panel || !this.list) return;
-        this.trigger.addEventListener('click', () => this.setOpen(this.panel.hidden), options);
+        // event.detail is 0 for keyboard activation; only then move focus into the options.
+        this.trigger.addEventListener('click', event => this.setOpen(this.panel.hidden, event.detail === 0), options);
+        const dismiss = () => { this.setOpen(false); this.trigger.focus(); };
+        this.querySelector('[data-language-close]')?.addEventListener('click', dismiss, options);
+        this.backdrop?.addEventListener('click', dismiss, options);
         this.querySelector('[data-currency-open]')?.addEventListener('click', () => {
             this.setOpen(false);
             window.salla?.event?.dispatch('localization::open');
@@ -43,14 +48,22 @@ class CoreCareLanguageMenu extends HTMLElement {
         }, options);
     }
 
-    disconnectedCallback() { this.abort?.abort(); }
+    disconnectedCallback() {
+        this.abort?.abort();
+        document.documentElement.classList.remove('cc-language-menu-open');
+    }
 
-    setOpen(open) {
+    setOpen(open, keyboard = false) {
         this.panel.hidden = !open;
+        if (this.backdrop) this.backdrop.hidden = !open;
         this.trigger.setAttribute('aria-expanded', String(open));
+        // Locks page scroll only while the phone bottom sheet is shown (see core-care-header.scss).
+        document.documentElement.classList.toggle('cc-language-menu-open', open);
         if (!open) return;
+        // Pointer users get the panel focused (no focus ring on an option); keyboard users land on the current language.
+        if (!keyboard) this.panel.focus({ preventScroll: true });
         this.load().then(() => {
-            if (!this.panel.hidden) (this.list.querySelector('[aria-current="true"]') || this.list.querySelector('button'))?.focus();
+            if (keyboard && !this.panel.hidden) (this.list.querySelector('[aria-current="true"]') || this.list.querySelector('button'))?.focus();
         });
     }
 

@@ -64,7 +64,8 @@
       "currency": "Currency",
       "localization": "Language and currency",
       "languages": "Languages",
-      "languages_error": "Languages could not be loaded. Please try again."
+      "languages_error": "Languages could not be loaded. Please try again.",
+      "close_languages": "Close languages"
     },
     "footer": {
       "quick_links": "Quick links",

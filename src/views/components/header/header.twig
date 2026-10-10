@@ -37,8 +37,13 @@
               <span class="core-care-header__locale-label">{{ language.code|upper }}</span>
               <svg class="core-care-header__locale-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
             </button>
-            <div class="core-care-language-menu__panel" id="core-care-language-panel" data-language-panel hidden>
-              <p class="core-care-language-menu__title" id="core-care-language-title">{{ trans('beauty.header.languages') }}</p>
+            {# Phones show the panel as a bottom sheet over this backdrop; hidden on larger screens. #}
+            <div class="core-care-language-menu__backdrop" data-language-backdrop hidden></div>
+            <div class="core-care-language-menu__panel" id="core-care-language-panel" data-language-panel tabindex="-1" hidden>
+              <div class="core-care-language-menu__head">
+                <p class="core-care-language-menu__title" id="core-care-language-title">{{ trans('beauty.header.languages') }}</p>
+                <button class="core-care-language-menu__close" type="button" data-language-close aria-label="{{ trans('beauty.header.close_languages') }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+              </div>
               <div class="core-care-language-menu__list" data-language-list role="group" aria-labelledby="core-care-language-title"></div>
               {% if store.settings.currencies_enabled %}
                 <button class="core-care-language-menu__currency" type="button" data-currency-open aria-haspopup="dialog">{{ trans('beauty.header.currency') }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 7-5 5 5 5"/></svg></button>

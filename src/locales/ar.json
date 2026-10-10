@@ -64,7 +64,8 @@
       "currency": "العملة",
       "localization": "اللغة والعملة",
       "languages": "اللغات",
-      "languages_error": "تعذّر تحميل اللغات، حاول مرة أخرى."
+      "languages_error": "تعذّر تحميل اللغات، حاول مرة أخرى.",
+      "close_languages": "إغلاق قائمة اللغات"
     },
     "footer": {
       "quick_links": "روابط سريعة",

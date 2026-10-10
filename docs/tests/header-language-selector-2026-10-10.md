@@ -83,3 +83,47 @@ The owner supplied a reference screenshot of the Nice One header language menu. 
 - LTR.
 - A multi-currency store.
 - Chrome.
+
+## Revision 3: phone bottom sheet (same day)
+
+The owner reported that on phones the language menu looked like a squeezed desktop dropdown:
+- two options side by side;
+- a heavy black frame around «العربية», the focus ring from moving focus into the list on open;
+- a purple underline stacked on the panel's black top border.
+
+### Change
+
+- **Phones (≤767px):** the panel becomes a bottom sheet:
+  - fixed to the bottom edge, with a 20px top radius, a decorative grab handle and an upward shadow;
+  - bottom padding includes `env(safe-area-inset-bottom)`;
+  - it slides up over a `--cc-overlay` backdrop, and the backdrop fades in.
+- **Sheet header:** the title «اللغات» (18px/500, `--cc-text`) and a close button. The button is a 36px visible circle inside a 44px hit area, with the new locale key `beauty.header.close_languages`.
+- **Options:** one per row, full width, 56px high, with a 12px radius and a 1px `--cc-border`. The current language gets a `--cc-text` border and a `--cc-menu-surface` fill. The order is flag, then name aligned to the row start, then a 24px check mark at the row end.
+- **Removed on phones:** the purple trigger underline and the black panel top border.
+- **Behaviour:**
+  - The backdrop and the close button close the sheet and return focus to the trigger.
+  - Page scroll is locked while the sheet is open (`html.cc-language-menu-open`, phones only).
+  - The merchant WhatsApp button (z-index 99999) is hidden while the sheet is open, the same way as the cart drawer.
+  - Opening with a pointer focuses the panel itself, so no option gets a focus ring. Opening with the keyboard still focuses the current language.
+- **Reduced motion:** animations are disabled.
+- **Desktop/tablet (≥768px):** unchanged.
+- Asset revision `20261010-language-sheet-1`.
+
+### Checks
+
+| Check | Result |
+|---|---|
+| `pnpm build` | Passed, 9 existing warnings; compiled sheet uses symmetric `left:0; right:0` |
+| `pnpm test` | 86/86 passed (new phone-sheet test in `header-localization.test.mjs`); static audit 13/13 |
+| Real preview `salla.design/ar/corecare` (built-in browser) | The hosted draft is an older build (`20261007-promo-dots-5s-1`) without the language menu. The new markup and the compiled language-menu CSS were injected, with a condensed copy of the element logic; nothing was deployed. |
+| Phone, 375×812, RTL | <br>• `Salla.config.languages()` returned العربية/English with platform flags. <br>• The sheet was 375×216 at the bottom edge. Header 44px, then 12px, then rows 343×56 with an 8px gap, then 20px bottom padding. <br>• The check mark sat at the row's left end in RTL, and the names were right-aligned. <br>• No horizontal overflow; page scroll locked; WhatsApp button hidden; focus on the panel with no ring. <br>• The close button, the backdrop and Escape each closed the sheet, cleared the lock, set `aria-expanded="false"` and returned focus to the trigger. <br>• A keyboard open (`detail: 0`) focused «العربية». |
+| 1024×768 | Unchanged dropdown: 480px absolute panel, no backdrop or close button, no scroll lock |
+
+### Not verified
+
+- The hosted build after push.
+- Real touch devices and iOS safe-area insets.
+- LTR/English.
+- A multi-currency store (the currency row inside the sheet).
+- 320px width.
+- Chrome.

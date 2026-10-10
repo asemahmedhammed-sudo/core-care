@@ -46,7 +46,18 @@ body.theme-beauty {
     background: var(--cc-surface); border-block-start: 3px solid var(--cc-text); border-radius: 0 0 16px 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 6, .12);
   }
-  .core-care-language-menu__title { margin-block-end: 20px; color: var(--cc-text-muted); font-size: 16px; font-weight: 500; line-height: 24px; }
+  .core-care-language-menu__panel:focus { outline: none; }
+  .core-care-language-menu__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-block-end: 20px; }
+  .core-care-language-menu__title { color: var(--cc-text-muted); font-size: 16px; font-weight: 500; line-height: 24px; }
+  // The close button and backdrop belong to the phone bottom sheet only.
+  .core-care-language-menu__backdrop, .core-care-language-menu__close { display: none; }
+  .core-care-language-menu__close {
+    flex: none; place-items: center; width: 44px; height: 44px; border-radius: 50%; color: var(--cc-icon); cursor: pointer;
+    // 36px visible circle inside the 44px hit area.
+    background: radial-gradient(circle, var(--cc-utility-surface) 18px, transparent 18.5px);
+    svg { width: 20px; height: 20px; }
+    &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
+  }
   .core-care-language-menu__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px 24px; }
   .core-care-language-menu__option {
     display: flex; align-items: center; gap: 12px; min-height: 44px; padding-inline: 4px; border-radius: 8px;
@@ -76,7 +87,10 @@ body.theme-beauty {
   html[dir='ltr'] & .core-care-language-menu__currency svg { transform: scaleX(-1); }
   // PostCSS lowers inset-inline-end to right; anchor the panel to the trigger's inline end explicitly.
   html[dir='rtl'] & .core-care-language-menu__panel { left: 0; right: auto; }
-  @media (prefers-reduced-motion: reduce) { .core-care-header__locale::after, .core-care-header__locale-chevron { transition: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .core-care-header__locale::after, .core-care-header__locale-chevron { transition: none; }
+    .core-care-language-menu__backdrop, .core-care-language-menu__panel { animation: none !important; }
+  }
   @media (max-width: 1023px) { .core-care-header__tagline { display: none; } .core-care-header__top { grid-template-columns: 170px minmax(0, 1fr); } }
   @media (max-width: 767px) {
     .core-care-header__top { grid-template-columns: 1fr; padding-block: 4px; }
@@ -91,10 +105,42 @@ body.theme-beauty {
     // Globe-only on phones; the accessible name still states language/currency and the current language.
     .core-care-header__locale { justify-content: center; min-width: 44px; padding: 0; }
     .core-care-header__locale-label, .core-care-header__locale-chevron { display: none; }
-    // On phones the panel spans the navigation row instead of hanging off the small trigger.
+    // On phones the panel becomes a bottom sheet over a backdrop: full-width rows, check at the row end.
+    .core-care-header__locale::after { display: none; }
     .core-care-language-menu { position: static; }
-    .core-care-language-menu__panel, html[dir] & .core-care-language-menu__panel { top: 100%; left: 12px; right: 12px; width: auto; padding: 20px; }
-    .core-care-language-menu__option { font-size: 16px; }
+    .core-care-language-menu__backdrop:not([hidden]) {
+      display: block; position: fixed; inset: 0; z-index: 60; background: var(--cc-overlay); animation: cc-language-fade .2s ease-out;
+    }
+    .core-care-language-menu__panel, html[dir] & .core-care-language-menu__panel {
+      position: fixed; z-index: 61; top: auto; bottom: 0; left: 0; right: 0; width: auto;
+      max-height: min(85vh, 560px); overflow-y: auto; overscroll-behavior: contain;
+      padding: 8px 16px calc(20px + env(safe-area-inset-bottom));
+      border-block-start: 0; border-radius: 20px 20px 0 0; box-shadow: 0 -8px 24px rgba(0, 0, 6, .12);
+      animation: cc-language-sheet .25s ease-out;
+      // Decorative grab handle.
+      &::before { content: ''; display: block; width: 36px; height: 4px; margin: 0 auto 8px; border-radius: 999px; background: var(--cc-border); }
+    }
+    .core-care-language-menu__head { margin-block-end: 12px; }
+    .core-care-language-menu__title { color: var(--cc-text); font-size: 18px; line-height: 28px; }
+    .core-care-language-menu__close { display: grid; }
+    .core-care-language-menu__list { grid-template-columns: 1fr; gap: 8px; }
+    .core-care-language-menu__option {
+      min-height: 56px; padding-inline: 16px; border: 1px solid var(--cc-border); border-radius: 12px; font-size: 16px;
+      &[aria-current='true'] { border-color: var(--cc-text); background: var(--cc-menu-surface); }
+    }
+    .core-care-language-menu__name { flex: 1 1 auto; }
+    // PostCSS lowers text-align: start to left; align the name to the row start per direction.
+    html[dir='rtl'] & .core-care-language-menu__name { text-align: right; }
+    html[dir='ltr'] & .core-care-language-menu__name { text-align: left; }
+    .core-care-language-menu__mark { order: 1; width: 24px; height: 24px; }
+    .core-care-language-menu__option[aria-current='true'] .core-care-language-menu__mark::before { width: 10px; height: 6px; }
+    .core-care-language-menu__currency { margin-block-start: 12px; padding-block-start: 12px; }
   }
   @media (max-width: 359px) { .core-care-header__links button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } }
 }
+
+// Scroll lock and motion for the phone language sheet; the class is set by core-care-language-menu.js.
+// The merchant's WhatsApp button (z-index 99999) would cover the sheet, as with the cart drawer.
+@media (max-width: 767px) { html.cc-language-menu-open { overflow: hidden; } html.cc-language-menu-open .wa-s-n { visibility: hidden; } }
+@keyframes cc-language-fade { from { opacity: 0; } }
+@keyframes cc-language-sheet { from { transform: translateY(100%); } }
