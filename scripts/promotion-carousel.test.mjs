@@ -16,6 +16,9 @@ test('promotions slider is a registered home component the merchant can add, edi
   const slides = component.fields.find(field => field.id === 'slides');
   assert.equal(slides.type, 'collection');
   assert.deepEqual(slides.fields.map(field => field.id), ['slides.image', 'slides.mobile_image']);
+  // Images only, and the merchant must not be blocked by required inputs.
+  assert.equal(slides.required, false);
+  assert.ok(slides.fields.every(field => field.required === false), 'no required slide fields');
   // The legacy global switches no longer control anything once the slider is a component.
   for (const id of ['beauty_promotions_enabled', 'beauty_promotions_autoplay', 'beauty_promotions_interval']) {
     assert.equal(config.settings.some(setting => setting.id === id), false, id);
@@ -31,6 +34,8 @@ test('promotions component simplifies to images with fallback to legacy slides',
   // Partial renders images only, no links or buttons.
   assert.match(partial, /{% if not slides\|length %\}[\s\S]*?beauty_promo_' ~ number ~ '_image/);
   assert.doesNotMatch(partial, /beauty-promotions__copy|beauty-button|beauty-promotions__action/);
+  // Without this wrapper the picture falls into the 60px arrow column instead of spanning the frame.
+  assert.match(partial, /<\{\{ tag \}\} class="beauty-promotions__image-link"[\s\S]*?<picture class="beauty-promotions__media">/);
   assert.match(partial, /component-id="\{\{ component_id\|e\('html_attr'\) \}\}"/);
   assert.match(view, /promotion_autoplay: component\.autoplay is not defined or component\.autoplay is null or component\.autoplay,/);
   assert.match(view, /promotion_interval: component\.interval\|default\(5\)/);
@@ -472,5 +477,5 @@ test('promotion frame keeps one aspect ratio across slides with differing artwor
   assert.match(styles, /\.beauty-promotions__artwork \{[^}]*height: 100%; object-fit: cover;/);
   assert.doesNotMatch(styles, /\.beauty-promotions__artwork \{[^}]*height: auto/);
   assert.match(styles, /@media \(max-width: 767px\) \{\s*\.beauty-promotions \{ --promo-ratio: 12 \/ 5;/);
-  assert.match(template, /beauty-promotions__artwork\{% if default_artwork %\} beauty-promotions__artwork--default\{% endif %\}/);
+  assert.match(template, /beauty-promotions__artwork\{% if slide\.default_artwork %\} beauty-promotions__artwork--default\{% endif %\}/);
 });

@@ -49,3 +49,20 @@ Not performed. The development preview workflow syncs a committed revision, and 
 - Editor insertion markers.
 - Two instances on one page.
 - RTL/LTR.
+
+## Follow-up: images only, no required fields (same day)
+
+The merchant rejected the per-slide text fields: the editor demanded «وصف الصورة» before saving, and they want images only.
+
+- The `slides` collection now has only `slides.image` and `slides.mobile_image`, and both are `required: false`. The `title`, `show_title`, `button_label` and `url` slide fields are removed. They were pushed in `09955ca`; any values a merchant entered in them are now ignored.
+- Merchant slides render as unlinked images, with a generic translated alt text («اكتشفي Core Care N»). Slides without an image are skipped.
+- The legacy fallback (theme-setting images or bundled artwork) keeps its previous image links. Its titles and CTA buttons are no longer rendered.
+- A fix applied before release: the intermediate local commit `2b74b40` had dropped the `.beauty-promotions__image-link` wrapper. The picture would then have been placed in the 60px arrow grid column. The wrapper is restored as an `a` for legacy links and a `div` otherwise, and a regression test covers it.
+
+Checks:
+
+- twig.js render: the empty case gives 3 linked default slides; merchant slides give 2 unlinked images, with the empty slide skipped.
+- `pnpm build`: passed, with the same 9 warnings as before.
+- `pnpm test`: 67/67 passed, and 13/13 static checks.
+
+Salla platform verification is still **incomplete**: these changes have not been pushed, and the editor form was not re-checked.

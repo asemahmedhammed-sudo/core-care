@@ -1,5 +1,5 @@
 {# Shared promotions carousel markup, rendered by components/home/beauty-promotions.twig. #}
-{# Without merchant slides, keep the legacy theme-setting slides and bundled artwork. #}
+{# Images only. Without merchant slides, keep the legacy theme-setting images (with their links) and bundled artwork. #}
 {% set slides = promotion_slides|default([]) %}
 {% if not slides|length %}
 {% set configured_images = theme.settings.get('beauty_promo_1_image') or theme.settings.get('beauty_promo_2_image') or theme.settings.get('beauty_promo_3_image') %}
@@ -13,16 +13,11 @@
   {% set configured_destination = theme.settings.get('beauty_promo_' ~ number ~ '_url')|trim %}
   {# Plain Twig operators keep link validation independent of regex support. #}
   {% set valid_destination = configured_destination|lower starts with 'https://' and configured_destination|length > 8 and ' ' not in configured_destination and '"' not in configured_destination and '<' not in configured_destination and '>' not in configured_destination %}
-  {% set button_label = theme.settings.get('beauty_promo_' ~ number ~ '_button_label') %}
-  {% set button_label = (button_label is iterable ? button_label[language.code]|default(button_label|first) : button_label)|default('')|trim ?: trans('beauty.promo.shop_now') %}
   {% set slides = slides|merge([{
     image: image ?: ('images/core-care-promo-' ~ number ~ '.webp')|asset,
     mobile_image: theme.settings.get('beauty_promo_' ~ number ~ '_mobile_image'),
     title: configured_title ?: trans('beauty.promo.title_' ~ number),
-    heading: not default_artwork and configured_title and theme.settings.get('beauty_promo_' ~ number ~ '_show_title', false) ? configured_title : '',
     link: valid_destination ? configured_destination : link(number == 1 ? 'offers' : (number == 2 ? 'latest-products' : 'brands')),
-    destination: valid_destination ? configured_destination : '',
-    button_label: valid_destination ? button_label : '',
     default_artwork: default_artwork,
     height: default_artwork and number != 1 ? 576 : 480
   }]) %}
@@ -35,12 +30,16 @@
 <section {% if component_id is defined %}component-id="{{ component_id|e('html_attr') }}" {% endif %}class="beauty-promotions" data-promotion-carousel data-promotion-autoplay="{{ autoplay ? 'true' : 'false' }}" data-promotion-interval="{{ interval|e('html_attr') }}" role="region" aria-roledescription="{{ trans('beauty.promo.carousel') }}" aria-label="{{ trans('beauty.promo.label') }}">
   <div class="beauty-promotions__viewport">
     {% for slide in slides %}
-      {% set default_artwork = slide.default_artwork %}
-      <div data-promotion-slide class="beauty-promotions__slide" aria-label="{{ slide.title|default(trans('beauty.promo.label') ~ ' ' ~ loop.index)|e('html_attr') }}" {% if not loop.first %}hidden{% endif %}>
-        <picture class="beauty-promotions__media">
-          {% if slide.mobile_image %}<source media="(max-width: 767px)" srcset="{{ slide.mobile_image|e('html_attr') }}" width="960" height="320">{% endif %}
-          <img class="beauty-promotions__artwork{% if default_artwork %} beauty-promotions__artwork--default{% endif %}" src="{{ slide.image|e('html_attr') }}" alt="{{ slide.title|default(trans('beauty.promo.label') ~ ' ' ~ loop.index)|e('html_attr') }}" width="1440" height="{{ slide.height }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" {% if loop.first %}fetchpriority="high"{% endif %}>
-        </picture>
+      {% set label = slide.title|default(trans('beauty.promo.label') ~ ' ' ~ loop.index) %}
+      {% set tag = slide.link|default('') ? 'a' : 'div' %}
+      <div data-promotion-slide class="beauty-promotions__slide" aria-label="{{ label|e('html_attr') }}" {% if not loop.first %}hidden{% endif %}>
+        {# The wrapper places the image across the whole frame grid behind the arrows. #}
+        <{{ tag }} class="beauty-promotions__image-link"{% if tag == 'a' %} href="{{ slide.link|e('html_attr') }}" aria-label="{{ label|e('html_attr') }}"{% endif %}>
+          <picture class="beauty-promotions__media">
+            {% if slide.mobile_image %}<source media="(max-width: 767px)" srcset="{{ slide.mobile_image|e('html_attr') }}" width="960" height="320">{% endif %}
+            <img class="beauty-promotions__artwork{% if slide.default_artwork %} beauty-promotions__artwork--default{% endif %}" src="{{ slide.image|e('html_attr') }}" alt="{{ label|e('html_attr') }}" width="1440" height="{{ slide.height }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" {% if loop.first %}fetchpriority="high"{% endif %}>
+          </picture>
+        </{{ tag }}>
       </div>
     {% endfor %}
     <div class="beauty-promotions__controls" data-promotion-controls hidden>
