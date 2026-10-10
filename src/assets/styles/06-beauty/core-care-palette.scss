@@ -39,6 +39,12 @@ body.theme-beauty {
     --cc-input-muted: #757575;
     --cc-footer-muted: #fff;
     --cc-overlay: rgba(0, 0, 0, .7);
+    // Soft tints for category discs that have no image.
+    --cc-tint-rose: #fce7ee;
+    --cc-tint-sand: #f1efe9;
+    --cc-tint-sand-ink: #5c5546;
+    --cc-tint-sky: #e6f0f4;
+    --cc-tint-sky-ink: #2f5866;
     --beauty-paper: var(--cc-surface);
     --beauty-cream: var(--cc-canvas);
     --beauty-ink: var(--cc-text);

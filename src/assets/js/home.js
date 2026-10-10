@@ -3,9 +3,11 @@ import "./beauty-routine";
 import BasePage from "./base-page";
 import Lightbox from "fslightbox";
 import initPromotionCarousels from './partials/promotion-carousel';
+import initCategoryMedia from './partials/category-media';
 window.fslightbox = Lightbox;
 // The banner does not depend on the store SDK being ready.
 initPromotionCarousels();
+initCategoryMedia();
 
 class Home extends BasePage {
     onReady() {

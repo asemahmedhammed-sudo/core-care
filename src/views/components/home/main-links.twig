@@ -3,15 +3,24 @@
   <ul class="beauty-categories__list" role="list">
     {% if component.show_cats %}
       {% for cat in component.categories %}
+        {% if cat.name and cat.url %}
+        {% set label = cat.name|trim %}
+        {# Skip the Arabic article so «العطور» shows «ع» rather than the same «ا» as most categories. #}
+        {% set initial = label|slice(0, 2) == 'ال' and label|length > 2 ? label|slice(2, 1) : label|slice(0, 1) %}
         <li><a href="{{ cat.url }}" class="beauty-category">
+          {# The initial sits beneath the image, so a missing, broken or blank image never leaves an empty circle. #}
           <span class="beauty-category__image">
-            {% if cat.image %}<img src="{{ cat.image }}" alt="" width="72" height="72" loading="lazy">{% else %}<i class="{{ cat.icon ?: 'sicon-store' }}" aria-hidden="true"></i>{% endif %}
-          </span><span><bdi>{{ cat.name }}</bdi></span>
+            <span class="beauty-category__initial" aria-hidden="true">{{ initial|upper }}</span>
+            {% if cat.image %}<img src="{{ cat.image }}" alt="" width="72" height="72" loading="lazy">{% endif %}
+          </span><span class="beauty-category__name"><bdi>{{ cat.name }}</bdi></span>
         </a></li>
+        {% endif %}
       {% endfor %}
     {% else %}
       {% for item in component.links %}
-        {% if item.title and item.url %}<li><a href="{{ item.url }}" class="beauty-category"><span class="beauty-category__image"><i class="{{ item.icon }}" aria-hidden="true"></i></span><span><bdi>{{ item.title }}</bdi></span></a></li>{% endif %}
+        {% set label = item.title|trim %}
+        {% set initial = label|slice(0, 2) == 'ال' and label|length > 2 ? label|slice(2, 1) : label|slice(0, 1) %}
+        {% if item.title and item.url %}<li><a href="{{ item.url }}" class="beauty-category"><span class="beauty-category__image">{% if item.icon %}<i class="beauty-category__icon {{ item.icon }}" aria-hidden="true"></i>{% else %}<span class="beauty-category__initial" aria-hidden="true">{{ initial|upper }}</span>{% endif %}</span><span class="beauty-category__name"><bdi>{{ item.title }}</bdi></span></a></li>{% endif %}
       {% endfor %}
     {% endif %}
   </ul>

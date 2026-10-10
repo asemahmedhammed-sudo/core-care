@@ -2,9 +2,50 @@
 // Explicit alignment survives PostCSS converting text-align: start to left.
 body.theme-beauty .beauty-categories {
   .beauty-section-heading { margin-block-end: 12px; text-align: start; }
-  .beauty-categories__list { justify-content: flex-start; gap: 16px; padding: 0; }
-  .beauty-category { gap: 8px; }
+  // Room for the 3px hover/focus ring, which the horizontal scroller would otherwise clip.
+  .beauty-categories__list { justify-content: flex-start; gap: 16px; padding: 3px; }
+  .beauty-category { gap: 8px; color: var(--cc-text); }
   .beauty-category > span:last-child { max-width: 100%; overflow-wrap: anywhere; }
+  .beauty-category__name { font-size: 13px; font-weight: 500; line-height: 20px; }
+
+  // Tinted disc with the category initial; a loaded image covers it completely.
+  .beauty-category__image {
+    --cc-tile-surface: var(--cc-secondary-soft);
+    --cc-tile-ink: var(--cc-bestseller);
+    position: relative;
+    border: 0;
+    background: var(--cc-tile-surface);
+    color: var(--cc-tile-ink);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .04);
+    transition: box-shadow .2s, transform .2s;
+  }
+  li:nth-child(4n + 2) .beauty-category__image { --cc-tile-surface: var(--cc-tint-rose); --cc-tile-ink: var(--cc-sale-text); }
+  li:nth-child(4n + 3) .beauty-category__image { --cc-tile-surface: var(--cc-tint-sand); --cc-tile-ink: var(--cc-tint-sand-ink); }
+  li:nth-child(4n + 4) .beauty-category__image { --cc-tile-surface: var(--cc-tint-sky); --cc-tile-ink: var(--cc-tint-sky-ink); }
+  .beauty-category__initial { font-size: 26px; font-weight: 500; line-height: 1; user-select: none; }
+  .beauty-category__icon { font-size: 26px; }
+  .beauty-category__image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity .2s, transform .3s;
+  }
+  // Revealed by category-media.js once a real image loads: no broken-image glyph, and the
+  // opaque backing keeps transparent cut-outs from showing the initial through.
+  .beauty-category__image img.is-loaded { opacity: 1; background: var(--cc-surface); }
+  .beauty-category:hover .beauty-category__image, .beauty-category:focus-visible .beauty-category__image {
+    background: var(--cc-tile-surface);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .04), 0 0 0 2px var(--cc-canvas), 0 0 0 3px var(--cc-text);
+  }
+  .beauty-category:hover .beauty-category__image img { transform: scale(1.05); }
+  @media (prefers-reduced-motion: reduce) {
+    .beauty-category__image, .beauty-category__image img { transition: none; }
+    .beauty-category:hover .beauty-category__image img { transform: none; }
+  }
 }
 html[dir='rtl'] body.theme-beauty .beauty-categories .beauty-section-heading { text-align: right; }
 html[dir='ltr'] body.theme-beauty .beauty-categories .beauty-section-heading { text-align: left; }
