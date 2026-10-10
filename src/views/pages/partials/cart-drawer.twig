@@ -1,0 +1,54 @@
+{# Side cart (Nice One style). Items, prices and totals come from salla.cart at runtime; checkout stays on Salla. #}
+{% set t = 'beauty.cart_drawer.' %}
+<core-care-cart-drawer class="cc-cart-drawer" hidden
+  data-cart-url="{{ link('cart') }}"
+  data-home-url="{{ link('/') }}"
+  data-coupons="{{ store.settings.cart.apply_coupon_enabled ? 'true' : 'false' }}"
+  data-label-count="{{ trans(t ~ 'count') }}"
+  data-label-error="{{ trans(t ~ 'error') }}"
+  data-label-retry="{{ trans(t ~ 'retry') }}"
+  data-label-empty-title="{{ trans(t ~ 'empty_title') }}"
+  data-label-empty-text="{{ trans(t ~ 'empty_text') }}"
+  data-label-shop-now="{{ trans(t ~ 'shop_now') }}"
+  data-label-free-shipping="{{ trans(t ~ 'free_shipping_label') }}"
+  data-label-free-shipping-remaining="{{ trans(t ~ 'free_shipping_remaining') }}"
+  data-label-free-shipping-done="{{ trans(t ~ 'free_shipping_done') }}"
+  data-label-increase="{{ trans(t ~ 'increase') }}"
+  data-label-decrease="{{ trans(t ~ 'decrease') }}"
+  data-label-remove="{{ trans(t ~ 'remove') }}"
+  data-label-quantity="{{ trans(t ~ 'quantity') }}"
+  data-label-unavailable="{{ trans(t ~ 'unavailable') }}"
+  data-label-edit="{{ trans(t ~ 'edit_in_cart') }}"
+  data-label-recommended="{{ trans(t ~ 'recommended') }}"
+  data-label-tax="{{ trans(t ~ 'tax_included') }}"
+  data-label-saved="{{ trans(t ~ 'saved') }}"
+  data-label-updated="{{ trans(t ~ 'updated') }}">
+  <div class="cc-cart-drawer__backdrop" data-cart-close></div>
+  <section class="cc-cart-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cc-cart-drawer-title" tabindex="-1">
+    <header class="cc-cart-drawer__header">
+      <button class="cc-cart-drawer__icon-btn" type="button" data-cart-close aria-label="{{ trans(t ~ 'close') }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="cc-cart-drawer__heading">
+        <h2 id="cc-cart-drawer-title">{{ trans(t ~ 'title') }}</h2>
+        <p class="cc-cart-drawer__count" data-cart-count hidden></p>
+      </div>
+      <span class="cc-cart-drawer__icon-btn" aria-hidden="true"></span>
+    </header>
+    <div class="cc-cart-drawer__body" data-cart-body aria-busy="true">
+      <p class="cc-cart-drawer__status" role="status">{{ trans(t ~ 'loading') }}</p>
+    </div>
+    <footer class="cc-cart-drawer__footer" data-cart-footer hidden>
+      <div class="cc-cart-drawer__totals">
+        <p class="cc-cart-drawer__total-label">{{ trans(t ~ 'total') }} <span data-cart-tax hidden></span></p>
+        <p class="cc-cart-drawer__total" data-cart-total></p>
+        <p class="cc-cart-drawer__saved" data-cart-saved hidden></p>
+      </div>
+      <div class="cc-cart-drawer__actions">
+        <button class="cc-cart-drawer__checkout" type="button" data-cart-checkout>{{ trans(t ~ 'checkout') }}</button>
+        <a class="cc-cart-drawer__view-cart" href="{{ link('cart') }}">{{ trans(t ~ 'view_cart') }}</a>
+      </div>
+    </footer>
+    <p class="sr-only" data-cart-live aria-live="polite"></p>
+  </section>
+</core-care-cart-drawer>

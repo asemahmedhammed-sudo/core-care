@@ -1,5 +1,6 @@
 import './core-care-categories';
 import './core-care-language-menu';
+import './core-care-cart-drawer';
 
 class NavigationMenu extends HTMLElement {
     connectedCallback() {

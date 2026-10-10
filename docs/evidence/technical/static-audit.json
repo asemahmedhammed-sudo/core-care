@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-10T16:58:34.320Z",
+  "generatedAt": "2026-10-10T17:26:28.877Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -322,7 +322,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 147,
+    "keyCount": 172,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -2567,7 +2567,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "77dc922f9a3326e0e636a5fdad6f71b7632dc73da9ad2e5c895bfadd9a974d3c"
+      "sha256": "b8e483b891b69dd0c4b86a3dfd160060a94d78c8bcdc02dce95e4d3747d5ed35"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -2593,6 +2593,11 @@
       "file": "src/views/pages/page-single.twig",
       "kind": "modified-upstream",
       "sha256": "33386bfbab73534d01d474770271b0e1d65e470452acf277fbe598bfdbaaf120"
+    },
+    {
+      "file": "src/views/pages/partials/cart-drawer.twig",
+      "kind": "new-template",
+      "sha256": "62097ff108cc6f7a9ceb173e6f88ff9ff6c108ef44d6d0dd3fa4a27b809d2594"
     },
     {
       "file": "src/views/pages/partials/home/product-section-footer.twig",

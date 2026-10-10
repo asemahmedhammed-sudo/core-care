@@ -1,0 +1,124 @@
+// Side cart (Nice One reference). PostCSS lowers logical insets and text alignment,
+// so direction-dependent placement uses explicit html[dir] rules.
+html.cc-cart-drawer-open { overflow: hidden; }
+// The merchant's WhatsApp app button floats above every layer (z-index 99999) and covers the drawer footer on phones.
+html.cc-cart-drawer-open .wa-s-n { visibility: hidden; }
+
+body.theme-beauty {
+  .cc-cart-drawer { position: fixed; inset: 0; z-index: 60; }
+  .cc-cart-drawer[hidden] { display: none; }
+  .cc-cart-drawer__backdrop { position: absolute; inset: 0; background: var(--cc-overlay, rgba(0, 0, 0, .7)); opacity: 0; transition: opacity .3s ease; }
+  .cc-cart-drawer__panel {
+    position: absolute; top: 0; bottom: 0; display: flex; flex-direction: column;
+    width: min(500px, 100vw); background: var(--cc-canvas); color: var(--cc-text);
+    box-shadow: 0 0 24px rgba(0, 0, 0, .12); transition: transform .3s ease; outline: none;
+  }
+  .cc-cart-drawer.is-open .cc-cart-drawer__backdrop { opacity: 1; }
+  .cc-cart-drawer.is-open .cc-cart-drawer__panel { transform: none; }
+
+  // Header: close at the start, centred title and item count.
+  .cc-cart-drawer__header {
+    display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 8px;
+    padding: 12px 16px; background: var(--cc-surface); border-block-end: 1px solid var(--cc-border);
+  }
+  .cc-cart-drawer__icon-btn { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; color: var(--cc-icon); }
+  button.cc-cart-drawer__icon-btn:hover { background: var(--cc-menu-hover); }
+  .cc-cart-drawer__icon-btn svg { width: 24px; height: 24px; }
+  .cc-cart-drawer__heading { text-align: center; }
+  .cc-cart-drawer__heading h2 { font-size: 20px; font-weight: 500; line-height: 28px; }
+  .cc-cart-drawer__count { color: var(--cc-text-muted); font-size: 14px; line-height: 20px; }
+
+  .cc-cart-drawer__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 8px; }
+  .cc-cart-drawer__status { padding: 32px 16px; color: var(--cc-text-muted); font-size: 14px; text-align: center; }
+
+  // Free-shipping progress from salla.cart (free_shipping_bar).
+  .cc-cart-drawer__shipping {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 12px 16px 16px;
+    background: var(--cc-secondary-soft); position: relative;
+  }
+  .cc-cart-drawer__shipping-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px;
+    background: var(--cc-surface); font-size: 12px; font-weight: 500; line-height: 18px;
+    svg { width: 16px; height: 16px; }
+  }
+  .cc-cart-drawer__shipping-text { flex: 1 1 200px; font-size: 14px; line-height: 21px; }
+  .cc-cart-drawer__shipping-amount { font-weight: 600; }
+  .cc-cart-drawer__progress { flex: 1 0 100%; height: 4px; border-radius: 999px; background: var(--cc-surface); overflow: hidden; }
+  .cc-cart-drawer__progress-fill { display: block; height: 100%; border-radius: inherit; background: var(--cc-secondary); transition: width .4s ease; }
+
+  // Items
+  .cc-cart-drawer__items { background: var(--cc-surface); }
+  .cc-cart-item {
+    display: grid; grid-template-columns: 88px minmax(0, 1fr); grid-template-areas: 'media info' 'media qty';
+    gap: 8px 16px; padding: 16px; border-block-end: 1px solid var(--cc-border);
+    &:last-child { border-block-end: 0; }
+  }
+  .cc-cart-item__media {
+    grid-area: media; display: block; width: 88px; height: 88px; border-radius: 8px; overflow: hidden; background: var(--cc-surface);
+    img { width: 100%; height: 100%; object-fit: contain; }
+  }
+  .cc-cart-item__info { grid-area: info; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .cc-cart-item__name { color: var(--cc-text); font-size: 15px; font-weight: 500; line-height: 22px; overflow-wrap: anywhere; }
+  a.cc-cart-item__name:hover { text-decoration: underline; }
+  .cc-cart-item__prices { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+  .cc-cart-item__price { font-size: 18px; font-weight: 600; line-height: 26px; &.is-sale { color: var(--cc-sale-text); } }
+  .cc-cart-item__old { color: var(--cc-text-muted); font-size: 13px; text-decoration: line-through; }
+  .cc-cart-item__discount { padding: 1px 8px; border-radius: 999px; background: var(--cc-discount-surface); color: var(--cc-sale-text); font-size: 12px; font-weight: 500; line-height: 20px; }
+  .cc-cart-item__note { font-size: 12px; line-height: 18px; &.is-alert { color: var(--cc-sale-text); font-weight: 500; } }
+  .cc-cart-item__edit { align-self: flex-start; color: var(--cc-text-muted); font-size: 13px; line-height: 20px; text-decoration: underline; }
+  .cc-cart-item__qty, .cc-cart-item__qty-fixed { grid-area: qty; justify-self: end; align-self: end; }
+  .cc-cart-item__qty { display: inline-flex; align-items: center; height: 44px; border: 1px solid var(--cc-border); border-radius: 8px; background: var(--cc-surface); }
+  .cc-cart-item__qty-btn {
+    display: grid; place-items: center; width: 44px; height: 42px; color: var(--cc-icon); border-radius: 7px;
+    svg { width: 20px; height: 20px; }
+    &:hover:not(:disabled) { background: var(--cc-menu-hover); }
+    &:disabled { opacity: .45; cursor: progress; }
+    &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
+  }
+  .cc-cart-item__qty-value { min-width: 32px; font-size: 16px; font-weight: 500; text-align: center; }
+  .cc-cart-item__qty-fixed { color: var(--cc-text-muted); font-size: 14px; }
+
+  .cc-cart-drawer__block { padding: 16px; background: var(--cc-surface); }
+  .cc-cart-drawer__related .s-block__title, .cc-cart-drawer__related .s-slider-block__title { margin-block-end: 12px; }
+  .cc-cart-drawer__related h2, .cc-cart-drawer__related h3 { font-size: 18px; font-weight: 500; line-height: 28px; }
+
+  // Empty / error state
+  .cc-cart-drawer__empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 48px 24px; text-align: center; background: var(--cc-surface); flex: 1 1 auto; }
+  .cc-cart-drawer__empty-art { display: grid; place-items: center; width: 96px; height: 96px; border-radius: 50%; background: var(--cc-secondary-soft); color: var(--cc-text); svg { width: 44px; height: 44px; } }
+  .cc-cart-drawer__empty-title { font-size: 18px; font-weight: 500; line-height: 28px; }
+  .cc-cart-drawer__empty-text { max-width: 320px; color: var(--cc-text-muted); font-size: 14px; line-height: 21px; }
+
+  // Primary actions follow the theme's merchant-driven action colours; the border keeps a white action visible.
+  .cc-cart-drawer__primary, .cc-cart-drawer__checkout {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding-inline: 24px;
+    border: 1px solid var(--cc-text); border-radius: 8px; background: var(--cc-action); color: var(--cc-action-text);
+    font-size: 16px; font-weight: 500; line-height: 1; cursor: pointer;
+    &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
+    &:disabled, &[aria-busy='true'] { opacity: .6; cursor: progress; }
+  }
+
+  // Sticky footer: totals at the start, checkout at the end.
+  .cc-cart-drawer__footer {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: var(--cc-surface);
+    border-block-start: 1px solid var(--cc-border); box-shadow: 0 -4px 16px rgba(0, 0, 0, .04);
+  }
+  .cc-cart-drawer__footer[hidden] { display: none; }
+  .cc-cart-drawer__totals { min-width: 0; }
+  .cc-cart-drawer__total-label { color: var(--cc-text-muted); font-size: 14px; line-height: 20px; }
+  .cc-cart-drawer__total { font-size: 22px; font-weight: 600; line-height: 30px; }
+  .cc-cart-drawer__saved { color: var(--cc-sale-text); font-size: 13px; font-weight: 500; line-height: 20px; }
+  .cc-cart-drawer__actions { display: flex; flex-direction: column; align-items: stretch; gap: 4px; flex: 0 1 200px; }
+  .cc-cart-drawer__view-cart { display: block; padding-block: 6px; color: var(--cc-text-muted); font-size: 13px; text-align: center; text-decoration: underline; }
+}
+
+// The drawer enters from the inline end: left in Arabic, right in English.
+html[dir='rtl'] body.theme-beauty .cc-cart-drawer__panel { left: 0; right: auto; transform: translateX(-100%); }
+html[dir='ltr'] body.theme-beauty .cc-cart-drawer__panel { right: 0; left: auto; transform: translateX(100%); }
+html[dir] body.theme-beauty .cc-cart-drawer.is-open .cc-cart-drawer__panel { transform: none; }
+html[dir='rtl'] body.theme-beauty .cc-cart-item__name, html[dir='rtl'] body.theme-beauty .cc-cart-drawer__totals { text-align: right; }
+html[dir='ltr'] body.theme-beauty .cc-cart-item__name, html[dir='ltr'] body.theme-beauty .cc-cart-drawer__totals { text-align: left; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.theme-beauty .cc-cart-drawer__backdrop, body.theme-beauty .cc-cart-drawer__panel, body.theme-beauty .cc-cart-drawer__progress-fill { transition: none; }
+}

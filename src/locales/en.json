@@ -176,6 +176,33 @@
       "contact_email": "Email",
       "contact_whatsapp": "WhatsApp",
       "contact_phone": "Phone"
+    },
+    "cart_drawer": {
+      "title": "Shopping cart",
+      "count": "(%s items)",
+      "close": "Close cart",
+      "loading": "Loading your cart…",
+      "error": "Your cart could not be loaded. Please try again.",
+      "retry": "Try again",
+      "empty_title": "Your cart is empty",
+      "empty_text": "Add your favourite products to start shopping.",
+      "shop_now": "Shop now",
+      "free_shipping_label": "Home delivery",
+      "free_shipping_remaining": "Add %s to get free delivery!",
+      "free_shipping_done": "Your order qualifies for free delivery",
+      "increase": "Increase quantity",
+      "decrease": "Decrease quantity",
+      "remove": "Remove item from cart",
+      "quantity": "Quantity",
+      "unavailable": "Currently unavailable",
+      "edit_in_cart": "Edit options on the cart page",
+      "recommended": "Recommended products",
+      "total": "Total",
+      "tax_included": "(incl. VAT)",
+      "saved": "You saved %s",
+      "checkout": "Checkout",
+      "view_cart": "View full cart",
+      "updated": "Cart updated"
     }
   }
 }

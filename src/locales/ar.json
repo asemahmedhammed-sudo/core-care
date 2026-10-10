@@ -176,6 +176,33 @@
       "contact_email": "البريد الإلكتروني",
       "contact_whatsapp": "واتساب",
       "contact_phone": "الهاتف"
+    },
+    "cart_drawer": {
+      "title": "سلة التسوق",
+      "count": "(%s منتجات)",
+      "close": "إغلاق السلة",
+      "loading": "جارٍ تحميل السلة…",
+      "error": "تعذّر تحميل السلة، حاول مرة أخرى.",
+      "retry": "إعادة المحاولة",
+      "empty_title": "سلتك فارغة",
+      "empty_text": "أضف منتجاتك المفضلة وابدأ التسوق.",
+      "shop_now": "تسوق الآن",
+      "free_shipping_label": "التوصيل للمنزل",
+      "free_shipping_remaining": "أضف %s للحصول على توصيل مجاني!",
+      "free_shipping_done": "طلبك مؤهل للتوصيل المجاني",
+      "increase": "زيادة الكمية",
+      "decrease": "إنقاص الكمية",
+      "remove": "حذف المنتج من السلة",
+      "quantity": "الكمية",
+      "unavailable": "غير متوفر حاليًا",
+      "edit_in_cart": "تعديل الخيارات في صفحة السلة",
+      "recommended": "المنتجات الموصى بها",
+      "total": "الإجمالي",
+      "tax_included": "(شامل الضريبة)",
+      "saved": "قمت بتوفير %s",
+      "checkout": "الدفع",
+      "view_cart": "عرض السلة كاملة",
+      "updated": "تم تحديث السلة"
     }
   }
 }
