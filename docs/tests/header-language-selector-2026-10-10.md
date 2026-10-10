@@ -41,3 +41,45 @@ The header's language control looked dated and unclear. It also showed the curre
 - LTR/English storefront.
 - A store with multiple currencies.
 - Chrome.
+
+## Revision 2: inline dropdown matching the owner's reference (same day)
+
+The owner supplied a reference screenshot of the Nice One header language menu. The pill and modal are replaced to match it.
+
+### Change
+
+- **Trigger:** a plain button: outline globe (22px), the language code (`AR`/`EN`) and a chevron that rotates while open. It has `aria-expanded`/`aria-controls`, and a 3px `--cc-secondary` underline at the header's bottom edge while open.
+- **Panel** (`core-care-language-menu`, `src/assets/js/partials/core-care-language-menu.js`, loaded through `main-menu.js`):
+  - White, with a 3px black top border, bottom radius 16px and a soft shadow.
+  - Title «اللغات».
+  - Options come from `Salla.config.languages()`, which is loaded once per page.
+  - Each option shows a radio-style mark: a filled dark circle with a white check for the current language, an empty ring otherwise. Then the platform flag (`lang.flag`, HTTPS only) and the platform name.
+  - Options are built with `createElement`/`textContent`.
+- **Switching:** the same steps as the installed `salla-localization-modal`: `Salla.cookie.set('s-lang')`, `Salla.helpers.addParamToUrl('lang')`, and swap the `/<current>/` path segment.
+- **Closing:** Escape, an outside click, or focus leaving the menu closes the panel. Escape returns focus to the trigger. Listeners use an `AbortController`.
+- **Currency:** a «العملة» row opens Salla's modal, and only renders when the store enables currencies. A store with only currencies keeps a single trigger that opens the modal.
+- **Phones:** the trigger is the globe only, and the panel spans the navigation row with a 12px inset.
+- **Compiled-CSS fixes found during review:**
+  - Two SCSS parent-selector mistakes (`body … body`, `body html[dir]`).
+  - `text-align: start` lowered to `left`.
+  - `inset-inline-end` lowered to `right`, now handled with an explicit `html[dir='rtl']` anchor.
+  - The selected mark uses `--cc-text`: this store's palette resolves `--cc-action` to `#ffffff`, which made the mark invisible in preview.
+- Asset revision `20261010-language-dropdown-1`.
+
+### Checks
+
+| Check | Result |
+|---|---|
+| `pnpm build` | Passed, 9 existing warnings |
+| `pnpm test` | 74/74 passed. `header-localization.test.mjs` covers markup, currency gating, switch URLs, flag URL safety, close behaviour, styles and compiled selectors. Static audit 13/13. |
+| twig.js render | Language and currency (ar): menu with `AR`, a currency row and the modal. Language only (en): `EN`, with no currency row and no modal. Currency only: modal trigger. Neither: nothing. |
+| Real preview `salla.design/ar/corecare`, 1024px (built-in browser) | Markup, compiled CSS and the element logic were injected; nothing was deployed. Results: <br>• `Salla.config.languages()` returned العربية/English, both with platform flags. <br>• The panel was 480px wide, started at the nav bottom (133/134px), and was anchored to the trigger at x 234–714 with no horizontal overflow. <br>• On open, focus went to the current language. The selected mark showed black with a white check after the `--cc-text` fix. <br>• Escape closed the panel, set `aria-expanded="false"` and returned focus to the trigger. |
+
+### Not verified
+
+- Selecting English (to avoid changing the preview session's language).
+- The hosted build after push.
+- The phone layout on Salla.
+- LTR.
+- A multi-currency store.
+- Chrome.

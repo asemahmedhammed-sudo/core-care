@@ -4,30 +4,72 @@ import fs from 'node:fs';
 
 const header = fs.readFileSync(new URL('../src/views/components/header/header.twig', import.meta.url), 'utf8');
 const styles = fs.readFileSync(new URL('../src/assets/styles/06-beauty/core-care-header.scss', import.meta.url), 'utf8');
+const source = fs.readFileSync(new URL('../src/assets/js/partials/core-care-language-menu.js', import.meta.url), 'utf8');
+// The module registers a custom element; give Node the minimum browser globals to import its helpers.
+globalThis.HTMLElement ??= class {};
+globalThis.customElements ??= { get: () => undefined, define: () => {} };
+const { languageSwitchUrl, safeFlagUrl } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
 
-test('header language trigger shows the language only and opens Salla\'s own localization modal', () => {
-  // Salla's built-in trigger renders "language | currency symbol"; the theme replaces only the trigger.
-  assert.doesNotMatch(header, /<salla-localization-modal[^>]*show-trigger/);
-  assert.match(header, /<salla-localization-modal data-testid="store-header-localization"><\/salla-localization-modal>/);
-  // localization::open is the event the installed salla-localization-modal listens to.
-  assert.match(header, /class="core-care-header__locale" type="button"[^>]*aria-haspopup="dialog"[^>]*onclick="salla\.event\.dispatch\('localization::open'\)"/);
+test('header language trigger is a disclosure for an inline language panel, without a currency symbol', () => {
+  assert.match(header, /<core-care-language-menu class="core-care-language-menu" data-current="\{\{ language\.code \}\}"/);
+  assert.match(header, /data-language-toggle aria-expanded="false" aria-controls="core-care-language-panel" aria-label="\{\{ trans\('beauty\.header\.language'\) \}\}: \{\{ language\.code\|upper \}\}"/);
+  assert.match(header, /<span class="core-care-header__locale-label">\{\{ language\.code\|upper \}\}<\/span>/);
+  assert.match(header, /id="core-care-language-panel" data-language-panel hidden/);
+  assert.match(header, /data-language-list role="group" aria-labelledby="core-care-language-title"/);
+  // Salla's built-in "language | currency" trigger is never rendered.
+  assert.doesNotMatch(header, /show-trigger><\/salla-localization-modal>|<salla-localization-modal[^>]*show-trigger/);
   assert.doesNotMatch(header, /sicon-sar|currency\.symbol/);
-  // Decorative icons are hidden; the accessible name carries the purpose and the current language.
   for (const icon of header.match(/<svg class="core-care-header__locale-[a-z]+"[^>]*>/g)) assert.match(icon, /aria-hidden="true"/);
-  assert.match(header, /aria-label="\{\{ localization_label \}\}\{% if store\.settings\.is_multilingual %\}: \{\{ current_language \}\}/);
 });
 
-test('language trigger labels exist in both locales', () => {
-  for (const locale of ['ar', 'en']) {
-    const strings = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}.json`, import.meta.url), 'utf8')).beauty.header;
-    for (const key of ['language', 'currency', 'localization']) assert.equal(typeof strings[key], 'string', `${locale}.${key}`);
+test('currency stays selectable through Salla\'s modal only when the store enables currencies', () => {
+  assert.match(header, /\{% if store\.settings\.currencies_enabled %\}\s*<button class="core-care-language-menu__currency" type="button" data-currency-open aria-haspopup="dialog">/);
+  assert.match(header, /\{% if store\.settings\.currencies_enabled %\}<salla-localization-modal data-testid="store-header-localization"><\/salla-localization-modal>\{% endif %\}/);
+  assert.match(header, /\{% elseif store\.settings\.currencies_enabled %\}[\s\S]*?onclick="salla\.event\.dispatch\('localization::open'\)"/);
+  assert.match(source, /dispatch\('localization::open'\)/);
+});
+
+test('language switching mirrors salla-localization-modal and builds options without innerHTML', () => {
+  assert.equal(languageSwitchUrl('https://salla.design/ar/corecare?lang=en', 'ar', 'en'), 'https://salla.design/en/corecare?lang=en');
+  assert.equal(languageSwitchUrl('https://corecare-sa.com/ar/perfumes/c1?lang=en', 'ar', 'en'), 'https://corecare-sa.com/en/perfumes/c1?lang=en');
+  assert.equal(languageSwitchUrl('https://corecare-sa.com/en/x/p1?lang=ar', 'en', 'ar'), 'https://corecare-sa.com/ar/x/p1?lang=ar');
+  assert.equal(languageSwitchUrl(null, 'ar', 'en'), null);
+  assert.match(source, /cookie\?\.set\?\.\('s-lang', code\)/);
+  assert.match(source, /addParamToUrl\('lang', code\)/);
+  assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
+  // One languages request per page, reused on reopen.
+  assert.match(source, /this\.loading \?\?= \(async/);
+});
+
+test('only HTTPS platform flags are rendered', () => {
+  assert.equal(safeFlagUrl('https://assets.salla.sa/images/flags/ar.svg'), 'https://assets.salla.sa/images/flags/ar.svg');
+  for (const value of ['', null, 'http://assets.salla.sa/f.svg', 'javascript:alert(1)', 'data:image/svg+xml,<svg/>', '//assets.salla.sa/f.svg', 'https://u:p@assets.salla.sa/f.svg']) {
+    assert.equal(safeFlagUrl(value), null, String(value));
   }
 });
 
-test('language trigger keeps a 44px target, symmetric RTL/LTR padding and a globe-only phone layout', () => {
-  assert.match(styles, /&__locale \{[^}]*height: 40px; padding-inline: 12px; margin-block: 2px;/);
-  assert.match(styles, /&::after \{ content: ''; position: absolute; inset: -2px; \}/);
-  assert.match(styles, /&:focus-visible \{ outline: 2px solid var\(--cc-icon\)/);
-  assert.match(styles, /\.core-care-header__locale \{ justify-content: center; width: 44px; height: 44px;/);
-  assert.match(styles, /\.core-care-header__locale-label, \.core-care-header__locale-chevron \{ display: none; \}/);
+test('panel closes on Escape and outside interaction and returns focus to the trigger', () => {
+  assert.match(source, /event\.key !== 'Escape'[\s\S]*?this\.setOpen\(false\);\s*this\.trigger\.focus\(\);/);
+  assert.match(source, /document\.addEventListener\('click', event => \{\s*if \(!this\.panel\.hidden && !this\.contains\(event\.target\)\) this\.setOpen\(false\);/);
+  assert.match(source, /document\.addEventListener\('focusin'/);
+  assert.match(source, /this\.abort\?\.abort\(\);\s*this\.abort = new AbortController\(\);/);
+});
+
+test('language styles follow the reference and keep 44px targets on every width', () => {
+  assert.match(styles, /&__locale \{[^}]*min-height: 44px; padding-inline: 8px; border: 0; background: transparent;/);
+  assert.match(styles, /&\[aria-expanded='true'\]::after \{ opacity: 1; \}/);
+  assert.match(styles, /background: var\(--cc-secondary\)/);
+  assert.match(styles, /border-block-start: 3px solid var\(--cc-text\); border-radius: 0 0 16px 16px;/);
+  assert.match(styles, /\.core-care-language-menu__option \{[^}]*min-height: 44px;/);
+  assert.match(styles, /\.core-care-language-menu__option\[aria-current='true'\] \.core-care-language-menu__mark/);
+  // The store palette can set --cc-action to white; the selected mark must stay dark.
+  assert.match(styles, /\.core-care-language-menu__option\[aria-current='true'\] \.core-care-language-menu__mark \{\s*\/\/[^\n]*\n\s*border-color: var\(--cc-text\); background: var\(--cc-text\);/);
+  assert.match(styles, /\.core-care-language-menu__panel, html\[dir\] & \.core-care-language-menu__panel \{ top: 100%; left: 12px; right: 12px; width: auto;/);
+  assert.match(styles, /html\[dir='rtl'\] & \.core-care-language-menu__panel \{ left: 0; right: auto; \}/);
+  assert.match(styles, /html\[dir='ltr'\] & \.core-care-language-menu__currency svg \{ transform: scaleX\(-1\); \}/);
+  // Compiled selectors must not nest body/html inside body (SCSS parent-selector mistakes).
+  const css = fs.readFileSync(new URL('../public/app.css', import.meta.url), 'utf8');
+  assert.match(css, /html\[dir=ltr\] body\.theme-beauty \.core-care-language-menu__currency svg\{transform:scaleX\(-1\)\}/);
+  assert.match(css, /body\.theme-beauty \.core-care-header__locale\[aria-expanded=true\] \.core-care-header__locale-chevron\{transform:rotate\(180deg\)\}/);
+  assert.doesNotMatch(css, /body\.theme-beauty [^{},]*(?:body\.theme-beauty|html\[dir)[^{},]*core-care-(?:language-menu|header__locale)/);
 });

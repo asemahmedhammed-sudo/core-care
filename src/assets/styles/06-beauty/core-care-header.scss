@@ -25,21 +25,58 @@ body.theme-beauty {
     &__notification svg { width: 20px; height: 20px; }
     .s-cart-summary-content { display: none; }
     .header-btn__icon { color: var(--cc-icon); border: 0; margin: 0; width: 44px; height: 44px; font-size: 22px; }
-    // Language selector: outline globe, native language name, chevron. Visible 40px pill inside a 44px hit area.
+    // Language trigger (Nice One reference): outline globe, language code, chevron; no pill.
     &__locale {
-      position: relative; display: inline-flex; align-items: center; gap: 6px;
-      height: 40px; padding-inline: 12px; margin-block: 2px;
-      border: 1px solid var(--cc-border); border-radius: 999px; background: var(--cc-surface);
-      color: var(--cc-icon); font-size: 14px; font-weight: 500; line-height: 1; white-space: nowrap;
-      cursor: pointer; transition: background-color .2s ease, border-color .2s ease;
-      &::after { content: ''; position: absolute; inset: -2px; }
-      &:hover { background: var(--cc-menu-hover); border-color: var(--cc-menu-hover); }
-      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
+      position: relative; display: inline-flex; align-items: center; gap: 8px;
+      min-height: 44px; padding-inline: 8px; border: 0; background: transparent;
+      color: var(--cc-icon); font-size: 16px; font-weight: 500; line-height: 1; white-space: nowrap; cursor: pointer;
+      // Accent underline at the header's bottom edge while the panel is open.
+      &::after { content: ''; position: absolute; inset-inline: 0; bottom: -7px; height: 3px; background: var(--cc-secondary); opacity: 0; transition: opacity .2s ease; }
+      &[aria-expanded='true']::after { opacity: 1; }
+      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; border-radius: 4px; }
     }
-    &__locale-icon { flex: none; width: 18px; height: 18px; }
-    &__locale-chevron { flex: none; width: 14px; height: 14px; color: var(--cc-text-muted); }
+    &__locale-icon { flex: none; width: 22px; height: 22px; }
+    &__locale-chevron { flex: none; width: 16px; height: 16px; color: var(--cc-text-muted); transition: transform .2s ease; }
+    &__locale[aria-expanded='true'] .core-care-header__locale-chevron { transform: rotate(180deg); }
   }
-  @media (prefers-reduced-motion: reduce) { .core-care-header__locale { transition: none; } }
+  .core-care-language-menu { position: relative; display: inline-flex; }
+  .core-care-language-menu__panel {
+    position: absolute; z-index: 40; top: calc(100% + 7px); inset-inline-end: 0;
+    width: min(480px, calc(100vw - 24px)); padding: 24px 32px 28px;
+    background: var(--cc-surface); border-block-start: 3px solid var(--cc-text); border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 6, .12);
+  }
+  .core-care-language-menu__title { margin-block-end: 20px; color: var(--cc-text-muted); font-size: 16px; font-weight: 500; line-height: 24px; }
+  .core-care-language-menu__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px 24px; }
+  .core-care-language-menu__option {
+    display: flex; align-items: center; gap: 12px; min-height: 44px; padding-inline: 4px; border-radius: 8px;
+    background: transparent; color: var(--cc-text); font-size: 18px; font-weight: 500; line-height: 24px; cursor: pointer;
+    &:hover { background: var(--cc-menu-hover); }
+    &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
+  }
+  // Radio-style indicator: empty ring, or a filled dark circle with a white check for the current language.
+  .core-care-language-menu__mark {
+    flex: none; display: grid; place-items: center; width: 28px; height: 28px;
+    border: 1.5px solid var(--cc-price-old); border-radius: 50%;
+  }
+  .core-care-language-menu__option[aria-current='true'] .core-care-language-menu__mark {
+    // --cc-text, not --cc-action: merchant palettes can make the action colour white.
+    border-color: var(--cc-text); background: var(--cc-text);
+    &::before { content: ''; width: 12px; height: 7px; margin-block-start: -3px; border: solid var(--cc-surface); border-width: 0 0 2px 2px; transform: rotate(-45deg); }
+  }
+  .core-care-language-menu__flag { flex: none; width: 32px; height: 22px; object-fit: cover; border-radius: 3px; box-shadow: 0 0 0 1px var(--cc-border); }
+  .core-care-language-menu__name { min-width: 0; overflow-wrap: anywhere; }
+  .core-care-language-menu__status { color: var(--cc-text-muted); font-size: 14px; }
+  .core-care-language-menu__currency {
+    display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 44px; margin-block-start: 16px;
+    padding-block-start: 16px; border-block-start: 1px solid var(--cc-border); background: transparent; color: var(--cc-text); font-size: 16px; font-weight: 500; cursor: pointer;
+    svg { width: 18px; height: 18px; }
+    &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
+  }
+  html[dir='ltr'] & .core-care-language-menu__currency svg { transform: scaleX(-1); }
+  // PostCSS lowers inset-inline-end to right; anchor the panel to the trigger's inline end explicitly.
+  html[dir='rtl'] & .core-care-language-menu__panel { left: 0; right: auto; }
+  @media (prefers-reduced-motion: reduce) { .core-care-header__locale::after, .core-care-header__locale-chevron { transition: none; } }
   @media (max-width: 1023px) { .core-care-header__tagline { display: none; } .core-care-header__top { grid-template-columns: 170px minmax(0, 1fr); } }
   @media (max-width: 767px) {
     .core-care-header__top { grid-template-columns: 1fr; padding-block: 4px; }
@@ -52,9 +89,12 @@ body.theme-beauty {
     .core-care-header__account, .core-care-header__scope { justify-content: center; width: 44px; }
     .core-care-header__delivery { display: none; }
     // Globe-only on phones; the accessible name still states language/currency and the current language.
-    .core-care-header__locale { justify-content: center; width: 44px; height: 44px; padding: 0; margin: 0; border-color: transparent; background: transparent; }
+    .core-care-header__locale { justify-content: center; min-width: 44px; padding: 0; }
     .core-care-header__locale-label, .core-care-header__locale-chevron { display: none; }
-    .core-care-header__locale-icon { width: 20px; height: 20px; }
+    // On phones the panel spans the navigation row instead of hanging off the small trigger.
+    .core-care-language-menu { position: static; }
+    .core-care-language-menu__panel, html[dir] & .core-care-language-menu__panel { top: 100%; left: 12px; right: 12px; width: auto; padding: 20px; }
+    .core-care-language-menu__option { font-size: 16px; }
   }
   @media (max-width: 359px) { .core-care-header__links button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } }
 }

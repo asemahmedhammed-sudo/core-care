@@ -29,23 +29,31 @@
       </nav>
       <div class="core-care-header__actions">
         {% if store.scope %}<button class="core-care-header__scope" type="button" aria-label="{{ store.scope.name }}" onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})"><i class="sicon-location" aria-hidden="true"></i><span>{{ store.scope.name }}</span></button>{% endif %}
-        {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
-          {# Own trigger: language only, no currency symbol. Salla's modal still owns language and currency selection. #}
-          {% set language_names = { ar: 'العربية', en: 'English' } %}
-          {% set current_language = language_names[language.code]|default(language.code|upper) %}
-          {% set localization_label = store.settings.is_multilingual and store.settings.currencies_enabled ? trans('beauty.header.localization') : (store.settings.is_multilingual ? trans('beauty.header.language') : trans('beauty.header.currency')) %}
-          <button class="core-care-header__locale" type="button" data-testid="store-header-localization-trigger" aria-haspopup="dialog" aria-label="{{ localization_label }}{% if store.settings.is_multilingual %}: {{ current_language }}{% endif %}" onclick="salla.event.dispatch('localization::open')">
-            {% if store.settings.is_multilingual %}
+        {% if store.settings.is_multilingual %}
+          {# Inline language dropdown (Nice One style). Languages and switching come from Salla at runtime. #}
+          <core-care-language-menu class="core-care-language-menu" data-current="{{ language.code }}" data-error-label="{{ trans('beauty.header.languages_error') }}">
+            <button class="core-care-header__locale" type="button" data-language-toggle aria-expanded="false" aria-controls="core-care-language-panel" aria-label="{{ trans('beauty.header.language') }}: {{ language.code|upper }}">
               <svg class="core-care-header__locale-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
-              <span class="core-care-header__locale-label">{{ current_language }}</span>
-            {% else %}
-              <svg class="core-care-header__locale-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg>
-              <span class="core-care-header__locale-label">{{ trans('beauty.header.currency') }}</span>
-            {% endif %}
+              <span class="core-care-header__locale-label">{{ language.code|upper }}</span>
+              <svg class="core-care-header__locale-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+            </button>
+            <div class="core-care-language-menu__panel" id="core-care-language-panel" data-language-panel hidden>
+              <p class="core-care-language-menu__title" id="core-care-language-title">{{ trans('beauty.header.languages') }}</p>
+              <div class="core-care-language-menu__list" data-language-list role="group" aria-labelledby="core-care-language-title"></div>
+              {% if store.settings.currencies_enabled %}
+                <button class="core-care-language-menu__currency" type="button" data-currency-open aria-haspopup="dialog">{{ trans('beauty.header.currency') }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 7-5 5 5 5"/></svg></button>
+              {% endif %}
+            </div>
+          </core-care-language-menu>
+        {% elseif store.settings.currencies_enabled %}
+          <button class="core-care-header__locale" type="button" data-testid="store-header-localization-trigger" aria-haspopup="dialog" aria-label="{{ trans('beauty.header.currency') }}" onclick="salla.event.dispatch('localization::open')">
+            <svg class="core-care-header__locale-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg>
+            <span class="core-care-header__locale-label">{{ trans('beauty.header.currency') }}</span>
             <svg class="core-care-header__locale-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
           </button>
-          <salla-localization-modal data-testid="store-header-localization"></salla-localization-modal>
         {% endif %}
+        {# Salla's modal stays available for currency selection. #}
+        {% if store.settings.currencies_enabled %}<salla-localization-modal data-testid="store-header-localization"></salla-localization-modal>{% endif %}
         <div class="core-care-header__delivery"><salla-bullet-delivery-tag></salla-bullet-delivery-tag></div>
         <salla-user-menu data-testid="store-header-user-menu" show-header show-trigger>
           <div slot="trigger"><button class="core-care-header__account" type="button" aria-label="{{ trans('beauty.header.account') }}"><i class="sicon-user" aria-hidden="true"></i><span>{{ trans('beauty.header.account') }}</span><i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></button></div>

@@ -62,7 +62,9 @@
       "notifications": "الإشعارات",
       "language": "اللغة",
       "currency": "العملة",
-      "localization": "اللغة والعملة"
+      "localization": "اللغة والعملة",
+      "languages": "اللغات",
+      "languages_error": "تعذّر تحميل اللغات، حاول مرة أخرى."
     },
     "footer": {
       "quick_links": "روابط سريعة",

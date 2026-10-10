@@ -62,7 +62,9 @@
       "notifications": "Notifications",
       "language": "Language",
       "currency": "Currency",
-      "localization": "Language and currency"
+      "localization": "Language and currency",
+      "languages": "Languages",
+      "languages_error": "Languages could not be loaded. Please try again."
     },
     "footer": {
       "quick_links": "Quick links",
