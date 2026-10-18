@@ -6,7 +6,8 @@
       {% if banner.image %}
         {% set tile_tag = banner.url ? 'a' : 'div' %}
         <{{ tile_tag }} {% if banner.url %}href="{{ banner.url }}"{% endif %} class="beauty-collection {{ component.rounded_images ? 'beauty-rounded' : '' }}">
-          <img src="{{ banner.image }}" alt="{{ banner.image_alt }}" width="900" height="700" loading="lazy">
+          {% set banner_image %}{% include 'pages.partials.localized-image' with { item: banner, field: 'image' } %}{% endset %}
+          <img src="{{ banner_image }}" alt="{{ banner.image_alt }}" width="900" height="700" loading="lazy">
           <div class="beauty-collection__copy">
             {% if banner.description %}<p>{{ banner.description }}</p>{% endif %}
             {% if banner.title %}<h3>{{ banner.title }}</h3>{% endif %}

@@ -15,7 +15,7 @@ test('promotions slider is a registered home component the merchant can add, edi
   assert.ok(fs.existsSync(new URL('../src/views/components/home/beauty-promotions.twig', import.meta.url)));
   const slides = component.fields.find(field => field.id === 'slides');
   assert.equal(slides.type, 'collection');
-  assert.deepEqual(slides.fields.map(field => field.id), ['slides.image', 'slides.mobile_image']);
+  assert.deepEqual(slides.fields.map(field => field.id), ['slides.image', 'slides.image_en', 'slides.mobile_image', 'slides.mobile_image_en']);
   // Images only, and the merchant must not be blocked by required inputs.
   assert.equal(slides.required, false);
   assert.ok(slides.fields.every(field => field.required === false), 'no required slide fields');

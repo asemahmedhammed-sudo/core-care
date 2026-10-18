@@ -8,7 +8,9 @@
       {% if component.description %}<p class="beauty-hero__description">{{ component.description }}</p>{% endif %}
       {% if component.button_label and component.button_url %}<a class="beauty-button beauty-button--gold beauty-hero__action" href="{{ component.button_url }}"><span>{{ component.button_label }}</span><i class="sicon-arrow-left beauty-directional" aria-hidden="true"></i></a>{% endif %}
     </div>
-    {% if component.image %}<div class="beauty-hero__visual"><div class="beauty-hero__media"><img src="{{ component.image }}" alt="{{ component.image_alt }}" width="1000" height="1000" loading="{{ position == 0 ? 'eager' : 'lazy' }}"></div></div>{% endif %}
+    {% if component.image %}
+      {% set hero_image %}{% include 'pages.partials.localized-image' with { item: component, field: 'image' } %}{% endset %}
+      <div class="beauty-hero__visual"><div class="beauty-hero__media"><img src="{{ hero_image }}" alt="{{ component.image_alt }}" width="1000" height="1000" loading="{{ position == 0 ? 'eager' : 'lazy' }}"></div></div>{% endif %}
   </div>
 </section>
 {% endif %}

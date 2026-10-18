@@ -1,0 +1,20 @@
+{#- Shared per-language image resolver. Prints one image URL, escaped for an HTML attribute, with no surrounding whitespace.
+    Every image field keeps its original id for the Arabic (default) image; its optional English twin is `<id>_en`.
+    Capture the output, then print the captured value without further filters (it is already escaped):
+      {% set src %}{% include 'pages.partials.localized-image' with { item: banner, field: 'image' } %}{% endset %}
+      <img src="{{ src }}">
+    item       Component settings or collection entry holding the fields.
+    field      Original image field id, e.g. 'image', 'mobile_image', 'background'.
+    main_field Mobile slots only: the main image field id. For English visitors without an English mobile image, the
+               English main image takes precedence over the Arabic mobile image, so nothing is printed and the caller
+               falls back to its main image.
+    English is chosen only when the storefront language is 'en' and the English image is set; otherwise the Arabic image. -#}
+{%- set is_english = language.code == 'en' -%}
+{%- set ar_image = attribute(item, field)|default('') -%}
+{%- set en_image = attribute(item, field ~ '_en')|default('') -%}
+{%- set en_main_image = main_field is defined ? attribute(item, main_field ~ '_en')|default('') : '' -%}
+{%- if is_english and en_image -%}
+  {{- en_image|e('html_attr') -}}
+{%- elseif ar_image and not (is_english and en_main_image) -%}
+  {{- ar_image|e('html_attr') -}}
+{%- endif -%}
