@@ -59,7 +59,10 @@ try {
         const parts = field.id?.split('.') || [];
         const nestedName = component.path === 'home.main-links' && parts[0] === 'links' ? 'item' : parts[0].replace(/s$/, '');
         const reference = parts.length > 1 ? `${nestedName}.${parts.slice(1).join('.')}` : `component.${parts[0]}`;
-        report.customFieldReferences.push({ component: component.path, field: field.id, expectedReference: reference, found: view.includes(reference) });
+        // An English image twin (`<id>_en`) is read by the shared localized-image resolver from its base field.
+        const [object, name] = [reference.slice(0, reference.indexOf('.')), reference.slice(reference.indexOf('.') + 1)];
+        const resolved = field.format === 'image' && name.endsWith('_en') && view.includes(`'pages.partials.localized-image' with { item: ${object}, field: '${name.slice(0, -3)}'`);
+        report.customFieldReferences.push({ component: component.path, field: field.id, expectedReference: reference, found: view.includes(reference) || resolved });
         if (field.fields) inspect(field.fields);
       }
     }

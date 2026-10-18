@@ -1,8 +1,10 @@
 {% set linked = banner.url and banner.url != '#' %}
 {% set tag = linked ? 'a' : 'div' %}
+{% set banner_image %}{% include 'pages.partials.localized-image' with { item: banner, field: 'image' } %}{% endset %}
+{% set banner_mobile_image %}{% include 'pages.partials.localized-image' with { item: banner, field: 'mobile_image', main_field: 'image' } %}{% endset %}
 <{{ tag }} class="beauty-campaigns__banner" {% if linked %}href="{{ banner.url }}"{% endif %}>
   <picture>
-    {% if banner.mobile_image %}<source media="(max-width: 639px)" srcset="{{ banner.mobile_image }}">{% endif %}
-    <img src="{{ banner.image }}" alt="{{ banner.image_alt }}" loading="lazy" decoding="async">
+    {% if banner_mobile_image %}<source media="(max-width: 639px)" srcset="{{ banner_mobile_image }}">{% endif %}
+    <img src="{{ banner_image }}" alt="{{ banner.image_alt }}" loading="lazy" decoding="async">
   </picture>
 </{{ tag }}>

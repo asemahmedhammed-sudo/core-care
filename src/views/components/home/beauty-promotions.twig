@@ -4,7 +4,9 @@
   {% if slide.image %}
     {% set promotion_slides = promotion_slides|merge([{
       image: slide.image,
+      image_en: slide.image_en|default(''),
       mobile_image: slide.mobile_image,
+      mobile_image_en: slide.mobile_image_en|default(''),
       default_artwork: false,
       height: 480
     }]) %}

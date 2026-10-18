@@ -15,7 +15,9 @@
   {% set valid_destination = configured_destination|lower starts with 'https://' and configured_destination|length > 8 and ' ' not in configured_destination and '"' not in configured_destination and '<' not in configured_destination and '>' not in configured_destination %}
   {% set slides = slides|merge([{
     image: image ?: ('images/core-care-promo-' ~ number ~ '.webp')|asset,
+    image_en: image ? theme.settings.get('beauty_promo_' ~ number ~ '_image_en') : '',
     mobile_image: theme.settings.get('beauty_promo_' ~ number ~ '_mobile_image'),
+    mobile_image_en: theme.settings.get('beauty_promo_' ~ number ~ '_mobile_image_en'),
     title: configured_title ?: trans('beauty.promo.title_' ~ number),
     link: valid_destination ? configured_destination : link(number == 1 ? 'offers' : (number == 2 ? 'latest-products' : 'brands')),
     default_artwork: default_artwork,
@@ -34,10 +36,12 @@
       {% set tag = slide.link|default('') ? 'a' : 'div' %}
       <div data-promotion-slide class="beauty-promotions__slide" aria-label="{{ label|e('html_attr') }}" {% if not loop.first %}hidden{% endif %}>
         {# The wrapper places the image across the whole frame grid behind the arrows. #}
+        {% set slide_image %}{% include 'pages.partials.localized-image' with { item: slide, field: 'image' } %}{% endset %}
+        {% set slide_mobile_image %}{% include 'pages.partials.localized-image' with { item: slide, field: 'mobile_image', main_field: 'image' } %}{% endset %}
         <{{ tag }} class="beauty-promotions__image-link"{% if tag == 'a' %} href="{{ slide.link|e('html_attr') }}" aria-label="{{ label|e('html_attr') }}"{% endif %}>
           <picture class="beauty-promotions__media">
-            {% if slide.mobile_image %}<source media="(max-width: 767px)" srcset="{{ slide.mobile_image|e('html_attr') }}" width="960" height="320">{% endif %}
-            <img class="beauty-promotions__artwork{% if slide.default_artwork %} beauty-promotions__artwork--default{% endif %}" src="{{ slide.image|e('html_attr') }}" alt="{{ label|e('html_attr') }}" width="1440" height="{{ slide.height }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" {% if loop.first %}fetchpriority="high"{% endif %}>
+            {% if slide_mobile_image %}<source media="(max-width: 767px)" srcset="{{ slide_mobile_image }}" width="960" height="320">{% endif %}
+            <img class="beauty-promotions__artwork{% if slide.default_artwork %} beauty-promotions__artwork--default{% endif %}" src="{{ slide_image }}" alt="{{ label|e('html_attr') }}" width="1440" height="{{ slide.height }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" {% if loop.first %}fetchpriority="high"{% endif %}>
           </picture>
         </{{ tag }}>
       </div>

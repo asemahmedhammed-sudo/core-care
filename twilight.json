@@ -529,8 +529,17 @@
             "id": "beauty_promo_1_image",
             "type": "string",
             "format": "image",
-            "label": "صورة بانر العروض 1",
+            "label": "صورة بانر العروض 1 (عربي)",
             "description": "احتياطي: تُستخدم صور العروض في خيارات التصميم فقط عندما يكون عنصر «سلايدر العروض الرئيسي» في الصفحة الرئيسية بلا شرائح. صورة الإعلان كاملة بما فيها الكتابة، يوصى بنسبة 3:1 (1440 × 480). إطار السلايدر ثابت لجميع الصور: 3:1 على الكمبيوتر و12:5 على الجوال، فلا يتغير ارتفاع الصفحة بين الصور. تملأ الصورة الإطار دون تمديد، وتُقص الأطراف الزائدة عند اختلاف النسبة؛ أبقِ النصوص والمنتجات المهمة بعيدًا عن الحواف. عند رفع أي صورة تُعرض الصور المرفوعة فقط؛ إن كانت كلها فارغة تظهر صور Core Care الافتراضية.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_promo_1_image_en",
+            "type": "string",
+            "format": "image",
+            "label": "Promo banner 1 image (English)",
+            "description": "يوصى بنسبة 3:1 (1440 × 480) مثل الصورة العربية. اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية.",
             "required": false,
             "value": null
         },
@@ -538,8 +547,17 @@
             "id": "beauty_promo_1_mobile_image",
             "type": "string",
             "format": "image",
-            "label": "صورة الجوال لبانر العروض 1",
+            "label": "صورة الجوال لبانر العروض 1 (عربي)",
             "description": "اختياري؛ يُستخدم تحت 768px. يوصى بنسبة 12:5 (960 × 400) لتطابق إطار الجوال الثابت. تملأ الصورة الإطار دون تمديد، وتُقص الأطراف الزائدة عند اختلاف النسبة؛ أبقِ المحتوى المهم في الوسط. اتركه فارغًا لاستخدام صورة البانر الرئيسية.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_promo_1_mobile_image_en",
+            "type": "string",
+            "format": "image",
+            "label": "Promo banner 1 mobile image (English)",
+            "description": "يوصى بنسبة 12:5 (960 × 400). اختيارية: تظهر على الجوال لزوار النسخة الإنجليزية. إن تُركت فارغة تُستخدم الصورة الإنجليزية الأساسية إن وُجدت، وإلا الصورة العربية.",
             "required": false,
             "value": null
         },
@@ -590,8 +608,17 @@
             "id": "beauty_promo_2_image",
             "type": "string",
             "format": "image",
-            "label": "صورة بانر العروض 2",
+            "label": "صورة بانر العروض 2 (عربي)",
             "description": "احتياطي: تُستخدم صور العروض في خيارات التصميم فقط عندما يكون عنصر «سلايدر العروض الرئيسي» في الصفحة الرئيسية بلا شرائح. صورة الإعلان كاملة بما فيها الكتابة، يوصى بنسبة 3:1 (1440 × 480). إطار السلايدر ثابت لجميع الصور: 3:1 على الكمبيوتر و12:5 على الجوال، فلا يتغير ارتفاع الصفحة بين الصور. تملأ الصورة الإطار دون تمديد، وتُقص الأطراف الزائدة عند اختلاف النسبة؛ أبقِ النصوص والمنتجات المهمة بعيدًا عن الحواف. عند رفع أي صورة تُعرض الصور المرفوعة فقط؛ إن كانت كلها فارغة تظهر صور Core Care الافتراضية.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_promo_2_image_en",
+            "type": "string",
+            "format": "image",
+            "label": "Promo banner 2 image (English)",
+            "description": "يوصى بنسبة 3:1 (1440 × 480) مثل الصورة العربية. اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية.",
             "required": false,
             "value": null
         },
@@ -599,8 +626,17 @@
             "id": "beauty_promo_2_mobile_image",
             "type": "string",
             "format": "image",
-            "label": "صورة الجوال لبانر العروض 2",
+            "label": "صورة الجوال لبانر العروض 2 (عربي)",
             "description": "اختياري؛ يُستخدم تحت 768px. يوصى بنسبة 12:5 (960 × 400) لتطابق إطار الجوال الثابت. تملأ الصورة الإطار دون تمديد، وتُقص الأطراف الزائدة عند اختلاف النسبة؛ أبقِ المحتوى المهم في الوسط. اتركه فارغًا لاستخدام صورة البانر الرئيسية.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_promo_2_mobile_image_en",
+            "type": "string",
+            "format": "image",
+            "label": "Promo banner 2 mobile image (English)",
+            "description": "يوصى بنسبة 12:5 (960 × 400). اختيارية: تظهر على الجوال لزوار النسخة الإنجليزية. إن تُركت فارغة تُستخدم الصورة الإنجليزية الأساسية إن وُجدت، وإلا الصورة العربية.",
             "required": false,
             "value": null
         },
@@ -651,8 +687,17 @@
             "id": "beauty_promo_3_image",
             "type": "string",
             "format": "image",
-            "label": "صورة بانر العروض 3",
+            "label": "صورة بانر العروض 3 (عربي)",
             "description": "احتياطي: تُستخدم صور العروض في خيارات التصميم فقط عندما يكون عنصر «سلايدر العروض الرئيسي» في الصفحة الرئيسية بلا شرائح. صورة الإعلان كاملة بما فيها الكتابة، يوصى بنسبة 3:1 (1440 × 480). إطار السلايدر ثابت لجميع الصور: 3:1 على الكمبيوتر و12:5 على الجوال، فلا يتغير ارتفاع الصفحة بين الصور. تملأ الصورة الإطار دون تمديد، وتُقص الأطراف الزائدة عند اختلاف النسبة؛ أبقِ النصوص والمنتجات المهمة بعيدًا عن الحواف. عند رفع أي صورة تُعرض الصور المرفوعة فقط؛ إن كانت كلها فارغة تظهر صور Core Care الافتراضية.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_promo_3_image_en",
+            "type": "string",
+            "format": "image",
+            "label": "Promo banner 3 image (English)",
+            "description": "يوصى بنسبة 3:1 (1440 × 480) مثل الصورة العربية. اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية.",
             "required": false,
             "value": null
         },
@@ -660,8 +705,17 @@
             "id": "beauty_promo_3_mobile_image",
             "type": "string",
             "format": "image",
-            "label": "صورة الجوال لبانر العروض 3",
+            "label": "صورة الجوال لبانر العروض 3 (عربي)",
             "description": "اختياري؛ يُستخدم تحت 768px. يوصى بنسبة 12:5 (960 × 400) لتطابق إطار الجوال الثابت. تملأ الصورة الإطار دون تمديد، وتُقص الأطراف الزائدة عند اختلاف النسبة؛ أبقِ المحتوى المهم في الوسط. اتركه فارغًا لاستخدام صورة البانر الرئيسية.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_promo_3_mobile_image_en",
+            "type": "string",
+            "format": "image",
+            "label": "Promo banner 3 mobile image (English)",
+            "description": "يوصى بنسبة 12:5 (960 × 400). اختيارية: تظهر على الجوال لزوار النسخة الإنجليزية. إن تُركت فارغة تُستخدم الصورة الإنجليزية الأساسية إن وُجدت، وإلا الصورة العربية.",
             "required": false,
             "value": null
         },
@@ -1025,19 +1079,37 @@
                             "id": "slides.image",
                             "type": "string",
                             "format": "image",
-                            "label": "صورة الشريحة",
+                            "label": "الصورة (عربي)",
                             "required": false,
                             "value": null,
                             "description": "صورة الإعلان كاملة بما فيها الكتابة، يوصى بنسبة 3:1 (1440 × 480). إطار السلايدر ثابت: 3:1 على الكمبيوتر و12:5 على الجوال، وتُقص الأطراف الزائدة عند اختلاف النسبة؛ أبقِ النصوص المهمة بعيدًا عن الحواف. الشريحة بلا صورة لا تظهر."
                         },
                         {
+                            "id": "slides.image_en",
+                            "type": "string",
+                            "format": "image",
+                            "label": "Image (English)",
+                            "required": false,
+                            "value": null,
+                            "description": "يوصى بنسبة 3:1 (1440 × 480) مثل الصورة العربية. اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية."
+                        },
+                        {
                             "id": "slides.mobile_image",
                             "type": "string",
                             "format": "image",
-                            "label": "صورة خاصة للجوال (اختياري)",
+                            "label": "صورة الجوال (عربي)",
                             "required": false,
                             "value": null,
                             "description": "تُستخدم تحت 768px. يوصى بنسبة 12:5 (960 × 400). اتركها فارغة لاستخدام الصورة الأساسية."
+                        },
+                        {
+                            "id": "slides.mobile_image_en",
+                            "type": "string",
+                            "format": "image",
+                            "label": "Mobile image (English)",
+                            "required": false,
+                            "value": null,
+                            "description": "تُستخدم تحت 768px. يوصى بنسبة 12:5 (960 × 400). اختيارية: تظهر على الجوال لزوار النسخة الإنجليزية. إن تُركت فارغة تُستخدم الصورة الإنجليزية الأساسية إن وُجدت، وإلا الصورة العربية."
                         }
                     ]
                 },
@@ -1109,9 +1181,18 @@
                     "id": "image",
                     "type": "string",
                     "format": "image",
-                    "label": "الصورة الرئيسية",
+                    "label": "الصورة (عربي)",
                     "value": null,
                     "required": false
+                },
+                {
+                    "id": "image_en",
+                    "type": "string",
+                    "format": "image",
+                    "label": "Image (English)",
+                    "value": null,
+                    "required": false,
+                    "description": "اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية."
                 },
                 {
                     "id": "image_alt",
@@ -1293,9 +1374,18 @@
                             "id": "banners.image",
                             "type": "string",
                             "format": "image",
-                            "label": "صورة المجموعة",
+                            "label": "الصورة (عربي)",
                             "value": null,
                             "required": true
+                        },
+                        {
+                            "id": "banners.image_en",
+                            "type": "string",
+                            "format": "image",
+                            "label": "Image (English)",
+                            "value": null,
+                            "required": false,
+                            "description": "اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية."
                         },
                         {
                             "id": "banners.image_alt",
@@ -1428,19 +1518,37 @@
                     "id": "image",
                     "type": "string",
                     "format": "image",
-                    "label": "صورة البانر",
+                    "label": "الصورة (عربي)",
                     "required": true,
                     "value": null,
                     "description": "المقاس المقترح 2000×380 بكسل. تظهر الصورة كاملة دون قص؛ يمكن أن تتضمن النص والشعار والعرض."
                 },
                 {
+                    "id": "image_en",
+                    "type": "string",
+                    "format": "image",
+                    "label": "Image (English)",
+                    "required": false,
+                    "value": null,
+                    "description": "المقاس المقترح 2000×380 بكسل. اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية."
+                },
+                {
                     "id": "mobile_image",
                     "type": "string",
                     "format": "image",
-                    "label": "صورة خاصة للجوال (اختياري)",
+                    "label": "صورة الجوال (عربي)",
                     "required": false,
                     "value": null,
                     "description": "المقاس المقترح 750×500 بكسل. عند تركها فارغة تظهر الصورة الأساسية كاملة."
+                },
+                {
+                    "id": "mobile_image_en",
+                    "type": "string",
+                    "format": "image",
+                    "label": "Mobile image (English)",
+                    "required": false,
+                    "value": null,
+                    "description": "المقاس المقترح 750×500 بكسل. اختيارية: تظهر على الجوال لزوار النسخة الإنجليزية. إن تُركت فارغة تُستخدم الصورة الإنجليزية الأساسية إن وُجدت، وإلا الصورة العربية."
                 },
                 {
                     "id": "image_alt",
@@ -1550,19 +1658,37 @@
                             "id": "banners.image",
                             "type": "string",
                             "format": "image",
-                            "label": "صورة البانر",
+                            "label": "الصورة (عربي)",
                             "required": true,
                             "value": null,
                             "description": "المقاس المقترح 1000×320 بكسل. تظهر الصورة كاملة دون قص؛ يمكن أن تتضمن النص والشعار والعرض."
                         },
                         {
+                            "id": "banners.image_en",
+                            "type": "string",
+                            "format": "image",
+                            "label": "Image (English)",
+                            "required": false,
+                            "value": null,
+                            "description": "المقاس المقترح 1000×320 بكسل. اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية."
+                        },
+                        {
                             "id": "banners.mobile_image",
                             "type": "string",
                             "format": "image",
-                            "label": "صورة خاصة للجوال (اختياري)",
+                            "label": "صورة الجوال (عربي)",
                             "required": false,
                             "value": null,
                             "description": "المقاس المقترح 750×500 بكسل. عند تركها فارغة تظهر الصورة الأساسية كاملة."
+                        },
+                        {
+                            "id": "banners.mobile_image_en",
+                            "type": "string",
+                            "format": "image",
+                            "label": "Mobile image (English)",
+                            "required": false,
+                            "value": null,
+                            "description": "المقاس المقترح 750×500 بكسل. اختيارية: تظهر على الجوال لزوار النسخة الإنجليزية. إن تُركت فارغة تُستخدم الصورة الإنجليزية الأساسية إن وُجدت، وإلا الصورة العربية."
                         },
                         {
                             "id": "banners.image_alt",
@@ -1779,11 +1905,22 @@
                             "icon": "sicon-image",
                             "value": null,
                             "id": "slides.image",
-                            "label": "صورة البنر",
+                            "label": "الصورة (عربي)",
                             "format": "image",
                             "required": true,
                             "placeholder": null,
                             "description": "* المقاس المناسب للصورة هو 900×600 بكسل"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "id": "slides.image_en",
+                            "label": "Image (English)",
+                            "format": "image",
+                            "required": false,
+                            "placeholder": null,
+                            "description": "* المقاس المناسب للصورة هو 900×600 بكسل. اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية."
                         },
                         {
                             "type": "string",
@@ -2012,12 +2149,27 @@
                     "type": "string",
                     "icon": "sicon-image",
                     "value": null,
-                    "label": "صورة الخلفية",
+                    "label": "صورة الخلفية (عربي)",
                     "id": "background",
                     "format": "image",
                     "required": true,
                     "placeholder": null,
                     "description": "* المقاس المناسب للصورة هو 1233×500 بكسل",
+                    "settings": {
+                        "height": 580,
+                        "width": 1400
+                    }
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-image",
+                    "value": null,
+                    "label": "Background image (English)",
+                    "id": "background_en",
+                    "format": "image",
+                    "required": false,
+                    "placeholder": null,
+                    "description": "* المقاس المناسب للصورة هو 1233×500 بكسل. اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية.",
                     "settings": {
                         "height": 580,
                         "width": 1400
@@ -2166,12 +2318,27 @@
                             "type": "string",
                             "icon": "sicon-image",
                             "value": null,
-                            "label": "صورة البنر",
+                            "label": "الصورة (عربي)",
                             "id": "banners.image",
                             "format": "image",
                             "required": true,
                             "placeholder": null,
                             "description": "* المقاس المناسب للصورة هو 640×427 بكسل",
+                            "settings": {
+                                "height": 427,
+                                "width": 640
+                            }
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "label": "Image (English)",
+                            "id": "banners.image_en",
+                            "format": "image",
+                            "required": false,
+                            "placeholder": null,
+                            "description": "* المقاس المناسب للصورة هو 640×427 بكسل. اختيارية: تظهر لزوار النسخة الإنجليزية من المتجر. إن تُركت فارغة تظهر الصورة العربية.",
                             "settings": {
                                 "height": 427,
                                 "width": 640

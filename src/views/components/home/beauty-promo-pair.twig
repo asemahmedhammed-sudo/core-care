@@ -7,7 +7,8 @@
     <div class="beauty-campaigns__pair {{ visible_banners|length == 1 ? 'beauty-campaigns__pair--single' : '' }}">
       {% for banner in visible_banners %}
         {% include 'pages.partials.home.promo-banner' with {
-          banner: { image: banner.image, mobile_image: banner.mobile_image, image_alt: banner.image_alt, url: banner.url }
+          banner: { image: banner.image, image_en: banner.image_en|default(''), mobile_image: banner.mobile_image, mobile_image_en: banner.mobile_image_en|default(''), image_alt: banner.image_alt, url: banner.url },
+          language: language
         } only %}
       {% endfor %}
     </div>
