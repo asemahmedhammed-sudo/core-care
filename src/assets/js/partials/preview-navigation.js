@@ -1,3 +1,5 @@
+import { localizedStoreLink, pageLanguages } from './language-links';
+
 // Salla language prefixes, e.g. /ar or /en.
 const LANGUAGE = /^[a-z]{2}$/;
 
@@ -28,21 +30,25 @@ export function previewLink(value, homeValue, storeValue, currentValue) {
     let path = target.pathname.slice(storePrefix.length);
     if (!language) return home.origin + prefix + (path || '/') + target.search + target.hash;
     // Live links put the language first (/ar/…); the preview puts it before the store slug.
+    // Links stay in the preview's language, as they do on the live store.
     const first = path.split('/')[1] || '';
-    const linkLanguage = LANGUAGE.test(first) ? first : language;
-    if (linkLanguage === first) path = path.slice(first.length + 1);
-    return `${home.origin}/${linkLanguage}/${storeSlug}${path || '/'}${target.search}${target.hash}`;
+    if (LANGUAGE.test(first)) path = path.slice(first.length + 1);
+    return `${home.origin}/${language}/${storeSlug}${path || '/'}${target.search}${target.hash}`;
   } catch { return value; }
 }
 
+// Keeps every store link in the current language, and in Salla preview inside the preview.
 export default function initPreviewNavigation() {
-  if (window.location.hostname !== 'salla.design') return;
   const { storeHome, storeCanonical } = document.body.dataset;
-  if (!storeHome || !storeCanonical) return;
+  if (!storeHome) return;
+  const preview = window.location.hostname === 'salla.design' && storeCanonical;
+  const languages = pageLanguages();
   const update = anchor => {
     const original = anchor.getAttribute('href');
-    if (!original) return;
-    const next = previewLink(original, storeHome, storeCanonical, window.location.href);
+    // hreflang marks a deliberate link to another language; data-keep-url marks platform transaction links.
+    if (!original || anchor.hasAttribute('hreflang') || anchor.hasAttribute('download') || anchor.closest('[data-keep-url]')) return;
+    let next = localizedStoreLink(original, storeHome, languages);
+    if (preview) next = previewLink(next, storeHome, storeCanonical, window.location.href);
     if (next !== original) anchor.setAttribute('href', next);
   };
   const scan = root => {

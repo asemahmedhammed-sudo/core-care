@@ -273,10 +273,10 @@ class NavigationMenu extends HTMLElement {
     render() {
         const referenceNavigation = this.isReferenceHome ? `
         <nav class="beauty-reference-nav__desktop beauty-reference-nav__desktop--asset-fallback" aria-label="${document.documentElement.lang === 'ar' ? 'القائمة الرئيسية' : 'Main navigation'}">
-            <a href="/" aria-current="page">${document.documentElement.lang === 'ar' ? 'الرئيسية' : 'Home'}</a>
-            <a href="/latest-products">${document.documentElement.lang === 'ar' ? 'المنتجات' : 'Products'}</a>
-            <a href="/offers">${document.documentElement.lang === 'ar' ? 'العروض' : 'Offers'}</a>
-            <a href="/#store-footer">${document.documentElement.lang === 'ar' ? 'من نحن' : 'About us'}</a>
+            <a href="${salla.url.get('/')}" aria-current="page">${document.documentElement.lang === 'ar' ? 'الرئيسية' : 'Home'}</a>
+            <a href="${salla.url.get('latest-products')}">${document.documentElement.lang === 'ar' ? 'المنتجات' : 'Products'}</a>
+            <a href="${salla.url.get('offers')}">${document.documentElement.lang === 'ar' ? 'العروض' : 'Offers'}</a>
+            <a href="${salla.url.get('#store-footer')}">${document.documentElement.lang === 'ar' ? 'من نحن' : 'About us'}</a>
         </nav>` : '';
 
         this.innerHTML =  `
