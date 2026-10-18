@@ -1,7 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const code = fs.readFileSync(new URL('../src/assets/js/partials/preview-navigation.js', import.meta.url), 'utf8');
+const toModule = source => `data:text/javascript;base64,${Buffer.from(source).toString('base64')}`;
+const languageLinks = toModule(fs.readFileSync(new URL('../src/assets/js/partials/language-links.js', import.meta.url), 'utf8'));
+const code = fs.readFileSync(new URL('../src/assets/js/partials/preview-navigation.js', import.meta.url), 'utf8')
+  .replace("from './language-links'", `from '${languageLinks}'`);
 const { previewLink } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
 const home = 'https://salla.design/corecare/';
 const store = 'https://corecare-sa.com/';
@@ -37,7 +40,8 @@ test('language-prefixed preview (/ar/corecare) keeps product, category and home 
     'https://corecare-sa.com/ar/سيروم/p933577391': 'https://salla.design/ar/corecare/سيروم/p933577391',
     'https://corecare-sa.com/ar/perfumes/c961431200?sort=new#top': 'https://salla.design/ar/corecare/perfumes/c961431200?sort=new#top',
     'https://corecare-sa.com/ar': 'https://salla.design/ar/corecare/',
-    'https://corecare-sa.com/en/brands': 'https://salla.design/en/corecare/brands',
+    // A saved link to the other language still opens in the preview's language.
+    'https://corecare-sa.com/en/brands': 'https://salla.design/ar/corecare/brands',
     'https://corecare-sa.com/item/p1': 'https://salla.design/ar/corecare/item/p1',
   };
   for (const [live, expected] of Object.entries(cases)) {
