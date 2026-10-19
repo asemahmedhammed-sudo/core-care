@@ -15,8 +15,8 @@ test('promotions slider is a registered home component the merchant can add, edi
   assert.ok(fs.existsSync(new URL('../src/views/components/home/beauty-promotions.twig', import.meta.url)));
   const slides = component.fields.find(field => field.id === 'slides');
   assert.equal(slides.type, 'collection');
-  assert.deepEqual(slides.fields.map(field => field.id), ['slides.image', 'slides.image_en', 'slides.mobile_image', 'slides.mobile_image_en']);
-  // Images only, and the merchant must not be blocked by required inputs.
+  assert.deepEqual(slides.fields.map(field => field.id), ['slides.image', 'slides.image_en', 'slides.mobile_image', 'slides.mobile_image_en', 'slides.url', 'slides.new_tab']);
+  // Images with an optional link; the merchant must not be blocked by required inputs.
   assert.equal(slides.required, false);
   assert.ok(slides.fields.every(field => field.required === false), 'no required slide fields');
   // The legacy global switches no longer control anything once the slider is a component.
@@ -28,10 +28,10 @@ test('promotions slider is a registered home component the merchant can add, edi
 test('promotions component simplifies to images with fallback to legacy slides', () => {
   const view = fs.readFileSync(new URL('../src/views/components/home/beauty-promotions.twig', import.meta.url), 'utf8');
   const partial = fs.readFileSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url), 'utf8');
-  // Component accepts only image and mobile_image fields.
+  // Component accepts image fields and an optional slide link, but no copy or buttons.
   assert.match(view, /slide\.image[\s\S]*?slide\.mobile_image/);
-  assert.doesNotMatch(view, /slide\.title|slide\.url|slide\.button|show_title/);
-  // Partial renders images only, no links or buttons.
+  assert.doesNotMatch(view, /slide\.title|slide\.button|show_title/);
+  // Partial renders images (linked when configured), no copy or buttons.
   assert.match(partial, /{% if not slides\|length %\}[\s\S]*?beauty_promo_' ~ number ~ '_image/);
   assert.doesNotMatch(partial, /beauty-promotions__copy|beauty-button|beauty-promotions__action/);
   // Without this wrapper the picture falls into the 60px arrow column instead of spanning the frame.
@@ -39,6 +39,43 @@ test('promotions component simplifies to images with fallback to legacy slides',
   assert.match(partial, /component-id="\{\{ component_id\|e\('html_attr'\) \}\}"/);
   assert.match(view, /promotion_autoplay: component\.autoplay is not defined or component\.autoplay is null or component\.autoplay,/);
   assert.match(view, /promotion_interval: component\.interval\|default\(5\)/);
+});
+
+test('each slide offers the Wide Banner link field and an optional new-tab switch', () => {
+  const config = JSON.parse(fs.readFileSync(new URL('../twilight.json', import.meta.url), 'utf8'));
+  const slides = config.components.find(item => item.path === 'home.beauty-promotions').fields.find(field => field.id === 'slides');
+  const banner = config.components.find(item => item.path === 'home.beauty-promo-wide').fields.find(field => field.id === 'url');
+  const link = slides.fields.find(field => field.id === 'slides.url');
+  for (const key of ['type', 'format', 'source', 'searchable', 'sources']) assert.deepEqual(link[key], banner[key], key);
+  assert.equal(link.label, 'الرابط عند الضغط على الصورة');
+  assert.equal(link.required, false);
+  assert.equal(link.value, null);
+  const newTab = slides.fields.find(field => field.id === 'slides.new_tab');
+  assert.equal(newTab.type, 'boolean');
+  assert.equal(newTab.format, 'switch');
+  assert.equal(newTab.value, false);
+  assert.equal(newTab.required, false);
+});
+
+test('slides link only to valid HTTPS destinations and stay inert without one', () => {
+  const view = fs.readFileSync(new URL('../src/views/components/home/beauty-promotions.twig', import.meta.url), 'utf8');
+  const partial = fs.readFileSync(new URL('../src/views/pages/partials/home/promotions.twig', import.meta.url), 'utf8');
+  // Slides saved before the link field existed have no url; arrays never reach string filters.
+  assert.match(view, /slide\.url is defined and slide\.url is not iterable \? slide\.url : ''/);
+  // Same plain-Twig check as the legacy slide links.
+  assert.equal(view.match(/\{% set valid_destination = (.*?) %\}/)[1], `destination|lower starts with 'https://' and destination|length > 8 and ' ' not in destination and '"' not in destination and '<' not in destination and '>' not in destination`);
+  assert.match(view, /link: valid_destination \? destination : '',/);
+  assert.match(view, /new_tab: valid_destination and slide\.new_tab\|default\(false\),/);
+  // No link renders a plain wrapper: no empty href, no "#".
+  assert.match(partial, /\{% set tag = slide\.link\|default\(''\) \? 'a' : 'div' %\}/);
+  assert.doesNotMatch(partial, /href="#"/);
+  // New-tab links are isolated from the store window and announce the behavior.
+  assert.match(partial, /\{% if new_tab %\} target="_blank" rel="noopener noreferrer"\{% endif %\}/);
+  assert.match(partial, /trans\('beauty\.promo\.new_tab'\)/);
+  for (const file of ['ar', 'en']) {
+    const locale = JSON.parse(fs.readFileSync(new URL(`../src/locales/${file}.json`, import.meta.url), 'utf8'));
+    assert.ok(locale.beauty.promo.new_tab, file);
+  }
 });
 
 test('shopping destinations accept HTTPS store links and reject unsafe or malformed URLs', () => {

@@ -1,12 +1,18 @@
-{# Merchant-editable promotions slider showing only images. Without configured slides it falls back to the legacy theme settings or bundled artwork. #}
+{# Merchant-editable promotions slider showing only images, each optionally linked. Without configured slides it falls back to the legacy theme settings or bundled artwork. #}
 {% set promotion_slides = [] %}
 {% for slide in component.slides %}
   {% if slide.image %}
+    {# Salla resolves the variable-list link to a URL string; slides saved before the field existed have none. #}
+    {% set destination = (slide.url is defined and slide.url is not iterable ? slide.url : '')|default('')|trim %}
+    {# Same plain-Twig HTTPS check as the legacy slide links in pages/partials/home/promotions.twig. #}
+    {% set valid_destination = destination|lower starts with 'https://' and destination|length > 8 and ' ' not in destination and '"' not in destination and '<' not in destination and '>' not in destination %}
     {% set promotion_slides = promotion_slides|merge([{
       image: slide.image,
       image_en: slide.image_en|default(''),
       mobile_image: slide.mobile_image,
       mobile_image_en: slide.mobile_image_en|default(''),
+      link: valid_destination ? destination : '',
+      new_tab: valid_destination and slide.new_tab|default(false),
       default_artwork: false,
       height: 480
     }]) %}
