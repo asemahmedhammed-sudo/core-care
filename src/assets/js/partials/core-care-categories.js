@@ -12,27 +12,33 @@ class CoreCareCategories extends HTMLElement {
         this.abort?.abort();
         this.abort = new AbortController();
         const options = { signal: this.abort.signal };
-        this.trigger = document.querySelector('[data-categories-toggle]');
+        // The header trigger and the mobile tab bar open the same panel; focus returns to the one used.
+        this.triggers = [...document.querySelectorAll('[data-categories-toggle]')];
+        this.trigger = this.triggers[0];
         this.ar = document.documentElement.lang.startsWith('ar');
-        this.trigger?.addEventListener('click', () => this.setOpen(this.hidden), options);
+        this.triggers.forEach(trigger => trigger.addEventListener('click', () => this.setOpen(this.hidden, trigger), options));
+        const outside = target => !this.contains(target) && !this.triggers.some(trigger => trigger.contains(target));
         document.addEventListener('click', e => {
-            if (!this.hidden && !this.contains(e.target) && !this.trigger?.contains(e.target)) this.setOpen(false);
+            if (!this.hidden && outside(e.target)) this.setOpen(false);
         }, options);
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape' && !this.hidden) { this.setOpen(false); this.trigger?.focus(); }
         }, options);
         document.addEventListener('focusin', e => {
-            if (!this.hidden && !this.contains(e.target) && !this.trigger?.contains(e.target)) this.setOpen(false);
+            if (!this.hidden && outside(e.target)) this.setOpen(false);
         }, options);
         this.status(this.ar ? 'جارٍ تحميل الأقسام…' : 'Loading categories…');
         this.load();
     }
 
-    disconnectedCallback() { this.abort?.abort(); }
+    disconnectedCallback() { this.abort?.abort(); document.documentElement.classList.remove('cc-categories-open'); }
 
-    setOpen(open) {
+    setOpen(open, trigger) {
         this.hidden = !open;
-        this.trigger?.setAttribute('aria-expanded', String(open));
+        if (trigger) this.trigger = trigger;
+        this.triggers.forEach(item => item.setAttribute('aria-expanded', String(open)));
+        // Locks page scroll only where the panel is a full-screen sheet (see core-care-app-nav.scss).
+        document.documentElement.classList.toggle('cc-categories-open', open);
         if (open) this.querySelector('[role="tab"][aria-selected="true"]')?.focus();
     }
 

@@ -1,0 +1,156 @@
+// Mobile app navigation after the Nice One app reference: bottom tab bar and compact header.
+// Applies below 1024px (phones and portrait tablets) while the merchant keeps the tab bar on
+// (body.cc-has-tabbar). Desktop, and the header with the setting off, are unchanged.
+// PostCSS lowers inline-direction properties to physical ones, so direction-dependent
+// positions use explicit html[dir] rules.
+
+body.theme-beauty .cc-tabbar { display: none; }
+
+@mixin cc-visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
+@media (max-width: 1023px) {
+  body.theme-beauty.cc-has-tabbar {
+    // Content ends above the fixed bar instead of under it.
+    padding-bottom: var(--cc-tabbar-offset);
+
+    // Bottom tab bar.
+    .cc-tabbar {
+      display: block; position: fixed; z-index: var(--cc-z-tabbar); left: 0; right: 0; bottom: 0;
+      padding-bottom: var(--cc-safe-bottom);
+      padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px);
+      background: var(--cc-surface); border-top: 1px solid var(--cc-border);
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, .04);
+    }
+    // Equal columns; portrait tablets keep the items together instead of spreading them edge to edge.
+    .cc-tabbar__list {
+      display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
+      max-width: 640px; height: var(--cc-app-nav-height); margin: 0 auto; padding: 0; list-style: none;
+    }
+    .cc-tabbar__list > li { display: flex; min-width: 0; }
+    .cc-tabbar__item {
+      flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      min-width: 0; min-height: 44px; padding: 4px 2px; border: 0; border-radius: 8px; background: transparent;
+      color: var(--cc-icon); font-size: 12px; font-weight: 500; line-height: 16px; text-align: center; cursor: pointer;
+    }
+    .cc-tabbar__item:focus-visible, .cc-tabbar__cart a:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -4px; }
+    .cc-tabbar__icon { flex: none; width: 24px; height: 24px; }
+    .cc-tabbar__fill { fill: transparent; transition: fill .2s ease; }
+    .cc-tabbar__label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    // Current destination (or the open categories panel): filled icon and heavier label, not colour alone.
+    .cc-tabbar__item[aria-current='page'], .cc-tabbar__item[aria-expanded='true'], .cc-tabbar__cart.is-active .cc-tabbar__item {
+      color: var(--cc-text); font-weight: 700;
+      .cc-tabbar__fill { fill: var(--cc-secondary-soft); }
+    }
+    // While the categories sheet is open it is the only highlighted tab.
+    .cc-tabbar__list:has([aria-expanded='true']) [aria-current='page'],
+    .cc-tabbar__list:has([aria-expanded='true']) .is-active .cc-tabbar__item {
+      color: var(--cc-icon); font-weight: 500;
+      .cc-tabbar__fill { fill: transparent; }
+    }
+    // Optional merchant campaign slot.
+    .cc-tabbar__campaign { flex: none; width: 40px; height: 40px; object-fit: contain; }
+    .cc-tabbar__item--campaign:has(.cc-tabbar__label) .cc-tabbar__campaign { width: 28px; height: 28px; }
+
+    // Salla's cart summary: its link fills the column, its total is hidden, its count is a badge.
+    .cc-tabbar__cart { flex: 1 1 auto; display: flex; min-width: 0; }
+    .cc-tabbar__cart .s-cart-summary-wrapper {
+      position: relative; flex: 1 1 auto; display: flex; min-width: 0; border-radius: 8px; color: inherit; font-weight: inherit;
+    }
+    .cc-tabbar__cart .s-cart-summary-wrapper > div { flex: 1 1 auto; display: flex; min-width: 0; }
+    .cc-tabbar__cart .s-cart-summary-content { display: none; }
+    .cc-tabbar__cart .s-cart-summary-count {
+      position: absolute; top: 4px; display: inline-flex; align-items: center; justify-content: center;
+      min-width: 18px; width: auto; height: 18px; padding: 0 5px; border-radius: 999px;
+      background: var(--cc-sale); color: #fff; font-size: 11px; font-weight: 700; line-height: 1;
+      pointer-events: none;
+    }
+    .cc-tabbar__cart[data-empty] .s-cart-summary-count { display: none; }
+
+    // The bar steps aside while a field has focus, so it never rides on top of the on-screen keyboard.
+    &:has(:is(input, textarea, select):focus) .cc-tabbar { display: none; }
+    // The merchant's floating WhatsApp button sits above the bar instead of covering it.
+    .wa-s-n { translate: 0 calc(-1 * var(--cc-tabbar-offset)); }
+
+    // Compact header: one sticky row for search, categories, language and notifications,
+    // with an optional location row above it. Account and cart live in the tab bar.
+    .store-header {
+      display: grid; position: relative; z-index: var(--cc-z-header);
+      grid-template-columns: minmax(0, 1fr) auto auto auto;
+      grid-template-areas: 'scope scope scope scope' 'search cats lang bell';
+      align-items: center; column-gap: 4px;
+      padding: 8px var(--cc-gutter); background: var(--cc-surface); border-bottom: 1px solid var(--cc-border);
+    }
+    .store-header:has(#mainnav[data-header-sticky='true']) { position: sticky; top: 0; }
+    .core-care-header__band, .core-care-header__top, .core-care-header, .core-care-header__bottom,
+    .core-care-header__links, .core-care-header__actions { display: contents; }
+    .core-care-header__brand, .core-care-header__tagline, .core-care-header__links > a, .core-care-header__delivery,
+    .core-care-header__actions > salla-user-menu, .core-care-header__actions > salla-cart-summary { display: none; }
+    // Salla's currency modal renders as a fixed overlay; its host must not take a grid cell.
+    .core-care-header__actions > salla-localization-modal { position: absolute; }
+    .core-care-header__search { grid-area: search; }
+    .s-search-input { border-radius: 999px; }
+    .core-care-header__links > [data-categories-toggle] {
+      grid-area: cats; justify-content: center; width: 44px; height: 44px; padding: 0;
+      .sicon-menu, .sicon-keyboard_arrow_down { display: none; }
+      span { @include cc-visually-hidden; }
+    }
+    .core-care-header__grid-icon { display: block; width: 24px; height: 24px; }
+    .core-care-header__actions > .core-care-language-menu, .core-care-header__actions > .core-care-header__locale { grid-area: lang; }
+    .core-care-header__notification { grid-area: bell; }
+    .core-care-header__notification svg { width: 24px; height: 24px; }
+    .core-care-header__scope {
+      grid-area: scope; justify-self: start; justify-content: flex-start; gap: 6px; width: auto; max-width: 100%;
+      font-size: 14px; line-height: 20px;
+      i { font-size: 18px; }
+    }
+    .core-care-header__scope-prefix, .core-care-header__scope-name { display: inline; }
+    .core-care-header__scope-name { min-width: 0; font-weight: 600; overflow-wrap: anywhere; }
+    .core-care-header__scope-chevron { display: inline-block; }
+
+    // Categories open as a full-screen sheet above the tab bar, with their own title and close button.
+    core-care-categories {
+      position: fixed; z-index: var(--cc-z-categories); top: 0; bottom: var(--cc-tabbar-offset); left: 0; right: 0;
+      max-height: none; padding-top: env(safe-area-inset-top, 0px); border: 0; box-shadow: none;
+    }
+  }
+  html[dir='rtl'] body.theme-beauty.cc-has-tabbar .cc-tabbar__cart .s-cart-summary-count { left: auto; right: calc(50% + 4px); }
+  html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-tabbar__cart .s-cart-summary-count { right: auto; left: calc(50% + 4px); }
+  html.cc-categories-open:has(body.cc-has-tabbar) { overflow: hidden; }
+  html.cc-categories-open body.cc-has-tabbar .wa-s-n { visibility: hidden; }
+}
+
+// The logo returns beside the search on portrait tablets.
+@media (min-width: 768px) and (max-width: 1023px) {
+  body.theme-beauty.cc-has-tabbar {
+    .store-header {
+      grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+      grid-template-areas: 'scope scope scope scope scope' 'brand search cats lang bell';
+      column-gap: 8px;
+    }
+    .core-care-header__brand { display: block; grid-area: brand; }
+    .core-care-header__brand img { width: 120px; height: 42px; }
+  }
+}
+
+// Phone product pages: Salla's sticky add-to-cart bar owns the bottom edge.
+@media (max-width: 640px) {
+  body.theme-beauty.cc-has-tabbar:has(.cc-tabbar--yield) { --cc-tabbar-offset: 0px; }
+  body.theme-beauty.cc-has-tabbar .cc-tabbar--yield { display: none; }
+}
+
+// Landscape phones: a lower bar with icons only; labels stay available to assistive technology.
+@media (max-width: 1023px) and (orientation: landscape) and (max-height: 480px) {
+  body.theme-beauty.cc-has-tabbar {
+    // A sticky header plus the bar would cover too much of a short screen; the header scrolls away.
+    .store-header:has(#mainnav[data-header-sticky='true']) { position: relative; }
+    .cc-tabbar__item { gap: 0; }
+    .cc-tabbar__label { @include cc-visually-hidden; }
+    .cc-tabbar__campaign, .cc-tabbar__item--campaign:has(.cc-tabbar__label) .cc-tabbar__campaign { width: 32px; height: 32px; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.theme-beauty .cc-tabbar__fill { transition: none; }
+}

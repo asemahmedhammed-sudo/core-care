@@ -832,6 +832,58 @@
             "selected": true
         },
         {
+            "id": "beauty_mobile_tabbar",
+            "label": "شريط التنقل السفلي في الجوال والآيباد",
+            "description": "يظهر تحت عرض 1024px (الجوالات والآيباد العمودي): الرئيسية، الأقسام، السلة، حسابي، وزر حملة اختياري. عند تفعيله ينتقل الحساب والسلة من رأس الصفحة إلى الشريط، ويصبح رأس الصفحة سطرًا واحدًا للبحث والأقسام واللغة والإشعارات. يختفي الشريط في صفحة المنتج على الجوال عند تفعيل «شريط الإضافة للسلة الثابت». الكمبيوتر لا يتغير.",
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "beauty_tabbar_center_image",
+            "type": "string",
+            "format": "image",
+            "label": "أيقونة زر الحملة في وسط الشريط السفلي (عربي)",
+            "description": "اختياري. صورة مربعة بخلفية شفافة (PNG أو SVG، يوصى بـ 96 × 96) تظهر بحجم 40px في وسط شريط التنقل السفلي. لا يظهر الزر إلا مع رابط https:// صالح في الحقل التالي.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_tabbar_center_image_en",
+            "type": "string",
+            "format": "image",
+            "label": "Tab bar campaign icon (English)",
+            "description": "اختيارية: تظهر لزوار النسخة الإنجليزية إذا كانت الأيقونة العربية تحتوي نصًا. إن تُركت فارغة تظهر الأيقونة العربية.",
+            "required": false,
+            "value": null
+        },
+        {
+            "id": "beauty_tabbar_center_url",
+            "type": "string",
+            "format": "text",
+            "label": "رابط زر الحملة في الشريط السفلي",
+            "description": "رابط https:// كامل لصفحة الحملة أو التصنيف. اتركه فارغًا لإخفاء الزر.",
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 1000
+        },
+        {
+            "id": "beauty_tabbar_center_label",
+            "type": "string",
+            "format": "text",
+            "label": "نص زر الحملة في الشريط السفلي",
+            "description": "اختياري. يظهر تحت الأيقونة ويُقرأ لقارئات الشاشة؛ إن تُرك فارغًا تظهر الأيقونة وحدها ويُستخدم «حملة المتجر» وصفًا لها.",
+            "multilanguage": true,
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 20
+        },
+        {
             "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "شريط علوي داكن",

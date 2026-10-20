@@ -6,8 +6,9 @@
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
 {% set important_links = theme.settings.get('important_links') %}
+{# Outside <header> so the compact mobile header can be one sticky grid without the announcement strip. #}
+<salla-advertisement data-testid="beauty-announcement"></salla-advertisement>
 <header data-testid="store-header" class="store-header">
-  <salla-advertisement data-testid="beauty-announcement"></salla-advertisement>
   <div class="core-care-header__band">
     <div class="container core-care-header__top">
       <a data-testid="store-header-logo" class="core-care-header__brand" href="{{ link('/') }}" aria-label="{{ store.name }}">
@@ -24,11 +25,11 @@
   <div id="mainnav" data-header-sticky="{{ theme.settings.get('header_is_sticky', true) ? 'true' : 'false' }}" class="main-nav-container core-care-header">
     <div class="container core-care-header__bottom">
       <nav class="core-care-header__links" aria-label="{{ trans('beauty.open_menu') }}">
-        <button data-testid="store-header-mobile-toggle" data-categories-toggle type="button" aria-expanded="false" aria-controls="core-care-categories"><i class="sicon-menu" aria-hidden="true"></i><span>{{ trans('beauty.header.categories') }}</span><i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></button>
+        <button data-testid="store-header-mobile-toggle" data-categories-toggle type="button" aria-expanded="false" aria-controls="core-care-categories"><i class="sicon-menu" aria-hidden="true"></i><svg class="core-care-header__grid-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg><span>{{ trans('beauty.header.categories') }}</span><i class="sicon-keyboard_arrow_down" aria-hidden="true"></i></button>
         <a href="{{ link('brands') }}">{{ trans('beauty.header.brands') }}</a>
       </nav>
       <div class="core-care-header__actions">
-        {% if store.scope %}<button class="core-care-header__scope" type="button" aria-label="{{ store.scope.name }}" onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})"><i class="sicon-location" aria-hidden="true"></i><span>{{ store.scope.name }}</span></button>{% endif %}
+        {% if store.scope %}<button class="core-care-header__scope" type="button" aria-label="{{ trans('beauty.header.scope_prefix') }} {{ store.scope.name }}" onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})"><i class="sicon-location" aria-hidden="true"></i><span class="core-care-header__scope-prefix">{{ trans('beauty.header.scope_prefix') }}</span><span class="core-care-header__scope-name">{{ store.scope.name }}</span><i class="sicon-keyboard_arrow_down core-care-header__scope-chevron" aria-hidden="true"></i></button>{% endif %}
         {% if store.settings.is_multilingual %}
           {# Inline language dropdown (Nice One style). Languages and switching come from Salla at runtime. #}
           <core-care-language-menu class="core-care-language-menu" data-current="{{ language.code }}" data-error-label="{{ trans('beauty.header.languages_error') }}">

@@ -1,0 +1,61 @@
+{# Bottom tab bar for phones and portrait tablets (below 1024px), after the Nice One app reference.
+   Cart and account move here from the header on those widths; larger screens keep the desktop header.
+   The bar steps aside on phone product pages when Salla's sticky add-to-cart bar takes the bottom edge. #}
+{% set center_icon = { image: theme.settings.get('beauty_tabbar_center_image'), image_en: theme.settings.get('beauty_tabbar_center_image_en') } %}
+{% set center_image %}{% include 'pages.partials.localized-image' with { item: center_icon, field: 'image' } %}{% endset %}
+{% set center_url = theme.settings.get('beauty_tabbar_center_url')|default('')|trim %}
+{# Plain Twig operators keep link validation independent of regex support, as in the promotions slider. #}
+{% set center_valid = center_url|lower starts with 'https://' and center_url|length > 8 and ' ' not in center_url and '"' not in center_url and '<' not in center_url and '>' not in center_url %}
+{# Multilanguage settings arrive as per-language arrays; resolve the current language before string filters. #}
+{% set center_label = theme.settings.get('beauty_tabbar_center_label') %}
+{% set center_label = (center_label is iterable ? center_label[language.code]|default(center_label|first) : center_label)|default('')|trim %}
+{% set yield_to_product_bar = page.slug == 'product.single' and theme.settings.get('sticky_add_to_cart') %}
+<nav class="cc-tabbar{{ yield_to_product_bar ? ' cc-tabbar--yield' : '' }}" data-testid="store-tabbar" aria-label="{{ trans('beauty.tabbar.label') }}">
+  <ul class="cc-tabbar__list">
+    <li>
+      <a class="cc-tabbar__item" href="{{ link('/') }}"{% if is_page('index') %} aria-current="page"{% endif %}>
+        <svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="cc-tabbar__fill" d="M3.5 10.2 12 3.5l8.5 6.7V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19Z"/><path d="M9.5 20.5v-6h5v6"/></svg>
+        <span class="cc-tabbar__label">{{ trans('beauty.tabbar.home') }}</span>
+      </a>
+    </li>
+    <li>
+      {# Opens the same categories panel as the header trigger; core-care-categories keeps both in sync. #}
+      <button class="cc-tabbar__item" type="button" data-categories-toggle aria-expanded="false" aria-controls="core-care-categories">
+        <svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="cc-tabbar__fill" x="3.5" y="3.5" width="7" height="7" rx="2"/><rect class="cc-tabbar__fill" x="13.5" y="3.5" width="7" height="7" rx="2"/><rect class="cc-tabbar__fill" x="3.5" y="13.5" width="7" height="7" rx="2"/><rect class="cc-tabbar__fill" x="13.5" y="13.5" width="7" height="7" rx="2"/></svg>
+        <span class="cc-tabbar__label">{{ trans('beauty.tabbar.categories') }}</span>
+      </button>
+    </li>
+    {% if center_image and center_valid %}
+    <li>
+      <a class="cc-tabbar__item cc-tabbar__item--campaign" href="{{ center_url|e('html_attr') }}">
+        <img class="cc-tabbar__campaign" src="{{ center_image }}" alt="{{ (center_label ?: trans('beauty.tabbar.campaign'))|e('html_attr') }}" width="40" height="40" loading="lazy" decoding="async">
+        {% if center_label %}<span class="cc-tabbar__label" aria-hidden="true">{{ center_label }}</span>{% endif %}
+      </a>
+    </li>
+    {% endif %}
+    <li>
+      {# Salla's cart summary keeps the live count; the cart drawer intercepts its link, which still opens the cart page without JavaScript. #}
+      {# Salla renders "0" for an empty cart; data-empty hides that badge until core-care-tabbar.js tracks the live count. #}
+      <salla-cart-summary class="cc-tabbar__cart{{ is_page('cart') ? ' is-active' : '' }}" data-testid="store-tabbar-cart"{% if not cart.items_count|default(0) %} data-empty{% endif %}>
+        <span slot="icon" class="cc-tabbar__item">
+          <svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="cc-tabbar__fill" d="M5.2 8h13.6l-.9 11.1a1.5 1.5 0 0 1-1.5 1.4H7.6a1.5 1.5 0 0 1-1.5-1.4Z"/><path d="M8.5 10V7a3.5 3.5 0 0 1 7 0v3"/></svg>
+          <span class="cc-tabbar__label">{{ trans('beauty.tabbar.cart') }}</span>
+        </span>
+      </salla-cart-summary>
+    </li>
+    <li>
+      {% set account_icon %}<svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle class="cc-tabbar__fill" cx="12" cy="8" r="4"/><path d="M4.5 20.5c.8-3.6 3.8-6 7.5-6s6.7 2.4 7.5 6"/></svg>{% endset %}
+      {% if user.type == 'user' %}
+        <a class="cc-tabbar__item" href="{{ link('account/profile') }}"{% if page.slug starts with 'customer.' %} aria-current="page"{% endif %}>
+          {{ account_icon }}
+          <span class="cc-tabbar__label">{{ trans('beauty.tabbar.account') }}</span>
+        </a>
+      {% else %}
+        <button class="cc-tabbar__item" type="button" aria-haspopup="dialog" onclick="salla.event.dispatch('login::open')">
+          {{ account_icon }}
+          <span class="cc-tabbar__label">{{ trans('beauty.tabbar.account') }}</span>
+        </button>
+      {% endif %}
+    </li>
+  </ul>
+</nav>

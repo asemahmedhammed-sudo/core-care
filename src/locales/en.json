@@ -66,7 +66,16 @@
       "localization": "Language and currency",
       "languages": "Languages",
       "languages_error": "Languages could not be loaded. Please try again.",
-      "close_languages": "Close languages"
+      "close_languages": "Close languages",
+      "scope_prefix": "Your location:"
+    },
+    "tabbar": {
+      "label": "Quick navigation",
+      "home": "Home",
+      "categories": "Categories",
+      "campaign": "Store campaign",
+      "cart": "Cart",
+      "account": "Account"
     },
     "footer": {
       "quick_links": "Quick links",
