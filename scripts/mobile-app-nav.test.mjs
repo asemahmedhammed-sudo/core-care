@@ -119,3 +119,10 @@ test('desktop (1024px and wider) keeps its design: mobile rules stay inside phon
   // Compact-only header parts are hidden in the desktop header.
   assert.match(read('src/assets/styles/06-beauty/core-care-header.scss'), /\.core-care-header__grid-icon, \.core-care-header__scope-prefix, \.core-care-header__scope-chevron \{ display: none; \}/);
 });
+
+test('compact header fixes found in the live Salla preview (2026-10-21)', () => {
+  // salla-search's inline wrapper has min-width: 220px and covered the icons below ~390px.
+  assert.match(styles, /\.core-care-header__search :is\(\.s-search-placeholder-wrapper, \.s-search-input-wrapper, \.s-search-input\) \{ min-width: 0; width: 100%; \}/);
+  // The inherited `#mainnav .sicon-menu` rule needs an id-level selector to hide the old menu glyph.
+  assert.match(styles, /#mainnav \[data-categories-toggle\] \.sicon-menu \{ display: none; \}/);
+});

@@ -89,13 +89,18 @@ body.theme-beauty .cc-tabbar { display: none; }
     .core-care-header__actions > salla-user-menu, .core-care-header__actions > salla-cart-summary { display: none; }
     // Salla's currency modal renders as a fixed overlay; its host must not take a grid cell.
     .core-care-header__actions > salla-localization-modal { position: absolute; }
-    .core-care-header__search { grid-area: search; }
+    .core-care-header__search { grid-area: search; min-width: 0; }
+    // Salla's inline search wrapper has min-width: 220px; on phones narrower than about 390px
+    // it would spill over the categories and language icons, so it follows its grid cell instead.
+    .core-care-header__search :is(.s-search-placeholder-wrapper, .s-search-input-wrapper, .s-search-input) { min-width: 0; width: 100%; }
     .s-search-input { border-radius: 999px; }
     .core-care-header__links > [data-categories-toggle] {
       grid-area: cats; justify-content: center; width: 44px; height: 44px; padding: 0;
       .sicon-menu, .sicon-keyboard_arrow_down { display: none; }
       span { @include cc-visually-hidden; }
     }
+    // The inherited `#mainnav .sicon-menu { display: inline-block }` outranks the class rule above.
+    #mainnav [data-categories-toggle] .sicon-menu { display: none; }
     .core-care-header__grid-icon { display: block; width: 24px; height: 24px; }
     .core-care-header__actions > .core-care-language-menu, .core-care-header__actions > .core-care-header__locale { grid-area: lang; }
     .core-care-header__notification { grid-area: bell; }
