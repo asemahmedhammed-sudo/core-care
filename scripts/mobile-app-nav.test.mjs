@@ -155,3 +155,7 @@ test('app-style home on phones: tall banner switch, header over it, two-row shor
   assert.equal(headerAtTop(8), false);
   assert.equal(headerAtTop(500), false);
 });
+
+test('empty Salla free-shipping banner does not add a gap above the first section on phones and tablets', () => {
+  assert.match(styles, /#main-content > salla-free-shipping-banner:empty \{ display: none; \}/);
+});
