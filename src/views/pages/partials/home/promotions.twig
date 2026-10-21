@@ -29,7 +29,7 @@
 {% set autoplay = promotion_autoplay is defined ? promotion_autoplay : true %}
 {% set interval = promotion_interval|default(5) %}
 {% if slides|length %}
-<section {% if component_id is defined %}component-id="{{ component_id|e('html_attr') }}" {% endif %}class="beauty-promotions" data-promotion-carousel data-promotion-autoplay="{{ autoplay ? 'true' : 'false' }}" data-promotion-interval="{{ interval|e('html_attr') }}" role="region" aria-roledescription="{{ trans('beauty.promo.carousel') }}" aria-label="{{ trans('beauty.promo.label') }}">
+<section {% if component_id is defined %}component-id="{{ component_id|e('html_attr') }}" {% endif %}class="beauty-promotions{{ promotion_mobile_tall|default(false) ? ' beauty-promotions--mobile-tall' : '' }}" data-promotion-carousel data-promotion-autoplay="{{ autoplay ? 'true' : 'false' }}" data-promotion-interval="{{ interval|e('html_attr') }}" role="region" aria-roledescription="{{ trans('beauty.promo.carousel') }}" aria-label="{{ trans('beauty.promo.label') }}">
   <div class="beauty-promotions__viewport">
     {% for slide in slides %}
       {% set label = slide.title|default(trans('beauty.promo.label') ~ ' ' ~ loop.index) %}
@@ -41,7 +41,7 @@
         {% set new_tab = tag == 'a' and slide.new_tab|default(false) %}
         <{{ tag }} class="beauty-promotions__image-link"{% if tag == 'a' %} href="{{ slide.link|e('html_attr') }}" aria-label="{{ (new_tab ? label ~ ' - ' ~ trans('beauty.promo.new_tab') : label)|e('html_attr') }}"{% if new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}{% endif %}>
           <picture class="beauty-promotions__media">
-            {% if slide_mobile_image %}<source media="(max-width: 767px)" srcset="{{ slide_mobile_image }}" width="960" height="320">{% endif %}
+            {% if slide_mobile_image %}<source media="(max-width: 767px)" srcset="{{ slide_mobile_image }}" width="{{ promotion_mobile_tall|default(false) ? 1080 : 960 }}" height="{{ promotion_mobile_tall|default(false) ? 1080 : 320 }}">{% endif %}
             <img class="beauty-promotions__artwork{% if slide.default_artwork %} beauty-promotions__artwork--default{% endif %}" src="{{ slide_image }}" alt="{{ label|e('html_attr') }}" width="1440" height="{{ slide.height }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" {% if loop.first %}fetchpriority="high"{% endif %}>
           </picture>
         </{{ tag }}>
