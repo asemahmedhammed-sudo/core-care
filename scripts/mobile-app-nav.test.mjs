@@ -103,13 +103,14 @@ test('desktop (1024px and wider) keeps its design: mobile rules stay inside phon
   for (let i = 0, depth = 0, start = 0; i < source.length; i += 1) {
     if (source[i] === '{') { if (depth === 0) start = i; depth += 1; }
     if (source[i] === '}' && --depth === 0) {
-      const prelude = source.slice(source.lastIndexOf('}', start) + 1, start).trim();
+      // Sass variable declarations before a block are not part of its prelude.
+      const prelude = source.slice(source.lastIndexOf('}', start) + 1, start).split(';').pop().trim();
       if (!/^@(media|mixin)/.test(prelude)) topLevel.push(`${prelude} ${source.slice(start, i + 1)}`);
     }
   }
   assert.deepEqual(topLevel, ['body.theme-beauty .cc-tabbar { display: none; }']);
   for (const query of styles.match(/@media [^{]+/g)) {
-    assert.match(query, /max-width: (1023|640)px|prefers-reduced-motion/, query);
+    assert.match(query, /max-width: (1023|767|640)px|prefers-reduced-motion/, query);
   }
   // Hero pagination: the original desktop capsule stays; the compact bars only override it below 1024px.
   const home = read('src/assets/styles/06-beauty/core-care-home.scss');
@@ -125,4 +126,32 @@ test('compact header fixes found in the live Salla preview (2026-10-21)', () => 
   assert.match(styles, /\.core-care-header__search :is\(\.s-search-placeholder-wrapper, \.s-search-input-wrapper, \.s-search-input\) \{ min-width: 0; width: 100%; \}/);
   // The inherited `#mainnav .sicon-menu` rule needs an id-level selector to hide the old menu glyph.
   assert.match(styles, /#mainnav \[data-categories-toggle\] \.sicon-menu \{ display: none; \}/);
+});
+
+test('app-style home on phones: tall banner switch, header over it, two-row shortcuts (desktop untouched)', async () => {
+  const home = read('src/assets/styles/06-beauty/core-care-home.scss');
+  const partial = read('src/views/pages/partials/home/promotions.twig');
+  const component = read('src/views/components/home/beauty-promotions.twig');
+  const field = manifest.components.find(c => c.path === 'home.beauty-promotions').fields.find(f => f.id === 'mobile_tall');
+  // Opt-in, off by default: existing wide mobile artwork is never cropped to a square on publish.
+  assert.equal(field.type, 'boolean');
+  assert.equal(field.value, false);
+  assert.match(component, /promotion_mobile_tall: component\.mobile_tall\|default\(false\)/);
+  assert.match(partial, /promotion_mobile_tall\|default\(false\) \? ' beauty-promotions--mobile-tall' : ''/);
+  // Phone-only rules live in the max-width: 767px block of the home stylesheet.
+  const phone = home.slice(home.indexOf('// Phones (app reference)'));
+  assert.ok(home.lastIndexOf('@media (max-width: 767px) {', home.indexOf('// Phones (app reference)')) > home.indexOf('@media (max-width: 1023px)'));
+  assert.match(phone, /\.beauty-promotions--mobile-tall \{ --promo-ratio: 1 \/ 1; \}/);
+  assert.match(phone, /\.beauty-promotions__arrow \{ display: none; \}/);
+  assert.match(phone, /\.beauty-categories__list:has\(> li:nth-child\(6\)\) \{\s*(?:\/\/[^\n]*\s*)?display: grid; grid-auto-flow: column; grid-template-rows: repeat\(2, auto\); grid-auto-columns: calc\(\(100% - 4 \* 12px\) \/ 4\.5\);/);
+  // The header overlay applies only when the tall banner is the first section, and only while at the top.
+  assert.match(styles, /\$cc-hero-first: 'body\.theme-beauty\.cc-has-tabbar\.beauty-reference-home:has\(#main-content > \.beauty-promotions--mobile-tall\):not\(:has\(#main-content > :not\(\.s-design-invisible-dom, salla-hook\) ~ \.beauty-promotions--mobile-tall\)\)';/);
+  assert.match(styles, /@media \(max-width: 767px\) \{\s*#\{\$cc-hero-first\} \{/);
+  assert.match(styles, /#\{\$cc-hero-first\}\.cc-header-at-top \{\s*\.store-header \{ background: transparent;/);
+  const source = read('src/assets/js/partials/core-care-tabbar.js');
+  const { headerAtTop } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+  assert.equal(headerAtTop(0), true);
+  assert.equal(headerAtTop(7), true);
+  assert.equal(headerAtTop(8), false);
+  assert.equal(headerAtTop(500), false);
 });

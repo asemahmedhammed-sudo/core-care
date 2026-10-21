@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-21T10:25:10.112Z",
+  "generatedAt": "2026-10-21T19:32:06.323Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -50,7 +50,8 @@
           "fields": [
             "slides",
             "autoplay",
-            "interval"
+            "interval",
+            "mobile_tall"
           ]
         },
         {
@@ -344,7 +345,8 @@
       "fields": [
         "slides",
         "autoplay",
-        "interval"
+        "interval",
+        "mobile_tall"
       ]
     },
     {
@@ -540,6 +542,12 @@
       "component": "home.beauty-promotions",
       "field": "interval",
       "expectedReference": "component.interval",
+      "found": true
+    },
+    {
+      "component": "home.beauty-promotions",
+      "field": "mobile_tall",
+      "expectedReference": "component.mobile_tall",
       "found": true
     },
     {
@@ -1473,6 +1481,12 @@
       "id": "interval",
       "type": "number",
       "format": "integer"
+    },
+    {
+      "location": "components[0].fields[3]",
+      "id": "mobile_tall",
+      "type": "boolean",
+      "format": "switch"
     },
     {
       "location": "components[1].fields[0]",
@@ -2760,7 +2774,7 @@
     {
       "file": "src/views/components/home/beauty-promotions.twig",
       "kind": "new-template",
-      "sha256": "a7be58e5068b840178ec01080da6e7df2800d2b065053dfe079ce64ebf16e572"
+      "sha256": "4f7c0c313d390e7b0aa6c56c2c612ccf6369e638da858550268f4cd4992bd4fb"
     },
     {
       "file": "src/views/components/home/beauty-routine.twig",
@@ -2810,7 +2824,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "3346a7db7d78bb2aa334eeb706cf9881ce04a29e9c6b0159ec3b3945ede81b90"
+      "sha256": "3cc0d625732b0f4bb086e7a4ec5d79b89e81ceba4937d8d0dcae9a21bf428e41"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -2860,7 +2874,7 @@
     {
       "file": "src/views/pages/partials/home/promotions.twig",
       "kind": "new-template",
-      "sha256": "ec6732c078c359c2f67b2b0c99c128ea55efed0bf44fdb49f808451ed627daed"
+      "sha256": "f646af1ffe2f14878ff4fd018b892a6c5e100d286724e734c03e76b1c2622ef4"
     },
     {
       "file": "src/views/pages/partials/localized-image.twig",

@@ -179,6 +179,32 @@ body.theme-beauty.beauty-reference-home {
     .beauty-promotions__viewport { grid-template-columns: 52px minmax(0, 1fr) 52px; }
     .beauty-promotions__arrow::before { inset: 6px; }
     .beauty-promotions__dots { --promo-dot-active-width: 28px; --promo-dot-height: 3px; }
+    // Phones (app reference): the banner runs edge to edge without arrows; swipe and the dots navigate.
+    .beauty-promotions, #main-content > :not(.s-design-invisible-dom, salla-hook) ~ .beauty-promotions { padding: 0; }
+    .beauty-promotions__image-link, .beauty-promotions__media { border-radius: 0; }
+    .beauty-promotions__arrow { display: none; }
+    // Merchant switch «بانر طويل»: square frame with small dots inside the artwork's bottom edge.
+    .beauty-promotions--mobile-tall { --promo-ratio: 1 / 1; }
+    .beauty-promotions--mobile-tall .beauty-promotions__viewport:has(> [data-promotion-slide] ~ [data-promotion-slide]) { grid-template-rows: auto; }
+    .beauty-promotions--mobile-tall .beauty-promotions__dots {
+      --promo-dot-width: 6px; --promo-dot-active-width: 18px; --promo-dot-height: 6px;
+      grid-area: 1 / 1 / 2 / -1; align-self: end; position: relative; z-index: 2; margin-block-end: 6px;
+    }
+    .beauty-promotions--mobile-tall .beauty-promotions__dots button { min-width: 20px; padding: 0 3px; }
+    .beauty-promotions--mobile-tall .beauty-promotions__dots [data-promotion-dot]::before,
+    .beauty-promotions--mobile-tall .beauty-promotions__dots [aria-current='true'] + [data-promotion-dot]::before,
+    .beauty-promotions--mobile-tall .beauty-promotions__dots [data-promotion-dot]:has(+ [aria-current='true'])::before { background: color-mix(in srgb, var(--cc-icon) 28%, transparent); }
+    .beauty-promotions--mobile-tall .beauty-promotions__dots [aria-current='true']::before { background: var(--promo-accent); }
+    // Shortcut circles: two rows that scroll together once there are six or more, next column peeking.
+    .beauty-categories__list:has(> li:nth-child(6)) {
+      // About four and a half columns on every phone width, so the next column always peeks.
+      display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto); grid-auto-columns: calc((100% - 4 * 12px) / 4.5);
+      justify-content: start; gap: 16px 12px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
+    }
+    .beauty-categories__list:has(> li:nth-child(6))::-webkit-scrollbar { display: none; }
+    .beauty-categories__list:has(> li:nth-child(6)) li { max-width: none; min-width: 0; }
+    .beauty-categories__list:has(> li:nth-child(6)) .beauty-category__image { width: min(64px, 100%); height: auto; aspect-ratio: 1; }
+    .beauty-categories__list:has(> li:nth-child(6)) .beauty-category__name { font-size: 12px; line-height: 16px; }
     .beauty-hero__grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px 40px; }
     .beauty-hero__copy h2 { font-size: clamp(32px, 8vw, 46px); }
     .beauty-hero__copy { max-width: 540px; justify-self: center; }

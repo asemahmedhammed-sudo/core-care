@@ -7,7 +7,19 @@ export function syncCartBadges(count, root = document) {
     root.querySelectorAll('.cc-tabbar__cart').forEach(cart => cart.toggleAttribute('data-empty', cartIsEmpty(count)));
 }
 
+// The phone header is transparent over a tall first banner only while the page is at the top
+// (core-care-app-nav.scss); it is white by default, so it stays readable without this script.
+export function headerAtTop(scrollY) {
+    return Number(scrollY) < 8;
+}
+
 globalThis.salla?.onReady?.(() => {
     syncCartBadges(globalThis.salla.storage?.get?.('cart.summary.count'));
     globalThis.salla.cart?.event?.onUpdated?.(response => syncCartBadges(response?.count));
 });
+
+if (globalThis.document?.body && globalThis.addEventListener) {
+    const syncHeader = () => document.body.classList.toggle('cc-header-at-top', headerAtTop(globalThis.scrollY));
+    syncHeader();
+    globalThis.addEventListener('scroll', syncHeader, { passive: true });
+}

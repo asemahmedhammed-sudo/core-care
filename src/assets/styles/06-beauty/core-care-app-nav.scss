@@ -126,6 +126,29 @@ body.theme-beauty .cc-tabbar { display: none; }
   html.cc-categories-open body.cc-has-tabbar .wa-s-n { visibility: hidden; }
 }
 
+// Phones, app-style home: when the merchant's tall promotions banner («بانر طويل») is the first
+// section, it runs under the compact header, which stays transparent while the page is at the top
+// (core-care-tabbar.js sets .cc-header-at-top) and turns white once the visitor scrolls.
+$cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main-content > .beauty-promotions--mobile-tall):not(:has(#main-content > :not(.s-design-invisible-dom, salla-hook) ~ .beauty-promotions--mobile-tall))';
+@media (max-width: 767px) {
+  #{$cc-hero-first} {
+    // Compact header height: 8px padding twice + 45px search row + 1px border, plus the 44px location row.
+    --cc-compact-header-h: 62px;
+    &:has(.core-care-header__scope) { --cc-compact-header-h: 106px; }
+    .store-header { transition: background-color .2s ease, border-color .2s ease; }
+    #main-content > .beauty-promotions--mobile-tall { margin-top: calc(-1 * var(--cc-compact-header-h)); }
+  }
+  #{$cc-hero-first}.cc-header-at-top {
+    .store-header { background: transparent; border-bottom-color: transparent; }
+    .s-search-input { background: rgba(255, 255, 255, .92); }
+    // White discs keep the icons readable on any artwork, as in the reference.
+    .core-care-header__links > [data-categories-toggle], .core-care-header__notification,
+    .core-care-header__actions > .core-care-header__locale, .core-care-language-menu > .core-care-header__locale {
+      border-radius: 50%; background: rgba(255, 255, 255, .92);
+    }
+  }
+}
+
 // The logo returns beside the search on portrait tablets.
 @media (min-width: 768px) and (max-width: 1023px) {
   body.theme-beauty.cc-has-tabbar {
@@ -157,5 +180,5 @@ body.theme-beauty .cc-tabbar { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.theme-beauty .cc-tabbar__fill { transition: none; }
+  body.theme-beauty .cc-tabbar__fill, body.theme-beauty .store-header { transition: none; }
 }
