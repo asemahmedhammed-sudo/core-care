@@ -29,6 +29,21 @@
 | product.options[].details[].is_out              | bool                       | Does current option out of stock?                                                                           |
 #}
 {% if product.options|length %}
+    {# Salla's color swatch has no image slot; pass each value's linked variant image to the card styles. #}
+    {% set color_option_images %}
+        {% for option in product.options %}
+            {% if option.type == 'color' %}
+                {% for detail in option.details %}
+                    {% if detail.image and detail.image starts with 'https://' %}
+                        salla-product-options[product-id="{{ product.id }}"] input[value="{{ detail.id }}"] + label { --cc-color-option-image: url("{{ detail.image }}"); }
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endset %}
+    {% if color_option_images|trim %}
+        <style>{{ color_option_images }}</style>
+    {% endif %}
     <salla-product-options data-testid="store-product-options" options="{{ product.options }}" product-id="{{ product.id }}"></salla-product-options>
 {% endif %}
 

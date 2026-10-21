@@ -1,0 +1,128 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+
+const read = path => fs.readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
+const layout = read('src/views/layouts/master.twig');
+const tabbar = read('src/views/pages/partials/mobile-tabbar.twig');
+const header = read('src/views/components/header/header.twig');
+const styles = read('src/assets/styles/06-beauty/core-care-app-nav.scss');
+const tokens = read('src/assets/styles/06-beauty/beauty.scss');
+const categories = read('src/assets/js/partials/core-care-categories.js');
+const app = read('src/assets/js/app.js');
+const manifest = JSON.parse(read('twilight.json'));
+const setting = id => manifest.settings.find(item => item.id === id);
+
+test('safe-area insets are exposed and the tab bar is opt-out by setting', () => {
+  assert.match(layout, /<meta name="viewport" content="width=device-width, initial-scale=1\.0, viewport-fit=cover">/);
+  assert.match(layout, /theme\.settings\.get\('beauty_mobile_tabbar', true\) \? 'cc-has-tabbar' : ''/);
+  assert.match(layout, /\{% if theme\.settings\.get\('beauty_mobile_tabbar', true\) %\}\{% include 'pages\.partials\.mobile-tabbar' %\}\{% endif %\}/);
+  assert.equal(setting('beauty_mobile_tabbar').value, true);
+  assert.equal(setting('beauty_mobile_tabbar').type, 'boolean');
+  // Landscape iPhones draw under the notch with viewport-fit=cover; content keeps to the safe area.
+  assert.match(tokens, /padding-left: env\(safe-area-inset-left, 0px\);\s*padding-right: env\(safe-area-inset-right, 0px\);/);
+  assert.match(tokens, /--cc-tabbar-offset: calc\(var\(--cc-app-nav-height\) \+ var\(--cc-safe-bottom\)\)/);
+});
+
+test('tab bar uses Salla components and links instead of custom commerce logic', () => {
+  assert.match(tabbar, /<nav class="cc-tabbar[^"]*"[^>]*aria-label="\{\{ trans\('beauty\.tabbar\.label'\) \}\}"/);
+  assert.match(tabbar, /href="\{\{ link\('\/'\) \}\}"\{% if is_page\('index'\) %\} aria-current="page"\{% endif %\}/);
+  assert.match(tabbar, /<button class="cc-tabbar__item" type="button" data-categories-toggle aria-expanded="false" aria-controls="core-care-categories">/);
+  assert.match(tabbar, /<salla-cart-summary class="cc-tabbar__cart[^>]*>\s*<span slot="icon" class="cc-tabbar__item">/);
+  assert.match(tabbar, /\{% if user\.type == 'user' %\}\s*<a class="cc-tabbar__item" href="\{\{ link\('account\/profile'\) \}\}"/);
+  assert.match(tabbar, /onclick="salla\.event\.dispatch\('login::open'\)"/);
+  assert.doesNotMatch(tabbar, /\|raw/);
+  for (const icon of tabbar.match(/<svg[^>]*>/g)) assert.match(icon, /aria-hidden="true"/);
+});
+
+test('campaign slot needs an image and an https link, and always has an accessible name', () => {
+  assert.match(tabbar, /center_url\|lower starts with 'https:\/\/'/);
+  assert.match(tabbar, /\{% if center_image and center_valid %\}/);
+  assert.match(tabbar, /alt="\{\{ \(center_label \?: trans\('beauty\.tabbar\.campaign'\)\)\|e\('html_attr'\) \}\}"/);
+  assert.match(tabbar, /href="\{\{ center_url\|e\('html_attr'\) \}\}"/);
+  assert.equal(setting('beauty_tabbar_center_label').multilanguage, true);
+  assert.ok(setting('beauty_tabbar_center_label').maxLength <= 20);
+  assert.equal(setting('beauty_tabbar_center_image').format, 'image');
+});
+
+test('empty cart badge is hidden and follows Salla cart updates', async () => {
+  const source = read('src/assets/js/partials/core-care-tabbar.js');
+  const { cartIsEmpty, syncCartBadges } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+  for (const value of [0, '0', null, undefined, NaN, -1]) assert.equal(cartIsEmpty(value), true, String(value));
+  for (const value of [1, '3', 12]) assert.equal(cartIsEmpty(value), false, String(value));
+  const carts = [0, 1].map(() => { const attrs = new Set(); return { attrs, toggleAttribute: (name, on) => (on ? attrs.add(name) : attrs.delete(name)) }; });
+  const root = { querySelectorAll: selector => (selector === '.cc-tabbar__cart' ? carts : []) };
+  syncCartBadges(2, root);
+  assert.ok(carts.every(cart => !cart.attrs.has('data-empty')));
+  syncCartBadges(0, root);
+  assert.ok(carts.every(cart => cart.attrs.has('data-empty')));
+  assert.match(tabbar, /\{% if not cart\.items_count\|default\(0\) %\} data-empty\{% endif %\}/);
+  assert.match(styles, /\.cc-tabbar__cart\[data-empty\] \.s-cart-summary-count \{ display: none; \}/);
+});
+
+test('header and tab bar open one categories panel and stay in sync', () => {
+  assert.match(categories, /this\.triggers = \[\.\.\.document\.querySelectorAll\('\[data-categories-toggle\]'\)\]/);
+  assert.match(categories, /this\.triggers\.forEach\(item => item\.setAttribute\('aria-expanded', String\(open\)\)\)/);
+  assert.match(categories, /if \(trigger\) this\.trigger = trigger;/);
+  assert.match(categories, /classList\.toggle\('cc-categories-open', open\)/);
+  assert.match(header, /data-categories-toggle type="button" aria-expanded="false" aria-controls="core-care-categories">/);
+});
+
+test('mobile navigation is limited to phones and portrait tablets and respects other bottom UI', () => {
+  assert.match(styles, /^body\.theme-beauty \.cc-tabbar \{ display: none; \}/m);
+  assert.match(styles, /@media \(max-width: 1023px\) \{\s*body\.theme-beauty\.cc-has-tabbar \{/);
+  assert.match(styles, /padding-bottom: var\(--cc-safe-bottom\);/);
+  assert.match(styles, /padding-bottom: var\(--cc-tabbar-offset\);/);
+  // Never two fixed bars on phone product pages, never over the keyboard, never under the WhatsApp button.
+  assert.match(tabbar, /page\.slug == 'product\.single' and theme\.settings\.get\('sticky_add_to_cart'\)/);
+  assert.match(styles, /@media \(max-width: 640px\) \{[\s\S]*?\.cc-tabbar--yield \{ display: none; \}/);
+  assert.match(styles, /&:has\(:is\(input, textarea, select\):focus\) \.cc-tabbar \{ display: none; \}/);
+  assert.match(styles, /\.wa-s-n \{ translate: 0 calc\(-1 \* var\(--cc-tabbar-offset\)\); \}/);
+  // Overlays keep their order: header < categories sheet < tab bar < cart drawer and sheets (60+).
+  assert.match(tokens, /--cc-z-header: 30;\s*--cc-z-categories: 45;\s*--cc-z-tabbar: 50;/);
+  assert.match(styles, /\.cc-tabbar__item \{[^}]*min-height: 44px;/);
+});
+
+test('compact header keeps search, categories, language and notifications in one sticky row', () => {
+  assert.match(styles, /grid-template-areas: 'scope scope scope scope' 'search cats lang bell';/);
+  assert.match(styles, /\.store-header:has\(#mainnav\[data-header-sticky='true'\]\) \{ position: sticky; top: 0; \}/);
+  assert.match(styles, /\.core-care-header__actions > salla-user-menu, \.core-care-header__actions > salla-cart-summary \{ display: none; \}/);
+  // The announcement strip scrolls away instead of sticking with the header.
+  assert.match(header, /<salla-advertisement data-testid="beauty-announcement"><\/salla-advertisement>\s*<header data-testid="store-header" class="store-header">/);
+  assert.match(header, /aria-label="\{\{ trans\('beauty\.header\.scope_prefix'\) \}\} \{\{ store\.scope\.name \}\}"/);
+});
+
+test('add-to-cart animation targets the visible cart summary', () => {
+  assert.match(app, /\[\.\.\.document\.querySelectorAll\('salla-cart-summary'\)\]\.find\(el => el\.getClientRects\(\)\.length\)/);
+});
+
+test('desktop (1024px and wider) keeps its design: mobile rules stay inside phone/tablet media queries', () => {
+  // Outside media queries the app-nav stylesheet only hides the tab bar and lowers motion.
+  const source = styles.replace(/\/\/.*$/gm, '');
+  const topLevel = [];
+  for (let i = 0, depth = 0, start = 0; i < source.length; i += 1) {
+    if (source[i] === '{') { if (depth === 0) start = i; depth += 1; }
+    if (source[i] === '}' && --depth === 0) {
+      const prelude = source.slice(source.lastIndexOf('}', start) + 1, start).trim();
+      if (!/^@(media|mixin)/.test(prelude)) topLevel.push(`${prelude} ${source.slice(start, i + 1)}`);
+    }
+  }
+  assert.deepEqual(topLevel, ['body.theme-beauty .cc-tabbar { display: none; }']);
+  for (const query of styles.match(/@media [^{]+/g)) {
+    assert.match(query, /max-width: (1023|640)px|prefers-reduced-motion/, query);
+  }
+  // Hero pagination: the original desktop capsule stays; the compact bars only override it below 1024px.
+  const home = read('src/assets/styles/06-beauty/core-care-home.scss');
+  assert.match(home, /\.beauty-promotions__dots \{\s*grid-area: 1 \/ 1 \/ 2 \/ -1; justify-self: center; align-self: end;/);
+  assert.match(home, /\.beauty-promotions__dots::before \{\s*content: '';/);
+  assert.match(home, /@media \(max-width: 1023px\) \{\s*\.beauty-promotions__viewport:has\(> \[data-promotion-slide\] ~ \[data-promotion-slide\]\) \{ grid-template-rows: auto minmax\(24px, auto\); \}/);
+  // Compact-only header parts are hidden in the desktop header.
+  assert.match(read('src/assets/styles/06-beauty/core-care-header.scss'), /\.core-care-header__grid-icon, \.core-care-header__scope-prefix, \.core-care-header__scope-chevron \{ display: none; \}/);
+});
+
+test('compact header fixes found in the live Salla preview (2026-10-21)', () => {
+  // salla-search's inline wrapper has min-width: 220px and covered the icons below ~390px.
+  assert.match(styles, /\.core-care-header__search :is\(\.s-search-placeholder-wrapper, \.s-search-input-wrapper, \.s-search-input\) \{ min-width: 0; width: 100%; \}/);
+  // The inherited `#mainnav .sicon-menu` rule needs an id-level selector to hide the old menu glyph.
+  assert.match(styles, /#mainnav \[data-categories-toggle\] \.sicon-menu \{ display: none; \}/);
+});

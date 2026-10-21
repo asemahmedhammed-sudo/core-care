@@ -37,8 +37,8 @@ test('every banner image field keeps its id for Arabic and is followed by an opt
       pairs += 1;
     });
   }
-  // 11 component image fields + 6 promo settings.
-  assert.equal(pairs, 17);
+  // 11 component image fields + 6 promo settings + the tab bar campaign icon.
+  assert.equal(pairs, 18);
 });
 
 test('the shared resolver uses the official language code and falls back to the Arabic image', () => {

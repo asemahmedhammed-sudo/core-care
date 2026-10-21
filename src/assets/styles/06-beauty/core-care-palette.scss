@@ -25,6 +25,8 @@ body.theme-beauty {
     --cc-announcement: #e874a5;
     --cc-secondary: #997adb;
     --cc-secondary-soft: #ebe4f8;
+    --cc-option-selected: #ae27d3;
+    --cc-required: #d95b69;
     --cc-discount-surface: rgba(247, 171, 182, .4);
     --cc-urgency: #ff001f;
     --cc-popular: #007917;
@@ -73,7 +75,7 @@ body.theme-beauty {
   .beauty-button--gold, .beauty-collection__action { background: var(--cc-action); color: var(--cc-action-text); }
   .beauty-skip-link { background: var(--cc-action); color: var(--cc-action-text); }
   :where(a, button, input, select, textarea, [tabindex]):focus-visible { outline-color: var(--cc-text); }
-  > .app-inner > .store-header > salla-advertisement { background: var(--cc-announcement); color: #fff; text-align: center; }
+  > .app-inner > salla-advertisement { background: var(--cc-announcement); color: #fff; text-align: center; }
   .s-advertisement-content { min-height: 40px; padding-block: 10px; background: var(--cc-announcement); color: #fff; font-size: 12px; }
   .s-advertisement-content a { color: inherit; }
   .beauty-features { padding-block: 12px; background: var(--cc-surface); }

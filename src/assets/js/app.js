@@ -285,7 +285,9 @@ isElementLoaded(selector){
     });
 
     salla.cart.event.onItemAdded((response, prodId) => {
-      app.element('salla-cart-summary').animateToCart(app.element(`#product-${prodId} img`));
+      // Below 1024px the header cart is hidden and the tab bar's cart is the visible target.
+      const cart = [...document.querySelectorAll('salla-cart-summary')].find(el => el.getClientRects().length) || app.element('salla-cart-summary');
+      cart?.animateToCart(app.element(`#product-${prodId} img`));
     });
   }
 }
