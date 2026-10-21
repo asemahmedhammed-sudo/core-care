@@ -114,6 +114,10 @@ body.theme-beauty .cc-tabbar { display: none; }
     .core-care-header__scope-name { min-width: 0; font-weight: 600; overflow-wrap: anywhere; }
     .core-care-header__scope-chevron { display: inline-block; }
 
+    // Salla inserts an empty <salla-free-shipping-banner> before the first section when no free-shipping
+    // offer is active; as a flex item it would add a section gap between the header and the first banner.
+    #main-content > salla-free-shipping-banner:empty { display: none; }
+
     // Categories open as a full-screen sheet above the tab bar, with their own title and close button.
     core-care-categories {
       position: fixed; z-index: var(--cc-z-categories); top: 0; bottom: var(--cc-tabbar-offset); left: 0; right: 0;
