@@ -1,5 +1,6 @@
 // Phone/tablet search (pages/partials/mobile-search.twig). Salla's own search window keeps the history,
-// most-searched sections and results; below 1024px this adds «ماركات مقترحة» under them while the
+// most-searched sections and results; below 1024px this adds a clear-all button to the history (as in the
+// reference) and «ماركات مقترحة» under the sections while the
 // field is empty: the brands the merchant named (setting beauty_search_brands), with the logos and
 // links of the theme's own brands page.
 const BRANDS_KEY = 'cc-search-brands';
@@ -93,12 +94,48 @@ function brandsSection(brands, title) {
     return section;
 }
 
+function trashIcon() {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M4 7h16M10 11v6M14 11v6M6 7l1 12.5a1.5 1.5 0 0 0 1.5 1.5h7a1.5 1.5 0 0 0 1.5-1.5L18 7M9 7V4.5A1.5 1.5 0 0 1 10.5 3h3A1.5 1.5 0 0 1 15 4.5V7');
+    svg.append(path);
+    return svg;
+}
+
+// Clears the visitor's history through Salla's own per-term remove buttons, one after another.
+export async function clearHistory(panel, nextFrame = () => new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 0)))) {
+    for (let guard = 0; guard < 50; guard += 1) {
+        const remove = panel.querySelector('.s-search-history-chip-remove');
+        if (!remove) break;
+        remove.click();
+        await nextFrame();
+    }
+}
+
+function ensureClearButton(panel, label) {
+    const section = panel.querySelector('.s-search-history-list')?.parentElement;
+    if (!section || section.querySelector('.cc-search-history-clear')) return;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'cc-search-history-clear';
+    button.setAttribute('aria-label', label);
+    button.append(trashIcon());
+    button.addEventListener('click', async () => {
+        await clearHistory(panel);
+        panel.querySelector('.s-search-input')?.focus();
+    });
+    section.append(button);
+}
+
 function enhance(input) {
     const config = document.getElementById('cc-search-config');
     const panel = input.closest(`${SEARCH_WINDOW} .s-search-panel`);
     if (!config || !panel || !window.matchMedia('(max-width: 1023px)').matches) return;
     panel.toggleAttribute('data-cc-typing', !!input.value.trim());
-    if (panel.querySelector('.cc-search-brands-section') || panel.dataset.ccBrands === 'loading') return;
+    ensureClearButton(panel, config.dataset.clearHistoryLabel || '');
+    if (!config.dataset.brandsUrl || panel.querySelector('.cc-search-brands-section') || panel.dataset.ccBrands === 'loading') return;
     panel.dataset.ccBrands = 'loading';
     const names = (config.dataset.brandsNames || '').split('|').filter(Boolean);
     loadBrands(config.dataset.brandsUrl).then(all => {

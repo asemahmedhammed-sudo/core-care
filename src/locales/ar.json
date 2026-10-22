@@ -70,6 +70,7 @@
       "scope_prefix": "موقعك:"
     },
     "search": {
+      "clear_history": "حذف كل عمليات البحث الأخيرة",
       "brands": "ماركات مقترحة"
     },
     "tabbar": {

@@ -166,7 +166,7 @@ test('phone search: the Salla search window, restyled, plus suggested brands (ph
   assert.match(layoutNow, /\{% include 'pages\.partials\.mobile-tabbar' %\}\{% include 'pages\.partials\.mobile-search' %\}/);
   // No second search component or custom window: results, history and most-searched stay Salla's.
   assert.doesNotMatch(config, /<salla-search|<core-care-search-sheet/);
-  assert.match(config, /\{% if brand_names\|length %\}\s*<span hidden id="cc-search-config" data-brands-url="\{\{ link\('brands'\)\|e\('html_attr'\) \}\}" data-brands-title="\{\{ trans\('beauty\.search\.brands'\)\|e\('html_attr'\) \}\}" data-brands-names="\{\{ brand_names\|join\('\|'\)\|e\('html_attr'\) \}\}"><\/span>/);
+  assert.match(config, /<span hidden id="cc-search-config" data-clear-history-label="\{\{ trans\('beauty\.search\.clear_history'\)\|e\('html_attr'\) \}\}"\{% if brand_names\|length %\} data-brands-url="\{\{ link\('brands'\)\|e\('html_attr'\) \}\}" data-brands-title="\{\{ trans\('beauty\.search\.brands'\)\|e\('html_attr'\) \}\}" data-brands-names="\{\{ brand_names\|join\('\|'\)\|e\('html_attr'\) \}\}"\{% endif %\}><\/span>/);
   const brandSetting = manifest.settings.find(item => item.id === 'beauty_search_brands');
   assert.equal(brandSetting.format, 'textarea');
   assert.equal(brandSetting.value, null);
@@ -194,5 +194,14 @@ test('phone search: the Salla search window, restyled, plus suggested brands (ph
   // Stores can hold several brands with one name (the live store has 154 such names); the first tile wins.
   const twins = [{ name: 'Avon', url: 'https://store.test/a1', logo: 'https://cdn.test/1.png' }, { name: 'AVON', url: 'https://store.test/a2', logo: 'https://cdn.test/2.png' }];
   assert.equal(mod.pickBrands(twins, ['avon'])[0].url, 'https://store.test/a1');
+  // Clear-all uses Salla's own per-term remove buttons until none remain.
+  const removes = [1, 2, 3].map(() => ({ clicked: 0, click() { this.clicked += 1; removes.splice(removes.indexOf(this), 1); } }));
+  const panel = { querySelector: selector => (selector === '.s-search-history-chip-remove' ? removes[0] || null : null) };
+  const all = [...removes];
+  await mod.clearHistory(panel, () => Promise.resolve());
+  assert.equal(removes.length, 0);
+  assert.ok(all.every(item => item.clicked === 1));
+  assert.match(styles, /\.s-search-history-chip-icon, \.s-search-history-chip-remove \{ display: none; \}/);
+  assert.match(styles, /\.cc-search-history-clear \{\s*position: absolute; top: 12px;/);
   assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
 });

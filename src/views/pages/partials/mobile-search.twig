@@ -1,12 +1,10 @@
 {# Phone/tablet search (below 1024px), after the Nice One app reference. Salla's own search window already
    shows the visitor's search history, the store's most-searched categories and terms, and live results;
-   core-care-search-sheet.js only adds «ماركات مقترحة» (the merchant's chosen brands, read from the theme's brands page) and the styles in
+   core-care-search-sheet.js adds a clear-all button to the history and «ماركات مقترحة» (the merchant's chosen brands, read from the theme's brands page); the styles in
    core-care-app-nav.scss restyle it on these widths. Desktop keeps Salla's search unchanged. #}
 {# Merchant-chosen brand names (setting beauty_search_brands), matched against the brands page; empty hides the section. #}
 {% set brand_names = [] %}
 {% for name in theme.settings.get('beauty_search_brands')|default('')|replace({'،': "\n", ',': "\n"})|split("\n") %}
   {% if name|trim and brand_names|length < 12 %}{% set brand_names = brand_names|merge([name|trim]) %}{% endif %}
 {% endfor %}
-{% if brand_names|length %}
-<span hidden id="cc-search-config" data-brands-url="{{ link('brands')|e('html_attr') }}" data-brands-title="{{ trans('beauty.search.brands')|e('html_attr') }}" data-brands-names="{{ brand_names|join('|')|e('html_attr') }}"></span>
-{% endif %}
+<span hidden id="cc-search-config" data-clear-history-label="{{ trans('beauty.search.clear_history')|e('html_attr') }}"{% if brand_names|length %} data-brands-url="{{ link('brands')|e('html_attr') }}" data-brands-title="{{ trans('beauty.search.brands')|e('html_attr') }}" data-brands-names="{{ brand_names|join('|')|e('html_attr') }}"{% endif %}></span>
