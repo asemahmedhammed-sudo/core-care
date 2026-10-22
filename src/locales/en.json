@@ -70,11 +70,6 @@
       "scope_prefix": "Your location:"
     },
     "search": {
-      "title": "Search",
-      "back": "Close search",
-      "recent": "Recent searches",
-      "clear_recent": "Clear recent searches",
-      "popular": "Popular searches",
       "brands": "Suggested brands"
     },
     "tabbar": {

@@ -1,8 +1,8 @@
-// Phone/tablet search screen (pages/partials/mobile-search.twig). Salla's <salla-search> keeps the
-// suggestions, results and results page; this adds recent searches, popular terms and brands around it.
-const RECENT_KEY = 'cc-search-recent';
+// Phone/tablet search (pages/partials/mobile-search.twig). Salla's own search window keeps the history,
+// most-searched sections and results; below 1024px this adds «ماركات مقترحة» under them while the
+// field is empty, with logos and links read from the theme's own brands page.
 const BRANDS_KEY = 'cc-search-brands';
-export const RECENT_LIMIT = 10;
+const SEARCH_WINDOW = 'salla-modal.s-search-modal-new';
 export const BRANDS_LIMIT = 12;
 
 export function safeUrl(value, base) {
@@ -13,17 +13,7 @@ export function safeUrl(value, base) {
     } catch { return null; }
 }
 
-export function addRecent(list, term) {
-    const value = String(term ?? '').trim().replace(/\s+/g, ' ').slice(0, 60);
-    if (value.length < 2) return list;
-    return [value, ...list.filter(item => item.toLowerCase() !== value.toLowerCase())].slice(0, RECENT_LIMIT);
-}
-
-export function searchHref(base, term) {
-    return `${base}${base.includes('?') ? '&' : '?'}q=${encodeURIComponent(term)}`;
-}
-
-// Reads the brand tiles the theme renders on its own brands page (pages/brands/index.twig).
+// Reads the brand tiles the theme renders on its brands page (pages/brands/index.twig).
 export function brandsFromDocument(doc, base) {
     return [...doc.querySelectorAll('a[data-testid="store-brand-item"]')].map(link => {
         const image = link.querySelector('img');
@@ -34,130 +24,83 @@ export function brandsFromDocument(doc, base) {
     }).filter(Boolean).slice(0, BRANDS_LIMIT);
 }
 
-function read(storage, key) {
-    try { const value = JSON.parse(storage.getItem(key) || 'null'); return Array.isArray(value) ? value : null; } catch { return null; }
+function readCache() {
+    try { const value = JSON.parse(sessionStorage.getItem(BRANDS_KEY) || 'null'); return Array.isArray(value) ? value : null; } catch { return null; }
 }
 
-function write(storage, key, value) {
-    try { storage.setItem(key, JSON.stringify(value)); } catch { /* private mode or full storage */ }
+function writeCache(value) {
+    try { sessionStorage.setItem(BRANDS_KEY, JSON.stringify(value)); } catch { /* private mode or full storage */ }
 }
 
-class CoreCareSearchSheet extends HTMLElement {
-    connectedCallback() {
-        this.abort?.abort();
-        this.abort = new AbortController();
-        const options = { signal: this.abort.signal };
-        this.compact = window.matchMedia('(max-width: 1023px)');
-        this.recentList = this.querySelector('[data-search-recent-list]');
-        // Open from the compact header search; desktop keeps Salla's own search window.
-        document.addEventListener('click', event => {
-            const trigger = event.target instanceof Element ? event.target.closest('.core-care-header__search') : null;
-            if (!trigger || !this.compact.matches || !document.body.classList.contains('cc-has-tabbar')) return;
-            event.preventDefault();
-            event.stopPropagation();
-            this.open(trigger);
-        }, { ...options, capture: true });
-        this.querySelector('[data-search-close]')?.addEventListener('click', () => this.close(), options);
-        this.querySelector('[data-search-clear]')?.addEventListener('click', () => {
-            write(window.localStorage, RECENT_KEY, []);
-            this.renderRecent();
-            this.querySelector('.s-search-input')?.focus();
-        }, options);
-        this.addEventListener('keydown', event => {
-            if (event.key === 'Escape') { event.preventDefault(); this.close(); }
-            if (event.key === 'Enter' && event.target.matches?.('.s-search-input')) this.remember(event.target.value);
-        }, { ...options, capture: true });
-        this.addEventListener('input', event => {
-            if (event.target.matches?.('.s-search-input')) this.toggleAttribute('data-typing', !!event.target.value.trim());
-        }, options);
-        this.addEventListener('click', event => {
-            const term = event.target instanceof Element ? event.target.closest('[data-search-term]') : null;
-            if (term) this.remember(term.dataset.searchTerm);
-        }, options);
-        // The phone back button closes the screen instead of leaving the page.
-        window.addEventListener('popstate', () => { if (!this.hidden) this.close(true); }, options);
-        this.compact.addEventListener('change', () => { if (!this.compact.matches && !this.hidden) this.close(); }, options);
-    }
-
-    disconnectedCallback() { this.abort?.abort(); document.documentElement.classList.remove('cc-search-open'); }
-
-    open(trigger) {
-        if (!this.hidden) return;
-        this.returnFocus = trigger.querySelector('button, input') || trigger;
-        this.hidden = false;
-        document.documentElement.classList.add('cc-search-open');
-        history.pushState({ ccSearch: true }, '');
-        this.pushed = true;
-        this.renderRecent();
-        this.loadBrands();
-        const input = this.querySelector('.s-search-input');
-        this.toggleAttribute('data-typing', !!input?.value.trim());
-        // Focus inside the tap so phones raise the keyboard.
-        input?.focus();
-    }
-
-    close(fromHistory = false) {
-        if (this.hidden) return;
-        this.hidden = true;
-        document.documentElement.classList.remove('cc-search-open');
-        if (this.pushed && !fromHistory) history.back();
-        this.pushed = false;
-        this.returnFocus?.focus?.();
-    }
-
-    remember(term) {
-        const list = addRecent(read(window.localStorage, RECENT_KEY) || [], term);
-        write(window.localStorage, RECENT_KEY, list);
-    }
-
-    renderRecent() {
-        const list = read(window.localStorage, RECENT_KEY) || [];
-        const base = this.dataset.searchUrl || '/search';
-        this.recentList.replaceChildren(...list.map(term => {
-            const item = document.createElement('li');
-            const link = document.createElement('a');
-            link.className = 'cc-search-chip';
-            link.href = searchHref(base, term);
-            link.dataset.searchTerm = term;
-            link.textContent = term;
-            item.append(link);
-            return item;
-        }));
-        this.querySelector('[data-search-recent]').hidden = !list.length;
-    }
-
-    async loadBrands() {
-        if (this.brandsLoaded) return;
-        this.brandsLoaded = true;
-        let brands = read(window.sessionStorage, BRANDS_KEY);
-        if (!brands) {
-            try {
-                const response = await fetch(this.dataset.brandsUrl, { credentials: 'same-origin' });
-                if (!response.ok) throw new Error(String(response.status));
-                const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
-                brands = brandsFromDocument(doc, window.location.href);
-                write(window.sessionStorage, BRANDS_KEY, brands);
-            } catch { brands = []; this.brandsLoaded = false; }
-        }
-        const list = this.querySelector('[data-search-brands-list]');
-        list.replaceChildren(...brands.map(brand => {
-            const item = document.createElement('li');
-            const link = document.createElement('a');
-            link.className = 'cc-search-brand';
-            link.href = brand.url;
-            const image = document.createElement('img');
-            image.src = brand.logo;
-            image.alt = brand.name;
-            image.width = 80;
-            image.height = 80;
-            image.loading = 'lazy';
-            image.decoding = 'async';
-            link.append(image);
-            item.append(link);
-            return item;
-        }));
-        this.querySelector('[data-search-brands]').hidden = !brands.length;
-    }
+let brandsRequest = null;
+function loadBrands(url) {
+    const cached = readCache();
+    if (cached) return Promise.resolve(cached);
+    brandsRequest ??= fetch(url, { credentials: 'same-origin' })
+        .then(response => (response.ok ? response.text() : Promise.reject(new Error(String(response.status)))))
+        .then(html => {
+            const brands = brandsFromDocument(new DOMParser().parseFromString(html, 'text/html'), window.location.href);
+            writeCache(brands);
+            return brands;
+        })
+        .catch(() => { brandsRequest = null; return []; });
+    return brandsRequest;
 }
 
-if (globalThis.customElements && !customElements.get('core-care-search-sheet')) customElements.define('core-care-search-sheet', CoreCareSearchSheet);
+function brandsSection(brands, title) {
+    const section = document.createElement('section');
+    section.className = 'cc-search-brands-section';
+    const heading = document.createElement('p');
+    heading.className = 'cc-search-brands-title';
+    heading.textContent = title;
+    const list = document.createElement('ul');
+    list.className = 'cc-search-brands';
+    list.setAttribute('role', 'list');
+    list.append(...brands.map(brand => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.className = 'cc-search-brand';
+        link.href = brand.url;
+        const image = document.createElement('img');
+        image.src = brand.logo;
+        image.alt = brand.name;
+        image.width = 80;
+        image.height = 80;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        link.append(image);
+        item.append(link);
+        return item;
+    }));
+    section.append(heading, list);
+    return section;
+}
+
+function enhance(input) {
+    const config = document.getElementById('cc-search-config');
+    const panel = input.closest(`${SEARCH_WINDOW} .s-search-panel`);
+    if (!config || !panel || !window.matchMedia('(max-width: 1023px)').matches) return;
+    panel.toggleAttribute('data-cc-typing', !!input.value.trim());
+    if (panel.querySelector('.cc-search-brands-section') || panel.dataset.ccBrands === 'loading') return;
+    panel.dataset.ccBrands = 'loading';
+    loadBrands(config.dataset.brandsUrl).then(brands => {
+        delete panel.dataset.ccBrands;
+        if (brands.length && !panel.querySelector('.cc-search-brands-section')) panel.append(brandsSection(brands, config.dataset.brandsTitle));
+    });
+}
+
+if (globalThis.document?.addEventListener) {
+    const matches = target => target instanceof Element && target.matches(`${SEARCH_WINDOW} .s-search-input`);
+    // Salla focuses its field when the window opens; typing hides the brands while results show.
+    document.addEventListener('focusin', event => { if (matches(event.target)) enhance(event.target); });
+    document.addEventListener('input', event => { if (matches(event.target)) enhance(event.target); });
+    // The window does not always move focus into its field, so also enhance it once it opens from the header.
+    document.addEventListener('click', event => {
+        if (!(event.target instanceof Element) || !event.target.closest('.s-search-placeholder-trigger')) return;
+        setTimeout(() => {
+            const open = [...document.querySelectorAll(SEARCH_WINDOW)].find(item => item.getBoundingClientRect().width > 0);
+            const input = open?.querySelector('.s-search-input');
+            if (input) enhance(input);
+        }, 300);
+    });
+}

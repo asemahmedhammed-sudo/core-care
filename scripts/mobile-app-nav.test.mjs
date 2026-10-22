@@ -160,40 +160,29 @@ test('empty Salla free-shipping banner does not add a gap above the first sectio
   assert.match(styles, /#main-content > salla-free-shipping-banner:empty \{ display: none; \}/);
 });
 
-test('phone search screen: Salla search inside, recent/popular/brands around it, phones and tablets only', async () => {
-  const sheet = read('src/views/pages/partials/mobile-search.twig');
+test('phone search: the Salla search window, restyled, plus suggested brands (phones and tablets only)', async () => {
+  const config = read('src/views/pages/partials/mobile-search.twig');
   const layoutNow = read('src/views/layouts/master.twig');
   assert.match(layoutNow, /\{% include 'pages\.partials\.mobile-tabbar' %\}\{% include 'pages\.partials\.mobile-search' %\}/);
-  assert.match(sheet, /<core-care-search-sheet class="cc-search-sheet"[^>]*role="dialog" aria-modal="true"[^>]*hidden>/);
-  // Results, suggestions and the results page stay Salla's own component.
-  assert.match(sheet, /<salla-search class="cc-search-sheet__field" inline height="44"><\/salla-search>/);
-  assert.match(sheet, /href="\{\{ search_url \}\}\?q=\{\{ term\|url_encode \}\}"/);
-  assert.doesNotMatch(sheet, /\|raw/);
-  for (const icon of sheet.match(/<svg[^>]*>/g)) assert.match(icon, /aria-hidden="true"/);
-  const setting = manifest.settings.find(item => item.id === 'beauty_search_popular');
-  assert.equal(setting.format, 'textarea');
-  assert.equal(setting.multilanguage, true);
-  assert.equal(setting.value, null);
-  // Styles only inside the phone/tablet block; the sheet shows only when not hidden.
-  assert.match(styles, /\.cc-search-sheet:not\(\[hidden\]\) \{\s*position: fixed; inset: 0; z-index: 70;/);
-  assert.match(styles, /font-size: 16px; \/\/ 16px keeps iOS from zooming/);
+  // No second search component or custom window: results, history and most-searched stay Salla's.
+  assert.doesNotMatch(config, /<salla-search|<core-care-search-sheet/);
+  assert.match(config, /<span hidden id="cc-search-config" data-brands-url="\{\{ link\('brands'\)\|e\('html_attr'\) \}\}" data-brands-title="\{\{ trans\('beauty\.search\.brands'\)\|e\('html_attr'\) \}\}"><\/span>/);
+  assert.equal(manifest.settings.some(item => item.id === 'beauty_search_popular'), false);
+  assert.match(styles, /salla-modal\.s-search-modal-new \{[\s\S]*?font-size: 16px; \/\/ 16px keeps iOS from zooming/);
+  assert.match(styles, /\.s-search-panel\[data-cc-typing\] \.cc-search-brands-section \{ display: none; \}/);
 
   const source = read('src/assets/js/partials/core-care-search-sheet.js');
-  globalThis.HTMLElement ??= class {};
   const mod = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
-  // Recent searches: trimmed, case-insensitive de-duplication, newest first, capped.
-  let list = [];
-  for (const term of ['  فلورمار ', 'Elf', 'elf', 'x', 'سيروم']) list = mod.addRecent(list, term);
-  assert.deepEqual(list, ['سيروم', 'elf', 'فلورمار']);
-  for (let i = 0; i < 20; i += 1) list = mod.addRecent(list, `term ${i}`);
-  assert.equal(list.length, mod.RECENT_LIMIT);
-  assert.equal(mod.searchHref('/search', 'واقي شمس'), '/search?q=%D9%88%D8%A7%D9%82%D9%8A%20%D8%B4%D9%85%D8%B3');
-  assert.equal(mod.searchHref('/ar/search?lang=ar', 'a&b'), '/ar/search?lang=ar&q=a%26b');
+  assert.match(source, /window\.matchMedia\('\(max-width: 1023px\)'\)\.matches/);
   for (const value of ['javascript:alert(1)', 'data:text/html,x', '', null, 'https://u:p@x.test/a']) assert.equal(mod.safeUrl(value, 'https://store.test/'), null, String(value));
-  // Brands come only from the theme's own brands page tiles, with valid links, logos and names.
+  // Brands come only from the theme's own brands page tiles, with valid links, logos and names, at most 12.
   const tile = (href, src, alt) => ({ getAttribute: name => (name === 'href' ? href : null), querySelector: () => ({ getAttribute: name => ({ src, alt })[name] ?? null }) });
-  const doc = { querySelectorAll: selector => (selector === 'a[data-testid="store-brand-item"]' ? [tile('/brand/a', 'https://cdn.test/a.png', 'NYX'), tile('javascript:x', 'https://cdn.test/b.png', 'Bad'), tile('/brand/c', 'https://cdn.test/c.png', '')] : []) };
-  assert.deepEqual(mod.brandsFromDocument(doc, 'https://store.test/ar/'), [{ url: 'https://store.test/brand/a', logo: 'https://cdn.test/a.png', name: 'NYX' }]);
+  const tiles = [tile('/brand/a', 'https://cdn.test/a.png', 'NYX'), tile('javascript:x', 'https://cdn.test/b.png', 'Bad'), tile('/brand/c', 'https://cdn.test/c.png', '')];
+  for (let i = 0; i < 20; i += 1) tiles.push(tile(`/brand/${i}`, `https://cdn.test/${i}.png`, `Brand ${i}`));
+  const doc = { querySelectorAll: selector => (selector === 'a[data-testid="store-brand-item"]' ? tiles : []) };
+  const brands = mod.brandsFromDocument(doc, 'https://store.test/ar/');
+  assert.deepEqual(brands[0], { url: 'https://store.test/brand/a', logo: 'https://cdn.test/a.png', name: 'NYX' });
+  assert.equal(brands.length, mod.BRANDS_LIMIT);
+  assert.ok(brands.every(brand => brand.name && brand.url.startsWith('https://store.test/')));
   assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
-  assert.match(source, /history\.pushState\(\{ ccSearch: true \}, ''\)/);
 });

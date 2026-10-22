@@ -118,54 +118,33 @@ body.theme-beauty .cc-tabbar { display: none; }
     // offer is active; as a flex item it would add a section gap between the header and the first banner.
     #main-content > salla-free-shipping-banner:empty { display: none; }
 
-    // Search screen (pages/partials/mobile-search.twig): full screen above everything, Salla's
-    // search field in the top bar, recent/popular/brands below it until the visitor types.
-    .cc-search-sheet:not([hidden]) {
-      position: fixed; inset: 0; z-index: 70; display: flex; flex-direction: column;
-      padding-top: env(safe-area-inset-top, 0px); background: var(--cc-surface); color: var(--cc-text);
-    }
-    .cc-search-sheet__bar { flex: none; display: flex; align-items: center; gap: 4px; padding: 12px var(--cc-gutter); }
-    .cc-search-sheet__back, .cc-search-sheet__clear {
-      flex: none; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%;
-      background: transparent; color: var(--cc-icon); cursor: pointer;
-      svg { width: 24px; height: 24px; }
-      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
-    }
-    .cc-search-sheet__field { flex: 1 1 auto; min-width: 0; }
-    .cc-search-sheet .s-search-modal, .cc-search-sheet .s-search-container { width: 100%; min-width: 0; }
-    .cc-search-sheet .s-search-input {
-      width: 100%; height: 44px; border: 1px solid var(--cc-border); border-radius: 12px; background: var(--cc-surface);
-      font-size: 16px; // 16px keeps iOS from zooming the page on focus.
-    }
-    .cc-search-sheet .s-search-input:focus { border-color: var(--cc-text); }
-    // Salla's results fill the area below the bar while typing.
-    .cc-search-sheet .s-search-results {
-      position: fixed; z-index: 1; left: 0; right: 0; bottom: 0; top: calc(68px + env(safe-area-inset-top, 0px));
-      overflow-y: auto; overscroll-behavior: contain; padding: 0 var(--cc-gutter) calc(16px + env(safe-area-inset-bottom, 0px));
-      background: var(--cc-surface);
-    }
-    .cc-search-sheet:not([data-typing]) .s-search-results, .cc-search-sheet:not([data-typing]) .s-search-no-results-placeholder { display: none; }
-    .cc-search-sheet__body {
-      flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain;
-      padding: 4px var(--cc-gutter) calc(24px + env(safe-area-inset-bottom, 0px));
-    }
-    .cc-search-sheet[data-typing] .cc-search-sheet__body { visibility: hidden; }
-    .cc-search-sheet__section { margin-block-end: 24px; }
-    .cc-search-sheet__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .cc-search-sheet__title { margin-block: 8px 12px; font-size: 18px; font-weight: 700; line-height: 28px; }
-    .cc-search-sheet__head .cc-search-sheet__title { margin-block: 0; }
-    .cc-search-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-    .cc-search-chip {
-      display: inline-flex; align-items: center; min-height: 40px; padding: 8px 16px; border: 1px solid var(--cc-text);
-      border-radius: 999px; color: var(--cc-text); font-size: 15px; font-weight: 500; line-height: 22px;
-      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
-    }
-    .cc-search-brands { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
-    .cc-search-brand {
-      display: grid; place-items: center; aspect-ratio: 1; padding: 14%; border: 1px solid var(--cc-border); border-radius: 50%;
-      background: var(--cc-surface); overflow: hidden;
-      img { width: 100%; height: 100%; object-fit: contain; }
-      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
+    // Salla's own search window, app style (Nice One reference): clear field, bold section titles and
+    // outlined pill chips for history, most-searched categories and terms, plus «ماركات مقترحة».
+    salla-modal.s-search-modal-new {
+      .s-search-input {
+        height: 44px; border: 1px solid var(--cc-border); border-radius: 12px; background: var(--cc-surface); color: var(--cc-text);
+        font-size: 16px; // 16px keeps iOS from zooming the page on focus.
+      }
+      .s-search-input:focus { border-color: var(--cc-text); }
+      .s-search-idle-section-title, .cc-search-brands-title { margin: 20px 0 12px; color: var(--cc-text); font-size: 18px; font-weight: 700; line-height: 28px; }
+      .s-search-idle-categories-list, .s-search-history-list, .s-search-most-searched-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+      .s-search-most-searched-list > li { min-width: 0; max-width: 100%; }
+      .s-search-idle-category-chip, .s-search-history-chip, .s-search-most-searched-item {
+        display: inline-flex; align-items: center; gap: 6px; max-width: 100%; min-height: 40px; padding: 8px 16px;
+        border: 1px solid var(--cc-text); border-radius: 999px; background: var(--cc-surface); color: var(--cc-text);
+        font-size: 15px; font-weight: 500; line-height: 22px;
+      }
+      // Most-searched entries are product names: one line, shortened, like the reference chips.
+      .s-search-most-searched-item { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .s-search-most-searched-icon { display: none; }
+      :is(.s-search-idle-category-chip, .s-search-history-chip, .s-search-most-searched-item, .cc-search-brand):focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
+      .cc-search-brands { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0 0 16px; list-style: none; }
+      .cc-search-brand {
+        display: grid; place-items: center; aspect-ratio: 1; padding: 14%; border: 1px solid var(--cc-border); border-radius: 50%;
+        background: var(--cc-surface); overflow: hidden;
+        img { width: 100%; height: 100%; object-fit: contain; }
+      }
+      .s-search-panel[data-cc-typing] .cc-search-brands-section { display: none; }
     }
 
     // Categories open as a full-screen sheet above the tab bar, with their own title and close button.
@@ -178,10 +157,6 @@ body.theme-beauty .cc-tabbar { display: none; }
   html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-tabbar__cart .s-cart-summary-count { right: auto; left: calc(50% + 4px); }
   html.cc-categories-open:has(body.cc-has-tabbar) { overflow: hidden; }
   html.cc-categories-open body.cc-has-tabbar .wa-s-n { visibility: hidden; }
-  html.cc-search-open:has(body.cc-has-tabbar) { overflow: hidden; }
-  html.cc-search-open body.cc-has-tabbar .wa-s-n { visibility: hidden; }
-  // The back chevron points to the inline start: right in Arabic, left in English.
-  html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-search-sheet__back svg { transform: scaleX(-1); }
 }
 
 // Phones, app-style home: when the merchant's tall promotions banner («بانر طويل») is the first
