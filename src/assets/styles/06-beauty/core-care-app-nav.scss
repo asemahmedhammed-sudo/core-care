@@ -104,7 +104,11 @@ body.theme-beauty .cc-tabbar { display: none; }
     .core-care-header__grid-icon { display: block; width: 24px; height: 24px; }
     .core-care-header__actions > .core-care-language-menu, .core-care-header__actions > .core-care-header__locale { grid-area: lang; }
     .core-care-header__notification { grid-area: bell; }
-    .core-care-header__notification svg { width: 24px; height: 24px; }
+    // Icon buttons in round discs with slightly bolder outlines, as in the app reference.
+    .core-care-header__links > [data-categories-toggle], .core-care-header__notification { border-radius: 50%; background: var(--cc-utility-surface); }
+    .core-care-header__notification svg, .core-care-header__grid-icon { width: 22px; height: 22px; stroke-width: 1.75; }
+    .core-care-header__search .s-search-icon-wrap { color: var(--cc-icon); }
+    .core-care-header__search .s-search-icon svg { width: 20px; height: 20px; }
     .core-care-header__scope {
       grid-area: scope; justify-self: start; justify-content: flex-start; gap: 6px; width: auto; max-width: 100%;
       font-size: 14px; line-height: 20px;
@@ -194,6 +198,22 @@ $cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main
     .core-care-header__links > [data-categories-toggle], .core-care-header__notification,
     .core-care-header__actions > .core-care-header__locale, .core-care-language-menu > .core-care-header__locale {
       border-radius: 50%; background: rgba(255, 255, 255, .92);
+    }
+  }
+}
+
+// Phones: no language/currency icon in the header (owner's choice); the footer button keeps it reachable.
+@media (max-width: 767px) {
+  body.theme-beauty.cc-has-tabbar {
+    .store-header { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: 'scope scope scope' 'search cats bell'; }
+    .core-care-header__actions > .core-care-header__locale, .core-care-language-menu > .core-care-header__locale { display: none; }
+    // The language menu keeps its bottom-sheet panel but no longer takes a grid cell.
+    .core-care-header__actions > .core-care-language-menu { position: absolute; width: 0; height: 0; overflow: visible; }
+    .core-care-footer__localization {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; margin: 0 auto 8px; padding: 0 16px;
+      border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; font-size: 14px; font-weight: 500; cursor: pointer;
+      svg { width: 20px; height: 20px; }
+      &:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
     }
   }
 }
