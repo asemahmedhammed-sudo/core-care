@@ -70,6 +70,7 @@
       "scope_prefix": "Your location:"
     },
     "search": {
+      "clear_history": "Clear recent searches",
       "brands": "Suggested brands"
     },
     "tabbar": {

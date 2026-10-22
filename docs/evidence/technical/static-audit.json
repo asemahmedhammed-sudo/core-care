@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-22T05:21:18.018Z",
+  "generatedAt": "2026-10-22T08:42:29.033Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 182,
+    "keyCount": 183,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -2898,7 +2898,7 @@
     {
       "file": "src/views/pages/partials/mobile-search.twig",
       "kind": "new-template",
-      "sha256": "623ea158756a643bbd715ede2a29b046e5adeabf59da9013db4db77f7f6307fc"
+      "sha256": "4e32de13d20e98398a9356568cab7e1909a1791701a86d0c27a3ade3b6274e81"
     },
     {
       "file": "src/views/pages/partials/mobile-tabbar.twig",
@@ -3008,7 +3008,7 @@
   "networkSourceCandidates": [
     {
       "file": "src/assets/js/partials/core-care-search-sheet.js",
-      "line": 56,
+      "line": 57,
       "pattern": "fetch("
     },
     {
