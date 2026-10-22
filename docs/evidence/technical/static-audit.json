@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-22T12:47:03.456Z",
+  "generatedAt": "2026-10-22T13:06:48.886Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -1304,132 +1304,144 @@
     },
     {
       "location": "settings[74]",
+      "id": "beauty_tabbar_center_icon",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "settings[75]",
+      "id": "beauty_tabbar_center_style",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "settings[76]",
       "id": "beauty_tabbar_center_image",
       "type": "string",
       "format": "image"
     },
     {
-      "location": "settings[75]",
+      "location": "settings[77]",
       "id": "beauty_tabbar_center_image_en",
       "type": "string",
       "format": "image"
     },
     {
-      "location": "settings[76]",
+      "location": "settings[78]",
       "id": "beauty_tabbar_center_url",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "settings[77]",
+      "location": "settings[79]",
       "id": "beauty_tabbar_center_label",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "settings[78]",
+      "location": "settings[80]",
       "id": "beauty_search_brands",
       "type": "string",
       "format": "textarea"
     },
     {
-      "location": "settings[79]",
+      "location": "settings[81]",
       "id": "topnav_is_dark",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[80]",
+      "location": "settings[82]",
       "id": "important_links",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[81]",
+      "location": "settings[83]",
       "id": "enable_more_menu",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[82]",
+      "location": "settings[84]",
       "id": "footer_is_dark",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[83]",
+      "location": "settings[85]",
       "id": "product_show_breadcrumbs",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[84]",
+      "location": "settings[86]",
       "id": "product_index_show_breadcrumbs",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[85]",
+      "location": "settings[87]",
       "id": "enable_add_product_toast",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[86]",
+      "location": "settings[88]",
       "id": "beauty_show_product_promotion_titles",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[87]",
+      "location": "settings[89]",
       "id": "notify_when_available_in_card",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[88]",
+      "location": "settings[90]",
       "id": "sticky_add_to_cart",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[89]",
+      "location": "settings[91]",
       "id": "show_tags",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[90]",
+      "location": "settings[92]",
       "id": "slider_background_size",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[91]",
+      "location": "settings[93]",
       "id": "imageZoom",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[92]",
+      "location": "settings[94]",
       "id": "beauty_brand_name",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "settings[93]",
+      "location": "settings[95]",
       "id": "beauty_palette",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[94]",
+      "location": "settings[96]",
       "id": "beauty_alternate_sections",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[95]",
+      "location": "settings[97]",
       "id": "beauty_reference_font",
       "type": "boolean",
       "format": "switch"
@@ -2370,27 +2382,27 @@
       "value": 1000
     },
     {
-      "location": "$.settings.76.minLength",
-      "value": 0
-    },
-    {
-      "location": "$.settings.76.maxLength",
-      "value": 1000
-    },
-    {
-      "location": "$.settings.77.minLength",
-      "value": 0
-    },
-    {
-      "location": "$.settings.77.maxLength",
-      "value": 20
-    },
-    {
       "location": "$.settings.78.minLength",
       "value": 0
     },
     {
       "location": "$.settings.78.maxLength",
+      "value": 1000
+    },
+    {
+      "location": "$.settings.79.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.79.maxLength",
+      "value": 20
+    },
+    {
+      "location": "$.settings.80.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.80.maxLength",
       "value": 600
     },
     {
@@ -2838,7 +2850,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "7ae4e91a717f67abc3896ee6dd37f2c3faa19d8e849843d9e9f16c9ddece78a4"
+      "sha256": "60eb237e735bdc00bd3147f5ae3e8391bd5f6af7d8560770bb350fd95a5935f9"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -2903,7 +2915,7 @@
     {
       "file": "src/views/pages/partials/mobile-tabbar.twig",
       "kind": "new-template",
-      "sha256": "701877afb271975112b89fb65f5a0fbead6882cf32b406e7ed98fc7691f5ad09"
+      "sha256": "b36e437182c72253c72d64da2fa7940570423493deae88325f7ede5c54499908"
     },
     {
       "file": "src/views/pages/partials/product/gallery.twig",

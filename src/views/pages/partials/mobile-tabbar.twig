@@ -9,6 +9,12 @@
 {# Multilanguage settings arrive as per-language arrays; resolve the current language before string filters. #}
 {% set center_label = theme.settings.get('beauty_tabbar_center_label') %}
 {% set center_label = (center_label is iterable ? center_label[language.code]|default(center_label|first) : center_label)|default('')|trim %}
+{# Campaign button: a built-in white line icon on a coloured disc (merchant's choice), or the merchant's own image. #}
+{% set center_mode = theme.settings.get('beauty_tabbar_center_icon', 'ribbon')|default('ribbon') %}
+{% set center_mode = center_mode in ['ribbon', 'gift', 'tag', 'sparkle', 'heart', 'image', 'none'] ? center_mode : 'ribbon' %}
+{% set center_style = theme.settings.get('beauty_tabbar_center_style', 'pink')|default('pink') %}
+{% set center_style = center_style in ['pink', 'purple', 'dark'] ? center_style : 'pink' %}
+{% set center_show = center_valid and center_mode != 'none' and (center_mode != 'image' or center_image) %}
 {% set yield_to_product_bar = page.slug == 'product.single' and theme.settings.get('sticky_add_to_cart') %}
 <nav class="cc-tabbar{{ yield_to_product_bar ? ' cc-tabbar--yield' : '' }}" data-testid="store-tabbar" aria-label="{{ trans('beauty.tabbar.label') }}">
   <ul class="cc-tabbar__list">
@@ -25,10 +31,29 @@
         <span class="cc-tabbar__label">{{ trans('beauty.tabbar.categories') }}</span>
       </button>
     </li>
-    {% if center_image and center_valid %}
+    {% if center_show %}
     <li>
+      {% if center_mode == 'image' %}
       <a class="cc-tabbar__item cc-tabbar__item--campaign" href="{{ center_url|e('html_attr') }}">
         <img class="cc-tabbar__campaign" src="{{ center_image }}" alt="{{ (center_label ?: trans('beauty.tabbar.campaign'))|e('html_attr') }}" width="48" height="48" loading="lazy" decoding="async">
+      {% else %}
+      <a class="cc-tabbar__item cc-tabbar__item--campaign" href="{{ center_url|e('html_attr') }}" aria-label="{{ (center_label ?: trans('beauty.tabbar.campaign'))|e('html_attr') }}">
+        <span class="cc-tabbar__fab cc-tabbar__fab--{{ center_style }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            {%- if center_mode == 'gift' -%}
+            <rect x="4" y="9" width="16" height="4" rx="1"/><path d="M5.5 13v5.5A1.5 1.5 0 0 0 7 20h10a1.5 1.5 0 0 0 1.5-1.5V13M12 9v11M12 9C10.6 5.8 7.5 5.6 7.5 7.4 7.5 8.6 9.5 9 12 9Zm0 0c1.4-3.2 4.5-3.4 4.5-1.6C16.5 8.6 14.5 9 12 9Z"/>
+            {%- elseif center_mode == 'tag' -%}
+            <path d="M3.5 11.4V5A1.5 1.5 0 0 1 5 3.5h6.4c.4 0 .8.2 1.1.4l7.6 7.6a1.5 1.5 0 0 1 0 2.1l-6.5 6.5a1.5 1.5 0 0 1-2.1 0l-7.6-7.6a1.5 1.5 0 0 1-.4-1.1Z"/><circle cx="8" cy="8" r="1.4"/>
+            {%- elseif center_mode == 'sparkle' -%}
+            <path d="M11 4.5 12.8 9l4.5 1.8-4.5 1.8L11 17.1l-1.8-4.5-4.5-1.8L9.2 9Z"/><path d="M18 15.5v4M16 17.5h4"/>
+            {%- elseif center_mode == 'heart' -%}
+            <path d="M12 19.5s-7-4.2-7-9.4A4 4 0 0 1 12 7.6a4 4 0 0 1 7 2.5c0 5.2-7 9.4-7 9.4Z"/>
+            {%- else -%}
+            <path d="M12 13.8C10 11.3 9.1 9.4 9.1 7.6a2.9 2.9 0 0 1 5.8 0c0 1.8-.9 3.7-2.9 6.2Z"/><path d="M10.4 11.6 7 19l2.6-.5 1.1 2.3 2.6-5.4M13.6 11.6 17 19l-2.6-.5-1.1 2.3-1.3-2.7"/>
+            {%- endif -%}
+          </svg>
+        </span>
+      {% endif %}
         {% if center_label %}<span class="cc-tabbar__label" aria-hidden="true">{{ center_label }}</span>{% endif %}
       </a>
     </li>
