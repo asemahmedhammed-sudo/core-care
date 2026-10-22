@@ -1,6 +1,7 @@
 // Phone/tablet search (pages/partials/mobile-search.twig). Salla's own search window keeps the history,
 // most-searched sections and results; below 1024px this adds «ماركات مقترحة» under them while the
-// field is empty, with logos and links read from the theme's own brands page.
+// field is empty: the brands the merchant named (setting beauty_search_brands), with the logos and
+// links of the theme's own brands page.
 const BRANDS_KEY = 'cc-search-brands';
 const SEARCH_WINDOW = 'salla-modal.s-search-modal-new';
 export const BRANDS_LIMIT = 12;
@@ -21,7 +22,21 @@ export function brandsFromDocument(doc, base) {
         const logo = safeUrl(image?.getAttribute('src'), base);
         const name = (image?.getAttribute('alt') || '').trim();
         return url && logo && name ? { url, logo, name } : null;
-    }).filter(Boolean).slice(0, BRANDS_LIMIT);
+    }).filter(Boolean);
+}
+
+const normalize = value => String(value ?? '').toLowerCase().replace(/\s+/g, '');
+
+// Keeps the merchant's order; names are matched without case or spaces, unknown names are skipped.
+export function pickBrands(brands, names) {
+    const byName = new Map(brands.map(brand => [normalize(brand.name), brand]));
+    const picked = [];
+    for (const name of names) {
+        const brand = byName.get(normalize(name));
+        if (brand && !picked.includes(brand)) picked.push(brand);
+        if (picked.length === BRANDS_LIMIT) break;
+    }
+    return picked;
 }
 
 function readCache() {
@@ -83,8 +98,10 @@ function enhance(input) {
     panel.toggleAttribute('data-cc-typing', !!input.value.trim());
     if (panel.querySelector('.cc-search-brands-section') || panel.dataset.ccBrands === 'loading') return;
     panel.dataset.ccBrands = 'loading';
-    loadBrands(config.dataset.brandsUrl).then(brands => {
+    const names = (config.dataset.brandsNames || '').split('|').filter(Boolean);
+    loadBrands(config.dataset.brandsUrl).then(all => {
         delete panel.dataset.ccBrands;
+        const brands = pickBrands(all, names);
         if (brands.length && !panel.querySelector('.cc-search-brands-section')) panel.append(brandsSection(brands, config.dataset.brandsTitle));
     });
 }

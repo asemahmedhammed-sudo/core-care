@@ -166,7 +166,10 @@ test('phone search: the Salla search window, restyled, plus suggested brands (ph
   assert.match(layoutNow, /\{% include 'pages\.partials\.mobile-tabbar' %\}\{% include 'pages\.partials\.mobile-search' %\}/);
   // No second search component or custom window: results, history and most-searched stay Salla's.
   assert.doesNotMatch(config, /<salla-search|<core-care-search-sheet/);
-  assert.match(config, /<span hidden id="cc-search-config" data-brands-url="\{\{ link\('brands'\)\|e\('html_attr'\) \}\}" data-brands-title="\{\{ trans\('beauty\.search\.brands'\)\|e\('html_attr'\) \}\}"><\/span>/);
+  assert.match(config, /\{% if brand_names\|length %\}\s*<span hidden id="cc-search-config" data-brands-url="\{\{ link\('brands'\)\|e\('html_attr'\) \}\}" data-brands-title="\{\{ trans\('beauty\.search\.brands'\)\|e\('html_attr'\) \}\}" data-brands-names="\{\{ brand_names\|join\('\|'\)\|e\('html_attr'\) \}\}"><\/span>/);
+  const brandSetting = manifest.settings.find(item => item.id === 'beauty_search_brands');
+  assert.equal(brandSetting.format, 'textarea');
+  assert.equal(brandSetting.value, null);
   assert.equal(manifest.settings.some(item => item.id === 'beauty_search_popular'), false);
   assert.match(styles, /salla-modal\.s-search-modal-new \{[\s\S]*?font-size: 16px; \/\/ 16px keeps iOS from zooming/);
   assert.match(styles, /\.s-search-panel\[data-cc-typing\] \.cc-search-brands-section \{ display: none; \}/);
@@ -182,7 +185,11 @@ test('phone search: the Salla search window, restyled, plus suggested brands (ph
   const doc = { querySelectorAll: selector => (selector === 'a[data-testid="store-brand-item"]' ? tiles : []) };
   const brands = mod.brandsFromDocument(doc, 'https://store.test/ar/');
   assert.deepEqual(brands[0], { url: 'https://store.test/brand/a', logo: 'https://cdn.test/a.png', name: 'NYX' });
-  assert.equal(brands.length, mod.BRANDS_LIMIT);
+  assert.equal(brands.length, 21);
   assert.ok(brands.every(brand => brand.name && brand.url.startsWith('https://store.test/')));
+  // Only the merchant's names, in their order, ignoring case and spaces; unknown names and duplicates are skipped.
+  assert.deepEqual(mod.pickBrands(brands, ['brand 3', 'nyx', 'Unknown', 'NYX', 'Brand3']).map(b => b.name), ['Brand 3', 'NYX']);
+  assert.equal(mod.pickBrands(brands, brands.map(b => b.name)).length, mod.BRANDS_LIMIT);
+  assert.deepEqual(mod.pickBrands(brands, []), []);
   assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
 });
