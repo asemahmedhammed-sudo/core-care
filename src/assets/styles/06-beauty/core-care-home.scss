@@ -205,29 +205,32 @@ body.theme-beauty.beauty-reference-home {
     .beauty-categories__list:has(> li:nth-child(6))::-webkit-scrollbar { display: none; }
     .beauty-categories__list:has(> li:nth-child(6)) li { max-width: none; min-width: 0; }
     .beauty-categories__list:has(> li:nth-child(6)) .beauty-category__image { width: min(62px, 100%); height: auto; aspect-ratio: 1; }
-    // App-style circles on phones: a thin pale blue ring on the page colour, bold names, the full name
-    // inside a circle without an image.
+    // App-style circles on phones: a thin pale blue ring, filled with the page colour so they stay readable
+    // over the banner, bold names that wrap only between words, and the full name inside a circle without an image.
     .beauty-categories {
       .beauty-category { gap: 6px; }
+      .beauty-category > span:last-child { max-width: calc(100% + 18px); overflow-wrap: normal; }
       .beauty-category__image, li:nth-child(n) .beauty-category__image {
-        --cc-tile-surface: transparent; --cc-tile-ink: var(--cc-text);
-        width: 62px; height: 62px; background: transparent; box-shadow: inset 0 0 0 1px #d9e7f1;
+        --cc-tile-surface: var(--cc-canvas); --cc-tile-ink: var(--cc-text);
+        width: 62px; height: 62px; background: var(--cc-canvas); box-shadow: inset 0 0 0 1px #d9e7f1;
       }
       .beauty-category__image img.is-loaded { background: var(--cc-canvas); }
       .beauty-category__initial { display: none; }
       .beauty-category__text {
-        display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; max-width: 54px;
-        font-size: 12px; font-weight: 700; line-height: 15px; text-align: center; overflow-wrap: anywhere;
+        display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; max-width: 58px;
+        font-size: 11px; font-weight: 700; line-height: 14px; text-align: center;
       }
-      .beauty-category__name { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 13px; font-weight: 600; line-height: 18px; }
+      .beauty-category__name { font-size: 13px; font-weight: 600; line-height: 18px; }
       .beauty-category:hover .beauty-category__image, .beauty-category:focus-visible .beauty-category__image {
-        background: transparent; box-shadow: inset 0 0 0 1px #d9e7f1, 0 0 0 2px var(--cc-canvas), 0 0 0 3px var(--cc-text);
+        background: var(--cc-canvas); box-shadow: inset 0 0 0 1px #d9e7f1, 0 0 0 2px var(--cc-canvas), 0 0 0 3px var(--cc-text);
       }
     }
     // Directly under the tall banner (and without a title) the first row rides over the banner's lower edge,
     // as in the app; the banner's dots move up out of their way. Salla puts editor markers between sections.
-    #main-content > .beauty-promotions--mobile-tall + .beauty-categories--untitled,
-    #main-content > .beauty-promotions--mobile-tall + .s-design-after + .s-design-before + .beauty-categories--untitled {
+    // :not(#cc-overlap) matches every section but counts as a second ID, so the transparent background and
+    // zero top padding win over the alternating-sections rule and its long :not() chain.
+    #main-content > .beauty-promotions--mobile-tall + .beauty-categories--untitled:not(#cc-overlap),
+    #main-content > .beauty-promotions--mobile-tall + .s-design-after + .s-design-before + .beauty-categories--untitled:not(#cc-overlap) {
       position: relative; z-index: 1; margin-block-start: calc(-1 * var(--beauty-section-gap) - 36px);
       padding-block-start: 0; background: transparent;
     }
