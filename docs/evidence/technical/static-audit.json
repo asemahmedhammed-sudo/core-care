@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-22T05:18:03.583Z",
+  "generatedAt": "2026-10-22T05:21:18.018Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -3008,7 +3008,7 @@
   "networkSourceCandidates": [
     {
       "file": "src/assets/js/partials/core-care-search-sheet.js",
-      "line": 54,
+      "line": 56,
       "pattern": "fetch("
     },
     {

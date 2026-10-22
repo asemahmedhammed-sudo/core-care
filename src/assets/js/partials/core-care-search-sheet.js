@@ -29,7 +29,9 @@ const normalize = value => String(value ?? '').toLowerCase().replace(/\s+/g, '')
 
 // Keeps the merchant's order; names are matched without case or spaces, unknown names are skipped.
 export function pickBrands(brands, names) {
-    const byName = new Map(brands.map(brand => [normalize(brand.name), brand]));
+    // Stores can hold several brands with the same name; the first one on the brands page wins.
+    const byName = new Map();
+    for (const brand of brands) if (!byName.has(normalize(brand.name))) byName.set(normalize(brand.name), brand);
     const picked = [];
     for (const name of names) {
         const brand = byName.get(normalize(name));

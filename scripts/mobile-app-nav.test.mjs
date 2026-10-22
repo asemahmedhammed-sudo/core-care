@@ -191,5 +191,8 @@ test('phone search: the Salla search window, restyled, plus suggested brands (ph
   assert.deepEqual(mod.pickBrands(brands, ['brand 3', 'nyx', 'Unknown', 'NYX', 'Brand3']).map(b => b.name), ['Brand 3', 'NYX']);
   assert.equal(mod.pickBrands(brands, brands.map(b => b.name)).length, mod.BRANDS_LIMIT);
   assert.deepEqual(mod.pickBrands(brands, []), []);
+  // Stores can hold several brands with one name (the live store has 154 such names); the first tile wins.
+  const twins = [{ name: 'Avon', url: 'https://store.test/a1', logo: 'https://cdn.test/1.png' }, { name: 'AVON', url: 'https://store.test/a2', logo: 'https://cdn.test/2.png' }];
+  assert.equal(mod.pickBrands(twins, ['avon'])[0].url, 'https://store.test/a1');
   assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
 });
