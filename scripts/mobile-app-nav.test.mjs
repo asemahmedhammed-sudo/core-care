@@ -147,7 +147,7 @@ test('app-style home on phones: tall banner switch, header over it, two-row shor
   // The header overlay applies only when the tall banner is the first section, and only while at the top.
   assert.match(styles, /\$cc-hero-first: 'body\.theme-beauty\.cc-has-tabbar\.beauty-reference-home:has\(#main-content > \.beauty-promotions--mobile-tall\):not\(:has\(#main-content > :not\(\.s-design-invisible-dom, salla-hook, salla-free-shipping-banner:empty\) ~ \.beauty-promotions--mobile-tall\)\)';/);
   assert.match(styles, /@media \(max-width: 767px\) \{\s*#\{\$cc-hero-first\} \{/);
-  assert.match(styles, /#\{\$cc-hero-first\}\.cc-header-at-top \{\s*\.store-header \{ background: transparent;/);
+  assert.match(styles, /html:not\(\.cc-categories-open\) #\{\$cc-hero-first\}\.cc-header-at-top \{\s*\.store-header \{ background: transparent;/);
   const source = read('src/assets/js/partials/core-care-tabbar.js');
   const { headerAtTop } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
   assert.equal(headerAtTop(0), true);
