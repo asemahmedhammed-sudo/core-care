@@ -69,6 +69,9 @@
       "close_languages": "إغلاق قائمة اللغات",
       "scope_prefix": "موقعك:"
     },
+    "search": {
+      "brands": "ماركات مقترحة"
+    },
     "tabbar": {
       "label": "التنقل السريع",
       "home": "الرئيسية",

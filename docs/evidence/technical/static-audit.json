@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-22T04:45:52.592Z",
+  "generatedAt": "2026-10-22T05:21:18.018Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 181,
+    "keyCount": 182,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -1328,102 +1328,108 @@
     },
     {
       "location": "settings[78]",
+      "id": "beauty_search_brands",
+      "type": "string",
+      "format": "textarea"
+    },
+    {
+      "location": "settings[79]",
       "id": "topnav_is_dark",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[79]",
+      "location": "settings[80]",
       "id": "important_links",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[80]",
+      "location": "settings[81]",
       "id": "enable_more_menu",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[81]",
+      "location": "settings[82]",
       "id": "footer_is_dark",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[82]",
+      "location": "settings[83]",
       "id": "product_show_breadcrumbs",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[83]",
+      "location": "settings[84]",
       "id": "product_index_show_breadcrumbs",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[84]",
+      "location": "settings[85]",
       "id": "enable_add_product_toast",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[85]",
+      "location": "settings[86]",
       "id": "beauty_show_product_promotion_titles",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[86]",
+      "location": "settings[87]",
       "id": "notify_when_available_in_card",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[87]",
+      "location": "settings[88]",
       "id": "sticky_add_to_cart",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[88]",
+      "location": "settings[89]",
       "id": "show_tags",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[89]",
+      "location": "settings[90]",
       "id": "slider_background_size",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[90]",
+      "location": "settings[91]",
       "id": "imageZoom",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[91]",
+      "location": "settings[92]",
       "id": "beauty_brand_name",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "settings[92]",
+      "location": "settings[93]",
       "id": "beauty_palette",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[93]",
+      "location": "settings[94]",
       "id": "beauty_alternate_sections",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[94]",
+      "location": "settings[95]",
       "id": "beauty_reference_font",
       "type": "boolean",
       "format": "switch"
@@ -2380,6 +2386,14 @@
       "value": 20
     },
     {
+      "location": "$.settings.78.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.78.maxLength",
+      "value": 600
+    },
+    {
       "location": "$.components.0.fields.0.minLength",
       "value": 0
     },
@@ -2824,7 +2838,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "3cc0d625732b0f4bb086e7a4ec5d79b89e81ceba4937d8d0dcae9a21bf428e41"
+      "sha256": "cc26194ba069577f203e27d4a835bfb50439bbcda8411b291ccc23838edf4fcf"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -2880,6 +2894,11 @@
       "file": "src/views/pages/partials/localized-image.twig",
       "kind": "new-template",
       "sha256": "da791c8e56ffe1e3264940751b513a3b77070d15fdaa01200f20378c7871080a"
+    },
+    {
+      "file": "src/views/pages/partials/mobile-search.twig",
+      "kind": "new-template",
+      "sha256": "623ea158756a643bbd715ede2a29b046e5adeabf59da9013db4db77f7f6307fc"
     },
     {
       "file": "src/views/pages/partials/mobile-tabbar.twig",
@@ -2987,6 +3006,11 @@
     "note": "No source is marked safe merely because it occurs in upstream Raed."
   },
   "networkSourceCandidates": [
+    {
+      "file": "src/assets/js/partials/core-care-search-sheet.js",
+      "line": 56,
+      "pattern": "fetch("
+    },
     {
       "file": "src/assets/js/product.js",
       "line": 36,

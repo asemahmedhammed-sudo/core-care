@@ -16,7 +16,7 @@ const setting = id => manifest.settings.find(item => item.id === id);
 test('safe-area insets are exposed and the tab bar is opt-out by setting', () => {
   assert.match(layout, /<meta name="viewport" content="width=device-width, initial-scale=1\.0, viewport-fit=cover">/);
   assert.match(layout, /theme\.settings\.get\('beauty_mobile_tabbar', true\) \? 'cc-has-tabbar' : ''/);
-  assert.match(layout, /\{% if theme\.settings\.get\('beauty_mobile_tabbar', true\) %\}\{% include 'pages\.partials\.mobile-tabbar' %\}\{% endif %\}/);
+  assert.match(layout, /\{% if theme\.settings\.get\('beauty_mobile_tabbar', true\) %\}\{% include 'pages\.partials\.mobile-tabbar' %\}\{% include 'pages\.partials\.mobile-search' %\}\{% endif %\}/);
   assert.equal(setting('beauty_mobile_tabbar').value, true);
   assert.equal(setting('beauty_mobile_tabbar').type, 'boolean');
   // Landscape iPhones draw under the notch with viewport-fit=cover; content keeps to the safe area.
@@ -158,4 +158,41 @@ test('app-style home on phones: tall banner switch, header over it, two-row shor
 
 test('empty Salla free-shipping banner does not add a gap above the first section on phones and tablets', () => {
   assert.match(styles, /#main-content > salla-free-shipping-banner:empty \{ display: none; \}/);
+});
+
+test('phone search: the Salla search window, restyled, plus suggested brands (phones and tablets only)', async () => {
+  const config = read('src/views/pages/partials/mobile-search.twig');
+  const layoutNow = read('src/views/layouts/master.twig');
+  assert.match(layoutNow, /\{% include 'pages\.partials\.mobile-tabbar' %\}\{% include 'pages\.partials\.mobile-search' %\}/);
+  // No second search component or custom window: results, history and most-searched stay Salla's.
+  assert.doesNotMatch(config, /<salla-search|<core-care-search-sheet/);
+  assert.match(config, /\{% if brand_names\|length %\}\s*<span hidden id="cc-search-config" data-brands-url="\{\{ link\('brands'\)\|e\('html_attr'\) \}\}" data-brands-title="\{\{ trans\('beauty\.search\.brands'\)\|e\('html_attr'\) \}\}" data-brands-names="\{\{ brand_names\|join\('\|'\)\|e\('html_attr'\) \}\}"><\/span>/);
+  const brandSetting = manifest.settings.find(item => item.id === 'beauty_search_brands');
+  assert.equal(brandSetting.format, 'textarea');
+  assert.equal(brandSetting.value, null);
+  assert.equal(manifest.settings.some(item => item.id === 'beauty_search_popular'), false);
+  assert.match(styles, /salla-modal\.s-search-modal-new \{[\s\S]*?font-size: 16px; \/\/ 16px keeps iOS from zooming/);
+  assert.match(styles, /\.s-search-panel\[data-cc-typing\] \.cc-search-brands-section \{ display: none; \}/);
+
+  const source = read('src/assets/js/partials/core-care-search-sheet.js');
+  const mod = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+  assert.match(source, /window\.matchMedia\('\(max-width: 1023px\)'\)\.matches/);
+  for (const value of ['javascript:alert(1)', 'data:text/html,x', '', null, 'https://u:p@x.test/a']) assert.equal(mod.safeUrl(value, 'https://store.test/'), null, String(value));
+  // Brands come only from the theme's own brands page tiles, with valid links, logos and names, at most 12.
+  const tile = (href, src, alt) => ({ getAttribute: name => (name === 'href' ? href : null), querySelector: () => ({ getAttribute: name => ({ src, alt })[name] ?? null }) });
+  const tiles = [tile('/brand/a', 'https://cdn.test/a.png', 'NYX'), tile('javascript:x', 'https://cdn.test/b.png', 'Bad'), tile('/brand/c', 'https://cdn.test/c.png', '')];
+  for (let i = 0; i < 20; i += 1) tiles.push(tile(`/brand/${i}`, `https://cdn.test/${i}.png`, `Brand ${i}`));
+  const doc = { querySelectorAll: selector => (selector === 'a[data-testid="store-brand-item"]' ? tiles : []) };
+  const brands = mod.brandsFromDocument(doc, 'https://store.test/ar/');
+  assert.deepEqual(brands[0], { url: 'https://store.test/brand/a', logo: 'https://cdn.test/a.png', name: 'NYX' });
+  assert.equal(brands.length, 21);
+  assert.ok(brands.every(brand => brand.name && brand.url.startsWith('https://store.test/')));
+  // Only the merchant's names, in their order, ignoring case and spaces; unknown names and duplicates are skipped.
+  assert.deepEqual(mod.pickBrands(brands, ['brand 3', 'nyx', 'Unknown', 'NYX', 'Brand3']).map(b => b.name), ['Brand 3', 'NYX']);
+  assert.equal(mod.pickBrands(brands, brands.map(b => b.name)).length, mod.BRANDS_LIMIT);
+  assert.deepEqual(mod.pickBrands(brands, []), []);
+  // Stores can hold several brands with one name (the live store has 154 such names); the first tile wins.
+  const twins = [{ name: 'Avon', url: 'https://store.test/a1', logo: 'https://cdn.test/1.png' }, { name: 'AVON', url: 'https://store.test/a2', logo: 'https://cdn.test/2.png' }];
+  assert.equal(mod.pickBrands(twins, ['avon'])[0].url, 'https://store.test/a1');
+  assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
 });

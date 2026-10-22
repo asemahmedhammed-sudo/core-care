@@ -69,6 +69,9 @@
       "close_languages": "Close languages",
       "scope_prefix": "Your location:"
     },
+    "search": {
+      "brands": "Suggested brands"
+    },
     "tabbar": {
       "label": "Quick navigation",
       "home": "Home",
