@@ -216,6 +216,8 @@ test('phones: no language/currency icon in the header, round icon discs, and a f
   // The language panel itself stays in the page so the footer switch can open it.
   assert.doesNotMatch(phone, /\.core-care-language-menu \{ display: none/);
   assert.match(styles, /\.core-care-header__links > \[data-categories-toggle\], \.core-care-header__notification \{ border-radius: 50%; background: var\(--cc-utility-surface\); \}/);
+  assert.match(styles, /\.core-care-header__search \.s-search-icon :is\(svg, path\) \{ fill: var\(--cc-icon\); \}/);
+  assert.match(styles, /\.core-care-header__search \.s-search-icon-wrap \{ z-index: 1; pointer-events: none; \}/);
   assert.match(footer, /\{% if store\.settings\.is_multilingual or store\.settings\.currencies_enabled %\}\s*<button class="core-care-footer__localization" type="button" data-cc-localization-open>/);
   assert.match(read('src/assets/styles/06-beauty/core-care-footer.scss'), /body\.theme-beauty \.core-care-footer__localization \{ display: none; \}/);
   assert.match(tabbarJs, /closest\('\[data-cc-localization-open\]'\)[\s\S]*?event\.stopPropagation\(\);[\s\S]*?\.core-care-language-menu \[data-language-toggle\], \.core-care-header__actions > \.core-care-header__locale'\)\?\.click\(\);\s*\}, true\);/);

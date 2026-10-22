@@ -108,7 +108,11 @@ body.theme-beauty .cc-tabbar { display: none; }
     .core-care-header__links > [data-categories-toggle], .core-care-header__notification { border-radius: 50%; background: var(--cc-utility-surface); }
     .core-care-header__notification svg, .core-care-header__grid-icon { width: 22px; height: 22px; stroke-width: 1.75; }
     .core-care-header__search .s-search-icon-wrap { color: var(--cc-icon); }
+    // Salla paints the magnifier with fill: #9ca3af; the reference uses the dark icon colour.
     .core-care-header__search .s-search-icon svg { width: 20px; height: 20px; }
+    .core-care-header__search .s-search-icon :is(svg, path) { fill: var(--cc-icon); }
+    // The icon precedes the field in Salla's markup, so the field's fill painted over it.
+    .core-care-header__search .s-search-icon-wrap { z-index: 1; pointer-events: none; }
     .core-care-header__scope {
       grid-area: scope; justify-self: start; justify-content: flex-start; gap: 6px; width: auto; max-width: 100%;
       font-size: 14px; line-height: 20px;
@@ -193,7 +197,7 @@ $cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main
   }
   #{$cc-hero-first}.cc-header-at-top {
     .store-header { background: transparent; border-bottom-color: transparent; }
-    .s-search-input { background: rgba(255, 255, 255, .92); }
+    .s-search-input { background: rgba(255, 255, 255, .96); }
     // White discs keep the icons readable on any artwork, as in the reference.
     .core-care-header__links > [data-categories-toggle], .core-care-header__notification,
     .core-care-header__actions > .core-care-header__locale, .core-care-language-menu > .core-care-header__locale {
