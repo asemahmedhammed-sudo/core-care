@@ -32,25 +32,26 @@ body.theme-beauty .cc-tabbar { display: none; }
     .cc-tabbar__item {
       flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
       min-width: 0; min-height: 44px; padding: 4px 2px; border: 0; border-radius: 8px; background: transparent;
-      color: var(--cc-icon); font-size: 12px; font-weight: 500; line-height: 16px; text-align: center; cursor: pointer;
+      color: var(--cc-text); font-size: 14px; font-weight: 600; line-height: 18px; text-align: center; cursor: pointer;
     }
     .cc-tabbar__item:focus-visible, .cc-tabbar__cart a:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -4px; }
-    .cc-tabbar__icon { flex: none; width: 24px; height: 24px; }
+    .cc-tabbar__icon { flex: none; width: 28px; height: 28px; }
     .cc-tabbar__fill { fill: transparent; transition: fill .2s ease; }
     .cc-tabbar__label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     // Current destination (or the open categories panel): filled icon and heavier label, not colour alone.
+    // As in the app, the current tab's icon fills with pale blue.
     .cc-tabbar__item[aria-current='page'], .cc-tabbar__item[aria-expanded='true'], .cc-tabbar__cart.is-active .cc-tabbar__item {
       color: var(--cc-text); font-weight: 700;
-      .cc-tabbar__fill { fill: var(--cc-secondary-soft); }
+      .cc-tabbar__fill { fill: var(--cc-tabbar-active-fill); }
     }
     // While the categories sheet is open it is the only highlighted tab.
     .cc-tabbar__list:has([aria-expanded='true']) [aria-current='page'],
     .cc-tabbar__list:has([aria-expanded='true']) .is-active .cc-tabbar__item {
-      color: var(--cc-icon); font-weight: 500;
+      color: var(--cc-text); font-weight: 600;
       .cc-tabbar__fill { fill: transparent; }
     }
     // Optional merchant campaign slot.
-    .cc-tabbar__campaign { flex: none; width: 40px; height: 40px; object-fit: contain; }
+    .cc-tabbar__campaign { flex: none; width: 48px; height: 48px; object-fit: contain; }
     .cc-tabbar__item--campaign:has(.cc-tabbar__label) .cc-tabbar__campaign { width: 28px; height: 28px; }
 
     // Salla's cart summary: its link fills the column, its total is hidden, its count is a badge.
@@ -61,8 +62,8 @@ body.theme-beauty .cc-tabbar { display: none; }
     .cc-tabbar__cart .s-cart-summary-wrapper > div { flex: 1 1 auto; display: flex; min-width: 0; }
     .cc-tabbar__cart .s-cart-summary-content { display: none; }
     .cc-tabbar__cart .s-cart-summary-count {
-      position: absolute; top: 4px; display: inline-flex; align-items: center; justify-content: center;
-      min-width: 18px; width: auto; height: 18px; padding: 0 5px; border-radius: 999px;
+      position: absolute; top: 2px; display: inline-flex; align-items: center; justify-content: center;
+      min-width: 20px; width: auto; height: 20px; padding: 0 5px; border: 2px solid var(--cc-surface); border-radius: 999px;
       background: var(--cc-sale); color: #fff; font-size: 11px; font-weight: 700; line-height: 1;
       pointer-events: none;
     }
@@ -338,6 +339,11 @@ $cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main
       .core-categories__circle-media { width: min(88px, 100%); }
     }
   }
+}
+
+// The narrowest phones: smaller labels keep «سلة التسوق» whole when the campaign slot makes five tabs.
+@media (max-width: 359px) {
+  body.theme-beauty.cc-has-tabbar .cc-tabbar__item { padding-inline: 0; font-size: 12px; }
 }
 
 // Phone product pages: Salla's sticky add-to-cart bar owns the bottom edge.

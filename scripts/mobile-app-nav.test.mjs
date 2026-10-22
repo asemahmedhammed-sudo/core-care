@@ -110,7 +110,7 @@ test('desktop (1024px and wider) keeps its design: mobile rules stay inside phon
   }
   assert.deepEqual(topLevel, ['body.theme-beauty .cc-tabbar { display: none; }']);
   for (const query of styles.match(/@media [^{]+/g)) {
-    assert.match(query, /max-width: (1023|767|640)px|prefers-reduced-motion/, query);
+    assert.match(query, /max-width: (1023|767|640|359)px|prefers-reduced-motion/, query);
   }
   // Hero pagination: the original desktop capsule stays; the compact bars only override it below 1024px.
   const home = read('src/assets/styles/06-beauty/core-care-home.scss');
@@ -243,4 +243,23 @@ test('barcode search: hidden unless the browser has BarcodeDetector and a camera
   assert.match(source, /getTracks\(\)\.forEach\(track => track\.stop\(\)\)/);
   assert.match(source, /visibilitychange[\s\S]*?scanner\.close\(\)/);
   assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
+});
+
+test('tab bar follows the app reference: 28px outline icons, black labels, pale blue current tab', () => {
+  const styles = read('src/assets/styles/06-beauty/core-care-app-nav.scss');
+  const tokens = read('src/assets/styles/06-beauty/beauty.scss');
+  assert.match(styles, /\.cc-tabbar__icon \{ flex: none; width: 28px; height: 28px; \}/);
+  assert.match(styles, /color: var\(--cc-text\); font-size: 14px; font-weight: 600;/);
+  assert.match(styles, /\.cc-tabbar__fill \{ fill: var\(--cc-tabbar-active-fill\); \}/);
+  // Only phones and tablets get the taller bar; the desktop token keeps its value.
+  assert.match(tokens, /@media \(max-width: 1023px\) \{[\s\S]*?--cc-app-nav-height: 64px; --cc-tabbar-active-fill: #d8e9fb;/);
+  assert.match(tokens, /^body\.theme-beauty \{\s*--cc-app-nav-height: 60px;/m);
+  // Categories icon: three squares and a magnifier; campaign image 48px with reserved dimensions.
+  assert.match(tabbar, /<circle class="cc-tabbar__fill" cx="16\.8" cy="16\.8" r="3\.3"\/><path d="m19\.3 19\.3 1\.7 1\.7"\/>/);
+  assert.match(tabbar, /class="cc-tabbar__campaign"[^>]*width="48" height="48"/);
+});
+
+test('five tabs fit the narrowest phones without cutting labels', () => {
+  const styles = read('src/assets/styles/06-beauty/core-care-app-nav.scss');
+  assert.match(styles, /@media \(max-width: 359px\) \{\s*body\.theme-beauty\.cc-has-tabbar \.cc-tabbar__item \{ padding-inline: 0; font-size: 12px; \}/);
 });
