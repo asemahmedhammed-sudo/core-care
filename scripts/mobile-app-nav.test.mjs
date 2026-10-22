@@ -281,3 +281,7 @@ test('campaign button: built-in icon on a coloured disc, chosen by the merchant'
   assert.match(styles, /\.cc-tabbar__fab \{[^}]*width: 52px; height: 52px; margin-top: -22px;/);
   assert.match(styles, /prefers-reduced-motion[\s\S]*\.cc-tabbar__fab/);
 });
+
+test('default campaign icon is the awareness ribbon drawn as one crossing band', () => {
+  assert.match(tabbar, /\{%- else -%\}\s*<path d="M7\.2 21 13\.3 12C15 9\.4[^"]*" stroke-width="2\.2" stroke-linecap="butt"\/>/);
+});
