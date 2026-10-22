@@ -250,10 +250,11 @@ test('tab bar follows the app reference: 28px outline icons, black labels, pale 
   const styles = read('src/assets/styles/06-beauty/core-care-app-nav.scss');
   const tokens = read('src/assets/styles/06-beauty/beauty.scss');
   assert.match(styles, /\.cc-tabbar__icon \{ flex: none; width: 28px; height: 28px; \}/);
-  assert.match(styles, /color: var\(--cc-text\); font-size: 14px; font-weight: 600;/);
+  assert.match(styles, /color: var\(--cc-text\); font-size: 13px; font-weight: 600; line-height: 17px;/);
+  assert.match(styles, /justify-content: center; gap: 0;/);
   assert.match(styles, /\.cc-tabbar__fill \{ fill: var\(--cc-tabbar-active-fill\); \}/);
   // Only phones and tablets get the taller bar; the desktop token keeps its value.
-  assert.match(tokens, /@media \(max-width: 1023px\) \{[\s\S]*?--cc-app-nav-height: 64px; --cc-tabbar-active-fill: #d8e9fb;/);
+  assert.match(tokens, /@media \(max-width: 1023px\) \{[\s\S]*?--cc-app-nav-height: 64px; --cc-tabbar-active-fill: #c6e4ff;/);
   assert.match(tokens, /^body\.theme-beauty \{\s*--cc-app-nav-height: 60px;/m);
   // Categories icon: three squares and a magnifier; campaign image 48px with reserved dimensions.
   assert.match(tabbar, /<circle class="cc-tabbar__fill" cx="16\.8" cy="16\.8" r="3\.3"\/><path d="m19\.3 19\.3 1\.7 1\.7"\/>/);

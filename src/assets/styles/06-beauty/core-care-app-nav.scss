@@ -30,9 +30,10 @@ body.theme-beauty .cc-tabbar { display: none; }
     }
     .cc-tabbar__list > li { display: flex; min-width: 0; }
     .cc-tabbar__item {
-      flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      // No extra gap: the icon's own margin leaves about 6px above the label, as in the app.
+      flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0;
       min-width: 0; min-height: 44px; padding: 4px 2px; border: 0; border-radius: 8px; background: transparent;
-      color: var(--cc-text); font-size: 14px; font-weight: 600; line-height: 18px; text-align: center; cursor: pointer;
+      color: var(--cc-text); font-size: 13px; font-weight: 600; line-height: 17px; text-align: center; cursor: pointer;
     }
     .cc-tabbar__item:focus-visible, .cc-tabbar__cart a:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -4px; }
     .cc-tabbar__icon { flex: none; width: 28px; height: 28px; }
