@@ -30,10 +30,14 @@ export function categoryNode(item, depth = 0) {
     };
 }
 
+// The storefront API codes `id` (for example "yNazxp"); the number is in `id_` and the category link.
+const matchesCategory = (item, id) => [item?.id_, item?.id].some(value => String(value) === id) || categoryIdFromUrl(item?.url) === id;
+
 export function findCategory(items, id, depth = 0) {
     if (!id || !Array.isArray(items) || depth > 6) return null;
+    id = String(id);
     for (const item of items) {
-        if (String(item?.id) === String(id)) return item;
+        if (matchesCategory(item, id)) return item;
         const found = findCategory(item?.sub_categories, id, depth + 1);
         if (found) return found;
     }

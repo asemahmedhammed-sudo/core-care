@@ -210,7 +210,7 @@ body.theme-beauty .cc-tabbar { display: none; }
       .core-categories__tabs { padding-block: 0; background: var(--cc-surface); }
       .core-categories__tab {
         min-height: 52px; padding: 12px; gap: 0; border: 0; background: transparent;
-        color: #333; font-size: 15px; font-weight: 500; line-height: 1.35; overflow-wrap: anywhere;
+        color: #222; font-size: 16px; font-weight: 500; line-height: 1.35; overflow-wrap: anywhere;
       }
       .core-categories__tab:hover { background: var(--cc-menu-hover); }
       .core-categories__tab[aria-selected='true'] { background: var(--cc-surface); color: var(--cc-text); font-weight: 700; }
@@ -219,7 +219,8 @@ body.theme-beauty .cc-tabbar { display: none; }
       .core-categories__panel { display: grid; gap: 12px; padding: 12px; outline: 0; }
       .core-categories__status { padding: 24px 12px; }
       .core-categories__banner { display: block; border-radius: 8px; overflow: hidden; background: var(--cc-surface); }
-      .core-categories__banner-image { display: block; width: 100%; height: auto; max-height: 180px; object-fit: cover; }
+      // A short strip like the app's; taller category artwork is cropped to the centre.
+      .core-categories__banner-image { display: block; width: 100%; height: auto; max-height: 120px; object-fit: cover; }
       .core-categories__card { border-radius: 8px; background: var(--cc-surface); }
       .core-categories__card-all {
         display: block; padding: 14px 12px; border-bottom: 1px solid var(--cc-border);
@@ -329,7 +330,7 @@ $cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main
     .core-care-header__brand { display: block; grid-area: brand; }
     .core-care-header__brand img { width: 120px; height: 42px; }
     // Wider rail and four circles per row on tablets.
-    core-care-categories.core-categories--compact {
+    core-care-categories.core-categories--compact:not([hidden]) {
       .core-categories__grid { grid-template-columns: 200px minmax(0, 1fr); }
       .core-categories__tab { padding-inline: 20px; font-size: 16px; }
       .core-categories__panel { padding: 16px 20px; }

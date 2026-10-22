@@ -24,6 +24,11 @@ test('phone categories match menu links to Salla categories and their subcategor
     ] },
   ];
   assert.equal(context.findCategory(tree, '21').name, 'الوجه');
+  // Live stores code `id`; the number comes from `id_` or the category link.
+  const coded = [{ id: 'yNazxp', id_: 187393441, name: 'المكياج', url: 'https://store.example/ar/مكياج/c187393441' },
+    { id: 'QWOgKz', name: 'الخدود', url: 'https://store.example/ar/الخدود/c1933229215' }];
+  assert.equal(context.findCategory(coded, '187393441').name, 'المكياج');
+  assert.equal(context.findCategory(coded, '1933229215').name, 'الخدود');
   assert.equal(context.findCategory(tree, '999'), null);
   const node = context.categoryNode({ title: 'المكياج', url: '/ar/-/c2', children: [], sub_categories: context.findCategory(tree, '2').sub_categories });
   assert.deepEqual(node.children.map(child => child.title), ['الوجه', 'الحواجب']);
