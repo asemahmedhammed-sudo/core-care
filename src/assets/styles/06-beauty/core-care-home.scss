@@ -225,11 +225,14 @@ body.theme-beauty.beauty-reference-home {
       }
     }
     // Directly under the tall banner (and without a title) the first row rides over the banner's lower edge,
-    // as in the app; the banner's dots move up out of their way.
-    #main-content > .beauty-promotions--mobile-tall + .beauty-categories:not(:has(.beauty-section-heading)) {
+    // as in the app; the banner's dots move up out of their way. Salla puts editor markers between sections.
+    #main-content > .beauty-promotions--mobile-tall + .beauty-categories--untitled,
+    #main-content > .beauty-promotions--mobile-tall + .s-design-after + .s-design-before + .beauty-categories--untitled {
       position: relative; z-index: 1; margin-block-start: calc(-1 * var(--beauty-section-gap) - 36px);
+      padding-block-start: 0; background: transparent;
     }
-    .beauty-promotions--mobile-tall:has(+ .beauty-categories:not(:has(.beauty-section-heading))) .beauty-promotions__dots { margin-block-end: 48px; }
+    .beauty-promotions--mobile-tall:has(+ .beauty-categories--untitled) .beauty-promotions__dots,
+    .beauty-promotions--mobile-tall:has(+ .s-design-after + .s-design-before + .beauty-categories--untitled) .beauty-promotions__dots { margin-block-end: 48px; }
     .beauty-hero__grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px 40px; }
     .beauty-hero__copy h2 { font-size: clamp(32px, 8vw, 46px); }
     .beauty-hero__copy { max-width: 540px; justify-self: center; }

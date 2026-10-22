@@ -297,7 +297,10 @@ test('phone quick links follow the app: ringed circles, bold names, name inside 
   const phone = home.slice(home.indexOf('@media (max-width: 767px) {'));
   assert.match(phone, /width: 62px; height: 62px; background: transparent; box-shadow: inset 0 0 0 1px #d9e7f1;/);
   assert.match(phone, /\.beauty-category__name \{[^}]*font-size: 13px; font-weight: 600; line-height: 18px; \}/);
-  // Overlap only right after the tall banner and only without a section title; dots step up to stay visible.
-  assert.match(phone, /#main-content > \.beauty-promotions--mobile-tall \+ \.beauty-categories:not\(:has\(\.beauty-section-heading\)\) \{\s*position: relative; z-index: 1; margin-block-start: calc\(-1 \* var\(--beauty-section-gap\) - 36px\);/);
-  assert.match(phone, /\.beauty-promotions--mobile-tall:has\(\+ \.beauty-categories:not\(:has\(\.beauty-section-heading\)\)\) \.beauty-promotions__dots \{ margin-block-end: 48px; \}/);
+  // Overlap only right after the tall banner (editor markers may sit between) and only without a section title;
+  // the dots step up to stay visible. :has() cannot nest, so the title check is a class from the template.
+  assert.match(view, /beauty-categories\{\{ component\.title \? '' : ' beauty-categories--untitled' \}\}/);
+  assert.match(phone, /#main-content > \.beauty-promotions--mobile-tall \+ \.beauty-categories--untitled,\s*#main-content > \.beauty-promotions--mobile-tall \+ \.s-design-after \+ \.s-design-before \+ \.beauty-categories--untitled \{\s*position: relative; z-index: 1; margin-block-start: calc\(-1 \* var\(--beauty-section-gap\) - 36px\);\s*padding-block-start: 0; background: transparent;/);
+  assert.match(phone, /\.beauty-promotions--mobile-tall:has\(\+ \.s-design-after \+ \.s-design-before \+ \.beauty-categories--untitled\) \.beauty-promotions__dots \{ margin-block-end: 48px; \}/);
+  assert.doesNotMatch(home, /:has\([^)]*:has\(/, 'nested :has() is invalid CSS');
 });

@@ -1,4 +1,4 @@
-<section component-id="{{ componentId }}" data-testid="store-home-main-links" class="s-block container beauty-categories">
+<section component-id="{{ componentId }}" data-testid="store-home-main-links" class="s-block container beauty-categories{{ component.title ? '' : ' beauty-categories--untitled' }}">
   {% if component.title %}<div class="beauty-section-heading"><h2>{{ component.title }}</h2></div>{% endif %}
   <ul class="beauty-categories__list" role="list">
     {% if component.show_cats %}
