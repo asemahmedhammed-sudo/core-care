@@ -118,7 +118,7 @@ test('desktop (1024px and wider) keeps its design: mobile rules stay inside phon
   assert.match(home, /\.beauty-promotions__dots::before \{\s*content: '';/);
   assert.match(home, /@media \(max-width: 1023px\) \{\s*\.beauty-promotions__viewport:has\(> \[data-promotion-slide\] ~ \[data-promotion-slide\]\) \{ grid-template-rows: auto minmax\(24px, auto\); \}/);
   // Compact-only header parts are hidden in the desktop header.
-  assert.match(read('src/assets/styles/06-beauty/core-care-header.scss'), /\.core-care-header__grid-icon, \.core-care-header__scope-prefix, \.core-care-header__scope-chevron \{ display: none; \}/);
+  assert.match(read('src/assets/styles/06-beauty/core-care-header.scss'), /\.core-care-header__grid-icon, \.core-care-header__scope-prefix, \.core-care-header__scope-chevron, \.core-care-header__scan \{ display: none; \}/);
 });
 
 test('compact header fixes found in the live Salla preview (2026-10-21)', () => {
@@ -203,5 +203,44 @@ test('phone search: the Salla search window, restyled, plus suggested brands (ph
   assert.ok(all.every(item => item.clicked === 1));
   assert.match(styles, /\.s-search-history-chip-icon, \.s-search-history-chip-remove \{ display: none; \}/);
   assert.match(styles, /\.cc-search-history-clear \{\s*position: absolute; top: 12px;/);
+  assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
+});
+
+test('phones: no language/currency icon in the header, round icon discs, and a footer switch keeps it reachable', () => {
+  const footer = read('src/views/components/footer/footer.twig');
+  const tabbarJs = read('src/assets/js/partials/core-care-tabbar.js');
+  const phone = styles.slice(styles.indexOf("// Phones: no language/currency icon in the header"));
+  assert.match(phone, /^\/\/ Phones: no language\/currency icon in the header[^\n]*\n@media \(max-width: 767px\) \{/);
+  assert.match(phone, /grid-template-areas: 'scope scope scope' 'search cats bell';/);
+  assert.match(phone, /\.core-care-header__actions > \.core-care-header__locale, \.core-care-language-menu > \.core-care-header__locale \{ display: none; \}/);
+  // The language panel itself stays in the page so the footer switch can open it.
+  assert.doesNotMatch(phone, /\.core-care-language-menu \{ display: none/);
+  assert.match(styles, /\.core-care-header__links > \[data-categories-toggle\], \.core-care-header__notification \{ border-radius: 50%; background: var\(--cc-utility-surface\); \}/);
+  assert.match(styles, /\.core-care-header__search \.s-search-icon :is\(svg, path\) \{ fill: var\(--cc-icon\); \}/);
+  assert.match(styles, /\.core-care-header__search \.s-search-icon-wrap \{ z-index: 1; pointer-events: none; \}/);
+  assert.match(footer, /\{% if store\.settings\.is_multilingual or store\.settings\.currencies_enabled %\}\s*<button class="core-care-footer__localization" type="button" data-cc-localization-open>/);
+  assert.match(read('src/assets/styles/06-beauty/core-care-footer.scss'), /body\.theme-beauty \.core-care-footer__localization \{ display: none; \}/);
+  assert.match(tabbarJs, /closest\('\[data-cc-localization-open\]'\)[\s\S]*?event\.stopPropagation\(\);[\s\S]*?\.core-care-language-menu \[data-language-toggle\], \.core-care-header__actions > \.core-care-header__locale'\)\?\.click\(\);\s*\}, true\);/);
+});
+
+test('barcode search: hidden unless the browser has BarcodeDetector and a camera, then opens Salla search', async () => {
+  // Hidden by default in the markup and in the desktop header styles.
+  assert.match(header, /<button class="core-care-header__scan" type="button" data-barcode-scan hidden aria-label="\{\{ trans\('beauty\.search\.scan'\) \}\}"/);
+  assert.match(read('src/assets/styles/06-beauty/core-care-header.scss'), /\.core-care-header__scan \{ display: none; \}/);
+  assert.match(styles, /\.core-care-header__scan:not\(\[hidden\]\) \{\s*grid-area: search; justify-self: end;/);
+  const source = read('src/assets/js/partials/core-care-barcode-scan.js');
+  const mod = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+  const camera = { mediaDevices: { getUserMedia() {} } };
+  assert.deepEqual(await mod.scanFormats({ isSecureContext: true, navigator: camera }), [], 'no BarcodeDetector (iPhone Safari)');
+  assert.deepEqual(await mod.scanFormats({ isSecureContext: false, navigator: camera, BarcodeDetector: { getSupportedFormats: async () => ['ean_13'] } }), [], 'insecure page');
+  assert.deepEqual(await mod.scanFormats({ isSecureContext: true, navigator: {}, BarcodeDetector: { getSupportedFormats: async () => ['ean_13'] } }), [], 'no camera API');
+  assert.deepEqual(await mod.scanFormats({ isSecureContext: true, navigator: camera, BarcodeDetector: { getSupportedFormats: async () => ['qr_code', 'ean_13', 'upc_a'] } }), ['ean_13', 'upc_a']);
+  assert.deepEqual(await mod.scanFormats({ isSecureContext: true, navigator: camera, BarcodeDetector: { getSupportedFormats: async () => ['qr_code'] } }), [], 'no product formats');
+  assert.equal(mod.cleanCode(' 8682536040402 '), '8682536040402');
+  for (const value of ['', '12', '<script>', 'javascript:alert(1)', 'x'.repeat(60), null]) assert.equal(mod.cleanCode(value), '', String(value));
+  assert.equal(mod.searchHref('/ar/search', '8682536040402'), '/ar/search?q=8682536040402');
+  // The camera is always released: on close and when the page is hidden.
+  assert.match(source, /getTracks\(\)\.forEach\(track => track\.stop\(\)\)/);
+  assert.match(source, /visibilitychange[\s\S]*?scanner\.close\(\)/);
   assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
 });

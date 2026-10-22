@@ -104,7 +104,40 @@ body.theme-beauty .cc-tabbar { display: none; }
     .core-care-header__grid-icon { display: block; width: 24px; height: 24px; }
     .core-care-header__actions > .core-care-language-menu, .core-care-header__actions > .core-care-header__locale { grid-area: lang; }
     .core-care-header__notification { grid-area: bell; }
-    .core-care-header__notification svg { width: 24px; height: 24px; }
+    // Icon buttons in round discs with slightly bolder outlines, as in the app reference.
+    .core-care-header__links > [data-categories-toggle], .core-care-header__notification { border-radius: 50%; background: var(--cc-utility-surface); }
+    .core-care-header__notification svg, .core-care-header__grid-icon { width: 22px; height: 22px; stroke-width: 1.75; }
+    .core-care-header__search .s-search-icon-wrap { color: var(--cc-icon); }
+    // Salla paints the magnifier with fill: #9ca3af; the reference uses the dark icon colour.
+    .core-care-header__search .s-search-icon svg { width: 20px; height: 20px; }
+    .core-care-header__search .s-search-icon :is(svg, path) { fill: var(--cc-icon); }
+    // The icon precedes the field in Salla's markup, so the field's fill painted over it.
+    .core-care-header__search .s-search-icon-wrap { z-index: 1; pointer-events: none; }
+    // Barcode button at the inline end of the search field (core-care-barcode-scan.js shows it where supported).
+    .core-care-header__scan:not([hidden]) {
+      grid-area: search; justify-self: end; align-self: center; position: relative; z-index: 1;
+      display: grid; place-items: center; width: 40px; height: 40px; margin: 0 4px; padding: 0; border: 0; border-radius: 50%;
+      background: transparent; color: var(--cc-icon); cursor: pointer;
+      svg { width: 24px; height: 24px; }
+      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
+    }
+    // Camera screen: full-screen video, a framing guide, a hint and a close button.
+    .cc-scanner { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; background: #000; }
+    .cc-scanner__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .cc-scanner__frame {
+      position: relative; width: min(78vw, 320px); aspect-ratio: 2 / 1.1; border: 2px solid #fff; border-radius: 16px;
+      box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .45);
+    }
+    .cc-scanner__hint {
+      position: absolute; left: 16px; right: 16px; bottom: calc(48px + env(safe-area-inset-bottom, 0px)); margin: 0;
+      color: #fff; font-size: 15px; font-weight: 500; line-height: 24px; text-align: center;
+    }
+    .cc-scanner__close {
+      position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); display: grid; place-items: center; width: 44px; height: 44px;
+      border: 0; border-radius: 50%; background: rgba(0, 0, 0, .45); color: #fff; cursor: pointer;
+      svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+      &:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+    }
     .core-care-header__scope {
       grid-area: scope; justify-self: start; justify-content: flex-start; gap: 6px; width: auto; max-width: 100%;
       font-size: 14px; line-height: 20px;
@@ -169,6 +202,13 @@ body.theme-beauty .cc-tabbar { display: none; }
   html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-tabbar__cart .s-cart-summary-count { right: auto; left: calc(50% + 4px); }
   html.cc-categories-open:has(body.cc-has-tabbar) { overflow: hidden; }
   html.cc-categories-open body.cc-has-tabbar .wa-s-n { visibility: hidden; }
+  // Room for the barcode button inside the field, and the scanner's close button at the inline start.
+  html[dir='rtl'] body.theme-beauty.cc-has-tabbar .core-care-header__search:has(~ .core-care-header__scan:not([hidden])) .s-search-input { padding-left: 48px; }
+  html[dir='ltr'] body.theme-beauty.cc-has-tabbar .core-care-header__search:has(~ .core-care-header__scan:not([hidden])) .s-search-input { padding-right: 48px; }
+  html[dir='rtl'] body.theme-beauty.cc-has-tabbar .cc-scanner__close { right: 12px; }
+  html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-scanner__close { left: 12px; }
+  html.cc-scanner-open:has(body.cc-has-tabbar) { overflow: hidden; }
+  html.cc-scanner-open body.cc-has-tabbar .wa-s-n { visibility: hidden; }
   // The clear-history button sits at the inline end of the history title.
   html[dir='rtl'] body.theme-beauty.cc-has-tabbar .cc-search-history-clear { left: -10px; right: auto; }
   html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-search-history-clear { right: -10px; left: auto; }
@@ -189,11 +229,27 @@ $cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main
   }
   #{$cc-hero-first}.cc-header-at-top {
     .store-header { background: transparent; border-bottom-color: transparent; }
-    .s-search-input { background: rgba(255, 255, 255, .92); }
+    .s-search-input { background: rgba(255, 255, 255, .96); }
     // White discs keep the icons readable on any artwork, as in the reference.
     .core-care-header__links > [data-categories-toggle], .core-care-header__notification,
     .core-care-header__actions > .core-care-header__locale, .core-care-language-menu > .core-care-header__locale {
       border-radius: 50%; background: rgba(255, 255, 255, .92);
+    }
+  }
+}
+
+// Phones: no language/currency icon in the header (owner's choice); the footer button keeps it reachable.
+@media (max-width: 767px) {
+  body.theme-beauty.cc-has-tabbar {
+    .store-header { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: 'scope scope scope' 'search cats bell'; }
+    .core-care-header__actions > .core-care-header__locale, .core-care-language-menu > .core-care-header__locale { display: none; }
+    // The language menu keeps its bottom-sheet panel but no longer takes a grid cell.
+    .core-care-header__actions > .core-care-language-menu { position: absolute; width: 0; height: 0; overflow: visible; }
+    .core-care-footer__localization {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; margin: 0 auto 8px; padding: 0 16px;
+      border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; font-size: 14px; font-weight: 500; cursor: pointer;
+      svg { width: 20px; height: 20px; }
+      &:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
     }
   }
 }

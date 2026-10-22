@@ -19,6 +19,10 @@
         {% endif %}
       </a>
       <salla-search class="core-care-header__search" data-testid="store-header-search" inline height="45"></salla-search>
+      {# Phones and tablets only: shown by core-care-barcode-scan.js where the browser has BarcodeDetector and a camera (Android Chrome); the scanned number opens Salla's search. #}
+      <button class="core-care-header__scan" type="button" data-barcode-scan hidden aria-label="{{ trans('beauty.search.scan') }}" data-hint="{{ trans('beauty.search.scan_hint')|e('html_attr') }}" data-close-label="{{ trans('beauty.search.scan_close')|e('html_attr') }}" data-error="{{ trans('beauty.search.scan_error')|e('html_attr') }}" data-search-url="{{ link('search')|e('html_attr') }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16M8 8v8M11 8v8M13.5 8v8M16 8v8"/></svg>
+      </button>
       <p class="core-care-header__tagline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8 14-2 8 6-3 6 3-2-8"/></svg>{{ trans('beauty.header.tagline') }}</p>
     </div>
   </div>
