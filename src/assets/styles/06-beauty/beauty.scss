@@ -430,7 +430,7 @@ body.theme-beauty {
 }
 @media (max-width: 1023px) {
   // Taller bar with 28px icons and the pale blue current-tab fill, after the app reference.
-  body.theme-beauty.cc-has-tabbar { --cc-app-nav-height: 64px; --cc-tabbar-active-fill: #d8e9fb; --cc-tabbar-offset: calc(var(--cc-app-nav-height) + var(--cc-safe-bottom)); }
+  body.theme-beauty.cc-has-tabbar { --cc-app-nav-height: 64px; --cc-tabbar-active-fill: #c6e4ff; --cc-tabbar-offset: calc(var(--cc-app-nav-height) + var(--cc-safe-bottom)); }
 }
 @media (max-width: 1023px) and (orientation: landscape) and (max-height: 480px) {
   body.theme-beauty.cc-has-tabbar { --cc-app-nav-height: 48px; }
