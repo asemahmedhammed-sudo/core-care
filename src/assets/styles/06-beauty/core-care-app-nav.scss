@@ -133,7 +133,8 @@ body.theme-beauty .cc-tabbar { display: none; }
 // Phones, app-style home: when the merchant's tall promotions banner («بانر طويل») is the first
 // section, it runs under the compact header, which stays transparent while the page is at the top
 // (core-care-tabbar.js sets .cc-header-at-top) and turns white once the visitor scrolls.
-$cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main-content > .beauty-promotions--mobile-tall):not(:has(#main-content > :not(.s-design-invisible-dom, salla-hook) ~ .beauty-promotions--mobile-tall))';
+// Editor markers, hooks and Salla's empty free-shipping banner (hidden on these widths) don't count as a section.
+$cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main-content > .beauty-promotions--mobile-tall):not(:has(#main-content > :not(.s-design-invisible-dom, salla-hook, salla-free-shipping-banner:empty) ~ .beauty-promotions--mobile-tall))';
 @media (max-width: 767px) {
   #{$cc-hero-first} {
     // Compact header height: 8px padding twice + 45px search row + 1px border, plus the 44px location row.
