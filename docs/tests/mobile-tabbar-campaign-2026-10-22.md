@@ -6,8 +6,8 @@ Owner request: make the bottom tab bar look like the Nice One app screenshot. Re
 
 - **Tab bar** (`6ae94f1`, `9dee072`):
   - Icons are 28px outlines: pentagon home, three squares with a magnifier, handbag, person.
-  - Labels are black, 14px/600. Below 360px they drop to 12px with no side padding, so «سلة التسوق» stays whole with five tabs.
-  - The current tab's icon fills with pale blue `#d8e9fb`.
+  - Labels are black, 13px/600 (14px until `2a1bcbe`). Below 360px they drop to 12px with no side padding, so «سلة التسوق» stays whole with five tabs.
+  - The current tab's icon fills with pale blue `#c6e4ff` (`#d8e9fb` until `2a1bcbe`).
   - The bar is 64px high. The pink cart badge has a white ring.
 - **Campaign button** (`9c9b58b`, this commit):
   - Two new dropdown settings:
@@ -34,6 +34,20 @@ Owner request: make the bottom tab bar look like the Nice One app screenshot. Re
   | `draft-1091829325` | Theme editor settings | Both new dropdowns are listed with their descriptions |
 
 - **Theme identity:** body `salla-draft-1091829325`, CSS `salla.design/themes/draft/1091829325/app.css?v=20261022-campaign-fab-1`.
+
+## Comparison with the reference screenshot (`2a1bcbe`, `draft-458252881`, 390px)
+
+Measured pixel by pixel. Reference values assume a 390px-wide phone.
+
+| Measure | Reference | Before | After |
+|---|---|---|---|
+| Visible icon height | ~21px | 21px | 21px |
+| Icon to label | ~7px | ~10.5px | 6px |
+| «حسابي» width | ~30px | 35px | 32px |
+| Icon and label block | ~38px | 46px | 41px |
+| Home fill | `#C6E4FF` | `#D8E9FB` | `#C6E4FF` |
+
+Still different by design or by data: the font (the store's font), and the centre button (the owner chose a built-in icon disc over the reference's coloured ribbon picture).
 
 ## Not verified
 
