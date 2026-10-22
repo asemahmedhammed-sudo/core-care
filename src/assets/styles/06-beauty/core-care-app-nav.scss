@@ -149,7 +149,8 @@ body.theme-beauty .cc-tabbar { display: none; }
       .s-search-history-chip-icon, .s-search-history-chip-remove { display: none; }
       .s-search-history-chip { padding: 0; }
       .s-search-history-chip-term { display: inline-flex; align-items: center; min-height: 38px; padding: 8px 16px; color: inherit; }
-      .s-search-idle-panel > div:has(> .s-search-history-list) { position: relative; }
+      // flow-root keeps the title's top margin inside the section, so the trash button centres on the title.
+      .s-search-idle-panel > div:has(> .s-search-history-list) { position: relative; display: flow-root; }
       .cc-search-history-clear {
         position: absolute; top: 12px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%;
         background: transparent; color: var(--cc-icon); cursor: pointer;
