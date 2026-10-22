@@ -843,11 +843,99 @@
             "selected": true
         },
         {
+            "id": "beauty_tabbar_center_icon",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "نوع أيقونة زر الحملة في الشريط السفلي",
+            "description": "زر دائري أنيق في وسط شريط التنقل السفلي بأيقونة بيضاء تختارها هنا، ويمكن تغييرها في أي وقت. يظهر فقط بعد إضافة «رابط زر الحملة». اختر «صورة أرفعها» لاستخدام صورتك من الحقل التالي.",
+            "icon": "sicon-list",
+            "source": "Manual",
+            "required": true,
+            "options": [
+                {
+                    "key": "b2398462-ddd1-4a77-bef6-27494471aa8d",
+                    "label": "شريطة التوعية",
+                    "value": "ribbon"
+                },
+                {
+                    "key": "f776550b-fc61-4bbd-ac6a-8f63ee32b81c",
+                    "label": "هدية",
+                    "value": "gift"
+                },
+                {
+                    "key": "498d6edf-e51e-4c63-ab6c-2c204fc1ff2a",
+                    "label": "العروض (بطاقة سعر)",
+                    "value": "tag"
+                },
+                {
+                    "key": "ad4ab6e3-c4ec-4b1c-a65c-3dcfdae35f6b",
+                    "label": "جديد (لمعة)",
+                    "value": "sparkle"
+                },
+                {
+                    "key": "6e404d72-b5aa-4f18-87d2-0cb875cbe00b",
+                    "label": "قلب",
+                    "value": "heart"
+                },
+                {
+                    "key": "e5d7e8f2-91d6-4377-9640-d64618e1c022",
+                    "label": "صورة أرفعها (من الحقل التالي)",
+                    "value": "image"
+                },
+                {
+                    "key": "93bf8246-7b7d-423e-8c7f-70de83861843",
+                    "label": "بدون زر",
+                    "value": "none"
+                }
+            ],
+            "selected": [
+                {
+                    "key": "b2398462-ddd1-4a77-bef6-27494471aa8d",
+                    "label": "شريطة التوعية",
+                    "value": "ribbon"
+                }
+            ]
+        },
+        {
+            "id": "beauty_tabbar_center_style",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "لون زر الحملة في الشريط السفلي",
+            "description": "لون الدائرة خلف الأيقونة.",
+            "icon": "sicon-list",
+            "source": "Manual",
+            "required": true,
+            "options": [
+                {
+                    "key": "5c4aaf4f-9fe0-470a-add5-85ad5315cc11",
+                    "label": "وردي",
+                    "value": "pink"
+                },
+                {
+                    "key": "7bd2d787-e21d-4ac1-825e-49c7983bf4f7",
+                    "label": "بنفسجي",
+                    "value": "purple"
+                },
+                {
+                    "key": "bd9f1955-457e-4d0d-8c80-4e7efaf9bfb1",
+                    "label": "أسود",
+                    "value": "dark"
+                }
+            ],
+            "selected": [
+                {
+                    "key": "5c4aaf4f-9fe0-470a-add5-85ad5315cc11",
+                    "label": "وردي",
+                    "value": "pink"
+                }
+            ]
+        },
+        {
             "id": "beauty_tabbar_center_image",
             "type": "string",
             "format": "image",
             "label": "أيقونة زر الحملة في وسط الشريط السفلي (عربي)",
-            "description": "اختياري. صورة مربعة بخلفية شفافة (PNG أو SVG، يوصى بـ 144 × 144) تظهر بحجم 48px في وسط شريط التنقل السفلي. لا يظهر الزر إلا مع رابط https:// صالح في الحقل التالي.",
+            "description": "تُستخدم عند اختيار «صورة أرفعها» في نوع الأيقونة: صورة مربعة بخلفية شفافة (PNG أو SVG، يوصى بـ 144 × 144) تظهر بحجم 48px.",
             "required": false,
             "value": null
         },

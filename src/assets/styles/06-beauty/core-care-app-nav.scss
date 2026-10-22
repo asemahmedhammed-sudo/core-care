@@ -53,6 +53,19 @@ body.theme-beauty .cc-tabbar { display: none; }
     // Optional merchant campaign slot.
     .cc-tabbar__campaign { flex: none; width: 48px; height: 48px; object-fit: contain; }
     .cc-tabbar__item--campaign:has(.cc-tabbar__label) .cc-tabbar__campaign { width: 28px; height: 28px; }
+    // Built-in campaign icon: a raised disc with a white line icon, ringed by the bar's own surface.
+    .cc-tabbar__fab {
+      flex: none; display: grid; place-items: center; width: 52px; height: 52px; margin-top: -22px; border-radius: 50%;
+      color: #fff; background: linear-gradient(145deg, #f592b8 0%, var(--cc-sale) 100%);
+      box-shadow: 0 0 0 4px var(--cc-surface), 0 8px 18px rgba(238, 45, 100, .3);
+      transition: transform .2s ease;
+      svg { width: 28px; height: 28px; }
+    }
+    .cc-tabbar__fab--purple { background: linear-gradient(145deg, #c3aef0 0%, var(--cc-secondary) 100%); box-shadow: 0 0 0 4px var(--cc-surface), 0 8px 18px rgba(153, 122, 219, .32); }
+    .cc-tabbar__fab--dark { background: linear-gradient(145deg, #4b4b4b 0%, #111 100%); box-shadow: 0 0 0 4px var(--cc-surface), 0 8px 18px rgba(0, 0, 0, .22); }
+    .cc-tabbar__item--campaign:has(.cc-tabbar__label) .cc-tabbar__fab { width: 44px; height: 44px; margin-top: -18px; svg { width: 22px; height: 22px; } }
+    .cc-tabbar__item--campaign:active .cc-tabbar__fab { transform: scale(.94); }
+    .cc-tabbar__item--campaign:focus-visible { outline-offset: 0; }
 
     // Salla's cart summary: its link fills the column, its total is hidden, its count is a badge.
     .cc-tabbar__cart { flex: 1 1 auto; display: flex; min-width: 0; }
@@ -360,9 +373,10 @@ $cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main
     .cc-tabbar__item { gap: 0; }
     .cc-tabbar__label { @include cc-visually-hidden; }
     .cc-tabbar__campaign, .cc-tabbar__item--campaign:has(.cc-tabbar__label) .cc-tabbar__campaign { width: 32px; height: 32px; }
+    .cc-tabbar__fab, .cc-tabbar__item--campaign:has(.cc-tabbar__label) .cc-tabbar__fab { width: 38px; height: 38px; margin-top: 0; svg { width: 20px; height: 20px; } }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.theme-beauty .cc-tabbar__fill, body.theme-beauty .store-header { transition: none; }
+  body.theme-beauty .cc-tabbar__fill, body.theme-beauty .cc-tabbar__fab, body.theme-beauty .store-header { transition: none; }
 }

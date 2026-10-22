@@ -37,7 +37,8 @@ test('tab bar uses Salla components and links instead of custom commerce logic',
 
 test('campaign slot needs an image and an https link, and always has an accessible name', () => {
   assert.match(tabbar, /center_url\|lower starts with 'https:\/\/'/);
-  assert.match(tabbar, /\{% if center_image and center_valid %\}/);
+  assert.match(tabbar, /\{% set center_show = center_valid and center_mode != 'none' and \(center_mode != 'image' or center_image\) %\}/);
+  assert.match(tabbar, /\{% if center_show %\}/);
   assert.match(tabbar, /alt="\{\{ \(center_label \?: trans\('beauty\.tabbar\.campaign'\)\)\|e\('html_attr'\) \}\}"/);
   assert.match(tabbar, /href="\{\{ center_url\|e\('html_attr'\) \}\}"/);
   assert.equal(setting('beauty_tabbar_center_label').multilanguage, true);
@@ -262,4 +263,25 @@ test('tab bar follows the app reference: 28px outline icons, black labels, pale 
 test('five tabs fit the narrowest phones without cutting labels', () => {
   const styles = read('src/assets/styles/06-beauty/core-care-app-nav.scss');
   assert.match(styles, /@media \(max-width: 359px\) \{\s*body\.theme-beauty\.cc-has-tabbar \.cc-tabbar__item \{ padding-inline: 0; font-size: 12px; \}/);
+});
+
+test('campaign button: built-in icon on a coloured disc, chosen by the merchant', () => {
+  const styles = read('src/assets/styles/06-beauty/core-care-app-nav.scss');
+  const icon = setting('beauty_tabbar_center_icon');
+  const style = setting('beauty_tabbar_center_style');
+  assert.equal(icon.format, 'dropdown-list');
+  assert.deepEqual(icon.options.map(option => option.value), ['ribbon', 'gift', 'tag', 'sparkle', 'heart', 'image', 'none']);
+  assert.equal(icon.selected[0].value, 'ribbon');
+  assert.deepEqual(style.options.map(option => option.value), ['pink', 'purple', 'dark']);
+  for (const item of [...icon.options, ...style.options]) assert.match(item.key, /^[0-9a-f-]{36}$/);
+  // Unknown saved values fall back instead of reaching the class name or icon switch.
+  assert.match(tabbar, /center_mode in \['ribbon', 'gift', 'tag', 'sparkle', 'heart', 'image', 'none'\] \? center_mode : 'ribbon'/);
+  assert.match(tabbar, /center_style in \['pink', 'purple', 'dark'\] \? center_style : 'pink'/);
+  assert.match(tabbar, /aria-label="\{\{ \(center_label \?: trans\('beauty\.tabbar\.campaign'\)\)\|e\('html_attr'\) \}\}">\s*<span class="cc-tabbar__fab cc-tabbar__fab--\{\{ center_style \}\}">/);
+  assert.match(styles, /\.cc-tabbar__fab \{[^}]*width: 52px; height: 52px; margin-top: -22px;/);
+  assert.match(styles, /prefers-reduced-motion[\s\S]*\.cc-tabbar__fab/);
+});
+
+test('default campaign icon is the awareness ribbon drawn as one crossing band', () => {
+  assert.match(tabbar, /\{%- else -%\}\s*<path d="M7\.2 21 13\.3 12C15 9\.4[^"]*" stroke-width="2\.2" stroke-linecap="butt"\/>/);
 });
