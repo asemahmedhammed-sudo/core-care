@@ -70,6 +70,10 @@
       "scope_prefix": "Your location:"
     },
     "search": {
+      "scan": "Scan barcode",
+      "scan_hint": "Point the camera at the product barcode",
+      "scan_close": "Close scanner",
+      "scan_error": "The camera could not be opened. Allow the store to use the camera in your browser settings, then try again.",
       "clear_history": "Clear recent searches",
       "brands": "Suggested brands"
     },
