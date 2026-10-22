@@ -144,7 +144,7 @@ test('app-style home on phones: tall banner switch, header over it, two-row shor
   assert.ok(home.lastIndexOf('@media (max-width: 767px) {', home.indexOf('// Phones (app reference)')) > home.indexOf('@media (max-width: 1023px)'));
   assert.match(phone, /\.beauty-promotions--mobile-tall \{ --promo-ratio: 1 \/ 1; \}/);
   assert.match(phone, /\.beauty-promotions__arrow \{ display: none; \}/);
-  assert.match(phone, /\.beauty-categories__list:has\(> li:nth-child\(6\)\) \{\s*(?:\/\/[^\n]*\s*)?display: grid; grid-auto-flow: column; grid-template-rows: repeat\(2, auto\); grid-auto-columns: calc\(\(100% - 4 \* 12px\) \/ 4\.5\);/);
+  assert.match(phone, /\.beauty-categories__list:has\(> li:nth-child\(6\)\) \{\s*(?:\/\/[^\n]*\s*)?display: grid; grid-auto-flow: column; grid-template-rows: repeat\(2, auto\); grid-auto-columns: calc\(\(100% - 4 \* 20px\) \/ 4\.3\);/);
   // The header overlay applies only when the tall banner is the first section, and only while at the top.
   assert.match(styles, /\$cc-hero-first: 'body\.theme-beauty\.cc-has-tabbar\.beauty-reference-home:has\(#main-content > \.beauty-promotions--mobile-tall\):not\(:has\(#main-content > :not\(\.s-design-invisible-dom, salla-hook, salla-free-shipping-banner:empty\) ~ \.beauty-promotions--mobile-tall\)\)';/);
   assert.match(styles, /@media \(max-width: 767px\) \{\s*#\{\$cc-hero-first\} \{/);
@@ -285,4 +285,19 @@ test('campaign button: built-in icon on a coloured disc, chosen by the merchant'
 
 test('default campaign icon is the awareness ribbon drawn as one crossing band', () => {
   assert.match(tabbar, /\{%- else -%\}\s*<path d="M7\.2 21 13\.3 12C15 9\.4[^"]*" stroke-width="2\.2" stroke-linecap="butt"\/>/);
+});
+
+test('phone quick links follow the app: ringed circles, bold names, name inside imageless circles, overlap under the tall banner', () => {
+  const home = read('src/assets/styles/06-beauty/core-care-home.scss');
+  const view = read('src/views/components/home/main-links.twig');
+  // The full name is in the markup for every imageless circle but hidden outside phones.
+  assert.match(view, /<span class="beauty-category__text" aria-hidden="true">\{\{ label \}\}<\/span>\s*<span class="beauty-category__initial"/);
+  assert.match(view, /<span class="beauty-category__initial" aria-hidden="true">\{\{ initial\|upper \}\}<\/span><span class="beauty-category__text" aria-hidden="true">\{\{ label \}\}<\/span>\{% endif %\}/);
+  assert.match(home, /^  \.beauty-category__text \{ display: none; \}/m);
+  const phone = home.slice(home.indexOf('@media (max-width: 767px) {'));
+  assert.match(phone, /width: 62px; height: 62px; background: transparent; box-shadow: inset 0 0 0 1px #d9e7f1;/);
+  assert.match(phone, /\.beauty-category__name \{[^}]*font-size: 13px; font-weight: 600; line-height: 18px; \}/);
+  // Overlap only right after the tall banner and only without a section title; dots step up to stay visible.
+  assert.match(phone, /#main-content > \.beauty-promotions--mobile-tall \+ \.beauty-categories:not\(:has\(\.beauty-section-heading\)\) \{\s*position: relative; z-index: 1; margin-block-start: calc\(-1 \* var\(--beauty-section-gap\) - 36px\);/);
+  assert.match(phone, /\.beauty-promotions--mobile-tall:has\(\+ \.beauty-categories:not\(:has\(\.beauty-section-heading\)\)\) \.beauty-promotions__dots \{ margin-block-end: 48px; \}/);
 });

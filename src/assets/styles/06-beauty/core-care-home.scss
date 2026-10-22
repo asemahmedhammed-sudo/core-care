@@ -23,6 +23,7 @@ body.theme-beauty .beauty-categories {
   li:nth-child(4n + 3) .beauty-category__image { --cc-tile-surface: var(--cc-tint-sand); --cc-tile-ink: var(--cc-tint-sand-ink); }
   li:nth-child(4n + 4) .beauty-category__image { --cc-tile-surface: var(--cc-tint-sky); --cc-tile-ink: var(--cc-tint-sky-ink); }
   .beauty-category__initial { font-size: 26px; font-weight: 500; line-height: 1; user-select: none; }
+  .beauty-category__text { display: none; }
   .beauty-category__icon { font-size: 26px; }
   .beauty-category__image img {
     position: absolute;
@@ -197,14 +198,38 @@ body.theme-beauty.beauty-reference-home {
     .beauty-promotions--mobile-tall .beauty-promotions__dots [aria-current='true']::before { background: var(--promo-accent); }
     // Shortcut circles: two rows that scroll together once there are six or more, next column peeking.
     .beauty-categories__list:has(> li:nth-child(6)) {
-      // About four and a half columns on every phone width, so the next column always peeks.
-      display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto); grid-auto-columns: calc((100% - 4 * 12px) / 4.5);
-      justify-content: start; gap: 16px 12px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
+      // About four and a third columns on every phone width (86px apart at 390px, as in the app), so the next column peeks.
+      display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto); grid-auto-columns: calc((100% - 4 * 20px) / 4.3);
+      justify-content: start; gap: 16px 20px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
     }
     .beauty-categories__list:has(> li:nth-child(6))::-webkit-scrollbar { display: none; }
     .beauty-categories__list:has(> li:nth-child(6)) li { max-width: none; min-width: 0; }
-    .beauty-categories__list:has(> li:nth-child(6)) .beauty-category__image { width: min(64px, 100%); height: auto; aspect-ratio: 1; }
-    .beauty-categories__list:has(> li:nth-child(6)) .beauty-category__name { font-size: 12px; line-height: 16px; }
+    .beauty-categories__list:has(> li:nth-child(6)) .beauty-category__image { width: min(62px, 100%); height: auto; aspect-ratio: 1; }
+    // App-style circles on phones: a thin pale blue ring on the page colour, bold names, the full name
+    // inside a circle without an image.
+    .beauty-categories {
+      .beauty-category { gap: 6px; }
+      .beauty-category__image, li:nth-child(n) .beauty-category__image {
+        --cc-tile-surface: transparent; --cc-tile-ink: var(--cc-text);
+        width: 62px; height: 62px; background: transparent; box-shadow: inset 0 0 0 1px #d9e7f1;
+      }
+      .beauty-category__image img.is-loaded { background: var(--cc-canvas); }
+      .beauty-category__initial { display: none; }
+      .beauty-category__text {
+        display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; max-width: 54px;
+        font-size: 12px; font-weight: 700; line-height: 15px; text-align: center; overflow-wrap: anywhere;
+      }
+      .beauty-category__name { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 13px; font-weight: 600; line-height: 18px; }
+      .beauty-category:hover .beauty-category__image, .beauty-category:focus-visible .beauty-category__image {
+        background: transparent; box-shadow: inset 0 0 0 1px #d9e7f1, 0 0 0 2px var(--cc-canvas), 0 0 0 3px var(--cc-text);
+      }
+    }
+    // Directly under the tall banner (and without a title) the first row rides over the banner's lower edge,
+    // as in the app; the banner's dots move up out of their way.
+    #main-content > .beauty-promotions--mobile-tall + .beauty-categories:not(:has(.beauty-section-heading)) {
+      position: relative; z-index: 1; margin-block-start: calc(-1 * var(--beauty-section-gap) - 36px);
+    }
+    .beauty-promotions--mobile-tall:has(+ .beauty-categories:not(:has(.beauty-section-heading))) .beauty-promotions__dots { margin-block-end: 48px; }
     .beauty-hero__grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px 40px; }
     .beauty-hero__copy h2 { font-size: clamp(32px, 8vw, 46px); }
     .beauty-hero__copy { max-width: 540px; justify-self: center; }
