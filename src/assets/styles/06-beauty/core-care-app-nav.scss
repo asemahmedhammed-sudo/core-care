@@ -341,6 +341,11 @@ $cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main
   }
 }
 
+// The narrowest phones: smaller labels keep «سلة التسوق» whole when the campaign slot makes five tabs.
+@media (max-width: 359px) {
+  body.theme-beauty.cc-has-tabbar .cc-tabbar__item { padding-inline: 0; font-size: 12px; }
+}
+
 // Phone product pages: Salla's sticky add-to-cart bar owns the bottom edge.
 @media (max-width: 640px) {
   body.theme-beauty.cc-has-tabbar:has(.cc-tabbar--yield) { --cc-tabbar-offset: 0px; }
