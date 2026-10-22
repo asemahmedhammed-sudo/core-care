@@ -14,21 +14,21 @@
   <ul class="cc-tabbar__list">
     <li>
       <a class="cc-tabbar__item" href="{{ link('/') }}"{% if is_page('index') %} aria-current="page"{% endif %}>
-        <svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="cc-tabbar__fill" d="M3.5 10.2 12 3.5l8.5 6.7V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19Z"/><path d="M9.5 20.5v-6h5v6"/></svg>
+        <svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="cc-tabbar__fill" d="M10.6 3.6a2.3 2.3 0 0 1 2.8 0l6 4.6c.6.5 1 1.2 1 2V18a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4.4 18v-7.8c0-.8.4-1.5 1-2Z"/><path d="M10.5 16.5h3"/></svg>
         <span class="cc-tabbar__label">{{ trans('beauty.tabbar.home') }}</span>
       </a>
     </li>
     <li>
       {# Opens the same categories panel as the header trigger; core-care-categories keeps both in sync. #}
       <button class="cc-tabbar__item" type="button" data-categories-toggle aria-expanded="false" aria-controls="core-care-categories">
-        <svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="cc-tabbar__fill" x="3.5" y="3.5" width="7" height="7" rx="2"/><rect class="cc-tabbar__fill" x="13.5" y="3.5" width="7" height="7" rx="2"/><rect class="cc-tabbar__fill" x="3.5" y="13.5" width="7" height="7" rx="2"/><rect class="cc-tabbar__fill" x="13.5" y="13.5" width="7" height="7" rx="2"/></svg>
+        <svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="cc-tabbar__fill" x="3.5" y="3.5" width="7" height="7" rx="2.5"/><rect class="cc-tabbar__fill" x="13.5" y="3.5" width="7" height="7" rx="2.5"/><rect class="cc-tabbar__fill" x="3.5" y="13.5" width="7" height="7" rx="2.5"/><circle class="cc-tabbar__fill" cx="16.8" cy="16.8" r="3.3"/><path d="m19.3 19.3 1.7 1.7"/></svg>
         <span class="cc-tabbar__label">{{ trans('beauty.tabbar.categories') }}</span>
       </button>
     </li>
     {% if center_image and center_valid %}
     <li>
       <a class="cc-tabbar__item cc-tabbar__item--campaign" href="{{ center_url|e('html_attr') }}">
-        <img class="cc-tabbar__campaign" src="{{ center_image }}" alt="{{ (center_label ?: trans('beauty.tabbar.campaign'))|e('html_attr') }}" width="40" height="40" loading="lazy" decoding="async">
+        <img class="cc-tabbar__campaign" src="{{ center_image }}" alt="{{ (center_label ?: trans('beauty.tabbar.campaign'))|e('html_attr') }}" width="48" height="48" loading="lazy" decoding="async">
         {% if center_label %}<span class="cc-tabbar__label" aria-hidden="true">{{ center_label }}</span>{% endif %}
       </a>
     </li>
@@ -38,13 +38,13 @@
       {# Salla renders "0" for an empty cart; data-empty hides that badge until core-care-tabbar.js tracks the live count. #}
       <salla-cart-summary class="cc-tabbar__cart{{ is_page('cart') ? ' is-active' : '' }}" data-testid="store-tabbar-cart"{% if not cart.items_count|default(0) %} data-empty{% endif %}>
         <span slot="icon" class="cc-tabbar__item">
-          <svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="cc-tabbar__fill" d="M5.2 8h13.6l-.9 11.1a1.5 1.5 0 0 1-1.5 1.4H7.6a1.5 1.5 0 0 1-1.5-1.4Z"/><path d="M8.5 10V7a3.5 3.5 0 0 1 7 0v3"/></svg>
+          <svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="cc-tabbar__fill" d="M7.2 9h9.6a2.5 2.5 0 0 1 2.4 1.9l1.2 5.4a3.4 3.4 0 0 1-3.3 4.2H6.9a3.4 3.4 0 0 1-3.3-4.2l1.2-5.4A2.5 2.5 0 0 1 7.2 9Z"/><path d="M8.5 9V7.5a3.5 3.5 0 0 1 7 0V9"/><path d="M10.8 12.5h2.4"/></svg>
           <span class="cc-tabbar__label">{{ trans('beauty.tabbar.cart') }}</span>
         </span>
       </salla-cart-summary>
     </li>
     <li>
-      {% set account_icon %}<svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle class="cc-tabbar__fill" cx="12" cy="8" r="4"/><path d="M4.5 20.5c.8-3.6 3.8-6 7.5-6s6.7 2.4 7.5 6"/></svg>{% endset %}
+      {% set account_icon %}<svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle class="cc-tabbar__fill" cx="12" cy="7.5" r="3.8"/><path class="cc-tabbar__fill" d="M5.2 20.5h13.6c.5 0 .8-.4.7-.9-.8-3.1-3.8-5.1-7.5-5.1s-6.7 2-7.5 5.1c-.1.5.2.9.7.9Z"/></svg>{% endset %}
       {% if user.type == 'user' %}
         <a class="cc-tabbar__item" href="{{ link('account/profile') }}"{% if page.slug starts with 'customer.' %} aria-current="page"{% endif %}>
           {{ account_icon }}

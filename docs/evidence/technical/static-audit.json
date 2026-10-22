@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-22T10:02:08.078Z",
+  "generatedAt": "2026-10-22T12:43:56.186Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -2903,7 +2903,7 @@
     {
       "file": "src/views/pages/partials/mobile-tabbar.twig",
       "kind": "new-template",
-      "sha256": "557a6463ae7f083800805d5fcb61ea3c9bb643312a641682775bddd82114fa4d"
+      "sha256": "701877afb271975112b89fb65f5a0fbead6882cf32b406e7ed98fc7691f5ad09"
     },
     {
       "file": "src/views/pages/partials/product/gallery.twig",
