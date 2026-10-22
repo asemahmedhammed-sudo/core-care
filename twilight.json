@@ -884,6 +884,18 @@
             "maxLength": 20
         },
         {
+            "id": "beauty_search_popular",
+            "type": "string",
+            "format": "textarea",
+            "label": "كلمات البحث الشائعة في شاشة البحث بالجوال",
+            "description": "تظهر أزرارًا تحت «كلمات بحث شائعة» عند الضغط على البحث في الجوال والآيباد (تحت 1024px). اكتب كل كلمة في سطر أو افصل بينها بفاصلة، حتى 30 كلمة. اتركها فارغة لإخفاء القسم. الكمبيوتر لا يتغير.",
+            "multilanguage": true,
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 1000
+        },
+        {
             "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "شريط علوي داكن",

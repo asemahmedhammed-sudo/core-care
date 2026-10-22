@@ -1,0 +1,44 @@
+{# Full-screen search for phones and portrait tablets (below 1024px), after the Nice One app reference.
+   Opens from the compact header search (core-care-search-sheet.js); desktop keeps Salla's own search.
+   Results, suggestions and the results page stay Salla's <salla-search>. Recent searches live only in
+   this browser; popular terms come from the merchant setting; brands are read from the store's brands page. #}
+{% set popular = theme.settings.get('beauty_search_popular') %}
+{% set popular = (popular is iterable ? popular[language.code]|default(popular|first) : popular)|default('') %}
+{% set popular_terms = [] %}
+{% for term in popular|replace({'،': "\n", ',': "\n"})|split("\n") %}
+  {% if term|trim and popular_terms|length < 30 %}{% set popular_terms = popular_terms|merge([term|trim|slice(0, 40)]) %}{% endif %}
+{% endfor %}
+{% set search_url = link('search') %}
+<core-care-search-sheet class="cc-search-sheet" id="cc-search-sheet" role="dialog" aria-modal="true" aria-label="{{ trans('beauty.search.title') }}" data-search-url="{{ search_url|e('html_attr') }}" data-brands-url="{{ link('brands')|e('html_attr') }}" hidden>
+  <div class="cc-search-sheet__bar">
+    <button class="cc-search-sheet__back" type="button" data-search-close aria-label="{{ trans('beauty.search.back') }}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+    </button>
+    <salla-search class="cc-search-sheet__field" inline height="44"></salla-search>
+  </div>
+  <div class="cc-search-sheet__body" data-search-discover>
+    <section class="cc-search-sheet__section" data-search-recent hidden>
+      <div class="cc-search-sheet__head">
+        <h2 class="cc-search-sheet__title">{{ trans('beauty.search.recent') }}</h2>
+        <button class="cc-search-sheet__clear" type="button" data-search-clear aria-label="{{ trans('beauty.search.clear_recent') }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12.5a1.5 1.5 0 0 0 1.5 1.5h7a1.5 1.5 0 0 0 1.5-1.5L18 7M9 7V4.5A1.5 1.5 0 0 1 10.5 3h3A1.5 1.5 0 0 1 15 4.5V7"/></svg>
+        </button>
+      </div>
+      <ul class="cc-search-chips" data-search-recent-list role="list"></ul>
+    </section>
+    {% if popular_terms|length %}
+    <section class="cc-search-sheet__section">
+      <h2 class="cc-search-sheet__title">{{ trans('beauty.search.popular') }}</h2>
+      <ul class="cc-search-chips" role="list">
+        {% for term in popular_terms %}
+          <li><a class="cc-search-chip" href="{{ search_url }}?q={{ term|url_encode }}" data-search-term="{{ term|e('html_attr') }}">{{ term }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+    <section class="cc-search-sheet__section" data-search-brands hidden>
+      <h2 class="cc-search-sheet__title">{{ trans('beauty.search.brands') }}</h2>
+      <ul class="cc-search-brands" data-search-brands-list role="list"></ul>
+    </section>
+  </div>
+</core-care-search-sheet>

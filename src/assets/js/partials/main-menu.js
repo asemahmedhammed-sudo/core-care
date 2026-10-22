@@ -2,6 +2,7 @@ import './core-care-categories';
 import './core-care-language-menu';
 import './core-care-cart-drawer';
 import './core-care-tabbar';
+import './core-care-search-sheet';
 
 class NavigationMenu extends HTMLElement {
     connectedCallback() {
