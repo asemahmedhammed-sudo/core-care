@@ -61,7 +61,7 @@ Owner request: the categories button in the phone header should open the categor
   | `draft-806037300` | 768 | Tablet | Rail 200px, 4 columns, no overflow |
 
 - **Theme identity:** body `theme-beauty`, `salla-draft-806037300`, CSS from `salla.design/themes/draft/806037300/app.css?v=20261022-categories-sheet-2`.
-- **Evidence:** `docs/evidence/visual/categories-sheet-salla-mobile-390-2026-10-22.jpg`.
+- **Evidence:** `docs/evidence/visual/categories-sheet-salla-mobile-390-2026-10-22.jpg` (kept locally; `docs/evidence/visual` is git-ignored).
 
 ## Test data
 
