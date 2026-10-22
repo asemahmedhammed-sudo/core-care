@@ -7,6 +7,55 @@ export function safeMenuUrl(value) {
     } catch { return null; }
 }
 
+// Phones and tablets (with the app tab bar) show the categories as an app-style page: a rail of the
+// menu's sections and, for the selected one, its subcategories as image circles. Menus built without
+// sub-links take the subcategories of the Salla category the link points to.
+const COMPACT_QUERY = '(max-width: 1023px)';
+const TREE_KEY = 'cc-categories-tree';
+
+export function categoryIdFromUrl(value) {
+    const url = safeMenuUrl(value);
+    const match = url && new URL(url).pathname.match(/\/c(\d+)\/?$/);
+    return match ? match[1] : null;
+}
+
+// Menu links and Salla categories in one shape: { title, url, image, children }.
+export function categoryNode(item, depth = 0) {
+    const kids = Array.isArray(item?.children) && item.children.length ? item.children : item?.sub_categories;
+    return {
+        title: String(item?.title || item?.name || '').trim(),
+        url: item?.url,
+        image: item?.image,
+        children: depth < 4 && Array.isArray(kids) ? kids.map(kid => categoryNode(kid, depth + 1)).filter(kid => kid.title) : [],
+    };
+}
+
+// The storefront API codes `id` (for example "yNazxp"); the number is in `id_` and the category link.
+const matchesCategory = (item, id) => [item?.id_, item?.id].some(value => String(value) === id) || categoryIdFromUrl(item?.url) === id;
+
+export function findCategory(items, id, depth = 0) {
+    if (!id || !Array.isArray(items) || depth > 6) return null;
+    id = String(id);
+    for (const item of items) {
+        if (matchesCategory(item, id)) return item;
+        const found = findCategory(item?.sub_categories, id, depth + 1);
+        if (found) return found;
+    }
+    return null;
+}
+
+// Subcategories with their own children become titled groups; the rest share one grid of circles.
+export function categorySections(children) {
+    const items = Array.isArray(children) ? children : [];
+    return { leaves: items.filter(item => !item.children.length), groups: items.filter(item => item.children.length) };
+}
+
+// The letter shown when a category has no image; Arabic names skip their «ال».
+export function categoryInitial(title) {
+    const label = String(title || '').trim();
+    return (label.startsWith('ال') && label.length > 2 ? label.slice(2, 3) : label.slice(0, 1)).toUpperCase();
+}
+
 class CoreCareCategories extends HTMLElement {
     connectedCallback() {
         this.abort?.abort();
@@ -27,8 +76,27 @@ class CoreCareCategories extends HTMLElement {
         document.addEventListener('focusin', e => {
             if (!this.hidden && outside(e.target)) this.setOpen(false);
         }, options);
+        this.media = window.matchMedia(COMPACT_QUERY);
+        this.media.addEventListener('change', () => { if (this.menus?.length) this.render(); this.place(); }, options);
+        window.addEventListener('resize', () => { if (!this.hidden) this.place(); }, options);
         this.status(this.ar ? 'جارٍ تحميل الأقسام…' : 'Loading categories…');
         this.load();
+    }
+
+    get compact() { return !!this.media?.matches && document.body.classList.contains('cc-has-tabbar'); }
+
+    // On phones the sheet opens under the compact header, so its search stays in view as in the app;
+    // when the header has scrolled away it covers the screen and shows its own title and close button.
+    place() {
+        if (!this.compact) {
+            this.style.removeProperty('--cc-categories-top');
+            this.removeAttribute('data-under-header');
+            return;
+        }
+        const bottom = Math.max(0, Math.round(document.querySelector('.store-header')?.getBoundingClientRect().bottom || 0));
+        const under = bottom >= 56;
+        this.toggleAttribute('data-under-header', under);
+        this.style.setProperty('--cc-categories-top', `${under ? bottom : 0}px`);
     }
 
     disconnectedCallback() { this.abort?.abort(); document.documentElement.classList.remove('cc-categories-open'); }
@@ -39,6 +107,7 @@ class CoreCareCategories extends HTMLElement {
         this.triggers.forEach(item => item.setAttribute('aria-expanded', String(open)));
         // Locks page scroll only where the panel is a full-screen sheet (see core-care-app-nav.scss).
         document.documentElement.classList.toggle('cc-categories-open', open);
+        if (open) this.place();
         if (open) this.querySelector('[role="tab"][aria-selected="true"]')?.focus();
     }
 
@@ -145,7 +214,8 @@ class CoreCareCategories extends HTMLElement {
         });
         grid.append(tabs, this.panels);
         this.append(toolbar, grid);
-        this.select(0);
+        this.classList.toggle('core-categories--compact', this.compact);
+        this.select(Math.min(this.current || 0, this.menus.length - 1));
     }
 
     select(index) {
@@ -153,6 +223,8 @@ class CoreCareCategories extends HTMLElement {
             button.setAttribute('aria-selected', String(i === index));
             button.tabIndex = i === index ? 0 : -1;
         });
+        this.current = index;
+        if (this.compact) return this.selectCompact(index);
         const item = this.menus[index];
         const panel = this.element('section', 'core-categories__panel');
         panel.id = `core-category-panel-${index}`;
@@ -180,6 +252,123 @@ class CoreCareCategories extends HTMLElement {
         }
         panel.append(content);
         this.panels.replaceChildren(panel);
+    }
+
+    // Salla's category tree, loaded on the first compact open and kept for the visit.
+    loadTree() {
+        const key = `${TREE_KEY}-${document.documentElement.lang || 'ar'}`;
+        if (!this.treeRequest) {
+            let cached = null;
+            try { cached = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch { /* private mode */ }
+            this.treeRequest = Array.isArray(cached) ? Promise.resolve(cached) : salla.product.api.categories()
+                .then(({ data }) => {
+                    const tree = Array.isArray(data) ? data : [];
+                    try { sessionStorage.setItem(key, JSON.stringify(tree)); } catch { /* private mode or full storage */ }
+                    return tree;
+                })
+                .catch(() => { this.treeRequest = null; return []; });
+            this.treeRequest.then(tree => { this.tree = tree; });
+        }
+        return this.treeRequest;
+    }
+
+    circle(item) {
+        const link = this.link(item, 'core-categories__circle', '');
+        const media = this.element('span', 'core-categories__circle-media');
+        media.setAttribute('aria-hidden', 'true');
+        media.append(this.element('span', 'core-categories__circle-initial', categoryInitial(item.title)));
+        const image = this.image(item, 'core-categories__circle-image');
+        if (image) {
+            image.decoding = 'async';
+            image.addEventListener('load', () => media.classList.add('has-image'), { once: true });
+            media.append(image);
+        }
+        link.append(media, this.element('span', 'core-categories__circle-name', item.title));
+        const li = this.element('li');
+        li.append(link);
+        return li;
+    }
+
+    circles(items) {
+        const list = this.element('ul', 'core-categories__circles');
+        list.setAttribute('role', 'list');
+        list.append(...items.map(item => this.circle(item)));
+        return list;
+    }
+
+    group(child, id) {
+        const section = this.element('section', 'core-categories__section');
+        const head = this.element('div', 'core-categories__section-head');
+        const title = this.element('h3', 'core-categories__section-title', child.title);
+        const list = this.circles(child.children);
+        list.id = id;
+        head.append(title);
+        if (safeMenuUrl(child.url)) {
+            const all = this.link(child, 'core-categories__view-all', this.ar ? 'عرض الكل' : 'View all');
+            all.setAttribute('aria-label', this.ar ? `عرض كل ${child.title}` : `View all ${child.title}`);
+            head.append(all);
+        }
+        const toggle = this.element('button', 'core-categories__collapse');
+        toggle.type = 'button';
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-controls', id);
+        toggle.setAttribute('aria-label', child.title);
+        const chevron = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        chevron.setAttribute('viewBox', '0 0 24 24');
+        chevron.setAttribute('aria-hidden', 'true');
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', 'm6 15 6-6 6 6');
+        chevron.append(path);
+        toggle.append(chevron);
+        toggle.addEventListener('click', () => {
+            const open = toggle.getAttribute('aria-expanded') !== 'true';
+            toggle.setAttribute('aria-expanded', String(open));
+            list.hidden = !open;
+        });
+        head.append(toggle);
+        section.append(head, list);
+        return section;
+    }
+
+    selectCompact(index) {
+        const item = this.menus[index];
+        const panel = this.element('section', 'core-categories__panel');
+        panel.id = `core-category-panel-${index}`;
+        panel.setAttribute('role', 'tabpanel');
+        panel.setAttribute('aria-labelledby', this.buttons[index].id);
+        panel.tabIndex = 0;
+        this.panels.replaceChildren(panel);
+        const id = Array.isArray(item.children) && item.children.length ? null : categoryIdFromUrl(item.url);
+        if (id && !this.tree) {
+            const message = this.element('p', 'core-categories__status', this.ar ? 'جارٍ تحميل الأقسام…' : 'Loading categories…');
+            message.setAttribute('role', 'status');
+            panel.append(message);
+            this.loadTree().then(() => { if (this.current === index && this.compact) this.selectCompact(index); });
+            return;
+        }
+        const category = id ? findCategory(this.tree, id) : null;
+        const node = categoryNode(id ? { ...item, sub_categories: category?.sub_categories } : item);
+        const bannerImage = this.image({ image: item.image || category?.image }, 'core-categories__banner-image');
+        if (bannerImage) {
+            const banner = this.link(item, 'core-categories__banner', '');
+            banner.setAttribute('aria-label', item.title);
+            bannerImage.decoding = 'async';
+            banner.append(bannerImage);
+            panel.append(banner);
+        }
+        const card = this.element('div', 'core-categories__card');
+        const label = id || node.children.length ? (this.ar ? 'جميع المنتجات' : 'All products') : item.title;
+        const all = this.link(item, 'core-categories__card-all', label);
+        if (id || node.children.length) all.setAttribute('aria-label', this.ar ? `جميع منتجات ${item.title}` : `All ${item.title} products`);
+        card.append(all);
+        const { leaves, groups } = categorySections(node.children);
+        if (leaves.length) {
+            const section = this.element('section', 'core-categories__section');
+            section.append(this.circles(leaves));
+            card.append(section);
+        }
+        groups.forEach((child, i) => card.append(this.group(child, `core-category-group-${index}-${i}`)));
+        panel.append(card);
     }
 }
 
