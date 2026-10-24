@@ -70,17 +70,12 @@
     </li>
     <li>
       {% set account_icon %}<svg class="cc-tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle class="cc-tabbar__fill" cx="12" cy="7.5" r="3.8"/><path class="cc-tabbar__fill" d="M5.2 20.5h13.6c.5 0 .8-.4.7-.9-.8-3.1-3.8-5.1-7.5-5.1s-6.7 2-7.5 5.1c-.1.5.2.9.7.9Z"/></svg>{% endset %}
-      {% if user.type == 'user' %}
-        <a class="cc-tabbar__item" href="{{ link('account/profile') }}"{% if page.slug starts with 'customer.' %} aria-current="page"{% endif %}>
-          {{ account_icon }}
-          <span class="cc-tabbar__label">{{ trans('beauty.tabbar.account') }}</span>
-        </a>
-      {% else %}
-        <button class="cc-tabbar__item" type="button" aria-haspopup="dialog" onclick="salla.event.dispatch('login::open')">
-          {{ account_icon }}
-          <span class="cc-tabbar__label">{{ trans('beauty.tabbar.account') }}</span>
-        </button>
-      {% endif %}
+      {# Opens «حسابي» (mobile-account.twig) for guests and customers alike; marked current on the account pages. #}
+      <button class="cc-tabbar__item{{ page.slug starts with 'customer.' ? ' is-active' : '' }}" type="button" data-account-toggle aria-expanded="false" aria-controls="cc-account">
+        {{ account_icon }}
+        <span class="cc-tabbar__label">{{ trans('beauty.tabbar.account') }}</span>
+      </button>
     </li>
   </ul>
 </nav>
+{% include 'pages.partials.mobile-account' %}

@@ -29,8 +29,8 @@ test('tab bar uses Salla components and links instead of custom commerce logic',
   assert.match(tabbar, /href="\{\{ link\('\/'\) \}\}"\{% if is_page\('index'\) %\} aria-current="page"\{% endif %\}/);
   assert.match(tabbar, /<button class="cc-tabbar__item" type="button" data-categories-toggle aria-expanded="false" aria-controls="core-care-categories">/);
   assert.match(tabbar, /<salla-cart-summary class="cc-tabbar__cart[^>]*>\s*<span slot="icon" class="cc-tabbar__item">/);
-  assert.match(tabbar, /\{% if user\.type == 'user' %\}\s*<a class="cc-tabbar__item" href="\{\{ link\('account\/profile'\) \}\}"/);
-  assert.match(tabbar, /onclick="salla\.event\.dispatch\('login::open'\)"/);
+  assert.match(tabbar, /<button class="cc-tabbar__item\{\{ page\.slug starts with 'customer\.' \? ' is-active' : '' \}\}" type="button" data-account-toggle aria-expanded="false" aria-controls="cc-account">/);
+  assert.match(tabbar, /\{% include 'pages\.partials\.mobile-account' %\}/);
   assert.doesNotMatch(tabbar, /\|raw/);
   for (const icon of tabbar.match(/<svg[^>]*>/g)) assert.match(icon, /aria-hidden="true"/);
 });
@@ -80,7 +80,7 @@ test('mobile navigation is limited to phones and portrait tablets and respects o
   assert.match(styles, /&:has\(:is\(input, textarea, select\):focus\) \.cc-tabbar \{ display: none; \}/);
   assert.match(styles, /\.wa-s-n \{ translate: 0 calc\(-1 \* var\(--cc-tabbar-offset\)\); \}/);
   // Overlays keep their order: header < categories sheet < tab bar < cart drawer and sheets (60+).
-  assert.match(tokens, /--cc-z-header: 30;\s*--cc-z-categories: 45;\s*--cc-z-tabbar: 50;/);
+  assert.match(tokens, /--cc-z-header: 30;\s*--cc-z-categories: 45;\s*--cc-z-account: 46;\s*--cc-z-tabbar: 50;/);
   assert.match(styles, /\.cc-tabbar__item \{[^}]*min-height: 44px;/);
 });
 

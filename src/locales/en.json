@@ -222,6 +222,20 @@
       "checkout": "Checkout",
       "view_cart": "View full cart",
       "updated": "Cart updated"
+    },
+    "account": {
+      "close": "Close account",
+      "login": "Sign in",
+      "greeting": "Welcome",
+      "edit_profile": "Profile",
+      "orders": "My orders",
+      "wishlist": "My wishlist",
+      "wallet": "Wallet",
+      "notifications": "Notifications",
+      "support": "Customer service",
+      "pages": "Store pages",
+      "logout": "Sign out",
+      "follow": "Follow us"
     }
   }
 }

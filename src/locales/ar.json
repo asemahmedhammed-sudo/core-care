@@ -222,6 +222,20 @@
       "checkout": "الدفع",
       "view_cart": "عرض السلة كاملة",
       "updated": "تم تحديث السلة"
+    },
+    "account": {
+      "close": "إغلاق حسابي",
+      "login": "تسجيل دخول",
+      "greeting": "أهلًا بك",
+      "edit_profile": "الملف الشخصي",
+      "orders": "طلباتي",
+      "wishlist": "مفضلاتي",
+      "wallet": "المحفظة",
+      "notifications": "الإشعارات",
+      "support": "خدمة العملاء",
+      "pages": "صفحات المتجر",
+      "logout": "تسجيل الخروج",
+      "follow": "تابعنا"
     }
   }
 }

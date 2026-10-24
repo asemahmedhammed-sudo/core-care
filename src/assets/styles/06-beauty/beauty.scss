@@ -423,6 +423,7 @@ body.theme-beauty {
   --cc-tabbar-offset: 0px;
   --cc-z-header: 30;
   --cc-z-categories: 45;
+  --cc-z-account: 46;
   --cc-z-tabbar: 50;
   // viewport-fit=cover lets landscape iPhones draw under the notch; keep content inside the safe area.
   padding-left: env(safe-area-inset-left, 0px);
