@@ -30,6 +30,12 @@ Static harness with the built `app.css` and the slider markup, built-in browser,
 
 No horizontal overflow at 972px. Dots sit directly under the artwork.
 
+## Salla development preview
+
+- Commit `037b57b` pushed to `feature/bilingual-images`, then `yes n | salla theme preview -s "Core Care" -o -E` (CLI 3.2.63). Draft `draft-526918281` («ثيم كوركير - تطوير», unpublished). CLI and its webpack watcher stopped; `pnpm build` restored production `public/`.
+- Hosted draft asset `salla.design/themes/draft/526918281/app.css`: HTTP 200, 394,749 bytes, identical in size to the commit's `public/app.css` on jsDelivr, and contains the new tablet rule. So the draft serves this change.
+- Claude in Chrome opened the draft editor (the page list shows «سلايدر العروض الرئيسي» first), but screenshots and JavaScript failed with "Host access is restricted by policy", as on 2026-10-24. The storefront frame's signed `watch` URL is not exposed in the accessibility tree, so the rendered page could not be opened or measured.
+
 ## Not verified
 
-- Actual Salla development preview (desktop/tablet/phone), header alignment and neighbouring sections in the real page, LTR, and Chrome. Needs a commit and push before `salla theme preview` (see project workflow). **Platform visual verification: incomplete.**
+- Rendered draft at 1440, 972 and 390px: header alignment, neighbouring sections, LTR. Blocked by the Chrome host policy on `s.salla.sa`. **Platform visual verification: incomplete.**
