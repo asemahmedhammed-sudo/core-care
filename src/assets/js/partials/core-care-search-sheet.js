@@ -1,5 +1,5 @@
-// Phone/tablet search (pages/partials/mobile-search.twig). Salla's own search window keeps the history,
-// most-searched sections and results; below 1024px this adds a clear-all button to the history (as in the
+// Phone search (pages/partials/mobile-search.twig). Salla's own search window keeps the history,
+// most-searched sections and results; below 768px this adds a clear-all button to the history (as in the
 // reference) and «ماركات مقترحة» under the sections while the
 // field is empty: the brands the merchant named (setting beauty_search_brands), with the logos and
 // links of the theme's own brands page.
@@ -132,7 +132,7 @@ function ensureClearButton(panel, label) {
 function enhance(input) {
     const config = document.getElementById('cc-search-config');
     const panel = input.closest(`${SEARCH_WINDOW} .s-search-panel`);
-    if (!config || !panel || !window.matchMedia('(max-width: 1023px)').matches) return;
+    if (!config || !panel || !window.matchMedia('(max-width: 767px)').matches) return;
     panel.toggleAttribute('data-cc-typing', !!input.value.trim());
     ensureClearButton(panel, config.dataset.clearHistoryLabel || '');
     if (!config.dataset.brandsUrl || panel.querySelector('.cc-search-brands-section') || panel.dataset.ccBrands === 'loading') return;

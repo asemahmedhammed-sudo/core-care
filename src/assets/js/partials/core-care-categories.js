@@ -10,7 +10,7 @@ export function safeMenuUrl(value) {
 // Phones and tablets (with the app tab bar) show the categories as an app-style page: a rail of the
 // menu's sections and, for the selected one, its subcategories as image circles. Menus built without
 // sub-links take the subcategories of the Salla category the link points to.
-const COMPACT_QUERY = '(max-width: 1023px)';
+const COMPACT_QUERY = '(max-width: 767px)';
 const TREE_KEY = 'cc-categories-tree';
 
 export function categoryIdFromUrl(value) {

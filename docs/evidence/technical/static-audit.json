@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-22T17:40:47.338Z",
+  "generatedAt": "2026-10-25T23:44:30.421Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 187,
+    "keyCount": 205,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -2770,12 +2770,12 @@
     {
       "file": "src/views/components/footer/footer.twig",
       "kind": "modified-upstream",
-      "sha256": "d675724656103d40acd8f368692248bcaaf4bb49faedebad6050aebe97c09fcb"
+      "sha256": "ccc529f119529674c50eccd6709968a64fc8e40fb77a1a9d9639cc5a2ac4d15b"
     },
     {
       "file": "src/views/components/header/header.twig",
       "kind": "modified-upstream",
-      "sha256": "544884c209d5e808ae42b8af199c855835ee660ff53fe5b5cafbf35b75d7102b"
+      "sha256": "4729d16905f6c367ec07a749a807a982e8abb0d05264d85337dc9828d2c8ac4c"
     },
     {
       "file": "src/views/components/home/beauty-collections.twig",
@@ -2908,14 +2908,19 @@
       "sha256": "da791c8e56ffe1e3264940751b513a3b77070d15fdaa01200f20378c7871080a"
     },
     {
+      "file": "src/views/pages/partials/mobile-account.twig",
+      "kind": "new-template",
+      "sha256": "9e44194f388cfc34178bf2efbfc2f8bd2ede76534ff1adf3a18e4b700c62431b"
+    },
+    {
       "file": "src/views/pages/partials/mobile-search.twig",
       "kind": "new-template",
-      "sha256": "4e32de13d20e98398a9356568cab7e1909a1791701a86d0c27a3ade3b6274e81"
+      "sha256": "f957426ce7b1b9e84818dd844b943971296bfec60cac0ccbb59b725c307b1b34"
     },
     {
       "file": "src/views/pages/partials/mobile-tabbar.twig",
       "kind": "new-template",
-      "sha256": "eb2477b69b8e1b913d5de4465419d1f899a0ccdda73d58a5d308281493ad0585"
+      "sha256": "73b2d2a9fc3eca1ee01d0382f8f3671f7112d7de0292b3fe42c779726ab0e1e9"
     },
     {
       "file": "src/views/pages/partials/product/gallery.twig",

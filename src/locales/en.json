@@ -88,10 +88,16 @@
     "footer": {
       "quick_links": "Quick links",
       "customer_service": "Customer service",
+      "policies": "Policies",
+      "returns": "Exchange & returns",
+      "store_info": "Store info",
+      "brands": "Brands",
       "payment_methods": "Payment methods",
       "home": "Home",
       "products": "Products",
       "offers": "Offers",
+      "all_products": "All products",
+      "offers_discounts": "Offers & discounts",
       "about": "About us",
       "support_title": "Need help?",
       "support_description": "Contact us through the available support channels."
@@ -222,6 +228,20 @@
       "checkout": "Checkout",
       "view_cart": "View full cart",
       "updated": "Cart updated"
+    },
+    "account": {
+      "close": "Close account",
+      "login": "Sign in",
+      "greeting": "Welcome",
+      "edit_profile": "Profile",
+      "orders": "My orders",
+      "wishlist": "My wishlist",
+      "wallet": "Wallet",
+      "notifications": "Notifications",
+      "support": "Customer service",
+      "pages": "Store pages",
+      "logout": "Sign out",
+      "follow": "Follow us"
     }
   }
 }

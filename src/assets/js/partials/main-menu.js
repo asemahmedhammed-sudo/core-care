@@ -2,6 +2,7 @@ import './core-care-categories';
 import './core-care-language-menu';
 import './core-care-cart-drawer';
 import './core-care-tabbar';
+import './core-care-account';
 import './core-care-search-sheet';
 import './core-care-barcode-scan';
 

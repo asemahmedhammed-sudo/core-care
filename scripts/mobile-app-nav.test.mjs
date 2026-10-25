@@ -29,8 +29,8 @@ test('tab bar uses Salla components and links instead of custom commerce logic',
   assert.match(tabbar, /href="\{\{ link\('\/'\) \}\}"\{% if is_page\('index'\) %\} aria-current="page"\{% endif %\}/);
   assert.match(tabbar, /<button class="cc-tabbar__item" type="button" data-categories-toggle aria-expanded="false" aria-controls="core-care-categories">/);
   assert.match(tabbar, /<salla-cart-summary class="cc-tabbar__cart[^>]*>\s*<span slot="icon" class="cc-tabbar__item">/);
-  assert.match(tabbar, /\{% if user\.type == 'user' %\}\s*<a class="cc-tabbar__item" href="\{\{ link\('account\/profile'\) \}\}"/);
-  assert.match(tabbar, /onclick="salla\.event\.dispatch\('login::open'\)"/);
+  assert.match(tabbar, /<button class="cc-tabbar__item\{\{ page\.slug starts with 'customer\.' \? ' is-active' : '' \}\}" type="button" data-account-toggle aria-expanded="false" aria-controls="cc-account">/);
+  assert.match(tabbar, /\{% include 'pages\.partials\.mobile-account' %\}/);
   assert.doesNotMatch(tabbar, /\|raw/);
   for (const icon of tabbar.match(/<svg[^>]*>/g)) assert.match(icon, /aria-hidden="true"/);
 });
@@ -69,9 +69,9 @@ test('header and tab bar open one categories panel and stay in sync', () => {
   assert.match(header, /data-categories-toggle type="button" aria-expanded="false" aria-controls="core-care-categories">/);
 });
 
-test('mobile navigation is limited to phones and portrait tablets and respects other bottom UI', () => {
+test('mobile navigation is limited to phones and respects other bottom UI', () => {
   assert.match(styles, /^body\.theme-beauty \.cc-tabbar \{ display: none; \}/m);
-  assert.match(styles, /@media \(max-width: 1023px\) \{\s*body\.theme-beauty\.cc-has-tabbar \{/);
+  assert.match(styles, /@media \(max-width: 767px\) \{\s*body\.theme-beauty\.cc-has-tabbar \{/);
   assert.match(styles, /padding-bottom: var\(--cc-safe-bottom\);/);
   assert.match(styles, /padding-bottom: var\(--cc-tabbar-offset\);/);
   // Never two fixed bars on phone product pages, never over the keyboard, never under the WhatsApp button.
@@ -80,7 +80,7 @@ test('mobile navigation is limited to phones and portrait tablets and respects o
   assert.match(styles, /&:has\(:is\(input, textarea, select\):focus\) \.cc-tabbar \{ display: none; \}/);
   assert.match(styles, /\.wa-s-n \{ translate: 0 calc\(-1 \* var\(--cc-tabbar-offset\)\); \}/);
   // Overlays keep their order: header < categories sheet < tab bar < cart drawer and sheets (60+).
-  assert.match(tokens, /--cc-z-header: 30;\s*--cc-z-categories: 45;\s*--cc-z-tabbar: 50;/);
+  assert.match(tokens, /--cc-z-header: 30;\s*--cc-z-categories: 45;\s*--cc-z-account: 46;\s*--cc-z-tabbar: 50;/);
   assert.match(styles, /\.cc-tabbar__item \{[^}]*min-height: 44px;/);
 });
 
@@ -97,7 +97,7 @@ test('add-to-cart animation targets the visible cart summary', () => {
   assert.match(app, /\[\.\.\.document\.querySelectorAll\('salla-cart-summary'\)\]\.find\(el => el\.getClientRects\(\)\.length\)/);
 });
 
-test('desktop (1024px and wider) keeps its design: mobile rules stay inside phone/tablet media queries', () => {
+test('tablets (768px and wider) and desktop keep the desktop design: mobile rules stay inside phone media queries', () => {
   // Outside media queries the app-nav stylesheet only hides the tab bar and lowers motion.
   const source = styles.replace(/\/\/.*$/gm, '');
   const topLevel = [];
@@ -111,13 +111,22 @@ test('desktop (1024px and wider) keeps its design: mobile rules stay inside phon
   }
   assert.deepEqual(topLevel, ['body.theme-beauty .cc-tabbar { display: none; }']);
   for (const query of styles.match(/@media [^{]+/g)) {
-    assert.match(query, /max-width: (1023|767|640|359)px|prefers-reduced-motion/, query);
+    assert.match(query, /max-width: (767|640|359)px|prefers-reduced-motion/, query);
   }
-  // Hero pagination: the original desktop capsule stays; the compact bars only override it below 1024px.
+  // Hero pagination: the original desktop capsule stays; the compact bars only override it below 768px.
   const home = read('src/assets/styles/06-beauty/core-care-home.scss');
   assert.match(home, /\.beauty-promotions__dots \{\s*grid-area: 1 \/ 1 \/ 2 \/ -1; justify-self: center; align-self: end;/);
   assert.match(home, /\.beauty-promotions__dots::before \{\s*content: '';/);
-  assert.match(home, /@media \(max-width: 1023px\) \{\s*\.beauty-promotions__viewport:has\(> \[data-promotion-slide\] ~ \[data-promotion-slide\]\) \{ grid-template-rows: auto minmax\(24px, auto\); \}/);
+  assert.match(home, /@media \(max-width: 767px\) \{\s*\.beauty-promotions__viewport:has\(> \[data-promotion-slide\] ~ \[data-promotion-slide\]\) \{ grid-template-rows: auto minmax\(24px, auto\); \}/);
+  // Tablets (768-1023px), as on the reference site: no app mode anywhere, and the banner keeps its
+  // corners and arrows within the 768px page container.
+  for (const file of ['src/assets/styles/06-beauty/core-care-app-nav.scss', 'src/assets/styles/06-beauty/core-care-account.scss', 'src/assets/js/partials/core-care-categories.js', 'src/assets/js/partials/core-care-search-sheet.js']) {
+    assert.doesNotMatch(read(file), /1023px/, file);
+  }
+  assert.match(read('src/assets/js/partials/core-care-account.js'), /matchMedia\?\.\('\(min-width: 768px\)'\)/);
+  const tablet = home.slice(home.indexOf('@media (min-width: 768px) and (max-width: 1023px) {'));
+  assert.match(tablet, /^@media \(min-width: 768px\) and \(max-width: 1023px\) \{\s*\.beauty-promotions__viewport, \.beauty-promotions__controls \{ max-width: calc\(768px - 2 \* var\(--cc-gutter\)\); \}\s*\}/);
+  assert.doesNotMatch(home, /cc-has-tabbar/);
   // Compact-only header parts are hidden in the desktop header.
   assert.match(read('src/assets/styles/06-beauty/core-care-header.scss'), /\.core-care-header__grid-icon, \.core-care-header__scope-prefix, \.core-care-header__scope-chevron, \.core-care-header__scan \{ display: none; \}/);
 });
@@ -141,7 +150,7 @@ test('app-style home on phones: tall banner switch, header over it, two-row shor
   assert.match(partial, /promotion_mobile_tall\|default\(false\) \? ' beauty-promotions--mobile-tall' : ''/);
   // Phone-only rules live in the max-width: 767px block of the home stylesheet.
   const phone = home.slice(home.indexOf('// Phones (app reference)'));
-  assert.ok(home.lastIndexOf('@media (max-width: 767px) {', home.indexOf('// Phones (app reference)')) > home.indexOf('@media (max-width: 1023px)'));
+  assert.ok(home.lastIndexOf('@media (max-width: 767px) {', home.indexOf('// Phones (app reference)')) > home.indexOf('// Phones (below 768px): compact progress bars'));
   assert.match(phone, /\.beauty-promotions--mobile-tall \{ --promo-ratio: 1 \/ 1; \}/);
   assert.match(phone, /\.beauty-promotions__arrow \{ display: none; \}/);
   assert.match(phone, /\.beauty-categories__list:has\(> li:nth-child\(6\)\) \{\s*(?:\/\/[^\n]*\s*)?display: grid; grid-auto-flow: column; grid-template-rows: repeat\(2, auto\); grid-auto-columns: calc\(\(100% - 4 \* 20px\) \/ 4\.3\);/);
@@ -161,7 +170,7 @@ test('empty Salla free-shipping banner does not add a gap above the first sectio
   assert.match(styles, /#main-content > salla-free-shipping-banner:empty \{ display: none; \}/);
 });
 
-test('phone search: the Salla search window, restyled, plus suggested brands (phones and tablets only)', async () => {
+test('phone search: the Salla search window, restyled, plus suggested brands (phones only)', async () => {
   const config = read('src/views/pages/partials/mobile-search.twig');
   const layoutNow = read('src/views/layouts/master.twig');
   assert.match(layoutNow, /\{% include 'pages\.partials\.mobile-tabbar' %\}\{% include 'pages\.partials\.mobile-search' %\}/);
@@ -177,7 +186,7 @@ test('phone search: the Salla search window, restyled, plus suggested brands (ph
 
   const source = read('src/assets/js/partials/core-care-search-sheet.js');
   const mod = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
-  assert.match(source, /window\.matchMedia\('\(max-width: 1023px\)'\)\.matches/);
+  assert.match(source, /window\.matchMedia\('\(max-width: 767px\)'\)\.matches/);
   for (const value of ['javascript:alert(1)', 'data:text/html,x', '', null, 'https://u:p@x.test/a']) assert.equal(mod.safeUrl(value, 'https://store.test/'), null, String(value));
   // Brands come only from the theme's own brands page tiles, with valid links, logos and names, at most 12.
   const tile = (href, src, alt) => ({ getAttribute: name => (name === 'href' ? href : null), querySelector: () => ({ getAttribute: name => ({ src, alt })[name] ?? null }) });
@@ -253,8 +262,8 @@ test('tab bar follows the app reference: 28px outline icons, black labels, pale 
   assert.match(styles, /color: var\(--cc-text\); font-size: 13px; font-weight: 600; line-height: 17px;/);
   assert.match(styles, /justify-content: center; gap: 0;/);
   assert.match(styles, /\.cc-tabbar__fill \{ fill: var\(--cc-tabbar-active-fill\); \}/);
-  // Only phones and tablets get the taller bar; the desktop token keeps its value.
-  assert.match(tokens, /@media \(max-width: 1023px\) \{[\s\S]*?--cc-app-nav-height: 64px; --cc-tabbar-active-fill: #c6e4ff;/);
+  // Only phones get the taller bar; the tablet and desktop token keeps its value.
+  assert.match(tokens, /@media \(max-width: 767px\) \{[\s\S]*?--cc-app-nav-height: 64px; --cc-tabbar-active-fill: #c6e4ff;/);
   assert.match(tokens, /^body\.theme-beauty \{\s*--cc-app-nav-height: 60px;/m);
   // Categories icon: three squares and a magnifier; campaign image 48px with reserved dimensions.
   assert.match(tabbar, /<circle class="cc-tabbar__fill" cx="16\.8" cy="16\.8" r="3\.3"\/><path d="m19\.3 19\.3 1\.7 1\.7"\/>/);

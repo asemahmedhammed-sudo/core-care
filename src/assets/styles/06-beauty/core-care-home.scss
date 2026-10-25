@@ -123,10 +123,10 @@ body.theme-beauty.beauty-reference-home {
   .beauty-promotions__dots [aria-current='true'] + [data-promotion-dot]::before,
   .beauty-promotions__dots [data-promotion-dot]:has(+ [aria-current='true'])::before { width: 8px; height: 8px; background: #9e9e9e; }
   .beauty-promotions__dots [aria-current='true']::before { width: 10px; height: 10px; background: var(--promo-accent); }
-  // Phones and tablets (below 1024px): compact progress bars in their own row beneath the
-  // artwork, so they never cover campaign copy, prices or CTAs. Desktop keeps the capsule above.
+  // Phones (below 768px): compact progress bars in their own row beneath the artwork, so they
+  // never cover campaign copy, prices or CTAs. Tablets and desktop keep the capsule above.
   // Multi-slide carousels reserve the row before the script reveals the controls (no layout shift).
-  @media (max-width: 1023px) {
+  @media (max-width: 767px) {
     .beauty-promotions__viewport:has(> [data-promotion-slide] ~ [data-promotion-slide]) { grid-template-rows: auto minmax(24px, auto); }
     .beauty-promotions__dots {
       --promo-dot-width: 16px; --promo-dot-active-width: 32px; --promo-dot-height: 4px;
@@ -143,6 +143,11 @@ body.theme-beauty.beauty-reference-home {
     }
     // Active state differs in both length and colour, not colour alone.
     .beauty-promotions__dots [aria-current='true']::before { width: var(--promo-dot-active-width); background: var(--promo-accent); }
+  }
+  // Tablets, as on the reference site: the desktop banner within the 768px page container and its
+  // gutter, so its edges line up with the header and the sections below.
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .beauty-promotions__viewport, .beauty-promotions__controls { max-width: calc(768px - 2 * var(--cc-gutter)); }
   }
   .beauty-promotions :focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
   @media (hover: hover) {

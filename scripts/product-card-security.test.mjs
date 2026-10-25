@@ -161,7 +161,7 @@ test('homepage cards retain options, escape brand text and omit missing media', 
   assert.match(card.innerHTML, /core-recommendation-image--empty/);
   assert.doesNotMatch(card.innerHTML, /<img|<script|<svg onload|javascript:/);
   assert.match(card.innerHTML, /&lt;script&gt;brand&lt;\/script&gt;/);
-  assert.match(card.innerHTML, /<rect/);
+  assert.match(card.innerHTML, /<salla-add-product-button[^>]*>.*M7 12h16/s);
   assert.match(card.innerHTML, /product-id="8" product-status="sale" product-type="product"/);
 });
 
@@ -190,7 +190,11 @@ test('recommendations omit missing metadata and invalid discounts without empty 
 
 test('recommendation actions retain native booking, options and availability behavior', () => {
   const options = recommendationCard({ has_options: true });
-  assert.match(options.innerHTML, /<rect/);
+  const simple = recommendationCard();
+  const cartIcon = card => card.innerHTML.match(/<salla-add-product-button[\s\S]*?<svg[\s\S]*?<\/svg>/)?.[0].replace(/^[\s\S]*(<svg)/, '$1');
+  assert.ok(cartIcon(simple), 'cart icon renders');
+  assert.equal(cartIcon(options), cartIcon(simple), 'products with options use the same bag icon');
+  assert.doesNotMatch(options.innerHTML, /<rect/);
   assert.match(options.innerHTML, /product-id="9" product-status="sale" product-type="product"/);
   const booking = recommendationCard({ type: 'booking' });
   assert.match(booking.innerHTML, /sicon-calendar-time/);

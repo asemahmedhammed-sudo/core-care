@@ -237,9 +237,8 @@ class ProductCard extends HTMLElement {
     const onSale = this.product.is_on_sale && Number.isFinite(regular) && Number.isFinite(sale) && regular > 0 && sale >= 0 && sale < regular;
     const discount = onSale ? Math.floor((regular - sale) / regular * 100) : 0;
     const icon = this.product.type === 'booking' ? '<i class="sicon-calendar-time" aria-hidden="true"></i>' :
-      `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">${this.product.has_options ?
-        '<rect x="13" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="14" height="14" rx="2"/><rect x="5" y="13" width="14" height="14" rx="2"/><path d="M6 2v8M2 6h8"/>' :
-        '<path d="M7 12h16l2 15H5l2-15Z"/><path d="M10 12V9a5 5 0 0 1 10 0v3"/><circle class="core-recommendation-icon-clear" cx="24" cy="25" r="6" stroke="none"/><path d="M24 20v10M19 25h10"/>'}</svg>`;
+      // One bag glyph for every product; salla-add-product-button still handles products with options.
+      '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 12h16l2 15H5l2-15Z"/><path d="M10 12V9a5 5 0 0 1 10 0v3"/><circle class="core-recommendation-icon-clear" cx="24" cy="25" r="6" stroke="none"/><path d="M24 20v10M19 25h10"/></svg>';
     const available = this.effectiveStatus === 'sale';
     const media = this.product.image?.url || this.product.thumbnail;
     const hasMedia = media && !salla.url.is_placeholder(media);
