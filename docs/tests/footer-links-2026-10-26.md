@@ -84,3 +84,6 @@ Owner's reference: Nice One desktop footer screenshot. Phones keep the approved 
   names): 1440 RTL/LTR, 1024 and 768 RTL without horizontal overflow; 390 RTL phone layout unchanged.
 - Not tested: Salla preview, real `salla-social`/`salla-payments`/`salla-trust-badges` rendering at web widths,
   signed-in account links, app badges (the store has none).
+- Preview draft **1976833852** created from `08360b6` (`yes n | salla theme preview -s "Core Care" -o -E`); hosted
+  draft assets 404 again, so it is opened with the jsDelivr assets of `08360b6`. Draft 436684333 keeps the older Twig.
+  CLI watchers stopped and `pnpm build` rerun. **Salla platform verification: incomplete** (owner to inspect).
