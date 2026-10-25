@@ -1,11 +1,11 @@
-// «حسابي» on phones and portrait tablets, after the Nice One app's account screen: a pale canvas with
+// «حسابي» on phones, after the Nice One app's account screen: a pale canvas with
 // white rounded cards, outline icons and chevrons, a «تابعنا» row of social tiles and the legal lines.
-// It only exists while the tab bar does (body.cc-has-tabbar, below 1024px); desktop is unchanged.
+// It only exists while the tab bar does (body.cc-has-tabbar, below 768px); tablets and desktop are unchanged.
 // PostCSS lowers inline-direction properties to physical ones, so direction-dependent details use html[dir].
 
 body.theme-beauty .cc-account { display: none; }
 
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
   body.theme-beauty.cc-has-tabbar {
     .cc-account:not([hidden]) {
       --cc-account-canvas: #f5f5f5;

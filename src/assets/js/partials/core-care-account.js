@@ -45,8 +45,8 @@ export function initAccountSheet(root = document) {
         if (event.key === 'Escape' && !sheet.hidden) setOpen(false, { restoreFocus: true });
     });
 
-    // Back on desktop widths the tab bar is gone; never leave the page locked behind a hidden sheet.
-    globalThis.matchMedia?.('(min-width: 1024px)')?.addEventListener?.('change', event => {
+    // From tablet widths the tab bar is gone; never leave the page locked behind a hidden sheet.
+    globalThis.matchMedia?.('(min-width: 768px)')?.addEventListener?.('change', event => {
         if (event.matches && !sheet.hidden) setOpen(false);
     });
 

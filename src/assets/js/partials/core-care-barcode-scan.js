@@ -1,4 +1,4 @@
-// Barcode search on phones and tablets (header button in components/header/header.twig).
+// Barcode search on phones (header button in components/header/header.twig).
 // Uses the browser's own BarcodeDetector and camera (Android Chrome and other Chromium browsers);
 // where either is missing the button stays hidden. A scanned number opens Salla's search, which
 // matches product SKUs, so stores keep each product's barcode in its SKU.

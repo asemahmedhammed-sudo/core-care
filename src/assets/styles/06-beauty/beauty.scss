@@ -415,7 +415,7 @@
 .beauty-skip-link { position: fixed; z-index: 10000; inset-inline-start: 1rem; top: -100px; padding: .75rem 1.25rem; border-radius: .5rem; background: #4b5d3c; color: #fff; }
 .beauty-skip-link:focus { top: 1rem; }
 
-// Mobile app navigation tokens (phones and portrait tablets, below 1024px).
+// Mobile app navigation tokens (phones, below 768px).
 // --cc-tabbar-offset is the space the fixed bottom tab bar takes, including the iPhone home indicator.
 body.theme-beauty {
   --cc-app-nav-height: 60px;
@@ -429,10 +429,10 @@ body.theme-beauty {
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
   // Taller bar with 28px icons and the pale blue current-tab fill, after the app reference.
   body.theme-beauty.cc-has-tabbar { --cc-app-nav-height: 64px; --cc-tabbar-active-fill: #c6e4ff; --cc-tabbar-offset: calc(var(--cc-app-nav-height) + var(--cc-safe-bottom)); }
 }
-@media (max-width: 1023px) and (orientation: landscape) and (max-height: 480px) {
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 480px) {
   body.theme-beauty.cc-has-tabbar { --cc-app-nav-height: 48px; }
 }

@@ -44,8 +44,9 @@ test('phone categories match menu links to Salla categories and their subcategor
   assert.equal(context.categoryInitial(''), '');
 });
 
-test('the app-style categories layout is limited to the phone/tablet sheet', () => {
-  assert.match(source, /const COMPACT_QUERY = '\(max-width: 1023px\)';/);
+test('the app-style categories layout is limited to the phone sheet', () => {
+  // From 768px tablets use the desktop header and its dropdown, as on the reference site.
+  assert.match(source, /const COMPACT_QUERY = '\(max-width: 767px\)';/);
   assert.match(source, /get compact\(\) \{ return !!this\.media\?\.matches && document\.body\.classList\.contains\('cc-has-tabbar'\); \}/);
   assert.match(source, /if \(this\.compact\) return this\.selectCompact\(index\);/);
   // Subcategory data is only requested when the compact sheet needs it, and kept for the visit.
@@ -53,7 +54,7 @@ test('the app-style categories layout is limited to the phone/tablet sheet', () 
   assert.match(source, /sessionStorage\.setItem\(key, JSON\.stringify\(tree\)\)/);
   assert.doesNotMatch(source, /innerHTML/);
   const styles = fs.readFileSync(new URL('../src/assets/styles/06-beauty/core-care-app-nav.scss', import.meta.url), 'utf8');
-  const start = styles.indexOf('@media (max-width: 1023px) {');
+  const start = styles.indexOf('@media (max-width: 767px) {');
   const end = styles.indexOf('\n}\n', start);
   assert.ok(styles.indexOf('core-care-categories.core-categories--compact:not([hidden]) {') > start && styles.indexOf('core-care-categories.core-categories--compact:not([hidden]) {') < end);
   assert.match(styles, /html\[dir='rtl'\] body\.theme-beauty\.cc-has-tabbar core-care-categories\.core-categories--compact \.core-categories__tab\[aria-selected='true'\] \{ box-shadow: inset 4px 0 0 var\(--cc-secondary\); \}/);

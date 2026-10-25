@@ -28,7 +28,7 @@ test('account sheet is a labelled dialog built from Salla data, without raw outp
 
 test('empty optional groups release their space and the sheet stays mobile-only', () => {
   assert.match(styles, /^body\.theme-beauty \.cc-account \{ display: none; \}/m);
-  assert.match(styles, /@media \(max-width: 1023px\) \{\s*body\.theme-beauty\.cc-has-tabbar \{/);
+  assert.match(styles, /@media \(max-width: 767px\) \{\s*body\.theme-beauty\.cc-has-tabbar \{/);
   assert.match(styles, /\.cc-account__support:not\(:has\(\.s-contacts-item\)\) \{ display: none; \}/);
   assert.match(styles, /\.cc-account__pages:not\(:has\(\.s-menu-footer-item\)\) \{ display: none; \}/);
   assert.match(styles, /\.cc-account__follow:not\(:has\(\.s-social-link\)\) \{ display: none; \}/);

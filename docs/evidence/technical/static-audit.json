@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-25T20:21:51.174Z",
+  "generatedAt": "2026-10-25T22:18:04.329Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -2775,7 +2775,7 @@
     {
       "file": "src/views/components/header/header.twig",
       "kind": "modified-upstream",
-      "sha256": "544884c209d5e808ae42b8af199c855835ee660ff53fe5b5cafbf35b75d7102b"
+      "sha256": "4729d16905f6c367ec07a749a807a982e8abb0d05264d85337dc9828d2c8ac4c"
     },
     {
       "file": "src/views/components/home/beauty-collections.twig",
@@ -2915,12 +2915,12 @@
     {
       "file": "src/views/pages/partials/mobile-search.twig",
       "kind": "new-template",
-      "sha256": "4e32de13d20e98398a9356568cab7e1909a1791701a86d0c27a3ade3b6274e81"
+      "sha256": "f957426ce7b1b9e84818dd844b943971296bfec60cac0ccbb59b725c307b1b34"
     },
     {
       "file": "src/views/pages/partials/mobile-tabbar.twig",
       "kind": "new-template",
-      "sha256": "e340a67a5e865d58f9eb4fc68feeb06591ae76da0de8f53b9e02a0e3628a99b5"
+      "sha256": "73b2d2a9fc3eca1ee01d0382f8f3671f7112d7de0292b3fe42c779726ab0e1e9"
     },
     {
       "file": "src/views/pages/partials/product/gallery.twig",
