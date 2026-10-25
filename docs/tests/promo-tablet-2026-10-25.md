@@ -36,6 +36,12 @@ No horizontal overflow at 972px. Dots sit directly under the artwork.
 - Hosted draft asset `salla.design/themes/draft/526918281/app.css`: HTTP 200, 394,749 bytes, identical in size to the commit's `public/app.css` on jsDelivr, and contains the new tablet rule. So the draft serves this change.
 - Claude in Chrome opened the draft editor (the page list shows «سلايدر العروض الرئيسي» first), but screenshots and JavaScript failed with "Host access is restricted by policy", as on 2026-10-24. The storefront frame's signed `watch` URL is not exposed in the accessibility tree, so the rendered page could not be opened or measured.
 
+## Owner check in the rendered draft (2026-10-26)
+
+- The owner's first check loaded an older draft (`salla.design/themes/draft/1381809638/app.css`, 382,073 bytes, without the rule), so it still showed the gutter, corners and arrows. Not a defect in this change.
+- After opening `draft-526918281`, the owner's Chrome DevTools (responsive 768×1351, Arabic, demo store under «ثيم كوركير - تطوير») confirmed `app.css` from `themes/draft/526918281`, `cc-has-tabbar` and `beauty-reference-home` on the body. Screenshot: banner edge to edge under the compact header, no corners, no arrows, bar dots directly under the artwork, bottom tab bar shown. Next section (editorial banner) starts about 50px below the dots, within the 80px rule.
+
 ## Not verified
 
-- Rendered draft at 1440, 972 and 390px: header alignment, neighbouring sections, LTR. Blocked by the Chrome host policy on `s.salla.sa`. **Platform visual verification: incomplete.**
+- Rendered draft at 1440, 972 and 390px, and LTR, in the draft. Only 768px was seen, by the owner. Claude's own browser access to `s.salla.sa` is blocked by Chrome host policy. **Platform visual verification: partial (768px only).**
+- The real store's content (`corecare-sa.com`); the draft runs on the demo store.
