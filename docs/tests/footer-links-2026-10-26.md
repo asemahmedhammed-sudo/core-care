@@ -58,3 +58,12 @@ did not run.
   the local production build after the CLI watchers were stopped and `pnpm build` was rerun.
 - Draft not inspected in a browser in this session. **Salla platform verification: incomplete** until the owner
   opens the draft with the jsDelivr assets and checks the footer (body `theme-beauty`, `app.css` from jsDelivr `@995a4de…`).
+
+## Colour correction — 2026-10-26
+
+Owner: the colours came from the screenshot instead of the site identity. Removed the three sampled tokens
+(`--cc-footer-icon` #9b777b, `--cc-footer-link` #1f222a, `--cc-footer-chevron` #5c5b59). The link groups now use the
+existing identity tokens: icons `--cc-icon` (#0C070F), labels `--cc-text` (#000), chevrons `--cc-text-muted` (#757575,
+as the header language chevron). `pnpm build` passed; `pnpm test` 128/128 and audit 13/13. Local static preview
+(390×700, RTL, Claude built-in browser) measured those computed colours, with no horizontal overflow. Salla draft not
+inspected in this session.

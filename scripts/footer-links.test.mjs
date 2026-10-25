@@ -36,6 +36,14 @@ test('empty menus release their space, rows keep the divider, chevrons follow th
   for (const href of ['latest-products', '/brands', '/cart', 'wa.me']) assert.ok(styles.includes(`&[href*="${href}"]`), href);
 });
 
+test('link groups use the site identity colours, not colours sampled from a mock-up', () => {
+  assert.match(styles, /\.core-care-footer__group-icon \{[^}]*color: var\(--cc-icon\);/);
+  assert.match(styles, /\.core-care-footer__link-icon \{[^}]*color: var\(--cc-icon\);/);
+  assert.match(styles, /\.core-care-footer__chevron \{[^}]*color: var\(--cc-text-muted\);/);
+  assert.match(styles, /&::before \{ width: 20px; height: 20px; background: var\(--cc-icon\); \}/);
+  assert.doesNotMatch(read('src/assets/styles/06-beauty/core-care-palette.scss'), /--cc-footer-(icon|link|chevron)/);
+});
+
 test('every footer string exists in Arabic and English', () => {
   const keys = [...footer.matchAll(/trans\('beauty\.footer\.([a-z_]+)'\)/g)].map(match => match[1]);
   assert.ok(keys.length >= 10);
