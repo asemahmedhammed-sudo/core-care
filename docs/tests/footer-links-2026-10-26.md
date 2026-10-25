@@ -67,3 +67,20 @@ existing identity tokens: icons `--cc-icon` (#0C070F), labels `--cc-text` (#000)
 as the header language chevron). `pnpm build` passed; `pnpm test` 128/128 and audit 13/13. Local static preview
 (390×700, RTL, Claude built-in browser) measured those computed colours, with no horizontal overflow. Salla draft not
 inspected in this session.
+
+## Web layout (from 768px) after the Nice One footer — 2026-10-26
+
+Owner's reference: Nice One desktop footer screenshot. Phones keep the approved 2×2 design.
+
+- Columns: «أشهر التصنيفات» (header-menu links to Salla categories, `core-care-footer.js`, max 12, hidden when none) ·
+  store name over quick links + policies + store info · «خدمة العملاء» (merchant footer menu) · «حسابي» (profile, orders,
+  wishlist; guests get Salla's login) · «تواصل معنا» (social tiles) · «حمل التطبيق» (Salla apps, hidden when none;
+  social takes its column then). Then a hairline and the payment marks beside copyright and legal details
+  (one row from 1280px; payments above copyright/legal at 1024–1279px; stacked rows at 768–1023px).
+- The store description is hidden on web widths (not in the reference). Link icons and chevrons are hidden there.
+- The desktop navigation and the footer share one header-menu request (`header-menus.js`).
+- `pnpm build` passed; `pnpm test` 130/130 and audit 13/13.
+- Local static preview only (Claude built-in browser; Salla components mocked with the store's real menu/category
+  names): 1440 RTL/LTR, 1024 and 768 RTL without horizontal overflow; 390 RTL phone layout unchanged.
+- Not tested: Salla preview, real `salla-social`/`salla-payments`/`salla-trust-badges` rendering at web widths,
+  signed-in account links, app badges (the store has none).

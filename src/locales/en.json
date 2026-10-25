@@ -87,7 +87,9 @@
     },
     "footer": {
       "quick_links": "Quick links",
+      "top_categories": "Top categories",
       "customer_service": "Customer service",
+      "contact": "Contact us",
       "policies": "Policies",
       "returns": "Exchange & returns",
       "store_info": "Store info",

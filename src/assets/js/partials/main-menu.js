@@ -5,6 +5,8 @@ import './core-care-tabbar';
 import './core-care-account';
 import './core-care-search-sheet';
 import './core-care-barcode-scan';
+import './core-care-footer';
+import { headerMenus } from './header-menus';
 
 class NavigationMenu extends HTMLElement {
     connectedCallback() {
@@ -38,7 +40,7 @@ class NavigationMenu extends HTMLElement {
                 this.visibleMenus = [];
                 this.overflowMenus = [];
 
-                return salla.api.component.getMenus()
+                return headerMenus()
                 .then(({ data }) => {
                     this.menus = data;
                     return this.render()

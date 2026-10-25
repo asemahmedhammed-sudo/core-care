@@ -21,6 +21,8 @@
 				{% endif %}
 
 				<div class="core-care-footer__social">
+					{# Web widths: its own «تواصل معنا» column, as in the Nice One footer. #}
+					<h3 class="core-care-footer__web-title">{{ trans('beauty.footer.contact') }}</h3>
 					<salla-social data-testid="store-footer-social" class="block mb-6"></salla-social>
 				</div>
 
@@ -54,6 +56,12 @@
         </div>
         </div>
 
+			{# Web widths only: the header menu's category links (core-care-footer.js); hidden when there are none. #}
+			<section class="core-care-footer__categories" aria-labelledby="cc-footer-categories">
+				<h3 id="cc-footer-categories">{{ trans('beauty.footer.top_categories') }}</h3>
+				<core-care-footer-categories class="core-care-footer__category-links"></core-care-footer-categories>
+			</section>
+
 			{# Four titled link groups in two rows with a hairline between them (owner's design, 2026-10-26).
 			   Only links that exist in the store are shown; a group without links leaves no space. #}
 			{% set chevron %}<svg class="core-care-footer__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg>{% endset %}
@@ -61,8 +69,10 @@
 			{% set policy_page_id = theme.settings.get('beauty_policy_page_id', '')|trim|default('1741544897') %}
 			{% set policy_page_valid = policy_page_id|length <= 30 and policy_page_id|replace({'0': '', '1': '', '2': '', '3': '', '4': '', '5': '', '6': '', '7': '', '8': '', '9': ''}) == '' %}
 			<div class="core-care-footer__nav">
+				{# Web widths: quick links, policies and store info share one column under the store name. #}
+				<h3 class="core-care-footer__web-title">{{ theme.settings.get('beauty_brand_name', store.name) }}</h3>
 				<div class="core-care-footer__nav-row">
-					<section class="core-care-footer__group" aria-labelledby="cc-footer-quick">
+					<section class="core-care-footer__group core-care-footer__group--quick" aria-labelledby="cc-footer-quick">
 						<h3 id="cc-footer-quick">
 							<svg class="core-care-footer__group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg>
 							{{ trans('beauty.footer.quick_links') }}
@@ -95,7 +105,7 @@
 
 				<div class="core-care-footer__nav-row">
 					{% if policy_page_valid %}
-					<section class="core-care-footer__group" aria-labelledby="cc-footer-policies">
+					<section class="core-care-footer__group core-care-footer__group--policies" aria-labelledby="cc-footer-policies">
 						<h3 id="cc-footer-policies">
 							<svg class="core-care-footer__group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 5 6v5.5c0 4.3 2.9 7.6 7 9 4.1-1.4 7-4.7 7-9V6Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
 							{{ trans('beauty.footer.policies') }}
@@ -109,7 +119,7 @@
 					</section>
 					{% endif %}
 
-					<section class="core-care-footer__group" aria-labelledby="cc-footer-store">
+					<section class="core-care-footer__group core-care-footer__group--store" aria-labelledby="cc-footer-store">
 						<h3 id="cc-footer-store">
 							<svg class="core-care-footer__group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5 5.5 4h13L20 9.5"/><path d="M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0"/><path d="M5.5 12v8.5h13V12"/><path d="M10 20.5V16h4v4.5"/></svg>
 							{{ trans('beauty.footer.store_info') }}
@@ -127,25 +137,41 @@
 					</section>
 				</div>
 			</div>
+			{# Web widths only; phones reach the account from the tab bar. Guests get Salla's login window. #}
+			{% set signed_in = user.type == 'user' %}
+			<section class="core-care-footer__account" aria-labelledby="cc-footer-account">
+				<h3 id="cc-footer-account">{{ trans('beauty.tabbar.account') }}</h3>
+				<nav class="core-care-footer__links" aria-labelledby="cc-footer-account">
+					{% for key in ['profile', 'orders', 'wishlist'] %}
+						{% set label = trans('beauty.account.' ~ (key == 'profile' ? 'edit_profile' : key)) %}
+						{% if signed_in %}
+							<a href="{{ link('account/' ~ key) }}"><span>{{ label }}</span></a>
+						{% else %}
+							<button type="button" data-cc-footer-login aria-haspopup="dialog"><span>{{ label }}</span></button>
+						{% endif %}
+					{% endfor %}
+				</nav>
+			</section>
+
 			<div class="core-care-footer__payments">
 				<h3>{{ trans('beauty.footer.payment_methods') }}</h3>
 				<salla-payments data-testid="store-footer-payments"></salla-payments>
 				<salla-apps-icons data-testid="store-footer-apps"></salla-apps-icons>
 			</div>
 
+			{# Phones: centred under everything. Web widths: beside the payment marks, as in the Nice One footer. #}
+			<div class="core-care-footer__bottom text-center">
+				{# Phones only (core-care-app-nav.scss): the compact header has no language/currency icon there, so this
+				   opens the header's own language panel or Salla's currency window (core-care-tabbar.js). #}
+				{% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+				<button class="core-care-footer__localization" type="button" data-cc-localization-open>
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
+					<span>{{ trans(store.settings.is_multilingual and store.settings.currencies_enabled ? 'beauty.header.localization' : (store.settings.is_multilingual ? 'beauty.header.language' : 'beauty.header.currency')) }}</span>
+				</button>
+				{% endif %}
+				<span class="text-sm copyright-text">{% hook copyright %}</span>
+			</div>
 		</div>
-	</div>
-
-	<div class="core-care-footer__bottom container text-center">
-		{# Phones only (core-care-app-nav.scss): the compact header has no language/currency icon there, so this
-		   opens the header's own language panel or Salla's currency window (core-care-tabbar.js). #}
-		{% if store.settings.is_multilingual or store.settings.currencies_enabled %}
-		<button class="core-care-footer__localization" type="button" data-cc-localization-open>
-			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
-			<span>{{ trans(store.settings.is_multilingual and store.settings.currencies_enabled ? 'beauty.header.localization' : (store.settings.is_multilingual ? 'beauty.header.language' : 'beauty.header.currency')) }}</span>
-		</button>
-		{% endif %}
-		<span class="text-sm copyright-text">{% hook copyright %}</span>
 	</div>
 
 <span class="hidden bottom-2 rtl:pl-24 ltr:pr-24 md:grid-cols-3 opacity-40"></span></footer>
