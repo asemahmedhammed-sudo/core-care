@@ -38,6 +38,12 @@ Static harness with the built `app.css`, slider markup (tall-banner option on, a
 
 No horizontal overflow. Pagination sits inside the artwork from 768px.
 
+## Salla development preview
+
+- Commit `8f48458` pushed to `feature/bilingual-images`. `yes n | salla theme preview -s "Core Care" -o -E` (CLI 3.2.63) ran twice and created `draft-539504891` and `draft-1589339853`; CLI and watcher stopped, `pnpm build` restored `public/`.
+- Neither draft got hosted assets: `salla.design/themes/draft/<id>/app.css` stayed 404 for 12+ and 4+ minutes (the 2026-10-25 draft `526918281` still serves its CSS). These runs did not print the CLI's "run checks" lines (GitHub link checks) that the 2026-10-25 run printed.
+- The commit's assets are reachable on jsDelivr (`cdn.jsdelivr.net/gh/asemahmedhammed-sudo/core-care@8f48458…/public/app.css`, 200, 393,192 bytes, same as local).
+
 ## Not verified
 
 - The real header at 768–1023px in the Salla preview (navigation row with categories, brands, language, account, bell, cart): the harness has no header markup. Crowding of the actions row at 768px is the main risk.
