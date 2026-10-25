@@ -88,10 +88,14 @@
     "footer": {
       "quick_links": "روابط سريعة",
       "customer_service": "خدمة العملاء",
+      "policies": "السياسات",
+      "returns": "الاستبدال والاسترجاع",
+      "store_info": "معلومات المتجر",
+      "brands": "العلامات التجارية",
       "payment_methods": "طرق الدفع",
       "home": "الرئيسية",
-      "products": "المنتجات",
-      "offers": "العروض",
+      "all_products": "جميع المنتجات",
+      "offers_discounts": "العروض والخصومات",
       "about": "من نحن",
       "support_title": "تحتاج مساعدة؟",
       "support_description": "تواصل معنا عبر قنوات الدعم المتاحة."
