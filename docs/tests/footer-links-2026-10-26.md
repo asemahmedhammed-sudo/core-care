@@ -87,3 +87,19 @@ Owner's reference: Nice One desktop footer screenshot. Phones keep the approved 
 - Preview draft **1976833852** created from `08360b6` (`yes n | salla theme preview -s "Core Care" -o -E`); hosted
   draft assets 404 again, so it is opened with the jsDelivr assets of `08360b6`. Draft 436684333 keeps the older Twig.
   CLI watchers stopped and `pnpm build` rerun. **Salla platform verification: incomplete** (owner to inspect).
+
+## Web changes withdrawn — 2026-10-26
+
+Owner, after seeing draft 1976833852 (text aligned to the wrong side, an empty customer-service column): cancel the
+footer changes on web widths and leave the web footer as it was. Owner chose the **original** web footer.
+
+- Footer files restored to `bc5a12a`; `core-care-footer.js` and `header-menus.js` removed; `main-menu.js` back to its own
+  menu request.
+- From 768px the original columns return with their original markup and rules (`.core-care-footer__classic`); the
+  2×2 link groups are phone-only and their styles are scoped to `.core-care-footer__nav`.
+- Cause of the alignment defect, for the record: PostCSS compiled `text-align: start` to `text-align: left`.
+- `pnpm build` passed (9 existing warnings); `pnpm test` 129/129, audit 13/13.
+- Local static comparison (Claude built-in browser, RTL), original `4185f24` build vs new build with the same mocked
+  content: identical column boxes, link positions, font sizes and footer height at 1440×500 (263px) and 768×700 (435px).
+  390×844: phone 2×2 groups, original columns hidden, no horizontal overflow.
+- Salla preview of this state: not inspected in this session.

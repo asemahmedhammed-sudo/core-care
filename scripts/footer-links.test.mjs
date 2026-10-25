@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import vm from 'node:vm';
 
 const read = path => fs.readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const footer = read('src/views/components/footer/footer.twig');
@@ -24,7 +23,7 @@ test('four titled link groups in two rows, using only links the store has', () =
 
 test('the returns link opens the policy page by a numeric Salla id, or the group is left out', () => {
   assert.match(footer, /theme\.settings\.get\('beauty_policy_page_id', ''\)\|trim\|default\('1741544897'\)/);
-  assert.match(footer, /\{% if policy_page_valid %\}\s*<section class="core-care-footer__group core-care-footer__group--policies" aria-labelledby="cc-footer-policies">/);
+  assert.match(footer, /\{% if policy_page_valid %\}\s*<section class="core-care-footer__group" aria-labelledby="cc-footer-policies">/);
   assert.match(footer, /href="\{\{ link\('-\/page-' ~ policy_page_id\) \}\}"/);
 });
 
@@ -32,7 +31,7 @@ test('empty menus release their space, rows keep the divider, chevrons follow th
   assert.match(styles, /\.core-care-footer__service:not\(:has\(\.s-menu-footer-item\)\) \{ display: none; \}/);
   assert.match(styles, /\.core-care-footer__nav-row \+ \.core-care-footer__nav-row \{[^}]*border-block-start: 1px solid var\(--cc-border\);/);
   assert.match(styles, /\.core-care-footer__nav-row \{ display: grid; grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/);
-  assert.match(styles, /html\[dir='ltr'\] body\.theme-beauty \.core-care-footer \.s-menu-footer-item::after \{ transform: scaleX\(-1\); \}/);
+  assert.match(styles, /html\[dir='ltr'\] body\.theme-beauty \.core-care-footer \.core-care-footer__nav \.s-menu-footer-item::after \{ transform: scaleX\(-1\); \}/);
   // Merchant menu rows get an icon by destination, with a page icon for anything else.
   for (const href of ['latest-products', '/brands', '/cart', 'wa.me']) assert.ok(styles.includes(`&[href*="${href}"]`), href);
 });
@@ -55,45 +54,14 @@ test('every footer string exists in Arabic and English', () => {
   assert.deepEqual(Object.keys(ar.beauty.footer).sort(), Object.keys(en.beauty.footer).sort());
 });
 
-test('web widths follow the Nice One footer: categories, store, account, social and apps, then payments beside the copyright', () => {
-  const web = styles.slice(styles.indexOf('@media (min-width: 768px)'));
-  assert.match(footer, /<section class="core-care-footer__categories" aria-labelledby="cc-footer-categories">\s*<h3 id="cc-footer-categories">\{\{ trans\('beauty\.footer\.top_categories'\) \}\}<\/h3>\s*<core-care-footer-categories/);
-  assert.match(footer, /<section class="core-care-footer__account" aria-labelledby="cc-footer-account">/);
-  // Guests get Salla's login window instead of account links.
-  assert.match(footer, /\{% if signed_in %\}\s*<a href="\{\{ link\('account\/' ~ key\) \}\}">[\s\S]*?\{% else %\}\s*<button type="button" data-cc-footer-login aria-haspopup="dialog">/);
-  // The copyright row is a grid item so it can sit beside the payment marks.
-  assert.ok(footer.indexOf('core-care-footer__bottom') > footer.indexOf('core-care-footer__payments'));
-  assert.ok(footer.indexOf('core-care-footer__bottom') < footer.lastIndexOf('</div>\n\t</div>'));
-  // Phones keep the approved design: the web-only parts stay hidden there.
-  assert.match(styles, /\.core-care-footer__categories, \.core-care-footer__account, \.core-care-footer__web-title \{ display: none; \}/);
-  assert.match(web, /grid-template-areas: 'cats nav account social apps' 'line line line line line' 'pay pay copy copy legal';/);
-  assert.match(web, /grid-template-areas: 'cats nav account social apps' 'line line line line line' 'pay pay pay pay pay' 'copy copy copy legal legal';/);
-  assert.match(web, /\.core-care-footer__categories:not\(:has\(\.core-care-footer__category-links a\)\) \{ display: none; \}/);
-  assert.match(web, /\.core-care-footer__social:not\(:has\(\.s-social-link\)\) \{ display: none; \}/);
-  assert.match(web, /\.core-care-footer__group-icon, \.core-care-footer__link-icon, \.core-care-footer__chevron \{ display: none; \}/);
-  assert.match(web, /\.s-menu-footer-item::before, \.s-menu-footer-item::after \{ content: none; \}/);
-});
-
-test('footer categories are the header menu links to Salla categories, from one shared request', () => {
-  const read2 = file => read(`src/assets/js/partials/${file}`);
-  const context = vm.createContext({ URL, window: { location: { origin: 'https://store.example' } }, HTMLElement: class {}, customElements: { define() {}, get() {} }, document: { addEventListener() {} }, globalThis: {} });
-  const strip = code => code.replace(/^import .*$/gm, '').replace(/export function/g, 'function');
-  vm.runInContext(strip(read2('core-care-categories.js')) + strip(read2('core-care-footer.js')), context);
-  const links = context.footerCategories([
-    { title: 'المكياج', url: 'https://store.example/ar/makeup/c1030710729' },
-    { title: 'الماركات التجارية', url: 'https://store.example/ar/brands' },
-    { title: ' العطور ', url: '/ar/perfumes/c80011733' },
-    { title: 'Bad', url: 'javascript:alert(1)//c1' },
-    { title: '', url: '/ar/c/c2' },
-  ]);
-  assert.deepEqual(JSON.parse(JSON.stringify(links)), [
-    { title: 'المكياج', url: 'https://store.example/ar/makeup/c1030710729' },
-    { title: 'العطور', url: 'https://store.example/ar/perfumes/c80011733' },
-  ]);
-  assert.equal(context.footerCategories(null).length, 0);
-  assert.match(read2('core-care-footer.js'), /link\.textContent = item\.title;/);
-  assert.doesNotMatch(read2('core-care-footer.js'), /innerHTML/);
-  // The desktop navigation and the footer share the header menu request.
-  assert.match(read2('main-menu.js'), /return headerMenus\(\)/);
-  assert.match(read2('core-care-footer.js'), /await headerMenus\(\)/);
+test('web widths keep the original footer columns; the link groups are for phones only', () => {
+  // The owner withdrew every web change on 2026-10-26: same markup and rules as before this work.
+  assert.match(footer, /<div class="core-care-footer__classic">\s*<h3>\{\{ trans\('beauty\.footer\.quick_links'\) \}\}<\/h3>\s*<nav class="core-care-footer__links" aria-label="\{\{ trans\('beauty\.footer\.quick_links'\) \}\}">\s*<a href="\{\{ link\('\/'\) \}\}">\{\{ trans\('beauty\.footer\.home'\) \}\}<\/a>\s*<a href="\{\{ link\('latest-products'\) \}\}">\{\{ trans\('beauty\.footer\.products'\) \}\}<\/a>\s*<a href="\{\{ link\('offers'\) \}\}">\{\{ trans\('beauty\.footer\.offers'\) \}\}<\/a>\s*<a href="#store-footer">\{\{ trans\('beauty\.footer\.about'\) \}\}<\/a>/);
+  assert.match(footer, /<div class="core-care-footer__classic">\s*<h3>\{\{ trans\('beauty\.footer\.customer_service'\) \}\}<\/h3>\s*<salla-menu data-testid="store-footer-menu-web" source="footer" with-cookie-preferences><\/salla-menu>/);
+  assert.match(styles, /\.core-care-footer__classic \{ display: none; \}\s*@media \(min-width: 768px\) \{\s*\.core-care-footer__nav \{ display: none; \}\s*\.core-care-footer__classic \{ display: block; \}\s*\.core-care-footer__grid \{ grid-template-columns: repeat\(2, minmax\(0, 1fr\)\); gap: 24px; \}/);
+  assert.match(styles, /@media \(min-width: 1024px\) \{ \.core-care-footer__grid \{ grid-template-columns: 1\.25fr \.85fr 1\.1fr 1fr; \} \}/);
+  // The phone icons and chevrons cannot reach the original columns.
+  assert.match(styles, /\.core-care-footer__nav \{\n    display: flex; flex-direction: column; min-width: 0;\n[\s\S]*?\.s-menu-footer-item \{\n      --cc-footer-row-icon/);
+  assert.equal(ar.beauty.footer.products, 'المنتجات');
+  assert.equal(ar.beauty.footer.offers, 'العروض');
 });
