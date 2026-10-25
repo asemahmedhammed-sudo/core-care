@@ -47,3 +47,14 @@ did not run.
 - Salla development preview / hosted draft (needs a pushed commit; not authorised in this session).
 - Chrome; real `salla-menu` hydration and the optional cookie-preferences row; empty footer menu; a non-numeric
   `beauty_policy_page_id`.
+
+## Preview draft — 2026-10-26
+
+- Commit `995a4de` pushed to `feature/bilingual-images`.
+- `yes n | salla theme preview -s "Core Care" -o -E` created draft **436684333**; the CLI pointed it at
+  `localhost:8000` assets. The CLI's commit prompt was answered no; the owner's product-card files stayed uncommitted.
+- `salla.design/themes/draft/436684333/app.css`: HTTP 404 (no hosted draft assets, as with drafts 539504891 and 1589339853).
+- jsDelivr copy of `public/app.css` at `995a4de`: HTTP 200, contains `.core-care-footer__nav-row`, byte-identical to
+  the local production build after the CLI watchers were stopped and `pnpm build` was rerun.
+- Draft not inspected in a browser in this session. **Salla platform verification: incomplete** until the owner
+  opens the draft with the jsDelivr assets and checks the footer (body `theme-beauty`, `app.css` from jsDelivr `@995a4de…`).
