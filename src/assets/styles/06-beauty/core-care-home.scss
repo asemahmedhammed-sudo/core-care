@@ -144,6 +144,15 @@ body.theme-beauty.beauty-reference-home {
     // Active state differs in both length and colour, not colour alone.
     .beauty-promotions__dots [aria-current='true']::before { width: var(--promo-dot-active-width); background: var(--promo-accent); }
   }
+  // Portrait tablets under the compact app header (tab bar on): the phone banner, edge to edge without
+  // arrows, but with the 3:1 desktop artwork; the square «بانر طويل» image stays for phones only.
+  @media (min-width: 768px) and (max-width: 1023px) {
+    &.cc-has-tabbar {
+      .beauty-promotions, #main-content > :not(.s-design-invisible-dom, salla-hook) ~ .beauty-promotions { padding: 0; }
+      .beauty-promotions__image-link, .beauty-promotions__media { border-radius: 0; }
+      .beauty-promotions__arrow { display: none; }
+    }
+  }
   .beauty-promotions :focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
   @media (hover: hover) {
     .beauty-promotions__arrow:hover::before { background: var(--cc-utility-surface); }
