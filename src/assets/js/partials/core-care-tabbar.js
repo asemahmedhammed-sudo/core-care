@@ -24,7 +24,7 @@ if (globalThis.document?.body && globalThis.addEventListener) {
     globalThis.addEventListener('scroll', syncHeader, { passive: true });
 }
 
-// Footer «اللغة والعملة» on phones: opens the header's own language panel (or Salla's currency window).
+// The account sheet's «اللغة والعملة» row on phones: opens the header's own language panel (or Salla's currency window).
 // Capture + stopPropagation keeps the language panel's outside-click handler from closing it again.
 if (globalThis.document?.addEventListener) {
     document.addEventListener('click', event => {

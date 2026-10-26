@@ -319,19 +319,13 @@ $cc-hero-first: 'body.theme-beauty.cc-has-tabbar.beauty-reference-home:has(#main
   }
 }
 
-// Phones: no language/currency icon in the header (owner's choice); the footer button keeps it reachable.
+// Phones: no language/currency icon in the header (owner's choice); the account sheet's row keeps it reachable.
 @media (max-width: 767px) {
   body.theme-beauty.cc-has-tabbar {
     .store-header { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: 'scope scope scope' 'search cats bell'; }
     .core-care-header__actions > .core-care-header__locale, .core-care-language-menu > .core-care-header__locale { display: none; }
     // The language menu keeps its bottom-sheet panel but no longer takes a grid cell.
     .core-care-header__actions > .core-care-language-menu { position: absolute; width: 0; height: 0; overflow: visible; }
-    .core-care-footer__localization {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; margin: 0 auto 8px; padding: 0 16px;
-      border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; font-size: 14px; font-weight: 500; cursor: pointer;
-      svg { width: 20px; height: 20px; }
-      &:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
-    }
   }
 }
 
