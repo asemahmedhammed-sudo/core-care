@@ -20,13 +20,19 @@ Compatibility: no setting or field IDs changed. Edits to the header menu no long
 
 ## Checks
 
-- Working tree: uncommitted on `feature/bilingual-images` (base `89a9362`).
+- Source: commit `3b08c88` on `feature/bilingual-images`.
 - `pnpm build`: passed (9 existing size warnings).
 - `pnpm test`: 136/136 passed (`scripts/categories.test.mjs` updated for the new source).
 - Built-in browser (not Chrome), public store `corecare-sa.com/ar`, 1440×900: the live 1.9.0 panel was given the category tree in the page (local DOM only, nothing saved). Result: rail = المكياج، أقسام العناية بالشعر، الماركات التجارية. المكياج shows الخدود، الوجه، الحواجب، الشفاه، أدوات المكياج، مثبت مكياج، بودرة الوجه، مكياج العيون with their children, plus the category image. أقسام العناية بالشعر shows its 9 subcategories; «عرض جميع منتجات أقسام العناية بالشعر» links to `/ar/hair-care/c1351127987`.
 
+## Development preview
+
+- Commit `3b08c88` pushed to `feature/bilingual-images`. jsDelivr `@3b08c88…/public/main-menu.js` answers 200 and contains the new code (`cc-categories-tree`, `product.api.categories`). The three remaining `getMenus` calls belong to the inherited Raed menu component.
+- `salla theme preview -s "Core Care" -o -E` (prompts answered «no») created `draft-1756575378` with `localhost:8000` assets. Hosted draft assets `salla.design/themes/draft/1756575378/app.css` and `main-menu.js` return 404. The CLI and its `pnpm run watch` children were stopped, then `pnpm build` restored the production build.
+- Opened `s.salla.sa/design/draft-1756575378?legacy=0&with_editor=false&assets_url=<jsDelivr @3b08c88 public>` in Claude in Chrome. Only the editor shell was readable. Scripts and the storefront frame were refused with "Host access is restricted by policy", so the panel could not be inspected.
+
 ## Not verified
 
-- The new build in a Salla development preview (no draft created for this change).
+- The new build rendered in the Salla development preview, on desktop or phone. Platform verification is **incomplete**. The owner needs to open the draft link above.
 - Phone sheet (390px) and English/LTR with the new code.
 - Chrome. The check above used the built-in browser against the live 1.9.0 code with injected data. It is partial evidence only.
