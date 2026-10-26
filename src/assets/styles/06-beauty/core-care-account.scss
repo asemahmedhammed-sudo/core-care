@@ -85,6 +85,27 @@ body.theme-beauty .cc-account { display: none; }
       content: ''; position: absolute; top: 0; height: 1px; background: var(--cc-border);
     }
 
+    // Language and currency: a segmented switch on the row itself; the chosen option is black (--cc-text, as the active category chip).
+    // Long option lists wrap under the label instead of overflowing the card.
+    .cc-account__locale .cc-account__row { flex-wrap: wrap; row-gap: 8px; cursor: default; }
+    .cc-account__locale .cc-account__row:active { background: transparent; }
+    .cc-account__choices {
+      flex: none; display: flex; flex-wrap: wrap; gap: 2px; max-width: 100%; padding: 2px;
+      border-radius: 22px; background: var(--cc-utility-surface);
+    }
+    .cc-account__choices:has(.cc-account__choices-status) { padding: 0; background: transparent; }
+    .cc-account__choice {
+      display: inline-flex; align-items: center; justify-content: center; min-width: 64px; min-height: 40px; padding: 0 14px;
+      border: 0; border-radius: 20px; background: transparent; color: var(--cc-rating-text);
+      font: inherit; font-size: 14px; font-weight: 500; line-height: 20px; white-space: nowrap; cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      &[aria-pressed='true'], &[aria-current='true'] { background: var(--cc-text); color: var(--cc-surface); cursor: default; }
+      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
+    }
+    .cc-account__choices[aria-busy='true'] .cc-account__choice { cursor: progress; }
+    .cc-account__choices[aria-busy='true'] .cc-account__choice[data-pending] { background: var(--cc-text); color: var(--cc-surface); opacity: .7; }
+    .cc-account__choices-status { color: var(--cc-text-muted); font-size: 13px; line-height: 20px; }
+
     // Customer service opens in place to Salla's contacts; the row hides itself when there are none.
     .cc-account__support:not(:has(.s-contacts-item)) { display: none; }
     .cc-account__details[open] .cc-account__chevron { transform: rotate(-90deg); }

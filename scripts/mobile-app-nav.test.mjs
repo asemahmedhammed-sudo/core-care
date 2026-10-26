@@ -216,23 +216,20 @@ test('phone search: the Salla search window, restyled, plus suggested brands (ph
   assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
 });
 
-test('phones: no language/currency icon in the header, round icon discs, and the account sheet keeps it reachable', () => {
+test('phones: no language/currency icon in the header, round icon discs, and the account sheet switches it in place', () => {
   const footer = read('src/views/components/footer/footer.twig');
   const tabbarJs = read('src/assets/js/partials/core-care-tabbar.js');
   const phone = styles.slice(styles.indexOf("// Phones: no language/currency icon in the header"));
   assert.match(phone, /^\/\/ Phones: no language\/currency icon in the header[^\n]*\n@media \(max-width: 767px\) \{/);
   assert.match(phone, /grid-template-areas: 'scope scope scope' 'search cats bell';/);
   assert.match(phone, /\.core-care-header__actions > \.core-care-header__locale, \.core-care-language-menu > \.core-care-header__locale \{ display: none; \}/);
-  // The language panel itself stays in the page so the account sheet's row can open it.
-  assert.doesNotMatch(phone, /\.core-care-language-menu \{ display: none/);
   assert.match(styles, /\.core-care-header__links > \[data-categories-toggle\], \.core-care-header__notification \{ border-radius: 50%; background: var\(--cc-utility-surface\); \}/);
   assert.match(styles, /\.core-care-header__search \.s-search-icon :is\(svg, path\) \{ fill: var\(--cc-icon\); \}/);
   assert.match(styles, /\.core-care-header__search \.s-search-icon-wrap \{ z-index: 1; pointer-events: none; \}/);
-  // The footer no longer repeats the switch on phones (owner, 2026-10-26); the account sheet's row opens it.
+  // The footer no longer repeats the switch on phones (owner, 2026-10-26); the account sheet has it.
   assert.doesNotMatch(footer, /core-care-footer__localization|data-cc-localization-open/);
   assert.doesNotMatch(styles, /core-care-footer__localization/);
-  assert.match(read('src/views/pages/partials/mobile-account.twig'), /<button class="cc-account__row" type="button" data-cc-localization-open>/);
-  assert.match(tabbarJs, /closest\('\[data-cc-localization-open\]'\)[\s\S]*?event\.stopPropagation\(\);[\s\S]*?\.core-care-language-menu \[data-language-toggle\], \.core-care-header__actions > \.core-care-header__locale'\)\?\.click\(\);\s*\}, true\);/);
+  assert.doesNotMatch(tabbarJs, /data-cc-localization-open/);
 });
 
 test('barcode search: hidden unless the browser has BarcodeDetector and a camera, then opens Salla search', async () => {

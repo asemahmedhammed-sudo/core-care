@@ -58,15 +58,26 @@
           </li>
           {% endif %}
         {% endfor %}
-        {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
-        <li>
-          {# Opens the header's language panel or Salla's currency window (core-care-tabbar.js). #}
-          <button class="cc-account__row" type="button" data-cc-localization-open>
+        {# Language and currency change right here: Salla's options load into the switch, one tap applies them
+           (core-care-locale-switch.js). A row with a single option hides itself. #}
+        {% if store.settings.is_multilingual %}
+        <li class="cc-account__locale" data-locale-row>
+          <div class="cc-account__row">
             <svg class="cc-account__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg>
-            <span class="cc-account__label">{{ trans(store.settings.is_multilingual and store.settings.currencies_enabled ? 'beauty.header.localization' : (store.settings.is_multilingual ? 'beauty.header.language' : 'beauty.header.currency')) }}</span>
-            {% if store.settings.is_multilingual %}<span class="cc-account__chip">{{ language.code|upper }}</span>{% endif %}
-            {{ chevron }}
-          </button>
+            <span class="cc-account__label" id="cc-account-language">{{ trans('beauty.header.language') }}</span>
+            <core-care-locale-switch class="cc-account__choices" role="group" aria-labelledby="cc-account-language" data-kind="language" data-current="{{ language.code }}" data-error-label="{{ trans('beauty.header.languages_error') }}">
+              <span class="cc-account__choice" aria-current="true">{{ language.code|upper }}</span>
+            </core-care-locale-switch>
+          </div>
+        </li>
+        {% endif %}
+        {% if store.settings.currencies_enabled %}
+        <li class="cc-account__locale" data-locale-row>
+          <div class="cc-account__row">
+            <svg class="cc-account__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg>
+            <span class="cc-account__label" id="cc-account-currency">{{ trans('beauty.header.currency') }}</span>
+            <core-care-locale-switch class="cc-account__choices" role="group" aria-labelledby="cc-account-currency" data-kind="currency" data-error-label="{{ trans('beauty.header.currencies_error') }}"></core-care-locale-switch>
+          </div>
         </li>
         {% endif %}
         <li class="cc-account__support">

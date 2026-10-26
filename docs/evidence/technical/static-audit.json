@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-26T17:36:15.587Z",
+  "generatedAt": "2026-10-26T17:47:06.829Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 205,
+    "keyCount": 206,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -2910,7 +2910,7 @@
     {
       "file": "src/views/pages/partials/mobile-account.twig",
       "kind": "new-template",
-      "sha256": "9e44194f388cfc34178bf2efbfc2f8bd2ede76534ff1adf3a18e4b700c62431b"
+      "sha256": "597bb98ba551cb6353b41bbe20591392940734da9416b85c05f4bd327b716b0c"
     },
     {
       "file": "src/views/pages/partials/mobile-search.twig",

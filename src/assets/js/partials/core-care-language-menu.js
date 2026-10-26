@@ -15,6 +15,33 @@ export function safeFlagUrl(value) {
     } catch { return null; }
 }
 
+// The store's enabled languages, fetched once per page for the header menu and the account sheet.
+let languagesRequest = null;
+export function storeLanguages() {
+    languagesRequest ??= (async () => {
+        const salla = window.Salla;
+        if (!salla?.config?.languages) throw new Error('Salla unavailable');
+        await salla.onReady?.();
+        const languages = await salla.config.languages();
+        return (Array.isArray(languages) ? languages : Object.values(languages || {}))
+            .filter(lang => lang && (lang.code || lang.iso_code) && lang.status !== 'disabled');
+    })().catch(error => { languagesRequest = null; throw error; });
+    return languagesRequest;
+}
+
+// Same steps as salla-localization-modal: remember the choice, then load the page in that language.
+export function switchLanguage(code, current) {
+    const salla = window.Salla;
+    salla?.cookie?.set?.('s-lang', code);
+    const withParam = salla?.helpers?.addParamToUrl ? salla.helpers.addParamToUrl('lang', code) : (() => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', code);
+        return url.href;
+    })();
+    const next = languageSwitchUrl(withParam, current, code);
+    if (next) window.location.href = next;
+}
+
 class CoreCareLanguageMenu extends HTMLElement {
     connectedCallback() {
         this.abort?.abort();
@@ -68,14 +95,8 @@ class CoreCareLanguageMenu extends HTMLElement {
     }
 
     load() {
-        // One request per page; reopening reuses the rendered list.
-        this.loading ??= (async () => {
-            const salla = window.Salla;
-            if (!salla?.config?.languages) throw new Error('Salla unavailable');
-            await salla.onReady?.();
-            const languages = await salla.config.languages();
-            this.render(Array.isArray(languages) ? languages : Object.values(languages || {}));
-        })().catch(() => {
+        // Reopening reuses the rendered list.
+        this.loading ??= storeLanguages().then(languages => this.render(languages)).catch(() => {
             this.loading = null;
             this.list.replaceChildren(this.element('p', 'core-care-language-menu__status', this.dataset.errorLabel || ''));
         });
@@ -91,7 +112,7 @@ class CoreCareLanguageMenu extends HTMLElement {
 
     render(languages) {
         const current = this.dataset.current || window.Salla?.config?.get?.('user.language_code');
-        const items = languages.filter(lang => lang && (lang.code || lang.iso_code) && lang.status !== 'disabled').map(lang => {
+        const items = languages.map(lang => {
             const code = String(lang.code || lang.iso_code);
             const selected = code === current || lang.iso_code === current;
             const button = this.element('button', 'core-care-language-menu__option');
@@ -121,15 +142,7 @@ class CoreCareLanguageMenu extends HTMLElement {
 
     choose(code, current, selected) {
         if (selected) { this.setOpen(false); this.trigger.focus(); return; }
-        const salla = window.Salla;
-        salla?.cookie?.set?.('s-lang', code);
-        const withParam = salla?.helpers?.addParamToUrl ? salla.helpers.addParamToUrl('lang', code) : (() => {
-            const url = new URL(window.location.href);
-            url.searchParams.set('lang', code);
-            return url.href;
-        })();
-        const next = languageSwitchUrl(withParam, current, code);
-        if (next) window.location.href = next;
+        switchLanguage(code, current);
     }
 }
 
