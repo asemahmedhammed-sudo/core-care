@@ -144,6 +144,13 @@
       "next_images": "عرض الصور التالية"
     },
     "recommendation_ends_in": "ينتهي بعد",
+    "recommendation_ends_in_days": {
+      "one": "ينتهي بعد يوم",
+      "two": "ينتهي بعد يومين",
+      "few": "ينتهي بعد :count أيام",
+      "many": "ينتهي بعد :count يومًا",
+      "other": "ينتهي بعد :count يوم"
+    },
     "policy": {
       "eyebrow": "كور كير · خدمة العملاء",
       "title": "سياسة الاستبدال والاسترجاع",

@@ -215,7 +215,17 @@ class ProductCard extends HTMLElement {
       const raw = String(value);
       const date = Number.isFinite(numeric) ? new Date(numeric < 1e12 ? numeric * 1000 : numeric) :
         new Date(/^\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2}:\d{2})?$/.test(raw) ? `${raw.length === 10 ? `${raw}T23:59:59` : raw.replace(' ', 'T')}+03:00` : raw);
-      if (Number.isFinite(date.getTime()) && date.getTime() > Date.now()) {
+      const remaining = date.getTime() - Date.now();
+      if (Number.isFinite(remaining) && remaining > 0) {
+        // A day or more reads as a word ("4 days"); only the last day ticks as HH:MM:SS.
+        const days = Math.floor(remaining / 864e5);
+        if (days >= 1) {
+          const lang = document.documentElement?.lang || 'ar';
+          let form = 'other';
+          try { form = new Intl.PluralRules(lang).select(days); } catch (_) {}
+          const label = salla.lang.get(`beauty.recommendation_ends_in_days.${['one', 'two', 'few', 'many'].includes(form) ? form : 'other'}`, { count: String(days) });
+          return `<div class="core-recommendation-badge core-recommendation-badge--timer">${this.escapeHTML(label)}</div>`;
+        }
         // The platform countdown accepts a date/time in KSA, rather than ISO with a zone.
         const ksaDate = new Date(date.getTime() + 3 * 60 * 60 * 1000).toISOString().slice(0, 19).replace('T', ' ');
         return `<div class="core-recommendation-badge core-recommendation-badge--timer"><span>${this.escapeHTML(salla.lang.get('beauty.recommendation_ends_in'))}</span><salla-count-down date="${ksaDate}" end-of-day="false" boxed="false" labeled="false" digits="en" auto-segments="true" size="sm"></salla-count-down></div>`;

@@ -144,6 +144,13 @@
       "next_images": "Show next images"
     },
     "recommendation_ends_in": "Ends in",
+    "recommendation_ends_in_days": {
+      "one": "Ends in :count day",
+      "two": "Ends in :count days",
+      "few": "Ends in :count days",
+      "many": "Ends in :count days",
+      "other": "Ends in :count days"
+    },
     "policy": {
       "eyebrow": "Core Care · Customer service",
       "title": "Returns and exchanges policy",
