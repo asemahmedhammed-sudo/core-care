@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-25T23:44:30.421Z",
+  "generatedAt": "2026-10-26T17:47:06.829Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 205,
+    "keyCount": 206,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -2770,7 +2770,7 @@
     {
       "file": "src/views/components/footer/footer.twig",
       "kind": "modified-upstream",
-      "sha256": "ccc529f119529674c50eccd6709968a64fc8e40fb77a1a9d9639cc5a2ac4d15b"
+      "sha256": "59592c363faa056fdaa0fb2139a96ff6713be0a79c0cc62c250bc0c4d298edc1"
     },
     {
       "file": "src/views/components/header/header.twig",
@@ -2910,7 +2910,7 @@
     {
       "file": "src/views/pages/partials/mobile-account.twig",
       "kind": "new-template",
-      "sha256": "9e44194f388cfc34178bf2efbfc2f8bd2ede76534ff1adf3a18e4b700c62431b"
+      "sha256": "597bb98ba551cb6353b41bbe20591392940734da9416b85c05f4bd327b716b0c"
     },
     {
       "file": "src/views/pages/partials/mobile-search.twig",

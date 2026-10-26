@@ -37,8 +37,9 @@ test('language switching mirrors salla-localization-modal and builds options wit
   assert.match(source, /cookie\?\.set\?\.\('s-lang', code\)/);
   assert.match(source, /addParamToUrl\('lang', code\)/);
   assert.doesNotMatch(source, /innerHTML|insertAdjacentHTML/);
-  // One languages request per page, reused on reopen.
-  assert.match(source, /this\.loading \?\?= \(async/);
+  // One languages request per page, shared with the account sheet's switch and reused on reopen.
+  assert.match(source, /languagesRequest \?\?= \(async/);
+  assert.match(source, /this\.loading \?\?= storeLanguages\(\)/);
 });
 
 test('only HTTPS platform flags are rendered', () => {

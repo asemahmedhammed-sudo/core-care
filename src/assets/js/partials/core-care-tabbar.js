@@ -23,15 +23,3 @@ if (globalThis.document?.body && globalThis.addEventListener) {
     syncHeader();
     globalThis.addEventListener('scroll', syncHeader, { passive: true });
 }
-
-// Footer «اللغة والعملة» on phones: opens the header's own language panel (or Salla's currency window).
-// Capture + stopPropagation keeps the language panel's outside-click handler from closing it again.
-if (globalThis.document?.addEventListener) {
-    document.addEventListener('click', event => {
-        const opener = event.target instanceof Element ? event.target.closest('[data-cc-localization-open]') : null;
-        if (!opener) return;
-        event.preventDefault();
-        event.stopPropagation();
-        document.querySelector('.core-care-language-menu [data-language-toggle], .core-care-header__actions > .core-care-header__locale')?.click();
-    }, true);
-}

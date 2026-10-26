@@ -2,11 +2,11 @@
 // and closes it; the other tabs, Escape and the close button close it. Login and logout stay Salla's own.
 const OPEN_CLASS = 'cc-account-open';
 
-// The sheet steps aside for whatever a row opens next (Salla's login window, the language panel, a tab).
+// The sheet steps aside for whatever a row opens next (Salla's login window, a tab).
 export function closesSheet(target) {
     if (!(target instanceof Element)) return false;
     if (target.closest('[data-account-toggle]')) return false;
-    return !!target.closest('#cc-account :is([data-account-close], [data-account-login], [data-account-logout], [data-cc-localization-open]), .cc-tabbar :is(a, button, salla-cart-summary)');
+    return !!target.closest('#cc-account :is([data-account-close], [data-account-login], [data-account-logout]), .cc-tabbar :is(a, button, salla-cart-summary)');
 }
 
 export function initAccountSheet(root = document) {

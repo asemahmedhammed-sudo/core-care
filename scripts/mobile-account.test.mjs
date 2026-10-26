@@ -55,7 +55,6 @@ test('rows that open something else close the sheet; the toggle does not', async
   const { closesSheet } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
   assert.equal(closesSheet(new FakeElement(['[data-account-toggle]'])), false);
   assert.equal(closesSheet(new FakeElement(['[data-account-login]'])), true);
-  assert.equal(closesSheet(new FakeElement(['[data-cc-localization-open]'])), true);
   assert.equal(closesSheet(new FakeElement(['.cc-tabbar'])), true);
   assert.equal(closesSheet(new FakeElement([])), false);
   assert.equal(closesSheet(null), false);
