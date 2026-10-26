@@ -1,4 +1,5 @@
-// All content comes from the store's navigation, never from the reference shop.
+// All content comes from the store's own categories (Products → Categories in Salla), never from the
+// reference shop. The header menu is not used here: its links can outlive deleted categories.
 export function safeMenuUrl(value) {
     if (typeof value !== 'string' || !value.trim()) return null;
     try {
@@ -7,9 +8,9 @@ export function safeMenuUrl(value) {
     } catch { return null; }
 }
 
-// Phones and tablets (with the app tab bar) show the categories as an app-style page: a rail of the
-// menu's sections and, for the selected one, its subcategories as image circles. Menus built without
-// sub-links take the subcategories of the Salla category the link points to.
+// Phones (with the app tab bar) show the categories as an app-style page: a rail of the top-level
+// categories and, for the selected one, its subcategories as image circles. Larger screens show the
+// same tree as a dropdown with titled subcategory groups.
 const COMPACT_QUERY = '(max-width: 767px)';
 const TREE_KEY = 'cc-categories-tree';
 
@@ -30,18 +31,10 @@ export function categoryNode(item, depth = 0) {
     };
 }
 
-// The storefront API codes `id` (for example "yNazxp"); the number is in `id_` and the category link.
-const matchesCategory = (item, id) => [item?.id_, item?.id].some(value => String(value) === id) || categoryIdFromUrl(item?.url) === id;
-
-export function findCategory(items, id, depth = 0) {
-    if (!id || !Array.isArray(items) || depth > 6) return null;
-    id = String(id);
-    for (const item of items) {
-        if (matchesCategory(item, id)) return item;
-        const found = findCategory(item?.sub_categories, id, depth + 1);
-        if (found) return found;
-    }
-    return null;
+// Salla's storefront tree lists only visible categories (plus its own brands entry); nameless or
+// unlinked entries are dropped.
+export function storeCategories(tree) {
+    return (Array.isArray(tree) ? tree : []).map(item => categoryNode(item)).filter(item => item.title && safeMenuUrl(item.url));
 }
 
 // Subcategories with their own children become titled groups; the rest share one grid of circles.
@@ -136,9 +129,9 @@ class CoreCareCategories extends HTMLElement {
         const signal = this.abort.signal;
         try {
             await salla.onReady();
-            const { data } = await salla.api.component.getMenus();
+            const tree = await this.loadTree();
             if (signal.aborted) return;
-            this.menus = Array.isArray(data) ? data.filter(item => item && item.title) : [];
+            this.menus = storeCategories(tree);
             if (!this.menus.length) return this.status(this.ar ? 'لا توجد أقسام مضافة حاليًا.' : 'No categories available yet.');
             this.render();
         } catch {
@@ -231,7 +224,9 @@ class CoreCareCategories extends HTMLElement {
         panel.setAttribute('role', 'tabpanel');
         panel.setAttribute('aria-labelledby', this.buttons[index].id);
         panel.tabIndex = 0;
-        panel.append(this.link(item, 'core-categories__all', this.ar ? `عرض جميع منتجات ${item.title}` : `Shop all ${item.title}`));
+        // Salla's brands entry is a page, not a category, so it keeps its own name.
+        const label = !categoryIdFromUrl(item.url) ? item.title : this.ar ? `عرض جميع منتجات ${item.title}` : `Shop all ${item.title}`;
+        panel.append(this.link(item, 'core-categories__all', label));
         const content = this.element('div', 'core-categories__content');
         const groups = this.element('div', 'core-categories__groups');
         (Array.isArray(item.children) ? item.children : []).forEach(child => {
@@ -254,22 +249,16 @@ class CoreCareCategories extends HTMLElement {
         this.panels.replaceChildren(panel);
     }
 
-    // Salla's category tree, loaded on the first compact open and kept for the visit.
-    loadTree() {
+    // Salla's category tree, kept for the visit so other pages do not request it again.
+    async loadTree() {
         const key = `${TREE_KEY}-${document.documentElement.lang || 'ar'}`;
-        if (!this.treeRequest) {
-            let cached = null;
-            try { cached = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch { /* private mode */ }
-            this.treeRequest = Array.isArray(cached) ? Promise.resolve(cached) : salla.product.api.categories()
-                .then(({ data }) => {
-                    const tree = Array.isArray(data) ? data : [];
-                    try { sessionStorage.setItem(key, JSON.stringify(tree)); } catch { /* private mode or full storage */ }
-                    return tree;
-                })
-                .catch(() => { this.treeRequest = null; return []; });
-            this.treeRequest.then(tree => { this.tree = tree; });
-        }
-        return this.treeRequest;
+        let cached = null;
+        try { cached = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch { /* private mode */ }
+        if (Array.isArray(cached) && cached.length) return cached;
+        const { data } = await salla.product.api.categories();
+        const tree = Array.isArray(data) ? data : [];
+        try { sessionStorage.setItem(key, JSON.stringify(tree)); } catch { /* private mode or full storage */ }
+        return tree;
     }
 
     circle(item) {
@@ -338,17 +327,8 @@ class CoreCareCategories extends HTMLElement {
         panel.setAttribute('aria-labelledby', this.buttons[index].id);
         panel.tabIndex = 0;
         this.panels.replaceChildren(panel);
-        const id = Array.isArray(item.children) && item.children.length ? null : categoryIdFromUrl(item.url);
-        if (id && !this.tree) {
-            const message = this.element('p', 'core-categories__status', this.ar ? 'جارٍ تحميل الأقسام…' : 'Loading categories…');
-            message.setAttribute('role', 'status');
-            panel.append(message);
-            this.loadTree().then(() => { if (this.current === index && this.compact) this.selectCompact(index); });
-            return;
-        }
-        const category = id ? findCategory(this.tree, id) : null;
-        const node = categoryNode(id ? { ...item, sub_categories: category?.sub_categories } : item);
-        const bannerImage = this.image({ image: item.image || category?.image }, 'core-categories__banner-image');
+        const id = categoryIdFromUrl(item.url);
+        const bannerImage = this.image(item, 'core-categories__banner-image');
         if (bannerImage) {
             const banner = this.link(item, 'core-categories__banner', '');
             banner.setAttribute('aria-label', item.title);
@@ -357,11 +337,11 @@ class CoreCareCategories extends HTMLElement {
             panel.append(banner);
         }
         const card = this.element('div', 'core-categories__card');
-        const label = id || node.children.length ? (this.ar ? 'جميع المنتجات' : 'All products') : item.title;
+        const label = id || item.children.length ? (this.ar ? 'جميع المنتجات' : 'All products') : item.title;
         const all = this.link(item, 'core-categories__card-all', label);
-        if (id || node.children.length) all.setAttribute('aria-label', this.ar ? `جميع منتجات ${item.title}` : `All ${item.title} products`);
+        if (id || item.children.length) all.setAttribute('aria-label', this.ar ? `جميع منتجات ${item.title}` : `All ${item.title} products`);
         card.append(all);
-        const { leaves, groups } = categorySections(node.children);
+        const { leaves, groups } = categorySections(item.children);
         if (leaves.length) {
             const section = this.element('section', 'core-categories__section');
             section.append(this.circles(leaves));
