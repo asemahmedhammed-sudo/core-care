@@ -79,3 +79,25 @@ test('homepage category discs never render empty', () => {
   const pending = image(0, false); ctx.settleCategoryImage(pending);
   assert.ok(!pending.removed, 'lazy images are left until they load');
 });
+
+test('the desktop menu follows the Nice One columns without invented content', () => {
+  // «All products» leads the columns, subcategories are chevron headings, deeper levels are plain links.
+  assert.match(source, /const head = \{ \.\.\.item, children: \[\] \};/, '«All products» heads the columns without repeating the subcategories');
+  assert.match(source, /this\.columnGroup\(head, this\.ar \? 'جميع المنتجات' : 'All products'/);
+  assert.match(source, /item\.children\.forEach\(child => groups\.append\(this\.columnGroup\(child\)\)\);/);
+  assert.match(source, /link\.append\(this\.chevron\('m9 6 6 6-6 6', 'core-categories__chevron'\)\);/);
+  // Rail thumbnails come from the category image, falling back to the first letter of its name.
+  assert.match(source, /this\.element\('span', 'core-categories__thumb', categoryInitial\(item\.title\)\)/);
+  // Pointing with a mouse switches sections on larger screens only.
+  assert.match(source, /e\.pointerType === 'mouse' && !this\.compact/);
+  // Salla has no brands per category, so the menu shows no brand tiles.
+  assert.doesNotMatch(source, /brand-tile|core-categories__brand/);
+  const styles = fs.readFileSync(new URL('../src/assets/styles/06-beauty/core-care-categories.scss', import.meta.url), 'utf8');
+  assert.match(styles, /&:not\(\.core-categories--compact\) \.core-categories__toolbar \{ display: none; \}/);
+  // The page under the menu is dimmed from the menu's top down, and clicking it closes the menu.
+  assert.match(styles, /&:not\(\.core-categories--compact\)::before \{\n    content: ''; position: fixed; z-index: -1; inset: 0; top: var\(--cc-categories-shade, 0px\);/);
+  assert.match(source, /if \(e\.target === this && !this\.compact\) this\.setOpen\(false\);/);
+  // Logical inline properties compile to LTR here, so direction-specific rules are written per direction.
+  assert.doesNotMatch(styles, /(padding|margin|border)-inline-(start|end)/);
+  assert.match(styles, /html\[dir='rtl'\] core-care-categories \{\n  \.core-categories__chevron \{ transform: scaleX\(-1\); \}/);
+});

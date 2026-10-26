@@ -36,3 +36,21 @@ Compatibility: no setting or field IDs changed. Edits to the header menu no long
 - The new build rendered in the Salla development preview, on desktop or phone. Platform verification is **incomplete**. The owner needs to open the draft link above.
 - Phone sheet (390px) and English/LTR with the new code.
 - Chrome. The check above used the built-in browser against the live 1.9.0 code with injected data. It is partial evidence only.
+
+## Follow-up: desktop layout after the Nice One menu (same day)
+
+The owner sent a Nice One desktop screenshot and asked for the same structure and design, with all sections and categories taken from Salla.
+
+Change: on screens of 768px and wider the dropdown sits inside the 1280px content width under the navigation row, without a title bar, and dims the page below it. The grey rail lists the top-level categories with their image, or their first letter when they have none; pointing with the mouse switches sections. The content uses columns: «جميع المنتجات» (a heading only), then each subcategory as a bold heading with a chevron and its own subcategories in muted text. The category image sits at the inline end. Salla has no brands per category (product data carries only a brand name, with no logo or link, and only from the first page), so the reference's brand tiles were not added. The phone sheet is unchanged.
+
+Checks:
+
+- `pnpm build` passed (9 existing size warnings); `pnpm test` 137/137 passed.
+- Built-in browser (not Chrome), public store `corecare-sa.com/ar` running 1.9.0, with the new methods and a Sass compile of `core-care-categories.scss` injected into the page (local only).
+  - 1440×900. المكياج: 3 columns (جميع المنتجات, then الخدود/الوجه/الحواجب/الشفاه/أدوات المكياج/مثبت مكياج/بودرة الوجه/مكياج العيون with their children), 240px category image, panel 80–1360px, rail 290px on the right, no horizontal overflow. أقسام العناية بالشعر: 3 columns of its 9 subcategories, صبغات الشعر with its 2 children, no image. الماركات التجارية: a single heading linking to `/ar/brands`.
+  - 1024×768: rail 240px, 2 columns, 200px image, no horizontal overflow.
+  - Chevrons point to the inline end (`scaleX(-1)` under `dir=rtl`).
+  - Found and fixed during the check: «جميع المنتجات» first listed every subcategory again.
+- Dimming: the backdrop computes correctly (`::before`, fixed, `rgba(0,0,0,.45)` from the menu's top), and `elementFromPoint` below the menu hits it. The built-in browser's screenshots did not show it, nor a plain black 45% test strip at z-index 99999 (a red test strip did show). So the dimming is **not visually confirmed**.
+
+Not verified: Salla development preview, Chrome, the phone sheet after this change, English/LTR, the dimming and click-to-close in a real browser.
