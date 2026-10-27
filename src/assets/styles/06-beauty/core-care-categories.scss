@@ -1,53 +1,86 @@
 body.theme-beauty .core-care-header { position: relative; z-index: 30; }
+// Desktop and tablet dropdown after the Nice One menu: a grey rail of the store's top-level categories
+// with their images, then columns of subcategory headings (chevron) with their own subcategories in
+// muted text, and the category image beside them. The page below the header is dimmed while it is open.
+// Phones with the tab bar restyle it as an app sheet (core-care-app-nav.scss).
 core-care-categories {
   display: block;
   position: absolute;
-  inset-inline: 0;
+  inset-inline: max(16px, calc((100% - 1280px) / 2));
   top: 100%;
-  background: #fff;
-  border-block: 1px solid #e5e5e5;
+  background: var(--cc-surface);
+  border-radius: 0 0 8px 8px;
   box-shadow: 0 0 5px rgba(0, 0, 6, .14);
-  max-height: 72vh;
-  max-height: 72dvh;
-  overflow: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
   &[hidden] { display: none; }
-  .core-categories__toolbar { display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; border-bottom: 1px solid #eee; }
+  // Dims the page below the navigation row (top set by core-care-categories.js); a click on it closes the menu.
+  &:not(.core-categories--compact)::before {
+    content: ''; position: fixed; z-index: -1; inset: 0; top: var(--cc-categories-shade, 0px); background: rgba(0, 0, 0, .45);
+  }
+  // No title bar on larger screens: the trigger, Esc and a click outside close the menu.
+  &:not(.core-categories--compact) .core-categories__toolbar { display: none; }
+  .core-categories__toolbar { display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; border-bottom: 1px solid var(--cc-border); }
   .core-categories__close { width: 44px; height: 44px; font-size: 28px; }
-  .core-categories__grid { display: grid; grid-template-columns: 230px minmax(0, 1fr);  }
-  .core-categories__tabs { background: var(--cc-menu-surface); padding-block: 12px; }
-  .core-categories__tab { width: 100%; display: flex; align-items: center; gap: 14px; padding: 16px 20px; min-height: 62px; text-align: start; font-size: 16px; color: #333; border-inline-start: 3px solid transparent; }
-  .core-categories__tab[aria-selected='true'] { background: #fff; border-color: #222; font-weight: 700; color: #111; }
-  .core-categories__thumb { width: 32px; height: 32px; object-fit: contain; }
+  .core-categories__grid { display: grid; grid-template-columns: 290px minmax(0, 1fr); }
+  .core-categories__tabs, .core-categories__panels { max-height: var(--cc-categories-room, 70dvh); overflow-y: auto; overscroll-behavior: contain; }
+  .core-categories__tabs { background: var(--cc-menu-surface); padding-block: 8px; }
+  .core-categories__tab {
+    width: 100%; display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 12px 24px;
+    text-align: start; color: var(--cc-text); font-size: 17px; font-weight: 500; line-height: 1.4; overflow-wrap: anywhere;
+  }
+  .core-categories__tab:hover { background: var(--cc-menu-hover); }
+  .core-categories__tab[aria-selected='true'] { background: var(--cc-surface); font-weight: 700; }
+  .core-categories__tab:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
+  .core-categories__thumb {
+    position: relative; display: grid; place-items: center; flex: none; width: 32px; height: 32px; overflow: hidden;
+    border-radius: 6px; background: var(--cc-utility-surface); color: var(--cc-text-muted); font-size: 14px; font-weight: 500;
+  }
+  .core-categories__thumb-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--cc-surface); }
   .core-categories__panels { min-width: 0; }
-  .core-categories__panel { padding: 28px 32px 40px; }
-  .core-categories__all { display: inline-block; color: #222; font-weight: 700; margin-bottom: 24px; padding-block: 8px; }
+  .core-categories__panel { padding: 24px 32px 12px; outline: 0; }
   .core-categories__content { display: flex; gap: 32px; align-items: flex-start; }
-  .core-categories__groups { flex: 1; min-width: 0; columns: 3; column-gap: 32px; }
-  .core-categories__group { break-inside: avoid; margin-bottom: 24px; }
-  .core-categories__group-title { display: block; color: #222; font-size: 16px; font-weight: 700; padding-block: 8px; }
-  .core-categories__link { display: block; color: #707070; font-size: 15px; padding-block: 7px; line-height: 1.6; overflow-wrap: anywhere; }
-  .core-categories__children .core-categories__children { padding-inline-start: 14px; border-inline-start: 1px solid #eee; }
-  .core-categories__feature { width: 22%; max-width: 260px; flex-shrink: 0; }
-  .core-categories__feature-image { width: 100%; max-height: 260px; object-fit: contain; border-radius: 10px; background: #f8f8f8; }
-  a:hover { color: #000; text-decoration: underline; }
-  .core-categories__status { padding: 32px; color: #666; }
-  .core-categories__retry { margin: 0 32px 24px; padding: 10px 20px; background: #222; color: #fff; border-radius: 6px; }
+  .core-categories__groups { flex: 1; min-width: 0; columns: 3 190px; column-gap: 32px; }
+  .core-categories__group { break-inside: avoid; padding-bottom: 16px; }
+  .core-categories__group-heading { margin: 0; }
+  .core-categories__group-title {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 40px;
+    color: var(--cc-text); font-size: 17px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere;
+  }
+  .core-categories__chevron { flex: none; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .core-categories__children { margin: 0; padding: 0; list-style: none; }
+  .core-categories__link { display: block; padding-block: 6px; color: var(--cc-text-muted); font-size: 15px; line-height: 1.6; overflow-wrap: anywhere; }
+  // Deeper levels indent from the reading start (written per direction: logical padding compiles to LTR).
+  .core-categories__children .core-categories__children { padding-left: 14px; }
+  .core-categories__feature { display: block; flex: none; width: 240px; overflow: hidden; border-radius: 8px; background: var(--cc-canvas); }
+  .core-categories__feature-image { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: contain; }
+  .core-categories__group-title:focus-visible, .core-categories__link:focus-visible, .core-categories__feature:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; border-radius: 4px; }
+  a:hover { color: var(--cc-text); text-decoration: underline; }
+  .core-categories__status { padding: 32px; color: var(--cc-text-muted); }
+  .core-categories__retry { margin: 0 32px 24px; padding: 10px 20px; background: var(--cc-action); color: #fff; border-radius: 6px; }
+  @media (max-width: 1279px) {
+    .core-categories__grid { grid-template-columns: 240px minmax(0, 1fr); }
+    .core-categories__feature { width: 200px; }
+  }
   @media (max-width: 1023px) {
-    .core-categories__grid { grid-template-columns: 180px minmax(0, 1fr); }
-    .core-categories__groups { columns: 2; }
+    .core-categories__grid { grid-template-columns: 200px minmax(0, 1fr); }
+    .core-categories__tab { padding-inline: 16px; gap: 12px; font-size: 16px; }
+    .core-categories__panel { padding-inline: 24px; }
     .core-categories__feature { display: none; }
   }
+  // Phones only reach this layout when the merchant turns the app tab bar off.
   @media (max-width: 639px) {
-    max-height: 65dvh;
+    inset-inline: 0;
+    border-radius: 0;
     .core-categories__grid { grid-template-columns: 120px minmax(0, 1fr); }
-    .core-categories__tab { padding: 12px 8px; font-size: 13px; gap: 6px; }
-    .core-categories__thumb { width: 22px; height: 22px; }
-    .core-categories__panel { padding: 16px 12px; }
-    .core-categories__groups { columns: 1; }
-    .core-categories__all, .core-categories__group-title { font-size: 14px; }
+    .core-categories__tab { min-height: 52px; padding: 12px 8px; font-size: 13px; gap: 6px; }
+    .core-categories__thumb { width: 22px; height: 22px; font-size: 11px; }
+    .core-categories__panel { padding: 16px 12px 4px; }
+    .core-categories__group-title { font-size: 14px; }
     .core-categories__link { font-size: 13px; }
   }
 }
 
-core-care-categories .core-categories__tab:hover { background: var(--cc-menu-hover); }
+html[dir='rtl'] core-care-categories {
+  .core-categories__chevron { transform: scaleX(-1); }
+  .core-categories__children .core-categories__children { padding-left: 0; padding-right: 14px; }
+}

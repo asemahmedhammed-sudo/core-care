@@ -39,10 +39,13 @@ body.theme-beauty {
   }
   .core-recommendation-card .s-product-card-promotion-title.core-recommendation-badge--bestseller { background: var(--cc-bestseller); }
   .core-recommendation-card .s-product-card-promotion-title.core-recommendation-badge--popular { background: var(--cc-popular); }
-  .core-recommendation-badge--timer { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; background: var(--cc-urgency); }
-  .core-recommendation-badge--timer salla-count-down { display: block; width: auto; margin: 0; }
-  .core-recommendation-badge--timer .s-count-down-list { display: flex; direction: ltr; flex-direction: row-reverse; gap: 0; width: auto; margin: 0; padding: 0; }
-  .core-recommendation-badge--timer .s-count-down-item { width: auto; min-width: 0; margin: 0; padding: 0; background: transparent; }
+  // One line from 320px up; wraps label/time as whole units only if a card is narrower still.
+  .core-recommendation-badge--timer { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 3px; padding-inline: 5px; background: var(--cc-urgency); font-weight: 500; white-space: nowrap; overflow-wrap: normal; }
+  .core-recommendation-badge--timer salla-count-down { display: block; flex: none; width: auto; margin: 0; }
+  .core-recommendation-badge--timer .s-count-down-list { display: flex; flex-wrap: nowrap; direction: ltr; flex-direction: row-reverse; gap: 0; width: auto; margin: 0; padding: 0; }
+  // The platform item is a stretching column at 16px with its own ':'; keep it one 10px line.
+  .core-recommendation-badge--timer .s-count-down-item { display: block; flex: none; width: auto; min-width: 0; margin: 0; padding: 0; background: transparent; color: #fff; font-size: 10px; font-weight: 500; line-height: 16px; }
+  .core-recommendation-badge--timer .s-count-down-item::after { content: none; }
   .core-recommendation-badge--timer .s-count-down-item-value { color: #fff; font-size: inherit; line-height: 16px; }
   .core-recommendation-badge--timer .s-count-down-item:not(:first-child) .s-count-down-item-value::after { content: ':'; }
   .core-recommendation-badge--timer:has(.s-count-down-ended) { display: none; }

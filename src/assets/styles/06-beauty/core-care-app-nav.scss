@@ -213,7 +213,7 @@ body.theme-beauty .cc-tabbar { display: none; }
     // when the header has scrolled away. The rail and the subcategories scroll separately.
     core-care-categories {
       position: fixed; z-index: var(--cc-z-categories); top: var(--cc-categories-top, 0px); bottom: var(--cc-tabbar-offset); left: 0; right: 0;
-      max-height: none; padding-top: env(safe-area-inset-top, 0px); border: 0; box-shadow: none;
+      max-height: none; padding-top: env(safe-area-inset-top, 0px); border: 0; border-radius: 0; box-shadow: none;
       &[data-under-header] { padding-top: 0; border-top: 1px solid var(--cc-border); }
     }
     core-care-categories.core-categories--compact:not([hidden]) {
@@ -222,7 +222,7 @@ body.theme-beauty .cc-tabbar { display: none; }
       .core-categories__toolbar { background: var(--cc-surface); }
       // The rail takes the inline start (right in Arabic), the grid follows the page direction.
       .core-categories__grid { flex: 1; min-height: 0; grid-template-columns: minmax(96px, 28%) minmax(0, 1fr); }
-      .core-categories__tabs, .core-categories__panels { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+      .core-categories__tabs, .core-categories__panels { min-height: 0; max-height: none; overflow-y: auto; overscroll-behavior: contain; }
       .core-categories__tabs { padding-block: 0; background: var(--cc-surface); }
       .core-categories__tab {
         min-height: 52px; padding: 12px; gap: 0; border: 0; background: transparent;

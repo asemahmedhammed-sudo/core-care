@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-26T17:47:06.829Z",
+  "generatedAt": "2026-10-26T19:58:24.294Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 206,
+    "keyCount": 211,
     "missing": {
       "ar.json": [],
       "en.json": []
