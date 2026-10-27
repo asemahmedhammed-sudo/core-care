@@ -1,7 +1,8 @@
 {# «حسابي» on phones and portrait tablets (below 1024px), after the Nice One app's account screen.
    The tab bar's account button opens it (core-care-account.js); it covers the page above the tab bar.
    Everything comes from the store: Salla's login and logout, account pages, contacts, footer menu,
-   social links, copyright and tax number. Desktop keeps the header's account menu. #}
+   social links, copyright and tax number. Desktop keeps the header's account menu.
+   Order: who you are, quick-access tiles, preferences, help and information, sign-out, follow, legal. #}
 {% set t = 'beauty.account.' %}
 {% set signed_in = user.type == 'user' %}
 {% set chevron %}<svg class="cc-account__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg>{% endset %}
@@ -34,32 +35,41 @@
       </div>
     {% endif %}
 
-    <nav class="cc-account__card" aria-label="{{ trans('beauty.tabbar.account') }}">
-      <ul class="cc-account__list">
-        {# Guests sign in first: these rows open Salla's login window instead of the account pages. #}
+    {# Quick access: the account pages as equal tiles in one row (2 for guests, up to 4 for customers).
+       Guests sign in first: these tiles open Salla's login window instead of the account pages. #}
+    <nav class="cc-account__card cc-account__quick" aria-label="{{ trans('beauty.tabbar.account') }}">
+      <ul class="cc-account__tiles">
         {% for key in ['orders', 'wishlist', 'wallet', 'notifications'] %}
           {% if key in ['orders', 'wishlist'] or (signed_in and (key != 'wallet' or user.can_access_wallet)) %}
           <li>
-            {% if signed_in %}<a class="cc-account__row" href="{{ link('account/' ~ key) }}">{% else %}<button class="cc-account__row" type="button" data-account-login aria-haspopup="dialog">{% endif %}
-              <svg class="cc-account__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                {%- if key == 'orders' -%}
-                <path d="M4.5 8 12 4l7.5 4v8L12 20l-7.5-4Z"/><path d="m4.5 8 7.5 4 7.5-4M12 12v8"/>
-                {%- elseif key == 'wishlist' -%}
-                <path d="M12 19.5s-7.5-4.4-7.5-10A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 7.5 2.5c0 5.6-7.5 10-7.5 10Z"/>
-                {%- elseif key == 'wallet' -%}
-                <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H17a1 1 0 0 1 1 1v2"/><rect x="4" y="8" width="16" height="11" rx="2.5"/><path d="M20 11.5h-3.5a2 2 0 0 0 0 4H20"/>
-                {%- else -%}
-                <path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 1.5H5Z"/><path d="M10 20.5h4"/>
-                {%- endif -%}
-              </svg>
-              <span class="cc-account__label">{{ trans(t ~ key) }}</span>
-              {{ chevron }}
+            {% if signed_in %}<a class="cc-account__tile" href="{{ link('account/' ~ key) }}">{% else %}<button class="cc-account__tile" type="button" data-account-login aria-haspopup="dialog">{% endif %}
+              <span class="cc-account__tile-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  {%- if key == 'orders' -%}
+                  <path d="M4.5 8 12 4l7.5 4v8L12 20l-7.5-4Z"/><path d="m4.5 8 7.5 4 7.5-4M12 12v8"/>
+                  {%- elseif key == 'wishlist' -%}
+                  <path d="M12 19.5s-7.5-4.4-7.5-10A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 7.5 2.5c0 5.6-7.5 10-7.5 10Z"/>
+                  {%- elseif key == 'wallet' -%}
+                  <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H17a1 1 0 0 1 1 1v2"/><rect x="4" y="8" width="16" height="11" rx="2.5"/><path d="M20 11.5h-3.5a2 2 0 0 0 0 4H20"/>
+                  {%- else -%}
+                  <path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 1.5H5Z"/><path d="M10 20.5h4"/>
+                  {%- endif -%}
+                </svg>
+              </span>
+              <span class="cc-account__tile-label">{{ trans(t ~ key) }}</span>
             {% if signed_in %}</a>{% else %}</button>{% endif %}
           </li>
           {% endif %}
         {% endfor %}
-        {# Language and currency change right here: Salla's options load into the switch, one tap applies them
-           (core-care-locale-switch.js). A row with a single option hides itself. #}
+      </ul>
+    </nav>
+
+    {# Language and currency change right here: Salla's options load into the switch, one tap applies them
+       (core-care-locale-switch.js). A row with a single option hides itself, and the group with its last row. #}
+    {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+    <section class="cc-account__group cc-account__prefs" aria-labelledby="cc-account-prefs">
+      <h3 class="cc-account__group-title" id="cc-account-prefs">{{ trans(t ~ 'preferences') }}</h3>
+      <ul class="cc-account__card cc-account__list">
         {% if store.settings.is_multilingual %}
         <li class="cc-account__locale" data-locale-row>
           <div class="cc-account__row">
@@ -80,8 +90,16 @@
           </div>
         </li>
         {% endif %}
-        <li class="cc-account__support">
-          {# Salla's contacts (phone, WhatsApp, email…); the row hides itself when the store has none. #}
+      </ul>
+    </section>
+    {% endif %}
+
+    {# Help and information: customer service (Salla's contacts, opening in place) and the merchant's footer
+       menu (about, policies, pages…) in one card. Each part hides while empty, and the group with both. #}
+    <section class="cc-account__group cc-account__help" aria-labelledby="cc-account-help">
+      <h3 class="cc-account__group-title" id="cc-account-help">{{ trans(t ~ 'help') }}</h3>
+      <div class="cc-account__card">
+        <div class="cc-account__support">
           <details class="cc-account__details">
             <summary class="cc-account__row">
               <svg class="cc-account__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13.5V12a7 7 0 0 1 14 0v1.5"/><rect x="4" y="13" width="4" height="6" rx="2"/><rect x="16" y="13" width="4" height="6" rx="2"/></svg>
@@ -90,14 +108,12 @@
             </summary>
             <salla-contacts class="cc-account__contacts" data-testid="store-account-contacts" hide-title></salla-contacts>
           </details>
-        </li>
-      </ul>
-    </nav>
-
-    {# The merchant's footer menu (about, policies, pages…) as rows; hidden while empty. #}
-    <nav class="cc-account__card cc-account__pages" aria-label="{{ trans(t ~ 'pages') }}">
-      <salla-menu data-testid="store-account-menu" source="footer" with-cookie-preferences></salla-menu>
-    </nav>
+        </div>
+        <nav class="cc-account__pages" aria-label="{{ trans(t ~ 'pages') }}">
+          <salla-menu data-testid="store-account-menu" source="footer" with-cookie-preferences></salla-menu>
+        </nav>
+      </div>
+    </section>
 
     {% if signed_in %}
     <div class="cc-account__card">

@@ -30,12 +30,20 @@ body.theme-beauty .cc-account { display: none; }
       &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
     }
 
-    // Cards sit 12px apart; the follow row and legal lines close the screen without a trailing gap.
+    // The body is the only scroller. Its blocks never shrink: a card with overflow: hidden may otherwise
+    // be squeezed below its content to fit the screen, clipping rows instead of scrolling to them.
+    // Groups sit 16px apart; the follow row and legal lines close the screen without a trailing gap.
     .cc-account__body {
-      flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
-      display: flex; flex-direction: column; gap: 12px; padding: 8px var(--cc-gutter, 16px) 20px;
+      flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+      display: flex; flex-direction: column; gap: 16px; padding: 8px var(--cc-gutter, 16px) 24px;
+      scroll-padding-block: 16px;
     }
-    .cc-account__card { border-radius: 16px; background: var(--cc-surface); overflow: hidden; }
+    .cc-account__body > * { flex: none; }
+    .cc-account__card { margin: 0; padding: 0; border-radius: 16px; background: var(--cc-surface); overflow: hidden; list-style: none; }
+
+    // A group: a small muted heading over its card, closer to the card than groups are to each other.
+    .cc-account__group { display: flex; flex-direction: column; gap: 8px; }
+    .cc-account__group-title { margin: 0; padding-inline: 4px; color: var(--cc-text-muted); font-size: 13px; font-weight: 500; line-height: 20px; }
 
     // Sign in: one centred blue link in its own card, as in the app.
     .cc-account__guest { display: flex; }
@@ -61,6 +69,24 @@ body.theme-beauty .cc-account { display: none; }
     .cc-account__name { font-size: 17px; font-weight: 600; line-height: 26px; overflow-wrap: anywhere; }
     .cc-account__meta { color: var(--cc-text-muted); font-size: 13px; line-height: 20px; overflow-wrap: anywhere; }
 
+    // Quick access: equal tiles in one row, an outline icon on a soft circle over a short label.
+    .cc-account__tiles { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); margin: 0; padding: 4px; list-style: none; }
+    .cc-account__tile {
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 8px;
+      width: 100%; height: 100%; min-height: 88px; margin: 0; padding: 12px 4px 10px; border: 0; border-radius: 12px;
+      background: transparent; color: var(--cc-text); font: inherit; text-align: center; text-decoration: none; cursor: pointer;
+      -webkit-tap-highlight-color: transparent; transition: background-color .15s ease;
+      &:hover { color: var(--cc-text); text-decoration: none; }
+      &:active { background: var(--cc-menu-hover); }
+      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: -2px; }
+    }
+    .cc-account__tile-icon {
+      flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+      background: var(--cc-utility-surface); color: var(--cc-icon);
+      svg { width: 24px; height: 24px; }
+    }
+    .cc-account__tile-label { max-width: 100%; font-size: 13px; font-weight: 500; line-height: 18px; overflow-wrap: anywhere; }
+
     // Rows: outline icon, label, optional value chip and a chevron; hairlines are inset from the icon.
     .cc-account__list { margin: 0; padding: 0; list-style: none; }
     .cc-account__row {
@@ -80,10 +106,14 @@ body.theme-beauty .cc-account { display: none; }
       color: var(--cc-text-muted); font-size: 12px; font-weight: 600; line-height: 18px;
     }
     .cc-account__chevron { flex: none; width: 20px; height: 20px; color: #a3a3a3; transition: transform .2s ease; }
-    .cc-account__list > li + li, .cc-account__pages .s-menu-footer-item + .s-menu-footer-item { position: relative; }
-    .cc-account__list > li + li::before, .cc-account__pages .s-menu-footer-item + .s-menu-footer-item::before {
+    // A hairline only between visible rows: a hidden first row (a single-option locale) leaves none on top.
+    .cc-account__list > li:not([hidden]) ~ li, .cc-account__pages .s-menu-footer-item + .s-menu-footer-item,
+    .cc-account__support:has(.s-contacts-item) + .cc-account__pages .s-menu-footer-item:first-child { position: relative; }
+    .cc-account__list > li:not([hidden]) ~ li::before, .cc-account__pages .s-menu-footer-item + .s-menu-footer-item::before,
+    .cc-account__support:has(.s-contacts-item) + .cc-account__pages .s-menu-footer-item:first-child::before {
       content: ''; position: absolute; top: 0; height: 1px; background: var(--cc-border);
     }
+    .cc-account__prefs:not(:has([data-locale-row]:not([hidden]))) { display: none; }
 
     // Language and currency: a segmented switch on the row itself; the chosen option is black (--cc-text, as the active category chip).
     // Long option lists wrap under the label instead of overflowing the card.
@@ -106,8 +136,10 @@ body.theme-beauty .cc-account { display: none; }
     .cc-account__choices[aria-busy='true'] .cc-account__choice[data-pending] { background: var(--cc-text); color: var(--cc-surface); opacity: .7; }
     .cc-account__choices-status { color: var(--cc-text-muted); font-size: 13px; line-height: 20px; }
 
-    // Customer service opens in place to Salla's contacts; the row hides itself when there are none.
+    // Customer service opens in place to Salla's contacts; the row hides itself when there are none,
+    // and the help group when the footer menu is empty too.
     .cc-account__support:not(:has(.s-contacts-item)) { display: none; }
+    .cc-account__help:not(:has(.s-contacts-item, .s-menu-footer-item)) { display: none; }
     .cc-account__details[open] .cc-account__chevron { transform: rotate(-90deg); }
     .cc-account__contacts { display: block; padding: 0 16px 8px; }
     .cc-account__contacts .s-contacts-list { display: flex; flex-direction: column; gap: 8px; margin: 0; }
@@ -169,9 +201,10 @@ body.theme-beauty .cc-account { display: none; }
   }
 
   // Divider insets follow the reading direction: they start after the icon and stop before the chevron.
-  html[dir='rtl'] body.theme-beauty.cc-has-tabbar .cc-account__list > li + li::before { right: 56px; left: 16px; }
-  html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-account__list > li + li::before { left: 56px; right: 16px; }
-  body.theme-beauty.cc-has-tabbar .cc-account__pages .s-menu-footer-item + .s-menu-footer-item::before { left: 16px; right: 16px; }
+  html[dir='rtl'] body.theme-beauty.cc-has-tabbar .cc-account__list > li:not([hidden]) ~ li::before { right: 56px; left: 16px; }
+  html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-account__list > li:not([hidden]) ~ li::before { left: 56px; right: 16px; }
+  body.theme-beauty.cc-has-tabbar .cc-account__pages .s-menu-footer-item + .s-menu-footer-item::before,
+  body.theme-beauty.cc-has-tabbar .cc-account__support:has(.s-contacts-item) + .cc-account__pages .s-menu-footer-item:first-child::before { left: 16px; right: 16px; }
   // The chevron points to the inline end.
   html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-account__chevron,
   html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-account__pages .s-menu-footer-item::after { transform: scaleX(-1); }

@@ -60,3 +60,16 @@ test('rows that open something else close the sheet; the toggle does not', async
   assert.equal(closesSheet(null), false);
   delete globalThis.Element;
 });
+
+test('the sheet body scrolls to every block instead of squeezing cards to the screen height', () => {
+  // Cards clip their rows (overflow: hidden); if flex items may shrink, a long sheet clips instead of scrolling.
+  assert.match(styles, /\.cc-account__body \{[^}]*overflow-y: auto;[^}]*\}/);
+  assert.match(styles, /\.cc-account__body > \* \{ flex: none; \}/);
+  // Grouped order: tiles, preferences, help and information; empty groups release their space.
+  const order = ['cc-account__quick', 'cc-account__prefs', 'cc-account__help', 'data-account-logout', 'cc-account__follow', 'cc-account__legal'];
+  const positions = order.map(name => sheet.indexOf(name));
+  assert.ok(positions.every(position => position > 0), 'every block is present');
+  assert.deepEqual([...positions].sort((a, b) => a - b), positions);
+  assert.match(styles, /\.cc-account__prefs:not\(:has\(\[data-locale-row\]:not\(\[hidden\]\)\)\) \{ display: none; \}/);
+  assert.match(styles, /\.cc-account__help:not\(:has\(\.s-contacts-item, \.s-menu-footer-item\)\) \{ display: none; \}/);
+});
