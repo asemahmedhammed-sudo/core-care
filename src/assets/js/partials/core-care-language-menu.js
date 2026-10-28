@@ -15,13 +15,19 @@ export function safeFlagUrl(value) {
     } catch { return null; }
 }
 
+// Salla's inline page stub defines Salla.onReady before the SDK itself, which loads async and often runs
+// after this deferred bundle. Wait for it before touching Salla.config, which only the SDK provides.
+export async function sallaReady() {
+    await window.Salla?.onReady?.();
+    return window.Salla;
+}
+
 // The store's enabled languages, fetched once per page for the header menu and the account sheet.
 let languagesRequest = null;
 export function storeLanguages() {
     languagesRequest ??= (async () => {
-        const salla = window.Salla;
+        const salla = await sallaReady();
         if (!salla?.config?.languages) throw new Error('Salla unavailable');
-        await salla.onReady?.();
         const languages = await salla.config.languages();
         return (Array.isArray(languages) ? languages : Object.values(languages || {}))
             .filter(lang => lang && (lang.code || lang.iso_code) && lang.status !== 'disabled');

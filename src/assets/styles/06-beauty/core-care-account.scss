@@ -134,7 +134,13 @@ body.theme-beauty .cc-account { display: none; }
     }
     .cc-account__choices[aria-busy='true'] .cc-account__choice { cursor: progress; }
     .cc-account__choices[aria-busy='true'] .cc-account__choice[data-pending] { background: var(--cc-text); color: var(--cc-surface); opacity: .7; }
-    .cc-account__choices-status { color: var(--cc-text-muted); font-size: 13px; line-height: 20px; }
+    .cc-account__choices-status {
+      min-height: 44px; margin: 0; padding: 0 4px; border: 0; background: transparent; cursor: pointer;
+      color: var(--cc-text-muted); font: inherit; font-size: 13px; line-height: 20px; text-align: start;
+      text-decoration: underline; text-underline-offset: 3px;
+      &:disabled { cursor: progress; }
+      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; border-radius: 4px; }
+    }
 
     // Customer service opens in place to Salla's contacts; the row hides itself when there are none,
     // and the help group when the footer menu is empty too.

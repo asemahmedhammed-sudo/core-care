@@ -1,6 +1,6 @@
 // «حسابي» sheet: language and currency switch in place (mobile-account.twig), without opening another panel.
 // Options come from Salla at runtime; one tap applies the choice the same way salla-localization-modal does.
-import { storeLanguages, switchLanguage } from './core-care-language-menu';
+import { sallaReady, storeLanguages, switchLanguage } from './core-care-language-menu';
 
 // Salla returns currencies as an object keyed by code; keep entries that carry a usable code.
 export function currencyOptions(currencies, current) {
@@ -20,25 +20,33 @@ export function languageOptions(languages, current) {
 class CoreCareLocaleSwitch extends HTMLElement {
     connectedCallback() {
         if (this.loading) return;
-        this.loading = this.load().catch(() => {
-            this.loading = null;
-            const status = document.createElement('span');
-            status.className = 'cc-account__choices-status';
-            status.textContent = this.dataset.errorLabel || '';
-            this.replaceChildren(status);
-        });
+        this.loading = this.load().catch(() => this.showError());
+    }
+
+    // The message ("…try again") is itself the retry button.
+    showError() {
+        this.loading = null;
+        const retry = document.createElement('button');
+        retry.type = 'button';
+        retry.className = 'cc-account__choices-status';
+        retry.textContent = this.dataset.errorLabel || '';
+        retry.addEventListener('click', () => {
+            retry.disabled = true;
+            this.connectedCallback();
+        }, { once: true });
+        this.replaceChildren(retry);
     }
 
     async load() {
-        const salla = window.Salla;
         if (this.dataset.kind === 'currency') {
+            const salla = await sallaReady();
             if (!salla?.config?.currencies) throw new Error('Salla unavailable');
-            await salla.onReady?.();
             const current = salla.config.get?.('user.currency_code', 'SAR');
             this.render(currencyOptions(await salla.config.currencies(), current), code => this.changeCurrency(code));
         } else {
-            const current = this.dataset.current || salla?.config?.get?.('user.language_code');
-            this.render(languageOptions(await storeLanguages(), current), code => switchLanguage(code, current));
+            const languages = await storeLanguages();
+            const current = this.dataset.current || window.Salla?.config?.get?.('user.language_code');
+            this.render(languageOptions(languages, current), code => switchLanguage(code, current));
         }
     }
 
