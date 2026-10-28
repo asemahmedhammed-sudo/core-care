@@ -44,6 +44,15 @@ This checks the CSS only. It does not prove Twig rendering, Salla's `salla-conta
 - Claude in Chrome was not connected. In the Claude built-in browser, `s.salla.sa/design/draft-1164972317?legacy=0&with_editor=false&assets_url=<jsDelivr @0a1a7c3>/public` opened the editor briefly, then redirected to Salla's sign-in page, which rendered blank. No storefront frame loaded.
 - So the sheet on the draft (`body.theme-beauty`, asset URL, rendering, scrolling) is **unverified** on Salla.
 
+### Second attempt, same day, after the owner signed in to Salla in the built-in browser
+
+- The same draft address redirected to `s.salla.sa/auth` again, which showed Salla's account chooser with the Core Care account remembered. No editor or storefront frame loaded.
+- Choosing that account left it on a spinner, and Salla's Cloudflare widget at the foot of the page reported that verification failed. The check was not attempted or retried. Platform verification stays **incomplete**.
+
+### Third attempt, same day, after the owner reported passing the check and signing in
+
+- In the built-in browser, both the draft address and the dashboard home `s.salla.sa/` redirected to `s.salla.sa/auth`, which rendered blank. The pane had no signed-in Salla session, so no editor or storefront frame loaded. Platform verification stays **incomplete**.
+
 ## Public storefront
 
 Unchanged. The owner's screenshot came from the published Core Care version; the fix reaches visitors only after this change is pushed, checked in the development preview, and a new version is published by the owner.
