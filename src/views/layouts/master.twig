@@ -61,13 +61,19 @@
 
     {# Keep preview requests on the current repository assets. Salla serves draft
        assets with a long browser cache, while the draft URL itself stays the same. #}
-    {% set theme_asset_revision = '20261022-quick-links-3' %}
+    {% set theme_asset_revision = '20261029-ai-shopping-1' %}
     {# Register before Twilight hydrates product lists: it checks customElements
        once and otherwise keeps native cards, bypassing theme card settings. #}
     <script data-cfasync="false" crossorigin="anonymous" src="{{ 'product-card.js'|asset }}?v={{ theme_asset_revision }}"></script>
     <script defer src="{{ 'main-menu.js'|asset }}?v={{ theme_asset_revision }}"></script>
     {% if theme.settings.get('enable_add_product_toast', true) %}
         <script defer src="{{ 'add-product-toast.js'|asset }}"></script>
+    {% endif %}
+    {# WebMCP tools for in-browser AI agents; the file exits at once in browsers without WebMCP. #}
+    {% if theme.settings.get('core_care_webmcp', true) %}
+        {% set webmcp_trial_token = theme.settings.get('core_care_webmcp_trial_token')|default('')|trim %}
+        {% if webmcp_trial_token %}<meta http-equiv="origin-trial" content="{{ webmcp_trial_token }}">{% endif %}
+        <script defer src="{{ 'webmcp.js'|asset }}?v={{ theme_asset_revision }}"></script>
     {% endif %}
 
     {% block head_scripts %}{% endblock %}
@@ -134,6 +140,7 @@
 {% endif %}
 {# The full cart page keeps its own layout; elsewhere the header cart opens the side cart. #}
 {% if not is_page('cart') %}{% include 'pages.partials.cart-drawer' %}{% endif %}
+{% if theme.settings.get('core_care_webmcp', true) %}{% include 'pages.partials.ai-activity' %}{% endif %}
 <script defer crossorigin="anonymous" src="{{ 'app.js' | asset }}?v={{ theme_asset_revision }}"></script>
 
 {# Twilight Components #}

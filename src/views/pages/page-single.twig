@@ -15,7 +15,13 @@
     {% set page_title = page.title|default('')|lower %}
     {% set is_policy_title = 'الاسترجاع' in page_title or 'الاستبدال' in page_title or 'return' in page_title or 'refund' in page_title %}
     {% set is_policy_page = policy_page_id ? policy_page_id == (page.id ~ '') : is_policy_title %}
-    {% if is_policy_page %}
+    {# The «تسوّق بمساعدك الذكي» page: a Salla page the merchant created, chosen by its id in theme settings. #}
+    {% set ai_page_id = theme.settings.get('core_care_ai_page_id', '')|default('')|trim %}
+    {% if ai_page_id and ai_page_id == (page.id ~ '') %}
+      {# Text from Salla's page editor, same trusted merchant content and output as the page body below. #}
+      {% set ai_page_content %}{% if page.content|default('')|trim %}<section class="cc-ai-page__content content-entry">{{ page.content|raw }}</section>{% endif %}{% endset %}
+      {% include 'pages.partials.ai-shopping' %}
+    {% elseif is_policy_page %}
       <article class="container core-policy" aria-labelledby="core-policy-title">
         {% include 'pages.partials.return-policy-intro' %}
         {# Text written in Salla's page editor (محرر النصوص) appears here, so merchants can
@@ -54,5 +60,12 @@
               </div>
           </div>
       </div>
+    {% endif %}
+{% endblock %}
+{% block scripts %}
+    {# Variables do not cross Twig blocks; read the setting again. #}
+    {% set ai_script_page_id = theme.settings.get('core_care_ai_page_id', '')|default('')|trim %}
+    {% if ai_script_page_id and ai_script_page_id == (page.id ~ '') %}
+        <script defer src="{{ 'ask-ai.js' | asset }}"></script>
     {% endif %}
 {% endblock %}

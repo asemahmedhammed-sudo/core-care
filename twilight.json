@@ -1062,6 +1062,61 @@
         {
             "type": "boolean",
             "icon": "sicon-toggle-off",
+            "label": "تمكين مساعدات الذكاء الاصطناعي من التسوق في المتجر (WebMCP)",
+            "description": "يتيح لمساعدات الذكاء الاصطناعي المدمجة في المتصفح البحث عن المنتجات، وعرض تفاصيلها، وإدارة السلة نيابةً عن الزائر عبر أدوات سلة الرسمية. لا تصل المساعدات إلى الدفع أو بيانات العملاء، ويكمل الزائر الطلب بنفسه. يعمل فقط في المتصفحات التي تدعم WebMCP، ولا يؤثر على غيرها.",
+            "id": "core_care_webmcp",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "core_care_webmcp_trial_token",
+            "type": "string",
+            "format": "text",
+            "label": "رمز التجربة المبكرة لـ WebMCP من Chrome (اختياري)",
+            "description": "سجّل نطاق متجرك في برنامج التجربة المبكرة (Origin Trial) لـ WebMCP من Chrome، ثم الصق الرمز هنا ليعمل المعيار لزوار المتجر دون تفعيل يدوي. اتركه فارغًا إذا لم تسجّل.",
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 1000
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "اعتماد أدوات الثيم للمساعدات بدل أدوات سلة المكررة",
+            "description": "إذا فعّلت سلة أدواتها لمساعدات الذكاء الاصطناعي على متجرك، يوقف الثيم المكرر منها في الصفحة لتبقى مجموعة واحدة، ويظهر كل تغيير يجريه المساعد في شريط مع زر «تراجع». أوقف هذا الخيار لتبقى أدوات سلة ويضيف الثيم ما ليس فيها فقط (التصنيفات، المفضلة، فتح السلة).",
+            "id": "core_care_webmcp_theme_first",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار «اسأل الذكاء الاصطناعي» في صفحة المنتج",
+            "description": "قسم قابل للطي تحت الوصف يفتح ChatGPT أو Claude أو Perplexity بسؤال جاهز عن المنتج (يناسب البشرة الحساسة؟ طريقة الاستخدام…) مع رابطه. يعمل على الجوال والكمبيوتر وتطبيق المتجر. لا تُرسل أي بيانات عن الزائر.",
+            "id": "core_care_ask_ai",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "core_care_ai_page_id",
+            "type": "string",
+            "format": "text",
+            "label": "معرّف صفحة «تسوّق بمساعدك الذكي»",
+            "description": "أنشئ صفحة تعريفية في لوحة سلة (مثل «تسوّق بمساعدك الذكي») ثم أدخل معرّفها (page.id) هنا، فتظهر بتصميم الثيم الخاص ويُضاف رابطها إلى «روابط سريعة» في التذييل. اتركه فارغًا لإخفاء الصفحة والرابط.",
+            "required": false,
+            "value": null,
+            "minLength": 0,
+            "maxLength": 30
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
             "label": "إظهار العبارات الترويجية على بطاقات المنتجات",
             "description": "إظهار العنوان الترويجي فوق صور المنتجات. إيقافه لا يحذف العبارات من بيانات المنتجات ولا يخفي شارات الخصم أو الطلب المسبق.",
             "id": "beauty_show_product_promotion_titles",

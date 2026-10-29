@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-28T06:48:47.415Z",
+  "generatedAt": "2026-10-29T06:43:19.898Z",
   "environment": {
     "node": "v25.0.0",
     "platform": "darwin",
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 213,
+    "keyCount": 284,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -1388,60 +1388,90 @@
     },
     {
       "location": "settings[88]",
-      "id": "beauty_show_product_promotion_titles",
+      "id": "core_care_webmcp",
       "type": "boolean",
       "format": "switch"
     },
     {
       "location": "settings[89]",
-      "id": "notify_when_available_in_card",
-      "type": "boolean",
-      "format": "switch"
+      "id": "core_care_webmcp_trial_token",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[90]",
-      "id": "sticky_add_to_cart",
+      "id": "core_care_webmcp_theme_first",
       "type": "boolean",
       "format": "switch"
     },
     {
       "location": "settings[91]",
-      "id": "show_tags",
+      "id": "core_care_ask_ai",
       "type": "boolean",
       "format": "switch"
     },
     {
       "location": "settings[92]",
-      "id": "slider_background_size",
-      "type": "items",
-      "format": "dropdown-list"
+      "id": "core_care_ai_page_id",
+      "type": "string",
+      "format": "text"
     },
     {
       "location": "settings[93]",
-      "id": "imageZoom",
+      "id": "beauty_show_product_promotion_titles",
       "type": "boolean",
       "format": "switch"
     },
     {
       "location": "settings[94]",
-      "id": "beauty_brand_name",
-      "type": "string",
-      "format": "text"
+      "id": "notify_when_available_in_card",
+      "type": "boolean",
+      "format": "switch"
     },
     {
       "location": "settings[95]",
-      "id": "beauty_palette",
-      "type": "items",
-      "format": "dropdown-list"
+      "id": "sticky_add_to_cart",
+      "type": "boolean",
+      "format": "switch"
     },
     {
       "location": "settings[96]",
-      "id": "beauty_alternate_sections",
+      "id": "show_tags",
       "type": "boolean",
       "format": "switch"
     },
     {
       "location": "settings[97]",
+      "id": "slider_background_size",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "settings[98]",
+      "id": "imageZoom",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[99]",
+      "id": "beauty_brand_name",
+      "type": "string",
+      "format": "text"
+    },
+    {
+      "location": "settings[100]",
+      "id": "beauty_palette",
+      "type": "items",
+      "format": "dropdown-list"
+    },
+    {
+      "location": "settings[101]",
+      "id": "beauty_alternate_sections",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[102]",
       "id": "beauty_reference_font",
       "type": "boolean",
       "format": "switch"
@@ -2406,6 +2436,22 @@
       "value": 600
     },
     {
+      "location": "$.settings.89.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.89.maxLength",
+      "value": 1000
+    },
+    {
+      "location": "$.settings.92.minLength",
+      "value": 0
+    },
+    {
+      "location": "$.settings.92.maxLength",
+      "value": 30
+    },
+    {
       "location": "$.components.0.fields.0.minLength",
       "value": 0
     },
@@ -2770,7 +2816,7 @@
     {
       "file": "src/views/components/footer/footer.twig",
       "kind": "modified-upstream",
-      "sha256": "59592c363faa056fdaa0fb2139a96ff6713be0a79c0cc62c250bc0c4d298edc1"
+      "sha256": "3bfaa3790315a18428cd9e55883e0adf3a42233289512e91ffa01a402dc7f8cd"
     },
     {
       "file": "src/views/components/header/header.twig",
@@ -2850,7 +2896,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "a74877b05afb0cd91e706dee50db5929f7efc7f945533e93734507decbe85d20"
+      "sha256": "52cd51ef9d5bbf7e7f3da5c37c8c6de5a45a6f476cb281be26d6af0a16c1309c"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -2875,7 +2921,22 @@
     {
       "file": "src/views/pages/page-single.twig",
       "kind": "modified-upstream",
-      "sha256": "33386bfbab73534d01d474770271b0e1d65e470452acf277fbe598bfdbaaf120"
+      "sha256": "7f3dd4116cb756fa4155903f38eb0001605863483f6e149a01630da67857c74f"
+    },
+    {
+      "file": "src/views/pages/partials/ai-activity.twig",
+      "kind": "new-template",
+      "sha256": "653d23bd19c8dd0055a0f14f4d9aea11f461280b61d4c06610e5d7af22dfdf21"
+    },
+    {
+      "file": "src/views/pages/partials/ai-shopping.twig",
+      "kind": "new-template",
+      "sha256": "73a24f031f6088b38f6f920a3f2a174e38c5516198733c58e01f7689b46bb1c9"
+    },
+    {
+      "file": "src/views/pages/partials/ask-ai.twig",
+      "kind": "new-template",
+      "sha256": "60760c52aef27108ad392c2d6803cbf16c11af21c88f836b2b5e1405ce6e334d"
     },
     {
       "file": "src/views/pages/partials/cart-drawer.twig",
@@ -2950,7 +3011,7 @@
     {
       "file": "src/views/pages/product/single.twig",
       "kind": "modified-upstream",
-      "sha256": "2d65b06ba2555d2447237deb5fe4dd39301ae2d1dfaa27eb9721b4bcc7d25eba"
+      "sha256": "867f69b57e30f010e347d29f6373208c76ecbd46cef03c5b4d38de39bbc4b00c"
     },
     {
       "file": "src/views/pages/thank-you.twig",
@@ -2971,7 +3032,7 @@
     },
     {
       "file": "src/views/pages/page-single.twig",
-      "line": 25,
+      "line": 22,
       "expression": "page.content|raw",
       "outputContext": "element-content",
       "upstreamFile": true,
@@ -2981,7 +3042,17 @@
     },
     {
       "file": "src/views/pages/page-single.twig",
-      "line": 51,
+      "line": 31,
+      "expression": "page.content|raw",
+      "outputContext": "element-content",
+      "upstreamFile": true,
+      "source": "Platform-managed page, article, or order rich content",
+      "risk": "Confirm documented sanitation before retaining raw.",
+      "review": "verify-platform-sanitization"
+    },
+    {
+      "file": "src/views/pages/page-single.twig",
+      "line": 57,
       "expression": "page.content|raw",
       "outputContext": "element-content",
       "upstreamFile": true,
@@ -3001,7 +3072,7 @@
     },
     {
       "file": "src/views/pages/product/single.twig",
-      "line": 286,
+      "line": 287,
       "expression": "product.description|replace({\"&nbsp;\":\" \"})|raw",
       "outputContext": "element-content",
       "upstreamFile": true,
@@ -3015,11 +3086,31 @@
     {
       "file": "src/views/pages/customer/orders/single.twig",
       "literal": "&nbsp;"
+    },
+    {
+      "file": "src/views/pages/partials/ai-shopping.twig",
+      "literal": "ChatGPT"
+    },
+    {
+      "file": "src/views/pages/partials/ai-shopping.twig",
+      "literal": "Claude"
+    },
+    {
+      "file": "src/views/pages/partials/ask-ai.twig",
+      "literal": "ChatGPT"
+    },
+    {
+      "file": "src/views/pages/partials/ask-ai.twig",
+      "literal": "Claude"
+    },
+    {
+      "file": "src/views/pages/partials/ask-ai.twig",
+      "literal": "Perplexity"
     }
   ],
   "rawReview": {
     "status": "review-required",
-    "count": 5,
+    "count": 6,
     "note": "No source is marked safe merely because it occurs in upstream Raed."
   },
   "networkSourceCandidates": [
@@ -3027,6 +3118,21 @@
       "file": "src/assets/js/partials/core-care-search-sheet.js",
       "line": 57,
       "pattern": "fetch("
+    },
+    {
+      "file": "src/assets/js/partials/core-care-webmcp.js",
+      "line": 220,
+      "pattern": "salla.product.getDetails("
+    },
+    {
+      "file": "src/assets/js/partials/core-care-webmcp.js",
+      "line": 243,
+      "pattern": "salla.product.search("
+    },
+    {
+      "file": "src/assets/js/partials/core-care-webmcp.js",
+      "line": 291,
+      "pattern": "salla.product.categories("
     },
     {
       "file": "src/assets/js/product.js",

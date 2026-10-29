@@ -277,7 +277,8 @@
 
 
                 {% set has_specifications = product.sku or product.barcode or product.has_metadata or (product.tags|length and theme.settings.get('show_tags', true)) %}
-                {% if product.description or has_specifications %}
+                {% set show_ask_ai = theme.settings.get('core_care_ask_ai', true) %}
+                {% if product.description or has_specifications or show_ask_ai %}
                 <div class="core-product-disclosures">
                     {% if product.description %}
                         <details class="core-product-disclosure" data-testid="store-product-description-disclosure">
@@ -321,6 +322,21 @@
                                         {% endfor %}
                                     </div>
                                 {% endif %}
+                            </div>
+                        </details>
+                    {% endif %}
+                    {% if show_ask_ai %}
+                        {# Collapsed like its neighbours; opens the shopper's own AI assistant with a ready question. #}
+                        <details class="core-product-disclosure cc-ask-ai-disclosure" data-testid="store-product-ask-ai">
+                            <summary>
+                                <span class="cc-ask-ai-disclosure__title">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 13.8 9a1.5 1.5 0 0 0 1 1L20.5 12l-5.7 1.9a1.5 1.5 0 0 0-1 1L12 20.5l-1.8-5.6a1.5 1.5 0 0 0-1-1L3.5 12l5.7-1.9a1.5 1.5 0 0 0 1-1Z"/><path d="M19 3v3M17.5 4.5h3"/></svg>
+                                    {{ trans('beauty.ai_ask.product_title') }}
+                                </span>
+                                <i class="sicon-keyboard_arrow_down" aria-hidden="true"></i>
+                            </summary>
+                            <div class="core-product-disclosure-content">
+                                {% include 'pages.partials.ask-ai' with { ask_id: 'ask-ai-' ~ product.id, ask_group: 'product', ask_name: product.name, ask_url: product.url } %}
                             </div>
                         </details>
                     {% endif %}
@@ -371,6 +387,9 @@
 
 {% block scripts %}
     <script defer src="{{ 'product.js' | asset }}?v=20261003-product-gallery-1"></script>
+    {% if theme.settings.get('core_care_ask_ai', true) %}
+        <script defer src="{{ 'ask-ai.js' | asset }}"></script>
+    {% endif %}
     {% if product.has_3d_image %}
         <script type="module" defer src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     {% endif %}

@@ -1,0 +1,43 @@
+{# «اسأل الذكاء الاصطناعي» panel (ask-ai.js). Opens the shopper's own assistant with a ready question.
+   Expects: ask_id (unique per page), ask_group ('product' or 'store'), ask_name, ask_url.
+   Questions are translation keys beauty.ai_ask.<group>_<key>; the first one starts selected. #}
+{% set t = 'beauty.ai_ask.' %}
+{% set ask_keys = ask_group == 'product' ? ['sensitive', 'routine', 'ingredients', 'compare'] : ['routine', 'budget', 'gift', 'compare', 'sunscreen', 'hair'] %}
+<core-care-ask-ai class="cc-ask-ai"
+  data-template="{{ trans(t ~ 'template_' ~ ask_group) }}"
+  data-store="{{ store.name }}"
+  data-name="{{ ask_name }}"
+  data-url="{{ ask_url }}"
+  data-label-copied="{{ trans(t ~ 'copied') }}"
+  data-label-copy-failed="{{ trans(t ~ 'copy_failed') }}">
+  <fieldset class="cc-ask-ai__questions">
+    <legend class="cc-ask-ai__legend">{{ trans(t ~ 'pick') }}</legend>
+    {% for key in ask_keys %}
+      {% set question = trans(t ~ ask_group ~ '_' ~ key) %}
+      <label class="cc-ask-ai__chip">
+        <input type="radio" name="{{ ask_id }}-question" value="{{ key }}" data-question="{{ question }}"{{ loop.first ? ' checked' : '' }}>
+        <span>{{ question }}</span>
+      </label>
+    {% endfor %}
+  </fieldset>
+  <label class="cc-ask-ai__custom">
+    <span class="sr-only">{{ trans(t ~ 'custom_label') }}</span>
+    <textarea rows="2" maxlength="300" data-ask-ai-custom placeholder="{{ trans(t ~ 'custom_placeholder') }}"></textarea>
+  </label>
+  <div class="cc-ask-ai__send" role="group" aria-label="{{ trans(t ~ 'send_with') }}">
+    <span class="cc-ask-ai__send-label" aria-hidden="true">{{ trans(t ~ 'send_with') }}</span>
+    <div class="cc-ask-ai__providers">
+      <a class="cc-ask-ai__provider" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" data-ask-ai-provider="chatgpt">ChatGPT</a>
+      <a class="cc-ask-ai__provider" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" data-ask-ai-provider="claude">Claude</a>
+      <a class="cc-ask-ai__provider" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" data-ask-ai-provider="perplexity">Perplexity</a>
+      <button type="button" class="cc-ask-ai__copy" data-ask-ai-copy>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/></svg>
+        <span>{{ trans(t ~ 'copy') }}</span>
+      </button>
+    </div>
+  </div>
+  <p class="cc-ask-ai__note">
+    <span data-ask-ai-status role="status" aria-live="polite" class="cc-ask-ai__status"></span>
+    <span>{{ trans(t ~ 'privacy') }}</span>
+  </p>
+</core-care-ask-ai>
