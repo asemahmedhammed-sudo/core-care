@@ -178,7 +178,10 @@ test('templates: merchant switches gate each surface and the AI page link only a
     assert.match(single, /\{% if theme\.settings\.get\('core_care_ask_ai', true\) %\}\s*<script defer src="\{\{ 'ask-ai\.js' \| asset \}\}">/);
     assert.match(pageSingle, /\{% if ai_page_id and ai_page_id == \(page\.id ~ ''\) %\}[^]*?\{% include 'pages\.partials\.ai-shopping' %\}\s*\{% elseif is_policy_page %\}/);
     assert.match(pageSingle, /ai_script_page_id and ai_script_page_id == \(page\.id ~ ''\)/);
-    assert.match(footer, /\{% if ai_page_id and ai_page_id\|length <= 30 and ai_page_id\|replace\(\{'0': ''/);
+    assert.match(footer, /\{% set ai_page_valid = ai_page_id and ai_page_id\|length <= 30 and ai_page_id\|replace\(\{'0': ''/);
+    // Phones use the link groups and wider screens the classic columns; both carry the link.
+    assert.equal(footer.match(/\{% if ai_page_valid %\}\s*<a href="\{\{ link\('-\/page-' ~ ai_page_id\) \}\}">/g)?.length, 2);
+    assert.ok(footer.indexOf('ai_page_valid %}<a') > footer.indexOf('core-care-footer__classic'));
     assert.match(pageTwig, /\{% include 'pages\.partials\.ask-ai' with \{ ask_id: 'ask-ai-store', ask_group: 'store'/);
     assert.match(webpack, /'ask-ai': asset\('js\/ask-ai\.js'\)/);
     // New templates print nothing unescaped; the merchant's page body is prepared in the inherited page-single.

@@ -33,9 +33,19 @@ Static pages generated from the real partials (Twig tags substituted by a script
 
 This shows CSS, layout and component behaviour only. It does not prove Twig rendering on Salla, the real product page layout around the disclosure, the cart drawer opening from «عرض السلة», or the tab bar offset.
 
-## Salla development preview: not run
+## Salla development preview: incomplete (2026-10-29)
 
-Needs a commit and push first (the preview sends the pushed HEAD). Not authorized yet.
+- Source: commit `f0a91a6` pushed to `feature/bilingual-images`. `yes n | salla theme preview -s "Core Care" -o -E` created draft `950559941`; the CLI made no commit. Watchers were stopped and `pnpm build` restored `public/` (clean).
+- Draft assets: `salla.design/themes/draft/950559941/{app.css,app.js,webmcp.js,ask-ai.js}` return 200 and are byte-identical to the local production build (`cmp`). This is the first draft since 2026-10-26 with hosted assets. jsDelivr `@f0a91a6…/public` serves the same files.
+- Claude built-in browser: blank Salla sign-in page; the editor did not load.
+- Claude in Chrome: the draft editor «تخصيص الثيم» loaded signed in. JavaScript, screenshots and clicks on `s.salla.sa` are refused with "Host access is restricted by policy" (a Chrome policy, not the site permission). The accessibility tree shows the editor shell only, not the storefront frame. Opening `s.salla.sa/design/draft-950559941` redirected back to the editor.
+- The owner set `core_care_ai_page_id` to `1741544897` (returns-policy page) in the draft only and opened «فتح المعاينة في تبويب جديد». That tab opened outside the Claude tab group, so it could not be read.
+
+- The owner then tested on the Partners demo store (`demostore.salla.sa/dev-…`). Its HTML loads `cdn.assets.salla.network/themes/523702774/1.11.0/app.css?v=20261022-quick-links-3` (published 1.11.0, `theme-beauty`), with no `webmcp.js` and no `core-care-ai-activity`, also with `?preview=true`. So the demo store was not showing draft `950559941`, and the feature could not appear there. Read in Chrome through the accessibility tree only (JavaScript is policy-blocked on `demostore.salla.sa` and `corecare-sa.com` too). The product grids rendered no product links in the tree, and the cart drawer stayed on «جارٍ تحميل السلة…»; this was not investigated.
+
+- 2026-10-31: the Claude built-in browser runs JavaScript on Salla pages (unlike the extension), but the merchant session did not persist: `s.salla.sa` and the draft redirect to a blank `/auth` with Cloudflare's challenge script, after the owner signed in. `portal.salla.partners` showed its login page in both browsers after the owner reported signing in to Partners. The owner's console run of `document.querySelector('iframe').src` in the draft tab returned null (no preview frame on that page).
+
+Result: the draft serves the new build, but the rendered product page and AI page were **not** inspected on Salla. Platform visual verification is incomplete. The live store `corecare-sa.com` is unchanged (published version 62497446).
 
 ## Untested
 
@@ -43,3 +53,7 @@ Needs a commit and push first (the preview sends the pushed HEAD). Not authorize
 - Opening each assistant link on iPhone and Android (app installed and not), and inside Salla's mobile app (`openBrowser`).
 - Chrome with WebMCP enabled and a real agent: activity bar and every undo against real Salla cart responses; `salla.webmcp.disable()` with Salla's tools turned on.
 - Connecting `/mcp` as a custom connector in ChatGPT and Claude.
+
+## Defect found by the owner (2026-10-31)
+
+The owner's desktop screenshot of the demo-store footer showed no «تسوّق بمساعدك الذكي» link. Cause: commit `f0a91a6` added the link only to the phone link groups (`core-care-footer__nav`); from 768px the classic columns (`core-care-footer__classic`) show instead and had no link. Fix in the working tree: one `ai_page_valid` check feeds both footers, and the classic «روابط سريعة» column gets the link. `pnpm build` passed; `pnpm test` 157/157 and audit 13/13 passed; `public/` unchanged (Twig only). Not yet pushed or previewed; draft `950559941` still has the phone-only link.
