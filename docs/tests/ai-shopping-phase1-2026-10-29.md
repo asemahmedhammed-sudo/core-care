@@ -57,3 +57,5 @@ Result: the draft serves the new build, but the rendered product page and AI pag
 ## Defect found by the owner (2026-10-31)
 
 The owner's desktop screenshot of the demo-store footer showed no «تسوّق بمساعدك الذكي» link. Cause: commit `f0a91a6` added the link only to the phone link groups (`core-care-footer__nav`); from 768px the classic columns (`core-care-footer__classic`) show instead and had no link. Fix in the working tree: one `ai_page_valid` check feeds both footers, and the classic «روابط سريعة» column gets the link. `pnpm build` passed; `pnpm test` 157/157 and audit 13/13 passed; `public/` unchanged (Twig only). Not yet pushed or previewed; draft `950559941` still has the phone-only link.
+
+Fix pushed as `4a90520` on 2026-10-31 and previewed as draft `2057203207` (`yes n | salla theme preview -s "Core Care" -o -E`; no CLI commit; watcher stopped; `pnpm build` restored `public/`, clean). Hosted draft assets returned 404 after two minutes; jsDelivr `@4a90520…/public` serves `app.css`, `webmcp.js` and `ask-ai.js` byte-identical to the build. Rendering on Salla not yet inspected.
