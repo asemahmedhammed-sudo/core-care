@@ -60,6 +60,9 @@
 			{# The returns page opens by its Salla id, so renaming its slug keeps the link; 1741544897 is the store's current page. #}
 			{% set policy_page_id = theme.settings.get('beauty_policy_page_id', '')|trim|default('1741544897') %}
 			{% set policy_page_valid = policy_page_id|length <= 30 and policy_page_id|replace({'0': '', '1': '', '2': '', '3': '', '4': '', '5': '', '6': '', '7': '', '8': '', '9': ''}) == '' %}
+			{# The «تسوّق بمساعدك الذكي» link shows in both footers only after the merchant picks its page in theme settings. #}
+			{% set ai_page_id = theme.settings.get('core_care_ai_page_id', '')|default('')|trim %}
+			{% set ai_page_valid = ai_page_id and ai_page_id|length <= 30 and ai_page_id|replace({'0': '', '1': '', '2': '', '3': '', '4': '', '5': '', '6': '', '7': '', '8': '', '9': ''}) == '' %}
 			<div class="core-care-footer__nav">
 				<div class="core-care-footer__nav-row">
 					<section class="core-care-footer__group" aria-labelledby="cc-footer-quick">
@@ -80,6 +83,12 @@
 								<svg class="core-care-footer__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.5 1.5 0 0 1 0 2.1l-7 7a1.5 1.5 0 0 1-2.1 0Z"/><path d="m9.5 14.5 5-5"/><circle cx="10" cy="10" r=".8"/><circle cx="14" cy="14" r=".8"/></svg>
 								<span>{{ trans('beauty.footer.offers_discounts') }}</span>{{ chevron }}
 							</a>
+							{% if ai_page_valid %}
+							<a href="{{ link('-/page-' ~ ai_page_id) }}">
+								<svg class="core-care-footer__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 13.8 9a1.5 1.5 0 0 0 1 1L20.5 12l-5.7 1.9a1.5 1.5 0 0 0-1 1L12 20.5l-1.8-5.6a1.5 1.5 0 0 0-1-1L3.5 12l5.7-1.9a1.5 1.5 0 0 0 1-1Z"/><path d="M19 3v3M17.5 4.5h3"/></svg>
+								<span>{{ trans('beauty.footer.ai_shopping') }}</span>{{ chevron }}
+							</a>
+							{% endif %}
 						</nav>
 					</section>
 
@@ -136,6 +145,7 @@
 					<a href="{{ link('latest-products') }}">{{ trans('beauty.footer.products') }}</a>
 					<a href="{{ link('offers') }}">{{ trans('beauty.footer.offers') }}</a>
 					<a href="#store-footer">{{ trans('beauty.footer.about') }}</a>
+					{% if ai_page_valid %}<a href="{{ link('-/page-' ~ ai_page_id) }}">{{ trans('beauty.footer.ai_shopping') }}</a>{% endif %}
 				</nav>
 			</div>
 

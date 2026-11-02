@@ -1,0 +1,83 @@
+{# «تسوّق بمساعدك الذكي»: teaches shoppers the three ways to shop with an AI assistant, with a live try-it panel.
+   Rendered by page-single for the page whose id is in core_care_ai_page_id. Merchant text from Salla's page
+   editor (ai_page_content from page-single) shows under the intro. Store links and the MCP address are built at runtime by ask-ai.js. #}
+{% set t = 'beauty.ai_page.' %}
+{% set sparkle %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 13.8 9a1.5 1.5 0 0 0 1 1L20.5 12l-5.7 1.9a1.5 1.5 0 0 0-1 1L12 20.5l-1.8-5.6a1.5 1.5 0 0 0-1-1L3.5 12l5.7-1.9a1.5 1.5 0 0 0 1-1Z"/><path d="M19 3v3M17.5 4.5h3"/></svg>{% endset %}
+{% set check %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>{% endset %}
+<article class="container cc-ai-page" aria-labelledby="cc-ai-title">
+  <nav class="cc-ai-page__breadcrumbs" aria-label="{{ trans('beauty.policy.breadcrumbs') }}"><salla-breadcrumb></salla-breadcrumb></nav>
+
+  <header class="cc-ai-page__hero">
+    <span class="cc-ai-page__badge">{{ sparkle }}{{ trans(t ~ 'eyebrow') }}</span>
+    <h1 id="cc-ai-title">{{ page.title|default(trans(t ~ 'title')) }}</h1>
+    <p class="cc-ai-page__lead">{{ trans(t ~ 'lead') }}</p>
+    <ul class="cc-ai-page__promises">
+      {% for key in ['promise_pay', 'promise_undo', 'promise_privacy'] %}
+        <li>{{ check }}<span>{{ trans(t ~ key) }}</span></li>
+      {% endfor %}
+    </ul>
+    <a class="cc-ai-page__cta" href="#cc-ai-try">{{ trans(t ~ 'cta') }}</a>
+  </header>
+
+  {# Merchant text from Salla's page editor, prepared by page-single.twig. #}
+  {{ ai_page_content|default('') }}
+
+  <section class="cc-ai-page__section" aria-labelledby="cc-ai-ways">
+    <h2 id="cc-ai-ways">{{ trans(t ~ 'ways_title') }}</h2>
+    <ol class="cc-ai-page__ways">
+      <li class="cc-ai-way">
+        <span class="cc-ai-way__step" aria-hidden="true">1</span>
+        <h3>{{ trans(t ~ 'way_ask_title') }}</h3>
+        <p>{{ trans(t ~ 'way_ask_text') }}</p>
+        <p class="cc-ai-way__devices"><span class="sr-only">{{ trans(t ~ 'works_on') }}</span>
+          <span>{{ trans(t ~ 'device_phone') }}</span><span>{{ trans(t ~ 'device_computer') }}</span><span>{{ trans(t ~ 'device_app') }}</span>
+        </p>
+        <a class="cc-ai-way__link" href="#cc-ai-try">{{ trans(t ~ 'way_ask_cta') }}</a>
+      </li>
+      <li class="cc-ai-way">
+        <span class="cc-ai-way__step" aria-hidden="true">2</span>
+        <h3>{{ trans(t ~ 'way_connect_title') }}</h3>
+        <p>{{ trans(t ~ 'way_connect_text') }}</p>
+        <div class="cc-ai-way__code" data-ai-mcp data-store-url="{{ store.url }}" hidden>
+          <code dir="ltr" data-ai-mcp-url></code>
+          <button type="button" data-ai-copy-value data-label-copied="{{ trans('beauty.ai_ask.copied') }}">{{ trans(t ~ 'copy_address') }}</button>
+        </div>
+        <p class="cc-ai-way__devices"><span class="sr-only">{{ trans(t ~ 'works_on') }}</span>
+          <span>ChatGPT</span><span>Claude</span><span>{{ trans(t ~ 'device_phone') }}</span><span>{{ trans(t ~ 'device_computer') }}</span>
+        </p>
+        <p class="cc-ai-way__note">{{ trans(t ~ 'way_connect_note') }}</p>
+      </li>
+      <li class="cc-ai-way">
+        <span class="cc-ai-way__step" aria-hidden="true">3</span>
+        <h3>{{ trans(t ~ 'way_browser_title') }}</h3>
+        <p>{{ trans(t ~ 'way_browser_text') }}</p>
+        <p class="cc-ai-way__status" data-ai-browser-status
+           data-label-ready="{{ trans(t ~ 'browser_ready') }}"
+           data-label-not-ready="{{ trans(t ~ 'browser_not_ready') }}" hidden></p>
+        <p class="cc-ai-way__devices"><span class="sr-only">{{ trans(t ~ 'works_on') }}</span>
+          <span>{{ trans(t ~ 'device_chrome') }}</span>
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="cc-ai-page__section cc-ai-page__try" id="cc-ai-try" aria-labelledby="cc-ai-try-title" tabindex="-1">
+    <h2 id="cc-ai-try-title">{{ trans(t ~ 'try_title') }}</h2>
+    <p class="cc-ai-page__section-lead">{{ trans(t ~ 'try_text') }}</p>
+    {% include 'pages.partials.ask-ai' with { ask_id: 'ask-ai-store', ask_group: 'store', ask_name: store.name, ask_url: store.url } %}
+  </section>
+
+  <section class="cc-ai-page__section" aria-labelledby="cc-ai-trust">
+    <h2 id="cc-ai-trust">{{ trans(t ~ 'trust_title') }}</h2>
+    <div class="cc-ai-page__trust">
+      <div class="cc-ai-trust cc-ai-trust--can">
+        <h3>{{ trans(t ~ 'can_title') }}</h3>
+        <ul>{% for key in ['can_search', 'can_compare', 'can_cart', 'can_coupon'] %}<li>{{ trans(t ~ key) }}</li>{% endfor %}</ul>
+      </div>
+      <div class="cc-ai-trust cc-ai-trust--cannot">
+        <h3>{{ trans(t ~ 'cannot_title') }}</h3>
+        <ul>{% for key in ['cannot_pay', 'cannot_data', 'cannot_hidden'] %}<li>{{ trans(t ~ key) }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </section>
+</article>

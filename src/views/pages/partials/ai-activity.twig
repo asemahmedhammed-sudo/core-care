@@ -1,0 +1,33 @@
+{# Shows each change an AI agent makes through the store's WebMCP tools, with an undo (webmcp.js fills it).
+   Hidden until an agent acts, so it takes no space for other shoppers. #}
+{% set t = 'beauty.ai_activity.' %}
+<core-care-ai-activity class="cc-ai-activity" hidden
+  data-theme-first="{{ theme.settings.get('core_care_webmcp_theme_first', true) ? 'true' : 'false' }}"
+  data-label-action-added="{{ trans(t ~ 'added') }}"
+  data-label-action-updated="{{ trans(t ~ 'updated') }}"
+  data-label-action-removed="{{ trans(t ~ 'removed') }}"
+  data-label-action-coupon="{{ trans(t ~ 'coupon') }}"
+  data-label-action-wishlist="{{ trans(t ~ 'wishlist') }}"
+  data-label-action-done="{{ trans(t ~ 'done') }}"
+  data-label-this-product="{{ trans(t ~ 'this_product') }}"
+  data-label-undone="{{ trans(t ~ 'undone') }}"
+  data-label-undo-failed="{{ trans(t ~ 'undo_failed') }}">
+  <div class="cc-ai-activity__panel" role="status" aria-live="polite">
+    <span class="cc-ai-activity__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 13.8 9a1.5 1.5 0 0 0 1 1L20.5 12l-5.7 1.9a1.5 1.5 0 0 0-1 1L12 20.5l-1.8-5.6a1.5 1.5 0 0 0-1-1L3.5 12l5.7-1.9a1.5 1.5 0 0 0 1-1Z"/><path d="M19 3v3M17.5 4.5h3"/></svg>
+    </span>
+    <p class="cc-ai-activity__body">
+      <span class="cc-ai-activity__eyebrow">{{ trans(t ~ 'eyebrow') }}</span>
+      <span class="cc-ai-activity__text"></span>
+    </p>
+    <div class="cc-ai-activity__actions">
+      <button type="button" class="cc-ai-activity__undo" data-ai-undo hidden>{{ trans(t ~ 'undo') }}</button>
+      {% if not is_page('cart') %}
+        <button type="button" class="cc-ai-activity__cart" data-cart-drawer-open>{{ trans(t ~ 'view_cart') }}</button>
+      {% endif %}
+      <button type="button" class="cc-ai-activity__close" data-ai-close aria-label="{{ trans(t ~ 'close') }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</core-care-ai-activity>

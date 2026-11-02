@@ -60,3 +60,19 @@ test('the switch keeps 44px touch targets, wraps long lists and marks the choice
   assert.match(styles, /\.cc-account__locale \.cc-account__row \{ flex-wrap: wrap;/);
   assert.match(styles, /&\[aria-pressed='true'\], &\[aria-current='true'\] \{ background: var\(--cc-text\); color: var\(--cc-surface\);/);
 });
+
+test('languages wait for Salla\'s SDK, which loads async after the theme bundle', async () => {
+  // The page stub has Salla.onReady but no config until the SDK initialises.
+  const fresh = menu.replace(/class CoreCareLanguageMenu[\s\S]*$/, '');
+  const { storeLanguages } = await import(`data:text/javascript;base64,${Buffer.from(fresh).toString('base64')}`);
+  let ready;
+  globalThis.window = { Salla: { onReady: () => new Promise(resolve => { ready = resolve; }) } };
+  const request = storeLanguages();
+  globalThis.window.Salla.config = { languages: async () => [{ code: 'ar' }, { code: 'en', status: 'disabled' }, { iso_code: 'fr' }] };
+  ready();
+  assert.deepEqual((await request).map(lang => lang.code || lang.iso_code), ['ar', 'fr']);
+  delete globalThis.window;
+  // Currencies wait the same way, and a failure leaves a retry button instead of a dead message.
+  assert.match(source, /async load\(\) \{\s*if \(this\.dataset\.kind === 'currency'\) \{\s*const salla = await sallaReady\(\);/);
+  assert.match(source, /retry\.type = 'button';[\s\S]*?this\.connectedCallback\(\);/);
+});
