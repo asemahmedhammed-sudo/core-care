@@ -1,8 +1,8 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-10-31T18:29:54.090Z",
+  "generatedAt": "2026-11-03T22:17:59.807Z",
   "environment": {
-    "node": "v25.0.0",
+    "node": "v26.13.0",
     "platform": "darwin",
     "arch": "arm64"
   },
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 284,
+    "keyCount": 287,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -2896,7 +2896,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "52cd51ef9d5bbf7e7f3da5c37c8c6de5a45a6f476cb281be26d6af0a16c1309c"
+      "sha256": "876744a05a209ee9d8ac50ad6f9a5a140fcb5284a68bb7e65f8a1daf982f5fd2"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -2929,14 +2929,19 @@
       "sha256": "653d23bd19c8dd0055a0f14f4d9aea11f461280b61d4c06610e5d7af22dfdf21"
     },
     {
+      "file": "src/views/pages/partials/ai-icon.twig",
+      "kind": "new-template",
+      "sha256": "bc80af6d15530ba223235bcf8d7e02a63566252ab05b50c116b1da5dd20a8964"
+    },
+    {
       "file": "src/views/pages/partials/ai-shopping.twig",
       "kind": "new-template",
-      "sha256": "73a24f031f6088b38f6f920a3f2a174e38c5516198733c58e01f7689b46bb1c9"
+      "sha256": "e09b6c554f9ed7425a06560fce0e50b7cc6c14c421576c2c736427e2b62dac85"
     },
     {
       "file": "src/views/pages/partials/ask-ai.twig",
       "kind": "new-template",
-      "sha256": "60760c52aef27108ad392c2d6803cbf16c11af21c88f836b2b5e1405ce6e334d"
+      "sha256": "4662d56f8136b856e9036f215579b4d1679b3758064a2d7a4775bde0aa75f467"
     },
     {
       "file": "src/views/pages/partials/cart-drawer.twig",
@@ -3086,14 +3091,6 @@
     {
       "file": "src/views/pages/customer/orders/single.twig",
       "literal": "&nbsp;"
-    },
-    {
-      "file": "src/views/pages/partials/ai-shopping.twig",
-      "literal": "ChatGPT"
-    },
-    {
-      "file": "src/views/pages/partials/ai-shopping.twig",
-      "literal": "Claude"
     },
     {
       "file": "src/views/pages/partials/ask-ai.twig",

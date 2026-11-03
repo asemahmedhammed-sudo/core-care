@@ -189,6 +189,40 @@ test('templates: merchant switches gate each surface and the AI page link only a
     assert.match(pageSingle, /\{% set ai_page_content %\}\{% if page\.content\|default\(''\)\|trim %\}<section class="cc-ai-page__content content-entry">\{\{ page\.content\|raw \}\}<\/section>/);
 });
 
+test('the AI page puts the request panel first and collapses the technical ways', () => {
+    const composer = pageTwig.indexOf('cc-ai-page__composer');
+    assert.ok(composer > 0 && composer < pageTwig.indexOf('{{ ai_page_content'));
+    assert.ok(composer < pageTwig.indexOf('cc-ai-page__steps'));
+    assert.equal(pageTwig.match(/<details class="cc-ai-way"/g)?.length, 2);
+    assert.doesNotMatch(pageTwig, /promise_undo/);
+    // Keys built from a variable are not caught by the trans() scan below.
+    for (const key of ['promise_pay', 'promise_choice', 'promise_privacy', 'how_ask_title', 'how_ask_text', 'how_answer_title', 'how_answer_text', 'how_buy_title', 'how_buy_text']) {
+        for (const lang of ['ar', 'en']) assert.ok(locales[lang].ai_page[key], `${lang} ${key}`);
+    }
+    // Every icon the templates ask for is drawn, including one for each suggested question.
+    const iconTwig = read('../src/views/pages/partials/ai-icon.twig');
+    const names = [...`${pageTwig}${askTwig}`.matchAll(/ai-icon' with \{ name: '([a-z]+)'/g)].map(match => match[1]);
+    for (const name of [...names, 'pay', 'chat', 'lock', 'sparkle', 'bag', 'sensitive', 'routine', 'ingredients', 'compare', 'budget', 'gift', 'sunscreen', 'hair']) {
+        assert.match(iconTwig, new RegExp(`name == '${name}'`), name);
+    }
+    assert.doesNotMatch(iconTwig, /\|\s*raw\b/);
+});
+
+test('a browser that supports WebMCP sees its way open; others keep it collapsed', () => {
+    const page = ready => {
+        const way = { open: false };
+        const status = { dataset: { labelReady: 'yes', labelNotReady: 'no' }, classList: { toggle() {} }, closest: () => way };
+        ask.initAiPage({ modelContext: ready ? {} : undefined, querySelector: selector => (selector === '[data-ai-browser-status]' ? status : null) });
+        return { way, status };
+    };
+    assert.equal(page(true).way.open, true);
+    assert.equal(page(true).status.textContent, 'yes');
+    const unsupported = page(false);
+    assert.equal(unsupported.way.open, false);
+    assert.equal(unsupported.status.textContent, 'no');
+    assert.equal(unsupported.status.hidden, false);
+});
+
 test('every new translation exists in Arabic and English with the same keys', () => {
     for (const group of ['ai_activity', 'ai_ask', 'ai_page']) {
         assert.deepEqual(Object.keys(locales.ar[group]).sort(), Object.keys(locales.en[group]).sort(), group);
