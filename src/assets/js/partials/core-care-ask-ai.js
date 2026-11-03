@@ -152,6 +152,9 @@ export function initAiPage(doc = globalThis.document) {
         status.textContent = ready ? status.dataset.labelReady : status.dataset.labelNotReady;
         status.classList.toggle('is-ready', ready);
         status.hidden = false;
+        // A browser that can use this way sees it open; everyone else keeps it collapsed.
+        const way = status.closest?.('[data-ai-browser-way]');
+        if (way && ready) way.open = true;
     }
 }
 
