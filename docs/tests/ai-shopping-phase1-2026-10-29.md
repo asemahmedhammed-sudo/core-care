@@ -59,3 +59,55 @@ Result: the draft serves the new build, but the rendered product page and AI pag
 The owner's desktop screenshot of the demo-store footer showed no «تسوّق بمساعدك الذكي» link. Cause: commit `f0a91a6` added the link only to the phone link groups (`core-care-footer__nav`); from 768px the classic columns (`core-care-footer__classic`) show instead and had no link. Fix in the working tree: one `ai_page_valid` check feeds both footers, and the classic «روابط سريعة» column gets the link. `pnpm build` passed; `pnpm test` 157/157 and audit 13/13 passed; `public/` unchanged (Twig only). Not yet pushed or previewed; draft `950559941` still has the phone-only link.
 
 Fix pushed as `4a90520` on 2026-10-31 and previewed as draft `2057203207` (`yes n | salla theme preview -s "Core Care" -o -E`; no CLI commit; watcher stopped; `pnpm build` restored `public/`, clean). Hosted draft assets returned 404 after two minutes; jsDelivr `@4a90520…/public` serves `app.css`, `webmcp.js` and `ask-ai.js` byte-identical to the build. Rendering on Salla not yet inspected.
+
+## Status check (2026-11-02)
+
+- Public store: published `1.11.0` has no `webmcp.js` or `ask-ai.js`, and `theme_settings_list` for version `62497446` has no `core_care_*` setting. The theme's AI features cannot be switched on there until a new version is published.
+- Draft `2057203207`: hosted `app.css`, `main-menu.js`, `webmcp.js` and `ask-ai.js` now return 200 and are byte-identical to the local build. Rendering still not inspected.
+- Salla's `https://corecare-sa.com/mcp` (curl, read-only): `initialize` returned 200 with no sign-in, 16 tools listed in `/.well-known/mcp.json`, and `catalog-product-search` with `keyword` returned products. For «واقي شمس» the first result was a Flormar blusher, so check result relevance. No cart or checkout tool was called. Not connected from ChatGPT or Claude.
+- `core_care_ai_page_id` is checked before the policy design in `page-single.twig`, so setting it to `1741544897` (the returns page) renders that page as the AI page. Use a page created for this.
+
+## Owner's walkthrough in the development preview (2026-11-03)
+
+Draft `2057203207` in the Salla theme editor (`s.salla.sa/themes/editor/draft-2057203207`, marked «غير منشور»), desktop, the owner's browser, seen through the owner's screenshots. Not the public storefront.
+
+- Product page: «اسأل الذكاء الاصطناعي عن هذا المنتج» sits after «الوصف» and «المواصفات». Four questions, the typed-question field, ChatGPT / Claude / Perplexity and copy all render.
+- Picking the first question and pressing ChatGPT opened ChatGPT with the store name, question, product name and `salla.design/ar/corecare/…/p195141722` link, and ChatGPT answered from the page. Its answer noted that no currency symbol was readable next to the price (23).
+- Open defect: the ChatGPT button rendered with no border and no fill. `.is-preferred` should make it `#222` with white text. Cause not found; the hosted `app.css` contains the rule.
+- Still untested: phone width, English, Claude and Perplexity buttons, copy, typed question, the AI page, footer link, WebMCP, and the public link once published.
+
+2026-11-04: the owner chose the Partners demo store for the rest of the test (`version_id=655072349`, «fashion» logo, page «اسأل الذكاء» `1409830557`). Its editor frame returned `422 Twilight Error: File [src/views/pages/page-single.twig] Not Found` under «ثيم كوركير - تطوير / غير منشور». The file exists at `HEAD`, `origin/main`, `4a90520` and tags `1.11.0` and `1.11.5`. The same error class recovered on reload on 2026-10-03 (`product-gallery-2026-10-03.md`), so it points to Salla's side, not proven.
+
+Later on 2026-11-04 the error cleared and the demo store's AI page rendered its «جرّب الآن» section in the owner's desktop screenshot: six requests, typed-question field, ChatGPT (black, as designed), Claude, Perplexity and copy. Only that section was seen. Not yet checked: the rest of the page, the footer link, phone width, English, and the ChatGPT button's appearance on the product page again.
+
+## AI page redesign (2026-11-04, working tree on `feature/bilingual-images`, uncommitted)
+
+Owner's request: make the page smarter and easier, with icons that lift the design.
+
+- **Order.** The request panel moved to the top beside the introduction, so a shopper can ask without scrolling. On phones it comes before the promises, and the main button sits inside the first screen at 390×844. Then «كيف تعمل؟» (three steps), a tip linking to products, the optional ways, and the can / cannot list.
+- **Technical ways collapsed.** Connector and browser assistant are `<details>`. `initAiPage` opens the browser way only when the browser has WebMCP.
+- **Accuracy.** The top promise «كل تغيير يظهر لك ويمكنك التراجع عنه» is gone: it describes only the browser assistant, not ChatGPT links. The can / cannot list now says it applies when an assistant is connected.
+- **Icons.** New `pages/partials/ai-icon.twig`, one line style. Each suggested question has its own icon, also on the product page panel. Assistant links carry an external-link icon, mirrored in RTL. No assistant logos were drawn from memory.
+- **Button fix.** `.is-preferred` and the activity bar's undo now use `--cc-text` instead of `--cc-action`, as the language menu already does, because a merchant palette can make the action colour white. This is the likely cause of the unstyled ChatGPT button on the product page; it needs confirming on Salla. On phones the last-used assistant is a full-width main button.
+- **Locale keys.** `beauty.ai_page` changed in `ar.json` and `en.json`; unused keys were removed. No setting ID changed. `theme_asset_revision` is now `20261104-ai-page-2`. `docs/MERCHANT_GUIDE.md` updated.
+
+| Check | Result |
+|---|---|
+| `pnpm build` | Passed, with the existing warnings |
+| `pnpm test` | Passed, 159/159 (two new tests) |
+| Static audit | 13/13 |
+| `git diff --check` | Clean |
+
+Local tooling, not Salla: the real partials rendered through a small script with sample data and the production `app.css` and `ask-ai.js`, in headless Chrome for Testing.
+
+| View | Horizontal overflow | Section gap | Clipped or under-44px controls |
+|---|---|---|---|
+| Arabic 1440, 768, 390, 320 | None | 32px | None |
+| English 1440, 390 | None | 32px | None |
+| Product panel, Arabic 390 | None | n/a | None |
+
+That browser reports WebMCP as available, so its browser way shows open with the ready message. The collapsed case is covered by a unit test only. The render did not include the real header, footer, breadcrumb or Salla fonts.
+
+Pushed as `a07dedf` on `feature/bilingual-images` on the owner's instruction, then previewed as draft `539771283` (`yes n | salla theme preview -s "Core Care" -o -E`; no CLI commit; watchers stopped; `pnpm build` restored `public/`, clean). Hosted draft `app.css` and `ask-ai.js` returned 404 right after creation. jsDelivr `@a07dedf…/public` serves both byte-identical to the build.
+
+Platform verification: **incomplete**. The draft's rendering has not been inspected. Untested on Salla: every view above, the merchant text under the top section, and the ChatGPT button on the product page. The public store is unchanged.
