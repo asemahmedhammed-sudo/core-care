@@ -17,16 +17,27 @@ The owner saw the same number three times in the footer support band on the publ
 
 ## Environment and results
 
-**Source:** working tree on `feature/bilingual-images` (base `52ec296`), uncommitted.
+**Source:** commit `ad4b392` on `feature/bilingual-images`, pushed.
 
 | Check | Result |
 |---|---|
 | `pnpm build` | Passed, 9 existing webpack size warnings |
 | `pnpm test` | Passed, 160 tests; static audit 13/13 |
 | Local mock (built-in browser, `public/app.css`, hand-expanded markup, real store values) | Passed, see below |
-| Twig rendering by Salla | **Not run** |
-| Salla development preview in Chrome | **Incomplete**: needs a commit and push, not yet authorized |
+| Salla development preview (draft `1174778370`, demo store, Chrome extension) | **Partial**: footer and account sheet passed, see below |
+| Salla preview with the real store's data | **Not run** |
 | Public storefront | Not changed. It serves theme `523702774` version 1.11.0 (`theme-beauty`) and shows the old rows until a new version is published |
+
+### Salla development preview
+
+**Environment:** `salla.design/{ar,en}/dev-bqivva6l3hp4ul7w?preview=true`, body class `theme-beauty`, `app.css` from jsDelivr at commit `ad4b392` (byte-identical to the local production build). The draft's own hosted `app.css` returned 404 when created, so the draft was opened with the jsDelivr `assets_url`. Hosted assets were not verified.
+
+**Demo store contacts:** `mobile` and `phone` are the same number, plus an email and Telegram. It has no WhatsApp.
+
+- **Merging:** `mobile` and `phone` rendered as one number with one call button (`tel:8001111210`). No `salla-contacts` remains in the page.
+- **Footer:** measured in iframes in Arabic and English at 320, 390, 768, 1024, 1280 and 1440px. No page overflow, no button overflow, 44px high buttons.
+- **Account sheet:** opened through the tab bar at 390px. Three cards, and the divider above the footer menu is present.
+- **Fonts:** the real theme font loaded; the layout looked as in the mock.
 
 ### Mock measurements
 
@@ -59,11 +70,11 @@ An intermediate measurement ran against an older copy of the CSS and was discard
 
 ## Untested
 
-- Twig merging on Salla: different numbers per channel, one channel only, no channels, Telegram.
+- **The WhatsApp button on Salla:** the demo store has no WhatsApp, so the real store's case (WhatsApp, mobile and phone the same number, two buttons) ran only in the local mock.
+- Different numbers per channel, and a store with no contacts.
 - Real `tel:` and `wa.me` taps on a phone.
-- The account sheet opened through the tab bar, and its divider above the footer menu.
-- The full policy and thank-you pages with their neighbouring sections.
-- A real order on the thank-you page.
+- The policy page on Salla: the demo store has no such page (`page-1741544897` returns 404).
+- The thank-you page on Salla: it needs a real order.
 
 ## Noticed, not changed
 
