@@ -30,7 +30,7 @@ The owner saw the same number three times in the footer support band on the publ
 
 ### Salla development preview
 
-**Environment:** `salla.design/{ar,en}/dev-bqivva6l3hp4ul7w?preview=true`, body class `theme-beauty`, `app.css` from jsDelivr at commit `ad4b392` (byte-identical to the local production build). The draft's own hosted `app.css` returned 404 when created, so the draft was opened with the jsDelivr `assets_url`. Hosted assets were not verified.
+**Environment:** `salla.design/{ar,en}/dev-bqivva6l3hp4ul7w?preview=true`, body class `theme-beauty`, `app.css` from jsDelivr at commit `ad4b392` (byte-identical to the local production build). The draft's own hosted `app.css` returned 404 when created, so the review used the jsDelivr `assets_url`. It later returned 200 and is byte-identical to the build, but the review itself did not run on it.
 
 **Demo store contacts:** `mobile` and `phone` are the same number, plus an email and Telegram. It has no WhatsApp.
 
