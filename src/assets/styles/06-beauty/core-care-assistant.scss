@@ -1,0 +1,133 @@
+// Shopping assistant on phones: the tab bar's glowing centre button and the sheet it opens.
+// It only exists while the tab bar does (body.cc-has-tabbar, below 768px); tablets and desktop are unchanged.
+// Purple marks AI throughout; actions stay black like the rest of the store.
+// PostCSS lowers inline-direction properties to physical ones, so layout uses flex/grid gaps and centring.
+
+body.theme-beauty .cc-assistant { display: none; }
+
+@media (max-width: 767px) {
+  body.theme-beauty.cc-has-tabbar {
+    .cc-tabbar__item--assistant { border: 0; background: transparent; cursor: pointer; }
+    .cc-tabbar__fab--orb {
+      color: #fff;
+      background: radial-gradient(circle at 32% 26%, #fff 0%, #e4d9fa 22%, #b9a0ee 52%, var(--cc-secondary) 74%, #f0a7c8 100%);
+      box-shadow: 0 0 0 4px var(--cc-surface), 0 8px 20px rgba(153, 122, 219, .42);
+      svg { width: 24px; height: 24px; filter: drop-shadow(0 1px 2px rgba(99, 73, 128, .45)); }
+    }
+
+    .cc-assistant:not([hidden]) {
+      position: fixed; z-index: var(--cc-z-account); top: 0; bottom: var(--cc-tabbar-offset); left: 0; right: 0;
+      display: flex; flex-direction: column; color: var(--cc-text); outline: 0;
+      background: linear-gradient(180deg, #f6f2fc 0%, var(--cc-surface) 42%);
+      padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px);
+      animation: cc-assistant-in .22s ease-out;
+    }
+    .cc-assistant__bar { flex: none; display: flex; padding: calc(8px + env(safe-area-inset-top, 0px)) 12px 0; }
+    .cc-assistant__close {
+      display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--cc-surface); color: var(--cc-icon);
+      box-shadow: var(--cc-card-shadow-hover);
+      svg { width: 20px; height: 20px; }
+      &:focus-visible { outline: 2px solid var(--cc-text); outline-offset: 2px; }
+    }
+    .cc-assistant__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 4px var(--cc-gutter, 16px) 16px; }
+
+    .cc-assistant__hero { display: grid; justify-items: center; gap: 4px; padding-block: 8px 20px; text-align: center; }
+    .cc-assistant__orb {
+      display: grid; place-items: center; width: 96px; height: 96px; margin-bottom: 12px; border-radius: 50%; color: #fff;
+      background: radial-gradient(circle at 32% 26%, #fff 0%, #e4d9fa 22%, #b9a0ee 52%, var(--cc-secondary) 74%, #f0a7c8 100%);
+      box-shadow: 0 12px 32px rgba(153, 122, 219, .38);
+      animation: cc-assistant-glow 4s ease-in-out infinite;
+      svg { width: 40px; height: 40px; filter: drop-shadow(0 2px 3px rgba(99, 73, 128, .4)); }
+    }
+    .cc-assistant__greeting { margin: 0; font-size: 22px; font-weight: 500; line-height: 32px; }
+    .cc-assistant__lead { margin: 0; color: var(--cc-rating-text); font-size: 14px; line-height: 22px; }
+
+    .cc-assistant__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .cc-assistant__chip {
+      display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--cc-border); border-radius: 999px;
+      background: var(--cc-surface); color: var(--cc-text); font-size: 13px; line-height: 18px; cursor: pointer;
+      svg { flex: none; width: 18px; height: 18px; color: var(--cc-bestseller); }
+      &:active { background: var(--cc-secondary-soft); }
+      &:focus-visible { outline: 2px solid var(--cc-text); outline-offset: 2px; }
+      &[hidden] { display: none; }
+    }
+
+    // Once a search runs, results take the room: the orb shrinks and the chips become one scrolling row.
+    .cc-assistant.is-results {
+      .cc-assistant__hero { display: none; }
+      .cc-assistant__chips { flex-wrap: nowrap; justify-content: flex-start; margin-inline: calc(-1 * var(--cc-gutter, 16px)); padding-inline: var(--cc-gutter, 16px); padding-block: 4px; overflow-x: auto; scrollbar-width: none; }
+      .cc-assistant__chip { white-space: nowrap; }
+    }
+
+    .cc-assistant__results { margin-top: 16px; }
+    .cc-assistant__results[hidden] { display: none; }
+    .cc-assistant__status { margin: 0 0 12px; color: var(--cc-rating-text); font-size: 13px; line-height: 20px; }
+    .cc-assistant__status:empty { display: none; }
+    .cc-assistant__list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .cc-assistant__list:empty { display: none; }
+    .cc-assistant-card {
+      display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--cc-border); border-radius: 12px; background: var(--cc-surface);
+      img { flex: none; width: 72px; height: 72px; border-radius: 8px; object-fit: contain; background: var(--cc-surface); }
+    }
+    .cc-assistant-card__link { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; }
+    .cc-assistant-card__link:focus-visible { outline: 2px solid var(--cc-text); outline-offset: 2px; border-radius: 8px; }
+    .cc-assistant-card__body { min-width: 0; display: grid; gap: 2px; }
+    .cc-assistant-card__name { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 13px; line-height: 20px; }
+    .cc-assistant-card__prices { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+    .cc-assistant-card__price { font-size: 15px; font-weight: 600; line-height: 22px; }
+    .cc-assistant-card__price.is-sale { color: var(--cc-sale-text); }
+    .cc-assistant-card__old { color: var(--cc-price-old); font-size: 12px; line-height: 18px; text-decoration: line-through; }
+    .cc-assistant-card__action {
+      flex: none; display: inline-grid; place-items: center; min-width: 64px; min-height: 44px; padding: 0 10px; border: 1px solid var(--cc-border); border-radius: 8px;
+      background: var(--cc-surface); color: var(--cc-text); font-size: 13px; font-weight: 500; text-decoration: none; white-space: nowrap;
+      &.is-primary { border-color: var(--cc-text); background: var(--cc-text); color: var(--cc-surface); }
+      &:disabled { opacity: .6; cursor: progress; }
+      &:focus-visible { outline: 2px solid var(--cc-text); outline-offset: 2px; }
+    }
+
+    .cc-assistant__handoff {
+      display: grid; gap: 10px; margin-top: 12px; padding: 12px; border-radius: 12px; background: var(--cc-secondary-soft);
+      p { margin: 0; font-size: 13px; line-height: 20px; }
+    }
+    .cc-assistant__handoff[hidden] { display: none; }
+    .cc-assistant__providers {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;
+      a {
+        display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 8px; border-radius: 8px;
+        background: var(--cc-surface); color: var(--cc-text); font-size: 13px; font-weight: 500; text-decoration: none;
+      }
+      a:first-child { grid-column: 1 / -1; background: var(--cc-text); color: var(--cc-surface); }
+      a:focus-visible { outline: 2px solid var(--cc-text); outline-offset: 2px; }
+      svg { flex: none; width: 14px; height: 14px; }
+    }
+
+    .cc-assistant__form {
+      flex: none; display: flex; align-items: center; gap: 8px; margin: 0; padding: 8px var(--cc-gutter, 16px) 12px; background: var(--cc-surface);
+      input {
+        flex: 1 1 auto; min-width: 0; height: 48px; padding: 0 16px; border: 1px solid var(--cc-border); border-radius: 999px;
+        background: var(--cc-search-surface); color: var(--cc-input-text); font: inherit; font-size: 16px;
+        &::placeholder { color: var(--cc-input-muted); font-size: 14px; }
+        &:focus { outline: 2px solid var(--cc-secondary); outline-offset: 0; background: var(--cc-surface); }
+      }
+      button {
+        flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--cc-text); color: var(--cc-surface);
+        svg { width: 22px; height: 22px; }
+        &:focus-visible { outline: 2px solid var(--cc-secondary); outline-offset: 2px; }
+      }
+    }
+  }
+  html[dir='rtl'] body.theme-beauty.cc-has-tabbar .cc-assistant__providers svg { transform: scaleX(-1); }
+  html.cc-assistant-open:has(body.cc-has-tabbar) { overflow: hidden; }
+  html.cc-assistant-open body.cc-has-tabbar .wa-s-n { visibility: hidden; }
+  // The undo notice stays above the sheet that triggered it.
+  html.cc-assistant-open body.theme-beauty.cc-has-tabbar .cc-ai-activity { z-index: calc(var(--cc-z-account) + 1); }
+}
+
+@keyframes cc-assistant-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes cc-assistant-glow {
+  0%, 100% { box-shadow: 0 12px 32px rgba(153, 122, 219, .32); transform: scale(1); }
+  50% { box-shadow: 0 14px 40px rgba(153, 122, 219, .52); transform: scale(1.03); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.theme-beauty.cc-has-tabbar .cc-assistant:not([hidden]), body.theme-beauty.cc-has-tabbar .cc-assistant__orb { animation: none; }
+}

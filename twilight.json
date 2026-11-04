@@ -1104,6 +1104,17 @@
             "selected": true
         },
         {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار مساعد التسوق في وسط الشريط السفلي",
+            "description": "زر دائري مضيء على الجوال يفتح شاشة بحث داخل المتجر بحاجات جاهزة، وتظهر فيها منتجاتك وأسعارها مع إضافة مباشرة إلى السلة وزر «تراجع». لا يستخدم خدمة ذكاء اصطناعي. يأخذ مكان «زر الحملة» في وسط الشريط أثناء تفعيله.",
+            "id": "core_care_assistant",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
             "id": "core_care_ai_page_id",
             "type": "string",
             "format": "text",

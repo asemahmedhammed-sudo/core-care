@@ -22,7 +22,8 @@ module.exports = {
         order   : asset('js/order.js'),
         testimonials   : asset('js/testimonials.js'),
         webmcp  : asset('js/webmcp.js'),
-        'ask-ai': asset('js/ask-ai.js')
+        'ask-ai': asset('js/ask-ai.js'),
+        'shopping-assistant': asset('js/shopping-assistant.js')
     },
     output : {
         path: public(),

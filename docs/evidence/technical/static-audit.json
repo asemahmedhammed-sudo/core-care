@@ -1,12 +1,12 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-11-03T22:17:59.807Z",
+  "generatedAt": "2026-11-04T01:12:06.897Z",
   "environment": {
     "node": "v26.13.0",
     "platform": "darwin",
     "arch": "arm64"
   },
-  "root": "/Users/test/Documents/ChatGPT/core-care-sall-theam",
+  "root": "/Users/test/Documents/ChatGPT/core-care-sall-theam/.claude/worktrees/shopping-assistant",
   "upstream": {
     "source": "https://github.com/SallaApp/theme-raed",
     "commit": "4332880be63909cc4251ea8783d25c88efa8f468",
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 287,
+    "keyCount": 322,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -1412,66 +1412,72 @@
     },
     {
       "location": "settings[92]",
+      "id": "core_care_assistant",
+      "type": "boolean",
+      "format": "switch"
+    },
+    {
+      "location": "settings[93]",
       "id": "core_care_ai_page_id",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "settings[93]",
+      "location": "settings[94]",
       "id": "beauty_show_product_promotion_titles",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[94]",
+      "location": "settings[95]",
       "id": "notify_when_available_in_card",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[95]",
+      "location": "settings[96]",
       "id": "sticky_add_to_cart",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[96]",
+      "location": "settings[97]",
       "id": "show_tags",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[97]",
+      "location": "settings[98]",
       "id": "slider_background_size",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[98]",
+      "location": "settings[99]",
       "id": "imageZoom",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[99]",
+      "location": "settings[100]",
       "id": "beauty_brand_name",
       "type": "string",
       "format": "text"
     },
     {
-      "location": "settings[100]",
+      "location": "settings[101]",
       "id": "beauty_palette",
       "type": "items",
       "format": "dropdown-list"
     },
     {
-      "location": "settings[101]",
+      "location": "settings[102]",
       "id": "beauty_alternate_sections",
       "type": "boolean",
       "format": "switch"
     },
     {
-      "location": "settings[102]",
+      "location": "settings[103]",
       "id": "beauty_reference_font",
       "type": "boolean",
       "format": "switch"
@@ -2444,11 +2450,11 @@
       "value": 1000
     },
     {
-      "location": "$.settings.92.minLength",
+      "location": "$.settings.93.minLength",
       "value": 0
     },
     {
-      "location": "$.settings.92.maxLength",
+      "location": "$.settings.93.maxLength",
       "value": 30
     },
     {
@@ -2896,7 +2902,7 @@
     {
       "file": "src/views/layouts/master.twig",
       "kind": "modified-upstream",
-      "sha256": "876744a05a209ee9d8ac50ad6f9a5a140fcb5284a68bb7e65f8a1daf982f5fd2"
+      "sha256": "b3dd261e60852b81106794823d75b4ef53792360607f59db6ce5403201511456"
     },
     {
       "file": "src/views/pages/brands/single.twig",
@@ -2931,7 +2937,7 @@
     {
       "file": "src/views/pages/partials/ai-icon.twig",
       "kind": "new-template",
-      "sha256": "bc80af6d15530ba223235bcf8d7e02a63566252ab05b50c116b1da5dd20a8964"
+      "sha256": "417cc88a95757a6e71fa669ff605a8c75fb554dbcfcd01a45e5a15f1de254e70"
     },
     {
       "file": "src/views/pages/partials/ai-shopping.twig",
@@ -2986,7 +2992,7 @@
     {
       "file": "src/views/pages/partials/mobile-tabbar.twig",
       "kind": "new-template",
-      "sha256": "73b2d2a9fc3eca1ee01d0382f8f3671f7112d7de0292b3fe42c779726ab0e1e9"
+      "sha256": "4d2ac365b6ea344c900ed29a3ce6b6801ad1f5c79937cbf35abe1a5e4ef8b7b9"
     },
     {
       "file": "src/views/pages/partials/product/gallery.twig",
@@ -3007,6 +3013,11 @@
       "file": "src/views/pages/partials/return-policy.twig",
       "kind": "new-template",
       "sha256": "c0799795910196aa636ac935169ce99a4895da5753d1d9ac4bace12d4c65171e"
+    },
+    {
+      "file": "src/views/pages/partials/shopping-assistant.twig",
+      "kind": "new-template",
+      "sha256": "c3a39ef246c2ab56e4d3d035fa6adc6efb276f0da7e989007113d085b361773d"
     },
     {
       "file": "src/views/pages/product/index.twig",
@@ -3103,6 +3114,18 @@
     {
       "file": "src/views/pages/partials/ask-ai.twig",
       "literal": "Perplexity"
+    },
+    {
+      "file": "src/views/pages/partials/shopping-assistant.twig",
+      "literal": "ChatGPT"
+    },
+    {
+      "file": "src/views/pages/partials/shopping-assistant.twig",
+      "literal": "Claude"
+    },
+    {
+      "file": "src/views/pages/partials/shopping-assistant.twig",
+      "literal": "Perplexity"
     }
   ],
   "rawReview": {
@@ -3112,23 +3135,38 @@
   },
   "networkSourceCandidates": [
     {
+      "file": "src/assets/js/partials/core-care-assistant.js",
+      "line": 76,
+      "pattern": "salla.product.search("
+    },
+    {
+      "file": "src/assets/js/partials/core-care-assistant.js",
+      "line": 133,
+      "pattern": "salla.product.fetch("
+    },
+    {
+      "file": "src/assets/js/partials/core-care-assistant.js",
+      "line": 176,
+      "pattern": "salla.product.fetch("
+    },
+    {
       "file": "src/assets/js/partials/core-care-search-sheet.js",
       "line": 57,
       "pattern": "fetch("
     },
     {
       "file": "src/assets/js/partials/core-care-webmcp.js",
-      "line": 220,
+      "line": 233,
       "pattern": "salla.product.getDetails("
     },
     {
       "file": "src/assets/js/partials/core-care-webmcp.js",
-      "line": 243,
+      "line": 256,
       "pattern": "salla.product.search("
     },
     {
       "file": "src/assets/js/partials/core-care-webmcp.js",
-      "line": 291,
+      "line": 304,
       "pattern": "salla.product.categories("
     },
     {

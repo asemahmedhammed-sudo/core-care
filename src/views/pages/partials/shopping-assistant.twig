@@ -1,0 +1,68 @@
+{# Shopping assistant sheet on phones, opened from the tab bar's centre button (core-care-assistant.js).
+   Each chip's search words come from translations and match the store's catalogue. #}
+{% set t = 'beauty.assistant.' %}
+<div class="cc-assistant" id="cc-assistant" role="dialog" aria-modal="true" aria-labelledby="cc-assistant-greeting" tabindex="-1" hidden
+  data-morning="{{ trans(t ~ 'morning') }}"
+  data-evening="{{ trans(t ~ 'evening') }}"
+  data-with-name="{{ trans(t ~ 'greeting_name') }}"
+  data-name="{{ user.first_name|default('') }}"
+  data-searching="{{ trans(t ~ 'searching') }}"
+  data-found="{{ trans(t ~ 'found') }}"
+  data-empty="{{ trans(t ~ 'empty') }}"
+  data-failed="{{ trans(t ~ 'failed') }}"
+  data-add="{{ trans(t ~ 'add') }}"
+  data-adding="{{ trans(t ~ 'adding') }}"
+  data-added="{{ trans(t ~ 'added') }}"
+  data-add-failed="{{ trans(t ~ 'add_failed') }}"
+  data-choose="{{ trans(t ~ 'choose') }}"
+  data-view="{{ trans(t ~ 'view') }}">
+  <div class="cc-assistant__bar">
+    <button type="button" class="cc-assistant__close" data-assistant-close aria-label="{{ trans(t ~ 'close') }}">
+      {% include 'pages.partials.ai-icon' with { name: 'close' } %}
+    </button>
+  </div>
+  <div class="cc-assistant__body">
+    <div class="cc-assistant__hero">
+      <span class="cc-assistant__orb" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c.9 5 3.1 7.6 9 9-5.9 1.4-8.1 4-9 9-.9-5-3.1-7.6-9-9 5.9-1.4 8.1-4 9-9Z"/></svg>
+      </span>
+      <h2 class="cc-assistant__greeting" id="cc-assistant-greeting" data-assistant-greeting>{{ trans(t ~ 'title') }}</h2>
+      <p class="cc-assistant__lead">{{ trans(t ~ 'lead') }}</p>
+    </div>
+    <ul class="cc-assistant__chips">
+      {% for item in [
+        { key: 'hair_care', icon: 'routine' },
+        { key: 'shampoo', icon: 'hair' },
+        { key: 'hair_color', icon: 'palette' },
+        { key: 'eyes', icon: 'eye' },
+        { key: 'lips', icon: 'lips' },
+        { key: 'face', icon: 'sparkle' }
+      ] %}
+        <li><button type="button" class="cc-assistant__chip" data-assistant-chip data-assistant-terms="{{ trans(t ~ 'terms_' ~ item.key) }}">{% include 'pages.partials.ai-icon' with { name: item.icon } %}<span>{{ trans(t ~ 'need_' ~ item.key) }}</span></button></li>
+      {% endfor %}
+      <li><button type="button" class="cc-assistant__chip" data-assistant-chip data-assistant-source="latest">{% include 'pages.partials.ai-icon' with { name: 'clock' } %}<span>{{ trans(t ~ 'need_latest') }}</span></button></li>
+      <li><button type="button" class="cc-assistant__chip" data-assistant-chip data-assistant-source="offers" hidden>{% include 'pages.partials.ai-icon' with { name: 'budget' } %}<span>{{ trans(t ~ 'need_offers') }}</span></button></li>
+    </ul>
+    <section class="cc-assistant__results" data-assistant-results aria-label="{{ trans(t ~ 'results') }}" hidden>
+      <p class="cc-assistant__status" data-assistant-status role="status" aria-live="polite"></p>
+      <ul class="cc-assistant__list" data-assistant-list></ul>
+      <div class="cc-assistant__handoff" data-assistant-handoff data-template="{{ trans('beauty.ai_ask.template_store') }}" data-store="{{ store.name }}" data-url="{{ store.url }}" hidden>
+        <p>{{ trans(t ~ 'handoff') }}</p>
+        <div class="cc-assistant__providers">
+          <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" data-ask-ai-provider="chatgpt">ChatGPT{% include 'pages.partials.ai-icon' with { name: 'external' } %}</a>
+          <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" data-ask-ai-provider="claude">Claude{% include 'pages.partials.ai-icon' with { name: 'external' } %}</a>
+          <a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" data-ask-ai-provider="perplexity">Perplexity{% include 'pages.partials.ai-icon' with { name: 'external' } %}</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  <form class="cc-assistant__form" data-assistant-form role="search">
+    <label class="sr-only" for="cc-assistant-input">{{ trans(t ~ 'placeholder') }}</label>
+    <input id="cc-assistant-input" type="search" enterkeyhint="search" autocomplete="off" maxlength="120" data-assistant-input placeholder="{{ trans(t ~ 'placeholder') }}">
+    <button type="submit" aria-label="{{ trans(t ~ 'search') }}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+    </button>
+  </form>
+</div>
+{# The change notice with its undo also serves this sheet when the browser-assistant setting is off. #}
+{% if not theme.settings.get('core_care_webmcp', true) %}{% include 'pages.partials.ai-activity' %}{% endif %}

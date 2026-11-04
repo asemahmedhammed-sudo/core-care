@@ -23,6 +23,18 @@ export function integerInput(value, name, { min = 1, max = Number.MAX_SAFE_INTEG
     return number;
 }
 
+// Salla's cart line ids can exceed what a JavaScript number holds exactly, so they stay as Salla sent them.
+export function cartItemId(id) {
+    const number = Number(id);
+    return Number.isSafeInteger(number) ? number : String(id);
+}
+
+function cartItemInput(value) {
+    const text = String(value ?? '').trim();
+    if (!/^[1-9]\d*$/.test(text)) throw new ToolInputError('"item_id" must be the item_id from view_cart.');
+    return text;
+}
+
 export function textInput(value, name, { max = 100 } = {}) {
     const text = typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : '';
     if (!text) throw new ToolInputError(`"${name}" is required.`);
@@ -62,9 +74,10 @@ export function safeUrl(value, base) {
     } catch { return undefined; }
 }
 
+// Salla's search returns prices as { amount, currency }; its product lists return plain numbers.
 function amount(value) {
-    const number = Number(value);
-    return Number.isFinite(number) ? number : undefined;
+    const number = Number(value?.amount ?? value);
+    return value !== null && value !== undefined && Number.isFinite(number) ? number : undefined;
 }
 
 // Only values Salla returned; absent fields are dropped rather than guessed.
@@ -72,7 +85,7 @@ export function compactProduct(product, base) {
     if (!product || product.id === undefined || product.id === null) return null;
     const regular = amount(product.regular_price);
     const sale = amount(product.sale_price);
-    const onSale = Boolean(product.is_on_sale) && regular !== undefined && sale !== undefined && sale < regular;
+    const onSale = Boolean(product.is_on_sale ?? product.has_special_price) && regular !== undefined && sale !== undefined && sale < regular;
     const rating = product.rating && Number(product.rating.count) > 0
         ? { stars: amount(product.rating.stars ?? product.rating.rate), count: Number(product.rating.count) }
         : undefined;
@@ -119,7 +132,7 @@ export function compactCart(cart, base) {
         total: amount(cart?.total),
         free_shipping_remaining: cart?.free_shipping_bar && !cart.free_shipping_bar.has_free_shipping ? amount(cart.free_shipping_bar.remaining) : undefined,
         items: items.map(item => prune({
-            item_id: Number(item.id),
+            item_id: cartItemId(item.id),
             product_id: Number(item.product_id) || undefined,
             name: item.product_name ? String(item.product_name) : undefined,
             quantity: Number(item.quantity) || 0,
@@ -173,13 +186,13 @@ export function currentProductId(doc, salla) {
 
 // Quantity of every cart line, so an agent's change can be put back exactly.
 export function cartQuantities(cart) {
-    return new Map((Array.isArray(cart?.items) ? cart.items : []).filter(Boolean).map(item => [Number(item.id), Number(item.quantity) || 0]));
+    return new Map((Array.isArray(cart?.items) ? cart.items : []).filter(Boolean).map(item => [String(item.id), Number(item.quantity) || 0]));
 }
 
 // The line an add changed: a new line, or an existing line of the same product that grew.
 export function changedLine(before, cart, productId) {
     const lines = (Array.isArray(cart?.items) ? cart.items : []).filter(item => Number(item?.product_id) === productId);
-    return lines.find(item => !before.has(Number(item.id))) || lines.find(item => (Number(item.quantity) || 0) > (before.get(Number(item.id)) || 0));
+    return lines.find(item => !before.has(String(item.id))) || lines.find(item => (Number(item.quantity) || 0) > (before.get(String(item.id)) || 0));
 }
 
 // Salla's own WebMCP tools (Twilight 3) run when the platform renders webmcp.enabled; same test as the SDK.
@@ -342,9 +355,9 @@ export function storeTools(salla, { doc = globalThis.document, location = global
                 const line = changedLine(before, cart, id);
                 report({
                     action: 'added', name: product.name, value: quantity,
-                    undo: line ? () => (before.has(Number(line.id))
-                        ? salla.cart.updateItem({ id: Number(line.id), quantity: before.get(Number(line.id)) })
-                        : salla.cart.deleteItem(Number(line.id))) : null,
+                    undo: line ? () => (before.has(String(line.id))
+                        ? salla.cart.updateItem({ id: line.id, quantity: before.get(String(line.id)) })
+                        : salla.cart.deleteItem(line.id)) : null,
                 });
                 return toolOutput({ ok: true, added: { product_id: id, name: product.name, quantity }, cart: compactCart(cart, base()) });
             },
@@ -356,17 +369,18 @@ export function storeTools(salla, { doc = globalThis.document, location = global
             inputSchema: {
                 type: 'object',
                 properties: {
-                    item_id: { type: 'integer', description: 'Cart item_id from view_cart.' },
+                    item_id: { type: ['integer', 'string'], description: 'Cart item_id from view_cart, exactly as given.' },
                     quantity: { type: 'integer', minimum: 1, maximum: 50 },
                 },
                 required: ['item_id', 'quantity'],
             },
             async execute(input) {
                 guard();
-                const id = integerInput(input?.item_id, 'item_id');
+                const itemId = cartItemInput(input?.item_id);
                 const quantity = integerInput(input?.quantity, 'quantity', { max: 50 });
-                const line = (await cartDetails()).items?.find(item => Number(item?.id) === id);
+                const line = (await cartDetails()).items?.find(item => String(item?.id) === itemId);
                 if (!line) throw new ToolInputError('No cart item has this item_id. Call view_cart for the current items.');
+                const { id } = line;
                 const previous = Number(line.quantity) || 1;
                 const response = await salla.cart.updateItem({ id, quantity });
                 if (previous !== quantity) {
@@ -381,15 +395,15 @@ export function storeTools(salla, { doc = globalThis.document, location = global
             description: 'Remove one item from the cart. Use item_id from view_cart.',
             inputSchema: {
                 type: 'object',
-                properties: { item_id: { type: 'integer', description: 'Cart item_id from view_cart.' } },
+                properties: { item_id: { type: ['integer', 'string'], description: 'Cart item_id from view_cart, exactly as given.' } },
                 required: ['item_id'],
             },
             async execute(input) {
                 guard();
-                const id = integerInput(input?.item_id, 'item_id');
-                const line = (await cartDetails()).items?.find(item => Number(item?.id) === id);
+                const itemId = cartItemInput(input?.item_id);
+                const line = (await cartDetails()).items?.find(item => String(item?.id) === itemId);
                 if (!line) throw new ToolInputError('No cart item has this item_id. Call view_cart for the current items.');
-                await salla.cart.deleteItem(id);
+                await salla.cart.deleteItem(line.id);
                 // Lines with chosen options, files or notes cannot be rebuilt faithfully, so they get no undo.
                 const restorable = Number(line.product_id) > 0 && !line.options?.length && !line.attachments?.length && !line.notes;
                 report({

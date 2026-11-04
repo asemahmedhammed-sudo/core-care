@@ -15,6 +15,9 @@
 {% set center_style = theme.settings.get('beauty_tabbar_center_style', 'pink')|default('pink') %}
 {% set center_style = center_style in ['pink', 'purple', 'dark'] ? center_style : 'pink' %}
 {% set center_show = center_valid and center_mode != 'none' and (center_mode != 'image' or center_image) %}
+{# The shopping assistant takes the centre slot while it is on; a campaign button returns when it is off. #}
+{% set assistant_on = theme.settings.get('core_care_assistant', true) %}
+{% set center_show = center_show and not assistant_on %}
 {% set yield_to_product_bar = page.slug == 'product.single' and theme.settings.get('sticky_add_to_cart') %}
 <nav class="cc-tabbar{{ yield_to_product_bar ? ' cc-tabbar--yield' : '' }}" data-testid="store-tabbar" aria-label="{{ trans('beauty.tabbar.label') }}">
   <ul class="cc-tabbar__list">
@@ -31,6 +34,15 @@
         <span class="cc-tabbar__label">{{ trans('beauty.tabbar.categories') }}</span>
       </button>
     </li>
+    {% if assistant_on %}
+    <li>
+      <button class="cc-tabbar__item cc-tabbar__item--campaign cc-tabbar__item--assistant" type="button" data-assistant-toggle aria-expanded="false" aria-controls="cc-assistant" aria-label="{{ trans('beauty.assistant.label') }}">
+        <span class="cc-tabbar__fab cc-tabbar__fab--orb">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3c.9 5 3.1 7.6 9 9-5.9 1.4-8.1 4-9 9-.9-5-3.1-7.6-9-9 5.9-1.4 8.1-4 9-9Z"/></svg>
+        </span>
+      </button>
+    </li>
+    {% endif %}
     {% if center_show %}
     <li>
       {% if center_mode == 'image' %}
@@ -79,3 +91,4 @@
   </ul>
 </nav>
 {% include 'pages.partials.mobile-account' %}
+{% if assistant_on %}{% include 'pages.partials.shopping-assistant' %}{% endif %}
