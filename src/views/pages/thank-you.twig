@@ -95,30 +95,17 @@
                 </div>
             {% endif %}
 
+            {# A store without contacts leaves no empty support block. #}
+            {% set thankyou_contacts %}{% include 'pages.partials.store-contacts' with { contacts_testid: 'store-thankyou-contacts' } %}{% endset %}
+            {% if thankyou_contacts|trim %}
             <div class="thankyou-block">
                 <div class="bg-gray-100 rounded-icon w-12 h-12 mb-2.5">
                     <i class="sicon-mail-letter text-xl"></i>
                 </div>
                 <p class="text-sm mb-2.5">{{ trans('common.titles.support') }}</p>
-
-                <div class="flex rtl:space-x-reverse space-x-6">
-                    {% if store.contacts.mobile %}
-                        <div class="text-sm unicode flex items-center">
-                            <i class="sicon-phone"></i>
-                            <a href="tel:{{ store.contacts.mobile }}" class="hover:text-primary transition"><b
-                                       class="unicode mx-1.5">{{ store.contacts.mobile }}</b></a>
-                        </div>
-                    {% endif %}
-
-                    {% if store.contacts.whatsapp %}
-                        <div class="text-sm unicode flex items-center">
-                            <i class="sicon-whatsapp"></i>
-                            <a href="https://wa.me/{{ store.contacts.whatsapp|replace({' ': '', '+': '', '-': ''}) }}" class="hover:text-primary transition" target="_blank" rel="noopener"><b
-                                        class="unicode mx-1.5">{{ store.contacts.whatsapp }}</b></a>
-                        </div>
-                    {% endif %}
-                </div>
+                {{ thankyou_contacts }}
             </div>
+            {% endif %}
         </div>
         {% hook 'thank-you:end' %}
     </div>

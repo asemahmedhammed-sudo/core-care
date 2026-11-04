@@ -19,8 +19,8 @@ test('account sheet is a labelled dialog built from Salla data, without raw outp
   assert.match(sheet, /href="\{\{ link\('account\/' ~ key\) \}\}"/);
   assert.match(sheet, /signed_in and \(key != 'wallet' or user\.can_access_wallet\)/);
   assert.match(sheet, /\{% if signed_in %\}\s*<div class="cc-account__card">\s*<button class="cc-account__row cc-account__logout" type="button" data-account-logout>/);
-  // Contacts, pages and social links come from the store's own Salla components.
-  assert.match(sheet, /<salla-contacts class="cc-account__contacts"[^>]* hide-title><\/salla-contacts>/);
+  // Contacts come from the shared partial; pages and social links from the store's own Salla components.
+  assert.match(sheet, /<div class="cc-account__contacts">\s*\{% include 'pages\.partials\.store-contacts' with \{ contacts_testid: 'store-account-contacts' \} %\}/);
   assert.match(sheet, /<salla-menu [^>]*source="footer"/);
   assert.match(sheet, /<salla-social /);
   assert.match(sheet, /\{% if store\.settings\.tax\.number %\}/);
@@ -29,7 +29,7 @@ test('account sheet is a labelled dialog built from Salla data, without raw outp
 test('empty optional groups release their space and the sheet stays mobile-only', () => {
   assert.match(styles, /^body\.theme-beauty \.cc-account \{ display: none; \}/m);
   assert.match(styles, /@media \(max-width: 767px\) \{\s*body\.theme-beauty\.cc-has-tabbar \{/);
-  assert.match(styles, /\.cc-account__support:not\(:has\(\.s-contacts-item\)\) \{ display: none; \}/);
+  assert.match(styles, /\.cc-account__support:not\(:has\(\.cc-contacts\)\) \{ display: none; \}/);
   assert.match(styles, /\.cc-account__pages:not\(:has\(\.s-menu-footer-item\)\) \{ display: none; \}/);
   assert.match(styles, /\.cc-account__follow:not\(:has\(\.s-social-link\)\) \{ display: none; \}/);
   assert.match(styles, /bottom: var\(--cc-tabbar-offset\)/);
@@ -71,5 +71,5 @@ test('the sheet body scrolls to every block instead of squeezing cards to the sc
   assert.ok(positions.every(position => position > 0), 'every block is present');
   assert.deepEqual([...positions].sort((a, b) => a - b), positions);
   assert.match(styles, /\.cc-account__prefs:not\(:has\(\[data-locale-row\]:not\(\[hidden\]\)\)\) \{ display: none; \}/);
-  assert.match(styles, /\.cc-account__help:not\(:has\(\.s-contacts-item, \.s-menu-footer-item\)\) \{ display: none; \}/);
+  assert.match(styles, /\.cc-account__help:not\(:has\(\.cc-contacts, \.s-menu-footer-item\)\) \{ display: none; \}/);
 });

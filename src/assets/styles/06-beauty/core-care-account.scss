@@ -108,9 +108,9 @@ body.theme-beauty .cc-account { display: none; }
     .cc-account__chevron { flex: none; width: 20px; height: 20px; color: #a3a3a3; transition: transform .2s ease; }
     // A hairline only between visible rows: a hidden first row (a single-option locale) leaves none on top.
     .cc-account__list > li:not([hidden]) ~ li, .cc-account__pages .s-menu-footer-item + .s-menu-footer-item,
-    .cc-account__support:has(.s-contacts-item) + .cc-account__pages .s-menu-footer-item:first-child { position: relative; }
+    .cc-account__support:has(.cc-contacts) + .cc-account__pages .s-menu-footer-item:first-child { position: relative; }
     .cc-account__list > li:not([hidden]) ~ li::before, .cc-account__pages .s-menu-footer-item + .s-menu-footer-item::before,
-    .cc-account__support:has(.s-contacts-item) + .cc-account__pages .s-menu-footer-item:first-child::before {
+    .cc-account__support:has(.cc-contacts) + .cc-account__pages .s-menu-footer-item:first-child::before {
       content: ''; position: absolute; top: 0; height: 1px; background: var(--cc-border);
     }
     .cc-account__prefs:not(:has([data-locale-row]:not([hidden]))) { display: none; }
@@ -142,23 +142,14 @@ body.theme-beauty .cc-account { display: none; }
       &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; border-radius: 4px; }
     }
 
-    // Customer service opens in place to Salla's contacts; the row hides itself when there are none,
+    // Customer service opens in place to the store's contacts; the row hides itself when there are none,
     // and the help group when the footer menu is empty too.
-    .cc-account__support:not(:has(.s-contacts-item)) { display: none; }
-    .cc-account__help:not(:has(.s-contacts-item, .s-menu-footer-item)) { display: none; }
+    .cc-account__support:not(:has(.cc-contacts)) { display: none; }
+    .cc-account__help:not(:has(.cc-contacts, .s-menu-footer-item)) { display: none; }
     .cc-account__details[open] .cc-account__chevron { transform: rotate(-90deg); }
     .cc-account__contacts { display: block; padding: 0 16px 8px; }
-    .cc-account__contacts .s-contacts-list { display: flex; flex-direction: column; gap: 8px; margin: 0; }
-    .cc-account__contacts .s-contacts-item {
-      display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 12px; border-radius: 12px;
-      background: var(--cc-account-canvas); color: var(--cc-text); font-size: 15px; font-weight: 500; line-height: 22px; text-decoration: none;
-      &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
-    }
-    .cc-account__contacts .s-contacts-icon {
-      flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--cc-surface);
-      svg { width: 16px; height: 16px; fill: var(--cc-icon); }
-    }
-    .cc-account__contacts .unicode { min-width: 0; overflow-wrap: anywhere; unicode-bidi: plaintext; }
+    .cc-account__contacts .cc-contacts { --cc-contacts-card: var(--cc-account-canvas); --cc-contacts-icon: var(--cc-surface); gap: 8px; }
+    .cc-account__contacts .cc-contacts__card { padding: 8px 12px; }
 
     // The merchant's footer menu, row for row; an empty menu leaves no empty card.
     .cc-account__pages:not(:has(.s-menu-footer-item)) { display: none; }
@@ -210,7 +201,7 @@ body.theme-beauty .cc-account { display: none; }
   html[dir='rtl'] body.theme-beauty.cc-has-tabbar .cc-account__list > li:not([hidden]) ~ li::before { right: 56px; left: 16px; }
   html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-account__list > li:not([hidden]) ~ li::before { left: 56px; right: 16px; }
   body.theme-beauty.cc-has-tabbar .cc-account__pages .s-menu-footer-item + .s-menu-footer-item::before,
-  body.theme-beauty.cc-has-tabbar .cc-account__support:has(.s-contacts-item) + .cc-account__pages .s-menu-footer-item:first-child::before { left: 16px; right: 16px; }
+  body.theme-beauty.cc-has-tabbar .cc-account__support:has(.cc-contacts) + .cc-account__pages .s-menu-footer-item:first-child::before { left: 16px; right: 16px; }
   // The chevron points to the inline end.
   html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-account__chevron,
   html[dir='ltr'] body.theme-beauty.cc-has-tabbar .cc-account__pages .s-menu-footer-item::after { transform: scaleX(-1); }

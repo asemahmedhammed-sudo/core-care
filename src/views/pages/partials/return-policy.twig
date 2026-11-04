@@ -6,14 +6,6 @@
 {% set license_url = theme.settings.get('beauty_policy_license_url', '')|default('')|trim %}
 {# Only HTTPS links; the value is HTML-escaped by autoescape. #}
 {% set has_license = license_url starts with 'https://' and ' ' not in license_url %}
-{# Configured store contacts only, following the thank-you page pattern. #}
-{% set contact_email = store.contacts.email|default('')|trim %}
-{% set contact_whatsapp = store.contacts.whatsapp|default('')|trim %}
-{% set contact_phone = store.contacts.mobile|default('')|trim %}
-{% if not contact_phone %}{% set contact_phone = store.contacts.phone|default('')|trim %}{% endif %}
-{% set has_email = '@' in contact_email and ' ' not in contact_email %}
-{% set has_whatsapp = contact_whatsapp != '' %}
-{% set has_phone = contact_phone != '' %}
 {% set intro = theme.settings.get('beauty_policy_intro') %}
 {% set intro = (intro is iterable ? intro[language.code]|default(intro|first) : intro)|default('')|trim %}
 {% set devices = theme.settings.get('beauty_policy_devices') %}
@@ -100,12 +92,6 @@
       <h2 id="policy-help-title">{{ help_title ?: trans('beauty.policy.help_title') }}</h2>
       <p>{{ help_description ?: trans('beauty.policy.help_description') }}</p>
     </div>
-    {% if has_email or has_whatsapp or has_phone %}
-      <ul class="core-policy__contacts">
-        {% if has_whatsapp %}<li><a href="https://wa.me/{{ contact_whatsapp|replace({' ': '', '+': '', '-': ''}) }}" target="_blank" rel="noopener noreferrer"><i class="sicon-whatsapp" aria-hidden="true"></i><span>{{ trans('beauty.policy.contact_whatsapp') }}</span><bdi class="unicode">{{ contact_whatsapp }}</bdi><span class="sr-only">{{ trans('beauty.policy.new_tab') }}</span></a></li>{% endif %}
-        {% if has_phone %}<li><a href="tel:{{ contact_phone|replace({' ': ''}) }}"><i class="sicon-phone" aria-hidden="true"></i><span>{{ trans('beauty.policy.contact_phone') }}</span><bdi class="unicode">{{ contact_phone }}</bdi></a></li>{% endif %}
-        {% if has_email %}<li><a href="mailto:{{ contact_email }}"><i class="sicon-mail" aria-hidden="true"></i><span>{{ trans('beauty.policy.contact_email') }}</span><bdi class="unicode">{{ contact_email }}</bdi></a></li>{% endif %}
-      </ul>
-    {% endif %}
+    {% include 'pages.partials.store-contacts' with { contacts_testid: 'store-policy-contacts' } %}
   </section>
 </div>

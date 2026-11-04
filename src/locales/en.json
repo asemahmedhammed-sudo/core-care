@@ -102,6 +102,11 @@
       "about": "About us",
       "support_title": "Need help?",
       "support_description": "Contact us through the available support channels.",
+      "support_number": "Customer service number",
+      "contact_whatsapp": "WhatsApp",
+      "contact_call": "Call",
+      "contact_email": "Email",
+      "contact_telegram": "Telegram",
       "ai_shopping": "Shop with AI"
     },
     "bestsellers_subtitle": "Our customers’ favourite products",
@@ -206,10 +211,7 @@
       "refund_card_value": "To the wallet or bank account",
       "refund_cod": "Cash on delivery",
       "refund_cod_value": "As wallet credit",
-      "faq": "Frequently asked questions",
-      "contact_email": "Email",
-      "contact_whatsapp": "WhatsApp",
-      "contact_phone": "Phone"
+      "faq": "Frequently asked questions"
     },
     "cart_drawer": {
       "title": "Shopping cart",

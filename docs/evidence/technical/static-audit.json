@@ -1,6 +1,6 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-11-03T22:17:59.807Z",
+  "generatedAt": "2026-11-04T00:11:29.391Z",
   "environment": {
     "node": "v26.13.0",
     "platform": "darwin",
@@ -327,7 +327,7 @@
       "ar.json",
       "en.json"
     ],
-    "keyCount": 287,
+    "keyCount": 289,
     "missing": {
       "ar.json": [],
       "en.json": []
@@ -2816,7 +2816,7 @@
     {
       "file": "src/views/components/footer/footer.twig",
       "kind": "modified-upstream",
-      "sha256": "b52ff69032aaf083f18db107e4edd5e60dd5aafa2dcbdcb22fd35aca844d3650"
+      "sha256": "a0a3233731cc6618777b43babf147af51f5b06348bc5d68c13cd921cfeea6b6a"
     },
     {
       "file": "src/views/components/header/header.twig",
@@ -2976,7 +2976,7 @@
     {
       "file": "src/views/pages/partials/mobile-account.twig",
       "kind": "new-template",
-      "sha256": "03e74c3142166f6a5f86b63e9f1a177e9408a5f725a26b5d2b08f5a123f9fa52"
+      "sha256": "7a1b3c99fe9dac67dad9b5fb418aa17ffe265aa0f9d32e66e4f28542308f2b4f"
     },
     {
       "file": "src/views/pages/partials/mobile-search.twig",
@@ -3006,7 +3006,12 @@
     {
       "file": "src/views/pages/partials/return-policy.twig",
       "kind": "new-template",
-      "sha256": "c0799795910196aa636ac935169ce99a4895da5753d1d9ac4bace12d4c65171e"
+      "sha256": "233a46cc054cfa02eb66575d48284b31af1916687c86be30fe7b4bf35348cb28"
+    },
+    {
+      "file": "src/views/pages/partials/store-contacts.twig",
+      "kind": "new-template",
+      "sha256": "91d48e4471f30fe0be5e21b198850d1d7e67854389843effede04ec8970dff98"
     },
     {
       "file": "src/views/pages/product/index.twig",
@@ -3021,7 +3026,7 @@
     {
       "file": "src/views/pages/thank-you.twig",
       "kind": "modified-upstream",
-      "sha256": "458242993717ea357cd9ac6b07f1ffd2d0f430ff8f00a318b5bc7f87cf7da9b6"
+      "sha256": "4689e596f1b629396a606b274882cd5f73e576cf67a055179e598589554c771d"
     }
   ],
   "rawInventory": [

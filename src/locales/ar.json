@@ -102,6 +102,11 @@
       "about": "من نحن",
       "support_title": "تحتاج مساعدة؟",
       "support_description": "تواصل معنا عبر قنوات الدعم المتاحة.",
+      "support_number": "رقم خدمة العملاء",
+      "contact_whatsapp": "واتساب",
+      "contact_call": "اتصال",
+      "contact_email": "البريد الإلكتروني",
+      "contact_telegram": "تيليجرام",
       "ai_shopping": "تسوّق بمساعدك الذكي"
     },
     "bestsellers_subtitle": "المنتجات المفضلة لدى عملائنا",
@@ -206,10 +211,7 @@
       "refund_card_value": "إلى المحفظة أو الحساب البنكي",
       "refund_cod": "الدفع عند الاستلام",
       "refund_cod_value": "رصيدًا في المحفظة",
-      "faq": "الأسئلة الشائعة",
-      "contact_email": "البريد الإلكتروني",
-      "contact_whatsapp": "واتساب",
-      "contact_phone": "الهاتف"
+      "faq": "الأسئلة الشائعة"
     },
     "cart_drawer": {
       "title": "سلة التسوق",
