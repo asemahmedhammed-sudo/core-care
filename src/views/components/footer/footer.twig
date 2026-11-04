@@ -5,7 +5,7 @@
         <h2>{{ trans('beauty.footer.support_title') }}</h2>
         <p>{{ trans('beauty.footer.support_description') }}</p>
       </div>
-      <salla-contacts data-testid="store-footer-contacts" hide-title></salla-contacts>
+      {% include 'pages.partials.store-contacts' with { contacts_testid: 'store-footer-contacts' } %}
     </div>
   </div>
 	<div aria-label="footer" class="store-footer__inner">

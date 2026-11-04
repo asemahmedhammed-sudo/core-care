@@ -1,0 +1,48 @@
+// Store contacts (pages/partials/store-contacts.twig): footer support band, mobile account sheet, policy and thank-you pages.
+// The head and actions share a row when the card is wide enough, and stack when it is not; no breakpoint is involved.
+body.theme-beauty .cc-contacts {
+  --cc-contacts-card: var(--cc-surface); --cc-contacts-icon: var(--cc-secondary-soft);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px; min-width: 0;
+  .cc-contacts__card {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; min-width: 0; padding: 12px 16px;
+    border-radius: var(--cc-control-radius); background: var(--cc-contacts-card); color: var(--cc-text); text-decoration: none;
+  }
+  a.cc-contacts__card {
+    flex-wrap: nowrap;
+    &:hover { background: var(--cc-secondary-soft); }
+    &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 3px; }
+  }
+  .cc-contacts__head { display: flex; flex: 1 1 180px; align-items: center; gap: 12px; min-width: 0; }
+  .cc-contacts__icon {
+    display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--cc-contacts-icon); color: var(--cc-icon);
+    svg { width: 20px; height: 20px; }
+  }
+  // Flex items sit at the inline start, so a left-to-right number stays beside its icon in RTL.
+  .cc-contacts__text { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+  .cc-contacts__label { color: var(--cc-text-muted); font-size: 12px; line-height: 16px; }
+  .cc-contacts__value { max-width: 100%; color: var(--cc-text); font-size: 15px; font-weight: 500; line-height: 22px; overflow-wrap: anywhere; }
+  .cc-contacts__chevron { flex: none; width: 16px; height: 16px; color: var(--cc-text-muted); }
+  // One action fills the row; two share it equally. The row asks for room for both buttons, so a card too narrow for
+  // that moves the whole row below the number, keeping the buttons side by side. Only the narrowest phones stack them.
+  .cc-contacts__actions { display: flex; flex: 1 1 240px; flex-wrap: wrap; gap: 8px; min-width: 0; }
+  .cc-contacts__action {
+    display: flex; flex: 1 1 104px; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 12px;
+    border: 1px solid var(--cc-border); border-radius: 8px; background: var(--cc-surface); color: var(--cc-text);
+    font-size: 14px; font-weight: 500; line-height: 17px; white-space: nowrap; text-decoration: none;
+    svg { flex: none; width: 20px; height: 20px; }
+    &:hover { border-color: var(--cc-text); }
+    &:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; }
+  }
+  // --cc-text, not --cc-action: merchant palettes can make the action colour white.
+  .cc-contacts__action--primary {
+    border-color: var(--cc-text); background: var(--cc-text); color: #fff;
+    &:hover { opacity: .85; }
+  }
+}
+
+// On a white block the cards take the page canvas.
+body.theme-beauty .thankyou-block .cc-contacts { --cc-contacts-card: var(--cc-canvas); --cc-contacts-icon: var(--cc-surface); width: 100%; }
+
+// The chevron points to the inline end.
+html[dir='ltr'] body.theme-beauty .cc-contacts__chevron { transform: scaleX(-1); }

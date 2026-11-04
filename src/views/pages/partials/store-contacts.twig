@@ -1,0 +1,100 @@
+{# The store's contact channels. Salla's <salla-contacts> prints one row per channel, so a number registered as
+   WhatsApp, mobile and phone appears three times; here each number shows once, with WhatsApp and call actions.
+   Numbers match by their last 9 digits, so +966… and 05… count as one. Renders nothing when no channel is set.
+   contacts_testid: the data-testid of this instance. #}
+{% set contact_separators = {' ': '', '-': '', '(': '', ')': '', '.': ''} %}
+{% set contact_digit_chars = {'0': '', '1': '', '2': '', '3': '', '4': '', '5': '', '6': '', '7': '', '8': '', '9': ''} %}
+
+{% set contact_whatsapp = store.contacts.whatsapp|default('')|trim|replace(contact_separators) %}
+{% set contact_mobile = store.contacts.mobile|default('')|trim|replace(contact_separators) %}
+{% set contact_phone = store.contacts.phone|default('')|trim|replace(contact_separators) %}
+{% set whatsapp_digits = contact_whatsapp|replace({'+': ''}) %}
+{% set mobile_digits = contact_mobile|replace({'+': ''}) %}
+{% set phone_digits = contact_phone|replace({'+': ''}) %}
+{# A value with anything but digits is left out rather than placed in a link. #}
+{% set whatsapp_key = whatsapp_digits|length >= 7 and whatsapp_digits|replace(contact_digit_chars) == '' ? whatsapp_digits|slice(-9) : '' %}
+{% set mobile_key = mobile_digits|length >= 7 and mobile_digits|replace(contact_digit_chars) == '' ? mobile_digits|slice(-9) : '' %}
+{% set phone_key = phone_digits|length >= 7 and phone_digits|replace(contact_digit_chars) == '' ? phone_digits|slice(-9) : '' %}
+
+{% set contact_numbers = [] %}
+{% if whatsapp_key %}
+  {% set whatsapp_call = mobile_key == whatsapp_key ? contact_mobile : (phone_key == whatsapp_key ? contact_phone : '') %}
+  {% set contact_numbers = contact_numbers|merge([{ value: contact_whatsapp, whatsapp: whatsapp_digits, call: whatsapp_call }]) %}
+{% endif %}
+{% if mobile_key and mobile_key != whatsapp_key %}
+  {% set contact_numbers = contact_numbers|merge([{ value: contact_mobile, whatsapp: '', call: contact_mobile }]) %}
+{% endif %}
+{% if phone_key and phone_key != whatsapp_key and phone_key != mobile_key %}
+  {% set contact_numbers = contact_numbers|merge([{ value: contact_phone, whatsapp: '', call: contact_phone }]) %}
+{% endif %}
+
+{% set contact_email = store.contacts.email|default('')|trim %}
+{% set has_contact_email = '@' in contact_email and ' ' not in contact_email %}
+{% set contact_telegram = store.contacts.telegram|default('')|trim %}
+{% set telegram_url = contact_telegram starts with 'https://t.me/' ? contact_telegram : 'https://t.me/' ~ contact_telegram|replace({'@': ''})|url_encode %}
+{% set contact_chevron %}<svg class="cc-contacts__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg>{% endset %}
+
+{% if contact_numbers or has_contact_email or contact_telegram %}
+<div class="cc-contacts" data-testid="{{ contacts_testid }}">
+  {% for number in contact_numbers %}
+    {% set number_digits = number.value|replace({'+': ''}) %}
+    {# Saudi numbers read in groups: +966 57 281 6450. #}
+    {% set number_label = number_digits|length == 12 and number_digits starts with '966' ? '+966 ' ~ number_digits|slice(3, 2) ~ ' ' ~ number_digits|slice(5, 3) ~ ' ' ~ number_digits|slice(8) : number.value %}
+    <div class="cc-contacts__card">
+      <div class="cc-contacts__head">
+        <span class="cc-contacts__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="3.5" y="13" width="4" height="6" rx="1.5"/><rect x="16.5" y="13" width="4" height="6" rx="1.5"/><path d="M18.5 19a3 3 0 0 1-3 2.5H13"/></svg>
+        </span>
+        <span class="cc-contacts__text">
+          <span class="cc-contacts__label">{{ trans('beauty.footer.support_number') }}</span>
+          <bdi class="cc-contacts__value" dir="ltr">{{ number_label }}</bdi>
+        </span>
+      </div>
+      <div class="cc-contacts__actions">
+        {% if number.whatsapp %}
+          <a class="cc-contacts__action cc-contacts__action--primary" href="https://wa.me/{{ number.whatsapp }}" target="_blank" rel="noopener noreferrer" aria-label="{{ trans('beauty.footer.contact_whatsapp') }} {{ number_label }}">
+            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M27.281 4.65c-2.994-3-6.975-4.65-11.219-4.65-8.738 0-15.85 7.112-15.85 15.856 0 2.794 0.731 5.525 2.119 7.925l-2.25 8.219 8.406-2.206c2.319 1.262 4.925 1.931 7.575 1.931h0.006c0 0 0 0 0 0 8.738 0 15.856-7.113 15.856-15.856 0-4.238-1.65-8.219-4.644-11.219zM16.069 29.050v0c-2.369 0-4.688-0.637-6.713-1.837l-0.481-0.288-4.987 1.306 1.331-4.863-0.313-0.5c-1.325-2.094-2.019-4.519-2.019-7.012 0-7.269 5.912-13.181 13.188-13.181 3.519 0 6.831 1.375 9.319 3.862 2.488 2.494 3.856 5.8 3.856 9.325-0.006 7.275-5.919 13.188-13.181 13.188zM23.294 19.175c-0.394-0.2-2.344-1.156-2.706-1.288s-0.625-0.2-0.894 0.2c-0.262 0.394-1.025 1.288-1.256 1.556-0.231 0.262-0.462 0.3-0.856 0.1s-1.675-0.619-3.188-1.969c-1.175-1.050-1.975-2.35-2.206-2.744s-0.025-0.613 0.175-0.806c0.181-0.175 0.394-0.463 0.594-0.694s0.262-0.394 0.394-0.662c0.131-0.262 0.069-0.494-0.031-0.694s-0.894-2.15-1.219-2.944c-0.319-0.775-0.65-0.669-0.894-0.681-0.231-0.012-0.494-0.012-0.756-0.012s-0.694 0.1-1.056 0.494c-0.363 0.394-1.387 1.356-1.387 3.306s1.419 3.831 1.619 4.1c0.2 0.262 2.794 4.269 6.769 5.981 0.944 0.406 1.681 0.65 2.256 0.837 0.95 0.3 1.813 0.256 2.494 0.156 0.762-0.113 2.344-0.956 2.675-1.881s0.331-1.719 0.231-1.881c-0.094-0.175-0.356-0.275-0.756-0.475z"/></svg>
+            <span>{{ trans('beauty.footer.contact_whatsapp') }}</span>
+          </a>
+        {% endif %}
+        {% if number.call %}
+          <a class="cc-contacts__action" href="tel:{{ number.call }}" aria-label="{{ trans('beauty.footer.contact_call') }} {{ number_label }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16.5v2.6a2 2 0 0 1-2.2 2 18.8 18.8 0 0 1-8.2-2.9 18.5 18.5 0 0 1-5.7-5.7A18.8 18.8 0 0 1 2 4.2 2 2 0 0 1 4 2h2.6a2 2 0 0 1 2 1.7c.1.8.3 1.7.6 2.5a2 2 0 0 1-.5 2.1L7.6 9.4a15 15 0 0 0 5.7 5.7l1.1-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.5.6a2 2 0 0 1 1.9 2Z"/></svg>
+            <span>{{ trans('beauty.footer.contact_call') }}</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+
+  {% if has_contact_email %}
+    <a class="cc-contacts__card" href="mailto:{{ contact_email }}">
+      <span class="cc-contacts__head">
+        <span class="cc-contacts__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7.5 8 6 8-6"/></svg>
+        </span>
+        <span class="cc-contacts__text">
+          <span class="cc-contacts__label">{{ trans('beauty.footer.contact_email') }}</span>
+          <bdi class="cc-contacts__value" dir="ltr">{{ contact_email }}</bdi>
+        </span>
+      </span>
+      {{ contact_chevron }}
+    </a>
+  {% endif %}
+
+  {% if contact_telegram %}
+    <a class="cc-contacts__card" href="{{ telegram_url }}" target="_blank" rel="noopener noreferrer">
+      <span class="cc-contacts__head">
+        <span class="cc-contacts__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 4 3.5 10.8l5.6 2.2 2.2 6.5 3.2-4.2 4.6 3.4Z"/><path d="m9.1 13 11.4-9"/></svg>
+        </span>
+        <span class="cc-contacts__text">
+          <span class="cc-contacts__label">{{ trans('beauty.footer.contact_telegram') }}</span>
+          <bdi class="cc-contacts__value" dir="ltr">{{ contact_telegram }}</bdi>
+        </span>
+      </span>
+      {{ contact_chevron }}
+    </a>
+  {% endif %}
+</div>
+{% endif %}

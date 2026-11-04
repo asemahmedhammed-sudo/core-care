@@ -65,3 +65,37 @@ test('web widths keep the original footer columns; the link groups are for phone
   assert.equal(ar.beauty.footer.products, 'المنتجات');
   assert.equal(ar.beauty.footer.offers, 'العروض');
 });
+
+test('each contact number shows once, with WhatsApp and call actions', () => {
+  const contacts = read('src/views/pages/partials/store-contacts.twig');
+  const contactStyles = read('src/assets/styles/06-beauty/core-care-contacts.scss');
+  assert.doesNotMatch(footer, /<salla-contacts/);
+  // Every page that lists contacts uses the same cards, so no surface repeats the number.
+  const policy = read('src/views/pages/partials/return-policy.twig');
+  const thankYou = read('src/views/pages/thank-you.twig');
+  assert.match(policy, /\{% include 'pages\.partials\.store-contacts' with \{ contacts_testid: 'store-policy-contacts' \} %\}/);
+  assert.match(thankYou, /\{% include 'pages\.partials\.store-contacts' with \{ contacts_testid: 'store-thankyou-contacts' \} %\}/);
+  for (const page of [policy, thankYou]) assert.doesNotMatch(page, /store\.contacts|wa\.me|tel:/);
+  assert.match(thankYou, /\{% if thankyou_contacts\|trim %\}\s*<div class="thankyou-block">/);
+  assert.match(footer, /\{% include 'pages\.partials\.store-contacts' with \{ contacts_testid: 'store-footer-contacts' \} %\}/);
+  // Numbers registered on several channels merge by their last digits; only digits reach the links.
+  for (const channel of ['whatsapp', 'mobile', 'phone']) assert.match(contacts, new RegExp(`${channel}_digits\\|replace\\(contact_digit_chars\\) == '' \\? ${channel}_digits\\|slice\\(-9\\)`));
+  assert.match(contacts, /mobile_key and mobile_key != whatsapp_key/);
+  assert.match(contacts, /phone_key and phone_key != whatsapp_key and phone_key != mobile_key/);
+  assert.match(contacts, /href="https:\/\/wa\.me\/\{\{ number\.whatsapp \}\}" target="_blank" rel="noopener noreferrer"/);
+  assert.match(contacts, /href="tel:\{\{ number\.call \}\}"/);
+  // No channel, no markup: the footer intro takes the full width and the account row hides.
+  assert.match(contacts, /\{% if contact_numbers or has_contact_email or contact_telegram %\}\s*<div class="cc-contacts"/);
+  assert.match(styles, /\.core-care-footer__support-layout:not\(:has\(\.cc-contacts\)\)/);
+  assert.doesNotMatch(contacts, /\|raw/);
+  for (const icon of contacts.match(/<svg[^>]*>/g)) assert.match(icon, /aria-hidden="true"/);
+  // Actions keep a 44px touch target.
+  assert.match(contactStyles, /\.cc-contacts__action \{[^}]*min-height: 44px;/);
+  // The row asks for more than two buttons need, so a narrow card moves it below the number instead of splitting it.
+  assert.match(contactStyles, /\.cc-contacts__actions \{[^}]*flex: 1 1 240px;[^}]*flex-wrap: wrap;/);
+  assert.match(contactStyles, /\.cc-contacts__action \{[^}]*flex: 1 1 104px;/);
+  for (const key of ['support_number', 'contact_whatsapp', 'contact_call', 'contact_email', 'contact_telegram']) {
+    assert.ok(ar.beauty.footer[key], `ar ${key}`);
+    assert.ok(en.beauty.footer[key], `en ${key}`);
+  }
+});

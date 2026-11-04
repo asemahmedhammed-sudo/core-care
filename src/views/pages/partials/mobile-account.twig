@@ -94,7 +94,7 @@
     </section>
     {% endif %}
 
-    {# Help and information: customer service (Salla's contacts, opening in place) and the merchant's footer
+    {# Help and information: customer service (the store's contacts, opening in place) and the merchant's footer
        menu (about, policies, pages…) in one card. Each part hides while empty, and the group with both. #}
     <section class="cc-account__group cc-account__help" aria-labelledby="cc-account-help">
       <h3 class="cc-account__group-title" id="cc-account-help">{{ trans(t ~ 'help') }}</h3>
@@ -106,7 +106,9 @@
               <span class="cc-account__label">{{ trans(t ~ 'support') }}</span>
               {{ chevron }}
             </summary>
-            <salla-contacts class="cc-account__contacts" data-testid="store-account-contacts" hide-title></salla-contacts>
+            <div class="cc-account__contacts">
+              {% include 'pages.partials.store-contacts' with { contacts_testid: 'store-account-contacts' } %}
+            </div>
           </details>
         </div>
         <nav class="cc-account__pages" aria-label="{{ trans(t ~ 'pages') }}">
