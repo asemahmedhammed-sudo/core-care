@@ -101,3 +101,63 @@ test('the desktop menu follows the Nice One columns without invented content', (
   assert.doesNotMatch(styles, /(padding|margin|border)-inline-(start|end)/);
   assert.match(styles, /html\[dir='rtl'\] core-care-categories \{\n  \.core-categories__chevron \{ transform: scaleX\(-1\); \}/);
 });
+
+// Salla gives a category one image; the phone banner adapts to it instead of cropping it (2026-11-06).
+test('the phone banner picks its layout from the image shape', () => {
+  assert.equal(context.bannerLayout(900, 900), 'composed', 'square art is shown whole beside the name');
+  assert.equal(context.bannerLayout(600, 900), 'composed');
+  assert.equal(context.bannerLayout(1199, 600), 'composed');
+  assert.equal(context.bannerLayout(1200, 600), 'wide', '2:1 art fills the strip');
+  assert.equal(context.bannerLayout(1600, 500), 'wide');
+  for (const [w, h] of [[0, 0], [0, 600], [900, 0], [NaN, 600]]) assert.equal(context.bannerLayout(w, h), 'composed', 'unknown sizes keep the safe layout');
+  assert.equal(context.canSampleImage('https://cdn.files.salla.network/other/1430728739/a-original.webp'), true);
+  assert.equal(context.canSampleImage('https://cdn.salla.sa/abc/category.png'), true);
+  for (const value of ['https://cdn.example/category.png', 'http://cdn.salla.sa/a.png', 'javascript:alert(1)', null]) assert.equal(context.canSampleImage(value), false, String(value));
+});
+
+const pixels = (size, paint) => {
+  const data = new Uint8ClampedArray(size * size * 4);
+  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) data.set(paint(x, y), (y * size + x) * 4);
+  return data;
+};
+
+test('the composed banner takes its background from the image', () => {
+  const size = 24;
+  const centre = (x, y) => x > 6 && x < 17 && y > 6 && y < 17;
+  // The store's current art: a pink subject on white. Background: a pale pink tint, image multiplied.
+  const onWhite = context.bannerPalette(pixels(size, (x, y) => centre(x, y) ? [230, 120, 150, 255] : [255, 255, 255, 255]), size);
+  assert.equal(onWhite.blend, true);
+  assert.equal(onWhite.dark, false);
+  const [r, g, b] = onWhite.background.match(/\d+/g).map(Number);
+  assert.ok(r > g && r > b && Math.min(r, g, b) > 220, `pale pink tint, got ${onWhite.background}`);
+  // Transparent PNG backgrounds count as white.
+  assert.equal(context.bannerPalette(pixels(size, (x, y) => centre(x, y) ? [40, 90, 60, 255] : [0, 0, 0, 0]), size).blend, true);
+  // Art with its own backdrop continues it; a dark backdrop switches the text to white.
+  assert.deepEqual({ ...context.bannerPalette(pixels(size, () => [20, 30, 80, 255]), size) }, { background: 'rgb(20 30 80)', blend: false, dark: true });
+  assert.equal(context.bannerPalette(pixels(size, () => [250, 225, 230, 255]), size).dark, false);
+  // Blank or unreadable images keep the stylesheet's neutral surface.
+  assert.equal(context.bannerPalette(pixels(size, () => [255, 255, 255, 255]), size), null);
+  assert.equal(context.bannerPalette(new Uint8ClampedArray(10), size), null);
+  assert.equal(context.bannerPalette(null, size), null);
+});
+
+test('the phone banner keeps one height for both layouts and never crops square art', () => {
+  const styles = fs.readFileSync(new URL('../src/assets/styles/06-beauty/core-care-app-nav.scss', import.meta.url), 'utf8');
+  assert.match(styles, /\.core-categories__banner \{\n[^}]*height: 112px;/);
+  assert.match(styles, /\.core-categories__banner-image \{ display: block; width: 100%; height: 100%; object-fit: contain; \}/);
+  assert.match(styles, /\.core-categories__banner\[data-layout='wide'\] \{[\s\S]*?\.core-categories__banner-image \{ object-fit: cover; \}/);
+  assert.match(styles, /\.core-categories__banner\[data-blend\] \.core-categories__banner-image \{ mix-blend-mode: multiply; \}/);
+  assert.doesNotMatch(styles, /max-height: 120px; object-fit: cover/, 'the old centre crop is gone');
+  // crossOrigin is set before src (or the request is made without CORS), and only for Salla's hosts.
+  assert.match(source, /if \(sample && canSampleImage\(src\)\) img\.crossOrigin = 'anonymous';\n\s*img\.src = src;/);
+  assert.match(source, /image\.addEventListener\('error', \(\) => banner\.remove\(\), \{ once: true \}\);/);
+});
+
+test('the desktop dropdown image uses the same palette and releases its space when broken', () => {
+  const styles = fs.readFileSync(new URL('../src/assets/styles/06-beauty/core-care-categories.scss', import.meta.url), 'utf8');
+  assert.match(styles, /\.core-categories__feature \{[^}]*background: var\(--cc-banner-bg, var\(--cc-canvas\)\); \}/);
+  assert.match(styles, /\.core-categories__feature\[data-blend\] \.core-categories__feature-image \{ mix-blend-mode: multiply; \}/);
+  assert.match(source, /this\.image\(item, 'core-categories__feature-image', \{ sample: true \}\)/);
+  assert.match(source, /image\.addEventListener\('error', \(\) => feature\.remove\(\), \{ once: true \}\);/);
+  assert.match(source, /if \(image\.crossOrigin\) image\.addEventListener\('load', \(\) => this\.paint\(feature, image\), \{ once: true \}\);/);
+});

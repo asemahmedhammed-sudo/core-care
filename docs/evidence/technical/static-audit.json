@@ -1,12 +1,12 @@
 {
   "kind": "static-repository-audit",
-  "generatedAt": "2026-11-04T06:42:45.318Z",
+  "generatedAt": "2026-11-06T14:35:46.942Z",
   "environment": {
     "node": "v26.13.0",
     "platform": "darwin",
     "arch": "arm64"
   },
-  "root": "/Users/test/Documents/ChatGPT/core-care-sall-theam/.claude/worktrees/shopping-assistant",
+  "root": "/Users/test/Documents/ChatGPT/core-care-sall-theam",
   "upstream": {
     "source": "https://github.com/SallaApp/theme-raed",
     "commit": "4332880be63909cc4251ea8783d25c88efa8f468",
