@@ -152,3 +152,12 @@ test('the phone banner keeps one height for both layouts and never crops square 
   assert.match(source, /if \(sample && canSampleImage\(src\)\) img\.crossOrigin = 'anonymous';\n\s*img\.src = src;/);
   assert.match(source, /image\.addEventListener\('error', \(\) => banner\.remove\(\), \{ once: true \}\);/);
 });
+
+test('the desktop dropdown image uses the same palette and releases its space when broken', () => {
+  const styles = fs.readFileSync(new URL('../src/assets/styles/06-beauty/core-care-categories.scss', import.meta.url), 'utf8');
+  assert.match(styles, /\.core-categories__feature \{[^}]*background: var\(--cc-banner-bg, var\(--cc-canvas\)\); \}/);
+  assert.match(styles, /\.core-categories__feature\[data-blend\] \.core-categories__feature-image \{ mix-blend-mode: multiply; \}/);
+  assert.match(source, /this\.image\(item, 'core-categories__feature-image', \{ sample: true \}\)/);
+  assert.match(source, /image\.addEventListener\('error', \(\) => feature\.remove\(\), \{ once: true \}\);/);
+  assert.match(source, /if \(image\.crossOrigin\) image\.addEventListener\('load', \(\) => this\.paint\(feature, image\), \{ once: true \}\);/);
+});

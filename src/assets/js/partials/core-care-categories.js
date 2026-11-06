@@ -329,11 +329,14 @@ class CoreCareCategories extends HTMLElement {
             : this.columnGroup(head));
         item.children.forEach(child => groups.append(this.columnGroup(child)));
         content.append(groups);
-        const image = this.image(item, 'core-categories__feature-image');
+        // The same single image as the phone banner, on a background taken from it (see paint()).
+        const image = this.image(item, 'core-categories__feature-image', { sample: true });
         if (image) {
             const feature = this.link(item, 'core-categories__feature', '');
             feature.setAttribute('aria-label', item.title);
             feature.append(image);
+            image.addEventListener('error', () => feature.remove(), { once: true });
+            if (image.crossOrigin) image.addEventListener('load', () => this.paint(feature, image), { once: true });
             content.append(feature);
         }
         panel.append(content);
@@ -430,7 +433,8 @@ class CoreCareCategories extends HTMLElement {
         return banner;
     }
 
-    paint(banner, image) {
+    // Sets --cc-banner-bg, data-blend and data-dark on the image's frame (phone banner, desktop feature).
+    paint(frame, image) {
         const size = 24;
         try {
             const canvas = document.createElement('canvas');
@@ -439,9 +443,9 @@ class CoreCareCategories extends HTMLElement {
             context.drawImage(image, 0, 0, size, size);
             const palette = bannerPalette(context.getImageData(0, 0, size, size).data, size);
             if (!palette) return;
-            banner.style.setProperty('--cc-banner-bg', palette.background);
-            banner.toggleAttribute('data-blend', palette.blend);
-            banner.toggleAttribute('data-dark', palette.dark);
+            frame.style.setProperty('--cc-banner-bg', palette.background);
+            frame.toggleAttribute('data-blend', palette.blend);
+            frame.toggleAttribute('data-dark', palette.dark);
         } catch { /* unreadable pixels: the neutral surface stays */ }
     }
 

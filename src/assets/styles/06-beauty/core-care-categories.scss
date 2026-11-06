@@ -51,8 +51,10 @@ core-care-categories {
   .core-categories__link { display: block; padding-block: 6px; color: var(--cc-text-muted); font-size: 15px; line-height: 1.6; overflow-wrap: anywhere; }
   // Deeper levels indent from the reading start (written per direction: logical padding compiles to LTR).
   .core-categories__children .core-categories__children { padding-left: 14px; }
-  .core-categories__feature { display: block; flex: none; width: 240px; overflow: hidden; border-radius: 8px; background: var(--cc-canvas); }
+  // Background from the image itself (core-care-categories.js, paint()); white artwork is multiplied onto it.
+  .core-categories__feature { display: block; flex: none; width: 240px; overflow: hidden; border-radius: 8px; background: var(--cc-banner-bg, var(--cc-canvas)); }
   .core-categories__feature-image { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: contain; }
+  .core-categories__feature[data-blend] .core-categories__feature-image { mix-blend-mode: multiply; }
   .core-categories__group-title:focus-visible, .core-categories__link:focus-visible, .core-categories__feature:focus-visible { outline: 2px solid var(--cc-icon); outline-offset: 2px; border-radius: 4px; }
   a:hover { color: var(--cc-text); text-decoration: underline; }
   .core-categories__status { padding: 32px; color: var(--cc-text-muted); }
