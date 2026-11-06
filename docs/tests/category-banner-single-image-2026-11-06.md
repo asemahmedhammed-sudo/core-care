@@ -56,9 +56,29 @@ The other demo categories have no image: no banner, the card starts at the panel
 
 Screenshot (local only; `docs/evidence/visual/` is git-ignored): `docs/evidence/visual/category-banner-salla-mobile-390-2026-11-06.png` (390 px, Arabic, demo store).
 
+### Owner's white-background image (same day)
+
+The owner generated a square image on a white background (hair oil, shampoo, hair mask; prompt: 1:1, pure white, subject in the middle 70%, no ring, frame or text) and uploaded it to the demo store's «الفساتين» category.
+
+- The owner's own phone-width screenshot came from a different preview, labelled «616623250 - تنسيق العناية رقم (1)». It showed the old behaviour (centre band cropped, no name), so that preview was not running `29db957`.
+- Draft `1524525534` (Claude in Chrome, `salla-draft-1524525534`, `app.css` from `@29db957`), 390 px Arabic, category tree cache cleared first: Salla stored the image as 900×900. Banner `composed`, 257×112, `data-blend` with `mix-blend-mode: multiply`, background `rgb(250 246 239)` sampled from the gold subject, whole image 96×100 with no white square visible, 12 px to the next card, no horizontal overflow.
+- Screenshot (local only): `docs/evidence/visual/category-banner-white-salla-mobile-390-2026-11-06.png`.
+- Observation: with a 70% margin the products look small in the 96 px image box. A 80–85% subject fill would read better in the banner and still fit the circles.
+- Desktop dropdown (owner's screenshot): the same image sat as a white square on the grey `--cc-canvas` panel. Fixed below.
+
+### Desktop dropdown image (commit `aa6bd30`, pushed)
+
+- `core-care-categories.js`: the desktop feature image is sampled like the phone banner (`paint(frame, image)` now serves both); a broken image removes its frame instead of leaving an empty 240×160 box. `core-care-categories.scss`: background `var(--cc-banner-bg, var(--cc-canvas))`, multiply when `data-blend`.
+- `pnpm build` passed (9 existing warnings); `pnpm test` 164 of 164.
+- Local harness, 1440 px: feature 240×160, background `rgb(249 240 240)`, multiply, no overflow.
+- Draft `1025301794` from `aa6bd30` (CLI stopped, `public/` rebuilt and unchanged; hosted draft assets 404 at creation, jsDelivr `@aa6bd30…/public` identical to the build). Claude in Chrome through the editor with `assets_url` on jsDelivr; page `salla-draft-1025301794`, `app.css` from `@aa6bd30`, demo store:
+  - 1440 px frame: dropdown open, feature 240×160, background `rgb(250 246 239)` from the owner's gold hair-care image, multiply, no white square, no horizontal overflow. Window at 1502 px shows the same (screenshot, local only: `docs/evidence/visual/category-feature-salla-desktop-2026-11-06.png`).
+  - 390 px frame: phone banner unchanged (`composed`, 257×112, same background, blend).
+- Not changed: the 22 px rail thumbnails in the desktop dropdown (white image tiles on the white rail) and the subcategory circles.
+
 ## Not verified
 
-- The real store's images (white backdrop and multiply blend) on Salla: checked only in the local harness. The demo store has one category image, with a coloured backdrop.
+- The real store's own images on Salla (the white-backdrop path is now verified on the demo store with the owner's test image).
 - The wide layout on Salla (no wide category image in the demo store; local harness only).
 - Public storefront: unchanged until the owner publishes a version that contains `29db957`.
-- Desktop dropdown and subcategory circles: unchanged by this commit, not re-measured.
+- Desktop dropdown at 1024–1279 px (200 px wide feature): not measured. Subcategory circles: unchanged, not re-measured.
