@@ -234,9 +234,32 @@ body.theme-beauty .cc-tabbar { display: none; }
       .core-categories__thumb { display: none; }
       .core-categories__panel { display: grid; gap: 12px; padding: 12px; outline: 0; }
       .core-categories__status { padding: 24px 12px; }
-      .core-categories__banner { display: block; border-radius: 8px; overflow: hidden; background: var(--cc-surface); }
-      // A short strip like the app's; taller category artwork is cropped to the centre.
-      .core-categories__banner-image { display: block; width: 100%; height: auto; max-height: 120px; object-fit: cover; }
+      // One category image, two layouts (core-care-categories.js, banner()). Both keep the same height.
+      // Composed (square or tall art): name and «Shop now» at the inline start, the whole image at the end,
+      // on a background taken from the image. Wide art (2:1 or wider) fills the strip.
+      .core-categories__banner {
+        position: relative; display: grid; grid-template-columns: minmax(0, 1fr) min(112px, 42%); align-items: center;
+        height: 112px; border-radius: 8px; overflow: hidden;
+        background: var(--cc-banner-bg, var(--cc-surface)); color: var(--cc-text); text-decoration: none;
+      }
+      .core-categories__banner[data-dark] { color: #fff; }
+      // Symmetric padding instead of padding-inline-start, which the build turns into a physical LTR side.
+      .core-categories__banner-text { display: grid; gap: 6px; min-width: 0; padding: 0 12px; }
+      .core-categories__banner-title {
+        display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+        font-size: 16px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere;
+      }
+      .core-categories__banner-cta { display: inline-flex; align-items: center; gap: 2px; font-size: 13px; font-weight: 500; line-height: 1.4; white-space: nowrap; opacity: .8; }
+      .core-categories__banner-media { display: block; height: 100%; padding: 6px; }
+      .core-categories__banner-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+      // White artwork on a tinted background: multiply removes the white square around the subject.
+      .core-categories__banner[data-blend] .core-categories__banner-image { mix-blend-mode: multiply; }
+      .core-categories__banner[data-layout='wide'] {
+        display: block; padding: 0;
+        .core-categories__banner-text { display: none; }
+        .core-categories__banner-media { position: absolute; inset: 0; padding: 0; }
+        .core-categories__banner-image { object-fit: cover; }
+      }
       .core-categories__card { border-radius: 8px; background: var(--cc-surface); }
       .core-categories__card-all {
         display: block; padding: 14px 12px; border-bottom: 1px solid var(--cc-border);

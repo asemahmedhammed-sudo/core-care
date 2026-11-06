@@ -49,6 +49,61 @@ export function categoryInitial(title) {
     return (label.startsWith('ال') && label.length > 2 ? label.slice(2, 3) : label.slice(0, 1)).toUpperCase();
 }
 
+// One category image (Salla has a single image field) serves every slot. In the phone banner its
+// own shape decides the layout: art at least twice as wide as tall fills the strip; anything squarer
+// is shown whole beside the category name instead of being cropped to a thin band.
+export function bannerLayout(width, height) {
+    return width > 0 && height > 0 && width / height >= 2 ? 'wide' : 'composed';
+}
+
+// Salla's image hosts answer with `Access-Control-Allow-Origin: *` (checked 2026-11-06), so the theme
+// may read their pixels. Other hosts are shown as they are, without colour sampling.
+const SAMPLE_HOSTS = ['cdn.files.salla.network', 'cdn.salla.sa'];
+export function canSampleImage(value) {
+    const url = safeMenuUrl(value);
+    return !!url && url.startsWith('https:') && SAMPLE_HOSTS.includes(new URL(url).hostname);
+}
+
+// The composed banner's background, from the image's pixels (RGBA, size × size):
+// - artwork with a coloured backdrop continues that colour around the image;
+// - artwork on white or transparent gets a pale tint of its own subject, and the image is multiplied
+//   onto it so the white square disappears;
+// - anything else returns null and the stylesheet's neutral surface is used.
+export function bannerPalette(pixels, size) {
+    if (!pixels || !size || pixels.length < size * size * 4) return null;
+    const over = (i) => {
+        const a = pixels[i + 3] / 255;
+        return [0, 1, 2].map(k => pixels[i + k] * a + 255 * (1 - a));
+    };
+    const nearWhite = ([r, g, b]) => Math.min(r, g, b) > 232;
+    const edge = [0, 0, 0];
+    const subject = [0, 0, 0];
+    let edges = 0, whiteEdges = 0, subjects = 0;
+    for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+            const i = (y * size + x) * 4;
+            const rgb = over(i);
+            if (x === 0 || y === 0 || x === size - 1 || y === size - 1) {
+                edges++;
+                if (nearWhite(rgb)) whiteEdges++;
+                rgb.forEach((v, k) => { edge[k] += v; });
+            } else if (pixels[i + 3] > 127 && !nearWhite(rgb)) {
+                subjects++;
+                rgb.forEach((v, k) => { subject[k] += v; });
+            }
+        }
+    }
+    const css = rgb => `rgb(${rgb.map(v => Math.round(v)).join(' ')})`;
+    const luminance = rgb => (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) / 255;
+    if (whiteEdges / edges < 0.6) {
+        const colour = edge.map(v => v / edges);
+        return { background: css(colour), blend: false, dark: luminance(colour) < 0.45 };
+    }
+    if (subjects < (size - 2) * (size - 2) * 0.03) return null;
+    const tint = subject.map(v => 255 - (255 - v / subjects) * 0.16);
+    return { background: css(tint), blend: true, dark: false };
+}
+
 class CoreCareCategories extends HTMLElement {
     connectedCallback() {
         this.abort?.abort();
@@ -147,10 +202,12 @@ class CoreCareCategories extends HTMLElement {
         }
     }
 
-    image(item, className) {
+    image(item, className, { sample = false } = {}) {
         const src = safeMenuUrl(item.image);
         if (!src) return null;
         const img = this.element('img', className);
+        // Set before `src`: only CORS-enabled hosts, or the image would fail to load at all.
+        if (sample && canSampleImage(src)) img.crossOrigin = 'anonymous';
         img.src = src;
         img.alt = '';
         img.loading = 'lazy';
@@ -347,6 +404,47 @@ class CoreCareCategories extends HTMLElement {
         return section;
     }
 
+    // The phone banner from the category's single image: see bannerLayout() and bannerPalette().
+    // Both layouts share one fixed height, so deciding the layout on load does not move the page.
+    banner(item) {
+        const image = this.image(item, 'core-categories__banner-image', { sample: true });
+        if (!image) return null;
+        const banner = this.link(item, 'core-categories__banner', '');
+        banner.setAttribute('aria-label', item.title);
+        banner.dataset.layout = 'composed';
+        const text = this.element('span', 'core-categories__banner-text');
+        text.setAttribute('aria-hidden', 'true');
+        const cta = this.element('span', 'core-categories__banner-cta', this.ar ? 'تسوق الآن' : 'Shop now');
+        cta.append(this.chevron('m9 6 6 6-6 6', 'core-categories__chevron'));
+        text.append(this.element('span', 'core-categories__banner-title', item.title), cta);
+        const media = this.element('span', 'core-categories__banner-media');
+        image.decoding = 'async';
+        media.append(image);
+        banner.append(text, media);
+        // A broken image releases the whole banner instead of leaving an empty strip.
+        image.addEventListener('error', () => banner.remove(), { once: true });
+        image.addEventListener('load', () => {
+            banner.dataset.layout = bannerLayout(image.naturalWidth, image.naturalHeight);
+            if (banner.dataset.layout === 'composed' && image.crossOrigin) this.paint(banner, image);
+        }, { once: true });
+        return banner;
+    }
+
+    paint(banner, image) {
+        const size = 24;
+        try {
+            const canvas = document.createElement('canvas');
+            canvas.width = canvas.height = size;
+            const context = canvas.getContext('2d', { willReadFrequently: true });
+            context.drawImage(image, 0, 0, size, size);
+            const palette = bannerPalette(context.getImageData(0, 0, size, size).data, size);
+            if (!palette) return;
+            banner.style.setProperty('--cc-banner-bg', palette.background);
+            banner.toggleAttribute('data-blend', palette.blend);
+            banner.toggleAttribute('data-dark', palette.dark);
+        } catch { /* unreadable pixels: the neutral surface stays */ }
+    }
+
     selectCompact(index) {
         const item = this.menus[index];
         const panel = this.element('section', 'core-categories__panel');
@@ -356,14 +454,8 @@ class CoreCareCategories extends HTMLElement {
         panel.tabIndex = 0;
         this.panels.replaceChildren(panel);
         const id = categoryIdFromUrl(item.url);
-        const bannerImage = this.image(item, 'core-categories__banner-image');
-        if (bannerImage) {
-            const banner = this.link(item, 'core-categories__banner', '');
-            banner.setAttribute('aria-label', item.title);
-            bannerImage.decoding = 'async';
-            banner.append(bannerImage);
-            panel.append(banner);
-        }
+        const banner = this.banner(item);
+        if (banner) panel.append(banner);
         const card = this.element('div', 'core-categories__card');
         const label = id || item.children.length ? (this.ar ? 'جميع المنتجات' : 'All products') : item.title;
         const all = this.link(item, 'core-categories__card-all', label);
