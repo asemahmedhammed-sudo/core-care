@@ -10,7 +10,7 @@ Owner's phone screenshot of `corecare-sa.com/en`, categories sheet: the «Makeup
 - The phone banner was `max-height: 120px; object-fit: cover` on a strip of about 257×120 px at 390 px width, so square art lost about half its height.
 - `cdn.files.salla.network` and `cdn.salla.sa` answer with `Access-Control-Allow-Origin: *` (curl, 2026-11-06). `-thumbnail`, `-medium` and `-large` variants of the image returned 404, so only the original is available.
 
-## Change (working tree on top of `a8e8f6f`, not committed)
+## Change (commit `29db957` on `feature/bilingual-images`, pushed)
 
 - `src/assets/js/partials/core-care-categories.js`: `banner()` builds the phone banner from the one image.
   - `bannerLayout()`: art 2:1 or wider gets `data-layout="wide"` (fills the strip, cover). Anything squarer gets `composed`: the category name and «تسوق الآن / Shop now» at the inline start, the whole image (contain) at the inline end.
@@ -39,9 +39,26 @@ Built-in browser (Chromium in the Claude desktop app, not Chrome). Static page s
 | 320×700 RTL | Makeup | 200×112, image 84 px, CTA on one line, no overflow (first try wrapped the CTA; fixed with `min(112px, 42%)` and `nowrap`) |
 | 320×700 RTL | Test-only 1200×500 SVG on the first category | `wide`, cover, text hidden, height still 112 |
 
+## Salla development preview
+
+- Draft `1524525534`, created with `yes n | salla theme preview -s "Core Care" -o -E` from pushed `29db957`. CLI stopped afterwards; no watcher left; `pnpm build` re-run, `public/` unchanged.
+- Hosted draft assets `salla.design/themes/draft/1524525534/app.css` and `main-menu.js`: 404 at creation, 200 about ten minutes later, byte-identical to the build. The jsDelivr copy at `@29db957…/public` is also identical.
+- Opened in Claude in Chrome (signed in) through the editor with `assets_url` set to the jsDelivr copy, then the editor's `/watch` frame. Storefront page: `salla.design/ar/dev-…?preview=true`, body `theme-beauty … salla-draft-1524525534 … cc-has-tabbar`, `app.css` and `main-menu.js` from `@29db957`. This session is the Partners **demo store**, not corecare-sa.com.
+- Measured in same-origin iframes at each width, after opening the sheet from the tab bar:
+
+| Width | Lang | Banner («الفساتين», 900×900 photo on a beige backdrop) |
+|---|---|---|
+| 390 | ar | `composed`, 257×112, background `rgb(219 195 173)` taken from the image edges (no blend), whole image 96×100 at the left, CTA one line, 12 px to the next card, no horizontal overflow |
+| 320 | ar | 200×112, image 72×100, CTA one line, 12 px gap, no overflow |
+| 390 | en | Mirrored: text at the left, image at the right, «Shop now», 12 px gap, no overflow. The title stays Arabic because the demo category has no English name (store data). |
+
+The other demo categories have no image: no banner, the card starts at the panel top.
+
+Screenshot (local only; `docs/evidence/visual/` is git-ignored): `docs/evidence/visual/category-banner-salla-mobile-390-2026-11-06.png` (390 px, Arabic, demo store).
+
 ## Not verified
 
-- Salla development preview (needs a pushed commit, see the preview workflow) and Chrome.
-- Public storefront: unchanged until the owner publishes a version that contains this change.
-- A real merchant image with a coloured or dark backdrop on the store (covered only by unit tests).
-- Real IBM Plex Sans Arabic font (the harness used the fallback font).
+- The real store's images (white backdrop and multiply blend) on Salla: checked only in the local harness. The demo store has one category image, with a coloured backdrop.
+- The wide layout on Salla (no wide category image in the demo store; local harness only).
+- Public storefront: unchanged until the owner publishes a version that contains `29db957`.
+- Desktop dropdown and subcategory circles: unchanged by this commit, not re-measured.
